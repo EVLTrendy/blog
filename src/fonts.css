@@ -1,0 +1,55 @@
+@font-face {
+    font-family: 'SvelteTrial-Bold'; 
+    src: url('./fonts/svelte/sveltetrial-bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: 'SvelteTrial-Regular';
+    src: url('./fonts/svelte/sveltetrial-regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'tti';
+    src: url('./fonts/TT Interphases Pro Mono Trial Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'vollkorn-regular';
+    src: url('./fonts/Vollkorn/Vollkorn-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'vollkorn-bold';
+    src: url('./fonts/Vollkorn/Vollkorn-Bold.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'mangabey';
+    src: url('./fonts/mangabey-font/MangabeyRegular-rgqVO.otf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'lowball';
+    src: url('./fonts/lowball-neue-font/LowballNeueRegular-rglJB.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'playfair';
+    src: url('./fonts/playfair-display-font/PlayfairDisplayRegular-ywLOY.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+
+
