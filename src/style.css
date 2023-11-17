@@ -335,8 +335,7 @@ top:1px;
 }
 
 p{
-  display: flex;
   word-wrap: break-word; 
   overflow-wrap: break-word; 
-  width: inherit;
+  width: 200px;
 };
