@@ -28,12 +28,9 @@ layout: 'base.njk'
       <div class="fttoptxts">Explore Our Curated Selection: Engaging Featured Articles Worth Your Attention</div>
     </div>
     <div class="ftbot">
-      <ul role="list" class="articles__list flow">
-
-        {%- for post in collections.featured | reverse -%}
-          {% include 'article-snippet.njk' %}
-        {%- endfor -%}
-      </ul>
+      {%- for post in collections.featured | reverse -%}
+        {% include 'article-snippet.njk' %}
+      {%- endfor -%}
     </div>
   </div>
 </div>
