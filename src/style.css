@@ -297,8 +297,6 @@ top:1px;
 
   p{
     display: flex;
-    margin-left: auto;
-    margin-right: auto;
     word-wrap: break-word; 
     overflow-wrap: break-word; 
   };
@@ -335,3 +333,9 @@ top:1px;
 
   border: solid black 1px;
 }
+
+p{
+  display: flex;
+  word-wrap: break-word; 
+  overflow-wrap: break-word; 
+};
