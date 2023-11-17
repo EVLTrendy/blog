@@ -314,14 +314,16 @@ top:1px;
   justify-content: center;
 }
 
-.article_body{
+.article_body {
   display: flex;
   padding-left: 50px;
   padding-right: 50px;
-  word-wrap: break-word; 
-  overflow-wrap: break-word; 
-
   width: 100%;
+}
+
+.article_body p {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 
