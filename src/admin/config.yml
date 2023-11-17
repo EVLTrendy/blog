@@ -16,4 +16,4 @@ collections:
       - {label: "Tags", name: "tags", widget: "list", default: ["post"]}
       - {label: "Featured Image", name: "image", widget: "image"}
       - {label: "Image Caption ", name: "imageAlt", widget: "string"}
-      - {label: "Body", name: "body", widget: "markdown"}
+      - {label: "Body", name: "body", widget: "markdown" , class: "article_body"}
