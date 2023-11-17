@@ -323,6 +323,7 @@ top:1px;
 
 .article_body p {
   margin: 0; /* Reset margin to zero */
+  width: 100%;
   word-wrap: break-word;
   overflow-wrap: break-word;
   /* Add any additional styles as needed */
