@@ -370,3 +370,8 @@ background-color:#019ad2;
 position:relative;
 top:1px;
 }
+
+.articles__list {
+  --flow-spacer: 3rem;
+  margin: 6rem 0;
+}
