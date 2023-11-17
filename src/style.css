@@ -294,6 +294,12 @@ top:1px;
 .articlesection{
   width: 100%;
   height: auto;
+
+  p{
+    display: flex;
+    padding-left: 50px;
+    padding-right: 50px;
+  };
 }
 
 .imagediv{
