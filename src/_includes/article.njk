@@ -5,5 +5,7 @@ layout: 'base.njk'
   <div class="imagediv">
     <img src="{{ image }}" alt="{{ imageAlt }}">
   </div>
-  {{content | safe}}
+  <h3 class="article_title">{{ title }}</h3>
+  <p class="article_meta">By <span>{{post.data.author}}</span> on <span>{{post.date | postDate}}</span></p>
+  <p class="article_body">{{post.data.description}}</p>
 </section>
