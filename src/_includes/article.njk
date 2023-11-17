@@ -8,8 +8,6 @@ layout: 'base.njk'
   <h3 class="article_title">{{ title }}</h3>
   <p class="article_meta">By <span>{{post.data.author}}</span> on <span>{{post.date | postDate}}</span></p>
   <p class="article_body">
-
-    {{content | safe}}
-
+    {{ description | safe }}
   </p>
 </section>
