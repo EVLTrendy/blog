@@ -1,9 +1,22 @@
-<li>
-    <article class="snippet">
-        <img src="{{post.data.image}}" alt="{{post.data.imageAlt}}" class="snippet_image">
-        <h3 class="snippet_title">{{ post.data.title }}</h3>
-        <p class="snippet_meta">By <span>{{post.data.author}}</span> on <span>{{post.date | postDate}}</span></p>
-        <p class="snipper_body">{{post.data.description}}</p>
-        <a href="{{post.url}}" class="btn btn--primary">Continue Reading</a>
-    </article>
-</li>
+<div class="featurediv">
+    <div class="ftbacksplash">
+        <div class="fttop">
+            <div class="spacediv21"></div>
+            <div class="fttoptxth">Featured articles</div>
+            <div class="fttoptxts">Explore Our Curated Selection: Engaging Featured Articles Worth Your Attention</div>
+        </div>
+        <div class="ftbot">
+            <article class="snippet">
+                <div  class="articles__list">
+                    <img src="{{post.data.image}}" alt="{{post.data.imageAlt}}" class="snippet_image">
+                    <div class="snippet_tmb">
+                        <h3 class="snippet_title">{{ post.data.title }}</h3>
+                        <p class="snippet_meta">By <span>{{post.data.author}}</span> on <span>{{post.date | postDate}}</span></p>
+                        <p class="snipper_body">{{post.data.description}}</p>
+                    </div>
+                    <a href="{{post.url}}" class="myButton2">Continue Reading</a>
+                </div>
+            </article>
+        </div>
+    </div>
+</div>
