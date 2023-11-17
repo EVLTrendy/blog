@@ -294,12 +294,6 @@ top:1px;
 .articlesection{
   width: 100%;
   height: auto;
-
-  p{
-    display: flex;
-    word-wrap: break-word; 
-    overflow-wrap: break-word; 
-  };
 }
 
 .imagediv{
@@ -324,6 +318,8 @@ top:1px;
   display: flex;
   padding-left: 50px;
   padding-right: 50px;
+  word-wrap: break-word; 
+  overflow-wrap: break-word; 
 }
 
 
@@ -333,9 +329,3 @@ top:1px;
 
   border: solid black 1px;
 }
-
-p{
-  word-wrap: break-word; 
-  overflow-wrap: break-word; 
-  width: 200px;
-};
