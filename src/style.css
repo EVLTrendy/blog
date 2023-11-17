@@ -314,11 +314,13 @@ top:1px;
   justify-content: center;
 }
 
-.article_bodydiv{
+.article_bodydiv {
   width: 700px;
   display: flex;
+  flex-wrap: wrap; /* This ensures that content wraps to the next line if it overflows */
   text-align: left;
-  
+  margin: 10px; /* Adjust the margin as needed */
+  padding: 10px; /* Adjust the padding as needed */
 }
 
 .article_body {
