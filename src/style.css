@@ -314,6 +314,10 @@ top:1px;
   justify-content: center;
 }
 
+.article_bodydiv{
+  width: 700px;
+}
+
 .article_body {
   display: flex;
   width: 100%;
