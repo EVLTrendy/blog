@@ -3,7 +3,7 @@ title: "Jams Without Jitters: Your Copyright-Free Soundtrack Guide!"
 author: Marc C
 date: 2023-11-20T02:10:03.754Z
 tags:
-  - post
+  - featured
 image: /assets/blog/top-9-rfm.png
 imageAlt: top8rfm
 ---
