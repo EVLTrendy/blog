@@ -1,15 +1,22 @@
 ---
 layout: 'base.njk'
 ---
+
 <section class="articlesection">
   <div class="imagediv">
     <img src="{{ image }}" alt="{{ imageAlt }}">
   </div>
   <h3 class="article_title">{{ title }}</h3>
-  <p class="article_meta">By <span>{{post.data.author}}</span> on <span>{{post.date | postDate}}</span></p>
+  <p class="article_meta">By <span>{{ post.data.author }}</span> on <span>{{ post.date | postDate }}</span></p>
   <div class="article_body">
     <div class="article_bodydiv">
-      {{ content | safe }}
+      {% set sections = content | split('<h2>') %}
+      {% for section in sections %}
+        {{ section | safe }}
+        {% if not loop.last %}
+          <hr>
+        {% endif %}
+      {% endfor %}
     </div>
   </div>
 </section>
