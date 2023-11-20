@@ -212,6 +212,10 @@ footer {
   font-family: 'SvelteTrial-Regular';
 }
 
+.footertext{
+  color:white
+}
+
 
 .snippet_image{
   height: 250px;
