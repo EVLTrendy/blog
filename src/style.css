@@ -30,6 +30,8 @@ p {
 }
 
 
+
+
 /* hr{
   display: block;
   max-width: 200px;
@@ -182,6 +184,7 @@ header {
 
 .ftbot {
   height: 600px;
+  overflow: hidden;
 }
 
 .fttoptxth {
@@ -352,6 +355,7 @@ footer {
 .snippet__title {
   display: block;
 }
+
 
 /* Article All */
 
