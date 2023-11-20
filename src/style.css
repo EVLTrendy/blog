@@ -325,6 +325,8 @@ top:1px;
 .articlesection{
   width: 100%;
   height: auto;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 .imagediv{
