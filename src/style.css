@@ -1,16 +1,20 @@
 
 
 a {
-  color: inherit;
+  color: #33bdef;
   text-decoration: none;
 }
 
 h2{
   font-family: 'mangabey';
+  color: #40404F;
 }
 
 p{
   font-family: 'playfair';
+  color: #40404F;
+  font-weight: 400;
+  line-height: 2;
 }
 
 /* Nav */
@@ -323,7 +327,7 @@ top:1px;
 }
 
 .article_bodydiv {
-  width: 700px;
+  width: 1000px;
   display: flex;
   flex-wrap: wrap; 
   text-align: left;
