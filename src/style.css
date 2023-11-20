@@ -19,6 +19,12 @@ h3 {
   color: #40404F;
   font-size: 21px;
 }
+h2 {
+  display: inline;
+  font-family: 'playfair';
+  color: #40404F;
+  font-size: 18px;
+}
 
 p {
   font-family: 'playfair';
