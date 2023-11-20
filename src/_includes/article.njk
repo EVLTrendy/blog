@@ -1,7 +1,6 @@
 ---
 layout: 'base.njk'
 ---
-
 <section class="articlesection">
   <div class="imagediv">
     <img src="{{ image }}" alt="{{ imageAlt }}">
@@ -10,7 +9,7 @@ layout: 'base.njk'
   <p class="article_meta">By <span>{{ post.data.author }}</span> on <span>{{ post.date | postDate }}</span></p>
   <div class="article_body">
     <div class="article_bodydiv">
-      {% set sections = content | split('<h2>') %}
+      {% set sections = content | replace(/<h2(.*?)>/g, '|<h2$1>') | split('|') %}
       {% for section in sections %}
         {{ section | safe }}
         {% if not loop.last %}
