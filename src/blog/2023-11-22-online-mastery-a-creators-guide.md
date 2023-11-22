@@ -54,6 +54,8 @@ Select a high-quality image that represents your brand or persona, adapting dime
 
 Utilize tools like Canva for visually appealing banners, cover images, and graphics. Maintain a consistent visual style for cohesive branding.
 
+Need help creating the perfect Canva visual? Checkout this article here ([EVL Blog-Canva](https://blog.evolvedlotus.com/blog/2023-11-20-boost-tiktok-visuals-top-online-resources/))
+
 ### Step 4: Write an Engaging Bio
 
 Craft a captivating and concise bio that communicates your brand's essence. Use resources like Ahrefs Bio Generator for effective bio creation.
