@@ -380,12 +380,20 @@ footer {
   height: 450px;
   justify-content: center;
   overflow: hidden; 
+  image-resolution: 300dpi;
+  image-resolution: from-image 300dpi;
+  image-resolution: from-image 300dpi snap;
+  image-rendering: optimizeQuality;
 }
 
 .imagediv img {
   width: 100%;
   height: auto;
   object-fit: cover;
+  image-resolution: 300dpi;
+  image-resolution: from-image 300dpi;
+  image-resolution: from-image 300dpi snap;
+  image-rendering: optimizeQuality;
 }
 
 .article_title,
