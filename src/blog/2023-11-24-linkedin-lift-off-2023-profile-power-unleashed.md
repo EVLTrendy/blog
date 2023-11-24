@@ -4,6 +4,7 @@ author: Marc C.
 date: 2023-11-24T18:49:44.041Z
 tags:
   - post
+  - featured
 image: /assets/blog/zyro-image.png
 imageAlt: liftofflinkedin
 ---
