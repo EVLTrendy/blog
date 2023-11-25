@@ -1,5 +1,5 @@
 ---
-title: "Social Scheduling Mastery: Harnessing Free* Tools for Online Success!"
+title: "Scheduled Success: Mastering Free* Tools Online!"
 author: Marc C.
 date: 2023-11-20T20:28:42.853Z
 tags:
