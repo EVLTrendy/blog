@@ -76,7 +76,7 @@ p {
   font-size: 24px;
   font-family: 'playfair';
   text-shadow: 1px 1px 0 #000; 
-  animation: slideChristmasText 8s linear infinite;
+  animation: slideChristmasText 10s linear infinite;
 }
 
 
