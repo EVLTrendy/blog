@@ -59,6 +59,6 @@ For sustained growth, steer clear of common pitfalls:
 
 Facebook's sustainable growth demands a strategic approach that goes beyond vanity metrics. Although having a lot of followers may seem attractive, the true value is in building a supportive and active community. By putting quality interactions above quantity, you can make sure that the people who visit your page are the right people—people who are actually interested in your offerings and content.
 
-## **Conclusion**
+### **Conclusion**
 
 By implementing these strategies and avoiding common mistakes, you pave the way for organic growth on Facebook. Building a thriving community takes time and consistency, so stay committed to providing value and fostering meaningful connections. Happy growing!
