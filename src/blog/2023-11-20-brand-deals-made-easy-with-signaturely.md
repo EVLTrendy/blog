@@ -5,6 +5,7 @@ date: 2023-11-20T21:18:45.384Z
 tags:
   - post
   - featured
+  - misc
 image: /assets/blog/zyro-image-3-.png
 imageAlt: Brandeal
 ---
