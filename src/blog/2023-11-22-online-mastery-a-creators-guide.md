@@ -5,6 +5,7 @@ date: 2023-11-22T16:45:33.725Z
 tags:
   - post
   - featured
+  - misc
 image: /assets/blog/zyro-image-6-.png
 imageAlt: mop
 ---
