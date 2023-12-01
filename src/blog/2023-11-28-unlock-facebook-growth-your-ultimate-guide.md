@@ -5,6 +5,7 @@ date: 2023-11-28T02:46:21.160Z
 tags:
   - post
   - featured
+  - fb
 image: /assets/blog/skjadklame.png
 imageAlt: ufgyug
 ---
