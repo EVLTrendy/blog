@@ -5,6 +5,11 @@ date: 2023-11-20T20:28:42.853Z
 tags:
   - post
   - featured
+  - misc
+  - yt
+  - fb
+  - tiktok
+  - twitter
 image: /assets/blog/zyro-image-1-.png
 imageAlt: top6
 ---
