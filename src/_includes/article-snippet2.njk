@@ -1,0 +1,11 @@
+<article class="snippet">
+    <div  class="articles__list">
+        <img src="{{fb.data.image}}" alt="{{fb.data.imageAlt}}" class="snippet_image">
+        <div class="snippet_tmb">
+            <h3 class="snippet_title">{{ fb.data.title }}</h3>
+            <p class="snippet_meta">By <span>{{fb.data.author}}</span> on <span>{{fb.date | postDate}}</span></p>
+            <p class="snippet_body">{{fb.data.description}}</p>
+        </div>
+        <a href="{{fb.url}}" class="myButton2">Continue Reading</a>
+    </div>
+</article>

@@ -52,6 +52,7 @@ p {
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
 }
 
 .christmasoverlay {
@@ -480,3 +481,52 @@ footer {
 .article_image {
   border: solid black 1px;
 }
+
+/* SubCont */
+
+.subcontdiv {
+height: 600px;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+.subcont {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 130px;
+
+padding-top: 100px;
+
+}
+.subgen, 
+.subgen1, 
+.subgen2, 
+.subgen3, 
+.subgen4, 
+.subgen5, 
+.subgen6, 
+.subgen7, 
+.subgen8, 
+.subgen9 {
+background: rgba(248, 248, 248, 0.1);
+padding: 10px;
+text-align: center;
+border-radius: 10px; /* Adjust the border-radius as needed */
+box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); /* Adjust the shadow values as needed */
+}
+
+.subgen:hover, 
+.subgen1:hover, 
+.subgen2:hover, 
+.subgen3:hover, 
+.subgen4:hover, 
+.subgen5:hover, 
+.subgen6:hover, 
+.subgen7:hover, 
+.subgen8:hover, 
+.subgen9:hover {
+background: rgba(248, 248, 248, 0.3); /* Adjust the background color on hover */
+box-shadow: 0 1px 2px rgba(255, 221, 0, 0.505); /* Light opaqued gold border on hover */
+}
+

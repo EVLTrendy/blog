@@ -1,0 +1,11 @@
+<article class="snippet">
+    <div  class="articles__list">
+        <img src="{{kick.data.image}}" alt="{{kick.data.imageAlt}}" class="snippet_image">
+        <div class="snippet_tmb">
+            <h3 class="snippet_title">{{ kick.data.title }}</h3>
+            <p class="snippet_meta">By <span>{{kick.data.author}}</span> on <span>{{kick.date | postDate}}</span></p>
+            <p class="snippet_body">{{kick.data.description}}</p>
+        </div>
+        <a href="{{kick.url}}" class="myButton2">Continue Reading</a>
+    </div>
+</article>

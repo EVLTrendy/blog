@@ -1,0 +1,11 @@
+<article class="snippet">
+    <div  class="articles__list">
+        <img src="{{tiktok.data.image}}" alt="{{tiktok.data.imageAlt}}" class="snippet_image">
+        <div class="snippet_tmb">
+            <h3 class="snippet_title">{{ tiktok.data.title }}</h3>
+            <p class="snippet_meta">By <span>{{tiktok.data.author}}</span> on <span>{{tiktok.date | postDate}}</span></p>
+            <p class="snippet_body">{{tiktok.data.description}}</p>
+        </div>
+        <a href="{{tiktok.url}}" class="myButton2">Continue Reading</a>
+    </div>
+</article>
