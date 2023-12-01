@@ -1,0 +1,11 @@
+<article class="snippet">
+    <div  class="articles__list">
+        <img src="{{yt.data.image}}" alt="{{yt.data.imageAlt}}" class="snippet_image">
+        <div class="snippet_tmb">
+            <h3 class="snippet_title">{{ yt.data.title }}</h3>
+            <p class="snippet_meta">By <span>{{yt.data.author}}</span> on <span>{{yt.date | postDate}}</span></p>
+            <p class="snippet_body">{{yt.data.description}}</p>
+        </div>
+        <a href="{{yt.url}}" class="myButton2">Continue Reading</a>
+    </div>
+</article>
