@@ -5,6 +5,7 @@ date: 2023-11-24T18:49:44.041Z
 tags:
   - post
   - featured
+  - link
 image: /assets/blog/zyro-image.png
 imageAlt: liftofflinkedin
 ---

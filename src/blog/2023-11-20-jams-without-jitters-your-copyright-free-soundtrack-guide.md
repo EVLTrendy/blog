@@ -4,8 +4,8 @@ author: Marc C.
 date: 2023-11-20T02:27:26.772Z
 tags:
   - featured
-  - posts
-  - ""
+  - post
+  - misc
 image: /assets/blog/zyro-image-2-.png
 imageAlt: top8rfm
 ---

@@ -5,6 +5,7 @@ date: 2023-11-22T17:26:09.761Z
 tags:
   - post
   - featured
+  - misc
 image: /assets/blog/8-mnzbj9l68fa6ucx-1-1-.png
 imageAlt: icptop3
 ---
