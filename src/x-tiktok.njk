@@ -6,7 +6,7 @@ layout: 'base.njk'
     <h1 class="section-title">Read TikTok Blogs</h1>
     <ul role="list" class="articles_list flow">
         {%- for post in collections.tiktok | reverse -%}
-            {% include 'article-snippet6.njk' %}
+            {% include 'article-snippet.njk' %}
         {%- endfor -%}
     </ul>
 </div>
