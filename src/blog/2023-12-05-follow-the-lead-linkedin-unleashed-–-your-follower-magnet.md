@@ -18,6 +18,10 @@ Creating a compelling work history is the first step towards a distinctive Linke
 
 Your LinkedIn profile is an evolving narrative of your career journey, not just a standard list of job titles. Make it something special by turning it into an engaging story. Allow your accomplishments to serve as more than just summary points; rather, let them serve as significant turning points in the long narrative of your professional life. Immerse yourself in the craft of storytelling and give it your all. Expose not just your victories but also the obstacles you overcame and the knowledge you gained. Transform your profile into an enticing story that will entice people to turn the pages of your trip.
 
+![aboutpic@tanmoysaha](/assets/blog/craft-a-captivating-profile-story.png)
+
+###### og: [Tanmoy Saha](https://www.linkedin.com/in/tanmoy0101/)
+
 Storytelling is an art, and your LinkedIn profile is the canvas. Expand the storyline of your work rather than focusing only on professional accomplishments. Tell tales that illustrate your character, your interests, or the lessons you took away from a well-read book. Keep it professional but personable. One suggestion would be to write a collection of short stories that are all related to your field or area of expertise. This not only keeps your audience interested but also adds flair. Keeping in mind that people are drawn to tales, sharing yours makes your profile an appealing invitation for others to become involved with your journey.
 
 Consider your profile to be a narrative novel, where you craft a captivating story to captivate readers.
@@ -28,6 +32,9 @@ Telling a story about your career is what your LinkedIn profile is all about, no
 
 Develop the storytelling habit. Post captivating anecdotes on your profile that transcend professional accomplishments. Show the true you to the world. In this manner, your profile transforms from a simple talents list into an invitation for people to get involved with your journey.
 
+![aboutpic@richardbranson](/assets/blog/elevate-engagement-through-visual-storytelling.png)
+
+###### og: [Richard Branson](https://www.linkedin.com/in/rbranson/)
 
 Consider the photo on the LinkedIn page as the front cover of your career narrative. Make it appear approachable and expert, similar to a photo of you from work. Use cold tones for serenity or vibrant hues for enthusiasm to express your individuality. Keep in mind that this image is where your visual story begins!
 
@@ -54,6 +61,10 @@ Your LinkedIn network is a vibrant online community centered around your profile
 Being the expert in your industry on LinkedIn is similar to starring in a film. Let's dissect how you can take center stage in your professional performance. 
 
 Write articles first. Talk about industry trends, impart your experience, and assist others in overcoming obstacles. Every piece you write for your profile serves as a spotlight, highlighting your experience and setting you apart.
+
+![aboutpic@richardwhite](/assets/blog/showcase-your-expertise-2-.png)
+
+###### [og: Richard White](https://www.linkedin.com/in/rrwhite/)
 
 Join LinkedIn Groups where professionals just like you discuss ideas instead of limiting yourself to your profile. Let your knowledge to be known, impart your wisdom, and provide insightful counsel. These groups act as online platforms where you may show that you're not simply knowledgeable but also actively involved.
 
