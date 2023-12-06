@@ -15,7 +15,9 @@ Promoting your music requires more than just being a talented musician—it requ
 
 We discover that content might be an effective means of promoting music. Learn how using words to express yourself creatively may strengthen your bonds with your devoted following. Examine the ways that well-written narrative may improve the way your music is promoted and foster a positive rapport with your listeners.
 
-- - -
+---
+
+
 
 ### Striking the Right Note: Crafting Engaging Content
 
