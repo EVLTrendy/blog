@@ -17,8 +17,10 @@ The order of views in this list is lowest to highest!
 
 ### **Lethal Company:**
 
-* Projected View Count: Approximately 47,684 viewers
-* Projected Twitch Shares: Approximately 1.778%
+![lethalcompany](/assets/blog/how-to-use-flashlight-in-lethal-company-65586fd9f2dc743413607-1200-1-.png)
+
+* **Projected View Count:** Approximately 47,684 viewers
+* **Projected Twitch Shares:** Approximately 1.778%
 
 With a 6.8% rise and a stable audience estimate, Lethal Company tops our list. Intense moments guaranteed to keep spectators interested are offered by this tactical shooter. Put an emphasis on strategy talks, engage viewers, and, most all, show off your deadly talents if you want your stream to stand out.
 
@@ -54,8 +56,10 @@ Lethal Company is an exhilarating cooperative horror game that captivates player
 
 ### **Call of Duty: Warzone:**
 
-* Projected View Count: Approximately 47,952 viewers
-* Projected Twitch Shares: Approximately 1.666%
+![callofdutywarzone](/assets/blog/db8834a9-115d-45e7-a9b5-fa4216b2aac2-1-.jpg)
+
+* **Projected View Count:** Approximately 47,952 viewers
+* **Projected Twitch Shares:** Approximately 1.666%
 
 With a 14.7% rise in anticipated views, Warzone is still the dominant game in the battle royale genre. Accept the fast-paced nature of the game by being enthusiastic while streaming. Create an engaging experience for your viewers by interacting with them in-game and through team interactions.
 
@@ -91,6 +95,8 @@ In addition to the spin-the-wheel challenges, consider experimenting with loadou
 
 ### Overwatch 2:
 
+![overwatch2](/assets/blog/szvf2pukemn9mbeecd7us8-1200-80-1-.jpg)
+
 * **Projected View Count:** Approximately 54,961 viewers
 * **Projected Twitch Shares:** Approximately 1.318%
 
@@ -120,6 +126,8 @@ To customize the experience to your group's tastes, draw inspiration from these 
 
 ### Pokémon Community Game:
 
+![pokemoncommunitygame](/assets/blog/new-project-30-1-.png)
+
 * **Projected View Count:** Approximately 62,693 viewers
 * **Projected Twitch Shares:** Approximately 1.628%
 
@@ -144,6 +152,8 @@ Use these entertaining playthrough suggestions to craft a special challenge duri
    * Play through the game without dealing super-effective damage. All damage must be neutral or not very effective. This adds a strategic layer to battles, forcing players to consider move effectiveness carefully.
 
 ### Path of Exile:
+
+![pathofexile](/assets/blog/poe-path-of-exile-mobile-1-.png)
 
 * **Projected View Count:** Approximately 113,550 viewers
 * **Projected Twitch Shares:** Approximately 0.629%
@@ -171,6 +181,8 @@ Players in Path of Exile frequently look for novel challenges to add interest to
 
 ### Valorant:
 
+![valorant](/assets/blog/valorant_cover_art-1-.png)
+
 * **Projected View Count:** Approximately 93,032 viewers
 * **Projected Twitch Shares:** Approximately 3.395%
 
@@ -196,6 +208,8 @@ Every day, Valorant Strat Roulette creates fresh, enjoyable challenges that are 
 Valorant Strat Roulette injects humor and an element of uncertainty into your games, demonstrating that enjoyment can still take center stage in a competitive setting. Try out these tasks to uncover a new aspect of Valorant outside the standard tactical gaming.
 
 ### League of Legends:
+
+![lol](/assets/blog/league-of-legends-1-.png)
 
 * **Projected View Count:** Approximately 153,461 viewers
 * **Projected Twitch Shares:** Approximately 5.708%
@@ -226,6 +240,8 @@ These challenges provide a fun twist to the traditional League of Legends experi
 
 ### Fortnite:
 
+![fortnite](/assets/blog/social-image-chapter4-s3-3840x2160-d35912cc25ad-1-.jpg)
+
 * **Projected View Count:** Approximately 267,056 viewers
 * **Projected Twitch Shares:** Approximately 7.794%
 
@@ -252,6 +268,8 @@ Discover interesting new ways to explore Fortnite. These challenges will keep yo
 Which challenge will you conquer first? The island is waiting for your unique approach!
 
 ### Just Chatting:
+
+![justchatting](/assets/blog/maxresdefault-1-.jpg)
 
 * **Projected View Count:** Approximately 387,442 viewers
 * **Projected Twitch Shares:** Approximately 14.319%
@@ -281,6 +299,8 @@ Think about using these original concepts in your material if you want to succee
 You may start a lucrative career as a Twitch content maker by using these Just Chatting stream ideas.
 
 ### DRAGON QUEST MONSTERS: The Dark Prince:
+
+![dragonquestmonsters](/assets/blog/dqm3_logo.png)
 
 * **Projected View Count:** Approximately 1,436,500 viewers
 * **Projected Twitch Shares:** Approximately 0.338%
