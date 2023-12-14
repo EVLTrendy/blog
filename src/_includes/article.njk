@@ -9,6 +9,9 @@ layout: 'base.njk'
   <p class="article_meta">By&nbsp;<span>{{ author }}</span>&nbsp;on&nbsp;<span>{{date | postDate}}</span></p>
   <div class="article_body">
     <div class="article_bodydiv">
+        <section class="adcontainers">
+          {% include 'personalads.njk' %}
+        </section>
       {{ content | safe | replace('<h3', '<hr><h3') }}
     </div>
   </div>
