@@ -524,12 +524,21 @@
   .article_image {
     border: solid black 1px;
   }
+
+  .blogpic {
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    margin-left: 250px;
+  
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  }
   
   /* SubCont */
   
   .section-container{
     text-align: center;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.9);
     padding-bottom: 15px;
   }
   
