@@ -3,16 +3,16 @@ layout: 'base.njk'
 ---
 <section class="articlesection">
   <div class="imagediv">
-    <img src="{{ image }}" alt="{{ imageAlt }}">
+    <img src="{{ image }}" alt="{{ imageAlt }}" class="blogpic">
   </div>
   <h3 class="article_title">{{ title }}</h3>
   <p class="article_meta">By&nbsp;<span>{{ author }}</span>&nbsp;on&nbsp;<span>{{date | postDate}}</span></p>
   <div class="article_body">
     <div class="article_bodydiv">
-        <section class="adcontainers">
-          {% include 'personalads.njk' %}
-        </section>
-      {{ content | safe | replace('<h3', '<hr><h3') }}
+      <section class="adcontainers">
+        {% include 'personalads.njk' %}
+      </section>
+      {{ content | safe | replace('<h3', '<hr><h3') | replace('<img', '<img class="blogpic"') }}
     </div>
   </div>
 </section>
