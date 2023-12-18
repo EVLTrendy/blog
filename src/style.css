@@ -770,7 +770,7 @@
   
   
   .ftbot {
-    height: 600px;
+    height: 500px;
     overflow: hidden;
   }
   
@@ -796,6 +796,103 @@
     white-space: pre-wrap; 
   }
 
+  
+  /* Snippet */
+  
+  .snippet_image {
+    height: 80px;
+    width: 80px;
+  
+    border: solid black 1px;
+  }
+  
+
+  
+  .myButton {
+    box-shadow: 0px 1px 0px 0px #f0f7fa;
+    background: linear-gradient(to bottom, #33bdef 5%, #019ad2 100%);
+    background-color: #33bdef;
+    border-radius: 6px;
+    border: 1px solid #057fd0;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: Arial;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 6px 24px;
+    text-decoration: none;
+    text-shadow: 0px -1px 0px #5b6178;
+  }
+  
+  .myButton2 {
+    box-shadow: 0px 1px 0px 0px #f0f7fa;
+    background: linear-gradient(to bottom, #D3D3D3 5%, #808080 100%);
+    border-radius: 6px;
+    border: 1px solid #AAAAAA;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: Arial;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 3px 12px;
+    text-decoration: none;
+    text-shadow: 0px -1px 0px #5b6178;
+  
+    margin-bottom: 20px;
+  }
+  
+  .myButton:hover {
+    background: linear-gradient(to bottom, #019ad2 5%, #33bdef 100%);
+    background-color: #019ad2;
+  }
+  
+  .myButton:active {
+    position: relative;
+    top: 1px;
+  }
+  
+  .articles__list {
+    display: flex;
+    width: 100%;
+    height: 250px;
+  
+    padding-bottom: 10px;
+  
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+  }
+  
+  .snippet_tmb {
+    height: 200px;
+    width: 200px;
+    padding-left: 10px;
+    text-align: center;
+  
+  }
+  
+  .snippet_title {
+    font-size: 26px;
+  }
+  
+  .snippet_meta {
+    font-size: 12px;
+  }
+  
+  .snippet_body {
+    font-size: 18px;
+  
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  
+  .snippet__title {
+    display: block;
+  }
+  
   /* Footer */
   
   .spacediv14 {
@@ -849,9 +946,8 @@
     color: #808080;
     font-weight: bolder;
     text-decoration: none;
-    font-size: 18px;
+    font-size: 12px;
   
-    padding-left: 25px;
   }
   
   .footertext:hover {
@@ -864,118 +960,7 @@
   
   .social .footeritem {
     flex: 1;
-  }
-  
-  /* Snippet */
-  
-  .snippet_image {
-    height: 100px;
-    width: 100px;
-  
-    border: solid black 1px;
-  }
-  
-  @media (min-width: 45em) {
-    .snippet {
-        grid-template-areas:
-            "title image"
-            "meta image"
-            "body image"
-            "button image";
-        grid-column-gap: 4em;
-        grid-template-columns: 1fr 40%;
-        grid-template-rows: min-content min-content min-content 1fr;
-    }
-  }
-  
-  .myButton {
-    box-shadow: 0px 1px 0px 0px #f0f7fa;
-    background: linear-gradient(to bottom, #33bdef 5%, #019ad2 100%);
-    background-color: #33bdef;
-    border-radius: 6px;
-    border: 1px solid #057fd0;
-    display: inline-block;
-    cursor: pointer;
-    color: #ffffff;
-    font-family: Arial;
-    font-size: 15px;
-    font-weight: bold;
-    padding: 6px 24px;
-    text-decoration: none;
-    text-shadow: 0px -1px 0px #5b6178;
-  }
-  
-  .myButton2 {
-    box-shadow: 0px 1px 0px 0px #f0f7fa;
-    background: linear-gradient(to bottom, #D3D3D3 5%, #808080 100%);
-    border-radius: 6px;
-    border: 1px solid #AAAAAA;
-    display: inline-block;
-    cursor: pointer;
-    color: #ffffff;
-    font-family: Arial;
-    font-size: 15px;
-    font-weight: bold;
-    padding: 6px 24px;
-    text-decoration: none;
-    text-shadow: 0px -1px 0px #5b6178;
-  
-    margin-bottom: 50px;
-  }
-  
-  .myButton:hover {
-    background: linear-gradient(to bottom, #019ad2 5%, #33bdef 100%);
-    background-color: #019ad2;
-  }
-  
-  .myButton:active {
-    position: relative;
-    top: 1px;
-  }
-  
-  .articles__list {
-    display: flex;
-    width: 100%;
-    height: 250px;
-  
-    padding: 20px;
-  
-  
-    align-items: center;
-    text-align: center;
-    justify-content: center;
-  }
-  
-  .snippet_tmb {
-    height: 200px;
-    width: 250px;
-    padding-left: 25px;
-    padding-right: 25px;
-    text-align: center;
-  
-  }
-  
-  .snippet_title {
-    font-size: 26px;
-  }
-  
-  .snippet_meta {
-    font-size: 12px;
-  }
-  
-  .snippet_body {
-    font-size: 18px;
-  
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-  }
-  
-  .snippet__title {
-    display: block;
-  }
-  
-    
+  }    
 
 }
 
