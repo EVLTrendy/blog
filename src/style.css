@@ -965,6 +965,8 @@
   
   .article_image {
     border: solid black 1px;
+    height: 400px;
+    width: 100%;
   }
   
   .blogpic{
