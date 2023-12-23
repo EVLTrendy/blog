@@ -177,7 +177,6 @@ Using insights improves the relationship with the audience and influences conten
 
 ![](/assets/blog/pinkfriday.png)
 
----
 
 ### Conclusion
 
