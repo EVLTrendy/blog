@@ -5,7 +5,7 @@ date: 2023-12-30T15:45:02.422Z
 tags:
   - post
   - featured
-  - ""
+  - tt
 image: /assets/blog/tiktok-s-faceless-recipes-evolvedlotus-insights.png
 imageAlt: "TikTok's Faceless Recipes: EvolvedLotus Insights"
 ---
