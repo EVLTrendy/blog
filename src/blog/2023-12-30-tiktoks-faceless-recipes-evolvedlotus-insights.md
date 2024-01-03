@@ -27,7 +27,7 @@ Think about it: you're not watching "Sarah's Spicy Stir-Fry," you're watching th
 
 So, whether you're a seasoned chef or a kitchen newbie, the faceless approach is an invitation to join the party. Unleash your inner Gordon Ramsay without the camera crew. Share your grandma's secret sauce without revealing her secret smile. Be the maestro of the mess, the king (or queen!) of the crumble, the whisperer of spices, all without showing your face.
 
-## Drawing Culinary Inspiration from Podcasts
+### Drawing Culinary Inspiration from Podcasts
 
 ![Drawing Culinary Inspiration from Podcasts](/assets/blog/culinary-inspiration.png)
 
@@ -37,7 +37,7 @@ First things first, listen like a hawk. Tune into those discussions dissecting f
 
 Think of it like a spice hunt in a bustling market. Explore sub-genres that tickle your taste buds - international adventures, healthy hacks, inventive kitchen wizardry - and snag the juiciest bits: sizzling recipes, game-changing tips, and ideas that sing to your soul and your audience.
 
-## Choosing the Perfect Visual Style
+### Choosing the Perfect Visual Style
 
 ![Choosing the Perfect Visual Style](/assets/blog/perfect-visual-style.png)
 
@@ -49,7 +49,7 @@ Don't stop there, though. Size, weight, spacing – these are your secret weapon
 
 And color? Oh, the glorious color! Find shades that sing with your brand, and that resonate with your soul tribe. But remember friends, contrast is key. We want those words to shine, not blend into the background like shy violets.
 
-### Choosing the Best Music 
+### Choosing the Best Music
 
 ![Choosing the Best Music ](/assets/blog/choosing-the-best-music.png)
 
@@ -94,7 +94,7 @@ CapCut, the free video editing app from the makers of TikTok, can be a game-chan
 
 With its powerful capabilities and intuitive design, CapCut gives you the ability to easily edit videos for your inspiring projects. Enhance your material by adding eye-catching images, motivational sayings, and the ideal background music to tell a story that will captivate and connect with your readers.
 
-## Building a Culinary Community
+### Building a Culinary Community
 
 Explore the rich resources available on the EvolvedLotus Blog. With a plethora of free recipes and professional guidance, you'll have all you need to navigate the dynamic world of online gastronomy. Build authenticity and consistency by actively engaging with your audience, answering questions, and inviting followers to share their favorite recipes or cooking challenges.
 
@@ -104,7 +104,7 @@ For real-time assistance and culinary camaraderie, don't forget to join our Disc
 \
 Want to join? Click Here: [EvolvedLotus Discord](https://discord.gg/fHAexMYhCX)
 
-## Conclusion
+### Conclusion
 
 Maintain consistency in your visual style, creating a polished and visually appealing culinary experience for your audience.
 
