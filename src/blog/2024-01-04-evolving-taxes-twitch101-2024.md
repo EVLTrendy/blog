@@ -1,5 +1,5 @@
 ---
-title: "Evolving Taxes: Twitch101 2024"
+title: "Evolving Taxes: Twitch-101 2024"
 author: Marc C.
 date: 2024-01-04T17:43:00.758Z
 tags:
