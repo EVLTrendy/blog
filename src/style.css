@@ -1161,7 +1161,7 @@
   
   .blogsignature {
     height: auto;
-    width: 100%;
+    width: 95%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -1173,8 +1173,8 @@
   
   .signaturebox {
     display: flex;
-    flex-direction: column; /* Adjusted for mobile */
-    align-items: center; /* Adjusted for mobile */
+    flex-direction: column; 
+    align-items: center; 
   }
   
   .pfplinkstack {
@@ -1220,6 +1220,11 @@
   .sigbody {
     margin-left: 0;
     text-align: center;
+    word-wrap: break-word; 
+  }
+  
+  .sigbodyp {
+    font-size: 12px;
   }
   
   .siglinks {
