@@ -601,7 +601,6 @@
 
 @media only screen and (max-width: 767px) {
 
-
   /* Holiday Banner */
   .banner {
     background-image: url('https://i.ibb.co/Yhw715q/zyro-image-1.jpg');
@@ -1097,7 +1096,7 @@
     line-height: 2;
     flex-wrap: none;
   }
-  
+
   /* Blog Signature */
   .blogsignature {
     height: auto;
