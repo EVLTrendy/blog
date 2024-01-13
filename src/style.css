@@ -1097,6 +1097,25 @@
     line-height: 2;
     flex-wrap: none;
   }
+  
+  /* Blog Signature */
+  .blogsignature {
+    height: auto;
+  }
+
+  .sigcontainer {
+    flex-direction: column-reverse;
+  }
+
+  .sigpfp {
+    width: 100%;
+    height: auto;
+  }
+
+  .sigbody {
+    margin-left: 0;
+    text-align: center;
+  }
 
 }
 
@@ -1701,3 +1720,62 @@
 
 }  
 
+/* Blog Signature */
+
+.blogsignature {
+  height: 200px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #dddddd5b; 
+  border-radius: 8px; 
+}
+
+.signaturebox{
+  display: flex;
+}
+
+.pfplinkstack {
+  display: flex;
+  flex-direction: column; 
+  align-items: center; 
+}
+
+.sigpfp, .siglinks {
+  text-align: center; 
+  align-items: center; 
+  justify-content: center;
+}
+
+.blogsignature .footercontainer {
+  margin-left: -10px;
+}
+
+.sigcontainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.sigpfp {
+  width: 64px;
+  height: 64px;
+  overflow: hidden;
+  border-radius: 50%;
+  margin-bottom: 10px; 
+}
+
+.sigpic img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.sigbody {
+  margin-left: 20px; 
+}
+
+
+.siglinks {
+  margin-top: 10px; 
+}
