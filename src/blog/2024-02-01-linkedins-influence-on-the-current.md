@@ -6,7 +6,7 @@ tags:
   - post
   - featured
   - link
-image: /assets/blog/linkedin-s-influence-on-the-current.png
+image: /assets/blog/18-9tnudghrlogr1i6.png
 imageAlt: LinkedIn's Influence on the Current
 ---
 Are you wondering why LinkedIn is essential for your business? LinkedIn presence and how it can benefit your business.\
