@@ -7,7 +7,7 @@ tags:
   - featured
   - twitch
   - tt
-image: /assets/blog/streamwise-mastering-multistreaming.png
+image: /assets/blog/streamwise-mastering-multistreaming-1-.png
 imageAlt: "Streamwise: Mastering Multistreaming"
 ---
 Hey there, fellow streamers! Have you ever wanted to be in two places at once? You kind of can, though, in the world of livestreaming! Now, let's discuss multistreaming. Being able to simultaneously broadcast your stuff to every corner of the internet is like having superpowers.
