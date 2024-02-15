@@ -4,6 +4,8 @@ author: Marc C.
 date: 2024-02-14T19:58:51.487Z
 tags:
   - post
+  - featured
+  - twitter
 image: /assets/blog/tweeting-trends-twitter-s-2024-algorithm.png
 imageAlt: "Tweeting Trends: Twitter's 2024 Algorithm"
 ---
