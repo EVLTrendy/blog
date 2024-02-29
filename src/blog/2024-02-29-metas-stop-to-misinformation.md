@@ -8,7 +8,7 @@ tags:
   - misc
   - fb
   - ig
-image: /assets/blog/maeta-s-stop-to-misinformation.png
+image: /assets/blog/meta-s-stop-to-misinformation.png
 imageAlt: Meta's Stop To Misinformation
 ---
 Misinformation on social media should be avoided, especially when elections are approaching. You've probably heard of edited videos and bogus news that can deceive people. This issue might worsen during election season, making it more challenging to separate fact from fiction.
