@@ -5,7 +5,7 @@ date: 2023-12-10T21:30:47.205Z
 tags:
   - post
   - featured
-  - tt
+  - tiktok
 image: /assets/blog/tiktok-s-faceless-motivation-evolvedlotus-insights.png
 imageAlt: "TikTok's Faceless Motivation: EvolvedLotus Insights"
 ---
