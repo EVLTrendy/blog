@@ -5,7 +5,7 @@ date: 2024-02-03T17:00:39.487Z
 tags:
   - post
   - featured
-  - tt
+  - tiktok
 image: /assets/blog/umg-s-exit-the-shift-of-music.jpg
 imageAlt: "UMG's Exit: The Shift of Music "
 ---
