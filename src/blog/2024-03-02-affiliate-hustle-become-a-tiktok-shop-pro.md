@@ -5,7 +5,7 @@ date: 2024-03-02T16:04:30.337Z
 tags:
   - post
   - featured
-  - tt
+  - tiktok
 image: /assets/blog/affiliate-hustle-become-a-tiktok-shop-pro.png
 imageAlt: "AffiliateHustle: Become a TikTok Shop Pro"
 ---
