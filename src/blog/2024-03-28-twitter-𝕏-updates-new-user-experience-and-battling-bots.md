@@ -4,6 +4,8 @@ author: Marc C.
 date: 2024-03-28T19:30:00.000Z
 tags:
   - post
+  - featured
+  - twitter
 image: /assets/blog/twitter-𝕏-updates-new-user-experience-and-battling-bots-.png
 imageAlt: "Twitter | 𝕏 Updates: New User Experience and Battling Bots"
 ---
