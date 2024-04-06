@@ -1912,6 +1912,25 @@
 
 }
 
+@media only screen and (min-width: 1280px) and (max-width: 1440px) {
+  
+  .socialsearcher{
+    position: absolute;
+    left: auto;
+    transform: translateX(-110%);
+    display: flex;
+  }
+
+
+  .footagecrate{
+    position: absolute;
+    right: 0;
+    transform: translate( 0%, 60%);
+    display: flex;
+  }
+
+}
+
 @media only screen and (min-width: 375px) and (max-width: 767px) {
 
   .adcontainers{
