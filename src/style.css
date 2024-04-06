@@ -1,6 +1,4 @@
-.adcontainers{
-  display: none;
-}
+
 
 @media only screen and (min-width: 1025px) {
 
@@ -660,7 +658,7 @@
 
 }  
 
-@media only screen and (max-width: 767px) {
+@media only screen and (min-width: 375px) and (max-width: 767px) {
 
 
   /* Holiday Banner */
@@ -1048,9 +1046,6 @@
     height: 202px;
   }
 
-  .adcontainers{
-    display: none;
-  }
   
   /* Footer */
   
@@ -1232,7 +1227,7 @@
   }
 }
 
-@media only screen and (min-width: 1280px) and (max-width: 1440px) {
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
 
   
   *{
@@ -1505,9 +1500,7 @@
     justify-content: center;
   }
   
-  .adcontainers{
-    display: none;
-  }
+
 
   /* Footer */
   
@@ -1894,3 +1887,41 @@
 
 }  
 
+
+
+
+/* Personal Ads  */
+
+@media only screen and (min-width: 1025px) {
+
+
+  .socialsearcher{
+    position: absolute;
+    left: auto;
+    transform: translateX(-200%);
+    display: flex;
+  }
+
+
+  .footagecrate{
+    position: absolute;
+    right: 0;
+    transform: translate(-200%, 60%);
+    display: flex;
+  }
+
+}
+
+@media only screen and (min-width: 375px) and (max-width: 767px) {
+
+  .adcontainers{
+    display: none;
+  }
+
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  .adcontainers{
+    display: none;
+  }
+}
