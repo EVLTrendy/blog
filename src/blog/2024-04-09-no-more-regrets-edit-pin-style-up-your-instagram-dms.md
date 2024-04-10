@@ -6,6 +6,7 @@ tags:
   - post
   - featured
   - ig
+  - fb
 image: /assets/blog/no-more-regrets-edit-pin-style-up-your-instagram-dms-.png
 imageAlt: "No More Regrets: Edit, Pin & Style Up Your Instagram DMs!"
 ---
