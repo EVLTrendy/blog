@@ -1,9 +1,11 @@
 ---
 title: Expand Your Reach, Don't Preach? LinkedIn's the Speech
 author: Marc C.
-date: 2024-04-12T12:39:00.000Z
+date: 2024-04-12T12:41:00.000Z
 tags:
   - post
+  - featured
+  - link
 image: /assets/blog/expand-your-reach-don-t-preach-linkedin-s-the-speech.png
 imageAlt: Expand Your Reach, Don't Preach? LinkedIn's the Speech
 ---
