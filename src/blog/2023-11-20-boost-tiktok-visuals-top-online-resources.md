@@ -6,8 +6,8 @@ tags:
   - post
   - featured
   - tiktok
-image: /assets/blog/zyro-image-4-.png
-imageAlt: tor
+image: /assets/blog/boost-tiktok-visuals-top-online-resources.png
+imageAlt: "Boost TikTok Visuals: Top Online Resources"
 ---
 In the ever-evolving realm of TikTok, where capturing attention is the golden ticket, mastering visually appealing content is non-negotiable. If you're ready to up your TikTok game and craft visuals that truly stand out, explore these top-notch online resources.
 
