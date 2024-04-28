@@ -10,7 +10,7 @@ tags:
   - fb
   - tiktok
   - twitter
-image: /assets/blog/zyro-image-1-.png
+image: /assets/blog/scheduled-success-mastering-free-tools-online-.png
 imageAlt: top6
 ---
 Welcome, social media aficionados! In the dynamic landscape of online platforms, keeping your content strategy on point is the key to success. To make your life easier, we're delving into the realm of free* online scheduling resource tools that can supercharge your social media game. Let's explore the top six contenders!
