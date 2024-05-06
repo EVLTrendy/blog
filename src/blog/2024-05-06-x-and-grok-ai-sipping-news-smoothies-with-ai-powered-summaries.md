@@ -5,7 +5,7 @@ date: 2024-05-06T15:30:00.000Z
 tags:
   - post
   - featured
-  - twt
+  - twitter
 image: /assets/blog/x-and-grok-ai-sipping-news-smoothies-with-ai-powered-summaries.png
 imageAlt: "X and Grok AI: Sipping News Smoothies with AI-Powered Summaries"
 ---
