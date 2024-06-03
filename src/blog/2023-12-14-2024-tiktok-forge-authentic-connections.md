@@ -5,7 +5,7 @@ date: 2023-12-14T19:21:08.107Z
 tags:
   - post
   - featured
-  - tt
+  - tiktok
 image: /assets/blog/2024-tiktok-forge-authentic-connections.png
 imageAlt: "2024 TikTok: Forge Authentic Connections"
 ---
