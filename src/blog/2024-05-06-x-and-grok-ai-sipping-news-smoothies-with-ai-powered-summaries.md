@@ -1,5 +1,5 @@
 ---
-title: "X and Grok AI: Sipping News Smoothies with AI-Powered Summaries"
+title: "X and Grok AI: Vision and News"
 author: Marc C.
 date: 2024-05-06T15:30:00.000Z
 tags:
@@ -7,7 +7,7 @@ tags:
   - featured
   - twitter
 image: /assets/blog/x-and-grok-ai-sipping-news-smoothies-with-ai-powered-summaries.png
-imageAlt: "X and Grok AI: Sipping News Smoothies with AI-Powered Summaries"
+imageAlt: "X and Grok AI: Vision and News"
 ---
 Social media platform X shakes up news consumption with Grok AI, offering personalized, bite-sized summaries of trending stories.
 
