@@ -5,7 +5,7 @@ date: 2024-07-20T13:23:00.000Z
 tags:
   - post
   - featured
-  - twt
+  - twitter
 image: /assets/blog/trend-genius-new-ai-for-advertisements-1-.png
 imageAlt: "Trend Genius: New AI For Advertisements "
 ---
