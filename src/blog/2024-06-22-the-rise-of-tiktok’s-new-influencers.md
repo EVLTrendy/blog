@@ -5,7 +5,7 @@ date: 2024-06-22T13:42:00.000Z
 tags:
   - post
   - featured
-  - tt
+  - tiktok
 image: /assets/blog/the-rise-of-tiktok’s-new-influencers.png
 imageAlt: The Rise of TikTok’s New Influencers
 ---
