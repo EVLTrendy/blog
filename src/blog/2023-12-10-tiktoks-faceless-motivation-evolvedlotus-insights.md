@@ -73,8 +73,6 @@ Picking the right music can boost your message, heighten emotions, and leave a l
 
   * For a hassle-free content creation experience, consider the wealth of copyright-free music options available. Check out the comprehensive guide in the "[Jams Without Jitters](https://blog.evolvedlotus.com/blog/2023-11-20-jams-without-jitters-your-copyright-free-soundtrack-guide/)" blog for a curated list of platforms offering royalty-free tracks. This opens up new creative possibilities, allowing you to seamlessly incorporate motivational clips into your videos without legal concerns. By reaching a broader audience, you can amplify the impact of your positive and inspiring content.
 
-
-
 ### Using CapCut
 
 ![https://i.pcmag.com/imagery/reviews/00e02Ss3KiOLKE7Ivb8SQ0P-1.fit_scale.size_1028x578.v1632757092.png](/assets/blog/usingcapcut.png)
@@ -83,7 +81,7 @@ CapCut, the free video editing app from the makers of TikTok, can be a game-chan
 
 1. **Install CapCut and Create a New Project**
 
-   * Download CapCut from your app store and open it.
+   * Download [CapCut](https://www.capcut.com/capcut_pc_web/fission_receive?code=ZZy1s707205972&lng=en) open it. Click CapCut
    * Tap on "New Project" to initiate the creation of your motivational masterpiece.
 2. **Choose a Font (Arial) and Import Quotes**
 
