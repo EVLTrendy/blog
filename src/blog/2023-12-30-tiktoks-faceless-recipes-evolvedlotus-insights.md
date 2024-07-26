@@ -73,7 +73,7 @@ CapCut, the free video editing app from the makers of TikTok, can be a game-chan
 
 1. **Install CapCut and Create a New Project**
 
-   * Download CapCut from your app store and open it.
+   * Download [CapCut](https://www.capcut.com/capcut_pc_web/fission_receive?code=ZZy1s707205972&lng=en) open it. Click CapCut
    * Tap on "New Project" to initiate the creation of your motivational masterpiece.
 2. **Choose a Font (Arial) and Import Quotes**
 
