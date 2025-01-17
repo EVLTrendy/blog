@@ -27,11 +27,14 @@ layout: 'base.njk'
       <div class="fttoptxth">Featured articles</div>
       <div class="fttoptxts">Explore Our Curated Selection: Engaging Featured Articles Worth Your Attention</div>
     </div>
-    <div class="ftbot">
-      {%- for post in collections.featured | reverse -%}
-        {% include 'article-snippet.njk' %}
-      {%- endfor -%}
-    </div>
+<div class="ftbot">
+  {%- for post in collections.featured | reverse -%}
+    {%- if loop.index0 < 3 -%}
+      <div style="display: none;">{% include 'article-snippet.njk' %}</div>
+    {%- endif -%}
+  {%- endfor -%}
+</div>
   </div>
+  <script src="./cyclePost.js"></script>
 
 </div>
