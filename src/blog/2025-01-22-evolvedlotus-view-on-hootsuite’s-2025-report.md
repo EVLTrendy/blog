@@ -11,7 +11,7 @@ imageAlt: EvolvedLotus View On Hootsuite’s 2025 Report
 ---
 Hootsuite’s 2025 Social Media Trends Report is out, and it’s packed with insights that every social media strategist needs to know. We read Hootsuite’s 2025 Report So You Don’t Have To: Here Are the Key Takeaways.
 
-But be real who has the time to sift through all 100+ pages? Don't worry. In this blog post, I’m breaking down the key takeaways so you don’t have to. 
+But be real who has the time to sift through all 100+ pages? Don't worry. In this blog post, We are breaking down the key takeaways so you don’t have to. 
 
 If you're looking to refine your strategy, optimize your use of AI, or simply stay ahead of the competition, these insights are invaluable. Continue reading to learn how AI, agility, and creativity are transforming social media in 2025 and beyond. This is information you definitely won't want to miss.
 
