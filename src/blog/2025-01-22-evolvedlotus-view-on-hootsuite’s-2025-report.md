@@ -55,4 +55,6 @@ Hootsuite’s 2025 Social Media Trends Report highlights the undeniable shift to
 
 If you haven’t adopted AI in your social media strategy yet, Hootsuite says now is the time. The report underscores how AI can be used for everything from data analysis to creative ideation, all while optimizing campaigns for better results.
 
-Read the full 2025 report for a detailed look at these trends, or start experimenting with AI tools in your social media efforts today.
+Read the full 2025 report for a detailed look at these trends, or start experimenting with AI tools in your social media efforts today. \
+\
+[HootSuite's Social Media Trends 2025](https://www.hootsuite.com/research/social-trends)
