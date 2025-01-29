@@ -1,5 +1,5 @@
 ---
-title: How to Write a Viral Caption for Social Medi
+title: How to Write a Viral Caption for Social Media
 author: EvolvedLotus Team
 date: 2025-01-29T15:30:00.000Z
 tags:
