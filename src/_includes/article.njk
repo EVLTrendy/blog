@@ -18,5 +18,17 @@ layout: 'base.njk'
       </section>
       {{ content | safe | replace('<h3', '<hr><h3') | replace('<img', '<img class="blogpic"') }}
     </div>
+
+    <!-- Share Button Section -->
+    <div class="share-section" style="margin-top: 2rem; text-align: center;">
+      <form method="POST" action="/.netlify/functions/shorten">
+        <input type="hidden" name="long_url" value="{{ page.url | url }}">
+        <button type="submit" class="share-button" style="padding: 0.75rem 1.5rem; font-size: 1rem; background-color: #0070f3; color: white; border: none; border-radius: 5px; cursor: pointer;">
+          Share This Page
+        </button>
+      </form>
+    </div>
+    <!-- End Share Button Section -->
+
   </div>
 </section>
