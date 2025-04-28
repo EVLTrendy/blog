@@ -1,37 +1,60 @@
 const { createClient } = require('@supabase/supabase-js');
-const querystring = require('querystring');
 
-// Initialize Supabase client
-const supabaseUrl = process.env.SUPABASE_URL;
-const supabaseKey = process.env.SUPABASE_KEY;
+// Using the provided Supabase URL and anon key
+const supabaseUrl = 'https://ttokqdichqlzihyqidoq.supabase.co';
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InR0b2txZGljaHFsemloeXFpZG9xIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDU4ODAzODIsImV4cCI6MjA2MTQ1NjM4Mn0.La7CSQDyA0CCyBo4zSP2hYRr056Jm0CJQBhYlNf2egE';
+
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 exports.handler = async (event) => {
-  if (event.httpMethod !== 'POST') {
-    return { statusCode: 405, body: 'Method Not Allowed' };
+  try {
+    // Only allow POST requests
+    if (event.httpMethod !== 'POST') {
+      return {
+        statusCode: 405,
+        body: JSON.stringify({ message: 'Method Not Allowed' }),
+      };
+    }
+
+    // Parse the request body
+    const { long_url } = JSON.parse(event.body);
+
+    // If no long_url provided, return an error
+    if (!long_url) {
+      return {
+        statusCode: 400,
+        body: JSON.stringify({ message: 'long_url is required' }),
+      };
+    }
+
+    // Generate a random short ID
+    const short_id = Math.random().toString(36).substring(2, 8);
+
+    // Insert the long URL and short ID into the Supabase database
+    const { data, error } = await supabase
+      .from('urls')
+      .insert([{ short_id, long_url }]);
+
+    // Handle any errors during the database insert
+    if (error) {
+      console.error(error);
+      return {
+        statusCode: 500,
+        body: JSON.stringify({ message: 'Database insert failed' }),
+      };
+    }
+
+    // Return the short URL in the response
+    return {
+      statusCode: 200,
+      body: JSON.stringify({ short_url: `${short_id}` }),
+    };
+  } catch (err) {
+    // Catch and log any other errors
+    console.error(err);
+    return {
+      statusCode: 500,
+      body: JSON.stringify({ message: 'Internal server error' }),
+    };
   }
-
-  const body = querystring.parse(event.body); // Parse form data
-  const longUrl = body.long_url;
-
-  if (!longUrl) {
-    return { statusCode: 400, body: 'Missing long_url' };
-  }
-
-  // Generate a short ID
-  const shortId = Math.random().toString(36).substring(2, 8);
-
-  // Store in Supabase
-  const { data, error } = await supabase
-    .from('urls')
-    .insert([{ short_id: shortId, long_url: longUrl }]);
-
-  if (error) {
-    return { statusCode: 500, body: JSON.stringify({ error: error.message }) };
-  }
-
-  return {
-    statusCode: 200,
-    body: JSON.stringify({ short_url: `${process.env.URL}/${shortId}` }),
-  };
 };
