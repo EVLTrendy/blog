@@ -1,0 +1,1 @@
+/r/:id    /.netlify/functions/redirect?id=:id    200
