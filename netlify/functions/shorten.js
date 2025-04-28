@@ -1,23 +1,30 @@
 const { createClient } = require('@supabase/supabase-js');
-const crypto = require('crypto');
+const querystring = require('querystring');
 
-const supabase = createClient(
-  process.env.SUPABASE_URL,
-  process.env.SUPABASE_ANON_KEY
-);
+// Initialize Supabase client
+const supabaseUrl = process.env.SUPABASE_URL;
+const supabaseKey = process.env.SUPABASE_KEY;
+const supabase = createClient(supabaseUrl, supabaseKey);
 
-exports.handler = async (event, context) => {
+exports.handler = async (event) => {
   if (event.httpMethod !== 'POST') {
     return { statusCode: 405, body: 'Method Not Allowed' };
   }
 
-  const { long_url } = JSON.parse(event.body);
+  const body = querystring.parse(event.body); // Parse form data
+  const longUrl = body.long_url;
 
-  const hash = crypto.createHash('sha256').update(long_url).digest('hex').substr(0, 7);
+  if (!longUrl) {
+    return { statusCode: 400, body: 'Missing long_url' };
+  }
 
+  // Generate a short ID
+  const shortId = Math.random().toString(36).substring(2, 8);
+
+  // Store in Supabase
   const { data, error } = await supabase
     .from('urls')
-    .insert([{ id: hash, long_url }]);
+    .insert([{ short_id: shortId, long_url: longUrl }]);
 
   if (error) {
     return { statusCode: 500, body: JSON.stringify({ error: error.message }) };
@@ -25,6 +32,6 @@ exports.handler = async (event, context) => {
 
   return {
     statusCode: 200,
-    body: JSON.stringify({ short_url: `/.netlify/functions/redirect?hash=${hash}` })
+    body: JSON.stringify({ short_url: `${process.env.URL}/${shortId}` }),
   };
 };
