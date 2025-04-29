@@ -19,15 +19,34 @@ function generateShortId() {
 
 exports.handler = async (event, context) => {
   console.log('Function called with event:', JSON.stringify(event));
+  console.log('Query parameters:', event.queryStringParameters);
+  console.log('Path parameters:', event.pathParameters);
 
   // Handle GET requests (redirects)
   if (event.httpMethod === 'GET') {
-    const { id } = event.queryStringParameters || {};
+    console.log('Processing GET request');
+    const params = event.queryStringParameters || {};
+    const id = params.id;
+    
+    console.log('ID from query parameters:', id);
     
     if (!id) {
+      console.log('No ID found in request');
       return {
         statusCode: 400,
-        body: JSON.stringify({ error: 'Missing ID parameter' })
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ 
+          error: 'Missing ID parameter',
+          params: params,
+          event: {
+            path: event.path,
+            httpMethod: event.httpMethod,
+            queryStringParameters: event.queryStringParameters,
+            pathParameters: event.pathParameters
+          }
+        })
       };
     }
 
@@ -56,6 +75,7 @@ exports.handler = async (event, context) => {
         };
       }
 
+      console.log('Found URL:', data.long_url);
       console.log('Redirecting to:', data.long_url);
       
       return {
