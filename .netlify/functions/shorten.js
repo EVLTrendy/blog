@@ -4,7 +4,7 @@ const { createClient } = require('@supabase/supabase-js');
 console.log('Initializing Supabase client with URL:', process.env.SUPABASE_URL);
 const supabase = createClient(
   process.env.SUPABASE_URL,
-  process.env.SUPABASE_ANON_KEY
+  process.env.SUPABASE_SERVICE_ROLE_KEY
 );
 
 // Function to generate a random 8-character ID
@@ -35,9 +35,9 @@ exports.handler = async (event, context) => {
     
     // Get the URL from Supabase
     const { data, error } = await supabase
-      .from('short_urls')
-      .select('url')
-      .eq('short_id', id)
+      .from('ShortUrl')
+      .select('long_url')
+      .eq('id', id)
       .single();
     
     if (error) {
@@ -59,7 +59,7 @@ exports.handler = async (event, context) => {
     return {
       statusCode: 302,
       headers: {
-        Location: data.url
+        Location: data.long_url
       },
       body: ''
     };
@@ -96,12 +96,12 @@ exports.handler = async (event, context) => {
       // Check if URL already exists
       console.log('Checking if URL already exists in database');
       const { data: existingUrl, error: existingError } = await supabase
-        .from('short_urls')
-        .select('short_id')
-        .eq('url', long_url)
+        .from('ShortUrl')
+        .select('id')
+        .eq('long_url', long_url)
         .single();
       
-      if (existingError) {
+      if (existingError && existingError.code !== 'PGRST116') {
         console.error('Error checking for existing URL:', existingError);
         return {
           statusCode: 500,
@@ -115,7 +115,7 @@ exports.handler = async (event, context) => {
           statusCode: 200,
           body: JSON.stringify({ 
             message: 'URL already shortened',
-            shortUrl: `https://blog.evolvedlotus.com/r/${existingUrl.short_id}`
+            shortUrl: `https://blog.evolvedlotus.com/r/${existingUrl.id}`
           })
         };
       }
@@ -131,12 +131,12 @@ exports.handler = async (event, context) => {
         shortId = generateShortId();
         console.log('Checking if ID is unique:', shortId);
         const { data, error: checkError } = await supabase
-          .from('short_urls')
-          .select('short_id')
-          .eq('short_id', shortId)
+          .from('ShortUrl')
+          .select('id')
+          .eq('id', shortId)
           .single();
         
-        if (checkError) {
+        if (checkError && checkError.code !== 'PGRST116') {
           console.error('Error checking for unique ID:', checkError);
           return {
             statusCode: 500,
@@ -159,9 +159,13 @@ exports.handler = async (event, context) => {
       // Store the URL in Supabase
       console.log('Inserting new URL into database');
       const { error: insertError } = await supabase
-        .from('short_urls')
+        .from('ShortUrl')
         .insert([
-          { short_id: shortId, url: long_url }
+          { 
+            id: shortId, 
+            long_url: long_url,
+            created_at: new Date().toISOString()
+          }
         ]);
       
       if (insertError) {
