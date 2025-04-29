@@ -2101,11 +2101,15 @@ html, body {
   padding: 2rem;
   max-width: 1200px;
   margin: 0 auto;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 }
 
 .notifications-section,
 .browse-section {
   flex: 1;
+  max-width: 500px;
   padding: 2rem;
   background: var(--surface1);
   border-radius: 12px;
@@ -2178,18 +2182,30 @@ html, body {
 }
 
 .browse-button {
-  display: inline-block;
-  padding: 0.8rem 1.5rem;
-  background: var(--brand);
-  color: white;
-  text-decoration: none;
+  box-shadow: 0px 1px 0px 0px #f0f7fa;
+  background: linear-gradient(to bottom, #33bdef 5%, #019ad2 100%);
+  background-color: #33bdef;
   border-radius: 6px;
-  font-weight: 500;
-  transition: background-color 0.2s ease;
+  border: 1px solid #057fd0;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  font-family: Arial;
+  font-size: 15px;
+  font-weight: bold;
+  padding: 6px 24px;
+  text-decoration: none;
+  text-shadow: 0px -1px 0px #5b6178;
 }
 
 .browse-button:hover {
-  background: var(--brand-dark);
+  background: linear-gradient(to bottom, #019ad2 5%, #33bdef 100%);
+  background-color: #019ad2;
+}
+
+.browse-button:active {
+  position: relative;
+  top: 1px;
 }
 
 /* Responsive Design */
@@ -2202,5 +2218,69 @@ html, body {
   .notifications-section,
   .browse-section {
     padding: 1.5rem;
+  }
+}
+
+/* Notifications Slideshow */
+.notifications-slideshow {
+  position: relative;
+  height: 400px;
+  overflow: hidden;
+}
+
+.notifications-slider {
+  position: relative;
+  height: 100%;
+  transition: transform 0.5s ease;
+}
+
+.notification-item {
+  position: absolute;
+  width: 100%;
+  padding: 1rem;
+  background: var(--surface2);
+  border-radius: 8px;
+  transition: all 0.5s ease;
+  opacity: 0;
+  transform: translateY(100%);
+}
+
+.notification-item.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.slider-controls {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.slider-dots {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.slider-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.slider-dot.active {
+  background: #33bdef;
+}
+
+@media (max-width: 768px) {
+  .notifications-slideshow {
+    height: 300px;
   }
 }

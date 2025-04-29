@@ -1,0 +1,16 @@
+{
+  "layout": "base.njk",
+  "tags": "notifications",
+  "notifications": [
+    {
+      "title": "Welcome to the New Layout!",
+      "description": "Check out our new split layout design with notifications and quick access to all articles.",
+      "link": "/blog"
+    },
+    {
+      "title": "Latest Updates",
+      "description": "Stay tuned for more content and features coming soon!",
+      "link": "/blog"
+    }
+  ]
+} 

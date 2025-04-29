@@ -44,6 +44,10 @@ module.exports = function (eleventyConfig) {
         return DateTime.fromJSDate(date).toISO();
     });
 
+    eleventyConfig.addCollection("notifications", function(collection) {
+        return collection.getFilteredByTag("notifications");
+    });
+
     return {
         dir: {
             input: "src",

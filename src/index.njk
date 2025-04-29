@@ -26,18 +26,23 @@ layout: 'base.njk'
       <!-- Left side: Notifications -->
       <div class="notifications-section">
         <h2 class="section-title">Latest Updates</h2>
-        <div class="notifications-cycle">
-          {%- for notification in collections.notifications | reverse -%}
-          <div class="notification-item">
-            <div class="notification-content">
-              <h3>{{ notification.data.title }}</h3>
-              <p>{{ notification.data.description }}</p>
-              {% if notification.data.link %}
-              <a href="{{ notification.data.link }}" class="notification-link">Learn More</a>
-              {% endif %}
+        <div class="notifications-slideshow">
+          <div class="notifications-slider">
+            {%- for notification in collections.notifications -%}
+            <div class="notification-item">
+              <div class="notification-content">
+                <h3>{{ notification.data.title }}</h3>
+                <p>{{ notification.data.description }}</p>
+                {% if notification.data.link %}
+                <a href="{{ notification.data.link }}" class="notification-link">Learn More</a>
+                {% endif %}
+              </div>
             </div>
+            {%- endfor -%}
           </div>
-          {%- endfor -%}
+          <div class="slider-controls">
+            <div class="slider-dots"></div>
+          </div>
         </div>
       </div>
       
