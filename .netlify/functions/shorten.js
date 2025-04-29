@@ -1,35 +1,19 @@
-const { NetlifyKV } = require('@netlify/functions');
+const { createClient } = require('@supabase/supabase-js');
 
-// Initialize KV store
-const kv = new NetlifyKV('blog-short-urls');
+// Initialize Supabase client
+const supabase = createClient(
+  process.env.SUPABASE_URL,
+  process.env.SUPABASE_KEY
+);
 
-// Function to generate a short ID from a blog post filename
-function generateShortId(filename) {
-  // Remove date and extension, take first 3 words and join with hyphens
-  const words = filename
-    .replace(/^\d{4}-\d{2}-\d{2}-/, '') // Remove date
-    .replace(/\.md$/, '') // Remove .md extension
-    .split('-')
-    .slice(0, 3)
-    .join('-');
-  return words.toLowerCase();
-}
-
-// Read all blog posts and create redirects
-const blogPosts = {};
-const blogDir = 'C:/Users/xmarc/Documents/GitHub/blog/src/blog';
-
-try {
-  const files = fs.readdirSync(blogDir);
-  files.forEach(file => {
-    if (file.endsWith('.md')) {
-      const shortId = generateShortId(file);
-      const postUrl = `https://blog.evolvedlotus.com/blog/${file.replace('.md', '')}`;
-      blogPosts[shortId] = postUrl;
-    }
-  });
-} catch (error) {
-  console.error('Error reading blog posts:', error);
+// Function to generate a random 8-character ID
+function generateShortId() {
+  const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  let result = '';
+  for (let i = 0; i < 8; i++) {
+    result += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return result;
 }
 
 exports.handler = async (event, context) => {
@@ -44,52 +28,81 @@ exports.handler = async (event, context) => {
       };
     }
 
-    // Get the URL from KV store
-    const targetUrl = await kv.get(id);
+    // Get the URL from Supabase
+    const { data, error } = await supabase
+      .from('short_urls')
+      .select('url')
+      .eq('short_id', id)
+      .single();
     
-    if (!targetUrl) {
+    if (error || !data) {
       return {
         statusCode: 404,
-        body: JSON.stringify({ error: 'Blog post not found' })
+        body: JSON.stringify({ error: 'URL not found' })
       };
     }
 
     return {
       statusCode: 302,
       headers: {
-        Location: targetUrl
+        Location: data.url
       },
       body: ''
     };
   }
-  
+
   // Handle POST requests (creating new short URLs)
   if (event.httpMethod === 'POST') {
     try {
       const body = JSON.parse(event.body);
-      const { id, url } = body;
+      const { url } = body;
       
-      if (!id || !url) {
+      if (!url) {
         return {
           statusCode: 400,
-          body: JSON.stringify({ error: 'Missing required parameters' })
+          body: JSON.stringify({ error: 'Missing URL parameter' })
         };
       }
       
-      // Store the URL in KV
-      await kv.set(id, url);
+      // Generate a unique short ID
+      let shortId;
+      let isUnique = false;
+      
+      while (!isUnique) {
+        shortId = generateShortId();
+        const { data } = await supabase
+          .from('short_urls')
+          .select('short_id')
+          .eq('short_id', shortId)
+          .single();
+        
+        if (!data) {
+          isUnique = true;
+        }
+      }
+      
+      // Store the URL in Supabase
+      const { error } = await supabase
+        .from('short_urls')
+        .insert([
+          { short_id: shortId, url: url }
+        ]);
+      
+      if (error) {
+        throw error;
+      }
       
       return {
         statusCode: 200,
         body: JSON.stringify({ 
           message: 'URL shortened successfully',
-          shortUrl: `https://blog.evolvedlotus.com/r/${id}`
+          shortUrl: `https://blog.evolvedlotus.com/r/${shortId}`
         })
       };
     } catch (error) {
       return {
         statusCode: 400,
-        body: JSON.stringify({ error: 'Invalid JSON in request body' })
+        body: JSON.stringify({ error: 'Invalid request' })
       };
     }
   }
