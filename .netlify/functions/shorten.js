@@ -1,5 +1,7 @@
-const fs = require('fs');
-const path = require('path');
+const { NetlifyKV } = require('@netlify/functions');
+
+// Initialize KV store
+const kv = new NetlifyKV('blog-short-urls');
 
 // Function to generate a short ID from a blog post filename
 function generateShortId(filename) {
@@ -42,7 +44,8 @@ exports.handler = async (event, context) => {
       };
     }
 
-    const targetUrl = blogPosts[id];
+    // Get the URL from KV store
+    const targetUrl = await kv.get(id);
     
     if (!targetUrl) {
       return {
@@ -73,8 +76,9 @@ exports.handler = async (event, context) => {
         };
       }
       
-      // In a real implementation, you'd want to store this in a database
-      // For now, we'll just return a success message
+      // Store the URL in KV
+      await kv.set(id, url);
+      
       return {
         statusCode: 200,
         body: JSON.stringify({ 
