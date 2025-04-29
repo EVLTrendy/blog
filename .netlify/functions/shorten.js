@@ -58,7 +58,19 @@ exports.handler = async (event, context) => {
   if (event.httpMethod === 'POST') {
     try {
       console.log('Request body:', event.body);
-      const body = JSON.parse(event.body);
+      
+      // Check if body is valid JSON
+      let body;
+      try {
+        body = JSON.parse(event.body);
+      } catch (e) {
+        console.error('Invalid JSON in request body:', e);
+        return {
+          statusCode: 400,
+          body: JSON.stringify({ error: 'Invalid JSON in request body' })
+        };
+      }
+      
       const { url } = body;
       
       if (!url) {
@@ -69,11 +81,19 @@ exports.handler = async (event, context) => {
       }
       
       // Check if URL already exists
-      const { data: existingUrl } = await supabase
+      const { data: existingUrl, error: existingError } = await supabase
         .from('short_urls')
         .select('short_id')
         .eq('url', url)
         .single();
+      
+      if (existingError) {
+        console.error('Error checking for existing URL:', existingError);
+        return {
+          statusCode: 500,
+          body: JSON.stringify({ error: 'Error checking for existing URL' })
+        };
+      }
       
       if (existingUrl) {
         console.log('URL already exists:', existingUrl);
@@ -94,11 +114,19 @@ exports.handler = async (event, context) => {
       
       while (!isUnique && attempts < maxAttempts) {
         shortId = generateShortId();
-        const { data } = await supabase
+        const { data, error: checkError } = await supabase
           .from('short_urls')
           .select('short_id')
           .eq('short_id', shortId)
           .single();
+        
+        if (checkError) {
+          console.error('Error checking for unique ID:', checkError);
+          return {
+            statusCode: 500,
+            body: JSON.stringify({ error: 'Error checking for unique ID' })
+          };
+        }
         
         if (!data) {
           isUnique = true;
@@ -119,7 +147,10 @@ exports.handler = async (event, context) => {
       
       if (insertError) {
         console.error('Error inserting URL:', insertError);
-        throw insertError;
+        return {
+          statusCode: 500,
+          body: JSON.stringify({ error: 'Error inserting URL into database' })
+        };
       }
       
       const shortUrl = `https://blog.evolvedlotus.com/r/${shortId}`;
@@ -135,8 +166,8 @@ exports.handler = async (event, context) => {
     } catch (error) {
       console.error('Error in POST handler:', error);
       return {
-        statusCode: 400,
-        body: JSON.stringify({ error: error.message || 'Invalid request' })
+        statusCode: 500,
+        body: JSON.stringify({ error: error.message || 'Internal server error' })
       };
     }
   }

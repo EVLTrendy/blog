@@ -28,6 +28,7 @@ layout: 'base.njk'
         </button>
       </div>
       <div id="error-message" style="color: red; margin-bottom: 1rem; display: none;"></div>
+      <div id="debug-info" style="color: #666; font-size: 0.8rem; margin-bottom: 1rem; display: none;"></div>
       <button onclick="generateShortUrl()" class="share-button" style="padding: 0.75rem 1.5rem; font-size: 1rem; background-color: #0070f3; color: white; border: none; border-radius: 5px; cursor: pointer;">
         Generate Short URL
       </button>
@@ -41,17 +42,20 @@ layout: 'base.njk'
 async function generateShortUrl() {
   const button = document.querySelector('.share-button');
   const errorMessage = document.getElementById('error-message');
+  const debugInfo = document.getElementById('debug-info');
   const shortUrlInput = document.getElementById('shortUrl');
   
   button.disabled = true;
   button.textContent = 'Generating...';
   errorMessage.style.display = 'none';
+  debugInfo.style.display = 'none';
   shortUrlInput.value = '';
   
   try {
     // Get the current URL and ensure it's the canonical URL
     const currentUrl = window.location.href;
-    console.log('Current URL:', currentUrl);
+    debugInfo.textContent = `Current URL: ${currentUrl}`;
+    debugInfo.style.display = 'block';
     
     const response = await fetch('/.netlify/functions/shorten', {
       method: 'POST',
@@ -63,23 +67,24 @@ async function generateShortUrl() {
       })
     });
     
-    console.log('Response status:', response.status);
+    debugInfo.textContent += `\nResponse status: ${response.status}`;
+    
     const data = await response.json();
-    console.log('Response data:', data);
+    debugInfo.textContent += `\nResponse data: ${JSON.stringify(data)}`;
     
     if (!response.ok) {
-      throw new Error(data.error || 'Failed to generate short URL');
+      throw new Error(data.error || `Server error: ${response.status}`);
     }
     
     if (data.shortUrl) {
       shortUrlInput.value = data.shortUrl;
       button.textContent = 'Generate Short URL';
     } else {
-      throw new Error('No short URL received');
+      throw new Error('No short URL received from server');
     }
   } catch (error) {
     console.error('Error:', error);
-    errorMessage.textContent = error.message;
+    errorMessage.textContent = `Error: ${error.message}`;
     errorMessage.style.display = 'block';
     button.textContent = 'Error - Try Again';
   } finally {
