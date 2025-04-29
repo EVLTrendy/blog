@@ -8,6 +8,7 @@ module.exports = function (eleventyConfig) {
     eleventyConfig.addPassthroughCopy('./src/admin');
     eleventyConfig.addPassthroughCopy('./src/.well-known');
     eleventyConfig.addPassthroughCopy('./src/_redirects');
+    eleventyConfig.addPassthroughCopy('./src/robots.txt');
 
     // Date filter
     eleventyConfig.addFilter("postDate", (dateObj) => {
@@ -33,6 +34,14 @@ module.exports = function (eleventyConfig) {
         const baseUrl = "https://blog.evolvedlotus.com";
         if (!url) return baseUrl;
         return `${baseUrl}${url.startsWith('/') ? url : `/${url}`}`;
+    });
+
+    // Add ISO date filter for sitemap
+    eleventyConfig.addFilter("isoDate", (date) => {
+        if (typeof date === 'string') {
+            return DateTime.fromISO(date).toISO();
+        }
+        return DateTime.fromJSDate(date).toISO();
     });
 
     return {
