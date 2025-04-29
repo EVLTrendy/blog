@@ -755,7 +755,7 @@ html, body {
 }
 
 .article_meta {
-  text-align: center;
+    text-align: center;
   margin-bottom: 0.5rem;
   padding: 0 1rem;
   word-wrap: break-word;
@@ -763,8 +763,8 @@ html, body {
 
 /* Share Icons */
 .share-icons {
-  display: flex;
-  justify-content: center;
+    display: flex;
+    justify-content: center;
   gap: 1rem;
   margin: 1rem auto;
   padding: 0.5rem;
@@ -775,12 +775,12 @@ html, body {
   background: none;
   border: none;
   padding: 0.5rem;
-  cursor: pointer;
+    cursor: pointer;
   color: #666;
   transition: all 0.2s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   border-radius: 50%;
   min-width: 44px;
   min-height: 44px;
@@ -845,11 +845,11 @@ html, body {
     word-wrap: break-word;
     overflow-wrap: break-word;
   }
-
+  
   .imagediv {
     padding: 0 0.5rem;
   }
-
+  
   .imagediv img {
     max-width: 100%;
     height: auto;
@@ -891,12 +891,12 @@ html, body {
 
 /* Split Layout Styles */
 .split-container {
-  display: flex;
+    display: flex;
   gap: 2rem;
   padding: 2rem;
   max-width: 1200px;
   margin: 0 auto;
-  justify-content: center;
+    justify-content: center;
   align-items: flex-start;
 }
 
@@ -992,14 +992,14 @@ html, body {
   right: 10px;
   top: 50%;
   transform: translateY(-50%);
-  display: flex;
-  flex-direction: column;
+    display: flex;
+    flex-direction: column;
   gap: 0.5rem;
 }
 
 .slider-dots {
-  display: flex;
-  flex-direction: column;
+    display: flex;
+    flex-direction: column; 
   gap: 0.5rem;
 }
 
@@ -1018,13 +1018,13 @@ html, body {
 
 /* Browse Section */
 .browse-section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   justify-content: center;
-  text-align: center;
-}
-
+    text-align: center;
+  }
+  
 .browse-description {
   color: var(--text2);
   margin-bottom: 2rem;
@@ -1045,13 +1045,13 @@ html, body {
   font-size: 15px;
   font-weight: bold;
   padding: 6px 24px;
-  text-decoration: none;
+    text-decoration: none;
   text-shadow: 0px -1px 0px #5b6178;
-}
-
+  }
+  
 .browse-button:hover {
   background: linear-gradient(to bottom, #019ad2 5%, #33bdef 100%);
-  background-color: #019ad2;
+    background-color: #019ad2;
 }
 
 .browse-button:active {
@@ -1139,7 +1139,7 @@ html, body {
 
 /* Latest Post Styles */
 .latest-post {
-  text-align: center;
+    text-align: center;
   padding: 1rem;
 }
 
@@ -1154,7 +1154,7 @@ html, body {
   width: 100%;
   padding-top: 56.25%; /* 16:9 Aspect Ratio */
   margin-bottom: 1rem;
-  overflow: hidden;
+    overflow: hidden;
   border-radius: 8px;
 }
 
@@ -1174,8 +1174,8 @@ html, body {
 
 /* Link Preview Embed Styles */
 .link-preview {
-  display: flex;
-  flex-direction: column;
+    display: flex;
+    flex-direction: column;
   max-width: 600px;
   margin: 1rem auto;
   border: 1px solid rgba(0, 0, 0, 0.1);
@@ -1187,7 +1187,7 @@ html, body {
 
 .preview-image {
   position: relative;
-  width: 100%;
+    width: 100%;
   padding-top: 56.25%; /* 16:9 Aspect Ratio */
   overflow: hidden;
 }
@@ -1278,13 +1278,13 @@ html, body {
 
 /* Search Bar Styles */
 .search-container {
-  position: relative;
+    position: relative;
   max-width: 600px;
   margin: 2rem auto;
-}
-
+  }
+  
 .search-input {
-  width: 100%;
+    width: 100%;
   padding: 1rem 1.5rem;
   font-size: 1.1rem;
   border: 2px solid #e0e0e0;
@@ -1326,17 +1326,17 @@ html, body {
 
 /* Social Links */
 .social-links {
-  display: flex;
-  justify-content: center;
+    display: flex;
+    justify-content: center;
   gap: 1rem;
   margin: 1rem 0;
-  flex-wrap: wrap;
-}
-
+    flex-wrap: wrap;
+  }
+  
 .social-link {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   width: 44px;
   height: 44px;
   border-radius: 50%;
@@ -1387,16 +1387,16 @@ html, body {
   position: relative;
   width: 100%;
   padding-top: 56.25%; /* 16:9 Aspect Ratio */
-  overflow: hidden;
-}
+    overflow: hidden;
+  }
 
 .blog-card-image img {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   transition: transform 0.3s ease;
 }
 

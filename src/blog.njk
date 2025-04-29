@@ -8,57 +8,43 @@ layout: 'base.njk'
   <div id="autocompleteResults" class="autocomplete-items"></div>
 </div>
 
-<div class="social-share-container">
-  <button onclick="window.location.href='/x-kick'" class="social-link" title="Kick">
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" fill="currentColor"/>
-    </svg>
-  </button>
-  <button onclick="window.location.href='/x-fb'" class="social-link" title="Facebook">
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3V2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-  </button>
-  <button onclick="window.location.href='/x-ig'" class="social-link" title="Instagram">
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M17 2H7a5 5 0 00-5 5v10a5 5 0 005 5h10a5 5 0 005-5V7a5 5 0 00-5-5z" stroke="currentColor" stroke-width="2"/>
-      <path d="M16 11.37a4 4 0 11-7.914 1.173A4 4 0 0116 11.37zM17.5 6.5h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-  </button>
-  <button onclick="window.location.href='/x-link'" class="social-link" title="LinkedIn">
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-      <circle cx="4" cy="4" r="2" stroke="currentColor" stroke-width="2"/>
-    </svg>
-  </button>
-  <button onclick="window.location.href='/x-tiktok'" class="social-link" title="TikTok">
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" fill="currentColor"/>
-    </svg>
-  </button>
-  <button onclick="window.location.href='/x-Twitch'" class="social-link" title="Twitch">
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M21 2H3v16h5v4l4-4h5l4-4V2zm-10 9V7m5 4V7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-  </button>
-  <button onclick="window.location.href='/x-twitter'" class="social-link" title="Twitter">
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5 0-.278-.028-.556-.08-.83A7.72 7.72 0 0023 3z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-  </button>
-  <button onclick="window.location.href='/x-yt'" class="social-link" title="YouTube">
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M22.54 6.42a2.78 2.78 0 00-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 00-1.94 2A29 29 0 001 11.75a29 29 0 00.46 5.33A2.78 2.78 0 003.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 001.94-2 29 29 0 00.46-5.25 29 29 0 00-.46-5.33z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-      <path d="M9.75 15.02l5.75-3.27-5.75-3.27v6.54z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-  </button>
-  <button onclick="window.location.href='/x-misc'" class="social-link" title="More Options">
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="12" cy="12" r="1" fill="currentColor"/>
-      <circle cx="19" cy="12" r="1" fill="currentColor"/>
-      <circle cx="5" cy="12" r="1" fill="currentColor"/>
-    </svg>
-  </button>
+<div class="social-grid">
+  <a href="/x-kick" class="social-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path><line x1="4" y1="22" x2="4" y2="15"></line></svg>
+    <span>Kick</span>
+  </a>
+  <a href="/x-fb" class="social-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+    <span>Facebook</span>
+  </a>
+  <a href="/x-ig" class="social-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+    <span>Instagram</span>
+  </a>
+  <a href="/x-link" class="social-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+    <span>LinkedIn</span>
+  </a>
+  <a href="/x-tiktok" class="social-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M2 12h20"></path></svg>
+    <span>TikTok</span>
+  </a>
+  <a href="/x-twitch" class="social-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 2H3v16h5v4l4-4h5l4-4V2zm-10 9V7m5 4V7"></path></svg>
+    <span>Twitch</span>
+  </a>
+  <a href="/x-twitter" class="social-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
+    <span>Twitter</span>
+  </a>
+  <a href="/x-yt" class="social-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg>
+    <span>YouTube</span>
+  </a>
+  <a href="/x-misc" class="social-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg>
+    <span>More</span>
+  </a>
 </div>
 
 <div class="blog-grid">
@@ -66,7 +52,7 @@ layout: 'base.njk'
     <article class="blog-card">
       <a href="{{ post.url }}">
         <h2>{{ post.data.title }}</h2>
-        <time>{{ post.date | dateFilter }}</time>
+        <time>{{ post.date | postDate }}</time>
         <p>{{ post.data.description }}</p>
       </a>
     </article>
@@ -194,35 +180,40 @@ document.addEventListener('click', (e) => {
   color: #666;
 }
 
-.social-share-container {
-  display: flex;
-  gap: 10px;
-  justify-content: center;
-  margin: 1rem 0;
-  flex-wrap: wrap;
+.social-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 0 1rem;
 }
 
-.social-link {
-  background: none;
-  border: none;
-  padding: 8px;
-  border-radius: 50%;
-  transition: all 0.3s ease;
-  color: #33bdef;
+.social-icon {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  cursor: pointer;
+  padding: 1rem;
+  text-decoration: none;
+  color: #33bdef;
+  border-radius: 8px;
+  transition: all 0.3s ease;
 }
 
-.social-link:hover {
+.social-icon:hover {
   background: #f0f0f0;
-  transform: scale(1.1);
+  transform: translateY(-2px);
 }
 
-.social-link svg {
-  width: 24px;
-  height: 24px;
+.social-icon svg {
+  width: 32px;
+  height: 32px;
+  margin-bottom: 0.5rem;
+}
+
+.social-icon span {
+  font-size: 0.9rem;
+  color: #666;
 }
 
 .blog-grid {
@@ -250,12 +241,12 @@ document.addEventListener('click', (e) => {
 
 .blog-card h2 {
   margin: 0 0 0.5rem 0;
-  color: #333;
+  font-size: 1.5rem;
 }
 
 .blog-card time {
   color: #666;
-  font-size: 0.9em;
+  font-size: 0.9rem;
 }
 
 .blog-card p {
@@ -263,9 +254,22 @@ document.addEventListener('click', (e) => {
   color: #444;
 }
 
-.no-results {
-  padding: 15px;
-  text-align: center;
-  color: #666;
+@media (max-width: 768px) {
+  .social-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .social-icon {
+    padding: 0.75rem;
+  }
+  
+  .social-icon svg {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .social-icon span {
+    font-size: 0.8rem;
+  }
 }
 </style>
