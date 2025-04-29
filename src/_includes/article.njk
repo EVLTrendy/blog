@@ -10,7 +10,7 @@ layout: 'base.njk'
     "@type": "Person",
     "name": "{{ author }}"
   },
-  "datePublished": "{{ date | date }}",
+  "datePublished": "{{ date | postDate }}",
   "image": "{{ image }}",
   "publisher": {
     "@type": "Organization",
