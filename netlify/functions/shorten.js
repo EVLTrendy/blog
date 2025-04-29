@@ -22,7 +22,7 @@ exports.handler = async (event, context) => {
 
   // Handle GET requests (redirects)
   if (event.httpMethod === 'GET') {
-    const { id } = event.queryStringParameters;
+    const { id } = event.queryStringParameters || {};
     
     if (!id) {
       return {
@@ -33,35 +33,46 @@ exports.handler = async (event, context) => {
 
     console.log('Looking up URL for ID:', id);
     
-    // Get the URL from Supabase
-    const { data, error } = await supabase
-      .from('short_urls')
-      .select('long_url')
-      .eq('id', id)
-      .single();
-    
-    if (error) {
-      console.error('Error fetching URL:', error);
+    try {
+      // Get the URL from Supabase
+      const { data, error } = await supabase
+        .from('short_urls')
+        .select('long_url')
+        .eq('id', id)
+        .single();
+      
+      if (error) {
+        console.error('Error fetching URL:', error);
+        return {
+          statusCode: 500,
+          body: JSON.stringify({ error: 'Error fetching URL: ' + error.message })
+        };
+      }
+      
+      if (!data) {
+        return {
+          statusCode: 404,
+          body: JSON.stringify({ error: 'URL not found' })
+        };
+      }
+
+      console.log('Redirecting to:', data.long_url);
+      
+      return {
+        statusCode: 301,
+        headers: {
+          'Location': data.long_url,
+          'Cache-Control': 'no-cache'
+        },
+        body: ''
+      };
+    } catch (error) {
+      console.error('Error handling redirect:', error);
       return {
         statusCode: 500,
-        body: JSON.stringify({ error: 'Error fetching URL: ' + error.message })
+        body: JSON.stringify({ error: 'Internal server error' })
       };
     }
-    
-    if (!data) {
-      return {
-        statusCode: 404,
-        body: JSON.stringify({ error: 'URL not found' })
-      };
-    }
-
-    return {
-      statusCode: 302,
-      headers: {
-        Location: data.long_url
-      },
-      body: ''
-    };
   }
 
   // Handle POST requests (creating new short URLs)
