@@ -1,2 +1,2 @@
-/r/:id    /.netlify/functions/redirect?id=:id    200
+/r/:id    /.netlify/functions/shorten?id=:id    200
 /*        /index.html                            200
