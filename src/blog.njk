@@ -3,9 +3,6 @@ title: Blog
 layout: 'base.njk'
 ---
 
-{% extends "base.njk" %}
-
-{% block content %}
 <div class="search-container">
   <input type="text" id="searchInput" placeholder="Search blogs..." autocomplete="off">
   <div id="autocompleteResults" class="autocomplete-items"></div>
@@ -244,6 +241,26 @@ document.addEventListener('click', (e) => {
 
 .blog-card:hover {
   transform: translateY(-5px);
+}
+
+.blog-card a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.blog-card h2 {
+  margin: 0 0 0.5rem 0;
+  color: #333;
+}
+
+.blog-card time {
+  color: #666;
+  font-size: 0.9em;
+}
+
+.blog-card p {
+  margin: 1rem 0 0 0;
+  color: #444;
 }
 
 .no-results {
