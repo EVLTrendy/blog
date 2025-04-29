@@ -3,6 +3,9 @@ title: Blog
 layout: 'base.njk'
 ---
 
+{% extends "base.njk" %}
+
+{% block content %}
 <div class="search-container">
   <input type="text" id="searchInput" placeholder="Search blogs..." autocomplete="off">
   <div id="autocompleteResults" class="autocomplete-items"></div>
@@ -269,5 +272,4 @@ document.addEventListener('click', (e) => {
   color: #666;
 }
 </style>
-
 {% endblock %}
