@@ -17,6 +17,8 @@ function generateShortId() {
 }
 
 exports.handler = async (event, context) => {
+  console.log('Function called with event:', JSON.stringify(event));
+  
   // Handle GET requests (redirects)
   if (event.httpMethod === 'GET') {
     const { id } = event.queryStringParameters;
@@ -36,6 +38,7 @@ exports.handler = async (event, context) => {
       .single();
     
     if (error || !data) {
+      console.error('Error fetching URL:', error);
       return {
         statusCode: 404,
         body: JSON.stringify({ error: 'URL not found' })
@@ -54,6 +57,7 @@ exports.handler = async (event, context) => {
   // Handle POST requests (creating new short URLs)
   if (event.httpMethod === 'POST') {
     try {
+      console.log('Request body:', event.body);
       const body = JSON.parse(event.body);
       const { url } = body;
       
@@ -67,8 +71,10 @@ exports.handler = async (event, context) => {
       // Generate a unique short ID
       let shortId;
       let isUnique = false;
+      let attempts = 0;
+      const maxAttempts = 5;
       
-      while (!isUnique) {
+      while (!isUnique && attempts < maxAttempts) {
         shortId = generateShortId();
         const { data } = await supabase
           .from('short_urls')
@@ -79,30 +85,40 @@ exports.handler = async (event, context) => {
         if (!data) {
           isUnique = true;
         }
+        attempts++;
+      }
+      
+      if (!isUnique) {
+        throw new Error('Failed to generate unique short ID');
       }
       
       // Store the URL in Supabase
-      const { error } = await supabase
+      const { error: insertError } = await supabase
         .from('short_urls')
         .insert([
           { short_id: shortId, url: url }
         ]);
       
-      if (error) {
-        throw error;
+      if (insertError) {
+        console.error('Error inserting URL:', insertError);
+        throw insertError;
       }
+      
+      const shortUrl = `https://blog.evolvedlotus.com/r/${shortId}`;
+      console.log('Successfully created short URL:', shortUrl);
       
       return {
         statusCode: 200,
         body: JSON.stringify({ 
           message: 'URL shortened successfully',
-          shortUrl: `https://blog.evolvedlotus.com/r/${shortId}`
+          shortUrl: shortUrl
         })
       };
     } catch (error) {
+      console.error('Error in POST handler:', error);
       return {
         statusCode: 400,
-        body: JSON.stringify({ error: 'Invalid request' })
+        body: JSON.stringify({ error: error.message || 'Invalid request' })
       };
     }
   }

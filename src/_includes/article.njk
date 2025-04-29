@@ -27,6 +27,7 @@ layout: 'base.njk'
           Copy
         </button>
       </div>
+      <div id="error-message" style="color: red; margin-bottom: 1rem; display: none;"></div>
       <button onclick="generateShortUrl()" class="share-button" style="padding: 0.75rem 1.5rem; font-size: 1rem; background-color: #0070f3; color: white; border: none; border-radius: 5px; cursor: pointer;">
         Generate Short URL
       </button>
@@ -39,8 +40,13 @@ layout: 'base.njk'
 <script>
 async function generateShortUrl() {
   const button = document.querySelector('.share-button');
+  const errorMessage = document.getElementById('error-message');
+  const shortUrlInput = document.getElementById('shortUrl');
+  
   button.disabled = true;
   button.textContent = 'Generating...';
+  errorMessage.style.display = 'none';
+  shortUrlInput.value = '';
   
   try {
     const response = await fetch('/.netlify/functions/shorten', {
@@ -54,14 +60,21 @@ async function generateShortUrl() {
     });
     
     const data = await response.json();
+    
+    if (!response.ok) {
+      throw new Error(data.error || 'Failed to generate short URL');
+    }
+    
     if (data.shortUrl) {
-      document.getElementById('shortUrl').value = data.shortUrl;
+      shortUrlInput.value = data.shortUrl;
       button.textContent = 'Generate Short URL';
     } else {
-      throw new Error('Failed to generate short URL');
+      throw new Error('No short URL received');
     }
   } catch (error) {
     console.error('Error:', error);
+    errorMessage.textContent = error.message;
+    errorMessage.style.display = 'block';
     button.textContent = 'Error - Try Again';
   } finally {
     button.disabled = false;
@@ -70,6 +83,10 @@ async function generateShortUrl() {
 
 function copyShortUrl() {
   const shortUrlInput = document.getElementById('shortUrl');
+  if (!shortUrlInput.value) {
+    return;
+  }
+  
   shortUrlInput.select();
   document.execCommand('copy');
   
