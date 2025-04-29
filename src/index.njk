@@ -32,12 +32,16 @@ layout: 'base.njk'
             {%- for post in collections.post | reverse -%}
               {% if loop.first %}
               <div class="notification-item latest-post">
-                <div class="notification-content">
-                  <span class="latest-badge">Latest Post</span>
-                  <h3>{{ post.data.title }}</h3>
-                  <p>{{ post.data.description }}</p>
-                  <a href="{{ post.url }}" class="notification-link">Read More</a>
-                </div>
+                <a href="{{ post.url }}" class="latest-post-link">
+                  <div class="notification-content">
+                    <span class="latest-badge">Latest Post</span>
+                    <div class="latest-post-image">
+                      <img src="{{ post.data.image }}" alt="{{ post.data.imageAlt }}" loading="lazy">
+                    </div>
+                    <h3>{{ post.data.title }}</h3>
+                    <p>{{ post.data.description }}</p>
+                  </div>
+                </a>
               </div>
               {% endif %}
             {%- endfor -%}

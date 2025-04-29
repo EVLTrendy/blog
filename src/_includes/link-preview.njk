@@ -1,0 +1,11 @@
+{% if post %}
+<a href="{{ post.url | absoluteUrl }}" class="link-preview">
+  <div class="preview-image">
+    <img src="{{ post.data.image }}" alt="{{ post.data.imageAlt }}" loading="lazy">
+  </div>
+  <div class="preview-content">
+    <div class="preview-title">{{ post.data.title }}</div>
+    <div class="preview-description">{{ post.data.description }}</div>
+  </div>
+</a>
+{% endif %} 
