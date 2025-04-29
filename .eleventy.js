@@ -11,14 +11,28 @@ module.exports = function (eleventyConfig) {
 
     // Date filter
     eleventyConfig.addFilter("postDate", (dateObj) => {
-        // Check if dateObj is a Date object
-        if (!(dateObj instanceof Date)) {
-            console.error("Invalid date object:", dateObj);
+        try {
+            // Handle string dates
+            if (typeof dateObj === 'string') {
+                return DateTime.fromISO(dateObj).toLocaleString(DateTime.DATE_MED);
+            }
+            // Handle Date objects
+            if (dateObj instanceof Date) {
+                return DateTime.fromJSDate(dateObj).toLocaleString(DateTime.DATE_MED);
+            }
+            console.error("Invalid date:", dateObj);
+            return "Invalid Date";
+        } catch (error) {
+            console.error("Error formatting date:", error);
             return "Invalid Date";
         }
+    });
 
-        // Format the date using Luxon
-        return DateTime.fromJSDate(dateObj).toLocaleString(DateTime.DATE_MED);
+    // Add absoluteUrl filter
+    eleventyConfig.addFilter("absoluteUrl", (url) => {
+        const baseUrl = "https://blog.evolvedlotus.com";
+        if (!url) return baseUrl;
+        return `${baseUrl}${url.startsWith('/') ? url : `/${url}`}`;
     });
 
     return {

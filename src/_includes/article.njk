@@ -10,7 +10,7 @@ layout: 'base.njk'
     "@type": "Person",
     "name": "{{ author }}"
   },
-  "datePublished": "{{ date | postDate }}",
+  "datePublished": "{{ date }}",
   "image": "{{ image }}",
   "publisher": {
     "@type": "Organization",
@@ -22,7 +22,7 @@ layout: 'base.njk'
   },
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "{{ page.url | url | absoluteUrl(site.url) }}"
+    "@id": "{{ page.url | absoluteUrl }}"
   }
 }
 </script>
