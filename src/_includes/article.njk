@@ -21,14 +21,63 @@ layout: 'base.njk'
 
     <!-- Share Button Section -->
     <div class="share-section" style="margin-top: 2rem; text-align: center;">
-      <form method="POST" action="/.netlify/functions/shorten">
-        <input type="hidden" name="long_url" value="{{ page.url | url }}">
-        <button type="submit" class="share-button" style="padding: 0.75rem 1.5rem; font-size: 1rem; background-color: #0070f3; color: white; border: none; border-radius: 5px; cursor: pointer;">
-          Share This Page
+      <div class="short-url-container" style="margin-bottom: 1rem;">
+        <input type="text" id="shortUrl" readonly style="width: 100%; max-width: 400px; padding: 0.5rem; border: 1px solid #ddd; border-radius: 4px; margin-right: 0.5rem;">
+        <button onclick="copyShortUrl()" class="copy-button" style="padding: 0.5rem 1rem; background-color: #0070f3; color: white; border: none; border-radius: 4px; cursor: pointer;">
+          Copy
         </button>
-      </form>
+      </div>
+      <button onclick="generateShortUrl()" class="share-button" style="padding: 0.75rem 1.5rem; font-size: 1rem; background-color: #0070f3; color: white; border: none; border-radius: 5px; cursor: pointer;">
+        Generate Short URL
+      </button>
     </div>
     <!-- End Share Button Section -->
 
   </div>
 </section>
+
+<script>
+async function generateShortUrl() {
+  const button = document.querySelector('.share-button');
+  button.disabled = true;
+  button.textContent = 'Generating...';
+  
+  try {
+    const response = await fetch('/.netlify/functions/shorten', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        url: window.location.href
+      })
+    });
+    
+    const data = await response.json();
+    if (data.shortUrl) {
+      document.getElementById('shortUrl').value = data.shortUrl;
+      button.textContent = 'Generate Short URL';
+    } else {
+      throw new Error('Failed to generate short URL');
+    }
+  } catch (error) {
+    console.error('Error:', error);
+    button.textContent = 'Error - Try Again';
+  } finally {
+    button.disabled = false;
+  }
+}
+
+function copyShortUrl() {
+  const shortUrlInput = document.getElementById('shortUrl');
+  shortUrlInput.select();
+  document.execCommand('copy');
+  
+  const copyButton = document.querySelector('.copy-button');
+  const originalText = copyButton.textContent;
+  copyButton.textContent = 'Copied!';
+  setTimeout(() => {
+    copyButton.textContent = originalText;
+  }, 2000);
+}
+</script>
