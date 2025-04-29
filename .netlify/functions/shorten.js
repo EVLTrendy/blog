@@ -1,10 +1,34 @@
-const redirects = {
-  // Add your shortened URLs here
-  // Format: 'short-id': 'https://full-url.com'
-  'gh': 'https://github.com',
-  'tw': 'https://twitter.com',
-  // Add more redirects as needed
-};
+const fs = require('fs');
+const path = require('path');
+
+// Function to generate a short ID from a blog post filename
+function generateShortId(filename) {
+  // Remove date and extension, take first 3 words and join with hyphens
+  const words = filename
+    .replace(/^\d{4}-\d{2}-\d{2}-/, '') // Remove date
+    .replace(/\.md$/, '') // Remove .md extension
+    .split('-')
+    .slice(0, 3)
+    .join('-');
+  return words.toLowerCase();
+}
+
+// Read all blog posts and create redirects
+const blogPosts = {};
+const blogDir = 'C:/Users/xmarc/Documents/GitHub/blog/src/blog';
+
+try {
+  const files = fs.readdirSync(blogDir);
+  files.forEach(file => {
+    if (file.endsWith('.md')) {
+      const shortId = generateShortId(file);
+      const postUrl = `https://blog.evolvedlotus.com/blog/${file.replace('.md', '')}`;
+      blogPosts[shortId] = postUrl;
+    }
+  });
+} catch (error) {
+  console.error('Error reading blog posts:', error);
+}
 
 exports.handler = async (event, context) => {
   // Handle GET requests (redirects)
@@ -18,12 +42,12 @@ exports.handler = async (event, context) => {
       };
     }
 
-    const targetUrl = redirects[id];
+    const targetUrl = blogPosts[id];
     
     if (!targetUrl) {
       return {
         statusCode: 404,
-        body: JSON.stringify({ error: 'URL not found' })
+        body: JSON.stringify({ error: 'Blog post not found' })
       };
     }
 
