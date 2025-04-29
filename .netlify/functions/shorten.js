@@ -1,6 +1,7 @@
 const { createClient } = require('@supabase/supabase-js');
 
 // Initialize Supabase client
+console.log('Initializing Supabase client with URL:', process.env.SUPABASE_URL);
 const supabase = createClient(
   process.env.SUPABASE_URL,
   process.env.SUPABASE_ANON_KEY
@@ -30,6 +31,8 @@ exports.handler = async (event, context) => {
       };
     }
 
+    console.log('Looking up URL for ID:', id);
+    
     // Get the URL from Supabase
     const { data, error } = await supabase
       .from('short_urls')
@@ -37,8 +40,16 @@ exports.handler = async (event, context) => {
       .eq('short_id', id)
       .single();
     
-    if (error || !data) {
+    if (error) {
       console.error('Error fetching URL:', error);
+      return {
+        statusCode: 500,
+        body: JSON.stringify({ error: 'Error fetching URL: ' + error.message })
+      };
+    }
+    
+    if (!data) {
+      console.log('No URL found for ID:', id);
       return {
         statusCode: 404,
         body: JSON.stringify({ error: 'URL not found' })
@@ -79,8 +90,11 @@ exports.handler = async (event, context) => {
           body: JSON.stringify({ error: 'Missing long_url parameter' })
         };
       }
+
+      console.log('Processing URL:', long_url);
       
       // Check if URL already exists
+      console.log('Checking if URL already exists in database');
       const { data: existingUrl, error: existingError } = await supabase
         .from('short_urls')
         .select('short_id')
@@ -91,7 +105,7 @@ exports.handler = async (event, context) => {
         console.error('Error checking for existing URL:', existingError);
         return {
           statusCode: 500,
-          body: JSON.stringify({ error: 'Error checking for existing URL' })
+          body: JSON.stringify({ error: 'Error checking for existing URL: ' + existingError.message })
         };
       }
       
@@ -107,6 +121,7 @@ exports.handler = async (event, context) => {
       }
       
       // Generate a unique short ID
+      console.log('Generating unique short ID');
       let shortId;
       let isUnique = false;
       let attempts = 0;
@@ -114,6 +129,7 @@ exports.handler = async (event, context) => {
       
       while (!isUnique && attempts < maxAttempts) {
         shortId = generateShortId();
+        console.log('Checking if ID is unique:', shortId);
         const { data, error: checkError } = await supabase
           .from('short_urls')
           .select('short_id')
@@ -124,7 +140,7 @@ exports.handler = async (event, context) => {
           console.error('Error checking for unique ID:', checkError);
           return {
             statusCode: 500,
-            body: JSON.stringify({ error: 'Error checking for unique ID' })
+            body: JSON.stringify({ error: 'Error checking for unique ID: ' + checkError.message })
           };
         }
         
@@ -138,7 +154,10 @@ exports.handler = async (event, context) => {
         throw new Error('Failed to generate unique short ID');
       }
       
+      console.log('Generated unique short ID:', shortId);
+      
       // Store the URL in Supabase
+      console.log('Inserting new URL into database');
       const { error: insertError } = await supabase
         .from('short_urls')
         .insert([
@@ -149,7 +168,7 @@ exports.handler = async (event, context) => {
         console.error('Error inserting URL:', insertError);
         return {
           statusCode: 500,
-          body: JSON.stringify({ error: 'Error inserting URL into database' })
+          body: JSON.stringify({ error: 'Error inserting URL into database: ' + insertError.message })
         };
       }
       
