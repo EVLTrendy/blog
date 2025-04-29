@@ -1,6 +1,7 @@
 const { createClient } = require('@supabase/supabase-js');
 
 // Initialize Supabase client
+console.log('Initializing Supabase client with URL:', process.env.SUPABASE_URL);
 const supabase = createClient(
   process.env.SUPABASE_URL,
   process.env.SUPABASE_SERVICE_ROLE_KEY
@@ -30,9 +31,11 @@ exports.handler = async (event, context) => {
       };
     }
 
+    console.log('Looking up URL for ID:', id);
+    
     // Get the URL from Supabase
     const { data, error } = await supabase
-      .from('ShortUrl')
+      .from('short_urls')
       .select('long_url')
       .eq('id', id)
       .single();
@@ -64,6 +67,7 @@ exports.handler = async (event, context) => {
   // Handle POST requests (creating new short URLs)
   if (event.httpMethod === 'POST') {
     try {
+      console.log('Received POST request');
       const { long_url } = JSON.parse(event.body);
       
       if (!long_url) {
@@ -73,14 +77,25 @@ exports.handler = async (event, context) => {
         };
       }
 
+      console.log('Checking if URL exists:', long_url);
+      
       // Check if URL already exists
-      const { data: existingUrl } = await supabase
-        .from('ShortUrl')
+      const { data: existingUrl, error: existingError } = await supabase
+        .from('short_urls')
         .select('id')
         .eq('long_url', long_url)
         .single();
       
+      if (existingError && existingError.code !== 'PGRST116') {
+        console.error('Error checking existing URL:', existingError);
+        return {
+          statusCode: 500,
+          body: JSON.stringify({ error: 'Error checking existing URL: ' + existingError.message })
+        };
+      }
+      
       if (existingUrl) {
+        console.log('URL already exists:', existingUrl);
         const shortUrl = `https://blog.evolvedlotus.com/r/${existingUrl.id}`;
         return {
           statusCode: 200,
@@ -93,26 +108,34 @@ exports.handler = async (event, context) => {
       
       // Generate a unique short ID
       const shortId = generateShortId();
+      console.log('Generated short ID:', shortId);
       
       // Store the URL in Supabase
-      const { error: insertError } = await supabase
-        .from('ShortUrl')
+      console.log('Inserting new URL into database');
+      const { data: insertData, error: insertError } = await supabase
+        .from('short_urls')
         .insert([
           { 
             id: shortId, 
             long_url: long_url,
             created_at: new Date().toISOString()
           }
-        ]);
+        ])
+        .select()
+        .single();
       
       if (insertError) {
         console.error('Error inserting URL:', insertError);
         return {
           statusCode: 500,
-          body: JSON.stringify({ error: 'Error inserting URL into database: ' + insertError.message })
+          body: JSON.stringify({ 
+            error: 'Error inserting URL into database: ' + insertError.message,
+            details: insertError
+          })
         };
       }
       
+      console.log('Successfully inserted:', insertData);
       const shortUrl = `https://blog.evolvedlotus.com/r/${shortId}`;
       
       return {
@@ -123,10 +146,13 @@ exports.handler = async (event, context) => {
         })
       };
     } catch (error) {
-      console.error('Error:', error);
+      console.error('Error in POST handler:', error);
       return {
         statusCode: 500,
-        body: JSON.stringify({ error: error.message || 'Internal server error' })
+        body: JSON.stringify({ 
+          error: error.message || 'Internal server error',
+          details: error
+        })
       };
     }
   }
