@@ -28,6 +28,21 @@ layout: 'base.njk'
         <h2 class="section-title">Latest Updates</h2>
         <div class="notifications-slideshow">
           <div class="notifications-slider">
+            <!-- Latest Blog Post Slide (Fixed) -->
+            {%- for post in collections.post | reverse -%}
+              {% if loop.first %}
+              <div class="notification-item latest-post">
+                <div class="notification-content">
+                  <span class="latest-badge">Latest Post</span>
+                  <h3>{{ post.data.title }}</h3>
+                  <p>{{ post.data.description }}</p>
+                  <a href="{{ post.url }}" class="notification-link">Read More</a>
+                </div>
+              </div>
+              {% endif %}
+            {%- endfor -%}
+            
+            <!-- Regular Notification Slides -->
             {%- for notification in collections.notifications -%}
             <div class="notification-item">
               <div class="notification-content">

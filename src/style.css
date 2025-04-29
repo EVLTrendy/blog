@@ -334,14 +334,38 @@
   }
   
   .footercontainer.social {
-    justify-content: space-around;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    flex-wrap: wrap;
+    width: 100%;
+    z-index: 10;
+    position: relative;
   }
   
   .social .footeritem {
-    flex: 1;
+    flex: 0 0 auto;
+    min-width: 44px;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   
-  
+  .footertext {
+    color: #808080;
+    font-weight: bolder;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    -webkit-tap-highlight-color: rgba(51, 189, 239, 0.2);
+    touch-action: manipulation;
+  }
   
   .snippet_image {
     height: 100px;
@@ -593,7 +617,7 @@
   box-shadow: 0 1px 2px rgba(255, 221, 0, 0.505); /* Light opaqued gold border on hover */
   }
 
-  Blog Signature
+  /* Blog Signature */
 
   .blogsignature {
     height: 200px;
@@ -1107,13 +1131,99 @@
   }
   
   .footercontainer.social {
-    justify-content: space-around;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    flex-wrap: wrap;
+    width: 100%;
+    z-index: 10;
+    position: relative;
   }
   
   .social .footeritem {
-    flex: 1;
+    flex: 0 0 auto;
+    min-width: 44px;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   
+  .footertext {
+    color: #808080;
+    font-weight: bolder;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    -webkit-tap-highlight-color: rgba(51, 189, 239, 0.2);
+    touch-action: manipulation;
+  }
+  
+  /* Mobile Styles Update */
+  @media (max-width: 768px) {
+    .footercontainer.social {
+      gap: 0.5rem;
+      padding: 0.75rem;
+    }
+
+    .footertext {
+      font-size: 16px;
+      padding: 10px;
+    }
+
+    .social .footeritem {
+      margin: 0;
+    }
+
+    /* Ensure links are clickable on iOS */
+    .footertext:active,
+    .footertext:focus {
+      color: #ffffff;
+      outline: none;
+    }
+
+    /* Remove hover state on mobile */
+    .footertext:hover {
+      color: #808080;
+    }
+
+    /* Add active state for mobile */
+    .footertext:active {
+      color: #ffffff;
+      transform: scale(0.95);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .footercontainer.social {
+      gap: 0.25rem;
+      padding: 0.5rem;
+    }
+
+    .footertext {
+      font-size: 14px;
+      padding: 8px;
+    }
+  }
+
+  /* Fix for iOS Safari */
+  @supports (-webkit-touch-callout: none) {
+    .footercontainer.social {
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .footertext {
+      padding: 12px;
+      margin: 0;
+    }
+  }
+
   /* Misc */
 
   a {
@@ -1563,14 +1673,38 @@
   }
   
   .footercontainer.social {
-    justify-content: space-around;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    flex-wrap: wrap;
+    width: 100%;
+    z-index: 10;
+    position: relative;
   }
   
   .social .footeritem {
-    flex: 1;
+    flex: 0 0 auto;
+    min-width: 44px;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   
-  
+  .footertext {
+    color: #808080;
+    font-weight: bolder;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    -webkit-tap-highlight-color: rgba(51, 189, 239, 0.2);
+    touch-action: manipulation;
+  }
   
   .snippet_image {
     height: 100px;
@@ -2102,8 +2236,7 @@ html, body {
   max-width: 1200px;
   margin: 0 auto;
   justify-content: center;
-  align-items: center;
-  height: 100%;
+  align-items: flex-start;
 }
 
 .notifications-section,
@@ -2123,22 +2256,49 @@ html, body {
   color: var(--text1);
 }
 
-/* Notifications Styles */
-.notifications-cycle {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+/* Notifications Slideshow */
+.notifications-slideshow {
+  position: relative;
+  height: 400px;
+  overflow: hidden;
+}
+
+.notifications-slider {
+  position: relative;
+  height: 100%;
+  transition: transform 0.5s ease;
 }
 
 .notification-item {
+  position: absolute;
+  width: 100%;
   padding: 1rem;
   background: var(--surface2);
   border-radius: 8px;
-  transition: transform 0.2s ease;
+  transition: all 0.5s ease;
+  opacity: 0;
+  transform: translateY(100%);
 }
 
-.notification-item:hover {
-  transform: translateY(-2px);
+.notification-item.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Latest Post Badge */
+.latest-badge {
+  display: inline-block;
+  background: #33bdef;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  margin-bottom: 0.5rem;
+}
+
+.latest-post {
+  background: linear-gradient(to bottom right, var(--surface2), #f0f5fa);
+  border: 1px solid rgba(51, 189, 239, 0.2);
 }
 
 .notification-content h3 {
@@ -2165,7 +2325,37 @@ html, body {
   text-decoration: underline;
 }
 
-/* Browse Section Styles */
+/* Slider Controls */
+.slider-controls {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.slider-dots {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.slider-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.slider-dot.active {
+  background: #33bdef;
+}
+
+/* Browse Section */
 .browse-section {
   display: flex;
   flex-direction: column;
@@ -2208,79 +2398,80 @@ html, body {
   top: 1px;
 }
 
-/* Responsive Design */
+/* Mobile Styles */
 @media (max-width: 768px) {
+  .featurediv {
+    height: auto;
+    min-height: 600px;
+    padding: 1rem;
+  }
+
   .split-container {
     flex-direction: column;
     padding: 1rem;
+    gap: 1rem;
   }
 
   .notifications-section,
   .browse-section {
-    padding: 1.5rem;
+    width: 100%;
+    max-width: 100%;
+    padding: 1rem;
+  }
+
+  .notifications-slideshow {
+    height: 250px;
+  }
+
+  .notification-item {
+    padding: 0.75rem;
+  }
+
+  .notification-content h3 {
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .notification-content p {
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+  }
+
+  .slider-controls {
+    right: 5px;
+  }
+
+  .slider-dot {
+    width: 6px;
+    height: 6px;
+  }
+
+  .browse-section {
+    margin-top: 1rem;
+  }
+
+  .browse-description {
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
   }
 }
 
-/* Notifications Slideshow */
-.notifications-slideshow {
-  position: relative;
-  height: 400px;
-  overflow: hidden;
-}
+@media (max-width: 480px) {
+  .featurediv {
+    min-height: 500px;
+  }
 
-.notifications-slider {
-  position: relative;
-  height: 100%;
-  transition: transform 0.5s ease;
-}
-
-.notification-item {
-  position: absolute;
-  width: 100%;
-  padding: 1rem;
-  background: var(--surface2);
-  border-radius: 8px;
-  transition: all 0.5s ease;
-  opacity: 0;
-  transform: translateY(100%);
-}
-
-.notification-item.active {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.slider-controls {
-  position: absolute;
-  right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.slider-dots {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.slider-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: rgba(0, 0, 0, 0.2);
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.slider-dot.active {
-  background: #33bdef;
-}
-
-@media (max-width: 768px) {
   .notifications-slideshow {
-    height: 300px;
+    height: 200px;
+  }
+
+  .split-container {
+    padding: 0.5rem;
+  }
+
+  .notifications-section,
+  .browse-section {
+    padding: 0.75rem;
   }
 }
