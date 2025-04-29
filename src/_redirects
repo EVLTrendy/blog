@@ -1,2 +1,2 @@
-/r/*    /.netlify/functions/shorten?id=:splat    200!
-/*      /index.html                           200 
+/r/*    /.netlify/functions/shorten    200!
+/*      /index.html                   200 

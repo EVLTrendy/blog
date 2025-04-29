@@ -19,16 +19,28 @@ function generateShortId() {
 
 exports.handler = async (event, context) => {
   console.log('Function called with event:', JSON.stringify(event));
-  console.log('Query parameters:', event.queryStringParameters);
-  console.log('Path parameters:', event.pathParameters);
 
   // Handle GET requests (redirects)
   if (event.httpMethod === 'GET') {
     console.log('Processing GET request');
-    const params = event.queryStringParameters || {};
-    const id = params.id;
     
-    console.log('ID from query parameters:', id);
+    // Try to get ID from multiple possible sources
+    let id = null;
+    
+    // Check query parameters
+    if (event.queryStringParameters && event.queryStringParameters.id) {
+      id = event.queryStringParameters.id;
+    }
+    // Check path parameters
+    else if (event.path) {
+      // Extract ID from path (e.g., /r/abc123 -> abc123)
+      const matches = event.path.match(/\/r\/([^\/]+)/);
+      if (matches && matches[1]) {
+        id = matches[1];
+      }
+    }
+    
+    console.log('Extracted ID:', id);
     
     if (!id) {
       console.log('No ID found in request');
@@ -39,12 +51,12 @@ exports.handler = async (event, context) => {
         },
         body: JSON.stringify({ 
           error: 'Missing ID parameter',
-          params: params,
+          params: event.queryStringParameters || {},
+          path: event.path,
           event: {
             path: event.path,
             httpMethod: event.httpMethod,
-            queryStringParameters: event.queryStringParameters,
-            pathParameters: event.pathParameters
+            queryStringParameters: event.queryStringParameters
           }
         })
       };
