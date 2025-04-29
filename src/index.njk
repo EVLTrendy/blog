@@ -22,16 +22,31 @@ layout: 'base.njk'
 </div>
 <div class="featurediv">
   <div class="ftbacksplash">
-    <div class="fttop">
-      <div class="spacediv21"></div>
-      <div class="fttoptxth">Featured articles</div>
-      <div class="fttoptxts">Explore Our Curated Selection: Engaging Featured Articles Worth Your Attention</div>
-    </div>
-    <div class="ftbot">
-      {%- for post in collections.featured | reverse -%}
-        {% include 'article-snippet.njk' %}
-      {%- endfor -%}
+    <div class="split-container">
+      <!-- Left side: Notifications -->
+      <div class="notifications-section">
+        <h2 class="section-title">Latest Updates</h2>
+        <div class="notifications-cycle">
+          {%- for notification in collections.notifications | reverse -%}
+          <div class="notification-item">
+            <div class="notification-content">
+              <h3>{{ notification.data.title }}</h3>
+              <p>{{ notification.data.description }}</p>
+              {% if notification.data.link %}
+              <a href="{{ notification.data.link }}" class="notification-link">Learn More</a>
+              {% endif %}
+            </div>
+          </div>
+          {%- endfor -%}
+        </div>
+      </div>
+      
+      <!-- Right side: Browse All -->
+      <div class="browse-section">
+        <h2 class="section-title">Browse Articles</h2>
+        <p class="browse-description">Explore our complete collection of articles, tutorials, and insights.</p>
+        <a href="https://blog.evolvedlotus.com/blog/" class="browse-button">Browse All Articles</a>
+      </div>
     </div>
   </div>
-
 </div>
