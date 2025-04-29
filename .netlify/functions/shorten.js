@@ -68,6 +68,24 @@ exports.handler = async (event, context) => {
         };
       }
       
+      // Check if URL already exists
+      const { data: existingUrl } = await supabase
+        .from('short_urls')
+        .select('short_id')
+        .eq('url', url)
+        .single();
+      
+      if (existingUrl) {
+        console.log('URL already exists:', existingUrl);
+        return {
+          statusCode: 200,
+          body: JSON.stringify({ 
+            message: 'URL already shortened',
+            shortUrl: `https://blog.evolvedlotus.com/r/${existingUrl.short_id}`
+          })
+        };
+      }
+      
       // Generate a unique short ID
       let shortId;
       let isUnique = false;

@@ -49,17 +49,23 @@ async function generateShortUrl() {
   shortUrlInput.value = '';
   
   try {
+    // Get the current URL and ensure it's the canonical URL
+    const currentUrl = window.location.href;
+    console.log('Current URL:', currentUrl);
+    
     const response = await fetch('/.netlify/functions/shorten', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        url: window.location.href
+        url: currentUrl
       })
     });
     
+    console.log('Response status:', response.status);
     const data = await response.json();
+    console.log('Response data:', data);
     
     if (!response.ok) {
       throw new Error(data.error || 'Failed to generate short URL');
