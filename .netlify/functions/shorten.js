@@ -71,12 +71,12 @@ exports.handler = async (event, context) => {
         };
       }
       
-      const { url } = body;
+      const { long_url } = body;
       
-      if (!url) {
+      if (!long_url) {
         return {
           statusCode: 400,
-          body: JSON.stringify({ error: 'Missing URL parameter' })
+          body: JSON.stringify({ error: 'Missing long_url parameter' })
         };
       }
       
@@ -84,7 +84,7 @@ exports.handler = async (event, context) => {
       const { data: existingUrl, error: existingError } = await supabase
         .from('short_urls')
         .select('short_id')
-        .eq('url', url)
+        .eq('url', long_url)
         .single();
       
       if (existingError) {
@@ -142,7 +142,7 @@ exports.handler = async (event, context) => {
       const { error: insertError } = await supabase
         .from('short_urls')
         .insert([
-          { short_id: shortId, url: url }
+          { short_id: shortId, url: long_url }
         ]);
       
       if (insertError) {
