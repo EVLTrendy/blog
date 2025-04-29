@@ -47,18 +47,6 @@ layout: 'base.njk'
   </a>
 </div>
 
-<div class="blog-grid">
-  {% for post in collections.post | reverse %}
-    <article class="blog-card">
-      <a href="{{ post.url }}">
-        <h2>{{ post.data.title }}</h2>
-        <time>{{ post.date | postDate }}</time>
-        <p>{{ post.data.description }}</p>
-      </a>
-    </article>
-  {% endfor %}
-</div>
-
 <script>
 const searchInput = document.getElementById('searchInput');
 const autocompleteResults = document.getElementById('autocompleteResults');
@@ -214,44 +202,6 @@ document.addEventListener('click', (e) => {
 .social-icon span {
   font-size: 0.9rem;
   color: #666;
-}
-
-.blog-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 2rem;
-  padding: 2rem;
-}
-
-.blog-card {
-  border: 1px solid #eee;
-  border-radius: 8px;
-  padding: 1.5rem;
-  transition: transform 0.3s ease;
-}
-
-.blog-card:hover {
-  transform: translateY(-5px);
-}
-
-.blog-card a {
-  text-decoration: none;
-  color: inherit;
-}
-
-.blog-card h2 {
-  margin: 0 0 0.5rem 0;
-  font-size: 1.5rem;
-}
-
-.blog-card time {
-  color: #666;
-  font-size: 0.9rem;
-}
-
-.blog-card p {
-  margin: 1rem 0 0 0;
-  color: #444;
 }
 
 @media (max-width: 768px) {
