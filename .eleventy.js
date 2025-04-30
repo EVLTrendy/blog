@@ -53,14 +53,24 @@ module.exports = function (eleventyConfig) {
 
     // Add short URL generation for new posts
     eleventyConfig.on('beforeBuild', () => {
-        // Run the short URL generator script
-        require('./scripts/generate-short-urls.js');
+        try {
+            // Run the short URL generator script
+            require('./scripts/generate-short-urls.js');
+        } catch (error) {
+            console.warn('Warning: Short URL generation failed:', error.message);
+            // Continue build even if short URL generation fails
+        }
     });
 
     // Add short URL collection
     eleventyConfig.addCollection('shortUrls', function(collectionApi) {
-        const shortUrlsData = require('./src/_data/shortUrls.json');
-        return shortUrlsData;
+        try {
+            const shortUrlsData = require('./src/_data/shortUrls.json');
+            return shortUrlsData;
+        } catch (error) {
+            console.warn('Warning: Could not load shortUrls.json:', error.message);
+            return {};
+        }
     });
 
     // Add short URL redirect template

@@ -1,12 +1,25 @@
 const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
-const { createClient } = require('@supabase/supabase-js');
 
-// Initialize Supabase client
-const supabaseUrl = process.env.SUPABASE_URL;
-const supabaseKey = process.env.SUPABASE_KEY;
-const supabase = createClient(supabaseUrl, supabaseKey);
+// Debug environment variables
+console.log('Environment check:');
+console.log('SUPABASE_URL:', process.env.SUPABASE_URL ? 'Set' : 'Not set');
+console.log('SUPABASE_ANON_KEY:', process.env.SUPABASE_ANON_KEY ? 'Set' : 'Not set');
+
+// Initialize Supabase client only if environment variables are available
+let supabase = null;
+if (process.env.SUPABASE_URL && process.env.SUPABASE_ANON_KEY) {
+  try {
+    const { createClient } = require('@supabase/supabase-js');
+    supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_ANON_KEY);
+    console.log('Supabase client initialized successfully');
+  } catch (error) {
+    console.error('Error initializing Supabase client:', error);
+  }
+} else {
+  console.log('Skipping Supabase initialization - missing environment variables');
+}
 
 // Function to generate a short URL
 function generateShortUrl(title) {
@@ -98,7 +111,14 @@ function saveShortUrls(posts) {
 
 // Function to update Supabase with short URLs
 async function updateSupabase(shortUrls) {
+  if (!supabase) {
+    console.log('Skipping Supabase update - client not initialized');
+    return;
+  }
+
   try {
+    console.log('Starting Supabase update...');
+    
     // First, clear existing short URLs
     const { error: deleteError } = await supabase
       .from('short_urls')
@@ -109,6 +129,8 @@ async function updateSupabase(shortUrls) {
       throw deleteError;
     }
 
+    console.log('Cleared existing short URLs');
+
     // Then insert new short URLs
     const records = Object.entries(shortUrls).map(([shortUrl, data]) => ({
       short_url: shortUrl,
@@ -116,6 +138,8 @@ async function updateSupabase(shortUrls) {
       slug: data.slug,
       created_at: new Date().toISOString()
     }));
+
+    console.log(`Inserting ${records.length} new short URLs`);
 
     const { error: insertError } = await supabase
       .from('short_urls')
