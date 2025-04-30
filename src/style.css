@@ -1015,340 +1015,51 @@ html, body {
   /* Main Content Adjustments */
   .maindiv {
     height: auto;
-    padding: 20px 0;
+    min-height: 400px;
+    padding: 20px;
   }
 
   .maingroupdiv {
     flex-direction: column;
+    gap: 30px;
   }
 
   .mainl, .mainr {
     width: 100%;
-    padding: 10px;
+    padding: 0;
   }
 
   .maintxtcon {
-    margin-left: 0;
-    text-align: center;
+    margin: 0;
+    padding: 0 20px;
   }
 
   .maintxth {
-    font-size: 32px;
-  }
-
-  .maintxts {
-    font-size: 16px;
-  }
-
-  /* Feature Section */
-  .featurediv {
-    height: auto;
-    padding: 20px 0;
-  }
-
-  .fttop {
-    height: auto;
-    padding: 20px 0;
-  }
-
-  .ftbot {
-    height: auto;
-    padding: 20px 0;
-  }
-
-  /* Blog Grid */
-  .blog-grid {
-    grid-template-columns: 1fr;
-    padding: 1rem;
-    gap: 1rem;
-  }
-
-  /* Article Styles */
-  .article_bodydiv {
-    width: 100%;
-    padding: 10px;
-  }
-
-  .article_title {
-    font-size: 32px;
-  }
-
-  .imagediv {
-    height: 250px;
-  }
-
-  /* Blog Signature */
-  .blogsignature {
-    height: auto;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid #dddddd5b;
-    border-radius: 8px;
-    padding: 20px;
-    margin: 20px 0;
-  }
-
-  .signaturebox {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 20px;
-    width: 100%;
-    max-width: 800px;
-  }
-
-  .pfplinkstack {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .sigpfp {
-    width: 64px;
-    height: 64px;
-    overflow: hidden;
-    border-radius: 50%;
-    margin-bottom: 10px;
-  }
-
-  .sigbody {
-    flex: 1;
-    font-family: 'playfair';
-    font-size: 14px;
-    line-height: 1.6;
-  }
-
-  .siglinks {
-    margin-top: 10px;
-  }
-
-  /* Footer */
-  footer {
-    width: 100%;
-    box-shadow: 5px 5px 50px 5px #8888882e;
-    color: rgb(255, 255, 255);
-    background-color: #5BBCE8;
-    text-align: center;
-    font-family: 'SvelteTrial-Regular';
-    border: solid 1px #5bbbe87a;
-    padding: 15px 0;
-  }
-
-  .footerdivinside {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-  }
-
-  .footercontainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 10px;
-    width: 100%;
-  }
-
-  .footercolumn {
-    display: flex;
-    text-align: left;
-    padding-left: 20px;
-  }
-
-  .footeritem {
-    margin: 5px;
-  }
-
-  .footertext {
-    color: #808080;
-    font-weight: bolder;
-    text-decoration: none;
-    font-size: 14px;
-    padding: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    -webkit-tap-highlight-color: rgba(51, 189, 239, 0.2);
-    touch-action: manipulation;
-  }
-
-  .footertext:hover {
-    color: #ffffff;
-  }
-
-  .footercontainer.social {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
-    padding: 1rem;
-    flex-wrap: wrap;
-    width: 100%;
-    z-index: 10;
-    position: relative;
-  }
-
-  .social .footeritem {
-    flex: 0 0 auto;
-    min-width: 44px;
-    min-height: 44px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  /* Blog Post Images and Content */
-  .imagediv {
-    height: 300px;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    overflow: hidden;
-    margin: 10px 0;
-  }
-
-  .imagediv img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    image-resolution: from-image 300dpi;
-    image-rendering: optimizeQuality;
-  }
-
-  .article_bodydiv {
-    width: 100%;
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 15px;
-  }
-
-  .article_title {
-    font-size: 28px;
-    text-align: center;
-    padding: 10px;
-    margin: 10px 0;
-  }
-
-  .article_meta {
-    text-align: center;
-    font-size: 14px;
-    margin: 10px 0;
-  }
-
-  /* Blog Grid and Cards */
-  .blog-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 20px;
-    padding: 15px;
-    margin: 0 auto;
-  }
-
-  .blog-card {
-    width: 100%;
-    margin: 0 auto;
-    max-width: 500px;
-  }
-
-  .blog-card-image {
-    position: relative;
-    width: 100%;
-    padding-top: 56.25%; /* Maintains 16:9 aspect ratio */
-    overflow: hidden;
-  }
-
-  .blog-card-image img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  .blog-card-content {
-    padding: 15px;
-  }
-
-  .blog-card-title {
-    font-size: 20px;
-    margin-bottom: 8px;
-  }
-
-  .blog-card-description {
-    font-size: 14px;
-    line-height: 1.5;
-  }
-
-  /* Latest Post Preview */
-  .latest-post {
-    margin: 15px;
-  }
-
-  .latest-post-image {
-    position: relative;
-    width: 100%;
-    padding-top: 56.25%; /* 16:9 aspect ratio */
+    font-size: 36px;
+    line-height: 1.2;
     margin-bottom: 15px;
   }
 
-  .latest-post-image img {
-    position: absolute;
-    top: 0;
-    left: 0;
+  .maintxts {
+    font-size: 18px;
+    line-height: 1.4;
+  }
+
+  .mainrdivdisplay {
     width: 100%;
-    height: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .mainrdisplay {
+    height: 300px;
+    width: 300px;
     object-fit: cover;
+    border-radius: 8px;
   }
 
-  /* Link Preview Embeds */
-  .link-preview {
-    max-width: 100%;
-    margin: 15px auto;
-  }
-
-  .preview-image {
-    position: relative;
-    width: 100%;
-    padding-top: 56.25%;
-  }
-
-  .preview-image img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  .preview-content {
-    padding: 15px;
-  }
-
-  /* Blog Post Content */
-  .article_body {
-    width: 100%;
-    padding: 10px;
-  }
-
-  .article_body p {
-    font-size: 16px;
-    line-height: 1.8;
-    margin: 15px 0;
-  }
-
-  .blogpic {
-    width: 100%;
-    max-width: 500px;
-    height: auto;
-    margin: 15px auto;
-    display: block;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  .spacediv20 {
+    height: 80px;
   }
 }
 
@@ -1414,6 +1125,27 @@ html, body {
 
   .blog-card-content {
     padding: 12px;
+  }
+
+  .maindiv {
+    padding: 15px;
+  }
+
+  .maintxth {
+    font-size: 28px;
+  }
+
+  .maintxts {
+    font-size: 16px;
+  }
+
+  .mainrdisplay {
+    height: 250px;
+    width: 250px;
+  }
+
+  .spacediv20 {
+    height: 60px;
   }
 }
 
