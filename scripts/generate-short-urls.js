@@ -119,19 +119,19 @@ async function updateSupabase(shortUrls) {
   try {
     console.log('Starting Supabase update...');
     
-    // First, clear existing short URLs
+    // Clear existing short URLs
     const { error: deleteError } = await supabase
       .from('short_urls')
       .delete()
-      .neq('id', 0); // Delete all records
-
+      .neq('id', 0);
+    
     if (deleteError) {
-      throw deleteError;
+      console.error('Error clearing existing short URLs:', deleteError);
+      return;
     }
-
     console.log('Cleared existing short URLs');
 
-    // Then insert new short URLs
+    // Prepare data for insertion
     const records = Object.entries(shortUrls).map(([shortUrl, data]) => ({
       short_url: shortUrl,
       title: data.title,
@@ -139,17 +139,16 @@ async function updateSupabase(shortUrls) {
       created_at: new Date().toISOString()
     }));
 
-    console.log(`Inserting ${records.length} new short URLs`);
-
+    // Insert new short URLs
     const { error: insertError } = await supabase
       .from('short_urls')
       .insert(records);
 
     if (insertError) {
-      throw insertError;
+      console.error('Error inserting new short URLs:', insertError);
+      return;
     }
-
-    console.log(`Successfully updated ${records.length} short URLs in Supabase`);
+    console.log(`Successfully inserted ${records.length} short URLs into Supabase`);
   } catch (error) {
     console.error('Error updating Supabase:', error);
   }
