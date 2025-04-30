@@ -5,7 +5,17 @@
     <meta name="fo-verify" content="80725f6c-bd05-4617-9441-22d8dec11e7f" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google-adsense-account" content="ca-pub-7311583434347173">
+    <meta name="description" content="{{ description if description else metadata.description }}">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="{{ title }}">
+    <meta property="og:description" content="{{ description if description else metadata.description }}">
+    <meta property="og:url" content="{{ page.url | absoluteUrl }}">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ title }}">
+    <meta name="twitter:description" content="{{ description if description else metadata.description }}">
     <title>{{ title }}</title>
+    <link rel="canonical" href="{{ page.url | absoluteUrl }}" />
     <link rel="stylesheet" href="/style.css">
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7311583434347173"

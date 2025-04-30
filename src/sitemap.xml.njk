@@ -8,8 +8,9 @@ eleventyExcludeFromCollections: true
     {% set absoluteUrl %}{{ page.url | absoluteUrl }}{% endset %}
     <url>
         <loc>{{ absoluteUrl }}</loc>
-        <lastmod>{{ page.date | isoDate }}</lastmod>
-        <changefreq>monthly</changefreq>
+        <lastmod>{{ page.date.toISOString() if page.date else page.data.date.toISOString() }}</lastmod>
+        <changefreq>{% if page.url == "/" %}daily{% else %}weekly{% endif %}</changefreq>
+        <priority>{% if page.url == "/" %}1.0{% else %}0.8{% endif %}</priority>
     </url>
     {%- endfor %}
 </urlset> 
