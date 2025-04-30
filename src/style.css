@@ -434,18 +434,19 @@
   
   .articles__list {
     display: flex;
+    width: 100%;
+    height: 250px;
     align-items: center;
+    justify-content: center;
+    padding: 20px;
+    margin: 20px auto;
+    gap: 20px;
     background: white;
     border-radius: 12px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    margin: 20px auto;
-    max-width: 800px;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
     border: 1px solid rgba(0, 0, 0, 0.1);
-    gap: 20px;
-    width: 100%;
-    height: 250px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    max-width: 1200px;
   }
   
   .articles__list:hover {
@@ -461,7 +462,6 @@
   }
   
   .snippet_tmb {
-    height: 200px;
     width: 250px;
     padding-left: 25px;
     padding-right: 25px;
@@ -469,17 +469,20 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    gap: 10px;
   }
   
   .snippet_title {
     font-size: 26px;
     margin: 0;
     line-height: 1.4;
+    color: #1a1a1a;
   }
   
   .snippet_meta {
     font-size: 12px;
-    margin: 10px 0;
+    margin: 5px 0;
+    color: #666;
   }
   
   .snippet_meta span {
@@ -493,12 +496,14 @@
     white-space: nowrap;
     text-overflow: ellipsis;
     margin: 0;
+    color: #4a4a4a;
   }
   
   .myButton2 {
     padding: 8px 16px;
     text-decoration: none;
     white-space: nowrap;
+    margin-left: auto;
   }
   
   /* Mobile Styles */
@@ -517,7 +522,6 @@
     }
     
     .snippet_tmb {
-      height: 160px;
       width: 200px;
       padding-left: 15px;
       padding-right: 15px;
@@ -529,7 +533,6 @@
     
     .snippet_meta {
       font-size: 11px;
-      margin: 8px 0;
     }
     
     .snippet_body {
@@ -556,7 +559,6 @@
     }
     
     .snippet_tmb {
-      height: 140px;
       width: 180px;
       padding-left: 10px;
       padding-right: 10px;
@@ -568,7 +570,6 @@
     
     .snippet_meta {
       font-size: 10px;
-      margin: 6px 0;
     }
     
     .snippet_body {
