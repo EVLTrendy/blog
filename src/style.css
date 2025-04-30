@@ -2381,51 +2381,62 @@ html, body {
   .articles__list {
     flex-direction: column;
     padding: 15px;
-    margin: 15px;
+    margin: 15px auto;
     gap: 15px;
-    align-items: flex-start;
+    align-items: center;
+    max-width: 90%;
   }
 
   .snippet_image {
     width: 100%;
+    max-width: 500px;
     height: 200px;
     margin: 0 auto;
   }
 
   .snippet_tmb {
     width: 100%;
+    max-width: 500px;
     padding: 0;
-    align-items: flex-start;
+    align-items: center;
+    text-align: center;
   }
 
   .snippet_title {
     font-size: 20px;
-    text-align: left;
+    text-align: center;
   }
 
   .snippet_meta {
     font-size: 12px;
-    text-align: left;
+    text-align: center;
   }
 
   .snippet_body {
     font-size: 14px;
-    text-align: left;
+    text-align: center;
     -webkit-line-clamp: 4;
   }
 
   .myButton2 {
     font-size: 14px;
     padding: 8px 16px;
-    margin-top: 10px;
+    margin: 10px auto 0;
+    display: block;
   }
 }
 
 @media only screen and (max-width: 480px) {
+  h1 {
+    font-size: 24px;
+    margin: 20px 0;
+  }
+
   .articles__list {
     padding: 10px;
-    margin: 10px;
+    margin: 10px auto;
     gap: 12px;
+    max-width: 95%;
   }
 
   .snippet_image {
@@ -2449,4 +2460,11 @@ html, body {
     font-size: 13px;
     padding: 6px 12px;
   }
+}
+
+/* Page Title Styling */
+h1 {
+  text-align: center;
+  margin: 30px 0;
+  padding: 0 15px;
 }
