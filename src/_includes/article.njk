@@ -106,7 +106,6 @@ layout: 'base.njk'
 <script>
 async function generateShortUrl() {
   try {
-    console.log('Generating short URL for:', window.location.href);
     const response = await fetch('/netlify/functions/shorten', {
       method: 'POST',
       headers: {
@@ -125,13 +124,14 @@ async function generateShortUrl() {
       throw new Error(data.error || 'Failed to generate short URL');
     }
     
-    // Return the short URL with the /r/ prefix
+    if (!data.id) {
+      throw new Error('No short URL ID returned from server');
+    }
+    
     return `https://blog.evolvedlotus.com/r/${data.id}`;
   } catch (error) {
     console.error('Error generating short URL:', error);
-    showToast('Error: ' + error.message);
-    // Fallback to the current URL if short URL generation fails
-    return window.location.href;
+    throw error;
   }
 }
 
@@ -146,23 +146,7 @@ function showToast(message) {
 
 async function shareOnTwitter() {
   try {
-    const response = await fetch('/netlify/functions/shorten', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        long_url: window.location.href
-      })
-    });
-    
-    const data = await response.json();
-    
-    if (!response.ok) {
-      throw new Error(data.error || 'Failed to generate short URL');
-    }
-    
-    const shortUrl = `https://blog.evolvedlotus.com/r/${data.id}`;
+    const shortUrl = await generateShortUrl();
     const text = encodeURIComponent(`${document.title}\n${shortUrl}`);
     window.open(`https://twitter.com/intent/tweet?text=${text}`, '_blank');
   } catch (error) {
@@ -173,23 +157,7 @@ async function shareOnTwitter() {
 
 async function shareOnFacebook() {
   try {
-    const response = await fetch('/netlify/functions/shorten', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        long_url: window.location.href
-      })
-    });
-    
-    const data = await response.json();
-    
-    if (!response.ok) {
-      throw new Error(data.error || 'Failed to generate short URL');
-    }
-    
-    const shortUrl = `https://blog.evolvedlotus.com/r/${data.id}`;
+    const shortUrl = await generateShortUrl();
     window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shortUrl)}`, '_blank');
   } catch (error) {
     console.error('Error sharing on Facebook:', error);
@@ -199,23 +167,7 @@ async function shareOnFacebook() {
 
 async function shareOnWhatsApp() {
   try {
-    const response = await fetch('/netlify/functions/shorten', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        long_url: window.location.href
-      })
-    });
-    
-    const data = await response.json();
-    
-    if (!response.ok) {
-      throw new Error(data.error || 'Failed to generate short URL');
-    }
-    
-    const shortUrl = `https://blog.evolvedlotus.com/r/${data.id}`;
+    const shortUrl = await generateShortUrl();
     const text = encodeURIComponent(`${document.title}\n${shortUrl}`);
     window.open(`https://wa.me/?text=${text}`, '_blank');
   } catch (error) {
@@ -226,23 +178,7 @@ async function shareOnWhatsApp() {
 
 async function copyToClipboard() {
   try {
-    const response = await fetch('/netlify/functions/shorten', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        long_url: window.location.href
-      })
-    });
-    
-    const data = await response.json();
-    
-    if (!response.ok) {
-      throw new Error(data.error || 'Failed to generate short URL');
-    }
-    
-    const shortUrl = `https://blog.evolvedlotus.com/r/${data.id}`;
+    const shortUrl = await generateShortUrl();
     await navigator.clipboard.writeText(shortUrl);
     showToast('Short URL copied to clipboard!');
   } catch (error) {

@@ -51,8 +51,22 @@ async function getBlogPostMetadata(url) {
   }
 }
 
+// Common headers for all responses
+const commonHeaders = {
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Headers': 'Content-Type',
+  'Access-Control-Allow-Methods': 'GET, POST, OPTIONS'
+};
+
 exports.handler = async (event, context) => {
-  console.log('Function called with event:', JSON.stringify(event));
+  // Handle OPTIONS request (CORS preflight)
+  if (event.httpMethod === 'OPTIONS') {
+    return {
+      statusCode: 204,
+      headers: commonHeaders,
+      body: ''
+    };
+  }
 
   // Handle POST requests (creating new short URLs)
   if (event.httpMethod === 'POST') {
@@ -67,6 +81,10 @@ exports.handler = async (event, context) => {
         console.error('Error parsing request body:', e);
         return {
           statusCode: 400,
+          headers: {
+            ...commonHeaders,
+            'Content-Type': 'application/json'
+          },
           body: JSON.stringify({ error: 'Invalid JSON in request body' })
         };
       }
@@ -76,6 +94,10 @@ exports.handler = async (event, context) => {
       if (!long_url) {
         return {
           statusCode: 400,
+          headers: {
+            ...commonHeaders,
+            'Content-Type': 'application/json'
+          },
           body: JSON.stringify({ error: 'Missing long_url parameter' })
         };
       }
@@ -93,6 +115,10 @@ exports.handler = async (event, context) => {
         console.error('Error checking existing URL:', existingError);
         return {
           statusCode: 500,
+          headers: {
+            ...commonHeaders,
+            'Content-Type': 'application/json'
+          },
           body: JSON.stringify({ error: 'Error checking existing URL: ' + existingError.message })
         };
       }
@@ -101,6 +127,10 @@ exports.handler = async (event, context) => {
         console.log('URL already exists:', existingUrl);
         return {
           statusCode: 200,
+          headers: {
+            ...commonHeaders,
+            'Content-Type': 'application/json'
+          },
           body: JSON.stringify({ 
             message: 'URL already shortened',
             id: existingUrl.id
@@ -130,6 +160,10 @@ exports.handler = async (event, context) => {
         console.error('Error inserting URL:', insertError);
         return {
           statusCode: 500,
+          headers: {
+            ...commonHeaders,
+            'Content-Type': 'application/json'
+          },
           body: JSON.stringify({ 
             error: 'Error inserting URL into database: ' + insertError.message,
             details: insertError
@@ -141,6 +175,10 @@ exports.handler = async (event, context) => {
       
       return {
         statusCode: 200,
+        headers: {
+          ...commonHeaders,
+          'Content-Type': 'application/json'
+        },
         body: JSON.stringify({ 
           message: 'URL shortened successfully',
           id: shortId
@@ -150,6 +188,10 @@ exports.handler = async (event, context) => {
       console.error('Error in POST handler:', error);
       return {
         statusCode: 500,
+        headers: {
+          ...commonHeaders,
+          'Content-Type': 'application/json'
+        },
         body: JSON.stringify({ 
           error: error.message || 'Internal server error',
           details: error
@@ -185,6 +227,7 @@ exports.handler = async (event, context) => {
       return {
         statusCode: 400,
         headers: {
+          ...commonHeaders,
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({ 
@@ -207,6 +250,10 @@ exports.handler = async (event, context) => {
         console.error('Error fetching URL:', error);
         return {
           statusCode: 500,
+          headers: {
+            ...commonHeaders,
+            'Content-Type': 'application/json'
+          },
           body: JSON.stringify({ error: 'Error fetching URL: ' + error.message })
         };
       }
@@ -214,6 +261,10 @@ exports.handler = async (event, context) => {
       if (!data) {
         return {
           statusCode: 404,
+          headers: {
+            ...commonHeaders,
+            'Content-Type': 'application/json'
+          },
           body: JSON.stringify({ error: 'URL not found' })
         };
       }
@@ -233,6 +284,7 @@ exports.handler = async (event, context) => {
           return {
             statusCode: 200,
             headers: {
+              ...commonHeaders,
               'Content-Type': 'text/html'
             },
             body: html
@@ -244,6 +296,7 @@ exports.handler = async (event, context) => {
       return {
         statusCode: 301,
         headers: {
+          ...commonHeaders,
           'Location': data.long_url,
           'Cache-Control': 'no-cache'
         },
@@ -253,6 +306,10 @@ exports.handler = async (event, context) => {
       console.error('Error handling redirect:', error);
       return {
         statusCode: 500,
+        headers: {
+          ...commonHeaders,
+          'Content-Type': 'application/json'
+        },
         body: JSON.stringify({ error: 'Internal server error' })
       };
     }
@@ -260,6 +317,10 @@ exports.handler = async (event, context) => {
 
   return {
     statusCode: 405,
+    headers: {
+      ...commonHeaders,
+      'Content-Type': 'application/json'
+    },
     body: JSON.stringify({ error: 'Method not allowed' })
   };
 };
