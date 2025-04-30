@@ -1,5 +1,5 @@
-# Short URL redirects with 301 permanent redirects
-/r/:id    /netlify/functions/shorten?id=:id    200!
+# Short URL redirects
+/r/*    /netlify/functions/shorten    200!
 
 # Primary redirects
 /blog/*    /blog/:splat    301

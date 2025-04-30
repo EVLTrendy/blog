@@ -11,7 +11,7 @@ layout: 'base.njk'
     "name": "{{ author }}"
   },
   "datePublished": "{{ date }}",
-  "image": "{{ image }}",
+  "image": "{{ image | absoluteUrl }}",
   "publisher": {
     "@type": "Organization",
     "name": "EvolvedLotus",
@@ -39,10 +39,11 @@ layout: 'base.njk'
 <meta name="twitter:title" content="{{ title }}">
 <meta name="twitter:description" content="{{ description }}">
 <meta name="twitter:image" content="{{ image | absoluteUrl }}">
+<meta name="twitter:site" content="@evolvedlotus">
 
 <div class="preview-container">
   <div class="preview-image">
-    <img src="{{ image }}" alt="{{ imageAlt }}" loading="lazy">
+    <img src="{{ image | absoluteUrl }}" alt="{{ imageAlt }}" loading="lazy">
   </div>
   <div class="preview-content">
     <h1 class="preview-title">{{ title }}</h1>
