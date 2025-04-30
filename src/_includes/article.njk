@@ -106,7 +106,7 @@ layout: 'base.njk'
 <script>
 async function generateShortUrl() {
   try {
-    const response = await fetch('/netlify/functions/shorten', {
+    const response = await fetch('/.netlify/functions/shorten', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
