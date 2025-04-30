@@ -1,6 +1,12 @@
 const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
+const { createClient } = require('@supabase/supabase-js');
+
+// Initialize Supabase client
+const supabaseUrl = process.env.SUPABASE_URL;
+const supabaseKey = process.env.SUPABASE_KEY;
+const supabase = createClient(supabaseUrl, supabaseKey);
 
 // Function to generate a short URL
 function generateShortUrl(title) {
@@ -82,20 +88,59 @@ function saveShortUrls(posts) {
     const outputPath = path.join(dataDir, 'shortUrls.json');
     fs.writeFileSync(outputPath, JSON.stringify(shortUrls, null, 2));
     console.log(`Successfully saved ${Object.keys(shortUrls).length} short URLs to ${outputPath}`);
+
+    return shortUrls;
   } catch (error) {
     console.error('Error saving short URLs:', error);
+    return {};
+  }
+}
+
+// Function to update Supabase with short URLs
+async function updateSupabase(shortUrls) {
+  try {
+    // First, clear existing short URLs
+    const { error: deleteError } = await supabase
+      .from('short_urls')
+      .delete()
+      .neq('id', 0); // Delete all records
+
+    if (deleteError) {
+      throw deleteError;
+    }
+
+    // Then insert new short URLs
+    const records = Object.entries(shortUrls).map(([shortUrl, data]) => ({
+      short_url: shortUrl,
+      title: data.title,
+      slug: data.slug,
+      created_at: new Date().toISOString()
+    }));
+
+    const { error: insertError } = await supabase
+      .from('short_urls')
+      .insert(records);
+
+    if (insertError) {
+      throw insertError;
+    }
+
+    console.log(`Successfully updated ${records.length} short URLs in Supabase`);
+  } catch (error) {
+    console.error('Error updating Supabase:', error);
   }
 }
 
 // Main function
-function main() {
+async function main() {
   console.log('Starting short URL generation...');
   const posts = getBlogPosts();
   if (posts.length === 0) {
     console.error('No blog posts found to process');
     process.exit(1);
   }
-  saveShortUrls(posts);
+  const shortUrls = saveShortUrls(posts);
+  await updateSupabase(shortUrls);
   console.log(`Successfully generated short URLs for ${posts.length} blog posts`);
 }
 
