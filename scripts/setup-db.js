@@ -8,8 +8,21 @@ const supabase = createClient(
 
 async function setupDatabase() {
   try {
-    // Create short_urls table
-    const { error } = await supabase.rpc('create_short_urls_table', {
+    console.log('Setting up database...');
+    
+    // Drop existing table if it exists
+    const { error: dropError } = await supabase
+      .from('short_urls')
+      .delete()
+      .neq('id', 0);
+
+    if (dropError && !dropError.message.includes('does not exist')) {
+      console.error('Error dropping table:', dropError);
+      return;
+    }
+
+    // Create the table
+    const { error: createError } = await supabase.rpc('create_short_urls_table', {
       table_name: 'short_urls',
       columns: [
         { name: 'id', type: 'serial', primary_key: true },
@@ -20,8 +33,8 @@ async function setupDatabase() {
       ]
     });
     
-    if (error) {
-      console.error('Error setting up database:', error);
+    if (createError) {
+      console.error('Error creating table:', createError);
       return;
     }
     

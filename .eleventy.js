@@ -83,6 +83,18 @@ module.exports = function (eleventyConfig) {
         return collection.find(item => item.fileSlug === slug);
     });
 
+    // Add custom filter to safely get nested properties
+    eleventyConfig.addFilter('get', function(obj, path, defaultValue) {
+        if (!obj) return defaultValue;
+        const keys = path.split('.');
+        let result = obj;
+        for (const key of keys) {
+            if (result === undefined || result === null) return defaultValue;
+            result = result[key];
+        }
+        return result === undefined ? defaultValue : result;
+    });
+
     return {
         dir: {
             input: "src",
