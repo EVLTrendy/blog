@@ -2307,3 +2307,146 @@ html, body {
     flex-wrap: wrap;
   }
 }
+
+/* Article List Styling - Base Styles */
+.articles__list {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 20px;
+  margin: 20px auto;
+  gap: 20px;
+  max-width: 1200px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.snippet_image {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.snippet_tmb {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+}
+
+.snippet_title {
+  font-size: 24px;
+  font-weight: 600;
+  margin: 0;
+  line-height: 1.3;
+  color: #1a1a1a;
+}
+
+.snippet_meta {
+  font-size: 14px;
+  color: #666;
+  margin: 0;
+}
+
+.snippet_meta span {
+  color: #33bdef;
+  font-weight: 500;
+}
+
+.snippet_body {
+  font-size: 16px;
+  line-height: 1.5;
+  color: #4a4a4a;
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+.myButton2 {
+  display: inline-block;
+  padding: 8px 16px;
+  text-decoration: none;
+  font-size: 14px;
+  margin-top: 10px;
+  align-self: flex-start;
+}
+
+/* Mobile Styles */
+@media only screen and (max-width: 768px) {
+  .articles__list {
+    flex-direction: column;
+    padding: 15px;
+    margin: 15px;
+    gap: 15px;
+    align-items: flex-start;
+  }
+
+  .snippet_image {
+    width: 100%;
+    height: 200px;
+    margin: 0 auto;
+  }
+
+  .snippet_tmb {
+    width: 100%;
+    padding: 0;
+    align-items: flex-start;
+  }
+
+  .snippet_title {
+    font-size: 20px;
+    text-align: left;
+  }
+
+  .snippet_meta {
+    font-size: 12px;
+    text-align: left;
+  }
+
+  .snippet_body {
+    font-size: 14px;
+    text-align: left;
+    -webkit-line-clamp: 4;
+  }
+
+  .myButton2 {
+    font-size: 14px;
+    padding: 8px 16px;
+    margin-top: 10px;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .articles__list {
+    padding: 10px;
+    margin: 10px;
+    gap: 12px;
+  }
+
+  .snippet_image {
+    height: 180px;
+  }
+
+  .snippet_title {
+    font-size: 18px;
+  }
+
+  .snippet_meta {
+    font-size: 11px;
+  }
+
+  .snippet_body {
+    font-size: 13px;
+    -webkit-line-clamp: 3;
+  }
+
+  .myButton2 {
+    font-size: 13px;
+    padding: 6px 12px;
+  }
+}
