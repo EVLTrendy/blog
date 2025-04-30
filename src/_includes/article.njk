@@ -11,7 +11,7 @@ layout: 'base.njk'
     "name": "{{ author }}"
   },
   "datePublished": "{{ date }}",
-  "image": "{{ image }}",
+  "image": "{{ image | absoluteUrl }}",
   "publisher": {
     "@type": "Organization",
     "name": "EvolvedLotus",
@@ -27,18 +27,35 @@ layout: 'base.njk'
 }
 </script>
 
+<!-- Primary Meta Tags -->
+<meta name="title" content="{{ title }}">
+<meta name="description" content="{{ description }}">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="article">
+<meta property="og:url" content="{{ page.url | absoluteUrl }}">
 <meta property="og:title" content="{{ title }}">
 <meta property="og:description" content="{{ description }}">
 <meta property="og:image" content="{{ image | absoluteUrl }}">
-<meta property="og:url" content="{{ page.url | absoluteUrl }}">
-<meta property="og:type" content="article">
+<meta property="og:site_name" content="EvolvedLotus Blog">
 <meta property="article:published_time" content="{{ date }}">
 <meta property="article:author" content="{{ author }}">
 <meta property="article:section" content="Blog">
+
+<!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@evolvedlotus">
+<meta name="twitter:url" content="{{ page.url | absoluteUrl }}">
 <meta name="twitter:title" content="{{ title }}">
 <meta name="twitter:description" content="{{ description }}">
 <meta name="twitter:image" content="{{ image | absoluteUrl }}">
+
+<!-- Discord -->
+<meta property="discord:embed" content="true">
+<meta property="discord:embed:title" content="{{ title }}">
+<meta property="discord:embed:description" content="{{ description }}">
+<meta property="discord:embed:image" content="{{ image | absoluteUrl }}">
+<meta property="discord:embed:url" content="{{ page.url | absoluteUrl }}">
 
 <section class="articlesection">
   <div class="imagediv">
@@ -129,40 +146,108 @@ function showToast(message) {
 
 async function shareOnTwitter() {
   try {
-    const shortUrl = await generateShortUrl();
+    const response = await fetch('/netlify/functions/shorten', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        long_url: window.location.href
+      })
+    });
+    
+    const data = await response.json();
+    
+    if (!response.ok) {
+      throw new Error(data.error || 'Failed to generate short URL');
+    }
+    
+    const shortUrl = `https://blog.evolvedlotus.com/r/${data.id}`;
     const text = encodeURIComponent(`${document.title}\n${shortUrl}`);
     window.open(`https://twitter.com/intent/tweet?text=${text}`, '_blank');
   } catch (error) {
-    showToast('Error generating share link');
+    console.error('Error sharing on Twitter:', error);
+    showToast('Error: ' + error.message);
   }
 }
 
 async function shareOnFacebook() {
   try {
-    const shortUrl = await generateShortUrl();
+    const response = await fetch('/netlify/functions/shorten', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        long_url: window.location.href
+      })
+    });
+    
+    const data = await response.json();
+    
+    if (!response.ok) {
+      throw new Error(data.error || 'Failed to generate short URL');
+    }
+    
+    const shortUrl = `https://blog.evolvedlotus.com/r/${data.id}`;
     window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shortUrl)}`, '_blank');
   } catch (error) {
-    showToast('Error generating share link');
+    console.error('Error sharing on Facebook:', error);
+    showToast('Error: ' + error.message);
   }
 }
 
 async function shareOnWhatsApp() {
   try {
-    const shortUrl = await generateShortUrl();
+    const response = await fetch('/netlify/functions/shorten', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        long_url: window.location.href
+      })
+    });
+    
+    const data = await response.json();
+    
+    if (!response.ok) {
+      throw new Error(data.error || 'Failed to generate short URL');
+    }
+    
+    const shortUrl = `https://blog.evolvedlotus.com/r/${data.id}`;
     const text = encodeURIComponent(`${document.title}\n${shortUrl}`);
     window.open(`https://wa.me/?text=${text}`, '_blank');
   } catch (error) {
-    showToast('Error generating share link');
+    console.error('Error sharing on WhatsApp:', error);
+    showToast('Error: ' + error.message);
   }
 }
 
 async function copyToClipboard() {
   try {
-    const shortUrl = await generateShortUrl();
+    const response = await fetch('/netlify/functions/shorten', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        long_url: window.location.href
+      })
+    });
+    
+    const data = await response.json();
+    
+    if (!response.ok) {
+      throw new Error(data.error || 'Failed to generate short URL');
+    }
+    
+    const shortUrl = `https://blog.evolvedlotus.com/r/${data.id}`;
     await navigator.clipboard.writeText(shortUrl);
-    showToast('Link copied to clipboard!');
+    showToast('Short URL copied to clipboard!');
   } catch (error) {
-    showToast('Error copying link');
+    console.error('Error copying short URL:', error);
+    showToast('Error: ' + error.message);
   }
 }
 </script>
