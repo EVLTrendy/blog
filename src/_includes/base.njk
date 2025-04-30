@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <script>(function(d,z,s){s.src='https://'+d+'/400/'+z;try{(document.body||document.documentElement).appendChild(s)}catch(e){}})('punoocke.com',6657278,document.createElement('script'))</script>
@@ -31,6 +32,7 @@
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@evolvedlotus">
+    <meta name="twitter:creator" content="@evolvedlotus">
     <meta name="twitter:url" content="{{ page.url | absoluteUrl }}">
     <meta name="twitter:title" content="{{ title }}">
     <meta name="twitter:description" content="{{ description if description else metadata.description }}">
@@ -43,6 +45,12 @@
     <meta property="discord:embed:image" content="{{ image | absoluteUrl if image else metadata.image | absoluteUrl }}">
     <meta property="discord:embed:url" content="{{ page.url | absoluteUrl }}">
 
+    <!-- Additional Meta Tags for Rich Previews -->
+    <meta property="theme-color" content="#007bff">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="en_US">
+
     <title>{{ title }}</title>
     <link rel="canonical" href="{{ page.url | absoluteUrl }}" />
     <link rel="stylesheet" href="/style.css">
@@ -50,11 +58,8 @@
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7311583434347173"
      crossorigin="anonymous"></script>
     <script>(function(d,z,s){s.src='https://'+d+'/401/'+z;try{(document.body||document.documentElement).appendChild(s)}catch(e){}})('ofleafeona.com',6760083,document.createElement('script'))</script>
-    
-    
 </head>
 <body>
-    
     {% include 'header.njk' %}
     {{ content | safe }}
     {% include 'blogsign.njk' %}
@@ -74,6 +79,5 @@
 
     <script src="/assets/js/slideshow.js"></script>
     <script src="/assets/js/copy.js"></script>
-
 </body>
 </html>

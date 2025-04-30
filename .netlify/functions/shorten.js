@@ -1,17 +1,10 @@
 const { createClient } = require('@supabase/supabase-js');
-const fs = require('fs');
-const path = require('path');
-const nunjucks = require('nunjucks');
 
 // Initialize Supabase client
-console.log('Initializing Supabase client with URL:', process.env.SUPABASE_URL);
 const supabase = createClient(
   process.env.SUPABASE_URL,
   process.env.SUPABASE_SERVICE_ROLE_KEY
 );
-
-// Configure Nunjucks
-nunjucks.configure('src/_includes', { autoescape: true });
 
 // Function to generate a random 8-character ID
 function generateShortId() {
@@ -21,34 +14,6 @@ function generateShortId() {
     result += chars.charAt(Math.floor(Math.random() * chars.length));
   }
   return result;
-}
-
-// Function to extract metadata from a blog post URL
-async function getBlogPostMetadata(url) {
-  try {
-    // Extract the slug from the URL
-    const slug = url.split('/').pop();
-    const filePath = path.join(process.cwd(), 'src/blog', `${slug}.md`);
-    
-    // Read the file
-    const content = fs.readFileSync(filePath, 'utf8');
-    
-    // Extract front matter
-    const frontMatter = content.match(/^---\n([\s\S]*?)\n---/)[1];
-    const metadata = {};
-    
-    frontMatter.split('\n').forEach(line => {
-      const [key, ...valueParts] = line.split(':');
-      if (key && valueParts.length > 0) {
-        metadata[key.trim()] = valueParts.join(':').trim();
-      }
-    });
-    
-    return metadata;
-  } catch (error) {
-    console.error('Error extracting metadata:', error);
-    return null;
-  }
 }
 
 // Common headers for all responses
@@ -271,28 +236,7 @@ exports.handler = async (event, context) => {
 
       console.log('Found URL:', data.long_url);
       
-      // Check if this is a blog post URL
-      if (data.long_url.includes('/blog/')) {
-        const metadata = await getBlogPostMetadata(data.long_url);
-        if (metadata) {
-          // Render the preview template
-          const html = nunjucks.render('short-url-preview.njk', {
-            ...metadata,
-            long_url: data.long_url
-          });
-          
-          return {
-            statusCode: 200,
-            headers: {
-              ...commonHeaders,
-              'Content-Type': 'text/html'
-            },
-            body: html
-          };
-        }
-      }
-      
-      // For non-blog URLs or if metadata extraction fails, redirect directly
+      // Redirect to the long URL
       return {
         statusCode: 301,
         headers: {
@@ -323,4 +267,4 @@ exports.handler = async (event, context) => {
     },
     body: JSON.stringify({ error: 'Method not allowed' })
   };
-};
+}; 
