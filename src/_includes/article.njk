@@ -89,6 +89,7 @@ layout: 'base.njk'
 <script>
 async function generateShortUrl() {
   try {
+    console.log('Generating short URL for:', window.location.href);
     const response = await fetch('/netlify/functions/shorten', {
       method: 'POST',
       headers: {
@@ -99,15 +100,20 @@ async function generateShortUrl() {
       })
     });
     
+    console.log('Response status:', response.status);
     const data = await response.json();
+    console.log('Response data:', data);
+    
     if (!response.ok) {
       throw new Error(data.error || 'Failed to generate short URL');
     }
     
     return data.shortUrl;
   } catch (error) {
-    console.error('Error:', error);
-    throw error;
+    console.error('Error generating short URL:', error);
+    showToast('Error: ' + error.message);
+    // Fallback to the current URL if short URL generation fails
+    return window.location.href;
   }
 }
 
