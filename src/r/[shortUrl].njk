@@ -1,0 +1,12 @@
+---
+layout: 'short-url-preview.njk'
+permalink: '/r/{{ shortUrl }}/'
+eleventyComputed:
+  title: "{{ shortUrls[shortUrl].title }}"
+  description: "{{ collections.blog | findBySlug(shortUrls[shortUrl].slug).data.description }}"
+  author: "{{ collections.blog | findBySlug(shortUrls[shortUrl].slug).data.author }}"
+  date: "{{ shortUrls[shortUrl].date }}"
+  image: "{{ collections.blog | findBySlug(shortUrls[shortUrl].slug).data.image }}"
+  imageAlt: "{{ collections.blog | findBySlug(shortUrls[shortUrl].slug).data.imageAlt }}"
+  long_url: "{{ collections.blog | findBySlug(shortUrls[shortUrl].slug).url | absoluteUrl }}"
+--- 

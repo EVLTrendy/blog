@@ -1,4 +1,7 @@
 const { DateTime } = require("luxon");
+const fs = require('fs');
+const path = require('path');
+const crypto = require('crypto');
 
 module.exports = function (eleventyConfig) {
     // Passthrough copies
@@ -46,6 +49,28 @@ module.exports = function (eleventyConfig) {
 
     eleventyConfig.addCollection("notifications", function(collection) {
         return collection.getFilteredByTag("notifications");
+    });
+
+    // Add short URL generation for new posts
+    eleventyConfig.on('beforeBuild', () => {
+        // Run the short URL generator script
+        require('./scripts/generate-short-urls.js');
+    });
+
+    // Add short URL collection
+    eleventyConfig.addCollection('shortUrls', function(collectionApi) {
+        const shortUrlsData = require('./src/_data/shortUrls.json');
+        return shortUrlsData;
+    });
+
+    // Add short URL redirect template
+    eleventyConfig.addPassthroughCopy({
+        'src/_includes/short-url-preview.njk': 'r/:shortUrl/index.html'
+    });
+
+    // Add custom filter to find blog posts by slug
+    eleventyConfig.addFilter('findBySlug', function(collection, slug) {
+        return collection.find(item => item.fileSlug === slug);
     });
 
     return {
