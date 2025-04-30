@@ -3,10 +3,10 @@ layout: 'short-url-preview.njk'
 permalink: '/r/{{ shortUrl }}/'
 eleventyComputed:
   title: "{{ shortUrls[shortUrl].title | default('Untitled Post') }}"
-  description: "{{ collections.blog | findBySlug(shortUrls[shortUrl].slug) | get('data.description', 'No description available') }}"
-  author: "{{ collections.blog | findBySlug(shortUrls[shortUrl].slug) | get('data.author', 'Unknown Author') }}"
+  description: "{{ collections.blog | default([]) | findBySlug(shortUrls[shortUrl].slug) | get('data.description', 'No description available') }}"
+  author: "{{ collections.blog | default([]) | findBySlug(shortUrls[shortUrl].slug) | get('data.author', 'Unknown Author') }}"
   date: "{{ shortUrls[shortUrl].date | default('No date') }}"
-  image: "{{ collections.blog | findBySlug(shortUrls[shortUrl].slug) | get('data.image', '/assets/default-image.jpg') }}"
-  imageAlt: "{{ collections.blog | findBySlug(shortUrls[shortUrl].slug) | get('data.imageAlt', 'Default image') }}"
-  long_url: "{{ collections.blog | findBySlug(shortUrls[shortUrl].slug) | get('url', '/') | absoluteUrl }}"
+  image: "{{ collections.blog | default([]) | findBySlug(shortUrls[shortUrl].slug) | get('data.image', '/assets/default-image.jpg') }}"
+  imageAlt: "{{ collections.blog | default([]) | findBySlug(shortUrls[shortUrl].slug) | get('data.imageAlt', 'Default image') }}"
+  long_url: "{{ collections.blog | default([]) | findBySlug(shortUrls[shortUrl].slug) | get('url', '/') | absoluteUrl }}"
 --- 

@@ -78,8 +78,16 @@ module.exports = function (eleventyConfig) {
         'src/_includes/short-url-preview.njk': 'r/:shortUrl/index.html'
     });
 
+    // Add blog collection
+    eleventyConfig.addCollection("blog", function(collectionApi) {
+        return collectionApi.getFilteredByGlob("src/blog/*.md").sort((a, b) => {
+            return b.date - a.date;
+        });
+    });
+
     // Add custom filter to find blog posts by slug
     eleventyConfig.addFilter('findBySlug', function(collection, slug) {
+        if (!collection) return null;
         return collection.find(item => item.fileSlug === slug);
     });
 
