@@ -99,12 +99,11 @@ exports.handler = async (event, context) => {
       
       if (existingUrl) {
         console.log('URL already exists:', existingUrl);
-        const shortUrl = `https://blog.evolvedlotus.com/r/${existingUrl.id}`;
         return {
           statusCode: 200,
           body: JSON.stringify({ 
             message: 'URL already shortened',
-            shortUrl: shortUrl
+            id: existingUrl.id
           })
         };
       }
@@ -139,13 +138,12 @@ exports.handler = async (event, context) => {
       }
       
       console.log('Successfully inserted:', insertData);
-      const shortUrl = `https://blog.evolvedlotus.com/r/${shortId}`;
       
       return {
         statusCode: 200,
         body: JSON.stringify({ 
           message: 'URL shortened successfully',
-          shortUrl: shortUrl
+          id: shortId
         })
       };
     } catch (error) {

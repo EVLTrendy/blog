@@ -108,7 +108,8 @@ async function generateShortUrl() {
       throw new Error(data.error || 'Failed to generate short URL');
     }
     
-    return data.shortUrl;
+    // Return the short URL with the /r/ prefix
+    return `https://blog.evolvedlotus.com/r/${data.id}`;
   } catch (error) {
     console.error('Error generating short URL:', error);
     showToast('Error: ' + error.message);
