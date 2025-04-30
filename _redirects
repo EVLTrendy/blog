@@ -1,2 +1,9 @@
-/r/:id    /.netlify/functions/shorten?id=:id    200
-/*        /index.html                            200
+# Short URL redirects with 301 permanent redirects
+/r/:id    /netlify/functions/shorten?id=:id    200!
+
+# Primary redirects
+/blog/*    /blog/:splat    301
+/    /index.html    200
+
+# Handle 404s with a custom error page
+/*    /404.html    404

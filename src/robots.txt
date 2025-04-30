@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 Allow: /blog/
 Allow: /assets/
-Disallow: /.netlify/
+Disallow: /netlify/
 Disallow: /admin/
 
 # Sitemap

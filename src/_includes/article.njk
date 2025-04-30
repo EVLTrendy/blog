@@ -27,6 +27,19 @@ layout: 'base.njk'
 }
 </script>
 
+<meta property="og:title" content="{{ title }}">
+<meta property="og:description" content="{{ description }}">
+<meta property="og:image" content="{{ image | absoluteUrl }}">
+<meta property="og:url" content="{{ page.url | absoluteUrl }}">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="{{ date }}">
+<meta property="article:author" content="{{ author }}">
+<meta property="article:section" content="Blog">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ title }}">
+<meta name="twitter:description" content="{{ description }}">
+<meta name="twitter:image" content="{{ image | absoluteUrl }}">
+
 <section class="articlesection">
   <div class="imagediv">
     {% if imageParentIsParagraph %}
@@ -76,7 +89,7 @@ layout: 'base.njk'
 <script>
 async function generateShortUrl() {
   try {
-    const response = await fetch('/.netlify/functions/shorten', {
+    const response = await fetch('/netlify/functions/shorten', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
