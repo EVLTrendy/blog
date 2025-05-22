@@ -5,7 +5,7 @@ author: EvolvedLotus Team
 date: 2025-05-21T14:58:00.000Z
 tags:
   - post
-  - ft
+  - featured
   - misc
 image: /assets/blog/why-most-content-creators-are-setting-themselves-up-for-failure.png
 imageAlt: Why Most Content Creators Are Setting Themselves Up for Failure
