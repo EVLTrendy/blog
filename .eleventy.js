@@ -3,6 +3,9 @@ const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
 
+// 1. Require the eleventy-plugin-seo plugin
+const pluginSEO = require("eleventy-plugin-seo");
+
 module.exports = function (eleventyConfig) {
     // Passthrough copies
     eleventyConfig.addPassthroughCopy('./src/style.css');
@@ -12,6 +15,20 @@ module.exports = function (eleventyConfig) {
     eleventyConfig.addPassthroughCopy('./src/.well-known');
     eleventyConfig.addPassthroughCopy('./src/_redirects');
     eleventyConfig.addPassthroughCopy('./src/robots.txt');
+
+    // 2. Add the eleventy-plugin-seo plugin configuration
+    // IMPORTANT: Make sure to set your actual blog URL for 'url'
+    eleventyConfig.addPlugin(pluginSEO, {
+        url: "https://blog.evolvedlotus.com", // <--- THIS IS YOUR BLOG'S BASE URL!
+        title: "EvolvedLotus Blog", // Default site title for your blog
+        description: "Blog for EvolvedLotus - Tech, Tutorials, and More.", // Default site description for SEO
+        author: "EvolvedLotus", // Your blog's author or organization name
+        twitter: "evolvedlotus", // Your Twitter handle without the @ (e.g., "myhandle" if your handle is @myhandle)
+        // Optional: Uncomment and set a default image for social sharing if you have one
+        // This image will be used if a specific post doesn't have its own 'image' in front matter
+        // image: "/assets/images/default-social-share.jpg", // Example path: ensure this image exists in your /src/assets/images/ folder
+        // lang: "en", // Default language for your content
+    });
 
     // Date filter
     eleventyConfig.addFilter("postDate", (dateObj) => {
@@ -32,7 +49,7 @@ module.exports = function (eleventyConfig) {
         }
     });
 
-    // Add absoluteUrl filter
+    // Add absoluteUrl filter (already correctly set to your base URL)
     eleventyConfig.addFilter("absoluteUrl", (url) => {
         const baseUrl = "https://blog.evolvedlotus.com";
         if (!url) return baseUrl;
@@ -106,7 +123,7 @@ module.exports = function (eleventyConfig) {
     return {
         dir: {
             input: "src",
-            output: "public",
+            output: "public", // Your output directory is 'public'
         },
     };
 };
