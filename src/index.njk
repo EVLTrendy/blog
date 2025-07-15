@@ -14,7 +14,12 @@ layout: 'base.njk'
     </div>
     <div class="mainr">
       <div class="mainrdivdisplay">
-        <img class="mainrdisplay" src="https://picsum.photos/200" alt="">
+        {# 
+          Added width="300" and height="300" to prevent layout shifts (CLS) 
+          and fetchpriority="high" as this is your LCP image.
+          Changed src to /300 as per PSI's "Expected size".
+        #}
+        <img class="mainrdisplay" src="https://picsum.photos/300" alt="Graphical representation of EvolvedLotus discovery" width="300" height="300" fetchpriority="high">
       </div>
     </div>
   </div>
@@ -22,20 +27,24 @@ layout: 'base.njk'
 <div class="featurediv">
   <div class="ftbacksplash">
     <div class="split-container">
-      <!-- Left side: Notifications -->
       <div class="notifications-section">
         <h2 class="section-title">Latest Updates</h2>
         <div class="notifications-slideshow">
           <div class="notifications-slider">
-            <!-- Latest Blog Post Slide (Fixed) -->
             {%- for post in collections.post | reverse -%}
               {% if loop.first %}
               <div class="notification-item latest-post">
                 <a href="{{ post.url }}" class="latest-post-link">
                   <div class="notification-content">
-                    <span class="latest-badge">Latest Post</span>
+                    {# Update the alt text for better accessibility if possible beyond just "Latest Post" #}
+                    <span class="latest-badge">Latest Post</span> 
                     <div class="latest-post-image">
-                      <img src="{{ post.data.image }}" alt="{{ post.data.imageAlt }}" loading="lazy">
+                      {# 
+                        Add width and height attributes here based on the actual dimensions 
+                        of your post images to prevent layout shifts. 
+                        Example: width="400" height="225" (adjust these to your image's aspect ratio)
+                      #}
+                      <img src="{{ post.data.image }}" alt="{{ post.data.imageAlt }}" loading="lazy" width="[ACTUAL_IMAGE_WIDTH]" height="[ACTUAL_IMAGE_HEIGHT]">
                     </div>
                     <h3>{{ post.data.title }}</h3>
                     <p>{{ post.data.description }}</p>
@@ -45,14 +54,17 @@ layout: 'base.njk'
               {% endif %}
             {%- endfor -%}
             
-            <!-- Regular Notification Slides -->
             {%- for notification in collections.notifications -%}
             <div class="notification-item">
               <div class="notification-content">
                 <h3>{{ notification.data.title }}</h3>
                 <p>{{ notification.data.description }}</p>
                 {% if notification.data.link %}
-                <a href="{{ notification.data.link }}" class="notification-link">Learn More</a>
+                {# 
+                  Changed "Learn More" to be more descriptive for SEO and Accessibility.
+                  Added aria-label for screen readers to get more context.
+                #}
+                <a href="{{ notification.data.link }}" class="notification-link" aria-label="Learn more about {{ notification.data.title }}">{{ notification.data.title }}</a>
                 {% endif %}
               </div>
             </div>
@@ -64,7 +76,6 @@ layout: 'base.njk'
         </div>
       </div>
       
-      <!-- Right side: Browse All -->
       <div class="browse-section">
         <h2 class="section-title">Browse Articles</h2>
         <p class="browse-description">Explore our complete collection of articles, tutorials, and insights.</p>

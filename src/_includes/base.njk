@@ -6,12 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google-adsense-account" content="ca-pub-7311583434347173">
     
-    <!-- Primary Meta Tags -->
     <meta name="title" content="{{ title }}">
     <meta name="description" content="{{ description if description else metadata.description }}">
     <meta name="robots" content="index, follow">
 
-    <!-- Open Graph / Facebook -->
     <meta property="og:type" content="{{ og_type if og_type else 'website' }}">
     <meta property="og:url" content="{{ page.url | absoluteUrl }}">
     <meta property="og:title" content="{{ title }}">
@@ -28,7 +26,6 @@
     <meta property="article:section" content="{{ section }}">
     {% endif %}
 
-    <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@evolvedlotus">
     <meta name="twitter:creator" content="@evolvedlotus">
@@ -37,14 +34,12 @@
     <meta name="twitter:description" content="{{ description if description else metadata.description }}">
     <meta name="twitter:image" content="{{ image | absoluteUrl if image else metadata.image | absoluteUrl }}">
 
-    <!-- Discord -->
     <meta property="discord:embed" content="true">
     <meta property="discord:embed:title" content="{{ title }}">
     <meta property="discord:embed:description" content="{{ description if description else metadata.description }}">
     <meta property="discord:embed:image" content="{{ image | absoluteUrl if image else metadata.image | absoluteUrl }}">
     <meta property="discord:embed:url" content="{{ page.url | absoluteUrl }}">
 
-    <!-- Additional Meta Tags for Rich Previews -->
     <meta property="theme-color" content="#007bff">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
@@ -53,9 +48,12 @@
     <title>{{ title }}</title>
     <link rel="canonical" href="{{ page.url | absoluteUrl }}" />
     <link rel="stylesheet" href="/style.css">
-    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7311583434347173"
-     crossorigin="anonymous"></script>
+
+    {# Added preconnect hints for critical third-party origins #}
+    <link rel="preconnect" href="https://pagead2.googlesyndication.com">
+    <link rel="preconnect" href="https://identity.netlify.com">
+    <link rel="preconnect" href="https://ep2.adtrafficquality.google">
+
 </head>
 <body>
     {% include 'header.njk' %}
@@ -63,6 +61,12 @@
     {% include 'blogsign.njk' %}
     {% include 'footer.njk' %}
 
+    {# 
+      Moved all JavaScripts to just before the closing </body> tag for better performance.
+      Added 'defer' to Netlify Identity, slideshow.js, and copy.js.
+      Kept 'async' for Adsense script as it's already there and standard for ads.
+    #}
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js" defer></script>
     <script>
         if (window.netlifyIdentity) {
             window.netlifyIdentity.on("init", user => {
@@ -74,8 +78,9 @@
             });
         }
     </script>
-
-    <script src="/assets/js/slideshow.js"></script>
-    <script src="/assets/js/copy.js"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7311583434347173"
+      crossorigin="anonymous"></script>
+    <script src="/assets/js/slideshow.js" defer></script>
+    <script src="/assets/js/copy.js" defer></script>
 </body>
 </html>
