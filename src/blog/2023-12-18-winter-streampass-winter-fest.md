@@ -1,5 +1,5 @@
 ---
-title: "Winter StreamPass: Winter Fest"
+title: 'Winter StreamPass: Winter Fest'
 author: Marc C.
 date: 2023-12-18T15:42:09.812Z
 tags:
@@ -8,6 +8,9 @@ tags:
   - twitch
 image: /assets/blog/winter-streampass-winter-fest.png
 imageAlt: Winter StreamPass Winter Fest
+description: >-
+  Microsoft's Game Pass is a subscription service that allows streamers to
+  engage their audiences in new ways
 ---
 Microsoft's Game Pass is a subscription service that allows streamers to engage their audiences in new ways. It's a game-changer for streamers who want to spice up their content. Let's look at the possibilities that Game Pass brings to streaming as we approach the Winter Drops Fest, a 10-day celebration with exclusive rewards.
 

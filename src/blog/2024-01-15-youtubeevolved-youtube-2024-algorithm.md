@@ -1,5 +1,5 @@
 ---
-title: "YouTubeEvolved: YouTube 2024 Algorithm "
+title: 'YouTubeEvolved: YouTube 2024 Algorithm '
 author: Marc C.
 date: 2024-01-15T17:53:26.285Z
 tags:
@@ -7,7 +7,11 @@ tags:
   - featured
   - yt
 image: /assets/blog/youtubeevolved-youtube-2024-algorithm.png
-imageAlt: "YouTubeEvolved YouTube 2024 Algorithm "
+imageAlt: 'YouTubeEvolved YouTube 2024 Algorithm '
+description: >-
+  Did you know that the success of YouTube videos depends largely on the
+  platform's algorithm? It's true! Since its introduction in 2005, the algorithm
+  ha...
 ---
 "Do you ever wonder how the YouTube algorithm works?"
 

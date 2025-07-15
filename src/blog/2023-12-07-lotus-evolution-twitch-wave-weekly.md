@@ -1,5 +1,5 @@
 ---
-title: "Lotus Evolution: Twitch Wave Weekly"
+title: 'Lotus Evolution: Twitch Wave Weekly'
 author: Marc C.
 date: 2023-12-07T20:03:48.097Z
 tags:
@@ -8,6 +8,10 @@ tags:
   - featured
 image: /assets/blog/lotus-evolution-twitch-wave-weekly.png
 imageAlt: letwwpic
+description: >-
+  Hey there, Twitch enthusiasts! As you prepare for an incredible week on
+  Twitch, you'll feel as though you're attending the hottest gaming party in
+  person
 ---
 Hey there, Twitch enthusiasts! As you prepare for an incredible week on Twitch, you'll feel as though you're attending the hottest gaming party in person. Knowing which games will top the charts over the next seven days is like getting a first look at the trendiest playlist, regardless of your level of experience with Twitch. 
 

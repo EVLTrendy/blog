@@ -1,5 +1,5 @@
 ---
-title: "Affiliate Hustle: Become a TikTok Shop Pro"
+title: 'Affiliate Hustle: Become a TikTok Shop Pro'
 author: Marc C.
 date: 2024-03-02T16:04:30.337Z
 tags:
@@ -7,7 +7,10 @@ tags:
   - featured
   - tiktok
 image: /assets/blog/affiliate-hustle-become-a-tiktok-shop-pro.png
-imageAlt: "AffiliateHustle: Become a TikTok Shop Pro"
+imageAlt: 'AffiliateHustle: Become a TikTok Shop Pro'
+description: >-
+  Ever considered generating some extra money on TikTok? You're in luck, because
+  I'm going to reveal a hot new trend: TikTok affiliate marketing, courtesy...
 ---
 Ever considered generating some extra money on TikTok? You're in luck, because I'm going to reveal a hot new trend: TikTok affiliate marketing, courtesy of TikTok Shop! Imagine having your own virtual store directly on your TikTok profile. It's a game changer, guys. So let's get started and see how you can take advantage of this wonderful opportunity!
 

@@ -1,5 +1,5 @@
 ---
-title: "LinkedIn-GPT: Microsoft Changes Job Searching"
+title: 'LinkedIn-GPT: Microsoft Changes Job Searching'
 author: Marc C.
 date: 2024-06-18T15:30:00.000Z
 tags:
@@ -7,7 +7,8 @@ tags:
   - featured
   - link
 image: /assets/blog/linkedin-gpt-microsoft-changes-job-searching.png
-imageAlt: "LinkedIn-GPT: Microsoft Changes Job Searching"
+imageAlt: 'LinkedIn-GPT: Microsoft Changes Job Searching'
+description: AI's role in modern technological solutions is expanding rapidly
 ---
 How is AI changing job searching on LinkedIn?
 

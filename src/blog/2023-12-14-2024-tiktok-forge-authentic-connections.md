@@ -1,5 +1,5 @@
 ---
-title: "2024 TikTok: Forge Authentic Connections"
+title: '2024 TikTok: Forge Authentic Connections'
 author: Marc C.
 date: 2023-12-14T19:21:08.107Z
 tags:
@@ -7,7 +7,10 @@ tags:
   - featured
   - tiktok
 image: /assets/blog/2024-tiktok-forge-authentic-connections.png
-imageAlt: "2024 TikTok: Forge Authentic Connections"
+imageAlt: '2024 TikTok: Forge Authentic Connections'
+description: >-
+  Imagine scrolling through TikTok and coming across a video that captivates you
+  with its authenticity
 ---
 Imagine scrolling through TikTok and coming across a video that captivates you with its authenticity. Welcome to TikTok 2024, where genuine connections are more important than ever.
 

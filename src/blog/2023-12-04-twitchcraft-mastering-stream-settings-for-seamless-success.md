@@ -1,5 +1,5 @@
 ---
-title: "TwitchCraft: Mastering Stream Settings for Seamless Success"
+title: 'TwitchCraft: Mastering Stream Settings for Seamless Success'
 author: Marc C.
 date: 2023-12-04T16:32:43.277Z
 tags:
@@ -8,6 +8,9 @@ tags:
   - twitch
 image: /assets/blog/twitchcraft-mastering-stream-settings-for-seamless-success.png
 imageAlt: tcmssfsspic
+description: >-
+  Mastering the finer points of your Twitch setup will unlock the key to an
+  effortless and entertaining streaming experience
 ---
 Mastering the finer points of your Twitch setup will unlock the key to an effortless and entertaining streaming experience. Whether you are an experienced streamer who understands the nuances of live broadcasting or a novice who is keen to establish yourself, the secret to uninterrupted streaming and top-notch video creation is careful configuration. Come along on this adventure with us as we explore the subtleties and details of setting up the ideal Twitch setup to guarantee your viewers have a faultless streaming experience.
 

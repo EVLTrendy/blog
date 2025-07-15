@@ -1,5 +1,5 @@
 ---
-title: "Level Up Your Stream: From Bland to Grand"
+title: 'Level Up Your Stream: From Bland to Grand'
 author: Marc C.
 date: 2024-04-10T15:30:00.000Z
 tags:
@@ -8,7 +8,8 @@ tags:
   - twitch
   - kick
 image: /assets/blog/level-up-your-stream-from-bland-to-grand.png
-imageAlt: "Level Up Your Stream: From Bland to Grand"
+imageAlt: 'Level Up Your Stream: From Bland to Grand'
+description: Kick streaming has expanded beyond mere gameplay
 ---
 Kick streaming has expanded beyond mere gameplay. It has evolved into an immersive experience, with intriguing overlays and designs playing an important role in generating a compelling viewing experience. 
 

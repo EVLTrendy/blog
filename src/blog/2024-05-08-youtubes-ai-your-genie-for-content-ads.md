@@ -1,5 +1,5 @@
 ---
-title: "YouTube's AI: Your Genie for Content & Ads!"
+title: 'YouTube''s AI: Your Genie for Content & Ads!'
 author: Marc C.
 date: 2024-05-08T15:30:00.000Z
 tags:
@@ -7,7 +7,10 @@ tags:
   - featured
   - yt
 image: /assets/blog/youtube-s-ai-your-genie-for-content-ads-.png
-imageAlt: "YouTube's AI: Your Genie for Content & Ads!"
+imageAlt: 'YouTube''s AI: Your Genie for Content & Ads!'
+description: >-
+  Recently, YouTube has been introducing some incredibly handy upgrades,
+  especially in the realm of AI
 ---
 Want to know YouTube's secret weapon for making your business boom?
 

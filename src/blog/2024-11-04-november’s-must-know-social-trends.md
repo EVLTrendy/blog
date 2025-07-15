@@ -8,6 +8,10 @@ tags:
   - misc
 image: /assets/blog/november’s-must-know-social-trends.png
 imageAlt: November’s Must-Know Social Trends
+description: >-
+  As November approaches, seize the opportunity to connect with your audience
+  through meaningful content ideas centered around important observances like
+  ...
 ---
 As November approaches, seize the opportunity to connect with your audience through meaningful content ideas centered around important observances like Take a Hike Day, Stress Awareness Day, and Thanksgiving. Enhance your online presence and engage with your followers on a personal level by incorporating these themes into your content strategy.
 

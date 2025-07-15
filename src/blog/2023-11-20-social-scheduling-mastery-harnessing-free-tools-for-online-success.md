@@ -1,5 +1,5 @@
 ---
-title: "Scheduled Success: Mastering Free* Tools Online!"
+title: 'Scheduled Success: Mastering Free* Tools Online!'
 author: Marc C.
 date: 2023-11-20T20:28:42.853Z
 tags:
@@ -12,6 +12,9 @@ tags:
   - twitter
 image: /assets/blog/scheduled-success-mastering-free-tools-online-.png
 imageAlt: top6
+description: >-
+  Welcome, social media aficionados! In the dynamic landscape of online
+  platforms, keeping your content strategy on point is the key to success
 ---
 Welcome, social media aficionados! In the dynamic landscape of online platforms, keeping your content strategy on point is the key to success. To make your life easier, we're delving into the realm of free* online scheduling resource tools that can supercharge your social media game. Let's explore the top six contenders!
 

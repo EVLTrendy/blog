@@ -1,5 +1,5 @@
 ---
-title: "From Sound Waves to Screens: The Intro to Podcast"
+title: 'From Sound Waves to Screens: The Intro to Podcast'
 author: Marc C.
 date: 2023-12-26T14:52:10.709Z
 tags:
@@ -7,7 +7,10 @@ tags:
   - featured
   - yt
 image: /assets/blog/from-sound-waves-to-screens-the-intro-to-podcast.png
-imageAlt: "From Sound Waves to Screens: The Intro to Podcast"
+imageAlt: 'From Sound Waves to Screens: The Intro to Podcast'
+description: >-
+  Ever thought about taking your podcast to new heights, reaching audiences far
+  and wide in the digital world? If you've ever dreamt of leaving a lasting ...
 ---
 Ever thought about taking your podcast to new heights, reaching audiences far and wide in the digital world? If you've ever dreamt of leaving a lasting impression and connecting with a larger audience, it's time to make those dreams a reality. Join me on this exciting journey beyond just audio, stepping into the vibrant visual world of YouTube.
 

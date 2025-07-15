@@ -1,5 +1,5 @@
 ---
-title: "YouTube Kids: Safe Channel Launch"
+title: 'YouTube Kids: Safe Channel Launch'
 author: Marc C.
 date: 2024-08-26T15:30:00.000Z
 tags:
@@ -7,7 +7,10 @@ tags:
   - featured
   - yt
 image: /assets/blog/youtube-kids-safe-channel-launch.png
-imageAlt: "YouTube Kids: Safe Channel Launch"
+imageAlt: 'YouTube Kids: Safe Channel Launch'
+description: >-
+  YouTube is gradually becoming a favorite destination for kids as some of their
+  favorite videos such as “Baby Shark Dance” receive the most views
 ---
 
 

@@ -1,5 +1,5 @@
 ---
-title: "Boost TikTok Visuals: Top Online Resources"
+title: 'Boost TikTok Visuals: Top Online Resources'
 author: Marc C.
 date: 2023-11-20T02:53:05.277Z
 tags:
@@ -7,7 +7,10 @@ tags:
   - featured
   - tiktok
 image: /assets/blog/boost-tiktok-visuals-top-online-resources.png
-imageAlt: "Boost TikTok Visuals: Top Online Resources"
+imageAlt: 'Boost TikTok Visuals: Top Online Resources'
+description: >-
+  In the ever-evolving realm of TikTok, where capturing attention is the golden
+  ticket, mastering visually appealing content is non-negotiable
 ---
 In the ever-evolving realm of TikTok, where capturing attention is the golden ticket, mastering visually appealing content is non-negotiable. If you're ready to up your TikTok game and craft visuals that truly stand out, explore these top-notch online resources.
 

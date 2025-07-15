@@ -8,6 +8,9 @@ tags:
   - ig
 image: /assets/blog/how-does-instagram-pay-you-unraveling-instagram-payments.jpg
 imageAlt: How Does Instagram Pay You? Unraveling Instagram Payments
+description: >-
+  Instagram is a great way for people to make money online because of its
+  enormous user base and varied content ecosystem
 ---
 Instagram is a great way for people to make money online because of its enormous user base and varied content ecosystem. There are countless ways to make money on Instagram, from affiliate marketing to sponsored posts. However, even novice and experienced users may find it difficult to navigate Instagram's payment system.
 

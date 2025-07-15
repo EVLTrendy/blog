@@ -8,6 +8,9 @@ tags:
   - misc
 image: /assets/blog/evolvedlotus_view_on_hootsuites_2025_report.png
 imageAlt: EvolvedLotus View On Hootsuite’s 2025 Report
+description: >-
+  Hootsuite’s 2025 Social Media Trends Report is out, and it’s packed with
+  insights that every social media strategist needs to know
 ---
 Hootsuite’s 2025 Social Media Trends Report is out, and it’s packed with insights that every social media strategist needs to know. We read Hootsuite’s 2025 Report So You Don’t Have To: Here Are the Key Takeaways.
 

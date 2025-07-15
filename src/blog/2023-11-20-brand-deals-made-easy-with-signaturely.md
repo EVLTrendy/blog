@@ -8,6 +8,10 @@ tags:
   - misc
 image: /assets/blog/brand-deals-made-easy-with-signaturely-.png
 imageAlt: Brand Deals Made Easy with Signaturely!
+description: >-
+  Greetings, fellow content creators! Get ready for a blockbuster journey
+  through the wild world of brand deals, with Signaturely as your trusty
+  sidekick
 ---
 Greetings, fellow content creators! Get ready for a blockbuster journey through the wild world of brand deals, with Signaturely as your trusty sidekick. Together, we'll streamline your collaborations and make paperwork a breeze.
 

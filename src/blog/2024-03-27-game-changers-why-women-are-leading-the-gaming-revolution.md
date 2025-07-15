@@ -1,5 +1,5 @@
 ---
-title: "Game Changers: Why Women Are Leading the Gaming Revolution"
+title: 'Game Changers: Why Women Are Leading the Gaming Revolution'
 author: Marc C.
 date: 2024-03-25T19:30:00.000Z
 tags:
@@ -7,7 +7,10 @@ tags:
   - featured
   - twitch
 image: /assets/blog/game-changers-why-women-are-leading-the-gaming-revolution.png
-imageAlt: "Game Changers: Why Women Are Leading the Gaming Revolution"
+imageAlt: 'Game Changers: Why Women Are Leading the Gaming Revolution'
+description: >-
+  Women are leading the gaming revolution with a rise in female gamers changing
+  the way games are designed and marketed
 ---
 Women are leading the gaming revolution with a rise in female gamers changing the way games are designed and marketed.
 

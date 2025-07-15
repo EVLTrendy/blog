@@ -1,5 +1,5 @@
 ---
-title: "Lotus Harmony: Evolving Your Music"
+title: 'Lotus Harmony: Evolving Your Music'
 author: Marc C.
 date: 2023-12-06T18:45:44.183Z
 tags:
@@ -8,6 +8,9 @@ tags:
   - tiktok
 image: /assets/blog/lotus-harmony-evolving-your-music.png
 imageAlt: lheympic
+description: >-
+  The relationship between melody and meter is a fascinating journey for
+  musicians, offering a challenging and complex terrain to navigate
 ---
 The relationship between melody and meter is a fascinating journey for musicians, offering a challenging and complex terrain to navigate. Striking the correct notes is just the beginning in this energetic orchestra, where musicians must skillfully blend melody and meter to create a captivating musical experience.
 

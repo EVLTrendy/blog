@@ -8,6 +8,9 @@ tags:
   - tiktok
 image: /assets/blog/the-rise-of-tiktok’s-new-influencers.png
 imageAlt: The Rise of TikTok’s New Influencers
+description: >-
+  TikTok has grown widely accepted all over the world for creating short videos
+  and for social media usage
 ---
 You're probably wondering, "How can I use AI with my TikTok business?"
 

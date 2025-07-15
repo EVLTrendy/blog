@@ -1,5 +1,5 @@
 ---
-title: "TikTok's Faceless Motivation: EvolvedLotus Insights"
+title: 'TikTok''s Faceless Motivation: EvolvedLotus Insights'
 author: Marc C.
 date: 2023-12-10T21:30:47.205Z
 tags:
@@ -7,7 +7,10 @@ tags:
   - featured
   - tiktok
 image: /assets/blog/tiktok-s-faceless-motivation-evolvedlotus-insights.png
-imageAlt: "TikTok's Faceless Motivation: EvolvedLotus Insights"
+imageAlt: 'TikTok''s Faceless Motivation: EvolvedLotus Insights'
+description: >-
+  TikTok is a great platform for creators to express themselves and connect with
+  different people
 ---
 TikTok is a great platform for creators to express themselves and connect with different people. As it keeps changing, there's a chance for creators to inspire without showing who they are.
 

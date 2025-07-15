@@ -1,5 +1,5 @@
 ---
-title: "TikTok's Faceless Recipes: EvolvedLotus Insights"
+title: 'TikTok''s Faceless Recipes: EvolvedLotus Insights'
 author: Marc C.
 date: 2023-12-30T15:45:02.422Z
 tags:
@@ -7,7 +7,10 @@ tags:
   - featured
   - tiktok
 image: /assets/blog/tiktok-s-faceless-recipes-evolvedlotus-insights.png
-imageAlt: "TikTok's Faceless Recipes: EvolvedLotus Insights"
+imageAlt: 'TikTok''s Faceless Recipes: EvolvedLotus Insights'
+description: >-
+  Do you still remember YouTube? It's a platform that remains a hotbed of
+  creativity, particularly when it comes to cooking
 ---
 Do you still remember YouTube? It's a platform that remains a hotbed of creativity, particularly when it comes to cooking. But what if you want to share your passion for food without revealing your identity? 
 

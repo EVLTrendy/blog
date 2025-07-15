@@ -1,14 +1,17 @@
 ---
-title: "Crypto turned Gold "
+title: 'Crypto turned Gold '
 author: Marc C.
 date: 2024-03-11T19:30:00.000Z
 tags:
   - post
   - featured
   - kick
-  - ""
+  - ''
 image: /assets/blog/crypto-turned-gold-.png
-imageAlt: "Crypto turned Gold "
+imageAlt: 'Crypto turned Gold '
+description: >-
+  Kick is an online streaming platform, similar to Twitch, that enables users to
+  stream gaming, IRL, just chatting, and gambling content
 ---
 Kick is an online streaming platform, similar to Twitch, that enables users to stream gaming, IRL, just chatting, and gambling content. The platform became popular in December 2022, attracting a significant amount of attention.
 

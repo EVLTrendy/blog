@@ -1,5 +1,5 @@
 ---
-title: "EvolvedList: February's Thriving Creators "
+title: 'EvolvedList: February''s Thriving Creators '
 author: Marc C.
 date: 2024-02-28T20:59:23.344Z
 tags:
@@ -7,7 +7,10 @@ tags:
   - featured
   - yt
 image: /assets/blog/evolvedlist-february-s-thriving-creators-.png
-imageAlt: "EvolvedList: February's Thriving Creators "
+imageAlt: 'EvolvedList: February''s Thriving Creators '
+description: >-
+  Creativity propels us to push boundaries and imagine new possibilities, and
+  we're here to celebrate that spirit through the stories of emerging talents
 ---
 Creativity propels us to push boundaries and imagine new possibilities, and we're here to celebrate that spirit through the stories of emerging talents. Join us as we explore innovative projects, groundbreaking ideas, and inspiring individuals making their mark on the world.
 

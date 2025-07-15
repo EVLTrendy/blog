@@ -1,5 +1,5 @@
 ---
-title: "UMG's Exit: The Shift of Music "
+title: 'UMG''s Exit: The Shift of Music '
 author: Marc C.
 date: 2024-02-03T17:00:39.487Z
 tags:
@@ -7,7 +7,10 @@ tags:
   - featured
   - tiktok
 image: /assets/blog/umg-s-exit-the-shift-of-music.jpg
-imageAlt: "UMG's Exit: The Shift of Music "
+imageAlt: 'UMG''s Exit: The Shift of Music '
+description: >-
+  Have you heard the most recent news regarding TikTok? There appears to be a
+  great deal of drama in the music industry
 ---
 Have you heard the most recent news regarding TikTok? There appears to be a great deal of drama in the music industry. It seems like Universal Music Group has made the decision to take its complete catalog off the TikTok App. You read correctly: one of the largest brands in the business has severed ties with TikTok. 
 

@@ -1,14 +1,17 @@
 ---
-title: "Twitch: Streamlined & Secure"
+title: 'Twitch: Streamlined & Secure'
 author: Marc C.
 date: 2024-04-24T15:30:00.000Z
 tags:
   - post
   - featured
   - twitch
-  - ""
+  - ''
 image: /assets/blog/twitch-streamlined-secure.png
-imageAlt: "Twitch: Streamlined & Secure"
+imageAlt: 'Twitch: Streamlined & Secure'
+description: >-
+  Prepare for an enlightening discussion as we explore the future updates that
+  will transform your Twitch experience
 ---
 With the latest Twitch upgrade, how will you locate your next favorite streamer? We've got the answers (and maybe even a sneak peek) to the new enhancements that will refresh your Twitch experience!
 

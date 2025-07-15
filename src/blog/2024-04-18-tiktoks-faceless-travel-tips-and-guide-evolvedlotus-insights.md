@@ -1,5 +1,5 @@
 ---
-title: "TikTok's Faceless Travel Tips and Guide: EvolvedLotus Insights"
+title: 'TikTok''s Faceless Travel Tips and Guide: EvolvedLotus Insights'
 author: Marc C.
 date: 2024-04-17T15:30:00.000Z
 tags:
@@ -7,7 +7,10 @@ tags:
   - featured
   - tiktok
 image: /assets/blog/tiktok-s-faceless-travel-tips-and-guide-evolvedlotus-insights.png
-imageAlt: "TikTok's Faceless Travel Tips and Guide: EvolvedLotus Insights"
+imageAlt: 'TikTok''s Faceless Travel Tips and Guide: EvolvedLotus Insights'
+description: >-
+  Are you someone who loves to travel but wants to keep your identity a secret?
+  Faceless travel guides might be the solution you're looking for
 ---
 Are you someone who loves to travel but wants to keep your identity a secret? Faceless travel guides might be the solution you're looking for. 
 

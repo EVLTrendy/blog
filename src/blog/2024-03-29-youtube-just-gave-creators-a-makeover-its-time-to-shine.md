@@ -1,13 +1,16 @@
 ---
-title: "YouTube Just Gave Creators a Makeover: It's Time to Shine"
+title: 'YouTube Just Gave Creators a Makeover: It''s Time to Shine'
 author: Marc C.
-date: 2024-03-29T16:43
+date: '2024-03-29T16:43'
 tags:
   - post
   - featured
   - yt
 image: /assets/blog/youtube-just-gave-creators-a-makeover-it-s-time-to-shine.png
-imageAlt: "YouTube Just Gave Creators a Makeover: It's Time to Shine"
+imageAlt: 'YouTube Just Gave Creators a Makeover: It''s Time to Shine'
+description: >-
+  We spend endless hours on YouTube, watching videos ranging from cat memes to
+  DIY instructional
 ---
 We spend endless hours on YouTube, watching videos ranging from cat memes to DIY instructional. YouTube recently announced some interesting upgrades and news, and I'm here to share the specifics with you.
 

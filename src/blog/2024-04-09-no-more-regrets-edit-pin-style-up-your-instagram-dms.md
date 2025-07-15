@@ -1,5 +1,5 @@
 ---
-title: "No More Regrets: Edit, Pin & Style Up Your Instagram DMs!"
+title: 'No More Regrets: Edit, Pin & Style Up Your Instagram DMs!'
 author: Marc C.
 date: 2024-04-08T19:30:00.000Z
 tags:
@@ -8,7 +8,11 @@ tags:
   - ig
   - fb
 image: /assets/blog/no-more-regrets-edit-pin-style-up-your-instagram-dms-.png
-imageAlt: "No More Regrets: Edit, Pin & Style Up Your Instagram DMs!"
+imageAlt: 'No More Regrets: Edit, Pin & Style Up Your Instagram DMs!'
+description: >-
+  Attention, all Meta users! If, like me, you spend a lot of time chatting on
+  the app, you'll be glad to know that Meta added some new enhancements to
+  the...
 ---
 Attention, all Meta users! If, like me, you spend a lot of time chatting on the app, you'll be glad to know that Meta added some new enhancements to the DM feature in March. These improvements will significantly improve your messaging experience. 
 

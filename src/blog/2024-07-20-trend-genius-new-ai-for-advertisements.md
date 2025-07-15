@@ -1,5 +1,5 @@
 ---
-title: "Trend Genius: New AI For Advertisements "
+title: 'Trend Genius: New AI For Advertisements '
 author: Marc C.
 date: 2024-07-20T13:23:00.000Z
 tags:
@@ -7,7 +7,8 @@ tags:
   - featured
   - twitter
 image: /assets/blog/trend-genius-new-ai-for-advertisements-1-.png
-imageAlt: "Trend Genius: New AI For Advertisements "
+imageAlt: 'Trend Genius: New AI For Advertisements '
+description: The advertisers need to track trends as they are being set
 ---
 The advertisers need to track trends as they are being set. Trend Genius, a new tool that was created by X and Genius Sports, can now allow ad deployment to go straight into the conversation. In other words, Trend Genius enables brands to target their ads at the right time when topics are popular, thus reaching the peak of engagement.
 

@@ -1,5 +1,5 @@
 ---
-title: "Evolved Insights: Tiny Twitter Niche"
+title: 'Evolved Insights: Tiny Twitter Niche'
 author: EvolvedLotus Team
 date: 2024-09-27T15:30:00.000Z
 tags:
@@ -7,7 +7,10 @@ tags:
   - featured
   - twt
 image: /assets/blog/evolved-insights-“tiny-twitter-niche”.png
-imageAlt: "Evolved Insights: Tiny Twitter Niche"
+imageAlt: 'Evolved Insights: Tiny Twitter Niche'
+description: >-
+  The goal of the study was to evaluate video performance for three weeks,
+  paying particular attention to engagement indices and the number of viewers
 ---
 The goal of the study was to evaluate video performance for three weeks, paying particular attention to engagement indices and the number of viewers. The ambition was to uncover patterns that could benefit future content strategy by examining daily posts. Understanding how engagement metrics relate to viewership is important for discovering the content that connects with the audience.
 

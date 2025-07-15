@@ -9,6 +9,9 @@ tags:
 image: /assets/blog/how-to-write-a-viral-caption-for-social-media.png
 imageAlt: How to Write a Viral Caption for Social Media
 shortUrl: htwavcfsm129
+description: >-
+  Captions are more than just text—they’re your ticket to turning a scroll into
+  a stop
 ---
 Captions are more than just text—they’re your ticket to turning a scroll into a stop. Whether humor, value, or emotion, a great caption sets the tone and grabs attention in a crowded feed.
 
