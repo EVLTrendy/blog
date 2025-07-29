@@ -6,7 +6,7 @@ author: EvolvedLotus Team
 date: 2025-07-28T15:30:00.000-04:00
 tags:
   - post
-  - ft
+  - featured
   - ig
 image: /assets/blog/come-closerrr.png
 imageAlt: Are Instagram Ads Worth It? Plus, New Strategies for Organic Growth in 2025
