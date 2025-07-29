@@ -1,0 +1,20 @@
+name: Scheduled Netlify Build
+
+on:
+  schedule:
+    - cron: '0 * * * *' # Runs at the top of every hour (UTC)
+  workflow_dispatch:
+
+jobs:
+  trigger-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Netlify build hook
+        env:
+          NETLIFY_BUILD_HOOK_URL: ${{ secrets.NETLIFY_BUILD_HOOK_URL }}
+        run: |
+          if [ -z "$NETLIFY_BUILD_HOOK_URL" ]; then
+            echo "::error::NETLIFY_BUILD_HOOK_URL secret not set"
+            exit 1
+          fi
+          curl -s -o /dev/null -X POST "$NETLIFY_BUILD_HOOK_URL" 

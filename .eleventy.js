@@ -95,11 +95,22 @@ module.exports = function (eleventyConfig) {
         'src/_includes/short-url-preview.njk': 'r/:shortUrl/index.html'
     });
 
-    // Add blog collection
+    // Add blog collection (exclude future-dated posts)
     eleventyConfig.addCollection("blog", function(collectionApi) {
-        return collectionApi.getFilteredByGlob("src/blog/*.md").sort((a, b) => {
-            return b.date - a.date;
-        });
+        const now = new Date();
+        return collectionApi
+            .getFilteredByGlob("src/blog/*.md")
+            .filter(post => post.date <= now)
+            .sort((a, b) => b.date - a.date);
+    });
+
+    // Override default tag collection for `post` to also exclude future posts
+    eleventyConfig.addCollection("post", function(collectionApi) {
+        const now = new Date();
+        return collectionApi
+            .getFilteredByTag("post")
+            .filter(post => post.date <= now)
+            .sort((a, b) => b.date - a.date);
     });
 
     // Add custom filter to find blog posts by slug

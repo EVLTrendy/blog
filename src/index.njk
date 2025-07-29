@@ -19,7 +19,7 @@ layout: 'base.njk'
           and fetchpriority="high" as this is your LCP image.
           Changed src to /300 as per PSI's "Expected size".
         #}
-        <img class="mainrdisplay" src="https://picsum.photos/300" alt="Graphical representation of EvolvedLotus discovery" width="300" height="300" fetchpriority="high">
+        <img class="mainrdisplay" src="/assets/blog/article-1.jpg" alt="EvolvedLotus branded graphic" width="300" height="300" fetchpriority="high">
       </div>
     </div>
   </div>
@@ -44,7 +44,7 @@ layout: 'base.njk'
                         of your post images to prevent layout shifts. 
                         Example: width="400" height="225" (adjust these to your image's aspect ratio)
                       #}
-                      <img src="{{ post.data.image }}" alt="{{ post.data.imageAlt }}" loading="lazy" width="[ACTUAL_IMAGE_WIDTH]" height="[ACTUAL_IMAGE_HEIGHT]">
+                      <img src="{{ post.data.image }}" alt="{{ post.data.imageAlt }}" loading="lazy" width="400" height="225">
                     </div>
                     <h3>{{ post.data.title }}</h3>
                     <p>{{ post.data.description }}</p>
