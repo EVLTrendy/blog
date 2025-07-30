@@ -19,6 +19,7 @@
   "dependencies": {
     "@supabase/supabase-js": "^2.49.4",
     "eleventy-plugin-seo": "^0.5.2",
+    "@netlify/functions": "^2.4.0",
     "gray-matter": "^4.0.3",
     "nunjucks": "^3.2.4"
   }

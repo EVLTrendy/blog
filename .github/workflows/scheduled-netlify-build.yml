@@ -2,19 +2,33 @@ name: Scheduled Netlify Build
 
 on:
   schedule:
-    - cron: '0 * * * *' # Runs at the top of every hour (UTC)
+    - cron: '5 0 * * *' # 00:05 UTC every day
   workflow_dispatch:
 
 jobs:
   trigger-deploy:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Check for posts scheduled for today
+        id: check
+        run: |
+          TODAY=$(date -u +"%Y-%m-%d")
+          echo "Looking for posts dated $TODAY …"
+          if ls src/blog/${TODAY}-*.md >/dev/null 2>&1; then
+            echo "Post(s) found for today. Triggering deploy."
+            echo "publish=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "No post scheduled for today. Skipping deploy."
+            echo "publish=false" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Trigger Netlify build hook
+        if: steps.check.outputs.publish == 'true'
         env:
           NETLIFY_BUILD_HOOK_URL: ${{ secrets.NETLIFY_BUILD_HOOK_URL }}
         run: |
-          if [ -z "$NETLIFY_BUILD_HOOK_URL" ]; then
-            echo "::error::NETLIFY_BUILD_HOOK_URL secret not set"
-            exit 1
-          fi
-          curl -s -o /dev/null -X POST "$NETLIFY_BUILD_HOOK_URL" 
+          curl -s -o /dev/null -X POST "$NETLIFY_BUILD_HOOK_URL"
+          echo "Build hook called." 
