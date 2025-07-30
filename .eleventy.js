@@ -64,6 +64,19 @@ module.exports = function (eleventyConfig) {
         return DateTime.fromJSDate(date).toISO();
     });
 
+    // Generic date formatting filter (luxon)
+    eleventyConfig.addFilter("date", (value = new Date(), format = "yyyy-LL-dd") => {
+        let dateObj;
+        if (value === "now") {
+            dateObj = new Date();
+        } else if (value instanceof Date) {
+            dateObj = value;
+        } else {
+            dateObj = new Date(value);
+        }
+        return DateTime.fromJSDate(dateObj).toFormat(format);
+    });
+
     eleventyConfig.addCollection("notifications", function(collection) {
         return collection.getFilteredByTag("notifications");
     });
