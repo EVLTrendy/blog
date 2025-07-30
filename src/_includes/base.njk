@@ -80,8 +80,9 @@
             });
         }
     </script>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7311583434347173"
-      crossorigin="anonymous"></script>
+    {% if ads is not defined or ads %}
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7311583434347173" crossorigin="anonymous"></script>
+    {% endif %}
     <script src="/assets/js/slideshow.js" defer></script>
     <script src="/assets/js/copy.js" defer></script>
 </body>
