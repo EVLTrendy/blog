@@ -8,7 +8,7 @@ date: 2025-07-30T15:30:00.000-04:00
 tags:
   - post
   - featured
-  - twt
+  - twitter
 image: /assets/blog/twitter-x-unpacked-mastering-growth-engagement-with-latest-features-ai.png
 imageAlt: Master Twitter (X) for real growth! Learn community strategies, AI
   content, and engagement tactics to optimize your online presence and achieve
