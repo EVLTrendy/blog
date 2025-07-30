@@ -97,3 +97,20 @@
     text-decoration: none;
   }
 </style>
+
+<!-- Mobile header overrides -->
+<style>
+*,*::before,*::after{box-sizing:border-box}
+html,body{overflow-x:hidden}
+
+@media (max-width:480px){
+  header{overflow:hidden;}
+  .evl-leftnav{flex:0 0 auto;}
+  .evl-rightnav{flex:1 1 0;overflow-x:auto;}
+  .evl-navcontainer{height:56px;padding:0 4px 2px 4px;box-sizing:border-box;}
+  .evl-SVGLogo{height:24px;width:24px;margin-left:2px !important;}
+  .evl-navtxtgroup{margin-right:0;gap:2px;flex-wrap:nowrap;justify-content:flex-start;}
+  .evl-navdivtxt{padding-top:22px;}
+  .evl-navtxt{font-size:10px;padding:1px 3px;border-width:1px;}
+}
+</style>

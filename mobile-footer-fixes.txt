@@ -1,0 +1,17 @@
+/* ===== Mobile Footer Fixes (≤480 px) =====
+   Paste these rules after your main footer styles. */
+
+@media (max-width:480px){
+  /* footer links */
+  .evl-footertext{
+    font-size:10px;
+    padding-left:6px;
+    white-space:nowrap;  /* keep on one line */
+  }
+
+  /* social icons */
+  footer svg{width:18px;height:18px;}
+
+  /* prevent wrap of column */
+  .evl-footercolumn{flex-wrap:nowrap;}
+} 

@@ -86,16 +86,17 @@
 <style>
     footer {
         box-shadow: 5px 5px 50px 5px #8888882e;
-        color: rgb(255, 255, 255); /* This line might not be fully effective due to more specific rules */
+        color: rgb(255, 255, 255);
         background-color: #5BBCE8 !important;
         text-align: center;
+        font-family: 'SvelteTrial-Regular';
         border: solid 1px #5bbbe87a;
         max-width: 100%;
         margin-top: auto;
     }
 
     .evl-footertext {
-        color: #000000; /* Changed from #808080 to black for WCAG contrast compliance */
+        color: #808080;
         font-weight: bolder;
         text-decoration: none;
         font-size: 18px;
@@ -135,4 +136,13 @@
     .evl-spacediv14 {
         height: 20px;
     }
+</style>
+
+<!-- Mobile footer overrides -->
+<style>
+@media (max-width:480px){
+  .evl-footertext{font-size:10px;padding-left:6px;white-space:nowrap;}
+  footer svg{width:18px;height:18px;}
+  .evl-footercolumn{flex-wrap:nowrap;}
+}
 </style>
