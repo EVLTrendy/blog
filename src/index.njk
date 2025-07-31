@@ -31,7 +31,7 @@ layout: 'base.njk'
         <h2 class="section-title">Latest Updates</h2>
         <div class="notifications-slideshow">
           <div class="notifications-slider">
-            {%- for post in collections.post | reverse -%}
+            {%- for post in collections.post -%}
               {% if loop.first %}
               <div class="notification-item latest-post">
                 <a href="{{ post.url }}" class="latest-post-link">
