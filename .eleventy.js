@@ -21,13 +21,27 @@ module.exports = function (eleventyConfig) {
     eleventyConfig.addPlugin(pluginSEO, {
         url: "https://blog.evolvedlotus.com", // <--- THIS IS YOUR BLOG'S BASE URL!
         title: "EvolvedLotus Blog", // Default site title for your blog
-        description: "Blog for EvolvedLotus - Tech, Tutorials, and More.", // Default site description for SEO
+        description: "Blog for EvolvedLotus - Tech, Tutorials, and More. Your ultimate guide to content creation, social media marketing, and digital success.", // Enhanced default site description for SEO
         author: "EvolvedLotus", // Your blog's author or organization name
         twitter: "evolvedlotus", // Your Twitter handle without the @ (e.g., "myhandle" if your handle is @myhandle)
-        // Optional: Uncomment and set a default image for social sharing if you have one
-        // This image will be used if a specific post doesn't have its own 'image' in front matter
-        // image: "/assets/images/default-social-share.jpg", // Example path: ensure this image exists in your /src/assets/images/ folder
-        // lang: "en", // Default language for your content
+        // Enhanced default image for social sharing - will be used if a specific post doesn't have its own 'image' in front matter
+        image: "/assets/blog/default-social-share.png", // Default social sharing image
+        lang: "en", // Default language for your content
+        options: {
+            // Enhanced SEO options for better social media compatibility
+            titleLengthEarlyWarning: 40,
+            titleLengthWarning: 60,
+            descriptionLengthEarlyWarning: 120,
+            descriptionLengthWarning: 160,
+            imageWidth: 1200,
+            imageHeight: 630,
+            twitterCardType: "summary_large_image",
+            openGraphType: "website",
+            includeOpenGraph: true,
+            includeTwitterCard: true,
+            includeJSONLD: true,
+            includeSchema: true
+        }
     });
 
     // Date filter

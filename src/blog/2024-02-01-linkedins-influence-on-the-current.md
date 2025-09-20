@@ -11,6 +11,11 @@ imageAlt: LinkedIn's Influence on the Current
 description: >-
   Are you wondering why LinkedIn is essential for your business? LinkedIn
   presence and how it can benefit your business
+keywords: >-
+  content creation, social media, digital marketing, blogging, SEO, content
+  strategy, social media marketing, online marketing
+schema_type: Article
+og_type: article
 ---
 Are you wondering why LinkedIn is essential for your business? LinkedIn presence and how it can benefit your business.\
 \

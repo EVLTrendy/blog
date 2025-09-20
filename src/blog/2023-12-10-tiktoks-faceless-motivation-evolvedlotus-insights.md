@@ -11,6 +11,11 @@ imageAlt: 'TikTok''s Faceless Motivation: EvolvedLotus Insights'
 description: >-
   TikTok is a great platform for creators to express themselves and connect with
   different people
+keywords: >-
+  content creation, social media, digital marketing, blogging, SEO, content
+  strategy, social media marketing, online marketing
+schema_type: Article
+og_type: article
 ---
 TikTok is a great platform for creators to express themselves and connect with different people. As it keeps changing, there's a chance for creators to inspire without showing who they are.
 

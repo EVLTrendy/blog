@@ -11,6 +11,11 @@ imageAlt: 'YouTube Kids: Safe Channel Launch'
 description: >-
   YouTube is gradually becoming a favorite destination for kids as some of their
   favorite videos such as “Baby Shark Dance” receive the most views
+keywords: >-
+  content creation, social media, digital marketing, blogging, SEO, content
+  strategy, social media marketing, online marketing
+schema_type: Article
+og_type: article
 ---
 
 

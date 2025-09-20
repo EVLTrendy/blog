@@ -11,6 +11,11 @@ imageAlt: '2024 TikTok: Forge Authentic Connections'
 description: >-
   Imagine scrolling through TikTok and coming across a video that captivates you
   with its authenticity
+keywords: >-
+  content creation, social media, digital marketing, blogging, SEO, content
+  strategy, social media marketing, online marketing
+schema_type: Article
+og_type: article
 ---
 Imagine scrolling through TikTok and coming across a video that captivates you with its authenticity. Welcome to TikTok 2024, where genuine connections are more important than ever.
 

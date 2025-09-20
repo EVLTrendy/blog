@@ -12,6 +12,11 @@ imageAlt: 'Crypto turned Gold '
 description: >-
   Kick is an online streaming platform, similar to Twitch, that enables users to
   stream gaming, IRL, just chatting, and gambling content
+keywords: >-
+  content creation, social media, digital marketing, blogging, SEO, content
+  strategy, social media marketing, online marketing
+schema_type: Article
+og_type: article
 ---
 Kick is an online streaming platform, similar to Twitch, that enables users to stream gaming, IRL, just chatting, and gambling content. The platform became popular in December 2022, attracting a significant amount of attention.
 

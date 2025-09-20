@@ -12,6 +12,11 @@ imageAlt: 'X and Grok AI: Vision and News'
 description: >-
   Social media platform X shakes up news consumption with Grok AI, offering
   personalized, bite-sized summaries of trending stories
+keywords: >-
+  content creation, social media, digital marketing, blogging, SEO, content
+  strategy, social media marketing, online marketing
+schema_type: Article
+og_type: article
 ---
 Social media platform X shakes up news consumption with Grok AI, offering personalized, bite-sized summaries of trending stories.
 

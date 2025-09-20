@@ -11,6 +11,11 @@ imageAlt: 'TikTok''s Faceless Recipes: EvolvedLotus Insights'
 description: >-
   Do you still remember YouTube? It's a platform that remains a hotbed of
   creativity, particularly when it comes to cooking
+keywords: >-
+  content creation, social media, digital marketing, blogging, SEO, content
+  strategy, social media marketing, online marketing
+schema_type: Article
+og_type: article
 ---
 Do you still remember YouTube? It's a platform that remains a hotbed of creativity, particularly when it comes to cooking. But what if you want to share your passion for food without revealing your identity? 
 

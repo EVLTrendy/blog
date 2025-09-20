@@ -1,16 +1,22 @@
 ---
 title: Basic SEO for Content Creators
-description: How to master the SEO content creation process. This guide covers
-  what is SEO content creation and provides best practices for content creation
-  to get your work seen
+description: >-
+  How to master the SEO content creation process. This guide covers what is SEO
+  content creation and provides best practices for content creation to get your
+  work seen
 author: EvolvedLotus Team
-date: 2025-08-27T13:57:00.000-04:00
+date: 2025-08-27T17:57:00.000Z
 tags:
   - post
   - featured
   - misc
 image: /assets/blog/basic-seo-for-content-creators.png
 imageAlt: Basic SEO for Content Creators
+keywords: >-
+  content creation, social media, digital marketing, blogging, SEO, content
+  strategy, social media marketing, online marketing
+schema_type: Article
+og_type: article
 ---
 
 Remember that amazing idea you had for a blog post or a video? The one you poured hours into, only to have it disappear into the internet's black hole? You're not alone. We've all been there, creating incredible stuff that just doesn't get seen. That's where **SEO content creation** comes in.

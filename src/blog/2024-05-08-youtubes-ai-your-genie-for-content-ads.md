@@ -11,6 +11,11 @@ imageAlt: 'YouTube''s AI: Your Genie for Content & Ads!'
 description: >-
   Recently, YouTube has been introducing some incredibly handy upgrades,
   especially in the realm of AI
+keywords: >-
+  content creation, social media, digital marketing, blogging, SEO, content
+  strategy, social media marketing, online marketing
+schema_type: Article
+og_type: article
 ---
 Want to know YouTube's secret weapon for making your business boom?
 

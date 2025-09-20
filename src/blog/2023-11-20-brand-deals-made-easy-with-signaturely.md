@@ -12,6 +12,11 @@ description: >-
   Greetings, fellow content creators! Get ready for a blockbuster journey
   through the wild world of brand deals, with Signaturely as your trusty
   sidekick
+keywords: >-
+  content creation, social media, digital marketing, blogging, SEO, content
+  strategy, social media marketing, online marketing
+schema_type: Article
+og_type: article
 ---
 Greetings, fellow content creators! Get ready for a blockbuster journey through the wild world of brand deals, with Signaturely as your trusty sidekick. Together, we'll streamline your collaborations and make paperwork a breeze.
 

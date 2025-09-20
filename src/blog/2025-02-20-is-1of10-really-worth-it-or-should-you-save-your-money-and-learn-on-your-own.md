@@ -11,6 +11,11 @@ imageAlt: Is 1of10 Really Worth It? Or Should You Save Your Money and Learn on Y
 description: >-
   1of10 is a service designed to assist creators in quickly generating
   high-quality thumbnails and other visual content for their channels
+keywords: >-
+  content creation, social media, digital marketing, blogging, SEO, content
+  strategy, social media marketing, online marketing
+schema_type: Article
+og_type: article
 ---
 Is the secret to viral success really 1of10? Does it effectively help users find the best YouTube ideas, titles, and thumbnails to quickly increase their views, save time, and effortlessly grow their channels?
 

@@ -12,6 +12,11 @@ imageAlt: 'Twitch: Streamlined & Secure'
 description: >-
   Prepare for an enlightening discussion as we explore the future updates that
   will transform your Twitch experience
+keywords: >-
+  content creation, social media, digital marketing, blogging, SEO, content
+  strategy, social media marketing, online marketing
+schema_type: Article
+og_type: article
 ---
 With the latest Twitch upgrade, how will you locate your next favorite streamer? We've got the answers (and maybe even a sneak peek) to the new enhancements that will refresh your Twitch experience!
 

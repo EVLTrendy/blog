@@ -12,6 +12,11 @@ imageAlt: 'Facebook Content Mastery: 5 Proven Strategies for Explosive Engagemen
 description: >-
   Many Facebook users struggle to generate content that stands out to their
   audience
+keywords: >-
+  content creation, social media, digital marketing, blogging, SEO, content
+  strategy, social media marketing, online marketing
+schema_type: Article
+og_type: article
 ---
 Many Facebook users struggle to generate content that stands out to their audience. You're not alone! Facebook users today experience a crowded internet environment wherein they struggle to gain attention and sustain a connection.
 

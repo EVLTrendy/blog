@@ -11,6 +11,11 @@ imageAlt: Winter StreamPass Winter Fest
 description: >-
   Microsoft's Game Pass is a subscription service that allows streamers to
   engage their audiences in new ways
+keywords: >-
+  content creation, social media, digital marketing, blogging, SEO, content
+  strategy, social media marketing, online marketing
+schema_type: Article
+og_type: article
 ---
 Microsoft's Game Pass is a subscription service that allows streamers to engage their audiences in new ways. It's a game-changer for streamers who want to spice up their content. Let's look at the possibilities that Game Pass brings to streaming as we approach the Winter Drops Fest, a 10-day celebration with exclusive rewards.
 

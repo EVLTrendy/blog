@@ -9,6 +9,11 @@ tags:
 image: /assets/blog/tweeting-trends-twitter-s-2024-algorithm.png
 imageAlt: 'Tweeting Trends: Twitter''s 2024 Algorithm'
 description: 'Let us talk about Twitter, the ultimate hangout spot on the internet'
+keywords: >-
+  content creation, social media, digital marketing, blogging, SEO, content
+  strategy, social media marketing, online marketing
+schema_type: Article
+og_type: article
 ---
 Let us talk about Twitter, the ultimate hangout spot on the internet. It's still the go-to spot for getting up-to-date on world events, and it'll be just as popular in 2024 as it was before. Twitter is the place to go for technology news, fitness goals, and the latest trends.
 

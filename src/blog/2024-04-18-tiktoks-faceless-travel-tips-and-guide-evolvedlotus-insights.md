@@ -11,6 +11,11 @@ imageAlt: 'TikTok''s Faceless Travel Tips and Guide: EvolvedLotus Insights'
 description: >-
   Are you someone who loves to travel but wants to keep your identity a secret?
   Faceless travel guides might be the solution you're looking for
+keywords: >-
+  content creation, social media, digital marketing, blogging, SEO, content
+  strategy, social media marketing, online marketing
+schema_type: Article
+og_type: article
 ---
 Are you someone who loves to travel but wants to keep your identity a secret? Faceless travel guides might be the solution you're looking for. 
 

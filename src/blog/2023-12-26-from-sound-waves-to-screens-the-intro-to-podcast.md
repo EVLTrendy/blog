@@ -11,6 +11,11 @@ imageAlt: 'From Sound Waves to Screens: The Intro to Podcast'
 description: >-
   Ever thought about taking your podcast to new heights, reaching audiences far
   and wide in the digital world? If you've ever dreamt of leaving a lasting ...
+keywords: >-
+  content creation, social media, digital marketing, blogging, SEO, content
+  strategy, social media marketing, online marketing
+schema_type: Article
+og_type: article
 ---
 Ever thought about taking your podcast to new heights, reaching audiences far and wide in the digital world? If you've ever dreamt of leaving a lasting impression and connecting with a larger audience, it's time to make those dreams a reality. Join me on this exciting journey beyond just audio, stepping into the vibrant visual world of YouTube.
 

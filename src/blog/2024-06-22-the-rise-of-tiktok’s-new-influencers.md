@@ -11,6 +11,11 @@ imageAlt: The Rise of TikTok’s New Influencers
 description: >-
   TikTok has grown widely accepted all over the world for creating short videos
   and for social media usage
+keywords: >-
+  content creation, social media, digital marketing, blogging, SEO, content
+  strategy, social media marketing, online marketing
+schema_type: Article
+og_type: article
 ---
 You're probably wondering, "How can I use AI with my TikTok business?"
 

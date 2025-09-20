@@ -11,6 +11,11 @@ imageAlt: 'Meta Llama 3: Your Next-Gen AI Assistant'
 description: >-
   Ever wondered how far AI has come? Meta Llama 3, an open-source powerhouse, is
   shaking up the game for developers and businesses
+keywords: >-
+  content creation, social media, digital marketing, blogging, SEO, content
+  strategy, social media marketing, online marketing
+schema_type: Article
+og_type: article
 ---
 
 
