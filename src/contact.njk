@@ -2,24 +2,55 @@
 layout: 'base.njk'
 ads: false
 title: Contact Us
-description: Get in touch with the EvolvedLotus team.
+description: Get in touch with the EvolvedLotus team for partnerships, feedback, or support.
 ---
 
 <h1>Contact Us</h1>
 
-<p>We’d love to hear from you. Choose the method that’s most convenient:</p>
+<p>We'd love to hear from you! Whether you have questions, feedback, partnership inquiries, or need support, we're here to help.</p>
 
+<h2>Get in Touch</h2>
 <ul>
-  <li>Email: <a href="mailto:hello@evolvedlotus.com">hello@evolvedlotus.com</a></li>
+  <li><strong>General Inquiries:</strong> <a href="mailto:hello@evolvedlotus.com">hello@evolvedlotus.com</a></li>
+  <li><strong>Privacy Questions:</strong> <a href="mailto:privacy@evolvedlotus.com">privacy@evolvedlotus.com</a></li>
+  <li><strong>Business Partnerships:</strong> <a href="mailto:partnerships@evolvedlotus.com">partnerships@evolvedlotus.com</a></li>
+</ul>
+
+<h2>Social Media</h2>
+<ul>
   <li>Twitter: <a href="https://twitter.com/evolvedlotus" target="_blank" rel="noopener">@evolvedlotus</a></li>
   <li>LinkedIn: <a href="https://www.linkedin.com/in/marc-cannon-877717244/" target="_blank" rel="noopener">Marc Cannon</a></li>
 </ul>
 
-<!-- Optional embedded form (commented out for now)
-<form name="contact" method="POST" data-netlify="true">
-  <label>Your Name: <input type="text" name="name" required></label><br>
-  <label>Email: <input type="email" name="email" required></label><br>
-  <label>Message:<br><textarea name="message" rows="6" required></textarea></label><br>
-  <button type="submit">Send</button>
+<h2>Response Times</h2>
+<p>We typically respond to emails within 24-48 hours during business days. For urgent matters, please indicate "URGENT" in your subject line.</p>
+
+<h2>Business Information</h2>
+<p><strong>EvolvedLotus</strong><br>
+Digital Content & Creator Resources<br>
+United States</p>
+
+<form name="contact" method="POST" data-netlify="true" style="max-width: 600px; margin-top: 30px;">
+  <h2>Send us a Message</h2>
+  <div style="margin-bottom: 15px;">
+    <label for="name" style="display: block; margin-bottom: 5px; font-weight: bold;">Your Name *</label>
+    <input type="text" id="name" name="name" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px;">
+  </div>
+  
+  <div style="margin-bottom: 15px;">
+    <label for="email" style="display: block; margin-bottom: 5px; font-weight: bold;">Email Address *</label>
+    <input type="email" id="email" name="email" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px;">
+  </div>
+  
+  <div style="margin-bottom: 15px;">
+    <label for="subject" style="display: block; margin-bottom: 5px; font-weight: bold;">Subject</label>
+    <input type="text" id="subject" name="subject" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px;">
+  </div>
+  
+  <div style="margin-bottom: 15px;">
+    <label for="message" style="display: block; margin-bottom: 5px; font-weight: bold;">Message *</label>
+    <textarea id="message" name="message" rows="6" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; resize: vertical;"></textarea>
+  </div>
+  
+  <button type="submit" style="background: #007bff; color: white; padding: 12px 24px; border: none; border-radius: 4px; cursor: pointer; font-size: 16px;">Send Message</button>
 </form>
---> 

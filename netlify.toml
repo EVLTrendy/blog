@@ -1,2 +1,40 @@
 [build]
+  publish = "public"
+  command = "npm run build"
   functions = ".netlify/functions"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    X-XSS-Protection = "1; mode=block"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "*.css"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "*.js"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[redirects]]
+  from = "https://evolvedlotus-blog.netlify.app/*"
+  to = "https://blog.evolvedlotus.com/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "http://blog.evolvedlotus.com/*"
+  to = "https://blog.evolvedlotus.com/:splat"
+  status = 301
+  force = true

@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+Allow: /blog/
+Allow: /assets/
+Disallow: /netlify/
+Disallow: /admin/
+
+# Sitemap
+Sitemap: https://blog.evolvedlotus.com/sitemap.xml 
