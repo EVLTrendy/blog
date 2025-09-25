@@ -2,8 +2,14 @@ User-agent: *
 Allow: /
 Allow: /blog/
 Allow: /assets/
+Allow: /about/
+Allow: /contact/
+Allow: /terms-of-service/
+Allow: /privacy-policy/
 Disallow: /netlify/
 Disallow: /admin/
+Disallow: /r/
+Disallow: /notifications/
 
 # Sitemap
-Sitemap: https://blog.evolvedlotus.com/sitemap.xml 
+Sitemap: https://blog.evolvedlotus.com/sitemap.xml
