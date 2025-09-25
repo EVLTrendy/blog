@@ -887,6 +887,10 @@ html, body {
   word-wrap: break-word;
 }
 
+/* ============================================
+   ENHANCED MOBILE RESPONSIVE DESIGN
+   ============================================ */
+
 /* Mobile Styles (General, applies up to 768px) */
 @media only screen and (max-width: 768px) {
   /* Basic mobile resets */
@@ -894,14 +898,19 @@ html, body {
     box-sizing: border-box;
   }
 
-  /* Header/Nav */
+  /* Header/Nav - Enhanced Mobile Navigation */
   .navcontainer {
     display: flex;
     flex-direction: row;
     height: 70px;
     width: 100%;
     align-items: center;
-    padding: 0 10px;
+    padding: 0 15px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    background: white;
+    z-index: 100;
   }
 
   .leftnav {
@@ -922,22 +931,32 @@ html, body {
     display: flex;
     flex-direction: row;
     margin: 0;
-    gap: 5px;
+    gap: 8px;
     align-items: center;
     justify-content: flex-end;
-    flex-wrap: wrap; /* Allow nav text to wrap on smaller screens */
+    flex-wrap: wrap;
   }
 
   .navdivtxt {
     padding: 0;
-    /* white-space: nowrap; REMOVED: Allow text to wrap */
   }
 
   .navtxt {
     font-size: 12px;
-    padding: 4px 6px;
+    padding: 6px 10px;
     border-width: 1px;
-    white-space: normal; /* Allow text to wrap for better fitting */
+    white-space: nowrap;
+    border-radius: 15px;
+    transition: all 0.2s ease;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .navtxt:hover {
+    background-color: rgba(51, 189, 239, 0.1);
+    transform: translateY(-1px);
   }
 
   /* Logo */
@@ -947,54 +966,21 @@ html, body {
     margin-left: 0;
   }
 
-  /* Footer */
-  footer {
-    width: 100%;
-    padding: 15px 0;
-  }
-
-  .footerdivinside {
-    width: 100%;
-  }
-
-  .footercontainer {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    padding: 5px 0;
-  }
-
-  .footercolumn {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 5px;
-  }
-
-  .footeritem {
-    margin: 0;
-  }
-
-  .footertext {
-    font-size: 12px;
-    padding: 4px 6px;
-    white-space: normal; /* Allow text to wrap for better fitting */
-  }
-
-  /* Main Content Adjustments */
+  /* Main Content Adjustments - Improved Layout */
   .maindiv {
-    height: auto; /* Allow height to adjust based on content */
-    padding: 20px 0;
+    height: auto;
+    min-height: 500px;
+    padding: 30px 0;
   }
 
   .maingroupdiv {
     flex-direction: column;
+    gap: 30px;
   }
 
   .mainl, .mainr {
     width: 100%;
-    padding: 10px;
+    padding: 20px;
   }
 
   .maintxtcon {
@@ -1003,219 +989,118 @@ html, body {
   }
 
   .maintxth {
-    font-size: 32px;
+    font-size: 36px;
+    line-height: 1.2;
+    margin-bottom: 15px;
   }
 
   .maintxts {
-    font-size: 16px;
+    font-size: 18px;
+    line-height: 1.4;
   }
 
-  /* Feature Section */
+  .mainrdisplay {
+    height: 300px;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  /* Feature Section - Enhanced Mobile Layout */
   .featurediv {
-    height: auto; /* Allow height to adjust based on content */
-    padding: 20px 0;
+    height: auto;
+    min-height: 600px;
+    padding: 30px 0;
   }
 
   .fttop {
-    height: auto; /* Allow height to adjust based on content */
-    padding: 20px 0;
+    height: auto;
+    padding: 30px 0;
+  }
+
+  .fttoptxth {
+    font-size: 32px;
+    line-height: 1.2;
+    padding: 0 20px;
+  }
+
+  .fttoptxts {
+    font-size: 18px;
+    line-height: 1.4;
+    padding: 0 20px;
   }
 
   .ftbot {
-    height: auto; /* Allow height to adjust based on content */
-    padding: 20px 0;
+    height: auto;
+    padding: 30px 0;
   }
 
-  /* Blog Grid */
-  .blog-grid {
-    grid-template-columns: 1fr;
-    padding: 1rem;
-    gap: 1rem;
-  }
-
-  /* Article Styles */
+  /* Article Styles - Mobile Optimized */
   .article_bodydiv {
-    width: 100%; /* Ensure it takes full width */
-    padding: 10px;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
   }
 
   .article_title {
-    font-size: 32px;
+    font-size: 28px;
+    text-align: center;
+    padding: 15px;
+    margin: 15px 0;
+    line-height: 1.3;
+  }
+
+  .article_meta {
+    text-align: center;
+    font-size: 14px;
+    margin: 15px 0;
   }
 
   .imagediv {
     height: 250px;
-  }
-
-  /* Blog Signature */
-  .blogsignature {
-    height: auto; /* Allow height to adjust based on content */
     width: 100%;
     display: flex;
-    align-items: center;
     justify-content: center;
-    border: 1px solid #dddddd5b;
-    border-radius: 8px;
-    padding: 20px;
+    overflow: hidden;
     margin: 20px 0;
-  }
-
-  .signaturebox {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 20px;
-    width: 100%;
-    max-width: 800px;
-  }
-
-  .pfplinkstack {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .sigpfp {
-    width: 64px;
-    height: 64px;
-    overflow: hidden;
-    border-radius: 50%;
-    margin-bottom: 10px;
-  }
-
-  .sigbody {
-    flex: 1;
-    font-family: 'playfair';
-    font-size: 14px;
-    line-height: 1.6;
-  }
-
-  .siglinks {
-    margin-top: 10px;
-  }
-
-  /* Footer (duplicate, keeping it for now as it's part of the original structure) */
-  footer {
-    width: 100%;
-    box-shadow: 5px 5px 50px 5px #8888882e;
-    color: rgb(255, 255, 255);
-    background-color: #5BBCE8;
-    text-align: center;
-    font-family: 'SvelteTrial-Regular';
-    border: solid 1px #5bbbe87a;
-    padding: 15px 0;
-  }
-
-  .footerdivinside {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-  }
-
-  .footercontainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 10px;
-    width: 100%;
-  }
-
-  .footercolumn {
-    display: flex;
-    text-align: left;
-    padding-left: 20px;
-  }
-
-  .footeritem {
-    margin: 5px;
-  }
-
-  .footertext {
-    color: #808080;
-    font-weight: bolder;
-    text-decoration: none;
-    font-size: 14px;
-    padding: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    -webkit-tap-highlight-color: rgba(51, 189, 239, 0.2);
-    touch-action: manipulation;
-    white-space: normal; /* Ensure text wraps */
-  }
-
-  .footertext:hover {
-    color: #ffffff;
-  }
-
-  .footercontainer.social {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
-    padding: 1rem;
-    flex-wrap: wrap;
-    width: 100%;
-    z-index: 10;
-    position: relative;
-  }
-
-  .social .footeritem {
-    flex: 0 0 auto;
-    min-width: 44px;
-    min-height: 44px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  /* Blog Post Images and Content */
-  .imagediv {
-    height: 300px;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    overflow: hidden;
-    margin: 10px 0;
+    border-radius: 12px;
   }
 
   .imagediv img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    /* Removed non-standard/ineffective image-resolution properties */
-    /* Removed non-standard/ineffective image-rendering properties */
   }
 
-  .article_bodydiv {
-    width: 100%; /* Ensure it takes full width */
-    max-width: 600px; /* Constrain max width for readability */
-    margin: 0 auto; /* Center it */
+  /* Blog Post Content - Enhanced Typography */
+  .article_body {
+    width: 100%;
     padding: 15px;
   }
 
-  .article_title {
-    font-size: 28px;
-    text-align: center;
-    padding: 10px;
-    margin: 10px 0;
+  .article_body p {
+    font-size: 16px;
+    line-height: 1.8;
+    margin: 18px 0;
   }
 
-  .article_meta {
-    text-align: center;
-    font-size: 14px;
-    margin: 10px 0;
+  .blogpic {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    margin: 20px auto;
+    display: block;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
   }
 
-  /* Blog Grid and Cards */
+  /* Blog Grid and Cards - Mobile First */
   .blog-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 20px;
-    padding: 15px;
+    gap: 25px;
+    padding: 20px;
     margin: 0 auto;
   }
 
@@ -1223,12 +1108,15 @@ html, body {
     width: 100%;
     margin: 0 auto;
     max-width: 500px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
 
   .blog-card-image {
     position: relative;
     width: 100%;
-    padding-top: 56.25%; /* Maintains 16:9 aspect ratio */
+    padding-top: 56.25%;
     overflow: hidden;
   }
 
@@ -1239,32 +1127,43 @@ html, body {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  .blog-card:hover .blog-card-image img {
+    transform: scale(1.05);
   }
 
   .blog-card-content {
-    padding: 15px;
+    padding: 20px;
   }
 
   .blog-card-title {
-    font-size: 20px;
-    margin-bottom: 8px;
+    font-size: 22px;
+    margin-bottom: 10px;
+    line-height: 1.3;
   }
 
   .blog-card-description {
-    font-size: 14px;
-    line-height: 1.5;
+    font-size: 15px;
+    line-height: 1.6;
   }
 
-  /* Latest Post Preview */
+  /* Latest Post Preview - Enhanced */
   .latest-post {
-    margin: 15px;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
 
   .latest-post-image {
     position: relative;
     width: 100%;
-    padding-top: 56.25%; /* 16:9 aspect ratio */
-    margin-bottom: 15px;
+    padding-top: 56.25%;
+    margin-bottom: 20px;
+    overflow: hidden;
+    border-radius: 8px;
   }
 
   .latest-post-image img {
@@ -1274,18 +1173,27 @@ html, body {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transition: transform 0.3s ease;
   }
 
-  /* Link Preview Embeds */
+  .latest-post:hover .latest-post-image img {
+    transform: scale(1.05);
+  }
+
+  /* Link Preview Embeds - Mobile Optimized */
   .link-preview {
     max-width: 100%;
-    margin: 15px auto;
+    margin: 20px auto;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    overflow: hidden;
   }
 
   .preview-image {
     position: relative;
     width: 100%;
     padding-top: 56.25%;
+    overflow: hidden;
   }
 
   .preview-image img {
@@ -1298,76 +1206,235 @@ html, body {
   }
 
   .preview-content {
-    padding: 15px;
+    padding: 20px;
   }
 
-  /* Blog Post Content */
-  .article_body {
-    width: 100%;
-    padding: 10px;
+  .preview-title {
+    font-size: 18px;
+    line-height: 1.3;
+    margin-bottom: 10px;
   }
 
-  .article_body p {
-    font-size: 16px;
-    line-height: 1.8;
-    margin: 15px 0;
+  .preview-description {
+    font-size: 14px;
+    line-height: 1.6;
   }
 
-  .blogpic {
-    width: 100%;
-    max-width: 500px;
+  /* Blog Signature - Mobile Enhanced */
+  .blogsignature {
     height: auto;
-    margin: 15px auto;
-    display: block;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #dddddd5b;
+    border-radius: 12px;
+    padding: 25px;
+    margin: 25px 0;
+  }
+
+  .signaturebox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+    width: 100%;
+    max-width: 600px;
+  }
+
+  .pfplinkstack {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .sigpfp {
+    width: 80px;
+    height: 80px;
+    overflow: hidden;
+    border-radius: 50%;
+    margin-bottom: 15px;
+  }
+
+  .sigbody {
+    flex: 1;
+    font-family: 'playfair';
+    font-size: 15px;
+    line-height: 1.6;
+    text-align: center;
+  }
+
+  .siglinks {
+    margin-top: 15px;
   }
 }
 
-@media only screen and (max-width: 480px) {
+/* ============================================
+   MOBILE-FIRST RESPONSIVE DESIGN - 320px
+   ============================================ */
+
+@media only screen and (max-width: 320px) {
+  /* Typography - Small phones */
+  h1 {
+    font-size: 20px;
+    line-height: 1.3;
+    margin: 15px 0;
+  }
+
+  h2 {
+    font-size: 24px;
+    line-height: 1.3;
+  }
+
+  h3 {
+    font-size: 18px;
+    line-height: 1.4;
+  }
+
+  p {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  /* Navigation - Very small screens */
   .navcontainer {
-    height: 60px;
-    padding: 0 5px;
+    height: 50px;
+    padding: 0 8px;
   }
 
   .leftnav svg {
-    width: 30px;
-    height: 30px;
+    width: 25px;
+    height: 25px;
+  }
+
+  .navtxt {
+    font-size: 9px;
+    padding: 2px 4px;
+    border-radius: 8px;
+  }
+
+  /* Article content */
+  .article_title {
+    font-size: 20px;
+    padding: 8px;
+  }
+
+  .article_bodydiv {
+    padding: 8px;
+    width: 100%;
+  }
+
+  .imagediv {
+    height: 180px;
+  }
+
+  /* Touch targets */
+  .share-button {
+    min-width: 48px;
+    min-height: 48px;
+    padding: 8px;
+  }
+
+  .myButton, .myButton2, .browse-button {
+    padding: 12px 20px;
+    font-size: 14px;
+    min-height: 48px;
+  }
+
+  /* Footer */
+  .footertext {
+    font-size: 9px;
+    padding: 6px 8px;
+  }
+
+  /* Blog cards */
+  .blog-card-content {
+    padding: 12px;
+  }
+
+  .blog-card-title {
+    font-size: 16px;
+  }
+
+  .blog-card-description {
+    font-size: 12px;
+  }
+}
+
+/* ============================================
+   MOBILE PHONES - 321px to 480px
+   ============================================ */
+
+@media only screen and (min-width: 321px) and (max-width: 480px) {
+  /* Typography improvements */
+  h1 {
+    font-size: 22px;
+    line-height: 1.3;
+  }
+
+  h2 {
+    font-size: 26px;
+    line-height: 1.3;
+  }
+
+  h3 {
+    font-size: 19px;
+    line-height: 1.4;
+  }
+
+  p {
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  /* Navigation */
+  .navcontainer {
+    height: 55px;
+    padding: 0 10px;
   }
 
   .navtxt {
     font-size: 10px;
-    padding: 3px 5px;
+    padding: 3px 6px;
   }
 
-  .navtxtgroup {
-    gap: 3px;
+  /* Article content */
+  .article_title {
+    font-size: 22px;
+    padding: 10px;
   }
 
-  .footertext {
-    font-size: 10px;
-    padding: 3px 5px;
+  .article_bodydiv {
+    padding: 10px;
+    width: 100%;
   }
 
-  .sigpfp {
-    width: 56px;
-    height: 56px;
-  }
-
-  .sigbody {
-    font-size: 13px;
-  }
-
-  /* Adjustments for very small screens */
   .imagediv {
     height: 200px;
   }
 
-  .article_title {
-    font-size: 24px;
+  /* Touch targets */
+  .share-button {
+    min-width: 48px;
+    min-height: 48px;
+    padding: 10px;
   }
 
-  .article_meta {
-    font-size: 12px;
+  .myButton, .myButton2, .browse-button {
+    padding: 14px 24px;
+    font-size: 15px;
+    min-height: 48px;
+  }
+
+  /* Footer */
+  .footertext {
+    font-size: 10px;
+    padding: 8px 10px;
+  }
+
+  /* Blog cards */
+  .blog-card-content {
+    padding: 14px;
   }
 
   .blog-card-title {
@@ -1377,14 +1444,92 @@ html, body {
   .blog-card-description {
     font-size: 13px;
   }
+}
 
-  .article_body p {
-    font-size: 14px;
+/* ============================================
+   TABLETS - 481px to 768px
+   ============================================ */
+
+@media only screen and (min-width: 481px) and (max-width: 768px) {
+  /* Typography */
+  h1 {
+    font-size: 26px;
+    line-height: 1.3;
+  }
+
+  h2 {
+    font-size: 30px;
+    line-height: 1.3;
+  }
+
+  h3 {
+    font-size: 20px;
+    line-height: 1.4;
+  }
+
+  p {
+    font-size: 16px;
     line-height: 1.6;
   }
 
-  .blog-card-content {
+  /* Navigation */
+  .navcontainer {
+    height: 65px;
+    padding: 0 15px;
+  }
+
+  .navtxt {
+    font-size: 11px;
+    padding: 4px 8px;
+  }
+
+  /* Article content */
+  .article_title {
+    font-size: 26px;
     padding: 12px;
+  }
+
+  .article_bodydiv {
+    padding: 12px;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .imagediv {
+    height: 250px;
+  }
+
+  /* Touch targets */
+  .share-button {
+    min-width: 48px;
+    min-height: 48px;
+    padding: 12px;
+  }
+
+  .myButton, .myButton2, .browse-button {
+    padding: 16px 28px;
+    font-size: 16px;
+    min-height: 48px;
+  }
+
+  /* Footer */
+  .footertext {
+    font-size: 11px;
+    padding: 10px 12px;
+  }
+
+  /* Blog cards */
+  .blog-card-content {
+    padding: 16px;
+  }
+
+  .blog-card-title {
+    font-size: 20px;
+  }
+
+  .blog-card-description {
+    font-size: 14px;
   }
 }
 
