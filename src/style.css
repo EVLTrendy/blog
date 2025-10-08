@@ -18,6 +18,94 @@ html, body {
   box-sizing: inherit;
 }
 
+/* ============================================
+   AD CONTAINER STYLES
+   ============================================ */
+
+/* Main container layout */
+.main-container {
+  display: flex;
+  max-width: 1400px;
+  margin: 0 auto;
+  gap: 2rem;
+  padding: 1rem;
+}
+
+.content-area {
+  flex: 1;
+  min-width: 0;
+}
+
+.sidebar-ad {
+  width: 300px;
+  flex-shrink: 0;
+}
+
+/* Ad container base styles */
+.ad-container {
+  margin: 1rem 0;
+  padding: 1rem;
+  background: #f8f9fa;
+  border-radius: 8px;
+  text-align: center;
+  border: 1px solid #e9ecef;
+}
+
+.ad-container.sidebar-ad-container {
+  position: sticky;
+  top: 2rem;
+  max-height: 600px;
+  overflow: hidden;
+}
+
+.ad-container.in-content-ad {
+  margin: 2rem auto;
+  max-width: 800px;
+  background: #ffffff;
+  border: 1px solid #dee2e6;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* AdSense ad styles */
+.ad-container ins {
+  display: block !important;
+  margin: 0 auto;
+}
+
+.ad-container.sidebar-ad-container ins {
+  max-width: 300px;
+}
+
+/* Hide ads on mobile and tablet */
+@media only screen and (max-width: 1024px) {
+  .sidebar-ad {
+    display: none;
+  }
+
+  .main-container {
+    padding: 0;
+  }
+
+  .ad-container.in-content-ad {
+    margin: 1.5rem 0;
+  }
+}
+
+/* Desktop styles for ads */
+@media only screen and (min-width: 1025px) {
+  .main-container {
+    padding: 2rem;
+  }
+
+  .sidebar-ad {
+    display: block;
+  }
+
+  .ad-container.sidebar-ad-container {
+    display: block;
+  }
+}
+
 .articlesection {
   max-width: 100%;
   padding: 1rem;

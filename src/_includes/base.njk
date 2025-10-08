@@ -144,7 +144,29 @@
 </head>
 <body>
     {% include 'header.njk' %}
-    {{ content | safe }}
+    <div class="main-container">
+        <main class="content-area">
+            {{ content | safe }}
+        </main>
+        {% if ads is not defined or ads %}
+        <aside class="sidebar-ad">
+            <div class="ad-container sidebar-ad-container">
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7311583434347173"
+                 crossorigin="anonymous"></script>
+                <!-- displayad -->
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-7311583434347173"
+                     data-ad-slot="8054855733"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+                <script>
+                     (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+        </aside>
+        {% endif %}
+    </div>
     {% include 'blogsign.njk' %}
     {% include 'footer.njk' %}
 

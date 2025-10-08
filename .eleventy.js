@@ -158,6 +158,39 @@ module.exports = function (eleventyConfig) {
         return result === undefined ? defaultValue : result;
     });
 
+    // Add custom filter to insert ads after specified paragraphs
+    eleventyConfig.addFilter('insertAdAfterParagraphs', function(content, paragraphCount) {
+        if (!content || typeof content !== 'string') return content;
+
+        // Split content by paragraph tags
+        const paragraphs = content.split(/(<\/p>)/i);
+
+        if (paragraphs.length < paragraphCount * 2) {
+            return content; // Not enough paragraphs
+        }
+
+        // Insert ad after specified paragraph count
+        const insertPoint = paragraphCount * 2; // Each paragraph has opening and closing tags
+        const adContainer = `
+        <div class="ad-container in-content-ad">
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7311583434347173"
+             crossorigin="anonymous"></script>
+            <ins class="adsbygoogle"
+                 style="display:block; text-align:center;"
+                 data-ad-layout="in-article"
+                 data-ad-format="fluid"
+                 data-ad-client="ca-pub-7311583434347173"
+                 data-ad-slot="8410078957"></ins>
+            <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>`;
+
+        paragraphs.splice(insertPoint, 0, adContainer);
+
+        return paragraphs.join('');
+    });
+
     return {
         dir: {
             input: "src",
