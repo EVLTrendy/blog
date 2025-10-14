@@ -459,7 +459,7 @@ function checkCodeValidation(html, filePath) {
 
 // Main scanning function
 async function scanSite() {
-  console.log('🔍 Starting site scan...');
+  console.log('🔍 Starting comprehensive site scan...');
 
   const htmlFiles = getAllHtmlFiles(PUBLIC_DIR);
   console.log(`📄 Found ${htmlFiles.length} HTML files to scan`);
