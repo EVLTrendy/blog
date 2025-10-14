@@ -1,0 +1,112 @@
+{
+  "scanDate": "2025-10-14T21:34:44.123Z",
+  "summary": {
+    "totalIssues": 11,
+    "totalFixes": 6
+  },
+  "issues": {
+    "titleIssues": [
+      {
+        "type": "missing",
+        "file": "public/blog/test-1/index.html",
+        "currentTitle": null,
+        "suggestedTitle": "Test Article | EvolvedLotus Blog"
+      }
+    ],
+    "metaDescriptionIssues": [
+      {
+        "type": "missing",
+        "file": "public/blog/test-1/index.html",
+        "currentDescription": null,
+        "suggestedDescription": "Insights and strategies for content creators and digital marketers."
+      },
+      {
+        "type": "missing",
+        "file": "public/blog/test-2/index.html",
+        "currentDescription": null,
+        "suggestedDescription": "Insights and strategies for content creators and digital marketers."
+      }
+    ],
+    "h1Issues": [
+      {
+        "type": "missing",
+        "file": "public/blog/test-3/index.html",
+        "suggestedH1": "<h1 class=\"article_title\">Test Article</h1>"
+      }
+    ],
+    "brokenLinks": [
+      {
+        "index": 0,
+        "href": "http://undefined",
+        "text": "Broken Link 1",
+        "file": "public/blog/test-4/index.html"
+      },
+      {
+        "index": 1,
+        "href": "https://null",
+        "text": "Broken Link 2",
+        "file": "public/blog/test-4/index.html"
+      }
+    ],
+    "missingFavicon": [
+      {
+        "file": "public/blog/test-1/index.html",
+        "missing": true
+      },
+      {
+        "file": "public/blog/test-2/index.html",
+        "missing": true
+      },
+      {
+        "file": "public/blog/test-3/index.html",
+        "missing": true
+      },
+      {
+        "file": "public/blog/test-4/index.html",
+        "missing": true
+      },
+      {
+        "file": "public/blog/test-5/index.html",
+        "missing": true
+      }
+    ]
+  },
+  "fixes": {
+    "titleFixes": [
+      {
+        "file": "public/blog/test-1/index.html",
+        "oldTitle": null,
+        "newTitle": "Test Article | EvolvedLotus Blog"
+      }
+    ],
+    "metaDescriptionFixes": [
+      {
+        "file": "public/blog/test-1/index.html",
+        "newDescription": "Insights and strategies for content creators and digital marketers."
+      },
+      {
+        "file": "public/blog/test-2/index.html",
+        "newDescription": "Insights and strategies for content creators and digital marketers."
+      }
+    ],
+    "h1Fixes": [
+      {
+        "file": "public/blog/test-3/index.html",
+        "addedH1": "<h1 class=\"article_title\">Test Article</h1>"
+      }
+    ],
+    "linkFixes": [
+      {
+        "file": "public/blog/test-4/index.html",
+        "brokenHref": "http://undefined",
+        "linkText": "Broken Link 1"
+      },
+      {
+        "file": "public/blog/test-4/index.html",
+        "brokenHref": "https://null",
+        "linkText": "Broken Link 2"
+      }
+    ],
+    "faviconFixes": []
+  }
+}

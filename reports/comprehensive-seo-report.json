@@ -1,15 +1,196 @@
 {
-  "scanDate": "2025-10-14T21:25:19.667Z",
+  "scanDate": "2025-10-14T21:35:50.501Z",
   "summary": {
-    "totalFilesScanned": 6,
-    "totalIssues": 6
+    "totalFilesScanned": 99,
+    "totalIssues": 99
   },
   "issues": {
-    "multipleH1Tags": [],
+    "multipleH1Tags": [
+      {
+        "file": "public/blog/2025-09-10-using-data-to-optimize-your-posting-schedule/index.html",
+        "count": 2,
+        "tags": [
+          "<h1 class=\"article_title\">Complete Guide: Using Data to Optimize Your Posting Schedule</h1>",
+          "<h1 style=\"color: #4a90e2; font-size: 24px; margin-bottom: 10px; font-weight: bold;\">Social Media Interactive Audit Checklist &amp; Tracking Template</h1>"
+        ]
+      }
+    ],
     "missingCanonical": [],
     "missingMetaDescription": [],
     "duplicateMetaDescriptions": [],
-    "missingAltText": [],
+    "missingAltText": [
+      {
+        "file": "public/blog/2023-12-03-decembers-dynamics-unleash-the-upcoming-trends/index.html",
+        "count": 3,
+        "images": [
+          {
+            "index": 3,
+            "src": "/assets/blog/saveinsta.app-3246324603197701015.gif",
+            "currentAlt": ""
+          },
+          {
+            "index": 4,
+            "src": "/assets/blog/saveinsta.app-3241437382937736589-1-.gif",
+            "currentAlt": ""
+          },
+          {
+            "index": 5,
+            "src": "/assets/blog/saveinsta.app-3238859376541846334.gif",
+            "currentAlt": ""
+          }
+        ]
+      },
+      {
+        "file": "public/blog/2023-12-08-blooming-amidst-the-x-storm-advertising-opportunity/index.html",
+        "count": 1,
+        "images": [
+          {
+            "index": 1,
+            "src": "/assets/blog/q5-impressions-growth.png.twimg.1920-1-.png",
+            "currentAlt": ""
+          }
+        ]
+      },
+      {
+        "file": "public/blog/2023-12-11-crafting-digital-futures-meta-ai-unleashed/index.html",
+        "count": 5,
+        "images": [
+          {
+            "index": 1,
+            "src": "/assets/blog/add-a-heading.png",
+            "currentAlt": ""
+          },
+          {
+            "index": 2,
+            "src": "/assets/blog/cwr.png",
+            "currentAlt": ""
+          },
+          {
+            "index": 3,
+            "src": "/assets/blog/mac.png",
+            "currentAlt": ""
+          },
+          {
+            "index": 4,
+            "src": "/assets/blog/aph.png",
+            "currentAlt": ""
+          },
+          {
+            "index": 5,
+            "src": "/assets/blog/mwa.png",
+            "currentAlt": ""
+          }
+        ]
+      },
+      {
+        "file": "public/blog/2023-12-12-podcast-revolution-instagram-unleashes-creativity/index.html",
+        "count": 1,
+        "images": [
+          {
+            "index": 5,
+            "src": "/assets/blog/ncn.png",
+            "currentAlt": ""
+          }
+        ]
+      },
+      {
+        "file": "public/blog/2023-12-18-winter-streampass-winter-fest/index.html",
+        "count": 1,
+        "images": [
+          {
+            "index": 1,
+            "src": "/assets/blog/gpg.png",
+            "currentAlt": ""
+          }
+        ]
+      },
+      {
+        "file": "public/blog/2023-12-23-hashtag-alchemy-transforming-trends-into-tales/index.html",
+        "count": 5,
+        "images": [
+          {
+            "index": 2,
+            "src": "/assets/blog/smda.png",
+            "currentAlt": ""
+          },
+          {
+            "index": 4,
+            "src": "/assets/blog/ia.png",
+            "currentAlt": ""
+          },
+          {
+            "index": 6,
+            "src": "/assets/blog/rtl.png",
+            "currentAlt": ""
+          },
+          {
+            "index": 8,
+            "src": "/assets/blog/holidayhavoc.png",
+            "currentAlt": ""
+          },
+          {
+            "index": 10,
+            "src": "/assets/blog/pinkfriday.png",
+            "currentAlt": ""
+          }
+        ]
+      },
+      {
+        "file": "public/blog/2023-12-26-from-sound-waves-to-screens-the-intro-to-podcast/index.html",
+        "count": 1,
+        "images": [
+          {
+            "index": 6,
+            "src": "/assets/blog/fotor-ai-20231226135115-1-.png",
+            "currentAlt": ""
+          }
+        ]
+      },
+      {
+        "file": "public/blog/2023-12-30-tiktoks-faceless-recipes-evolvedlotus-insights/index.html",
+        "count": 1,
+        "images": [
+          {
+            "index": 1,
+            "src": "/assets/blog/culinary-creations.png",
+            "currentAlt": ""
+          }
+        ]
+      },
+      {
+        "file": "public/blog/2024-03-28-twitter-𝕏-updates-new-user-experience-and-battling-bots/index.html",
+        "count": 1,
+        "images": [
+          {
+            "index": 4,
+            "src": "/assets/blog/how-users-and-businesses-feel.png",
+            "currentAlt": ""
+          }
+        ]
+      },
+      {
+        "file": "public/blog/2024-06-18-linkedin-gpt-microsoft-changes-job-searching/index.html",
+        "count": 1,
+        "images": [
+          {
+            "index": 2,
+            "src": "/assets/blog/professional-vs-business.png",
+            "currentAlt": ""
+          }
+        ]
+      },
+      {
+        "file": "public/blog/2024-07-31-facebook-ugc-creator-lotus-takes/index.html",
+        "count": 1,
+        "images": [
+          {
+            "index": 5,
+            "src": "/assets/blog/join-evolvedlotus.png",
+            "currentAlt": ""
+          }
+        ]
+      }
+    ],
     "missingLangAttribute": [],
     "nonAsciiUrls": [
       {
@@ -38,7 +219,818 @@
       }
     ],
     "excessiveDOMWidth": [],
-    "missingImageDimensions": [],
+    "missingImageDimensions": [
+      {
+        "file": "public/blog/2023-11-20-boost-tiktok-visuals-top-online-resources/index.html",
+        "count": 1,
+        "images": [
+          {
+            "index": 1,
+            "src": "https://github.com/EVLTrendy/blogevlpics/blob/main/sigpfp.png?raw=true"
+          }
+        ]
+      },
+      {
+        "file": "public/blog/2023-11-20-brand-deals-made-easy-with-signaturely/index.html",
+        "count": 1,
+        "images": [
+          {
+            "index": 1,
+            "src": "https://github.com/EVLTrendy/blogevlpics/blob/main/sigpfp.png?raw=true"
+          }
+        ]
+      },
+      {
+        "file": "public/blog/2023-11-20-jams-without-jitters-your-copyright-free-soundtrack-guide/index.html",
+        "count": 1,
+        "images": [
+          {
+            "index": 1,
+            "src": "https://github.com/EVLTrendy/blogevlpics/blob/main/sigpfp.png?raw=true"
+          }
+        ]
+      },
+      {
+        "file": "public/blog/2023-11-20-social-scheduling-mastery-harnessing-free-tools-for-online-success/index.html",
+        "count": 1,
+        "images": [
+          {
+            "index": 1,
+            "src": "https://github.com/EVLTrendy/blogevlpics/blob/main/sigpfp.png?raw=true"
+          }
+        ]
+      },
+      {
+        "file": "public/blog/2023-11-22-influencer-brilliance-unleash-online-power/index.html",
+        "count": 1,
+        "images": [
+          {
+            "index": 1,
+            "src": "https://github.com/EVLTrendy/blogevlpics/blob/main/sigpfp.png?raw=true"
+          }
+        ]
+      },
+      {
+        "file": "public/blog/2023-11-22-online-mastery-a-creators-guide/index.html",
+        "count": 1,
+        "images": [
+          {
+            "index": 1,
+            "src": "https://github.com/EVLTrendy/blogevlpics/blob/main/sigpfp.png?raw=true"
+          }
+        ]
+      },
+      {
+        "file": "public/blog/2023-11-22-power-up-free-hashtag-tools-unleashed/index.html",
+        "count": 1,
+        "images": [
+          {
+            "index": 1,
+            "src": "https://github.com/EVLTrendy/blogevlpics/blob/main/sigpfp.png?raw=true"
+          }
+        ]
+      },
+      {
+        "file": "public/blog/2023-11-24-linkedin-lift-off-2023-profile-power-unleashed/index.html",
+        "count": 1,
+        "images": [
+          {
+            "index": 1,
+            "src": "https://github.com/EVLTrendy/blogevlpics/blob/main/sigpfp.png?raw=true"
+          }
+        ]
+      },
+      {
+        "file": "public/blog/2023-11-28-unlock-facebook-growth-your-ultimate-guide/index.html",
+        "count": 1,
+        "images": [
+          {
+            "index": 1,
+            "src": "https://github.com/EVLTrendy/blogevlpics/blob/main/sigpfp.png?raw=true"
+          }
+        ]
+      },
+      {
+        "file": "public/blog/2023-12-02-reel-brilliance-crafting-captivating-facebook-videos/index.html",
+        "count": 1,
+        "images": [
+          {
+            "index": 1,
+            "src": "https://github.com/EVLTrendy/blogevlpics/blob/main/sigpfp.png?raw=true"
+          }
+        ]
+      },
+      {
+        "file": "public/blog/2023-12-03-decembers-dynamics-unleash-the-upcoming-trends/index.html",
+        "count": 1,
+        "images": [
+          {
+            "index": 6,
+            "src": "https://github.com/EVLTrendy/blogevlpics/blob/main/sigpfp.png?raw=true"
+          }
+        ]
+      },
+      {
+        "file": "public/blog/2023-12-04-twitchcraft-mastering-stream-settings-for-seamless-success/index.html",
+        "count": 1,
+        "images": [
+          {
+            "index": 1,
+            "src": "https://github.com/EVLTrendy/blogevlpics/blob/main/sigpfp.png?raw=true"
+          }
+        ]
+      },
+      {
+        "file": "public/blog/2023-12-05-follow-the-lead-linkedin-unleashed-–-your-follower-magnet/index.html",
+        "count": 1,
+        "images": [
+          {
+            "index": 4,
+            "src": "https://github.com/EVLTrendy/blogevlpics/blob/main/sigpfp.png?raw=true"
+          }
+        ]
+      },
+      {
+        "file": "public/blog/2023-12-06-lotus-harmony-evolving-your-music/index.html",
+        "count": 1,
+        "images": [
+          {
+            "index": 1,
+            "src": "https://github.com/EVLTrendy/blogevlpics/blob/main/sigpfp.png?raw=true"
+          }
+        ]
+      },
+      {
+        "file": "public/blog/2023-12-07-lotus-evolution-twitch-wave-weekly/index.html",
+        "count": 1,
+        "images": [
+          {
+            "index": 11,
+            "src": "https://github.com/EVLTrendy/blogevlpics/blob/main/sigpfp.png?raw=true"
+          }
+        ]
+      },
+      {
+        "file": "public/blog/2023-12-08-blooming-amidst-the-x-storm-advertising-opportunity/index.html",
+        "count": 1,
+        "images": [
+          {
+            "index": 2,
+            "src": "https://github.com/EVLTrendy/blogevlpics/blob/main/sigpfp.png?raw=true"
+          }
+        ]
+      },
+      {
+        "file": "public/blog/2023-12-09-lotus-blooms-in-the-youtube-jungle/index.html",
+        "count": 1,
+        "images": [
+          {
+            "index": 8,
+            "src": "https://github.com/EVLTrendy/blogevlpics/blob/main/sigpfp.png?raw=true"
+          }
+        ]
+      },
+      {
+        "file": "public/blog/2023-12-10-tiktoks-faceless-motivation-evolvedlotus-insights/index.html",
+        "count": 1,
+        "images": [
+          {
+            "index": 6,
+            "src": "https://github.com/EVLTrendy/blogevlpics/blob/main/sigpfp.png?raw=true"
+          }
+        ]
+      },
+      {
+        "file": "public/blog/2023-12-11-crafting-digital-futures-meta-ai-unleashed/index.html",
+        "count": 1,
+        "images": [
+          {
+            "index": 7,
+            "src": "https://github.com/EVLTrendy/blogevlpics/blob/main/sigpfp.png?raw=true"
+          }
+        ]
+      },
+      {
+        "file": "public/blog/2023-12-12-podcast-revolution-instagram-unleashes-creativity/index.html",
+        "count": 1,
+        "images": [
+          {
+            "index": 6,
+            "src": "https://github.com/EVLTrendy/blogevlpics/blob/main/sigpfp.png?raw=true"
+          }
+        ]
+      },
+      {
+        "file": "public/blog/2023-12-14-2024-tiktok-forge-authentic-connections/index.html",
+        "count": 1,
+        "images": [
+          {
+            "index": 6,
+            "src": "https://github.com/EVLTrendy/blogevlpics/blob/main/sigpfp.png?raw=true"
+          }
+        ]
+      },
+      {
+        "file": "public/blog/2023-12-18-winter-streampass-winter-fest/index.html",
+        "count": 1,
+        "images": [
+          {
+            "index": 3,
+            "src": "https://github.com/EVLTrendy/blogevlpics/blob/main/sigpfp.png?raw=true"
+          }
+        ]
+      },
+      {
+        "file": "public/blog/2023-12-23-hashtag-alchemy-transforming-trends-into-tales/index.html",
+        "count": 1,
+        "images": [
+          {
+            "index": 11,
+            "src": "https://github.com/EVLTrendy/blogevlpics/blob/main/sigpfp.png?raw=true"
+          }
+        ]
+      },
+      {
+        "file": "public/blog/2023-12-26-from-sound-waves-to-screens-the-intro-to-podcast/index.html",
+        "count": 1,
+        "images": [
+          {
+            "index": 9,
+            "src": "https://github.com/EVLTrendy/blogevlpics/blob/main/sigpfp.png?raw=true"
+          }
+        ]
+      },
+      {
+        "file": "public/blog/2023-12-30-tiktoks-faceless-recipes-evolvedlotus-insights/index.html",
+        "count": 1,
+        "images": [
+          {
+            "index": 6,
+            "src": "https://github.com/EVLTrendy/blogevlpics/blob/main/sigpfp.png?raw=true"
+          }
+        ]
+      },
+      {
+        "file": "public/blog/2024-01-04-evolving-taxes-twitch101-2024/index.html",
+        "count": 1,
+        "images": [
+          {
+            "index": 11,
+            "src": "https://github.com/EVLTrendy/blogevlpics/blob/main/sigpfp.png?raw=true"
+          }
+        ]
+      },
+      {
+        "file": "public/blog/2024-01-09-evolving-as-an-artist-bloom-your-tunes/index.html",
+        "count": 1,
+        "images": [
+          {
+            "index": 5,
+            "src": "https://github.com/EVLTrendy/blogevlpics/blob/main/sigpfp.png?raw=true"
+          }
+        ]
+      },
+      {
+        "file": "public/blog/2024-01-15-youtubeevolved-youtube-2024-algorithm/index.html",
+        "count": 1,
+        "images": [
+          {
+            "index": 6,
+            "src": "https://github.com/EVLTrendy/blogevlpics/blob/main/sigpfp.png?raw=true"
+          }
+        ]
+      },
+      {
+        "file": "public/blog/2024-01-24-facebook-ads-with-evolvedlotus/index.html",
+        "count": 1,
+        "images": [
+          {
+            "index": 4,
+            "src": "https://github.com/EVLTrendy/blogevlpics/blob/main/sigpfp.png?raw=true"
+          }
+        ]
+      },
+      {
+        "file": "public/blog/2024-01-31-how-does-instagram-pay-you-unraveling-instagram-payments/index.html",
+        "count": 1,
+        "images": [
+          {
+            "index": 6,
+            "src": "https://github.com/EVLTrendy/blogevlpics/blob/main/sigpfp.png?raw=true"
+          }
+        ]
+      },
+      {
+        "file": "public/blog/2024-02-01-linkedins-influence-on-the-current/index.html",
+        "count": 1,
+        "images": [
+          {
+            "index": 1,
+            "src": "https://github.com/EVLTrendy/blogevlpics/blob/main/sigpfp.png?raw=true"
+          }
+        ]
+      },
+      {
+        "file": "public/blog/2024-02-03-umgs-exit-the-shift-of-music/index.html",
+        "count": 1,
+        "images": [
+          {
+            "index": 1,
+            "src": "https://github.com/EVLTrendy/blogevlpics/blob/main/sigpfp.png?raw=true"
+          }
+        ]
+      },
+      {
+        "file": "public/blog/2024-02-12-streamwise-mastering-multistreaming/index.html",
+        "count": 1,
+        "images": [
+          {
+            "index": 4,
+            "src": "https://github.com/EVLTrendy/blogevlpics/blob/main/sigpfp.png?raw=true"
+          }
+        ]
+      },
+      {
+        "file": "public/blog/2024-02-15-tweeting-trends-twitters-2024-algorithm/index.html",
+        "count": 1,
+        "images": [
+          {
+            "index": 1,
+            "src": "https://github.com/EVLTrendy/blogevlpics/blob/main/sigpfp.png?raw=true"
+          }
+        ]
+      },
+      {
+        "file": "public/blog/2024-02-28-evolvedlist-februarys-thriving-creators/index.html",
+        "count": 1,
+        "images": [
+          {
+            "index": 6,
+            "src": "https://github.com/EVLTrendy/blogevlpics/blob/main/sigpfp.png?raw=true"
+          }
+        ]
+      },
+      {
+        "file": "public/blog/2024-02-29-metas-stop-to-misinformation/index.html",
+        "count": 1,
+        "images": [
+          {
+            "index": 1,
+            "src": "https://github.com/EVLTrendy/blogevlpics/blob/main/sigpfp.png?raw=true"
+          }
+        ]
+      },
+      {
+        "file": "public/blog/2024-03-02-affiliate-hustle-become-a-tiktok-shop-pro/index.html",
+        "count": 1,
+        "images": [
+          {
+            "index": 1,
+            "src": "https://github.com/EVLTrendy/blogevlpics/blob/main/sigpfp.png?raw=true"
+          }
+        ]
+      },
+      {
+        "file": "public/blog/2024-03-12-crypto-turned-gold/index.html",
+        "count": 1,
+        "images": [
+          {
+            "index": 3,
+            "src": "https://github.com/EVLTrendy/blogevlpics/blob/main/sigpfp.png?raw=true"
+          }
+        ]
+      },
+      {
+        "file": "public/blog/2024-03-14-tiktok-implements-new-changes/index.html",
+        "count": 1,
+        "images": [
+          {
+            "index": 1,
+            "src": "https://github.com/EVLTrendy/blogevlpics/blob/main/sigpfp.png?raw=true"
+          }
+        ]
+      },
+      {
+        "file": "public/blog/2024-03-27-game-changers-why-women-are-leading-the-gaming-revolution/index.html",
+        "count": 1,
+        "images": [
+          {
+            "index": 5,
+            "src": "https://github.com/EVLTrendy/blogevlpics/blob/main/sigpfp.png?raw=true"
+          }
+        ]
+      },
+      {
+        "file": "public/blog/2024-03-28-twitter-𝕏-updates-new-user-experience-and-battling-bots/index.html",
+        "count": 1,
+        "images": [
+          {
+            "index": 5,
+            "src": "https://github.com/EVLTrendy/blogevlpics/blob/main/sigpfp.png?raw=true"
+          }
+        ]
+      },
+      {
+        "file": "public/blog/2024-03-29-youtube-just-gave-creators-a-makeover-its-time-to-shine/index.html",
+        "count": 1,
+        "images": [
+          {
+            "index": 4,
+            "src": "https://github.com/EVLTrendy/blogevlpics/blob/main/sigpfp.png?raw=true"
+          }
+        ]
+      },
+      {
+        "file": "public/blog/2024-04-09-no-more-regrets-edit-pin-style-up-your-instagram-dms/index.html",
+        "count": 1,
+        "images": [
+          {
+            "index": 6,
+            "src": "https://github.com/EVLTrendy/blogevlpics/blob/main/sigpfp.png?raw=true"
+          }
+        ]
+      },
+      {
+        "file": "public/blog/2024-04-11-level-up-your-stream-from-bland-to-grand/index.html",
+        "count": 1,
+        "images": [
+          {
+            "index": 4,
+            "src": "https://github.com/EVLTrendy/blogevlpics/blob/main/sigpfp.png?raw=true"
+          }
+        ]
+      },
+      {
+        "file": "public/blog/2024-04-12-expand-your-reach-dont-preach-linkedins-the-speech/index.html",
+        "count": 1,
+        "images": [
+          {
+            "index": 4,
+            "src": "https://github.com/EVLTrendy/blogevlpics/blob/main/sigpfp.png?raw=true"
+          }
+        ]
+      },
+      {
+        "file": "public/blog/2024-04-18-tiktoks-faceless-travel-tips-and-guide-evolvedlotus-insights/index.html",
+        "count": 1,
+        "images": [
+          {
+            "index": 6,
+            "src": "https://github.com/EVLTrendy/blogevlpics/blob/main/sigpfp.png?raw=true"
+          }
+        ]
+      },
+      {
+        "file": "public/blog/2024-04-25-twitch-streamlined-secure/index.html",
+        "count": 1,
+        "images": [
+          {
+            "index": 6,
+            "src": "https://github.com/EVLTrendy/blogevlpics/blob/main/sigpfp.png?raw=true"
+          }
+        ]
+      },
+      {
+        "file": "public/blog/2024-05-06-x-and-grok-ai-sipping-news-smoothies-with-ai-powered-summaries/index.html",
+        "count": 1,
+        "images": [
+          {
+            "index": 4,
+            "src": "https://github.com/EVLTrendy/blogevlpics/blob/main/sigpfp.png?raw=true"
+          }
+        ]
+      },
+      {
+        "file": "public/blog/2024-05-08-youtubes-ai-your-genie-for-content-ads/index.html",
+        "count": 1,
+        "images": [
+          {
+            "index": 4,
+            "src": "https://github.com/EVLTrendy/blogevlpics/blob/main/sigpfp.png?raw=true"
+          }
+        ]
+      },
+      {
+        "file": "public/blog/2024-05-10-meta-llama-3-your-next-gen-ai-assistant/index.html",
+        "count": 1,
+        "images": [
+          {
+            "index": 4,
+            "src": "https://github.com/EVLTrendy/blogevlpics/blob/main/sigpfp.png?raw=true"
+          }
+        ]
+      },
+      {
+        "file": "public/blog/2024-06-18-linkedin-gpt-microsoft-changes-job-searching/index.html",
+        "count": 1,
+        "images": [
+          {
+            "index": 4,
+            "src": "https://github.com/EVLTrendy/blogevlpics/blob/main/sigpfp.png?raw=true"
+          }
+        ]
+      },
+      {
+        "file": "public/blog/2024-06-22-the-rise-of-tiktok’s-new-influencers/index.html",
+        "count": 1,
+        "images": [
+          {
+            "index": 4,
+            "src": "https://github.com/EVLTrendy/blogevlpics/blob/main/sigpfp.png?raw=true"
+          }
+        ]
+      },
+      {
+        "file": "public/blog/2024-07-20-trend-genius-new-ai-for-advertisements/index.html",
+        "count": 1,
+        "images": [
+          {
+            "index": 4,
+            "src": "https://github.com/EVLTrendy/blogevlpics/blob/main/sigpfp.png?raw=true"
+          }
+        ]
+      },
+      {
+        "file": "public/blog/2024-07-23-new-short-way-for-youtube-ads/index.html",
+        "count": 1,
+        "images": [
+          {
+            "index": 3,
+            "src": "https://github.com/EVLTrendy/blogevlpics/blob/main/sigpfp.png?raw=true"
+          }
+        ]
+      },
+      {
+        "file": "public/blog/2024-07-31-facebook-ugc-creator-lotus-takes/index.html",
+        "count": 1,
+        "images": [
+          {
+            "index": 6,
+            "src": "https://github.com/EVLTrendy/blogevlpics/blob/main/sigpfp.png?raw=true"
+          }
+        ]
+      },
+      {
+        "file": "public/blog/2024-08-27-youtube-kids-safe-channel-launch/index.html",
+        "count": 1,
+        "images": [
+          {
+            "index": 4,
+            "src": "https://github.com/EVLTrendy/blogevlpics/blob/main/sigpfp.png?raw=true"
+          }
+        ]
+      },
+      {
+        "file": "public/blog/2024-09-27-evolved-insights-“tiny-twitter-niche”/index.html",
+        "count": 1,
+        "images": [
+          {
+            "index": 4,
+            "src": "https://github.com/EVLTrendy/blogevlpics/blob/main/sigpfp.png?raw=true"
+          }
+        ]
+      },
+      {
+        "file": "public/blog/2024-11-04-november’s-must-know-social-trends/index.html",
+        "count": 1,
+        "images": [
+          {
+            "index": 6,
+            "src": "https://github.com/EVLTrendy/blogevlpics/blob/main/sigpfp.png?raw=true"
+          }
+        ]
+      },
+      {
+        "file": "public/blog/2025-01-22-evolvedlotus-view-on-hootsuite’s-2025-report/index.html",
+        "count": 1,
+        "images": [
+          {
+            "index": 1,
+            "src": "https://github.com/EVLTrendy/blogevlpics/blob/main/sigpfp.png?raw=true"
+          }
+        ]
+      },
+      {
+        "file": "public/blog/2025-01-29-how-to-write-a-viral-caption-for-social-media/index.html",
+        "count": 1,
+        "images": [
+          {
+            "index": 1,
+            "src": "https://github.com/EVLTrendy/blogevlpics/blob/main/sigpfp.png?raw=true"
+          }
+        ]
+      },
+      {
+        "file": "public/blog/2025-02-20-is-1of10-really-worth-it-or-should-you-save-your-money-and-learn-on-your-own/index.html",
+        "count": 1,
+        "images": [
+          {
+            "index": 4,
+            "src": "https://github.com/EVLTrendy/blogevlpics/blob/main/sigpfp.png?raw=true"
+          }
+        ]
+      },
+      {
+        "file": "public/blog/2025-04-27-facebook-content-mastery-5-proven-strategies-for-explosive-engagement/index.html",
+        "count": 1,
+        "images": [
+          {
+            "index": 5,
+            "src": "https://github.com/EVLTrendy/blogevlpics/blob/main/sigpfp.png?raw=true"
+          }
+        ]
+      },
+      {
+        "file": "public/blog/2025-05-13-how-to-skyrocket-your-tiktok-views-and-engagement-a-simple-content-strategy/index.html",
+        "count": 1,
+        "images": [
+          {
+            "index": 1,
+            "src": "https://github.com/EVLTrendy/blogevlpics/blob/main/sigpfp.png?raw=true"
+          }
+        ]
+      },
+      {
+        "file": "public/blog/2025-05-19-streaming-in-2025-the-no-bs-guide-to-getting-started-or-leveling-up/index.html",
+        "count": 1,
+        "images": [
+          {
+            "index": 1,
+            "src": "https://github.com/EVLTrendy/blogevlpics/blob/main/sigpfp.png?raw=true"
+          }
+        ]
+      },
+      {
+        "file": "public/blog/2025-05-22-why-most-content-creators-are-setting-themselves-up-for-failure/index.html",
+        "count": 1,
+        "images": [
+          {
+            "index": 1,
+            "src": "https://github.com/EVLTrendy/blogevlpics/blob/main/sigpfp.png?raw=true"
+          }
+        ]
+      },
+      {
+        "file": "public/blog/2025-07-29-are-instagram-ads-worth-it-plus-new-strategies-for-organic-growth-in-2025/index.html",
+        "count": 1,
+        "images": [
+          {
+            "index": 1,
+            "src": "https://github.com/EVLTrendy/blogevlpics/blob/main/sigpfp.png?raw=true"
+          }
+        ]
+      },
+      {
+        "file": "public/blog/2025-07-30-twitter-x-unpacked-mastering-growth-engagement-with-latest-features-ai/index.html",
+        "count": 1,
+        "images": [
+          {
+            "index": 1,
+            "src": "https://github.com/EVLTrendy/blogevlpics/blob/main/sigpfp.png?raw=true"
+          }
+        ]
+      },
+      {
+        "file": "public/blog/2025-08-11-how-to-create-30-days-of-content-in-one-weekend/index.html",
+        "count": 1,
+        "images": [
+          {
+            "index": 1,
+            "src": "https://github.com/EVLTrendy/blogevlpics/blob/main/sigpfp.png?raw=true"
+          }
+        ]
+      },
+      {
+        "file": "public/blog/2025-08-13-top-free-design-tools-every-creator-needs/index.html",
+        "count": 1,
+        "images": [
+          {
+            "index": 1,
+            "src": "https://github.com/EVLTrendy/blogevlpics/blob/main/sigpfp.png?raw=true"
+          }
+        ]
+      },
+      {
+        "file": "public/blog/2025-08-15-understanding-social-media-analytics-what-metrics-actually-matter/index.html",
+        "count": 1,
+        "images": [
+          {
+            "index": 1,
+            "src": "https://github.com/EVLTrendy/blogevlpics/blob/main/sigpfp.png?raw=true"
+          }
+        ]
+      },
+      {
+        "file": "public/blog/2025-08-25-how-to-price-your-services-as-a-content-creator-in-2025/index.html",
+        "count": 1,
+        "images": [
+          {
+            "index": 1,
+            "src": "https://github.com/EVLTrendy/blogevlpics/blob/main/sigpfp.png?raw=true"
+          }
+        ]
+      },
+      {
+        "file": "public/blog/2025-08-27-basic-seo-for-content-creators/index.html",
+        "count": 1,
+        "images": [
+          {
+            "index": 1,
+            "src": "https://github.com/EVLTrendy/blogevlpics/blob/main/sigpfp.png?raw=true"
+          }
+        ]
+      },
+      {
+        "file": "public/blog/2025-08-29-batch-content-creation-techniques-that-save-hours/index.html",
+        "count": 1,
+        "images": [
+          {
+            "index": 1,
+            "src": "https://github.com/EVLTrendy/blogevlpics/blob/main/sigpfp.png?raw=true"
+          }
+        ]
+      },
+      {
+        "file": "public/blog/2025-09-09-best-video-recording-software-2025-free-paid-tools-compared/index.html",
+        "count": 1,
+        "images": [
+          {
+            "index": 1,
+            "src": "https://github.com/EVLTrendy/blogevlpics/blob/main/sigpfp.png?raw=true"
+          }
+        ]
+      },
+      {
+        "file": "public/blog/2025-09-10-using-data-to-optimize-your-posting-schedule/index.html",
+        "count": 1,
+        "images": [
+          {
+            "index": 1,
+            "src": "https://github.com/EVLTrendy/blogevlpics/blob/main/sigpfp.png?raw=true"
+          }
+        ]
+      },
+      {
+        "file": "public/blog/2025-09-12-open-source-alternatives-to-expensive-creator-tools/index.html",
+        "count": 1,
+        "images": [
+          {
+            "index": 1,
+            "src": "https://github.com/EVLTrendy/blogevlpics/blob/main/sigpfp.png?raw=true"
+          }
+        ]
+      },
+      {
+        "file": "public/blog/2025-09-22-building-email-lists-through-social-media-content-the-complete-2025-strategy-guide/index.html",
+        "count": 1,
+        "images": [
+          {
+            "index": 1,
+            "src": "https://github.com/EVLTrendy/blogevlpics/blob/main/sigpfp.png?raw=true"
+          }
+        ]
+      },
+      {
+        "file": "public/blog/2025-09-25-color-theory-and-design-principles-for-social-media/index.html",
+        "count": 1,
+        "images": [
+          {
+            "index": 1,
+            "src": "https://github.com/EVLTrendy/blogevlpics/blob/main/sigpfp.png?raw=true"
+          }
+        ]
+      },
+      {
+        "file": "public/blog/2025-10-08-building-genuine-engagement-vs-vanity-metrics/index.html",
+        "count": 1,
+        "images": [
+          {
+            "index": 1,
+            "src": "https://github.com/EVLTrendy/blogevlpics/blob/main/sigpfp.png?raw=true"
+          }
+        ]
+      },
+      {
+        "file": "public/blog/2025-10-13-turning-your-content-into-multiple-revenue-streams/index.html",
+        "count": 1,
+        "images": [
+          {
+            "index": 1,
+            "src": "https://github.com/EVLTrendy/blogevlpics/blob/main/sigpfp.png?raw=true"
+          }
+        ]
+      },
+      {
+        "file": "public/blog/index.html",
+        "count": 1,
+        "images": [
+          {
+            "index": 0,
+            "src": "https://github.com/EVLTrendy/blogevlpics/blob/main/sigpfp.png?raw=true"
+          }
+        ]
+      }
+    ],
     "nonDeferredImages": [],
     "improperHeadingHierarchy": [],
     "missingTableCaptions": [],
