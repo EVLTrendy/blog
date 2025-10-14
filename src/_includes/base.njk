@@ -34,8 +34,8 @@
     <meta name="twitter:image:type" content="image/png">
 
     <!-- Enhanced Image Optimization for all platforms -->
-    <meta property="og:image:alt" content="{{ imageAlt if imageAlt else title if title else 'EvolvedLotus Blog' }}">
-    <meta name="twitter:image:alt" content="{{ imageAlt if imageAlt else title if title else 'EvolvedLotus Blog' }}">
+    <meta property="og:image:alt" content="{{ imageAlt or title or 'EvolvedLotus Blog' }}">
+    <meta name="twitter:image:alt" content="{{ imageAlt or title or 'EvolvedLotus Blog' }}">
 
     <!-- Additdional meta tags for better SEO and social sharing -->
     <meta name="title" content="{{ title }}">
