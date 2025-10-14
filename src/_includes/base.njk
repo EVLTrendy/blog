@@ -99,12 +99,13 @@
     <meta name="msapplication-TileColor" content="#007bff">
 
     <!-- Structured Data for Rich Snippets -->
+    {% set jsonDescription = description if description else (metadata.description if metadata.description else ogDescription) %}
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "{{ schema_type if schema_type else 'Article' }}",
       "headline": "{{ title if title else ogTitle }}",
-      "description": "{{ description if description else (metadata.description if metadata.description else ogDescription) }}",
+      "description": "{{ jsonDescription }}",
       "image": "{{ ogImage }}",
       "datePublished": "{{ date | isoDate if date }}",
       "dateModified": "{{ date | isoDate if date }}",
