@@ -1,0 +1,56 @@
+{
+  "scanDate": "2025-10-14T21:23:32.168Z",
+  "totalIssues": 6,
+  "issues": [
+    {
+      "originalUrl": "2023-12-05-follow-the-lead-linkedin-unleashed-–-your-follower-magnet",
+      "sanitizedUrl": "2023-12-05-follow-the-lead-linkedin-unleashed-your-follower-magnet",
+      "file": "public/blog/2023-12-05-follow-the-lead-linkedin-unleashed-–-your-follower-magnet/index.html",
+      "characters": [
+        "–"
+      ]
+    },
+    {
+      "originalUrl": "2024-03-28-twitter-𝕏-updates-new-user-experience-and-battling-bots",
+      "sanitizedUrl": "2024-03-28-twitter-updates-new-user-experience-and-battling-bots",
+      "file": "public/blog/2024-03-28-twitter-𝕏-updates-new-user-experience-and-battling-bots/index.html",
+      "characters": [
+        "\ud835",
+        "\udd4f"
+      ]
+    },
+    {
+      "originalUrl": "2024-06-22-the-rise-of-tiktok’s-new-influencers",
+      "sanitizedUrl": "2024-06-22-the-rise-of-tiktok's-new-influencers",
+      "file": "public/blog/2024-06-22-the-rise-of-tiktok’s-new-influencers/index.html",
+      "characters": [
+        "’"
+      ]
+    },
+    {
+      "originalUrl": "2024-09-27-evolved-insights-“tiny-twitter-niche”",
+      "sanitizedUrl": "2024-09-27-evolved-insights-\"tiny-twitter-niche\"",
+      "file": "public/blog/2024-09-27-evolved-insights-“tiny-twitter-niche”/index.html",
+      "characters": [
+        "“",
+        "”"
+      ]
+    },
+    {
+      "originalUrl": "2024-11-04-november’s-must-know-social-trends",
+      "sanitizedUrl": "2024-11-04-november's-must-know-social-trends",
+      "file": "public/blog/2024-11-04-november’s-must-know-social-trends/index.html",
+      "characters": [
+        "’"
+      ]
+    },
+    {
+      "originalUrl": "2025-01-22-evolvedlotus-view-on-hootsuite’s-2025-report",
+      "sanitizedUrl": "2025-01-22-evolvedlotus-view-on-hootsuite's-2025-report",
+      "file": "public/blog/2025-01-22-evolvedlotus-view-on-hootsuite’s-2025-report/index.html",
+      "characters": [
+        "’"
+      ]
+    }
+  ]
+}

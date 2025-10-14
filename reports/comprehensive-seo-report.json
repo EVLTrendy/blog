@@ -1,0 +1,49 @@
+{
+  "scanDate": "2025-10-14T21:25:19.667Z",
+  "summary": {
+    "totalFilesScanned": 6,
+    "totalIssues": 6
+  },
+  "issues": {
+    "multipleH1Tags": [],
+    "missingCanonical": [],
+    "missingMetaDescription": [],
+    "duplicateMetaDescriptions": [],
+    "missingAltText": [],
+    "missingLangAttribute": [],
+    "nonAsciiUrls": [
+      {
+        "file": "public/blog/2023-12-05-follow-the-lead-linkedin-unleashed-–-your-follower-magnet/index.html",
+        "url": "2023-12-05-follow-the-lead-linkedin-unleashed-–-your-follower-magnet"
+      },
+      {
+        "file": "public/blog/2024-03-28-twitter-𝕏-updates-new-user-experience-and-battling-bots/index.html",
+        "url": "2024-03-28-twitter-𝕏-updates-new-user-experience-and-battling-bots"
+      },
+      {
+        "file": "public/blog/2024-06-22-the-rise-of-tiktok’s-new-influencers/index.html",
+        "url": "2024-06-22-the-rise-of-tiktok’s-new-influencers"
+      },
+      {
+        "file": "public/blog/2024-09-27-evolved-insights-“tiny-twitter-niche”/index.html",
+        "url": "2024-09-27-evolved-insights-“tiny-twitter-niche”"
+      },
+      {
+        "file": "public/blog/2024-11-04-november’s-must-know-social-trends/index.html",
+        "url": "2024-11-04-november’s-must-know-social-trends"
+      },
+      {
+        "file": "public/blog/2025-01-22-evolvedlotus-view-on-hootsuite’s-2025-report/index.html",
+        "url": "2025-01-22-evolvedlotus-view-on-hootsuite’s-2025-report"
+      }
+    ],
+    "excessiveDOMWidth": [],
+    "missingImageDimensions": [],
+    "nonDeferredImages": [],
+    "improperHeadingHierarchy": [],
+    "missingTableCaptions": [],
+    "lowWordCount": [],
+    "noOutgoingLinks": [],
+    "brokenInternalLinks": []
+  }
+}
