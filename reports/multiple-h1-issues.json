@@ -1,0 +1,16 @@
+{
+  "scanDate": "2025-10-14T21:19:29.964Z",
+  "totalIssues": 1,
+  "issues": [
+    {
+      "file": "public/blog/2025-09-10-using-data-to-optimize-your-posting-schedule/index.html",
+      "h1Count": 3,
+      "h1Tags": [
+        "<h1 class=\"article_title\">Complete Guide: Using Data to Optimize Your Posting Schedule</h1>",
+        "<h1 class=\"style-Y29sb3I6\">Social Media Interactive Audit Checklist &amp; Tracking Template</h1>",
+        "<h1>Interactive Audit Checklist & Tracking Template</h1>"
+      ],
+      "needsFix": true
+    }
+  ]
+}
