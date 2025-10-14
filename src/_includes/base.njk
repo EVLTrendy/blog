@@ -104,7 +104,7 @@
       "@context": "https://schema.org",
       "@type": "{{ schema_type if schema_type else 'Article' }}",
       "headline": "{{ title if title else ogTitle }}",
-      "description": "{{ description if description else (metadata.description if metadata.description else ogDescription) }}",
+      "description": "{{ description if description else ((metadata.description if metadata.description else ogDescription)) }}",
       "image": "{{ ogImage }}",
       "datePublished": "{{ date | isoDate if date }}",
       "dateModified": "{{ date | isoDate if date }}",
