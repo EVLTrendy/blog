@@ -9,7 +9,7 @@ layout: 'base.njk'
     <h1>YouTube</h1>
 
     <ul role="list" class="articles_list flow">
-        {%- for post in collections.youtube | reverse -%}
+        {%- for post in collections.yt | reverse -%}
             {% include 'article-snippet.njk' %}
         {%- endfor -%}
     </ul>
