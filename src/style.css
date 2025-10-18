@@ -140,10 +140,16 @@ html, body {
 .ad-container ins {
   display: block !important;
   margin: 0 auto;
+  text-align: center;
+  width: 100% !important;
 }
 
 .ad-container.sidebar-ad-container ins {
   max-width: 300px;
+  width: 100% !important;
+  display: block !important;
+  margin: 0 auto;
+  text-align: center;
 }
 
 /* Hide ads on mobile and tablet */
