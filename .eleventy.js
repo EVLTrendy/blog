@@ -6,8 +6,7 @@ const crypto = require('crypto');
 // 1. Require the eleventy-plugin-seo plugin
 const pluginSEO = require("eleventy-plugin-seo");
 
-// 2. Require our custom SEO fixer
-const EleventySEOFixer = require('./scripts/eleventy-seo-fixer');
+
 
 module.exports = function (eleventyConfig) {
     // Passthrough copies
@@ -194,42 +193,7 @@ module.exports = function (eleventyConfig) {
         return paragraphs.join('');
     });
 
-    // 3. Initialize the SEO fixer for build-time processing
-    let seoFixer;
-    try {
-        seoFixer = new EleventySEOFixer();
-    } catch (error) {
-        console.warn('Warning: Could not initialize SEO fixer:', error.message);
-        seoFixer = null;
-    }
 
-    // 4. Add HTML transform to fix SEO issues during build
-    eleventyConfig.addTransform("seo-fixer", function(content, outputPath) {
-        // Only process HTML files in the blog directory
-        if (outputPath && outputPath.endsWith('.html') && outputPath.includes('/blog/') && seoFixer) {
-            try {
-                const fixedContent = seoFixer.scanAndFixContent(content, outputPath, this);
-                return fixedContent;
-            } catch (error) {
-                console.warn(`Warning: SEO fixer failed for ${outputPath}:`, error.message);
-                return content; // Return original content if fix fails
-            }
-        }
-        return content; // Return unchanged content for non-matching files
-    });
-
-    // 5. Add build end handler to generate SEO report
-    eleventyConfig.on('afterBuild', () => {
-        if (seoFixer) {
-            try {
-                const report = seoFixer.generateReport();
-                seoFixer.printSummary();
-                console.log(`📋 SEO Fixer Report: reports/eleventy-seo-fixes-${Date.now()}.json`);
-            } catch (error) {
-                console.warn('Warning: Failed to generate SEO fixer report:', error.message);
-            }
-        }
-    });
 
     return {
         dir: {
