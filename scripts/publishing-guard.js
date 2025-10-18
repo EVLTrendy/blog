@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const SiteVerificationTracker = require('./site-verification-tracker');
+const { LinkValidationGuard } = require('./link-validation-guard');
 
 // Configuration
 const PUBLIC_DIR = path.join(__dirname, '..', 'public');
@@ -25,6 +26,9 @@ class PublishingGuard {
       .filter(([file, data]) => data.status === 'failed')
       .map(([file, data]) => ({ file, ...data }));
 
+    // Check link validation issues
+    const linkIssues = await this.checkLinkValidation();
+
     const issues = [];
 
     if (unverifiedPages.length > 0) {
@@ -43,11 +47,60 @@ class PublishingGuard {
       });
     }
 
+    if (linkIssues.errors.length > 0) {
+      issues.push({
+        type: 'link-errors',
+        count: linkIssues.errors.length,
+        pages: linkIssues.errors.map(issue => issue.file)
+      });
+    }
+
     return {
       ready: issues.length === 0,
       issues,
       unverifiedCount: unverifiedPages.length,
-      failedCount: failedPages.length
+      failedCount: failedPages.length,
+      linkErrors: linkIssues.errors.length,
+      linkWarnings: linkIssues.warnings.length
+    };
+  }
+
+  // Check link validation issues
+  async checkLinkValidation() {
+    console.log('🔗 Checking link validation...');
+
+    const linkValidator = new LinkValidationGuard();
+    const sourceFiles = [
+      'src/blog.njk',
+      'src/_includes/base.njk',
+      'src/_includes/article.njk',
+      'src/admin/index.html'
+    ];
+
+    const allIssues = [];
+
+    for (const file of sourceFiles) {
+      const filePath = path.join(__dirname, '..', file);
+      if (fs.existsSync(filePath)) {
+        try {
+          const content = fs.readFileSync(filePath, 'utf8');
+          const issues = await linkValidator.validateContent(filePath, content);
+          allIssues.push(...issues);
+        } catch (error) {
+          console.warn(`Warning: Could not validate ${file}: ${error.message}`);
+        }
+      }
+    }
+
+    const errors = allIssues.filter(issue => issue.severity === 'error');
+    const warnings = allIssues.filter(issue => issue.severity === 'warning');
+
+    console.log(`   Found ${errors.length} link errors and ${warnings.length} warnings`);
+
+    return {
+      errors,
+      warnings,
+      total: allIssues.length
     };
   }
 
@@ -100,6 +153,8 @@ if (require.main === module) {
       console.log(`Ready for publishing: ${readiness.ready ? '✅ YES' : '❌ NO'}`);
       console.log(`Unverified pages: ${readiness.unverifiedCount}`);
       console.log(`Failed pages: ${readiness.failedCount}`);
+      console.log(`Link errors: ${readiness.linkErrors}`);
+      console.log(`Link warnings: ${readiness.linkWarnings}`);
 
       if (!readiness.ready) {
         console.log('\nIssues found:');

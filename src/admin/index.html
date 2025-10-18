@@ -4,10 +4,38 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex" />
-  <title>Content Maanager</title>
+  <title>Content Manager</title>
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <style>
+    .admin-footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: #f8f9fa;
+      padding: 1rem;
+      text-align: center;
+      border-top: 1px solid #dee2e6;
+    }
+    .admin-footer a {
+      color: #007bff;
+      text-decoration: none;
+      margin: 0 0.5rem;
+    }
+    .admin-footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
 <body>
   <!-- Include the script that builds the page and powers Decap CMS -->
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+
+  <!-- Admin Footer with navigation links to fix "no outgoing links" issue -->
+  <div class="admin-footer">
+    <a href="/" aria-label="Return to EvolvedLotus homepage to explore our content creation guides">Back to Homepage</a> |
+    <a href="/blog/" aria-label="Browse our comprehensive collection of content creation tutorials and guides">Browse All Guides</a> |
+    <a href="/about/" aria-label="Learn more about EvolvedLotus and our content creation expertise">About EvolvedLotus</a> |
+    <a href="/contact/" aria-label="Contact us for personalized content strategy consultation">Contact Support</a>
+  </div>
 </body>
