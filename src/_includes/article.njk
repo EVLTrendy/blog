@@ -93,9 +93,43 @@ layout: 'base.njk'
     </div>
   </p>
   <div class="article_body">
-    <div class="article_bodydiv">
+    <!-- Left Ad Container -->
+    <div class="article-ad-container article-ad-left">
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7311583434347173"
+       crossorigin="anonymous"></script>
+      <!-- Article Left Ad -->
+      <ins class="adsbygoogle article-ad"
+           style="display:block"
+           data-ad-client="ca-pub-7311583434347173"
+           data-ad-slot="8054855733"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>
+           (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </div>
 
-      {{ content | safe | replace('<h3', '<hr><h3') | replace('<img', '<img class="blogpic" width="800" height="400"') | replace('<table', '<table><caption>Video Recording Software Comparison</caption>') | insertAdAfterParagraphs(2) | insertAdAfterParagraphs(5) }}
+    <!-- Center Content Container -->
+    <div class="article-content-wrapper">
+      <div class="article_bodydiv">
+        {{ content | safe | replace('<h3', '<hr><h3') | replace('<img', '<img class="blogpic" width="800" height="400"') | replace('<table', '<table><caption>Video Recording Software Comparison</caption>') | insertAdAfterParagraphs(2) | insertAdAfterParagraphs(5) }}
+      </div>
+    </div>
+
+    <!-- Right Ad Container -->
+    <div class="article-ad-container article-ad-right">
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7311583434347173"
+       crossorigin="anonymous"></script>
+      <!-- Article Right Ad -->
+      <ins class="adsbygoogle article-ad"
+           style="display:block"
+           data-ad-client="ca-pub-7311583434347173"
+           data-ad-slot="8054855733"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>
+           (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
     </div>
   </div>
 </section>
