@@ -84,7 +84,7 @@ The spin-the-wheel method introduces an element of randomness, ensuring that no 
 * **Floor Loot Only:** Survive with only the weapons you find on the ground, fostering resourcefulness and adaptability.
 * **Hot Drop:** Jump into high-traffic areas for intense early-game encounters, refining your close-quarters combat skills.
 
-[Link to the Wheel: Spin the Wheel](#) 
+**Spin the Wheel Tool:** You can create your own custom spin wheel challenges at [Wheel of Names](https://wheelofnames.com/) or [Random Name Picker](https://www.randomlists.com/name-picker)
 
 Feel free to customize your challenges or use the pre-made ones provided in the wheel editor. This tool is a fantastic resource for creating a diverse and engaging gameplay experience.
 

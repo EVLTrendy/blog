@@ -46,6 +46,8 @@ class LinkValidationGuard {
         this.checkEmptyAnchors(links, filePath);
         this.checkInsufficientBacklinks(links, filePath);
         this.checkDuplicateAnchors(links, filePath);
+        this.checkHttpStatusValidation(links, filePath);
+        this.checkRelAttributes(links, filePath);
 
         return this.issues;
     }
@@ -294,6 +296,99 @@ class LinkValidationGuard {
         }
 
         return normalized;
+    }
+
+    /**
+     * Check HTTP status validation for external links
+     */
+    checkHttpStatusValidation(links, filePath) {
+        // This would require actual HTTP requests to validate external links
+        // For now, we'll check for common patterns that indicate broken links
+        const externalLinks = links.filter(link => !link.isInternal);
+
+        externalLinks.forEach(link => {
+            // Skip template variables (Nunjucks variables)
+            if (link.href.startsWith('{{') && link.href.endsWith('}}')) {
+                return;
+            }
+
+            // Check for obviously malformed URLs
+            if (link.href.includes(' ') || link.href.includes('  ')) {
+                this.issues.push({
+                    type: 'MALFORMED_URL',
+                    severity: 'error',
+                    file: filePath,
+                    line: link.lineNumber,
+                    message: `Malformed URL detected: "${link.href}"`,
+                    suggestion: 'Fix spacing and formatting in URL',
+                    element: link.element.outerHTML
+                });
+            }
+
+            // Check for suspicious patterns
+            if (link.href.includes('localhost') && !link.href.includes('localhost')) {
+                this.issues.push({
+                    type: 'LOCALHOST_URL',
+                    severity: 'warning',
+                    file: filePath,
+                    line: link.lineNumber,
+                    message: `Localhost URL in production: "${link.href}"`,
+                    suggestion: 'Replace localhost URLs with production URLs',
+                    element: link.element.outerHTML
+                });
+            }
+        });
+    }
+
+    /**
+     * Check for proper rel attributes on external links
+     */
+    checkRelAttributes(links, filePath) {
+        const externalLinks = links.filter(link => !link.isInternal);
+
+        externalLinks.forEach(link => {
+            const rel = link.element.getAttribute('rel');
+            const href = link.href;
+
+            // Check for external links without proper rel attributes
+            if (!rel) {
+                // Determine appropriate rel attribute based on URL
+                let suggestedRel = 'noopener';
+
+                if (href.includes('twitter.com') || href.includes('facebook.com') || href.includes('linkedin.com')) {
+                    suggestedRel = 'noopener noreferrer';
+                } else if (href.includes('mailto:')) {
+                    suggestedRel = 'noopener';
+                } else if (href.includes('tel:')) {
+                    suggestedRel = 'noopener';
+                }
+
+                this.issues.push({
+                    type: 'MISSING_REL_ATTRIBUTE',
+                    severity: 'warning',
+                    file: filePath,
+                    line: link.lineNumber,
+                    message: `External link missing rel attribute: "${href}"`,
+                    suggestion: `Add rel="${suggestedRel}" for security and SEO`,
+                    element: link.element.outerHTML
+                });
+            } else {
+                // Check for security issues in existing rel attributes
+                const relValues = rel.toLowerCase().split(' ');
+
+                if (relValues.includes('noopener') && !relValues.includes('noreferrer')) {
+                    this.issues.push({
+                        type: 'INSECURE_REL_ATTRIBUTE',
+                        severity: 'info',
+                        file: filePath,
+                        line: link.lineNumber,
+                        message: `Consider adding noreferrer to rel attribute: "${rel}"`,
+                        suggestion: 'Add "noreferrer" for additional security',
+                        element: link.element.outerHTML
+                    });
+                }
+            }
+        });
     }
 
     /**
