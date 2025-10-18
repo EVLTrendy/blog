@@ -92,130 +92,155 @@ class EleventySEOFixer {
     }
 
     detectTitleIssues(content, outputPath, data) {
-        const dom = new JSDOM(content);
-        const doc = dom.window.document;
+        try {
+            const dom = new JSDOM(content);
+            const doc = dom.window.document;
 
-        const titleTag = doc.querySelector('title');
-        const issues = [];
+            const titleTag = doc.querySelector('title');
+            const issues = [];
 
-        if (!titleTag) {
-            issues.push({
-                type: 'missing',
-                file: outputPath,
-                currentTitle: null,
-                suggestedTitle: this.generateSEOTitle(data)
-            });
-        } else {
-            const titleText = titleTag.textContent.trim();
-            if (titleText.length < 10) {
+            if (!titleTag) {
                 issues.push({
-                    type: 'too-short',
+                    type: 'missing',
                     file: outputPath,
-                    currentTitle: titleText,
+                    currentTitle: null,
                     suggestedTitle: this.generateSEOTitle(data)
                 });
+            } else {
+                const titleText = titleTag.textContent.trim();
+                if (titleText.length < 10) {
+                    issues.push({
+                        type: 'too-short',
+                        file: outputPath,
+                        currentTitle: titleText,
+                        suggestedTitle: this.generateSEOTitle(data)
+                    });
+                }
             }
-        }
 
-        return issues;
+            return issues;
+        } catch (error) {
+            console.warn(`Warning: Error detecting title issues in ${outputPath}:`, error.message);
+            return [];
+        }
     }
 
     detectMetaDescriptionIssues(content, outputPath, data) {
-        const dom = new JSDOM(content);
-        const doc = dom.window.document;
+        try {
+            const dom = new JSDOM(content);
+            const doc = dom.window.document;
 
-        const metaDescriptions = doc.querySelectorAll('meta[name="description"]');
-        const issues = [];
+            const metaDescriptions = doc.querySelectorAll('meta[name="description"]');
+            const issues = [];
 
-        if (metaDescriptions.length === 0) {
-            issues.push({
-                type: 'missing',
-                file: outputPath,
-                currentDescription: null,
-                suggestedDescription: this.generateMetaDescription(data)
-            });
-        } else if (metaDescriptions.length > 1) {
-            issues.push({
-                type: 'multiple',
-                file: outputPath,
-                count: metaDescriptions.length,
-                descriptions: Array.from(metaDescriptions).map(meta => meta.getAttribute('content'))
-            });
+            if (metaDescriptions.length === 0) {
+                issues.push({
+                    type: 'missing',
+                    file: outputPath,
+                    currentDescription: null,
+                    suggestedDescription: this.generateMetaDescription(data)
+                });
+            } else if (metaDescriptions.length > 1) {
+                issues.push({
+                    type: 'multiple',
+                    file: outputPath,
+                    count: metaDescriptions.length,
+                    descriptions: Array.from(metaDescriptions).map(meta => meta.getAttribute('content'))
+                });
+            }
+
+            return issues;
+        } catch (error) {
+            console.warn(`Warning: Error detecting meta description issues in ${outputPath}:`, error.message);
+            return [];
         }
-
-        return issues;
     }
 
     detectH1Issues(content, outputPath, data) {
-        const dom = new JSDOM(content);
-        const doc = dom.window.document;
+        try {
+            const dom = new JSDOM(content);
+            const doc = dom.window.document;
 
-        const h1Tags = doc.querySelectorAll('h1');
-        const issues = [];
+            const h1Tags = doc.querySelectorAll('h1');
+            const issues = [];
 
-        if (h1Tags.length === 0) {
-            issues.push({
-                type: 'missing',
-                file: outputPath,
-                suggestedH1: this.generateH1Tag(data)
-            });
-        } else if (h1Tags.length > 1) {
-            issues.push({
-                type: 'multiple',
-                file: outputPath,
-                count: h1Tags.length,
-                tags: Array.from(h1Tags).map(h1 => h1.outerHTML)
-            });
+            if (h1Tags.length === 0) {
+                issues.push({
+                    type: 'missing',
+                    file: outputPath,
+                    suggestedH1: this.generateH1Tag(data)
+                });
+            } else if (h1Tags.length > 1) {
+                issues.push({
+                    type: 'multiple',
+                    file: outputPath,
+                    count: h1Tags.length,
+                    tags: Array.from(h1Tags).map(h1 => h1.outerHTML)
+                });
+            }
+
+            return issues;
+        } catch (error) {
+            console.warn(`Warning: Error detecting H1 issues in ${outputPath}:`, error.message);
+            return [];
         }
-
-        return issues;
     }
 
     detectBrokenLinks(content, outputPath) {
-        const dom = new JSDOM(content);
-        const doc = dom.window.document;
+        try {
+            const dom = new JSDOM(content);
+            const doc = dom.window.document;
 
-        const links = doc.querySelectorAll('a[href]');
-        const brokenLinks = [];
+            const links = doc.querySelectorAll('a[href]');
+            const brokenLinks = [];
 
-        links.forEach((link, index) => {
-            const href = link.getAttribute('href');
+            links.forEach((link, index) => {
+                const href = link.getAttribute('href');
 
-            // Check for obviously broken links
-            if (href && (
-                href.includes('undefined') ||
-                href.includes('null') ||
-                href === '' ||
-                href.startsWith('http://undefined') ||
-                href.startsWith('https://undefined')
-            )) {
-                brokenLinks.push({
-                    index: index,
-                    href: href,
-                    text: link.textContent.trim(),
-                    file: outputPath
-                });
-            }
-        });
+                // Check for obviously broken links
+                if (href && (
+                    href.includes('undefined') ||
+                    href.includes('null') ||
+                    href === '' ||
+                    href.startsWith('http://undefined') ||
+                    href.startsWith('https://undefined')
+                )) {
+                    brokenLinks.push({
+                        index: index,
+                        href: href,
+                        text: link.textContent.trim(),
+                        file: outputPath
+                    });
+                }
+            });
 
-        return brokenLinks;
+            return brokenLinks;
+        } catch (error) {
+            console.warn(`Warning: Error detecting broken links in ${outputPath}:`, error.message);
+            return [];
+        }
     }
 
     detectMissingFavicon(content, outputPath) {
-        const dom = new JSDOM(content);
-        const doc = dom.window.document;
+        try {
+            const dom = new JSDOM(content);
+            const doc = dom.window.document;
 
-        const favicon = doc.querySelector('link[rel="icon"]') ||
-                       doc.querySelector('link[rel="shortcut icon"]');
+            const favicon = doc.querySelector('link[rel="icon"]') ||
+                           doc.querySelector('link[rel="shortcut icon"]');
 
-        if (!favicon) {
-            return {
-                file: outputPath,
-                missing: true
-            };
+            if (!favicon) {
+                return {
+                    file: outputPath,
+                    missing: true
+                };
+            }
+
+            return null;
+        } catch (error) {
+            console.warn(`Warning: Error detecting missing favicon in ${outputPath}:`, error.message);
+            return null;
         }
-
-        return null;
     }
 
     fixTitleIssues(content, issues) {
@@ -357,42 +382,47 @@ class EleventySEOFixer {
     }
 
     scanAndFixContent(content, outputPath, data) {
-        let fixedContent = content;
+        try {
+            let fixedContent = content;
 
-        // Detect issues
-        const titleIssues = this.detectTitleIssues(content, outputPath, data);
-        const metaDescIssues = this.detectMetaDescriptionIssues(content, outputPath, data);
-        const h1Issues = this.detectH1Issues(content, outputPath, data);
-        const brokenLinks = this.detectBrokenLinks(content, outputPath);
-        const missingFavicon = this.detectMissingFavicon(content, outputPath);
+            // Detect issues
+            const titleIssues = this.detectTitleIssues(content, outputPath, data);
+            const metaDescIssues = this.detectMetaDescriptionIssues(content, outputPath, data);
+            const h1Issues = this.detectH1Issues(content, outputPath, data);
+            const brokenLinks = this.detectBrokenLinks(content, outputPath);
+            const missingFavicon = this.detectMissingFavicon(content, outputPath);
 
-        // Apply fixes
-        if (titleIssues.length > 0) {
-            fixedContent = this.fixTitleIssues(fixedContent, titleIssues);
-            this.issues.titleIssues.push(...titleIssues);
+            // Apply fixes
+            if (titleIssues.length > 0) {
+                fixedContent = this.fixTitleIssues(fixedContent, titleIssues);
+                this.issues.titleIssues.push(...titleIssues);
+            }
+
+            if (metaDescIssues.length > 0) {
+                fixedContent = this.fixMetaDescriptionIssues(fixedContent, metaDescIssues);
+                this.issues.metaDescriptionIssues.push(...metaDescIssues);
+            }
+
+            if (h1Issues.length > 0) {
+                fixedContent = this.fixH1Issues(fixedContent, h1Issues);
+                this.issues.h1Issues.push(...h1Issues);
+            }
+
+            if (brokenLinks.length > 0) {
+                fixedContent = this.fixBrokenLinks(fixedContent, brokenLinks);
+                this.issues.brokenLinks.push(...brokenLinks);
+            }
+
+            if (missingFavicon) {
+                fixedContent = this.addFavicon(fixedContent);
+                this.issues.missingFavicon.push(missingFavicon);
+            }
+
+            return fixedContent;
+        } catch (error) {
+            console.warn(`Warning: Error in scanAndFixContent for ${outputPath}:`, error.message);
+            return content; // Return original content if any error occurs
         }
-
-        if (metaDescIssues.length > 0) {
-            fixedContent = this.fixMetaDescriptionIssues(fixedContent, metaDescIssues);
-            this.issues.metaDescriptionIssues.push(...metaDescIssues);
-        }
-
-        if (h1Issues.length > 0) {
-            fixedContent = this.fixH1Issues(fixedContent, h1Issues);
-            this.issues.h1Issues.push(...h1Issues);
-        }
-
-        if (brokenLinks.length > 0) {
-            fixedContent = this.fixBrokenLinks(fixedContent, brokenLinks);
-            this.issues.brokenLinks.push(...brokenLinks);
-        }
-
-        if (missingFavicon) {
-            fixedContent = this.addFavicon(fixedContent);
-            this.issues.missingFavicon.push(missingFavicon);
-        }
-
-        return fixedContent;
     }
 
     generateReport() {

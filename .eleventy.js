@@ -195,12 +195,18 @@ module.exports = function (eleventyConfig) {
     });
 
     // 3. Initialize the SEO fixer for build-time processing
-    const seoFixer = new EleventySEOFixer();
+    let seoFixer;
+    try {
+        seoFixer = new EleventySEOFixer();
+    } catch (error) {
+        console.warn('Warning: Could not initialize SEO fixer:', error.message);
+        seoFixer = null;
+    }
 
     // 4. Add HTML transform to fix SEO issues during build
     eleventyConfig.addTransform("seo-fixer", function(content, outputPath) {
         // Only process HTML files in the blog directory
-        if (outputPath && outputPath.endsWith('.html') && outputPath.includes('/blog/')) {
+        if (outputPath && outputPath.endsWith('.html') && outputPath.includes('/blog/') && seoFixer) {
             try {
                 const fixedContent = seoFixer.scanAndFixContent(content, outputPath, this);
                 return fixedContent;
@@ -214,12 +220,14 @@ module.exports = function (eleventyConfig) {
 
     // 5. Add build end handler to generate SEO report
     eleventyConfig.on('afterBuild', () => {
-        try {
-            const report = seoFixer.generateReport();
-            seoFixer.printSummary();
-            console.log(`📋 SEO Fixer Report: reports/eleventy-seo-fixes-${Date.now()}.json`);
-        } catch (error) {
-            console.warn('Warning: Failed to generate SEO fixer report:', error.message);
+        if (seoFixer) {
+            try {
+                const report = seoFixer.generateReport();
+                seoFixer.printSummary();
+                console.log(`📋 SEO Fixer Report: reports/eleventy-seo-fixes-${Date.now()}.json`);
+            } catch (error) {
+                console.warn('Warning: Failed to generate SEO fixer report:', error.message);
+            }
         }
     });
 
