@@ -84,6 +84,15 @@ async function enhanceBlogPostSEO() {
             frontMatterModified = true;
         }
 
+        // Check for H2 tags with nested HTML in content and fix them
+        const h2Regex = /##\s*\*\*(.*?)\*\*/g;
+        if (h2Regex.test(content)) {
+            const fixedContent = content.replace(h2Regex, '## $1');
+            fs.writeFileSync(filePath, matter.stringify(fixedContent, data), 'utf8');
+            console.log(`- Fixed H2 tags with nested HTML in "${file}"`);
+            frontMatterModified = true;
+        }
+
         if (frontMatterModified) {
             const newContent = matter.stringify(content, data);
             fs.writeFileSync(filePath, newContent, 'utf8');

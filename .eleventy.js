@@ -97,8 +97,40 @@ module.exports = function (eleventyConfig) {
         return collection.getFilteredByTag("notifications");
     });
 
-    // Add short URL generation for new posts
+    // Add link validation for new content
     eleventyConfig.on('beforeBuild', () => {
+        try {
+            // Run link validation on key templates
+            const { LinkValidationGuard } = require('./scripts/link-validation-guard');
+            const validator = new LinkValidationGuard();
+
+            const templatesToCheck = [
+                'src/_includes/header.njk',
+                'src/_includes/footer.njk',
+                'src/_includes/base.njk',
+                'src/admin/index.html',
+                'src/404.html'
+            ];
+
+            console.log('🔗 Running link validation on templates...');
+            templatesToCheck.forEach(async (template) => {
+                const fullPath = path.join(__dirname, template);
+                if (fs.existsSync(fullPath)) {
+                    try {
+                        const content = fs.readFileSync(fullPath, 'utf8');
+                        const issues = await validator.validateContent(fullPath, content);
+                        if (issues.length > 0) {
+                            console.warn(`⚠️  Link issues found in ${template}:`, issues.length);
+                        }
+                    } catch (error) {
+                        console.warn(`Warning: Could not validate ${template}:`, error.message);
+                    }
+                }
+            });
+        } catch (error) {
+            console.warn('Warning: Link validation failed:', error.message);
+        }
+
         try {
             // Run the short URL generator script
             require('./scripts/generate-short-urls.js');

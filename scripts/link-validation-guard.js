@@ -169,6 +169,63 @@ class LinkValidationGuard {
     }
 
     /**
+     * Check for potential orphan URLs by ensuring essential pages are linked
+     */
+    checkEssentialPageLinks(links, filePath) {
+        const essentialPages = [
+            '/about/',
+            '/contact/',
+            '/privacy-policy/',
+            '/terms-of-service/'
+        ];
+
+        const platformPages = [
+            '/x-tiktok/',
+            '/x-instagram/',
+            '/x-youtube/',
+            '/x-twitter/',
+            '/x-facebook/',
+            '/x-linkedin/',
+            '/x-twitch/',
+            '/x-kick/',
+            '/x-misc/'
+        ];
+
+        const linkedUrls = new Set(
+            links.filter(link => link.isInternal && link.href !== '#')
+                 .map(link => this.normalizeUrl(link.href))
+        );
+
+        // Check essential pages
+        essentialPages.forEach(essentialPage => {
+            if (!linkedUrls.has(essentialPage)) {
+                this.issues.push({
+                    type: 'MISSING_ESSENTIAL_LINK',
+                    severity: 'warning',
+                    file: filePath,
+                    message: `Consider linking to essential page: ${essentialPage}`,
+                    suggestion: 'Add internal link to prevent orphan URL',
+                    details: `Essential page not linked from this content: ${essentialPage}`
+                });
+            }
+        });
+
+        // Check platform pages
+        platformPages.forEach(platformPage => {
+            if (!linkedUrls.has(platformPage)) {
+                this.issues.push({
+                    type: 'MISSING_PLATFORM_LINK',
+                    severity: 'info',
+                    file: filePath,
+                    message: `Consider linking to platform page: ${platformPage}`,
+                    suggestion: 'Add internal link to platform content hub',
+                    details: `Platform page not linked from this content: ${platformPage}`
+                });
+            }
+        });
+    }
+
+    /**
      * Check for duplicate anchor text to same internal page
      */
     checkDuplicateAnchors(links, filePath) {

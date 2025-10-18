@@ -1,0 +1,336 @@
+Links: Issues with internal backlinks, internal links and external links, their anchors, HTTP status codes and rel attributes.
+
+Orphan URLs - only found via sitemap
+Category: Links
+These are URLs not discoverable through internal linking and have a status code other than 404. They're detectable only via the sitemap, and 'float' within a domain's set of URLs, evading web crawlers and standard Google bot indexing.
+https://blog.evolvedlotus.com/404/ | Score: 3.53 | Status: 200 | Last Crawled: 14 Oct
+https://blog.evolvedlotus.com/admin/ | Score: 3.53 | Status: 200 | Last Crawled: 14 Oct
+https://blog.evolvedlotus.com/blog/2024-09-27-evolved-insights-“tiny-twitter-niche”/ | Score: 3.12 | Status: 200 | Last Crawled: 14 Oct
+https://blog.evolvedlotus.com/notifications/welcome-notification/ | Score: 3.12 | Status: 200 | Last Crawled: 14 Oct
+https://blog.evolvedlotus.com/notifications/2025-05-22-twitter-x-reply-bot/ | Score: 3.12 | Status: 200 | Last Crawled: 14 Oct
+
+
+Has only one followed internal linking URL
+Category: Links
+The URL has only one followed incoming link from one other URL on the website. The amount of internal backlinks and their anchors have impact on page rankings. More internal backlinks means higher rankings, so it is better to add more links from other internal pages to pages listed in this filter.
+https://blog.evolvedlotus.com/blog | Score: 6.88 | Issue Found: 14 Oct | Indexable: true
+https://blog.evolvedlotus.com/x-tiktok | Score: 2.52 | Issue Found: 14 Oct | Indexable: true
+https://blog.evolvedlotus.com/x-link | Score: 2.52 | Issue Found: 14 Oct | Indexable: true
+https://blog.evolvedlotus.com/x-twitch | Score: 2.52 | Issue Found: 14 Oct | Indexable: true
+https://blog.evolvedlotus.com/x-yt | Score: 2.52 | Issue Found: 14 Oct | Indexable: true
+https://blog.evolvedlotus.com/x-fb | Score: 2.52 | Issue Found: 14 Oct | Indexable: true
+https://blog.evolvedlotus.com/x-twitter | Score: 2.52 | Issue Found: 14 Oct | Indexable: true
+https://blog.evolvedlotus.com/x-ig | Score: 2.52 | Issue Found: 14 Oct | Indexable: true
+https://blog.evolvedlotus.com/x-misc | Score: 2.52 | Issue Found: 14 Oct | Indexable: true
+https://blog.evolvedlotus.com/x-kick | Score: 2.52 | Issue Found: 14 Oct | Indexable: true
+https://blog.evolvedlotus.com/blog/2024-07-31-facebook-ugc-creator-lotus-takes/www.canva.com | Score: 2.43 | Issue Found: 14 Oct | Indexable: true
+https://blog.evolvedlotus.com/blog/2023-12-26-from-sound-waves-to-screens-the-intro-to-podcast/linktr.ee/evlextra | Score: 2.43 | Issue Found: 14 Oct | Indexable: true
+https://blog.evolvedlotus.com/blog/2024-03-28-twitter-𝕏-updates-new-user-experience-and-battling-bots/ | Score: 2.29 | Issue Found: 14 Oct | Indexable: true
+
+
+Page has internal links to 3xx pages
+Category: Links
+The URL has at least one outgoing internal link to redirected page. 3xx status code (301, 302, etc.) stand for redirection. 
+https://blog.evolvedlotus.com/ | Score: 79.77 | Status: 200 | Issue Found: 14 Oct | Indexable: true
+https://blog.evolvedlotus.com/blog/ | Score: 12.39 | Status: 200 | Issue Found: 14 Oct | Indexable: true
+https://blog.evolvedlotus.com/blog/2025-08-29-batch-content-creation-techniques-that-save-hours/ | Score: 2.85 | Status: 200 | Issue Found: 14 Oct | Indexable: true
+
+
+Page has no outgoing links
+Category: Links
+If a page has no outgoing links, it is a "dead end" for both website visitors and search engine crawlers.
+https://blog.evolvedlotus.com/admin/ | Score: 3.53 | Status: 200 | Issue Found: 14 Oct | Internal Links Count: 0
+
+
+Page has outbound internal links with one word anchor
+Category: Links
+Page has one or more outgoing links to internal pages with one word anchor text. Using more descriptive anchor text you can help Google to understand the context of the pages you link to and start ranking by more keywords.
+https://blog.evolvedlotus.com/contact/ | Score: 100 | Status: 200 | Issue Found: 14 Oct | Indexable: true
+https://blog.evolvedlotus.com/privacy-policy/ | Score: 86.36 | Status: 200 | Issue Found: 14 Oct | Indexable: true
+https://blog.evolvedlotus.com/terms-of-service/ | Score: 86.36 | Status: 200 | Issue Found: 14 Oct | Indexable: true
+https://blog.evolvedlotus.com/about/ | Score: 83.5 | Status: 200 | Issue Found: 14 Oct | Indexable: true
+https://blog.evolvedlotus.com/ | Score: 79.77 | Status: 200 | Issue Found: 14 Oct | Indexable: true
+https://blog.evolvedlotus.com/blog/ | Score: 12.39 | Status: 200 | Issue Found: 14 Oct | Indexable: true
+https://blog.evolvedlotus.com/blog/2025-10-13-turning-your-content-into-multiple-revenue-streams/ | Score: 10.34 | Status: 200 | Issue Found: 14 Oct | Indexable: true
+https://blog.evolvedlotus.com/blog/2025-08-11-how-to-create-30-days-of-content-in-one-weekend/ | Score: 6.53 | Status: 200 | Issue Found: 14 Oct | Indexable: true
+https://blog.evolvedlotus.com/blog/2025-01-29-how-to-write-a-viral-caption-for-social-media/ | Score: 6.53 | Status: 200 | Issue Found: 14 Oct | Indexable: true
+https://blog.evolvedlotus.com/blog/2023-11-20-boost-tiktok-visuals-top-online-resources/ | Score: 5.67 | Status: 200 | Issue Found: 14 Oct | Indexable: true
+https://blog.evolvedlotus.com/blog/2025-09-09-best-video-recording-software-2025-free-paid-tools-compared/ | Score: 5.65 | Status: 200 | Issue Found: 14 Oct | Indexable: true
+https://blog.evolvedlotus.com/x-kick/ | Score: 5.6 | Status: 200 | Issue Found: 14 Oct | Indexable: true
+https://blog.evolvedlotus.com/blog/2025-08-13-top-free-design-tools-every-creator-needs/ | Score: 5.31 | Status: 200 | Issue Found: 14 Oct | Indexable: true
+https://blog.evolvedlotus.com/x-link/ | Score: 5.23 | Status: 200 | Issue Found: 14 Oct | Indexable: true
+https://blog.evolvedlotus.com/x-fb/ | Score: 5.19 | Status: 200 | Issue Found: 14 Oct | Indexable: true
+https://blog.evolvedlotus.com/blog/2023-11-20-jams-without-jitters-your-copyright-free-soundtrack-guide/ | Score: 4.99 | Status: 200 | Issue Found: 14 Oct | Indexable: true
+https://blog.evolvedlotus.com/x-twitch/ | Score: 4.92 | Status: 200 | Issue Found: 14 Oct | Indexable: true
+https://blog.evolvedlotus.com/blog/2025-08-15-understanding-social-media-analytics-what-metrics-actually-matter/ | Score: 4.83 | Status: 200 | Issue Found: 14 Oct | Indexable: true
+https://blog.evolvedlotus.com/x-ig/ | Score: 4.78 | Status: 200 | Issue Found: 14 Oct | Indexable: true
+https://blog.evolvedlotus.com/blog/2023-11-20-social-scheduling-mastery-harnessing-free-tools-for-online-success/ | Score: 4.68 | Status: 200 | Issue Found: 14 Oct | Indexable: true
+https://blog.evolvedlotus.com/x-twitter/ | Score: 4.66 | Status: 200 | Issue Found: 14 Oct | Indexable: true
+https://blog.evolvedlotus.com/blog/2025-10-08-building-genuine-engagement-vs-vanity-metrics/ | Score: 4.62 | Status: 200 | Issue Found: 14 Oct | Indexable: true
+https://blog.evolvedlotus.com/x-yt/ | Score: 4.62 | Status: 200 | Issue Found: 14 Oct | Indexable: true
+https://blog.evolvedlotus.com/x-tiktok/ | Score: 4.61 | Status: 200 | Issue Found: 14 Oct | Indexable: true
+https://blog.evolvedlotus.com/x-misc/ | Score: 4.54 | Status: 200 | Issue Found: 14 Oct | Indexable: true
+https://blog.evolvedlotus.com/blog/2025-09-10-using-data-to-optimize-your-posting-schedule/ | Score: 4.4 | Status: 200 | Issue Found: 14 Oct | Indexable: true
+https://blog.evolvedlotus.com/blog/2023-11-22-power-up-free-hashtag-tools-unleashed/ | Score: 4.3 | Status: 200 | Issue Found: 14 Oct | Indexable: true
+https://blog.evolvedlotus.com/blog/2024-04-11-level-up-your-stream-from-bland-to-grand/ | Score: 4.14 | Status: 200 | Issue Found: 14 Oct | Indexable: true
+https://blog.evolvedlotus.com/blog/2023-12-04-twitchcraft-mastering-stream-settings-for-seamless-success/ | Score: 3.96 | Status: 200 | Issue Found: 14 Oct | Indexable: true
+https://blog.evolvedlotus.com/blog/2024-02-29-metas-stop-to-misinformation/ | Score: 3.93 | Status: 200 | Issue Found: 14 Oct | Indexable: true
+https://blog.evolvedlotus.com/blog/2023-11-24-linkedin-lift-off-2023-profile-power-unleashed/ | Score: 3.93 | Status: 200 | Issue Found: 14 Oct | Indexable: true
+https://blog.evolvedlotus.com/blog/2023-11-28-unlock-facebook-growth-your-ultimate-guide/ | Score: 3.84 | Status: 200 | Issue Found: 14 Oct | Indexable: true
+https://blog.evolvedlotus.com/blog/2025-09-12-open-source-alternatives-to-expensive-creator-tools/ | Score: 3.82 | Status: 200 | Issue Found: 14 Oct | Indexable: true
+https://blog.evolvedlotus.com/blog/2023-12-07-lotus-evolution-twitch-wave-weekly/ | Score: 3.79 | Status: 200 | Issue Found: 14 Oct | Indexable: true
+https://blog.evolvedlotus.com/blog/2025-09-25-color-theory-and-design-principles-for-social-media/ | Score: 3.76 | Status: 200 | Issue Found: 14 Oct | Indexable: true
+https://blog.evolvedlotus.com/blog/2024-04-09-no-more-regrets-edit-pin-style-up-your-instagram-dms/ | Score: 3.76 | Status: 200 | Issue Found: 14 Oct | Indexable: true
+https://blog.evolvedlotus.com/blog/2024-03-12-crypto-turned-gold/ | Score: 3.62 | Status: 200 | Issue Found: 14 Oct | Indexable: true
+https://blog.evolvedlotus.com/blog/2024-02-12-streamwise-mastering-multistreaming/ | Score: 3.48 | Status: 200 | Issue Found: 14 Oct | Indexable: true
+https://blog.evolvedlotus.com/blog/2023-12-18-winter-streampass-winter-fest/ | Score: 3.48 | Status: 200 | Issue Found: 14 Oct | Indexable: true
+https://blog.evolvedlotus.com/blog/2024-03-27-game-changers-why-women-are-leading-the-gaming-revolution/ | Score: 3.48 | Status: 200 | Issue Found: 14 Oct | Indexable: true
+https://blog.evolvedlotus.com/blog/2024-01-04-evolving-taxes-twitch101-2024/ | Score: 3.48 | Status: 200 | Issue Found: 14 Oct | Indexable: true
+https://blog.evolvedlotus.com/blog/2025-05-19-streaming-in-2025-the-no-bs-guide-to-getting-started-or-leveling-up/ | Score: 3.48 | Status: 200 | Issue Found: 14 Oct | Indexable: true
+https://blog.evolvedlotus.com/blog/2024-04-25-twitch-streamlined-secure/ | Score: 3.48 | Status: 200 | Issue Found: 14 Oct | Indexable: true
+https://blog.evolvedlotus.com/blog/2024-06-18-linkedin-gpt-microsoft-changes-job-searching/ | Score: 3.48 | Status: 200 | Issue Found: 14 Oct | Indexable: true
+https://blog.evolvedlotus.com/blog/2024-02-01-linkedins-influence-on-the-current/ | Score: 3.48 | Status: 200 | Issue Found: 14 Oct | Indexable: true
+https://blog.evolvedlotus.com/blog/2024-05-10-meta-llama-3-your-next-gen-ai-assistant/ | Score: 3.46 | Status: 200 | Issue Found: 14 Oct | Indexable: true
+https://blog.evolvedlotus.com/blog/2024-01-24-facebook-ads-with-evolvedlotus/ | Score: 3.46 | Status: 200 | Issue Found: 14 Oct | Indexable: true
+https://blog.evolvedlotus.com/blog/2023-12-11-crafting-digital-futures-meta-ai-unleashed/ | Score: 3.46 | Status: 200 | Issue Found: 14 Oct | Indexable: true
+https://blog.evolvedlotus.com/blog/2025-07-29-are-instagram-ads-worth-it-plus-new-strategies-for-organic-growth-in-2025/ | Score: 3.42 | Status: 200 | Issue Found: 14 Oct | Indexable: true
+https://blog.evolvedlotus.com/blog/2024-01-31-how-does-instagram-pay-you-unraveling-instagram-payments/ | Score: 3.42 | Status: 200 | Issue Found: 14 Oct | Indexable: true
+https://blog.evolvedlotus.com/blog/2023-12-03-decembers-dynamics-unleash-the-upcoming-trends/ | Score: 3.42 | Status: 200 | Issue Found: 14 Oct | Indexable: true
+https://blog.evolvedlotus.com/blog/2023-12-12-podcast-revolution-instagram-unleashes-creativity/ | Score: 3.42 | Status: 200 | Issue Found: 14 Oct | Indexable: true
+https://blog.evolvedlotus.com/blog/2024-01-09-evolving-as-an-artist-bloom-your-tunes/ | Score: 3.36 | Status: 200 | Issue Found: 14 Oct | Indexable: true
+https://blog.evolvedlotus.com/blog/2024-02-15-tweeting-trends-twitters-2024-algorithm/ | Score: 3.36 | Status: 200 | Issue Found: 14 Oct | Indexable: true
+https://blog.evolvedlotus.com/blog/2025-07-30-twitter-x-unpacked-mastering-growth-engagement-with-latest-features-ai/ | Score: 3.36 | Status: 200 | Issue Found: 14 Oct | Indexable: true
+https://blog.evolvedlotus.com/blog/2024-05-06-x-and-grok-ai-sipping-news-smoothies-with-ai-powered-summaries/ | Score: 3.36 | Status: 200 | Issue Found: 14 Oct | Indexable: true
+https://blog.evolvedlotus.com/blog/2024-07-20-trend-genius-new-ai-for-advertisements/ | Score: 3.36 | Status: 200 | Issue Found: 14 Oct | Indexable: true
+https://blog.evolvedlotus.com/blog/2023-12-23-hashtag-alchemy-transforming-trends-into-tales/ | Score: 3.36 | Status: 200 | Issue Found: 14 Oct | Indexable: true
+https://blog.evolvedlotus.com/blog/2023-12-08-blooming-amidst-the-x-storm-advertising-opportunity/ | Score: 3.36 | Status: 200 | Issue Found: 14 Oct | Indexable: true
+https://blog.evolvedlotus.com/blog/2024-02-28-evolvedlist-februarys-thriving-creators/ | Score: 3.35 | Status: 200 | Issue Found: 14 Oct | Indexable: true
+https://blog.evolvedlotus.com/blog/2024-08-27-youtube-kids-safe-channel-launch/ | Score: 3.35 | Status: 200 | Issue Found: 14 Oct | Indexable: true
+https://blog.evolvedlotus.com/blog/2024-03-29-youtube-just-gave-creators-a-makeover-its-time-to-shine/ | Score: 3.35 | Status: 200 | Issue Found: 14 Oct | Indexable: true
+https://blog.evolvedlotus.com/blog/2023-12-09-lotus-blooms-in-the-youtube-jungle/ | Score: 3.35 | Status: 200 | Issue Found: 14 Oct | Indexable: true
+https://blog.evolvedlotus.com/blog/2024-05-08-youtubes-ai-your-genie-for-content-ads/ | Score: 3.35 | Status: 200 | Issue Found: 14 Oct | Indexable: true
+https://blog.evolvedlotus.com/blog/2024-07-23-new-short-way-for-youtube-ads/ | Score: 3.35 | Status: 200 | Issue Found: 14 Oct | Indexable: true
+https://blog.evolvedlotus.com/blog/2024-01-15-youtubeevolved-youtube-2024-algorithm/ | Score: 3.35 | Status: 200 | Issue Found: 14 Oct | Indexable: true
+https://blog.evolvedlotus.com/blog/2024-06-22-the-rise-of-tiktok’s-new-influencers/ | Score: 3.34 | Status: 200 | Issue Found: 14 Oct | Indexable: true
+https://blog.evolvedlotus.com/blog/2024-02-03-umgs-exit-the-shift-of-music/ | Score: 3.34 | Status: 200 | Issue Found: 14 Oct | Indexable: true
+https://blog.evolvedlotus.com/blog/2025-05-13-how-to-skyrocket-your-tiktok-views-and-engagement-a-simple-content-strategy/ | Score: 3.34 | Status: 200 | Issue Found: 14 Oct | Indexable: true
+https://blog.evolvedlotus.com/blog/2024-03-02-affiliate-hustle-become-a-tiktok-shop-pro/ | Score: 3.34 | Status: 200 | Issue Found: 14 Oct | Indexable: true
+https://blog.evolvedlotus.com/blog/2023-12-14-2024-tiktok-forge-authentic-connections/ | Score: 3.34 | Status: 200 | Issue Found: 14 Oct | Indexable: true
+https://blog.evolvedlotus.com/blog/2024-04-12-expand-your-reach-dont-preach-linkedins-the-speech/ | Score: 3.31 | Status: 200 | Issue Found: 14 Oct | Indexable: true
+https://blog.evolvedlotus.com/blog/2023-12-05/follow-the-lead-linkedin-unleashed-–-your-follower-magnet/ | Score: 3.31 | Status: 200 | Issue Found: 14 Oct | Indexable: true
+https://blog.evolvedlotus.com/blog/2025-04-27-facebook-content-mastery-5-proven-strategies-for-explosive-engagement/ | Score: 3.29 | Status: 200 | Issue Found: 14 Oct | Indexable: true
+https://blog.evolvedlotus.com/blog/2023-11-22-influencer-brilliance-unleash-online-power/ | Score: 3.29 | Status: 200 | Issue Found: 14 Oct | Indexable: true
+https://blog.evolvedlotus.com/blog/2023-11-20-brand-deals-made-easy-with-signaturely/ | Score: 3.29 | Status: 200 | Issue Found: 14 Oct | Indexable: true
+https://blog.evolvedlotus.com/blog/2025-05-22-why-most-content-creators-are-setting-themselves-up-for-failure/ | Score: 3.29 | Status: 200 | Issue Found: 14 Oct | Indexable: true
+https://blog.evolvedlotus.com/blog/2025-01-22-evolvedlotus-view-on-hootsuite’s-2025-report/ | Score: 3.29 | Status: 200 | Issue Found: 14 Oct | Indexable: true
+https://blog.evolvedlotus.com/blog/2025-08-25-how-to-price-your-services-as-a-content-creator-in-2025/ | Score: 3.29 | Status: 200 | Issue Found: 14 Oct | Indexable: true
+https://blog.evolvedlotus.com/blog/2025-08-27-basic-seo-for-content-creators/ | Score: 3.29 | Status: 200 | Issue Found: 14 Oct | Indexable: true
+https://blog.evolvedlotus.com/blog/2024-07-31-facebook-ugc-creator-lotus-takes/ | Score: 3.29 | Status: 200 | Issue Found: 14 Oct | Indexable: true
+https://blog.evolvedlotus.com/blog/2024-11-04-november’s-must-know-social-trends/ | Score: 3.29 | Status: 200 | Issue Found: 14 Oct | Indexable: true
+https://blog.evolvedlotus.com/blog/2025-09-22-building-email-lists-through-social-media-content-the-complete-2025-strategy-guide/ | Score: 3.29 | Status: 200 | Issue Found: 14 Oct | Indexable: true
+https://blog.evolvedlotus.com/blog/2023-12-30-tiktoks-faceless-recipes-evolvedlotus-insights/ | Score: 3.18 | Status: 200 | Issue Found: 14 Oct | Indexable: true
+https://blog.evolvedlotus.com/blog/2023-12-26-from-sound-waves-to-screens-the-intro-to-podcast/ | Score: 3.18 | Status: 200 | Issue Found: 14 Oct | Indexable: true
+https://blog.evolvedlotus.com/blog/2024-04-18-tiktoks-faceless-travel-tips-and-guide-evolvedlotus-insights/ | Score: 3.18 | Status: 200 | Issue Found: 14 Oct | Indexable: true
+https://blog.evolvedlotus.com/blog/2023-12-10-tiktoks-faceless-motivation-evolvedlotus-insights/ | Score: 3.18 | Status: 200 | Issue Found: 14 Oct | Indexable: true
+https://blog.evolvedlotus.com/blog/2023-12-06-lotus-harmony-evolving-your-music/ | Score: 3.18 | Status: 200 | Issue Found: 14 Oct | Indexable: true
+https://blog.evolvedlotus.com/blog/2024-03-14-tiktok-implements-new-changes/ | Score: 3.18 | Status: 200 | Issue Found: 14 Oct | Indexable: true
+https://blog.evolvedlotus.com/blog/2023-12-02-reel-brilliance-crafting-captivating-facebook-videos/ | Score: 3.17 | Status: 200 | Issue Found: 14 Oct | Indexable: true
+https://blog.evolvedlotus.com/blog/2023-11-22-online-mastery-a-creators-guide/ | Score: 3.14 | Status: 200 | Issue Found: 14 Oct | Indexable: true
+https://blog.evolvedlotus.com/blog/2024-09-27-evolved-insights-“tiny-twitter-niche”/ | Score: 3.12 | Status: 200 | Issue Found: 14 Oct | Indexable: true
+https://blog.evolvedlotus.com/notifications/welcome-notification/ | Score: 3.12 | Status: 200 | Issue Found: 14 Oct | Indexable: true
+https://blog.evolvedlotus.com/notifications/2025-05-22-twitter-x-reply-bot/ | Score: 3.12 | Status: 200 | Issue Found: 14 Oct | Indexable: true
+https://blog.evolvedlotus.com/blog/2025-02-20-is-1of10-really-worth-it-or-should-you-save-your-money-and-learn-on-your-own/ | Score: 3.07 | Status: 200 | Issue Found: 14 Oct | Indexable: true
+https://blog.evolvedlotus.com/blog/2025-08-29-batch-content-creation-techniques-that-save-hours/ | Score: 2.85 | Status: 200 | Issue Found: 14 Oct | Indexable: true
+
+
+Page has less than 10 internal backlinks
+Category: Links
+The optimum number of internal backlinks that point back to the page for most websites should be around 20.
+https://blog.evolvedlotus.com/blog/ | Score: 12.39 | Issue Found: 14 Oct | Incoming Links: 5
+https://blog.evolvedlotus.com/blog/2025-08-11-how-to-create-30-days-of-content-in-one-weekend/ | Score: 6.53 | Issue Found: 14 Oct | Incoming Links: 6
+https://blog.evolvedlotus.com/blog/2025-01-29-how-to-write-a-viral-caption-for-social-media/ | Score: 6.53 | Issue Found: 14 Oct | Incoming Links: 6
+https://blog.evolvedlotus.com/blog/2023-11-20-boost-tiktok-visuals-top-online-resources/ | Score: 5.67 | Issue Found: 14 Oct | Incoming Links: 9
+https://blog.evolvedlotus.com/x-kick/ | Score: 5.6 | Issue Found: 14 Oct | Incoming Links: 4
+https://blog.evolvedlotus.com/x-link/ | Score: 5.23 | Issue Found: 14 Oct | Incoming Links: 5
+https://blog.evolvedlotus.com/x-fb/ | Score: 5.19 | Issue Found: 14 Oct | Incoming Links: 5
+https://blog.evolvedlotus.com/blog/2023-11-20-jams-without-jitters-your-copyright-free-soundtrack-guide/ | Score: 4.99 | Issue Found: 14 Oct | Incoming Links: 8
+https://blog.evolvedlotus.com/x-twitch/ | Score: 4.92 | Issue Found: 14 Oct | Incoming Links: 4
+https://blog.evolvedlotus.com/blog/2025-08-15-understanding-social-media-analytics-what-metrics-actually-matter/ | Score: 4.83 | Issue Found: 14 Oct | Incoming Links: 9
+https://blog.evolvedlotus.com/x-ig/ | Score: 4.78 | Issue Found: 14 Oct | Incoming Links: 4
+https://blog.evolvedlotus.com/blog/2023-11-20-social-scheduling-mastery-harnessing-free-tools-for-online-success/ | Score: 4.68 | Issue Found: 14 Oct | Incoming Links: 9
+https://blog.evolvedlotus.com/x-twitter/ | Score: 4.66 | Issue Found: 14 Oct | Incoming Links: 4
+https://blog.evolvedlotus.com/blog/2025-10-08-building-genuine-engagement-vs-vanity-metrics/ | Score: 4.62 | Issue Found: 14 Oct | Incoming Links: 9
+https://blog.evolvedlotus.com/x-yt/ | Score: 4.62 | Issue Found: 14 Oct | Incoming Links: 4
+https://blog.evolvedlotus.com/x-tiktok/ | Score: 4.61 | Issue Found: 14 Oct | Incoming Links: 4
+https://blog.evolvedlotus.com/x-misc/ | Score: 4.54 | Issue Found: 14 Oct | Incoming Links: 4
+https://blog.evolvedlotus.com/blog/2025-09-10-using-data-to-optimize-your-posting-schedule/ | Score: 4.4 | Issue Found: 14 Oct | Incoming Links: 9
+https://blog.evolvedlotus.com/blog/2023-11-22-power-up-free-hashtag-tools-unleashed/ | Score: 4.3 | Issue Found: 14 Oct | Incoming Links: 8
+https://blog.evolvedlotus.com/blog/2024-04-11-level-up-your-stream-from-bland-to-grand/ | Score: 4.14 | Issue Found: 14 Oct | Incoming Links: 5
+https://blog.evolvedlotus.com/blog/2023-12-04-twitchcraft-mastering-stream-settings-for-seamless-success/ | Score: 3.96 | Issue Found: 14 Oct | Incoming Links: 5
+https://blog.evolvedlotus.com/blog/2024-02-29-metas-stop-to-misinformation/ | Score: 3.93 | Issue Found: 14 Oct | Incoming Links: 6
+https://blog.evolvedlotus.com/blog/2023-11-24-linkedin-lift-off-2023-profile-power-unleashed/ | Score: 3.93 | Issue Found: 14 Oct | Incoming Links: 5
+https://blog.evolvedlotus.com/blog/2023-11-28-unlock-facebook-growth-your-ultimate-guide/ | Score: 3.84 | Issue Found: 14 Oct | Incoming Links: 5
+https://blog.evolvedlotus.com/blog/2025-09-12-open-source-alternatives-to-expensive-creator-tools/ | Score: 3.82 | Issue Found: 14 Oct | Incoming Links: 9
+https://blog.evolvedlotus.com/blog/2023-12-07-lotus-evolution-twitch-wave-weekly/ | Score: 3.79 | Issue Found: 14 Oct | Incoming Links: 5
+https://blog.evolvedlotus.com/blog/2025-09-25-color-theory-and-design-principles-for-social-media/ | Score: 3.76 | Issue Found: 14 Oct | Incoming Links: 9
+https://blog.evolvedlotus.com/blog/2024-04-09-no-more-regrets-edit-pin-style-up-your-instagram-dms/ | Score: 3.76 | Issue Found: 14 Oct | Incoming Links: 5
+https://blog.evolvedlotus.com/blog/2024-03-12-crypto-turned-gold/ | Score: 3.62 | Issue Found: 14 Oct | Incoming Links: 4
+https://blog.evolvedlotus.com/blog/2024-02-12-streamwise-mastering-multistreaming/ | Score: 3.48 | Issue Found: 14 Oct | Incoming Links: 4
+https://blog.evolvedlotus.com/blog/2023-12-18-winter-streampass-winter-fest/ | Score: 3.48 | Issue Found: 14 Oct | Incoming Links: 4
+https://blog.evolvedlotus.com/blog/2024-03-27-game-changers-why-women-are-leading-the-gaming-revolution/ | Score: 3.48 | Issue Found: 14 Oct | Incoming Links: 4
+https://blog.evolvedlotus.com/blog/2024-01-04-evolving-taxes-twitch101-2024/ | Score: 3.48 | Issue Found: 14 Oct | Incoming Links: 4
+https://blog.evolvedlotus.com/blog/2025-05-19-streaming-in-2025-the-no-bs-guide-to-getting-started-or-leveling-up/ | Score: 3.48 | Issue Found: 14 Oct | Incoming Links: 4
+https://blog.evolvedlotus.com/blog/2024-04-25-twitch-streamlined-secure/ | Score: 3.48 | Issue Found: 14 Oct | Incoming Links: 4
+https://blog.evolvedlotus.com/blog/2024-06-18-linkedin-gpt-microsoft-changes-job-searching/ | Score: 3.48 | Issue Found: 14 Oct | Incoming Links: 4
+https://blog.evolvedlotus.com/blog/2024-02-01-linkedins-influence-on-the-current/ | Score: 3.48 | Issue Found: 14 Oct | Incoming Links: 4
+https://blog.evolvedlotus.com/blog/2024-05-10-meta-llama-3-your-next-gen-ai-assistant/ | Score: 3.46 | Issue Found: 14 Oct | Incoming Links: 4
+https://blog.evolvedlotus.com/blog/2024-01-24-facebook-ads-with-evolvedlotus/ | Score: 3.46 | Issue Found: 14 Oct | Incoming Links: 4
+https://blog.evolvedlotus.com/blog/2023-12-11-crafting-digital-futures-meta-ai-unleashed/ | Score: 3.46 | Issue Found: 14 Oct | Incoming Links: 4
+https://blog.evolvedlotus.com/blog/2025-07-29-are-instagram-ads-worth-it-plus-new-strategies-for-organic-growth-in-2025/ | Score: 3.42 | Issue Found: 14 Oct | Incoming Links: 4
+https://blog.evolvedlotus.com/blog/2024-01-31-how-does-instagram-pay-you-unraveling-instagram-payments/ | Score: 3.42 | Issue Found: 14 Oct | Incoming Links: 4
+https://blog.evolvedlotus.com/blog/2023-12-03-decembers-dynamics-unleash-the-upcoming-trends/ | Score: 3.42 | Issue Found: 14 Oct | Incoming Links: 4
+https://blog.evolvedlotus.com/blog/2023-12-12-podcast-revolution-instagram-unleashes-creativity/ | Score: 3.42 | Issue Found: 14 Oct | Incoming Links: 4
+https://blog.evolvedlotus.com/blog/2024-01-09-evolving-as-an-artist-bloom-your-tunes/ | Score: 3.36 | Issue Found: 14 Oct | Incoming Links: 4
+https://blog.evolvedlotus.com/blog/2024-02-15-tweeting-trends-twitters-2024-algorithm/ | Score: 3.36 | Issue Found: 14 Oct | Incoming Links: 4
+https://blog.evolvedlotus.com/blog/2025-07-30-twitter-x-unpacked-mastering-growth-engagement-with-latest-features-ai/ | Score: 3.36 | Issue Found: 14 Oct | Incoming Links: 4
+https://blog.evolvedlotus.com/blog/2024-05-06-x-and-grok-ai-sipping-news-smoothies-with-ai-powered-summaries/ | Score: 3.36 | Issue Found: 14 Oct | Incoming Links: 4
+https://blog.evolvedlotus.com/blog/2024-07-20-trend-genius-new-ai-for-advertisements/ | Score: 3.36 | Issue Found: 14 Oct | Incoming Links: 4
+https://blog.evolvedlotus.com/blog/2023-12-23-hashtag-alchemy-transforming-trends-into-tales/ | Score: 3.36 | Issue Found: 14 Oct | Incoming Links: 4
+https://blog.evolvedlotus.com/blog/2023-12-08-blooming-amidst-the-x-storm-advertising-opportunity/ | Score: 3.36 | Issue Found: 14 Oct | Incoming Links: 4
+https://blog.evolvedlotus.com/blog/2024-02-28-evolvedlist-februarys-thriving-creators/ | Score: 3.35 | Issue Found: 14 Oct | Incoming Links: 4
+https://blog.evolvedlotus.com/blog/2024-08-27-youtube-kids-safe-channel-launch/ | Score: 3.35 | Issue Found: 14 Oct | Incoming Links: 4
+https://blog.evolvedlotus.com/blog/2024-03-29-youtube-just-gave-creators-a-makeover-its-time-to-shine/ | Score: 3.35 | Issue Found: 14 Oct | Incoming Links: 4
+https://blog.evolvedlotus.com/blog/2023-12-09-lotus-blooms-in-the-youtube-jungle/ | Score: 3.35 | Issue Found: 14 Oct | Incoming Links: 4
+https://blog.evolvedlotus.com/blog/2024-05-08-youtubes-ai-your-genie-for-content-ads/ | Score: 3.35 | Issue Found: 14 Oct | Incoming Links: 4
+https://blog.evolvedlotus.com/blog/2024-07-23-new-short-way-for-youtube-ads/ | Score: 3.35 | Issue Found: 14 Oct | Incoming Links: 4
+https://blog.evolvedlotus.com/blog/2024-01-15-youtubeevolved-youtube-2024-algorithm/ | Score: 3.35 | Issue Found: 14 Oct | Incoming Links: 4
+https://blog.evolvedlotus.com/blog/2024-06-22-the-rise-of-tiktok’s-new-influencers/ | Score: 3.34 | Issue Found: 14 Oct | Incoming Links: 4
+https://blog.evolvedlotus.com/blog/2024-02-03-umgs-exit-the-shift-of-music/ | Score: 3.34 | Issue Found: 14 Oct | Incoming Links: 4
+https://blog.evolvedlotus.com/blog/2025-05-13-how-to-skyrocket-your-tiktok-views-and-engagement-a-simple-content-strategy/ | Score: 3.34 | Issue Found: 14 Oct | Incoming Links: 4
+https://blog.evolvedlotus.com/blog/2024-03-02-affiliate-hustle-become-a-tiktok-shop-pro/ | Score: 3.34 | Issue Found: 14 Oct | Incoming Links: 4
+https://blog.evolvedlotus.com/blog/2023-12-14-2024-tiktok-forge-authentic-connections/ | Score: 3.34 | Issue Found: 14 Oct | Incoming Links: 4
+https://blog.evolvedlotus.com/blog/2024-04-12-expand-your-reach-dont-preach-linkedins-the-speech/ | Score: 3.31 | Issue Found: 14 Oct | Incoming Links: 4
+https://blog.evolvedlotus.com/blog/2023-12-05-follow-the-lead-linkedin-unleashed-–-your-follower-magnet/ | Score: 3.31 | Issue Found: 14 Oct | Incoming Links: 4
+https://blog.evolvedlotus.com/blog/2025-04-27-facebook-content-mastery-5-proven-strategies-for-explosive-engagement/ | Score: 3.29 | Issue Found: 14 Oct | Incoming Links: 4
+https://blog.evolvedlotus.com/blog/2023-11-22-influencer-brilliance-unleash-online-power/ | Score: 3.29 | Issue Found: 14 Oct | Incoming Links: 4
+https://blog.evolvedlotus.com/blog/2023-11-20-brand-deals-made-easy-with-signaturely/ | Score: 3.29 | Issue Found: 14 Oct | Incoming Links: 4
+https://blog.evolvedlotus.com/blog/2025-05-22-why-most-content-creators-are-setting-themselves-up-for-failure/ | Score: 3.29 | Issue Found: 14 Oct | Incoming Links: 4
+https://blog.evolvedlotus.com/blog/2025-01-22-evolvedlotus-view-on-hootsuite’s-2025-report/ | Score: 3.29 | Issue Found: 14 Oct | Incoming Links: 4
+https://blog.evolvedlotus.com/blog/2025-08-25-how-to-price-your-services-as-a-content-creator-in-2025/ | Score: 3.29 | Issue Found: 14 Oct | Incoming Links: 4
+https://blog.evolvedlotus.com/blog/2025-08-27-basic-seo-for-content-creators/ | Score: 3.29 | Issue Found: 14 Oct | Incoming Links: 4
+https://blog.evolvedlotus.com/blog/2024-07-31-facebook-ugc-creator-lotus-takes/ | Score: 3.29 | Issue Found: 14 Oct | Incoming Links: 4
+https://blog.evolvedlotus.com/blog/2024-11-04-november’s-must-know-social-trends/ | Score: 3.29 | Issue Found: 14 Oct | Incoming Links: 4
+https://blog.evolvedlotus.com/blog/2025-09-22-building-email-lists-through-social-media-content-the-complete-2025-strategy-guide/ | Score: 3.29 | Issue Found: 14 Oct | Incoming Links: 4
+https://blog.evolvedlotus.com/blog/2023-12-30-tiktoks-faceless-recipes-evolvedlotus-insights/ | Score: 3.18 | Issue Found: 14 Oct | Incoming Links: 4
+https://blog.evolvedlotus.com/blog/2023-12-26-from-sound-waves-to-screens-the-intro-to-podcast/ | Score: 3.18 | Issue Found: 14 Oct | Incoming Links: 4
+https://blog.evolvedlotus.com/blog/2024-04-18-tiktoks-faceless-travel-tips-and-guide-evolvedlotus-insights/ | Score: 3.18 | Issue Found: 14 Oct | Incoming Links: 4
+https://blog.evolvedlotus.com/blog/2023-12-10-tiktoks-faceless-motivation-evolvedlotus-insights/ | Score: 3.18 | Issue Found: 14 Oct | Incoming Links: 4
+https://blog.evolvedlotus.com/blog/2023-12-06-lotus-harmony-evolving-your-music/ | Score: 3.18 | Issue Found: 14 Oct | Incoming Links: 4
+https://blog.evolvedlotus.com/blog/2024-03-14-tiktok-implements-new-changes/ | Score: 3.18 | Issue Found: 14 Oct | Incoming Links: 4
+https://blog.evolvedlotus.com/blog/2023-12-02-reel-brilliance-crafting-captivating-facebook-videos/ | Score: 3.17 | Issue Found: 14 Oct | Incoming Links: 4
+https://blog.evolvedlotus.com/blog/2023-11-22-online-mastery-a-creators-guide/ | Score: 3.14 | Issue Found: 14 Oct | Incoming Links: 4
+https://blog.evolvedlotus.com/blog/2025-02-20-is-1of10-really-worth-it-or-should-you-save-your-money-and-learn-on-your-own/ | Score: 3.07 | Issue Found: 14 Oct | Incoming Links: 4
+https://blog.evolvedlotus.com/blog/2025-08-29-batch-content-creation-techniques-that-save-hours/ | Score: 2.85 | Issue Found: 14 Oct | Incoming Links: 4
+
+
+Has an internal link with no anchor text
+Category: Links
+The URL has at least one outgoing internal link with no anchor text. If an outgoing link has no anchor text, this represents a missed opportunity to provide additional information about the target page to search engines, which could have an impact on this page's ability to rank for relevant search queries. Write anchor text that provides at least a basic idea of what the page linked to is about.
+https://blog.evolvedlotus.com/blog/2023-11-20-boost-tiktok-visuals-top-online-resources/ | 5.67 | 200 | 14 Oct | true
+https://blog.evolvedlotus.com/blog/2025-08-13-top-free-design-tools-every-creator-needs/ | 5.31 | 200 | 14 Oct | true
+https://blog.evolvedlotus.com/blog/2023-11-20-jams-without-jitters-your-copyright-free-soundtrack-guide/ | 4.99 | 200 | 14 Oct | true
+https://blog.evolvedlotus.com/blog/2023-11-20-social-scheduling-mastery-harnessing-free-tools-for-online-success/ | 4.68 | 200 | 14 Oct | true
+https://blog.evolvedlotus.com/blog/2024-04-11-level-up-your-stream-from-bland-to-grand/ | 4.14 | 200 | 14 Oct | true
+https://blog.evolvedlotus.com/blog/2024-03-12-crypto-turned-gold/ | 3.62 | 200 | 14 Oct | true
+https://blog.evolvedlotus.com/blog/2023-12-03-decembers-dynamics-unleash-the-upcoming-trends/ | 3.42 | 200 | 14 Oct | true
+https://blog.evolvedlotus.com/blog/2023-12-26-from-sound-waves-to-screens-the-intro-to-podcast/ | 3.18 | 200 | 14 Oct | true
+
+
+Page has incoming followed links that do not use descriptive anchor text
+Category: Links
+Page has incoming followed links that do not use descriptive anchor text (they instead have anchor text like 'click here', click this', 'here', etc). Replace such anchors with anchors that describe the content of the page you link to.
+https://blog.evolvedlotus.com/blog/ | 12.39 | 200 | 14 Oct | true
+
+
+Page has more than 2 links to internal page with the same anchor
+Category: Links
+Pages that contain more than 2 outgoing links to the same internal page with the same anchor. Usually it means that page has redundant links implemented manually by mistake or automatically by plugin. 
+https://blog.evolvedlotus.com/blog/2025-09-12-open-source-alternatives-to-expensive-creator-tools/ | 3.82 | 200 | 14 Oct | true
+
+
+Empty links "#"
+Category: Links
+Empty links "#" on the page
+https://blog.evolvedlotus.com/blog/2023-12-07-lotus-evolution-twitch-wave-weekly/ | 3.79 | 200 | 14 Oct | true
+
+indexability
+Issues that can block or complicate crawling and indexing of website pages by Googlebot.
+
+
+
+More than one </body> tag on page
+Category: Indexability
+An HTML page can have only one </body> tag. Remove all the extra </body> tags.
+https://blog.evolvedlotus.com/blog/2025-09-10-using-data-to-optimize-your-posting-schedule/ | 4.21 | 200 | 14 Oct
+
+
+More than one </head> tag on page
+Category: Indexability
+An HTML page can have only one </head> tag. Remove all the extra </head> tags.
+https://blog.evolvedlotus.com/blog/2025-09-10-using-data-to-optimize-your-posting-schedule/ | 4.21 | 200 | 14 Oct
+
+
+More than one </html> tag on page
+Category: Indexability
+An HTML page can have only one </html> tag. Remove all the extra </html> tags.
+https://blog.evolvedlotus.com/blog/2025-09-10-using-data-to-optimize-your-posting-schedule/ | 4.21 | 200 | 14 Oct
+
+</html> tag is missing
+Category: Indexability
+The HTML page has no </html> tag . Add </html> tag to close the HTML and fix the issue. 
+https://blog.evolvedlotus.com/admin/ | 3.28 | 200 | 14 Oct
+
+Canonical is missing
+Category: Indexability
+Pages that have no canonical tags. There is a risk of rankings drop due to appearing duplicate content in Google. Choose preferred version of URL and add canonical tag with this value.
+https://blog.evolvedlotus.com/404/ | 3.28 | 200 | 14 Oct | 0
+https://blog.evolvedlotus.com/admin/ | 3.28 | 200 | 14 Oct | 0
+
+H2 has other tags inside
+Category: Indexability
+There are some other tags within an <h2> tag. Example: <h2><a href=>test</a></h2>. Remove redundant tags from H2 tag to fix the issue.
+https://blog.evolvedlotus.com/blog/2025-10-13-turning-your-content-into-multiple-revenue-streams/ | 9.89 | 200 | 14 Oct | true | 39129
+https://blog.evolvedlotus.com/blog/2025-08-11-how-to-create-30-days-of-content-in-one-weekend/ | 6.06 | 200 | 14 Oct | true | 10423
+https://blog.evolvedlotus.com/blog/2025-08-13-top-free-design-tools-every-creator-needs/ | 4.93 | 200 | 14 Oct | true | 11310
+https://blog.evolvedlotus.com/blog/2025-08-15-understanding-social-media-analytics-what-metrics-actually-matter/ | 4.55 | 200 | 14 Oct | true | 10886
+https://blog.evolvedlotus.com/blog/2025-10-08-building-genuine-engagement-vs-vanity-metrics/ | 4.41 | 200 | 14 Oct | true | 28619
+https://blog.evolvedlotus.com/blog/2025-09-10-using-data-to-optimize-your-posting-schedule/ | 4.21 | 200 | 14 Oct | true | 11082
+https://blog.evolvedlotus.com/blog/2023-12-04-twitchcraft-mastering-stream-settings-for-seamless-success/ | 3.67 | 200 | 14 Oct | true | 9672
+https://blog.evolvedlotus.com/blog/2025-09-12-open-source-alternatives-to-expensive-creator-tools/ | 3.66 | 200 | 14 Oct | true | 27628
+https://blog.evolvedlotus.com/blog/2025-09-25-color-theory-and-design-principles-for-social-media/ | 3.62 | 200 | 14 Oct | true | 18031
+https://blog.evolvedlotus.com/blog/2025-07-29-are-instagram-ads-worth-it-plus-new-strategies-for-organic-growth-in-2025/ | 3.21 | 200 | 14 Oct | true | 9405
+https://blog.evolvedlotus.com/blog/2025-05-13-how-to-skyrocket-your-tiktok-views-and-engagement-a-simple-content-strategy/ | 3.09 | 200 | 14 Oct | true | 7159
+https://blog.evolvedlotus.com/blog/2025-04-27-facebook-content-mastery-5-proven-strategies-for-explosive-engagement/ | 3.09 | 200 | 14 Oct | true | 10732
+https://blog.evolvedlotus.com/blog/2025-05-22-why-most-content-creators-are-setting-themselves-up-for-failure/ | 3.06 | 200 | 14 Oct | true | 8618
+https://blog.evolvedlotus.com/blog/2025-08-27-basic-seo-for-content-creators/ | 3.06 | 200 | 14 Oct | true | 19212
+https://blog.evolvedlotus.com/blog/2025-09-22-building-email-lists-through-social-media-content-the-complete-2025-strategy-guide/ | 3.06 | 200 | 14 Oct | true | 21817
+https://blog.evolvedlotus.com/blog/2023-11-20-brand-deals-made-easy-with-signaturely/ | 3.06 | 200 | 14 Oct | true | 4993
+https://blog.evolvedlotus.com/blog/2025-08-25-how-to-price-your-services-as-a-content-creator-in-2025/ | 3.06 | 200 | 14 Oct | true | 11193
+https://blog.evolvedlotus.com/blog/2023-12-26-from-sound-waves-to-screens-the-intro-to-podcast/ | 2.99 | 200 | 14 Oct | true | 21143
+https://blog.evolvedlotus.com/blog/2025-08-29-batch-content-creation-techniques-that-save-hours/ | 2.65 | 200 | 14 Oct | true | 21282
+
+
+Meta noindex pages
+Category: Indexability
+A specific URL contains <meta name="robots" content="noindex" /> . 
+https://blog.evolvedlotus.com/404/ | 3.28 | 200 | 14 Oct
+https://blog.evolvedlotus.com/admin/ | 3.28 | 200 | 14 Oct
+
+Noindex follow page
+Category: Indexability
+URLs that have a 'noindex' but don't have a 'nofollow' tag in the HTML code or in the HTTP response header. 
+https://blog.evolvedlotus.com/404/ | 3.28 | 200 | 14 Oct | noindex, follow
+https://blog.evolvedlotus.com/admin/ | 3.28 | 200 | 14 Oct | noindex, follow
+
+
+
