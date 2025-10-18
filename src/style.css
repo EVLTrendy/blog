@@ -59,8 +59,11 @@ html, body {
 }
 
 .article-ad {
-  max-width: 100%;
+  display: block !important;
   margin: 0 auto;
+  text-align: center;
+  width: 100% !important;
+  max-width: 300px;
 }
 
 /* Hide side ads on mobile and tablet */
