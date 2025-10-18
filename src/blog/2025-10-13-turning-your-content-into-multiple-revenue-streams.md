@@ -29,7 +29,7 @@ The numbers back this up. According to Influencer Marketing Hub's 2024 Creator E
 
 This guide walks you through proven monetization strategies for TikTok, YouTube, Instagram, X, LinkedIn, and Facebook, providing practical tools, checklists, and real-world examples. Whether you are just starting or looking to turn your side hustle into a full-time career, the steps you take now will define your creator journey for years to come.
 
-## **Are You Ready to Earn?**
+## Are You Ready to Earn?
 
 Picture this: your videos are getting traction, comments are rolling in, and people are starting to remember your name. It’s exciting—but before you rush to slap “creator” in your bio and chase every sponsorship, you need to know if your foundation is solid. Monetization isn’t just about big numbers; it’s about timing, structure, and strategy. Like baking a cake, the ingredients matter—but so does having the oven preheated. If your systems, audience, and content aren’t aligned, your growth can fall flat.
 
