@@ -1,19 +1,15 @@
 ---
 title: 'Podcast Revolution: Instagram Unleashes Creativity!'
 author: Marc C.
-date: "2023-12-12T12:00:00.000Z"
+date: '"2023-12-12T12:00:00.000Z"'
 tags:
   - post
   - featured
   - ig
 image: /assets/blog/podcast-revolution-instagram-unleashes-creativity-.png
 imageAlt: 'Podcast Revolution: Instagram Unleashes Creativity!'
-description: >-
-  With Instagram's "Close Friends Only" podcast, content creators can delve into
-  the world of podcasting and gain rare insights from celebrities such as I...
-keywords: >-
-  content creation, social media, digital marketing, blogging, SEO, content
-  strategy, social media marketing, online marketing
+description: 'With Instagram''s "Close Friends Only" podcast, content creators can delve into the world of podcasting and gain rare insights from celebrities such as I...'
+keywords: 'content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing'
 schema_type: Article
 og_type: article
 ---

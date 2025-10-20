@@ -1,20 +1,15 @@
 ---
 title: 'Evolving As an Artist: Bloom Your Tunes'
 author: Marc C.
-date: "2024-01-09T12:00:00.000Z"
+date: '"2024-01-09T12:00:00.000Z"'
 tags:
   - post
   - featured
   - twitter
 image: /assets/blog/evolving-as-an-artist-bloom-your-tunes.png
 imageAlt: 'Evolving As an Artist: Bloom Your Tunes'
-description: >-
-  You are probably thinking, 'How can I grow on Twitter as an artist?' Well,
-  today we will explore some tips and strategies that can help you increase
-  you...
-keywords: >-
-  content creation, social media, digital marketing, blogging, SEO, content
-  strategy, social media marketing, online marketing
+description: 'You are probably thinking, ''How can I grow on Twitter as an artist?'' Well, today we will explore some tips and strategies that can help you increase you...'
+keywords: 'content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing'
 schema_type: Article
 og_type: article
 ---

@@ -1,19 +1,15 @@
 ---
 title: 'Online Mastery: A Creator''s Guide'
 author: Marc C.
-date: "2023-11-22T12:00:00.000Z"
+date: '"2023-11-22T12:00:00.000Z"'
 tags:
   - post
   - featured
   - misc
 image: /assets/blog/zyro-image-6-.png
 imageAlt: mop
-description: >-
-  In the ever-evolving landscape of content creation, mastering your online
-  presence is the key to standing out in the digital crowd
-keywords: >-
-  content creation, social media, digital marketing, blogging, SEO, content
-  strategy, social media marketing, online marketing
+description: 'In the ever-evolving landscape of content creation, mastering your online presence is the key to standing out in the digital crowd'
+keywords: 'content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing'
 schema_type: Article
 og_type: article
 ---

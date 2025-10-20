@@ -1,19 +1,15 @@
 ---
 title: 'TwitchCraft: Mastering Stream Settings for Seamless Success'
 author: Marc C.
-date: "2023-12-04T12:00:00.000Z"
+date: '"2023-12-04T12:00:00.000Z"'
 tags:
   - post
   - featured
   - twitch
 image: /assets/blog/twitchcraft-mastering-stream-settings-for-seamless-success.png
 imageAlt: tcmssfsspic
-description: >-
-  Mastering the finer points of your Twitch setup will unlock the key to an
-  effortless and entertaining streaming experience
-keywords: >-
-  content creation, social media, digital marketing, blogging, SEO, content
-  strategy, social media marketing, online marketing
+description: Mastering the finer points of your Twitch setup will unlock the key to an effortless and entertaining streaming experience
+keywords: 'content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing'
 schema_type: Article
 og_type: article
 ---

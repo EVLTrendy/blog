@@ -1,7 +1,7 @@
 ---
 title: 'Blooming Amidst the X Storm: Advertising Opportunity'
 author: 'Marc C. '
-date: "1970-01-01T00:00:00.000Z""1970-01-01T00:00:00.000Z""2023-12-08T18:51:23.460Z"
+date: '"2023-12-08T18:51:23.460Z"'
 tags:
   - post
   - featured
@@ -9,9 +9,7 @@ tags:
 image: /assets/blog/blooming-amidst-the-x-storm-advertising-opportunity.png
 imageAlt: batxsaopic
 description: 'Blooming Amidst the X Storm: Advertising Opportunity in the changing social media landscape'
-keywords: >-
-  content creation, social media, digital marketing, blogging, SEO, content
-  strategy, social media marketing, online marketing
+keywords: 'content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing'
 schema_type: Article
 og_type: article
 ---

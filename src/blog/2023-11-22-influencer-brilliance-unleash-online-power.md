@@ -1,19 +1,15 @@
 ---
 title: 'Influencer Brilliance: Unleash Online Power!'
 author: Marc C.
-date: "2023-11-22T12:00:00.000Z"
+date: '"2023-11-22T12:00:00.000Z"'
 tags:
   - post
   - featured
   - misc
 image: /assets/blog/8-mnzbj9l68fa6ucx-1-1-.png
 imageAlt: icptop3
-description: >-
-  In the ever-evolving landscape of digital content creation, the pursuit of a
-  compelling online presence stands as a perpetual quest
-keywords: >-
-  content creation, social media, digital marketing, blogging, SEO, content
-  strategy, social media marketing, online marketing
+description: 'In the ever-evolving landscape of digital content creation, the pursuit of a compelling online presence stands as a perpetual quest'
+keywords: 'content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing'
 schema_type: Article
 og_type: article
 ---

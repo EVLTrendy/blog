@@ -1,24 +1,15 @@
 ---
-title: >-
-  Building Email Lists Through Social Media Content: The Complete 2025 Strategy
-  Guide
-description: >-
-  Turn followers into loyal customers: learn how to build email lists from
-  social media, boost conversions, and grow revenue step by step.
+title: 'Building Email Lists Through Social Media Content: The Complete 2025 Strategy Guide'
+description: 'Turn followers into loyal customers: learn how to build email lists from social media, boost conversions, and grow revenue step by step.'
 author: EvolvedLotus Team
-date: "2025-09-22T12:00:00.000Z"
+date: '"2025-09-22T12:00:00.000Z"'
 tags:
   - post
   - featured
   - misc
-image: >-
-  /assets/blog/building-email-lists-through-social-media-content-the-complete-2025-strategy-guide.png
-imageAlt: >-
-  Turn followers into loyal customers: learn how to build email lists from
-  social media, boost conversions, and grow revenue step by step.
-keywords: >-
-  content creation, social media, digital marketing, blogging, SEO, content
-  strategy, social media marketing, online marketing
+image: /assets/blog/building-email-lists-through-social-media-content-the-complete-2025-strategy-guide.png
+imageAlt: 'Turn followers into loyal customers: learn how to build email lists from social media, boost conversions, and grow revenue step by step.'
+keywords: 'content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing'
 schema_type: Article
 og_type: article
 ---

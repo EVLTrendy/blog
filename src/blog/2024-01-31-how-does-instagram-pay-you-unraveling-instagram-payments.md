@@ -1,19 +1,15 @@
 ---
 title: How Does Instagram Pay You? Unraveling Instagram Payments
 author: Marc C.
-date: "2024-01-31T12:00:00.000Z"
+date: '"2024-01-31T12:00:00.000Z"'
 tags:
   - post
   - featured
   - ig
 image: /assets/blog/how-does-instagram-pay-you-unraveling-instagram-payments.jpg
 imageAlt: How Does Instagram Pay You? Unraveling Instagram Payments
-description: >-
-  Instagram is a great way for people to make money online because of its
-  enormous user base and varied content ecosystem
-keywords: >-
-  content creation, social media, digital marketing, blogging, SEO, content
-  strategy, social media marketing, online marketing
+description: Instagram is a great way for people to make money online because of its enormous user base and varied content ecosystem
+keywords: 'content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing'
 schema_type: Article
 og_type: article
 ---

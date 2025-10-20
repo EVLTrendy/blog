@@ -2,17 +2,14 @@
 title: 'How to Skyrocket Your TikTok Views and Engagement: A Simple Content Strategy'
 description: How to Skyrocket Your TikTok Views and Engagement - A Simple Content Strategy that actually works
 author: Marc C.
-date: "1970-01-01T00:00:00.000Z""1970-01-01T00:00:00.000Z""2025-05-12T15:07:00.000Z"
+date: '"2025-05-12T15:07:00.000Z"'
 tags:
   - post
   - featured
   - tiktok
-image: >-
-  /assets/blog/how-to-skyrocket-your-tiktok-views-and-engagement-a-simple-content-strategy.png
+image: /assets/blog/how-to-skyrocket-your-tiktok-views-and-engagement-a-simple-content-strategy.png
 imageAlt: 'How to Skyrocket Your TikTok Views and Engagement: A Simple Content Strategy'
-keywords: >-
-  content creation, social media, digital marketing, blogging, SEO, content
-  strategy, social media marketing, online marketing
+keywords: 'content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing'
 schema_type: Article
 og_type: article
 ---

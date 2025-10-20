@@ -1,19 +1,15 @@
 ---
 title: 'Boost TikTok Visuals: Top Online Resources'
 author: Marc C.
-date: "1970-01-01T00:00:00.000Z""2023-11-20T02:53:05.277Z"
+date: '"2023-11-20T02:53:05.277Z"'
 tags:
   - post
   - featured
   - tiktok
 image: /assets/blog/boost-tiktok-visuals-top-online-resources.png
 imageAlt: 'Boost TikTok Visuals: Top Online Resources'
-description: >-
-  In the ever-evolving realm of TikTok, where capturing attention is the golden
-  ticket, mastering visually appealing content is non-negotiable
-keywords: >-
-  content creation, social media, digital marketing, blogging, SEO, content
-  strategy, social media marketing, online marketing
+description: 'In the ever-evolving realm of TikTok, where capturing attention is the golden ticket, mastering visually appealing content is non-negotiable'
+keywords: 'content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing'
 schema_type: Article
 og_type: article
 ---

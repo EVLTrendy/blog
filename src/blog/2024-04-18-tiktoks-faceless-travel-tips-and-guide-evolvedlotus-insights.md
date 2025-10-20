@@ -1,19 +1,15 @@
 ---
 title: 'TikTok''s Faceless Travel Tips and Guide: EvolvedLotus Insights'
 author: Marc C.
-date: "2024-04-18T12:00:00.000Z"
+date: '"2024-04-18T12:00:00.000Z"'
 tags:
   - post
   - featured
   - tiktok
 image: /assets/blog/tiktok-s-faceless-travel-tips-and-guide-evolvedlotus-insights.png
 imageAlt: 'TikTok''s Faceless Travel Tips and Guide: EvolvedLotus Insights'
-description: >-
-  Are you someone who loves to travel but wants to keep your identity a secret?
-  Faceless travel guides might be the solution you're looking for
-keywords: >-
-  content creation, social media, digital marketing, blogging, SEO, content
-  strategy, social media marketing, online marketing
+description: Are you someone who loves to travel but wants to keep your identity a secret? Faceless travel guides might be the solution you're looking for
+keywords: 'content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing'
 schema_type: Article
 og_type: article
 ---

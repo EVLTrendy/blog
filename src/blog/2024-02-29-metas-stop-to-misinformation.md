@@ -1,7 +1,7 @@
 ---
 title: Meta's Stop To Misinformation
 author: Marc C.
-date: "2024-02-29T12:00:00.000Z"
+date: '"2024-02-29T12:00:00.000Z"'
 tags:
   - post
   - featured
@@ -10,12 +10,8 @@ tags:
   - ig
 image: /assets/blog/meta-s-stop-to-misinformation.png
 imageAlt: Meta's Stop To Misinformation
-description: >-
-  Misinformation on social media should be avoided, especially when elections
-  are approaching
-keywords: >-
-  content creation, social media, digital marketing, blogging, SEO, content
-  strategy, social media marketing, online marketing
+description: 'Misinformation on social media should be avoided, especially when elections are approaching'
+keywords: 'content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing'
 schema_type: Article
 og_type: article
 ---

@@ -1,19 +1,15 @@
 ---
 title: Facebook Ads with EvolvedLotus
 author: Marc C.
-date: "2024-01-24T12:00:00.000Z"
+date: '"2024-01-24T12:00:00.000Z"'
 tags:
   - post
   - featured
   - fb
 image: /assets/blog/pro-4238d7e652af43dca1fed2a6d86679e8-1-.jpg
 imageAlt: Facebook Ads with EvolvedLotus
-description: >-
-  Welcome to the world of Facebook Ads - a bustling marketplace within the vast
-  landscape of social media
-keywords: >-
-  content creation, social media, digital marketing, blogging, SEO, content
-  strategy, social media marketing, online marketing
+description: Welcome to the world of Facebook Ads - a bustling marketplace within the vast landscape of social media
+keywords: 'content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing'
 schema_type: Article
 og_type: article
 ---

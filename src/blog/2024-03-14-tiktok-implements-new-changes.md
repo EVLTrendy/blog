@@ -1,19 +1,15 @@
 ---
 title: TikTok Implements New Changes
 author: Marc C.
-date: "2024-03-14T12:00:00.000Z"
+date: '"2024-03-14T12:00:00.000Z"'
 tags:
   - post
   - featured
   - tiktok
 image: /assets/blog/tiktok-implements-new-changes.png
 imageAlt: TikTok Implements New Changes
-description: >-
-  Are you ready to take your TikTok game to the next level? Look no further than
-  TikTok Photos and Creator Search Insights – the revolutionary new feature...
-keywords: >-
-  content creation, social media, digital marketing, blogging, SEO, content
-  strategy, social media marketing, online marketing
+description: Are you ready to take your TikTok game to the next level? Look no further than TikTok Photos and Creator Search Insights – the revolutionary new feature...
+keywords: 'content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing'
 schema_type: Article
 og_type: article
 ---

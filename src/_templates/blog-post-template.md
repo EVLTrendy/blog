@@ -5,7 +5,7 @@ description: >-
   This should be 150-200 characters and include your main keywords.
   This description will appear in search results and social media previews.]
 author: [Your Name or "The EvolvedLotus Team"]
-date: [YYYY-MM-DDTHH:MM:SS.SSSZ - Use current date/time in ISO format]
+date: "[YYYY-MM-DDTHH:MM:SS.SSSZ - Use current date/time in ISO format]"
 tags:
   - [primary-category]
   - [secondary-category]

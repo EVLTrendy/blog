@@ -1,10 +1,8 @@
 ---
 title: Color Theory and Design Principles for Social Media
-description: >-
-  Learn how color theory impacts design, social media, and everyday life.
-  Discover AI personalization, dual-mode palettes, and practical tips.
+description: 'Learn how color theory impacts design, social media, and everyday life. Discover AI personalization, dual-mode palettes, and practical tips.'
 author: EvolvedLotus Team
-date: "2025-09-25T12:00:00.000Z"
+date: '"2025-09-25T12:00:00.000Z"'
 tags:
   - post
   - featured
@@ -17,9 +15,7 @@ tags:
   - ''
 image: /assets/blog/color-theory-and-design-principles-for-social-media-.png
 imageAlt: Color Theory and Design Principles for Social Media
-keywords: >-
-  content creation, social media, digital marketing, blogging, SEO, content
-  strategy, social media marketing, online marketing
+keywords: 'content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing'
 schema_type: Article
 og_type: article
 ---

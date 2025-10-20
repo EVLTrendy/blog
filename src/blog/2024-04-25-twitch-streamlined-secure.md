@@ -1,7 +1,7 @@
 ---
 title: 'Twitch: Streamlined & Secure'
 author: Marc C.
-date: "2024-04-25T12:00:00.000Z"
+date: '"2024-04-25T12:00:00.000Z"'
 tags:
   - post
   - featured
@@ -9,12 +9,8 @@ tags:
   - ''
 image: /assets/blog/twitch-streamlined-secure.png
 imageAlt: 'Twitch: Streamlined & Secure'
-description: >-
-  Prepare for an enlightening discussion as we explore the future updates that
-  will transform your Twitch experience
-keywords: >-
-  content creation, social media, digital marketing, blogging, SEO, content
-  strategy, social media marketing, online marketing
+description: Prepare for an enlightening discussion as we explore the future updates that will transform your Twitch experience
+keywords: 'content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing'
 schema_type: Article
 og_type: article
 ---

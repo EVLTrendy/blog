@@ -2,17 +2,14 @@
 title: Why Most Content Creators Are Setting Themselves Up for Failure
 description: Why Most Content Creators Are Setting Themselves Up for Failure
 author: EvolvedLotus Team
-date: "2025-05-22T12:00:00.000Z"
+date: '"2025-05-22T12:00:00.000Z"'
 tags:
   - post
   - featured
   - misc
-image: >-
-  /assets/blog/why-most-content-creators-are-setting-themselves-up-for-failure.png
+image: /assets/blog/why-most-content-creators-are-setting-themselves-up-for-failure.png
 imageAlt: Why Most Content Creators Are Setting Themselves Up for Failure
-keywords: >-
-  content creation, social media, digital marketing, blogging, SEO, content
-  strategy, social media marketing, online marketing
+keywords: 'content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing'
 schema_type: Article
 og_type: article
 ---

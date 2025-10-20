@@ -1,9 +1,8 @@
 ---
 title: Mobile Photography Techniques for Better Content
-description: Master mobile photography in 2025! Learn lighting, composition, and
-  editing techniques to create pro-quality content on your phone.
+description: 'Master mobile photography in 2025! Learn lighting, composition, and editing techniques to create pro-quality content on your phone.'
 author: EvolvedLotus Team
-date: "1970-01-01T00:00:00.000Z""1970-01-01T00:00:00.000Z""2025-10-20T13:52:00.000-04:00"
+date: '"2025-10-20T13:52:00.000-04:00"'
 tags:
   - post
   - featured
@@ -13,14 +12,8 @@ tags:
   - twitter
   - ig
   - link
-  - ""
-keywords: >-
-  content creation, social media, digital marketing, blogging, SEO, content
-  strategy, social media marketing, online marketing, mobile photography,
-  content creation tips, social media strategy, digital marketing, visual
-  content, photography tips, social media growth, content strategy,
-  mobile content creation, visual storytelling, social media marketing,
-  digital content, photography techniques, content marketing
+  - ''
+keywords: 'content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing, mobile photography, content creation tips, social media strategy, digital marketing, visual content, photography tips, social media growth, content strategy, mobile content creation, visual storytelling, social media marketing, digital content, photography techniques, content marketing'
 image: /assets/blog/mobile-photography-techniques-for-better-content.png
 imageAlt: Mobile Photography Techniques for Better Content
 ---

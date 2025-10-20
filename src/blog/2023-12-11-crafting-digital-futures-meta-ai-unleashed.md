@@ -1,19 +1,15 @@
 ---
 title: Crafting Digital Futures Meta AI Unleashed
 author: Marc C.
-date: "2023-12-11T12:00:00.000Z"
+date: '"2023-12-11T12:00:00.000Z"'
 tags:
   - post
   - featured
   - fb
 image: /assets/blog/crafting-digital-futures-meta-ai-unleashed.png
 imageAlt: Crafting Digital Futures Meta AI Unleashed
-description: >-
-  Facebook leads the way, consistently pushing boundaries to redefine user
-  experiences
-keywords: >-
-  content creation, social media, digital marketing, blogging, SEO, content
-  strategy, social media marketing, online marketing
+description: 'Facebook leads the way, consistently pushing boundaries to redefine user experiences'
+keywords: 'content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing'
 schema_type: Article
 og_type: article
 ---

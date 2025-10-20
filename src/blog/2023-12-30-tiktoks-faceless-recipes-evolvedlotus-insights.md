@@ -1,19 +1,15 @@
 ---
 title: 'TikTok''s Faceless Recipes: EvolvedLotus Insights'
 author: Marc C.
-date: "2023-12-30T12:00:00.000Z"
+date: '"2023-12-30T12:00:00.000Z"'
 tags:
   - post
   - featured
   - tiktok
 image: /assets/blog/tiktok-s-faceless-recipes-evolvedlotus-insights.png
 imageAlt: 'TikTok''s Faceless Recipes: EvolvedLotus Insights'
-description: >-
-  Do you still remember YouTube? It's a platform that remains a hotbed of
-  creativity, particularly when it comes to cooking
-keywords: >-
-  content creation, social media, digital marketing, blogging, SEO, content
-  strategy, social media marketing, online marketing
+description: 'Do you still remember YouTube? It''s a platform that remains a hotbed of creativity, particularly when it comes to cooking'
+keywords: 'content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing'
 schema_type: Article
 og_type: article
 ---

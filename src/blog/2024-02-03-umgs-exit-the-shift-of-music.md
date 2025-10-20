@@ -1,19 +1,15 @@
 ---
 title: 'UMG''s Exit: The Shift of Music '
 author: Marc C.
-date: "2024-02-03T12:00:00.000Z"
+date: '"2024-02-03T12:00:00.000Z"'
 tags:
   - post
   - featured
   - tiktok
 image: /assets/blog/umg-s-exit-the-shift-of-music.jpg
 imageAlt: 'UMG''s Exit: The Shift of Music '
-description: >-
-  Have you heard the most recent news regarding TikTok? There appears to be a
-  great deal of drama in the music industry
-keywords: >-
-  content creation, social media, digital marketing, blogging, SEO, content
-  strategy, social media marketing, online marketing
+description: Have you heard the most recent news regarding TikTok? There appears to be a great deal of drama in the music industry
+keywords: 'content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing'
 schema_type: Article
 og_type: article
 ---

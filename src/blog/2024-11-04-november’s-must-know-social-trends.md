@@ -1,20 +1,15 @@
 ---
 title: November’s Must-Know Social Trends
 author: EvolvedLotus Team
-date: "2024-11-04T12:00:00.000Z"
+date: '"2024-11-04T12:00:00.000Z"'
 tags:
   - post
   - featured
   - misc
 image: /assets/blog/november’s-must-know-social-trends.png
 imageAlt: November’s Must-Know Social Trends
-description: >-
-  As November approaches, seize the opportunity to connect with your audience
-  through meaningful content ideas centered around important observances like
-  ...
-keywords: >-
-  content creation, social media, digital marketing, blogging, SEO, content
-  strategy, social media marketing, online marketing
+description: 'As November approaches, seize the opportunity to connect with your audience through meaningful content ideas centered around important observances like ...'
+keywords: 'content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing'
 schema_type: Article
 og_type: article
 ---

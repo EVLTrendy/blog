@@ -1,19 +1,15 @@
 ---
 title: 'LinkedIn Lift-off 2023: Profile Power Unleashed!'
 author: Marc C.
-date: "2023-11-24T12:00:00.000Z"
+date: '"2023-11-24T12:00:00.000Z"'
 tags:
   - post
   - featured
   - link
 image: /assets/blog/zyro-image.png
 imageAlt: liftofflinkedin
-description: >-
-  Your LinkedIn profile serves as a dynamic representation of your professional
-  identity within the ever-evolving landscape of business networking
-keywords: >-
-  content creation, social media, digital marketing, blogging, SEO, content
-  strategy, social media marketing, online marketing
+description: Your LinkedIn profile serves as a dynamic representation of your professional identity within the ever-evolving landscape of business networking
+keywords: 'content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing'
 schema_type: Article
 og_type: article
 ---

@@ -1,7 +1,7 @@
 ---
 title: 'Hashtag Alchemy: Transforming Trends into Tales'
 author: Marc C.
-date: "2023-12-23T12:00:00.000Z"
+date: '"2023-12-23T12:00:00.000Z"'
 tags:
   - post
   - featured
@@ -9,9 +9,7 @@ tags:
 image: /assets/blog/hatt.png
 imageAlt: 'Hashtag Alchemy: Transforming Trends into Tales'
 description: Keeping up with trends is like learning an art form
-keywords: >-
-  content creation, social media, digital marketing, blogging, SEO, content
-  strategy, social media marketing, online marketing
+keywords: 'content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing'
 schema_type: Article
 og_type: article
 ---

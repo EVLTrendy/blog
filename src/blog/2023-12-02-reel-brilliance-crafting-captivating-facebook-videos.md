@@ -1,20 +1,15 @@
 ---
 title: 'Reel Brilliance: Crafting Captivating Facebook Videos'
 author: Marc C.
-date: "2023-12-02T12:00:00.000Z"
+date: '"2023-12-02T12:00:00.000Z"'
 tags:
   - post
   - featured
   - fb
 image: /assets/blog/reel-brilliance-crafting-captivating-facebook-videos.png
 imageAlt: rbccfvpic
-description: >-
-  As short-form videos continue to dominate the digital landscape, Facebook
-  Reels has emerged as a powerful tool for content creators, marketers, and
-  infl...
-keywords: >-
-  content creation, social media, digital marketing, blogging, SEO, content
-  strategy, social media marketing, online marketing
+description: 'As short-form videos continue to dominate the digital landscape, Facebook Reels has emerged as a powerful tool for content creators, marketers, and infl...'
+keywords: 'content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing'
 schema_type: Article
 og_type: article
 ---

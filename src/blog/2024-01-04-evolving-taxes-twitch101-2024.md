@@ -1,19 +1,15 @@
 ---
 title: 'Evolving Taxes: Twitch-101 2024'
 author: Marc C.
-date: "2024-01-04T12:00:00.000Z"
+date: '"2024-01-04T12:00:00.000Z"'
 tags:
   - post
   - featured
   - twitch
 image: /assets/blog/evolving-taxes-twitch101-2024.png
 imageAlt: 'Evolving Taxes: Twitch101 2024'
-description: >-
-  Have you ever heard of Twitch? It's this incredible platform that connects
-  millions of people from across the globe through live streaming
-keywords: >-
-  content creation, social media, digital marketing, blogging, SEO, content
-  strategy, social media marketing, online marketing
+description: Have you ever heard of Twitch? It's this incredible platform that connects millions of people from across the globe through live streaming
+keywords: 'content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing'
 schema_type: Article
 og_type: article
 ---

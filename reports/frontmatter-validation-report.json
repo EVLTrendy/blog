@@ -1,10 +1,1389 @@
 {
-  "timestamp": "2025-10-20T19:40:40.670Z",
+  "timestamp": "2025-10-20T20:35:30.597Z",
   "summary": {
     "totalFiles": 81,
-    "errors": 0,
-    "warnings": 0
+    "errors": 162,
+    "warnings": 81
   },
-  "errors": [],
-  "warnings": []
+  "errors": [
+    {
+      "file": "2023-11-20-boost-tiktok-visuals-top-online-resources.md",
+      "type": "invalid_date_format",
+      "message": "Date format is invalid or not properly quoted as string"
+    },
+    {
+      "file": "2023-11-20-boost-tiktok-visuals-top-online-resources.md",
+      "type": "invalid_date_format",
+      "message": "Date field must be a valid ISO date string (e.g., \"2023-12-07T20:03:48.097Z\")"
+    },
+    {
+      "file": "2023-11-20-brand-deals-made-easy-with-signaturely.md",
+      "type": "invalid_date_format",
+      "message": "Date format is invalid or not properly quoted as string"
+    },
+    {
+      "file": "2023-11-20-brand-deals-made-easy-with-signaturely.md",
+      "type": "invalid_date_format",
+      "message": "Date field must be a valid ISO date string (e.g., \"2023-12-07T20:03:48.097Z\")"
+    },
+    {
+      "file": "2023-11-20-jams-without-jitters-your-copyright-free-soundtrack-guide.md",
+      "type": "invalid_date_format",
+      "message": "Date format is invalid or not properly quoted as string"
+    },
+    {
+      "file": "2023-11-20-jams-without-jitters-your-copyright-free-soundtrack-guide.md",
+      "type": "invalid_date_format",
+      "message": "Date field must be a valid ISO date string (e.g., \"2023-12-07T20:03:48.097Z\")"
+    },
+    {
+      "file": "2023-11-20-social-scheduling-mastery-harnessing-free-tools-for-online-success.md",
+      "type": "invalid_date_format",
+      "message": "Date format is invalid or not properly quoted as string"
+    },
+    {
+      "file": "2023-11-20-social-scheduling-mastery-harnessing-free-tools-for-online-success.md",
+      "type": "invalid_date_format",
+      "message": "Date field must be a valid ISO date string (e.g., \"2023-12-07T20:03:48.097Z\")"
+    },
+    {
+      "file": "2023-11-22-influencer-brilliance-unleash-online-power.md",
+      "type": "invalid_date_format",
+      "message": "Date format is invalid or not properly quoted as string"
+    },
+    {
+      "file": "2023-11-22-influencer-brilliance-unleash-online-power.md",
+      "type": "invalid_date_format",
+      "message": "Date field must be a valid ISO date string (e.g., \"2023-12-07T20:03:48.097Z\")"
+    },
+    {
+      "file": "2023-11-22-online-mastery-a-creators-guide.md",
+      "type": "invalid_date_format",
+      "message": "Date format is invalid or not properly quoted as string"
+    },
+    {
+      "file": "2023-11-22-online-mastery-a-creators-guide.md",
+      "type": "invalid_date_format",
+      "message": "Date field must be a valid ISO date string (e.g., \"2023-12-07T20:03:48.097Z\")"
+    },
+    {
+      "file": "2023-11-22-power-up-free-hashtag-tools-unleashed.md",
+      "type": "invalid_date_format",
+      "message": "Date format is invalid or not properly quoted as string"
+    },
+    {
+      "file": "2023-11-22-power-up-free-hashtag-tools-unleashed.md",
+      "type": "invalid_date_format",
+      "message": "Date field must be a valid ISO date string (e.g., \"2023-12-07T20:03:48.097Z\")"
+    },
+    {
+      "file": "2023-11-24-linkedin-lift-off-2023-profile-power-unleashed.md",
+      "type": "invalid_date_format",
+      "message": "Date format is invalid or not properly quoted as string"
+    },
+    {
+      "file": "2023-11-24-linkedin-lift-off-2023-profile-power-unleashed.md",
+      "type": "invalid_date_format",
+      "message": "Date field must be a valid ISO date string (e.g., \"2023-12-07T20:03:48.097Z\")"
+    },
+    {
+      "file": "2023-11-28-unlock-facebook-growth-your-ultimate-guide.md",
+      "type": "invalid_date_format",
+      "message": "Date format is invalid or not properly quoted as string"
+    },
+    {
+      "file": "2023-11-28-unlock-facebook-growth-your-ultimate-guide.md",
+      "type": "invalid_date_format",
+      "message": "Date field must be a valid ISO date string (e.g., \"2023-12-07T20:03:48.097Z\")"
+    },
+    {
+      "file": "2023-12-02-reel-brilliance-crafting-captivating-facebook-videos.md",
+      "type": "invalid_date_format",
+      "message": "Date format is invalid or not properly quoted as string"
+    },
+    {
+      "file": "2023-12-02-reel-brilliance-crafting-captivating-facebook-videos.md",
+      "type": "invalid_date_format",
+      "message": "Date field must be a valid ISO date string (e.g., \"2023-12-07T20:03:48.097Z\")"
+    },
+    {
+      "file": "2023-12-03-decembers-dynamics-unleash-the-upcoming-trends.md",
+      "type": "invalid_date_format",
+      "message": "Date format is invalid or not properly quoted as string"
+    },
+    {
+      "file": "2023-12-03-decembers-dynamics-unleash-the-upcoming-trends.md",
+      "type": "invalid_date_format",
+      "message": "Date field must be a valid ISO date string (e.g., \"2023-12-07T20:03:48.097Z\")"
+    },
+    {
+      "file": "2023-12-04-twitchcraft-mastering-stream-settings-for-seamless-success.md",
+      "type": "invalid_date_format",
+      "message": "Date format is invalid or not properly quoted as string"
+    },
+    {
+      "file": "2023-12-04-twitchcraft-mastering-stream-settings-for-seamless-success.md",
+      "type": "invalid_date_format",
+      "message": "Date field must be a valid ISO date string (e.g., \"2023-12-07T20:03:48.097Z\")"
+    },
+    {
+      "file": "2023-12-05-follow-the-lead-linkedin-unleashed-–-your-follower-magnet.md",
+      "type": "invalid_date_format",
+      "message": "Date format is invalid or not properly quoted as string"
+    },
+    {
+      "file": "2023-12-05-follow-the-lead-linkedin-unleashed-–-your-follower-magnet.md",
+      "type": "invalid_date_format",
+      "message": "Date field must be a valid ISO date string (e.g., \"2023-12-07T20:03:48.097Z\")"
+    },
+    {
+      "file": "2023-12-06-lotus-harmony-evolving-your-music.md",
+      "type": "invalid_date_format",
+      "message": "Date format is invalid or not properly quoted as string"
+    },
+    {
+      "file": "2023-12-06-lotus-harmony-evolving-your-music.md",
+      "type": "invalid_date_format",
+      "message": "Date field must be a valid ISO date string (e.g., \"2023-12-07T20:03:48.097Z\")"
+    },
+    {
+      "file": "2023-12-07-lotus-evolution-twitch-wave-weekly.md",
+      "type": "invalid_date_format",
+      "message": "Date format is invalid or not properly quoted as string"
+    },
+    {
+      "file": "2023-12-07-lotus-evolution-twitch-wave-weekly.md",
+      "type": "invalid_date_format",
+      "message": "Date field must be a valid ISO date string (e.g., \"2023-12-07T20:03:48.097Z\")"
+    },
+    {
+      "file": "2023-12-08-blooming-amidst-the-x-storm-advertising-opportunity.md",
+      "type": "invalid_date_format",
+      "message": "Date format is invalid or not properly quoted as string"
+    },
+    {
+      "file": "2023-12-08-blooming-amidst-the-x-storm-advertising-opportunity.md",
+      "type": "invalid_date_format",
+      "message": "Date field must be a valid ISO date string (e.g., \"2023-12-07T20:03:48.097Z\")"
+    },
+    {
+      "file": "2023-12-09-lotus-blooms-in-the-youtube-jungle.md",
+      "type": "invalid_date_format",
+      "message": "Date format is invalid or not properly quoted as string"
+    },
+    {
+      "file": "2023-12-09-lotus-blooms-in-the-youtube-jungle.md",
+      "type": "invalid_date_format",
+      "message": "Date field must be a valid ISO date string (e.g., \"2023-12-07T20:03:48.097Z\")"
+    },
+    {
+      "file": "2023-12-10-tiktoks-faceless-motivation-evolvedlotus-insights.md",
+      "type": "invalid_date_format",
+      "message": "Date format is invalid or not properly quoted as string"
+    },
+    {
+      "file": "2023-12-10-tiktoks-faceless-motivation-evolvedlotus-insights.md",
+      "type": "invalid_date_format",
+      "message": "Date field must be a valid ISO date string (e.g., \"2023-12-07T20:03:48.097Z\")"
+    },
+    {
+      "file": "2023-12-11-crafting-digital-futures-meta-ai-unleashed.md",
+      "type": "invalid_date_format",
+      "message": "Date format is invalid or not properly quoted as string"
+    },
+    {
+      "file": "2023-12-11-crafting-digital-futures-meta-ai-unleashed.md",
+      "type": "invalid_date_format",
+      "message": "Date field must be a valid ISO date string (e.g., \"2023-12-07T20:03:48.097Z\")"
+    },
+    {
+      "file": "2023-12-12-podcast-revolution-instagram-unleashes-creativity.md",
+      "type": "invalid_date_format",
+      "message": "Date format is invalid or not properly quoted as string"
+    },
+    {
+      "file": "2023-12-12-podcast-revolution-instagram-unleashes-creativity.md",
+      "type": "invalid_date_format",
+      "message": "Date field must be a valid ISO date string (e.g., \"2023-12-07T20:03:48.097Z\")"
+    },
+    {
+      "file": "2023-12-14-2024-tiktok-forge-authentic-connections.md",
+      "type": "invalid_date_format",
+      "message": "Date format is invalid or not properly quoted as string"
+    },
+    {
+      "file": "2023-12-14-2024-tiktok-forge-authentic-connections.md",
+      "type": "invalid_date_format",
+      "message": "Date field must be a valid ISO date string (e.g., \"2023-12-07T20:03:48.097Z\")"
+    },
+    {
+      "file": "2023-12-18-winter-streampass-winter-fest.md",
+      "type": "invalid_date_format",
+      "message": "Date format is invalid or not properly quoted as string"
+    },
+    {
+      "file": "2023-12-18-winter-streampass-winter-fest.md",
+      "type": "invalid_date_format",
+      "message": "Date field must be a valid ISO date string (e.g., \"2023-12-07T20:03:48.097Z\")"
+    },
+    {
+      "file": "2023-12-23-hashtag-alchemy-transforming-trends-into-tales.md",
+      "type": "invalid_date_format",
+      "message": "Date format is invalid or not properly quoted as string"
+    },
+    {
+      "file": "2023-12-23-hashtag-alchemy-transforming-trends-into-tales.md",
+      "type": "invalid_date_format",
+      "message": "Date field must be a valid ISO date string (e.g., \"2023-12-07T20:03:48.097Z\")"
+    },
+    {
+      "file": "2023-12-26-from-sound-waves-to-screens-the-intro-to-podcast.md",
+      "type": "invalid_date_format",
+      "message": "Date format is invalid or not properly quoted as string"
+    },
+    {
+      "file": "2023-12-26-from-sound-waves-to-screens-the-intro-to-podcast.md",
+      "type": "invalid_date_format",
+      "message": "Date field must be a valid ISO date string (e.g., \"2023-12-07T20:03:48.097Z\")"
+    },
+    {
+      "file": "2023-12-30-tiktoks-faceless-recipes-evolvedlotus-insights.md",
+      "type": "invalid_date_format",
+      "message": "Date format is invalid or not properly quoted as string"
+    },
+    {
+      "file": "2023-12-30-tiktoks-faceless-recipes-evolvedlotus-insights.md",
+      "type": "invalid_date_format",
+      "message": "Date field must be a valid ISO date string (e.g., \"2023-12-07T20:03:48.097Z\")"
+    },
+    {
+      "file": "2024-01-04-evolving-taxes-twitch101-2024.md",
+      "type": "invalid_date_format",
+      "message": "Date format is invalid or not properly quoted as string"
+    },
+    {
+      "file": "2024-01-04-evolving-taxes-twitch101-2024.md",
+      "type": "invalid_date_format",
+      "message": "Date field must be a valid ISO date string (e.g., \"2023-12-07T20:03:48.097Z\")"
+    },
+    {
+      "file": "2024-01-09-evolving-as-an-artist-bloom-your-tunes.md",
+      "type": "invalid_date_format",
+      "message": "Date format is invalid or not properly quoted as string"
+    },
+    {
+      "file": "2024-01-09-evolving-as-an-artist-bloom-your-tunes.md",
+      "type": "invalid_date_format",
+      "message": "Date field must be a valid ISO date string (e.g., \"2023-12-07T20:03:48.097Z\")"
+    },
+    {
+      "file": "2024-01-15-youtubeevolved-youtube-2024-algorithm.md",
+      "type": "invalid_date_format",
+      "message": "Date format is invalid or not properly quoted as string"
+    },
+    {
+      "file": "2024-01-15-youtubeevolved-youtube-2024-algorithm.md",
+      "type": "invalid_date_format",
+      "message": "Date field must be a valid ISO date string (e.g., \"2023-12-07T20:03:48.097Z\")"
+    },
+    {
+      "file": "2024-01-24-facebook-ads-with-evolvedlotus.md",
+      "type": "invalid_date_format",
+      "message": "Date format is invalid or not properly quoted as string"
+    },
+    {
+      "file": "2024-01-24-facebook-ads-with-evolvedlotus.md",
+      "type": "invalid_date_format",
+      "message": "Date field must be a valid ISO date string (e.g., \"2023-12-07T20:03:48.097Z\")"
+    },
+    {
+      "file": "2024-01-31-how-does-instagram-pay-you-unraveling-instagram-payments.md",
+      "type": "invalid_date_format",
+      "message": "Date format is invalid or not properly quoted as string"
+    },
+    {
+      "file": "2024-01-31-how-does-instagram-pay-you-unraveling-instagram-payments.md",
+      "type": "invalid_date_format",
+      "message": "Date field must be a valid ISO date string (e.g., \"2023-12-07T20:03:48.097Z\")"
+    },
+    {
+      "file": "2024-02-01-linkedins-influence-on-the-current.md",
+      "type": "invalid_date_format",
+      "message": "Date format is invalid or not properly quoted as string"
+    },
+    {
+      "file": "2024-02-01-linkedins-influence-on-the-current.md",
+      "type": "invalid_date_format",
+      "message": "Date field must be a valid ISO date string (e.g., \"2023-12-07T20:03:48.097Z\")"
+    },
+    {
+      "file": "2024-02-03-umgs-exit-the-shift-of-music.md",
+      "type": "invalid_date_format",
+      "message": "Date format is invalid or not properly quoted as string"
+    },
+    {
+      "file": "2024-02-03-umgs-exit-the-shift-of-music.md",
+      "type": "invalid_date_format",
+      "message": "Date field must be a valid ISO date string (e.g., \"2023-12-07T20:03:48.097Z\")"
+    },
+    {
+      "file": "2024-02-12-streamwise-mastering-multistreaming.md",
+      "type": "invalid_date_format",
+      "message": "Date format is invalid or not properly quoted as string"
+    },
+    {
+      "file": "2024-02-12-streamwise-mastering-multistreaming.md",
+      "type": "invalid_date_format",
+      "message": "Date field must be a valid ISO date string (e.g., \"2023-12-07T20:03:48.097Z\")"
+    },
+    {
+      "file": "2024-02-15-tweeting-trends-twitters-2024-algorithm.md",
+      "type": "invalid_date_format",
+      "message": "Date format is invalid or not properly quoted as string"
+    },
+    {
+      "file": "2024-02-15-tweeting-trends-twitters-2024-algorithm.md",
+      "type": "invalid_date_format",
+      "message": "Date field must be a valid ISO date string (e.g., \"2023-12-07T20:03:48.097Z\")"
+    },
+    {
+      "file": "2024-02-28-evolvedlist-februarys-thriving-creators.md",
+      "type": "invalid_date_format",
+      "message": "Date format is invalid or not properly quoted as string"
+    },
+    {
+      "file": "2024-02-28-evolvedlist-februarys-thriving-creators.md",
+      "type": "invalid_date_format",
+      "message": "Date field must be a valid ISO date string (e.g., \"2023-12-07T20:03:48.097Z\")"
+    },
+    {
+      "file": "2024-02-29-metas-stop-to-misinformation.md",
+      "type": "invalid_date_format",
+      "message": "Date format is invalid or not properly quoted as string"
+    },
+    {
+      "file": "2024-02-29-metas-stop-to-misinformation.md",
+      "type": "invalid_date_format",
+      "message": "Date field must be a valid ISO date string (e.g., \"2023-12-07T20:03:48.097Z\")"
+    },
+    {
+      "file": "2024-03-02-affiliate-hustle-become-a-tiktok-shop-pro.md",
+      "type": "invalid_date_format",
+      "message": "Date format is invalid or not properly quoted as string"
+    },
+    {
+      "file": "2024-03-02-affiliate-hustle-become-a-tiktok-shop-pro.md",
+      "type": "invalid_date_format",
+      "message": "Date field must be a valid ISO date string (e.g., \"2023-12-07T20:03:48.097Z\")"
+    },
+    {
+      "file": "2024-03-12-crypto-turned-gold.md",
+      "type": "invalid_date_format",
+      "message": "Date format is invalid or not properly quoted as string"
+    },
+    {
+      "file": "2024-03-12-crypto-turned-gold.md",
+      "type": "invalid_date_format",
+      "message": "Date field must be a valid ISO date string (e.g., \"2023-12-07T20:03:48.097Z\")"
+    },
+    {
+      "file": "2024-03-14-tiktok-implements-new-changes.md",
+      "type": "invalid_date_format",
+      "message": "Date format is invalid or not properly quoted as string"
+    },
+    {
+      "file": "2024-03-14-tiktok-implements-new-changes.md",
+      "type": "invalid_date_format",
+      "message": "Date field must be a valid ISO date string (e.g., \"2023-12-07T20:03:48.097Z\")"
+    },
+    {
+      "file": "2024-03-27-game-changers-why-women-are-leading-the-gaming-revolution.md",
+      "type": "invalid_date_format",
+      "message": "Date format is invalid or not properly quoted as string"
+    },
+    {
+      "file": "2024-03-27-game-changers-why-women-are-leading-the-gaming-revolution.md",
+      "type": "invalid_date_format",
+      "message": "Date field must be a valid ISO date string (e.g., \"2023-12-07T20:03:48.097Z\")"
+    },
+    {
+      "file": "2024-03-28-twitter-𝕏-updates-new-user-experience-and-battling-bots.md",
+      "type": "invalid_date_format",
+      "message": "Date format is invalid or not properly quoted as string"
+    },
+    {
+      "file": "2024-03-28-twitter-𝕏-updates-new-user-experience-and-battling-bots.md",
+      "type": "invalid_date_format",
+      "message": "Date field must be a valid ISO date string (e.g., \"2023-12-07T20:03:48.097Z\")"
+    },
+    {
+      "file": "2024-03-29-youtube-just-gave-creators-a-makeover-its-time-to-shine.md",
+      "type": "invalid_date_format",
+      "message": "Date format is invalid or not properly quoted as string"
+    },
+    {
+      "file": "2024-03-29-youtube-just-gave-creators-a-makeover-its-time-to-shine.md",
+      "type": "invalid_date_format",
+      "message": "Date field must be a valid ISO date string (e.g., \"2023-12-07T20:03:48.097Z\")"
+    },
+    {
+      "file": "2024-04-09-no-more-regrets-edit-pin-style-up-your-instagram-dms.md",
+      "type": "invalid_date_format",
+      "message": "Date format is invalid or not properly quoted as string"
+    },
+    {
+      "file": "2024-04-09-no-more-regrets-edit-pin-style-up-your-instagram-dms.md",
+      "type": "invalid_date_format",
+      "message": "Date field must be a valid ISO date string (e.g., \"2023-12-07T20:03:48.097Z\")"
+    },
+    {
+      "file": "2024-04-11-level-up-your-stream-from-bland-to-grand.md",
+      "type": "invalid_date_format",
+      "message": "Date format is invalid or not properly quoted as string"
+    },
+    {
+      "file": "2024-04-11-level-up-your-stream-from-bland-to-grand.md",
+      "type": "invalid_date_format",
+      "message": "Date field must be a valid ISO date string (e.g., \"2023-12-07T20:03:48.097Z\")"
+    },
+    {
+      "file": "2024-04-12-expand-your-reach-dont-preach-linkedins-the-speech.md",
+      "type": "invalid_date_format",
+      "message": "Date format is invalid or not properly quoted as string"
+    },
+    {
+      "file": "2024-04-12-expand-your-reach-dont-preach-linkedins-the-speech.md",
+      "type": "invalid_date_format",
+      "message": "Date field must be a valid ISO date string (e.g., \"2023-12-07T20:03:48.097Z\")"
+    },
+    {
+      "file": "2024-04-18-tiktoks-faceless-travel-tips-and-guide-evolvedlotus-insights.md",
+      "type": "invalid_date_format",
+      "message": "Date format is invalid or not properly quoted as string"
+    },
+    {
+      "file": "2024-04-18-tiktoks-faceless-travel-tips-and-guide-evolvedlotus-insights.md",
+      "type": "invalid_date_format",
+      "message": "Date field must be a valid ISO date string (e.g., \"2023-12-07T20:03:48.097Z\")"
+    },
+    {
+      "file": "2024-04-25-twitch-streamlined-secure.md",
+      "type": "invalid_date_format",
+      "message": "Date format is invalid or not properly quoted as string"
+    },
+    {
+      "file": "2024-04-25-twitch-streamlined-secure.md",
+      "type": "invalid_date_format",
+      "message": "Date field must be a valid ISO date string (e.g., \"2023-12-07T20:03:48.097Z\")"
+    },
+    {
+      "file": "2024-05-06-x-and-grok-ai-sipping-news-smoothies-with-ai-powered-summaries.md",
+      "type": "invalid_date_format",
+      "message": "Date format is invalid or not properly quoted as string"
+    },
+    {
+      "file": "2024-05-06-x-and-grok-ai-sipping-news-smoothies-with-ai-powered-summaries.md",
+      "type": "invalid_date_format",
+      "message": "Date field must be a valid ISO date string (e.g., \"2023-12-07T20:03:48.097Z\")"
+    },
+    {
+      "file": "2024-05-08-youtubes-ai-your-genie-for-content-ads.md",
+      "type": "invalid_date_format",
+      "message": "Date format is invalid or not properly quoted as string"
+    },
+    {
+      "file": "2024-05-08-youtubes-ai-your-genie-for-content-ads.md",
+      "type": "invalid_date_format",
+      "message": "Date field must be a valid ISO date string (e.g., \"2023-12-07T20:03:48.097Z\")"
+    },
+    {
+      "file": "2024-05-10-meta-llama-3-your-next-gen-ai-assistant.md",
+      "type": "invalid_date_format",
+      "message": "Date format is invalid or not properly quoted as string"
+    },
+    {
+      "file": "2024-05-10-meta-llama-3-your-next-gen-ai-assistant.md",
+      "type": "invalid_date_format",
+      "message": "Date field must be a valid ISO date string (e.g., \"2023-12-07T20:03:48.097Z\")"
+    },
+    {
+      "file": "2024-06-18-linkedin-gpt-microsoft-changes-job-searching.md",
+      "type": "invalid_date_format",
+      "message": "Date format is invalid or not properly quoted as string"
+    },
+    {
+      "file": "2024-06-18-linkedin-gpt-microsoft-changes-job-searching.md",
+      "type": "invalid_date_format",
+      "message": "Date field must be a valid ISO date string (e.g., \"2023-12-07T20:03:48.097Z\")"
+    },
+    {
+      "file": "2024-06-22-the-rise-of-tiktok’s-new-influencers.md",
+      "type": "invalid_date_format",
+      "message": "Date format is invalid or not properly quoted as string"
+    },
+    {
+      "file": "2024-06-22-the-rise-of-tiktok’s-new-influencers.md",
+      "type": "invalid_date_format",
+      "message": "Date field must be a valid ISO date string (e.g., \"2023-12-07T20:03:48.097Z\")"
+    },
+    {
+      "file": "2024-07-20-trend-genius-new-ai-for-advertisements.md",
+      "type": "invalid_date_format",
+      "message": "Date format is invalid or not properly quoted as string"
+    },
+    {
+      "file": "2024-07-20-trend-genius-new-ai-for-advertisements.md",
+      "type": "invalid_date_format",
+      "message": "Date field must be a valid ISO date string (e.g., \"2023-12-07T20:03:48.097Z\")"
+    },
+    {
+      "file": "2024-07-23-new-short-way-for-youtube-ads.md",
+      "type": "invalid_date_format",
+      "message": "Date format is invalid or not properly quoted as string"
+    },
+    {
+      "file": "2024-07-23-new-short-way-for-youtube-ads.md",
+      "type": "invalid_date_format",
+      "message": "Date field must be a valid ISO date string (e.g., \"2023-12-07T20:03:48.097Z\")"
+    },
+    {
+      "file": "2024-07-31-facebook-ugc-creator-lotus-takes.md",
+      "type": "invalid_date_format",
+      "message": "Date format is invalid or not properly quoted as string"
+    },
+    {
+      "file": "2024-07-31-facebook-ugc-creator-lotus-takes.md",
+      "type": "invalid_date_format",
+      "message": "Date field must be a valid ISO date string (e.g., \"2023-12-07T20:03:48.097Z\")"
+    },
+    {
+      "file": "2024-08-27-youtube-kids-safe-channel-launch.md",
+      "type": "invalid_date_format",
+      "message": "Date format is invalid or not properly quoted as string"
+    },
+    {
+      "file": "2024-08-27-youtube-kids-safe-channel-launch.md",
+      "type": "invalid_date_format",
+      "message": "Date field must be a valid ISO date string (e.g., \"2023-12-07T20:03:48.097Z\")"
+    },
+    {
+      "file": "2024-09-27-evolved-insights-“tiny-twitter-niche”.md",
+      "type": "invalid_date_format",
+      "message": "Date format is invalid or not properly quoted as string"
+    },
+    {
+      "file": "2024-09-27-evolved-insights-“tiny-twitter-niche”.md",
+      "type": "invalid_date_format",
+      "message": "Date field must be a valid ISO date string (e.g., \"2023-12-07T20:03:48.097Z\")"
+    },
+    {
+      "file": "2024-11-04-november’s-must-know-social-trends.md",
+      "type": "invalid_date_format",
+      "message": "Date format is invalid or not properly quoted as string"
+    },
+    {
+      "file": "2024-11-04-november’s-must-know-social-trends.md",
+      "type": "invalid_date_format",
+      "message": "Date field must be a valid ISO date string (e.g., \"2023-12-07T20:03:48.097Z\")"
+    },
+    {
+      "file": "2025-01-22-evolvedlotus-view-on-hootsuite’s-2025-report.md",
+      "type": "invalid_date_format",
+      "message": "Date format is invalid or not properly quoted as string"
+    },
+    {
+      "file": "2025-01-22-evolvedlotus-view-on-hootsuite’s-2025-report.md",
+      "type": "invalid_date_format",
+      "message": "Date field must be a valid ISO date string (e.g., \"2023-12-07T20:03:48.097Z\")"
+    },
+    {
+      "file": "2025-01-29-how-to-write-a-viral-caption-for-social-media.md",
+      "type": "invalid_date_format",
+      "message": "Date format is invalid or not properly quoted as string"
+    },
+    {
+      "file": "2025-01-29-how-to-write-a-viral-caption-for-social-media.md",
+      "type": "invalid_date_format",
+      "message": "Date field must be a valid ISO date string (e.g., \"2023-12-07T20:03:48.097Z\")"
+    },
+    {
+      "file": "2025-02-20-is-1of10-really-worth-it-or-should-you-save-your-money-and-learn-on-your-own.md",
+      "type": "invalid_date_format",
+      "message": "Date format is invalid or not properly quoted as string"
+    },
+    {
+      "file": "2025-02-20-is-1of10-really-worth-it-or-should-you-save-your-money-and-learn-on-your-own.md",
+      "type": "invalid_date_format",
+      "message": "Date field must be a valid ISO date string (e.g., \"2023-12-07T20:03:48.097Z\")"
+    },
+    {
+      "file": "2025-04-27-facebook-content-mastery-5-proven-strategies-for-explosive-engagement.md",
+      "type": "invalid_date_format",
+      "message": "Date format is invalid or not properly quoted as string"
+    },
+    {
+      "file": "2025-04-27-facebook-content-mastery-5-proven-strategies-for-explosive-engagement.md",
+      "type": "invalid_date_format",
+      "message": "Date field must be a valid ISO date string (e.g., \"2023-12-07T20:03:48.097Z\")"
+    },
+    {
+      "file": "2025-05-13-how-to-skyrocket-your-tiktok-views-and-engagement-a-simple-content-strategy.md",
+      "type": "invalid_date_format",
+      "message": "Date format is invalid or not properly quoted as string"
+    },
+    {
+      "file": "2025-05-13-how-to-skyrocket-your-tiktok-views-and-engagement-a-simple-content-strategy.md",
+      "type": "invalid_date_format",
+      "message": "Date field must be a valid ISO date string (e.g., \"2023-12-07T20:03:48.097Z\")"
+    },
+    {
+      "file": "2025-05-19-streaming-in-2025-the-no-bs-guide-to-getting-started-or-leveling-up.md",
+      "type": "invalid_date_format",
+      "message": "Date format is invalid or not properly quoted as string"
+    },
+    {
+      "file": "2025-05-19-streaming-in-2025-the-no-bs-guide-to-getting-started-or-leveling-up.md",
+      "type": "invalid_date_format",
+      "message": "Date field must be a valid ISO date string (e.g., \"2023-12-07T20:03:48.097Z\")"
+    },
+    {
+      "file": "2025-05-22-why-most-content-creators-are-setting-themselves-up-for-failure.md",
+      "type": "invalid_date_format",
+      "message": "Date format is invalid or not properly quoted as string"
+    },
+    {
+      "file": "2025-05-22-why-most-content-creators-are-setting-themselves-up-for-failure.md",
+      "type": "invalid_date_format",
+      "message": "Date field must be a valid ISO date string (e.g., \"2023-12-07T20:03:48.097Z\")"
+    },
+    {
+      "file": "2025-07-29-are-instagram-ads-worth-it-plus-new-strategies-for-organic-growth-in-2025.md",
+      "type": "invalid_date_format",
+      "message": "Date format is invalid or not properly quoted as string"
+    },
+    {
+      "file": "2025-07-29-are-instagram-ads-worth-it-plus-new-strategies-for-organic-growth-in-2025.md",
+      "type": "invalid_date_format",
+      "message": "Date field must be a valid ISO date string (e.g., \"2023-12-07T20:03:48.097Z\")"
+    },
+    {
+      "file": "2025-07-30-twitter-x-unpacked-mastering-growth-engagement-with-latest-features-ai.md",
+      "type": "invalid_date_format",
+      "message": "Date format is invalid or not properly quoted as string"
+    },
+    {
+      "file": "2025-07-30-twitter-x-unpacked-mastering-growth-engagement-with-latest-features-ai.md",
+      "type": "invalid_date_format",
+      "message": "Date field must be a valid ISO date string (e.g., \"2023-12-07T20:03:48.097Z\")"
+    },
+    {
+      "file": "2025-08-11-how-to-create-30-days-of-content-in-one-weekend.md",
+      "type": "invalid_date_format",
+      "message": "Date format is invalid or not properly quoted as string"
+    },
+    {
+      "file": "2025-08-11-how-to-create-30-days-of-content-in-one-weekend.md",
+      "type": "invalid_date_format",
+      "message": "Date field must be a valid ISO date string (e.g., \"2023-12-07T20:03:48.097Z\")"
+    },
+    {
+      "file": "2025-08-13-top-free-design-tools-every-creator-needs.md",
+      "type": "invalid_date_format",
+      "message": "Date format is invalid or not properly quoted as string"
+    },
+    {
+      "file": "2025-08-13-top-free-design-tools-every-creator-needs.md",
+      "type": "invalid_date_format",
+      "message": "Date field must be a valid ISO date string (e.g., \"2023-12-07T20:03:48.097Z\")"
+    },
+    {
+      "file": "2025-08-15-understanding-social-media-analytics-what-metrics-actually-matter.md",
+      "type": "invalid_date_format",
+      "message": "Date format is invalid or not properly quoted as string"
+    },
+    {
+      "file": "2025-08-15-understanding-social-media-analytics-what-metrics-actually-matter.md",
+      "type": "invalid_date_format",
+      "message": "Date field must be a valid ISO date string (e.g., \"2023-12-07T20:03:48.097Z\")"
+    },
+    {
+      "file": "2025-08-25-how-to-price-your-services-as-a-content-creator-in-2025.md",
+      "type": "invalid_date_format",
+      "message": "Date format is invalid or not properly quoted as string"
+    },
+    {
+      "file": "2025-08-25-how-to-price-your-services-as-a-content-creator-in-2025.md",
+      "type": "invalid_date_format",
+      "message": "Date field must be a valid ISO date string (e.g., \"2023-12-07T20:03:48.097Z\")"
+    },
+    {
+      "file": "2025-08-27-basic-seo-for-content-creators.md",
+      "type": "invalid_date_format",
+      "message": "Date format is invalid or not properly quoted as string"
+    },
+    {
+      "file": "2025-08-27-basic-seo-for-content-creators.md",
+      "type": "invalid_date_format",
+      "message": "Date field must be a valid ISO date string (e.g., \"2023-12-07T20:03:48.097Z\")"
+    },
+    {
+      "file": "2025-08-29-batch-content-creation-techniques-that-save-hours.md",
+      "type": "invalid_date_format",
+      "message": "Date format is invalid or not properly quoted as string"
+    },
+    {
+      "file": "2025-08-29-batch-content-creation-techniques-that-save-hours.md",
+      "type": "invalid_date_format",
+      "message": "Date field must be a valid ISO date string (e.g., \"2023-12-07T20:03:48.097Z\")"
+    },
+    {
+      "file": "2025-09-09-best-video-recording-software-2025-free-paid-tools-compared.md",
+      "type": "invalid_date_format",
+      "message": "Date format is invalid or not properly quoted as string"
+    },
+    {
+      "file": "2025-09-09-best-video-recording-software-2025-free-paid-tools-compared.md",
+      "type": "invalid_date_format",
+      "message": "Date field must be a valid ISO date string (e.g., \"2023-12-07T20:03:48.097Z\")"
+    },
+    {
+      "file": "2025-09-10-using-data-to-optimize-your-posting-schedule.md",
+      "type": "invalid_date_format",
+      "message": "Date format is invalid or not properly quoted as string"
+    },
+    {
+      "file": "2025-09-10-using-data-to-optimize-your-posting-schedule.md",
+      "type": "invalid_date_format",
+      "message": "Date field must be a valid ISO date string (e.g., \"2023-12-07T20:03:48.097Z\")"
+    },
+    {
+      "file": "2025-09-12-open-source-alternatives-to-expensive-creator-tools.md",
+      "type": "invalid_date_format",
+      "message": "Date format is invalid or not properly quoted as string"
+    },
+    {
+      "file": "2025-09-12-open-source-alternatives-to-expensive-creator-tools.md",
+      "type": "invalid_date_format",
+      "message": "Date field must be a valid ISO date string (e.g., \"2023-12-07T20:03:48.097Z\")"
+    },
+    {
+      "file": "2025-09-22-building-email-lists-through-social-media-content-the-complete-2025-strategy-guide.md",
+      "type": "invalid_date_format",
+      "message": "Date format is invalid or not properly quoted as string"
+    },
+    {
+      "file": "2025-09-22-building-email-lists-through-social-media-content-the-complete-2025-strategy-guide.md",
+      "type": "invalid_date_format",
+      "message": "Date field must be a valid ISO date string (e.g., \"2023-12-07T20:03:48.097Z\")"
+    },
+    {
+      "file": "2025-09-25-color-theory-and-design-principles-for-social-media.md",
+      "type": "invalid_date_format",
+      "message": "Date format is invalid or not properly quoted as string"
+    },
+    {
+      "file": "2025-09-25-color-theory-and-design-principles-for-social-media.md",
+      "type": "invalid_date_format",
+      "message": "Date field must be a valid ISO date string (e.g., \"2023-12-07T20:03:48.097Z\")"
+    },
+    {
+      "file": "2025-10-08-building-genuine-engagement-vs-vanity-metrics.md",
+      "type": "invalid_date_format",
+      "message": "Date format is invalid or not properly quoted as string"
+    },
+    {
+      "file": "2025-10-08-building-genuine-engagement-vs-vanity-metrics.md",
+      "type": "invalid_date_format",
+      "message": "Date field must be a valid ISO date string (e.g., \"2023-12-07T20:03:48.097Z\")"
+    },
+    {
+      "file": "2025-10-13-turning-your-content-into-multiple-revenue-streams.md",
+      "type": "invalid_date_format",
+      "message": "Date format is invalid or not properly quoted as string"
+    },
+    {
+      "file": "2025-10-13-turning-your-content-into-multiple-revenue-streams.md",
+      "type": "invalid_date_format",
+      "message": "Date field must be a valid ISO date string (e.g., \"2023-12-07T20:03:48.097Z\")"
+    },
+    {
+      "file": "2025-10-20-mobile-photography-techniques-for-better-content.md",
+      "type": "invalid_date_format",
+      "message": "Date format is invalid or not properly quoted as string"
+    },
+    {
+      "file": "2025-10-20-mobile-photography-techniques-for-better-content.md",
+      "type": "invalid_date_format",
+      "message": "Date field must be a valid ISO date string (e.g., \"2023-12-07T20:03:48.097Z\")"
+    }
+  ],
+  "warnings": [
+    {
+      "file": "2023-11-20-boost-tiktok-visuals-top-online-resources.md",
+      "field": "date",
+      "issue": "Date should be in ISO 8601 format (YYYY-MM-DDTHH:mm:ss.sssZ)",
+      "value": "\"2023-11-20T02:53:05.277Z\"",
+      "line": "frontmatter"
+    },
+    {
+      "file": "2023-11-20-brand-deals-made-easy-with-signaturely.md",
+      "field": "date",
+      "issue": "Date should be in ISO 8601 format (YYYY-MM-DDTHH:mm:ss.sssZ)",
+      "value": "\"2023-11-20T12:00:00.000Z\"",
+      "line": "frontmatter"
+    },
+    {
+      "file": "2023-11-20-jams-without-jitters-your-copyright-free-soundtrack-guide.md",
+      "field": "date",
+      "issue": "Date should be in ISO 8601 format (YYYY-MM-DDTHH:mm:ss.sssZ)",
+      "value": "\"2023-11-20T12:00:00.000Z\"",
+      "line": "frontmatter"
+    },
+    {
+      "file": "2023-11-20-social-scheduling-mastery-harnessing-free-tools-for-online-success.md",
+      "field": "date",
+      "issue": "Date should be in ISO 8601 format (YYYY-MM-DDTHH:mm:ss.sssZ)",
+      "value": "\"2023-11-20T12:00:00.000Z\"",
+      "line": "frontmatter"
+    },
+    {
+      "file": "2023-11-22-influencer-brilliance-unleash-online-power.md",
+      "field": "date",
+      "issue": "Date should be in ISO 8601 format (YYYY-MM-DDTHH:mm:ss.sssZ)",
+      "value": "\"2023-11-22T12:00:00.000Z\"",
+      "line": "frontmatter"
+    },
+    {
+      "file": "2023-11-22-online-mastery-a-creators-guide.md",
+      "field": "date",
+      "issue": "Date should be in ISO 8601 format (YYYY-MM-DDTHH:mm:ss.sssZ)",
+      "value": "\"2023-11-22T12:00:00.000Z\"",
+      "line": "frontmatter"
+    },
+    {
+      "file": "2023-11-22-power-up-free-hashtag-tools-unleashed.md",
+      "field": "date",
+      "issue": "Date should be in ISO 8601 format (YYYY-MM-DDTHH:mm:ss.sssZ)",
+      "value": "\"2023-11-22T12:00:00.000Z\"",
+      "line": "frontmatter"
+    },
+    {
+      "file": "2023-11-24-linkedin-lift-off-2023-profile-power-unleashed.md",
+      "field": "date",
+      "issue": "Date should be in ISO 8601 format (YYYY-MM-DDTHH:mm:ss.sssZ)",
+      "value": "\"2023-11-24T12:00:00.000Z\"",
+      "line": "frontmatter"
+    },
+    {
+      "file": "2023-11-28-unlock-facebook-growth-your-ultimate-guide.md",
+      "field": "date",
+      "issue": "Date should be in ISO 8601 format (YYYY-MM-DDTHH:mm:ss.sssZ)",
+      "value": "\"2023-11-28T12:00:00.000Z\"",
+      "line": "frontmatter"
+    },
+    {
+      "file": "2023-12-02-reel-brilliance-crafting-captivating-facebook-videos.md",
+      "field": "date",
+      "issue": "Date should be in ISO 8601 format (YYYY-MM-DDTHH:mm:ss.sssZ)",
+      "value": "\"2023-12-02T12:00:00.000Z\"",
+      "line": "frontmatter"
+    },
+    {
+      "file": "2023-12-03-decembers-dynamics-unleash-the-upcoming-trends.md",
+      "field": "date",
+      "issue": "Date should be in ISO 8601 format (YYYY-MM-DDTHH:mm:ss.sssZ)",
+      "value": "\"2023-12-03T12:00:00.000Z\"",
+      "line": "frontmatter"
+    },
+    {
+      "file": "2023-12-04-twitchcraft-mastering-stream-settings-for-seamless-success.md",
+      "field": "date",
+      "issue": "Date should be in ISO 8601 format (YYYY-MM-DDTHH:mm:ss.sssZ)",
+      "value": "\"2023-12-04T12:00:00.000Z\"",
+      "line": "frontmatter"
+    },
+    {
+      "file": "2023-12-05-follow-the-lead-linkedin-unleashed-–-your-follower-magnet.md",
+      "field": "date",
+      "issue": "Date should be in ISO 8601 format (YYYY-MM-DDTHH:mm:ss.sssZ)",
+      "value": "\"2023-12-05T12:00:00.000Z\"",
+      "line": "frontmatter"
+    },
+    {
+      "file": "2023-12-06-lotus-harmony-evolving-your-music.md",
+      "field": "date",
+      "issue": "Date should be in ISO 8601 format (YYYY-MM-DDTHH:mm:ss.sssZ)",
+      "value": "\"2023-12-06T12:00:00.000Z\"",
+      "line": "frontmatter"
+    },
+    {
+      "file": "2023-12-07-lotus-evolution-twitch-wave-weekly.md",
+      "field": "date",
+      "issue": "Date should be in ISO 8601 format (YYYY-MM-DDTHH:mm:ss.sssZ)",
+      "value": "\"2023-12-07T20:03:48.097Z\"",
+      "line": "frontmatter"
+    },
+    {
+      "file": "2023-12-08-blooming-amidst-the-x-storm-advertising-opportunity.md",
+      "field": "date",
+      "issue": "Date should be in ISO 8601 format (YYYY-MM-DDTHH:mm:ss.sssZ)",
+      "value": "\"2023-12-08T18:51:23.460Z\"",
+      "line": "frontmatter"
+    },
+    {
+      "file": "2023-12-09-lotus-blooms-in-the-youtube-jungle.md",
+      "field": "date",
+      "issue": "Date should be in ISO 8601 format (YYYY-MM-DDTHH:mm:ss.sssZ)",
+      "value": "\"2023-12-09T12:00:00.000Z\"",
+      "line": "frontmatter"
+    },
+    {
+      "file": "2023-12-10-tiktoks-faceless-motivation-evolvedlotus-insights.md",
+      "field": "date",
+      "issue": "Date should be in ISO 8601 format (YYYY-MM-DDTHH:mm:ss.sssZ)",
+      "value": "\"2023-12-10T12:00:00.000Z\"",
+      "line": "frontmatter"
+    },
+    {
+      "file": "2023-12-11-crafting-digital-futures-meta-ai-unleashed.md",
+      "field": "date",
+      "issue": "Date should be in ISO 8601 format (YYYY-MM-DDTHH:mm:ss.sssZ)",
+      "value": "\"2023-12-11T12:00:00.000Z\"",
+      "line": "frontmatter"
+    },
+    {
+      "file": "2023-12-12-podcast-revolution-instagram-unleashes-creativity.md",
+      "field": "date",
+      "issue": "Date should be in ISO 8601 format (YYYY-MM-DDTHH:mm:ss.sssZ)",
+      "value": "\"2023-12-12T12:00:00.000Z\"",
+      "line": "frontmatter"
+    },
+    {
+      "file": "2023-12-14-2024-tiktok-forge-authentic-connections.md",
+      "field": "date",
+      "issue": "Date should be in ISO 8601 format (YYYY-MM-DDTHH:mm:ss.sssZ)",
+      "value": "\"2023-12-14T12:00:00.000Z\"",
+      "line": "frontmatter"
+    },
+    {
+      "file": "2023-12-18-winter-streampass-winter-fest.md",
+      "field": "date",
+      "issue": "Date should be in ISO 8601 format (YYYY-MM-DDTHH:mm:ss.sssZ)",
+      "value": "\"2023-12-18T12:00:00.000Z\"",
+      "line": "frontmatter"
+    },
+    {
+      "file": "2023-12-23-hashtag-alchemy-transforming-trends-into-tales.md",
+      "field": "date",
+      "issue": "Date should be in ISO 8601 format (YYYY-MM-DDTHH:mm:ss.sssZ)",
+      "value": "\"2023-12-23T12:00:00.000Z\"",
+      "line": "frontmatter"
+    },
+    {
+      "file": "2023-12-26-from-sound-waves-to-screens-the-intro-to-podcast.md",
+      "field": "date",
+      "issue": "Date should be in ISO 8601 format (YYYY-MM-DDTHH:mm:ss.sssZ)",
+      "value": "\"2023-12-26T12:00:00.000Z\"",
+      "line": "frontmatter"
+    },
+    {
+      "file": "2023-12-30-tiktoks-faceless-recipes-evolvedlotus-insights.md",
+      "field": "date",
+      "issue": "Date should be in ISO 8601 format (YYYY-MM-DDTHH:mm:ss.sssZ)",
+      "value": "\"2023-12-30T12:00:00.000Z\"",
+      "line": "frontmatter"
+    },
+    {
+      "file": "2024-01-04-evolving-taxes-twitch101-2024.md",
+      "field": "date",
+      "issue": "Date should be in ISO 8601 format (YYYY-MM-DDTHH:mm:ss.sssZ)",
+      "value": "\"2024-01-04T12:00:00.000Z\"",
+      "line": "frontmatter"
+    },
+    {
+      "file": "2024-01-09-evolving-as-an-artist-bloom-your-tunes.md",
+      "field": "date",
+      "issue": "Date should be in ISO 8601 format (YYYY-MM-DDTHH:mm:ss.sssZ)",
+      "value": "\"2024-01-09T12:00:00.000Z\"",
+      "line": "frontmatter"
+    },
+    {
+      "file": "2024-01-15-youtubeevolved-youtube-2024-algorithm.md",
+      "field": "date",
+      "issue": "Date should be in ISO 8601 format (YYYY-MM-DDTHH:mm:ss.sssZ)",
+      "value": "\"2024-01-15T12:00:00.000Z\"",
+      "line": "frontmatter"
+    },
+    {
+      "file": "2024-01-24-facebook-ads-with-evolvedlotus.md",
+      "field": "date",
+      "issue": "Date should be in ISO 8601 format (YYYY-MM-DDTHH:mm:ss.sssZ)",
+      "value": "\"2024-01-24T12:00:00.000Z\"",
+      "line": "frontmatter"
+    },
+    {
+      "file": "2024-01-31-how-does-instagram-pay-you-unraveling-instagram-payments.md",
+      "field": "date",
+      "issue": "Date should be in ISO 8601 format (YYYY-MM-DDTHH:mm:ss.sssZ)",
+      "value": "\"2024-01-31T12:00:00.000Z\"",
+      "line": "frontmatter"
+    },
+    {
+      "file": "2024-02-01-linkedins-influence-on-the-current.md",
+      "field": "date",
+      "issue": "Date should be in ISO 8601 format (YYYY-MM-DDTHH:mm:ss.sssZ)",
+      "value": "\"2024-02-01T12:00:00.000Z\"",
+      "line": "frontmatter"
+    },
+    {
+      "file": "2024-02-03-umgs-exit-the-shift-of-music.md",
+      "field": "date",
+      "issue": "Date should be in ISO 8601 format (YYYY-MM-DDTHH:mm:ss.sssZ)",
+      "value": "\"2024-02-03T12:00:00.000Z\"",
+      "line": "frontmatter"
+    },
+    {
+      "file": "2024-02-12-streamwise-mastering-multistreaming.md",
+      "field": "date",
+      "issue": "Date should be in ISO 8601 format (YYYY-MM-DDTHH:mm:ss.sssZ)",
+      "value": "\"2024-02-12T12:00:00.000Z\"",
+      "line": "frontmatter"
+    },
+    {
+      "file": "2024-02-15-tweeting-trends-twitters-2024-algorithm.md",
+      "field": "date",
+      "issue": "Date should be in ISO 8601 format (YYYY-MM-DDTHH:mm:ss.sssZ)",
+      "value": "\"2024-02-15T12:00:00.000Z\"",
+      "line": "frontmatter"
+    },
+    {
+      "file": "2024-02-28-evolvedlist-februarys-thriving-creators.md",
+      "field": "date",
+      "issue": "Date should be in ISO 8601 format (YYYY-MM-DDTHH:mm:ss.sssZ)",
+      "value": "\"2024-02-28T12:00:00.000Z\"",
+      "line": "frontmatter"
+    },
+    {
+      "file": "2024-02-29-metas-stop-to-misinformation.md",
+      "field": "date",
+      "issue": "Date should be in ISO 8601 format (YYYY-MM-DDTHH:mm:ss.sssZ)",
+      "value": "\"2024-02-29T12:00:00.000Z\"",
+      "line": "frontmatter"
+    },
+    {
+      "file": "2024-03-02-affiliate-hustle-become-a-tiktok-shop-pro.md",
+      "field": "date",
+      "issue": "Date should be in ISO 8601 format (YYYY-MM-DDTHH:mm:ss.sssZ)",
+      "value": "\"2024-03-02T12:00:00.000Z\"",
+      "line": "frontmatter"
+    },
+    {
+      "file": "2024-03-12-crypto-turned-gold.md",
+      "field": "date",
+      "issue": "Date should be in ISO 8601 format (YYYY-MM-DDTHH:mm:ss.sssZ)",
+      "value": "\"2024-03-12T12:00:00.000Z\"",
+      "line": "frontmatter"
+    },
+    {
+      "file": "2024-03-14-tiktok-implements-new-changes.md",
+      "field": "date",
+      "issue": "Date should be in ISO 8601 format (YYYY-MM-DDTHH:mm:ss.sssZ)",
+      "value": "\"2024-03-14T12:00:00.000Z\"",
+      "line": "frontmatter"
+    },
+    {
+      "file": "2024-03-27-game-changers-why-women-are-leading-the-gaming-revolution.md",
+      "field": "date",
+      "issue": "Date should be in ISO 8601 format (YYYY-MM-DDTHH:mm:ss.sssZ)",
+      "value": "\"2024-03-27T12:00:00.000Z\"",
+      "line": "frontmatter"
+    },
+    {
+      "file": "2024-03-28-twitter-𝕏-updates-new-user-experience-and-battling-bots.md",
+      "field": "date",
+      "issue": "Date should be in ISO 8601 format (YYYY-MM-DDTHH:mm:ss.sssZ)",
+      "value": "\"2024-03-28T12:00:00.000Z\"",
+      "line": "frontmatter"
+    },
+    {
+      "file": "2024-03-29-youtube-just-gave-creators-a-makeover-its-time-to-shine.md",
+      "field": "date",
+      "issue": "Date should be in ISO 8601 format (YYYY-MM-DDTHH:mm:ss.sssZ)",
+      "value": "\"2024-03-29T16:43:00.000Z\"",
+      "line": "frontmatter"
+    },
+    {
+      "file": "2024-04-09-no-more-regrets-edit-pin-style-up-your-instagram-dms.md",
+      "field": "date",
+      "issue": "Date should be in ISO 8601 format (YYYY-MM-DDTHH:mm:ss.sssZ)",
+      "value": "\"2024-04-09T12:00:00.000Z\"",
+      "line": "frontmatter"
+    },
+    {
+      "file": "2024-04-11-level-up-your-stream-from-bland-to-grand.md",
+      "field": "date",
+      "issue": "Date should be in ISO 8601 format (YYYY-MM-DDTHH:mm:ss.sssZ)",
+      "value": "\"2024-04-10T15:30:00.000Z\"",
+      "line": "frontmatter"
+    },
+    {
+      "file": "2024-04-12-expand-your-reach-dont-preach-linkedins-the-speech.md",
+      "field": "date",
+      "issue": "Date should be in ISO 8601 format (YYYY-MM-DDTHH:mm:ss.sssZ)",
+      "value": "\"2024-04-12T12:00:00.000Z\"",
+      "line": "frontmatter"
+    },
+    {
+      "file": "2024-04-18-tiktoks-faceless-travel-tips-and-guide-evolvedlotus-insights.md",
+      "field": "date",
+      "issue": "Date should be in ISO 8601 format (YYYY-MM-DDTHH:mm:ss.sssZ)",
+      "value": "\"2024-04-18T12:00:00.000Z\"",
+      "line": "frontmatter"
+    },
+    {
+      "file": "2024-04-25-twitch-streamlined-secure.md",
+      "field": "date",
+      "issue": "Date should be in ISO 8601 format (YYYY-MM-DDTHH:mm:ss.sssZ)",
+      "value": "\"2024-04-25T12:00:00.000Z\"",
+      "line": "frontmatter"
+    },
+    {
+      "file": "2024-05-06-x-and-grok-ai-sipping-news-smoothies-with-ai-powered-summaries.md",
+      "field": "date",
+      "issue": "Date should be in ISO 8601 format (YYYY-MM-DDTHH:mm:ss.sssZ)",
+      "value": "\"2024-05-06T12:00:00.000Z\"",
+      "line": "frontmatter"
+    },
+    {
+      "file": "2024-05-08-youtubes-ai-your-genie-for-content-ads.md",
+      "field": "date",
+      "issue": "Date should be in ISO 8601 format (YYYY-MM-DDTHH:mm:ss.sssZ)",
+      "value": "\"2024-05-08T12:00:00.000Z\"",
+      "line": "frontmatter"
+    },
+    {
+      "file": "2024-05-10-meta-llama-3-your-next-gen-ai-assistant.md",
+      "field": "date",
+      "issue": "Date should be in ISO 8601 format (YYYY-MM-DDTHH:mm:ss.sssZ)",
+      "value": "\"2024-05-10T12:00:00.000Z\"",
+      "line": "frontmatter"
+    },
+    {
+      "file": "2024-06-18-linkedin-gpt-microsoft-changes-job-searching.md",
+      "field": "date",
+      "issue": "Date should be in ISO 8601 format (YYYY-MM-DDTHH:mm:ss.sssZ)",
+      "value": "\"2024-06-18T12:00:00.000Z\"",
+      "line": "frontmatter"
+    },
+    {
+      "file": "2024-06-22-the-rise-of-tiktok’s-new-influencers.md",
+      "field": "date",
+      "issue": "Date should be in ISO 8601 format (YYYY-MM-DDTHH:mm:ss.sssZ)",
+      "value": "\"2024-06-22T12:00:00.000Z\"",
+      "line": "frontmatter"
+    },
+    {
+      "file": "2024-07-20-trend-genius-new-ai-for-advertisements.md",
+      "field": "date",
+      "issue": "Date should be in ISO 8601 format (YYYY-MM-DDTHH:mm:ss.sssZ)",
+      "value": "\"2024-07-20T12:00:00.000Z\"",
+      "line": "frontmatter"
+    },
+    {
+      "file": "2024-07-23-new-short-way-for-youtube-ads.md",
+      "field": "date",
+      "issue": "Date should be in ISO 8601 format (YYYY-MM-DDTHH:mm:ss.sssZ)",
+      "value": "\"2024-07-23T12:00:00.000Z\"",
+      "line": "frontmatter"
+    },
+    {
+      "file": "2024-07-31-facebook-ugc-creator-lotus-takes.md",
+      "field": "date",
+      "issue": "Date should be in ISO 8601 format (YYYY-MM-DDTHH:mm:ss.sssZ)",
+      "value": "\"2024-07-31T12:00:00.000Z\"",
+      "line": "frontmatter"
+    },
+    {
+      "file": "2024-08-27-youtube-kids-safe-channel-launch.md",
+      "field": "date",
+      "issue": "Date should be in ISO 8601 format (YYYY-MM-DDTHH:mm:ss.sssZ)",
+      "value": "\"2024-08-27T12:00:00.000Z\"",
+      "line": "frontmatter"
+    },
+    {
+      "file": "2024-09-27-evolved-insights-“tiny-twitter-niche”.md",
+      "field": "date",
+      "issue": "Date should be in ISO 8601 format (YYYY-MM-DDTHH:mm:ss.sssZ)",
+      "value": "\"2024-09-27T12:00:00.000Z\"",
+      "line": "frontmatter"
+    },
+    {
+      "file": "2024-11-04-november’s-must-know-social-trends.md",
+      "field": "date",
+      "issue": "Date should be in ISO 8601 format (YYYY-MM-DDTHH:mm:ss.sssZ)",
+      "value": "\"2024-11-04T12:00:00.000Z\"",
+      "line": "frontmatter"
+    },
+    {
+      "file": "2025-01-22-evolvedlotus-view-on-hootsuite’s-2025-report.md",
+      "field": "date",
+      "issue": "Date should be in ISO 8601 format (YYYY-MM-DDTHH:mm:ss.sssZ)",
+      "value": "\"2025-01-22T12:00:00.000Z\"",
+      "line": "frontmatter"
+    },
+    {
+      "file": "2025-01-29-how-to-write-a-viral-caption-for-social-media.md",
+      "field": "date",
+      "issue": "Date should be in ISO 8601 format (YYYY-MM-DDTHH:mm:ss.sssZ)",
+      "value": "\"2025-01-29T12:00:00.000Z\"",
+      "line": "frontmatter"
+    },
+    {
+      "file": "2025-02-20-is-1of10-really-worth-it-or-should-you-save-your-money-and-learn-on-your-own.md",
+      "field": "date",
+      "issue": "Date should be in ISO 8601 format (YYYY-MM-DDTHH:mm:ss.sssZ)",
+      "value": "\"2025-02-20T12:00:00.000Z\"",
+      "line": "frontmatter"
+    },
+    {
+      "file": "2025-04-27-facebook-content-mastery-5-proven-strategies-for-explosive-engagement.md",
+      "field": "date",
+      "issue": "Date should be in ISO 8601 format (YYYY-MM-DDTHH:mm:ss.sssZ)",
+      "value": "\"2025-04-27T12:00:00.000Z\"",
+      "line": "frontmatter"
+    },
+    {
+      "file": "2025-05-13-how-to-skyrocket-your-tiktok-views-and-engagement-a-simple-content-strategy.md",
+      "field": "date",
+      "issue": "Date should be in ISO 8601 format (YYYY-MM-DDTHH:mm:ss.sssZ)",
+      "value": "\"2025-05-12T15:07:00.000Z\"",
+      "line": "frontmatter"
+    },
+    {
+      "file": "2025-05-19-streaming-in-2025-the-no-bs-guide-to-getting-started-or-leveling-up.md",
+      "field": "date",
+      "issue": "Date should be in ISO 8601 format (YYYY-MM-DDTHH:mm:ss.sssZ)",
+      "value": "\"2025-05-19T12:00:00.000Z\"",
+      "line": "frontmatter"
+    },
+    {
+      "file": "2025-05-22-why-most-content-creators-are-setting-themselves-up-for-failure.md",
+      "field": "date",
+      "issue": "Date should be in ISO 8601 format (YYYY-MM-DDTHH:mm:ss.sssZ)",
+      "value": "\"2025-05-22T12:00:00.000Z\"",
+      "line": "frontmatter"
+    },
+    {
+      "file": "2025-07-29-are-instagram-ads-worth-it-plus-new-strategies-for-organic-growth-in-2025.md",
+      "field": "date",
+      "issue": "Date should be in ISO 8601 format (YYYY-MM-DDTHH:mm:ss.sssZ)",
+      "value": "\"2025-07-29T12:00:00.000Z\"",
+      "line": "frontmatter"
+    },
+    {
+      "file": "2025-07-30-twitter-x-unpacked-mastering-growth-engagement-with-latest-features-ai.md",
+      "field": "date",
+      "issue": "Date should be in ISO 8601 format (YYYY-MM-DDTHH:mm:ss.sssZ)",
+      "value": "\"2025-07-30T12:00:00.000Z\"",
+      "line": "frontmatter"
+    },
+    {
+      "file": "2025-08-11-how-to-create-30-days-of-content-in-one-weekend.md",
+      "field": "date",
+      "issue": "Date should be in ISO 8601 format (YYYY-MM-DDTHH:mm:ss.sssZ)",
+      "value": "\"2025-08-11T19:23:00.000Z\"",
+      "line": "frontmatter"
+    },
+    {
+      "file": "2025-08-13-top-free-design-tools-every-creator-needs.md",
+      "field": "date",
+      "issue": "Date should be in ISO 8601 format (YYYY-MM-DDTHH:mm:ss.sssZ)",
+      "value": "\"2025-08-13T16:52:00.000Z\"",
+      "line": "frontmatter"
+    },
+    {
+      "file": "2025-08-15-understanding-social-media-analytics-what-metrics-actually-matter.md",
+      "field": "date",
+      "issue": "Date should be in ISO 8601 format (YYYY-MM-DDTHH:mm:ss.sssZ)",
+      "value": "\"2025-08-15T19:31:00.000Z\"",
+      "line": "frontmatter"
+    },
+    {
+      "file": "2025-08-25-how-to-price-your-services-as-a-content-creator-in-2025.md",
+      "field": "date",
+      "issue": "Date should be in ISO 8601 format (YYYY-MM-DDTHH:mm:ss.sssZ)",
+      "value": "\"2025-08-25T12:00:00.000Z\"",
+      "line": "frontmatter"
+    },
+    {
+      "file": "2025-08-27-basic-seo-for-content-creators.md",
+      "field": "date",
+      "issue": "Date should be in ISO 8601 format (YYYY-MM-DDTHH:mm:ss.sssZ)",
+      "value": "\"2025-08-27T12:00:00.000Z\"",
+      "line": "frontmatter"
+    },
+    {
+      "file": "2025-08-29-batch-content-creation-techniques-that-save-hours.md",
+      "field": "date",
+      "issue": "Date should be in ISO 8601 format (YYYY-MM-DDTHH:mm:ss.sssZ)",
+      "value": "\"2025-08-29T12:00:00.000Z\"",
+      "line": "frontmatter"
+    },
+    {
+      "file": "2025-09-09-best-video-recording-software-2025-free-paid-tools-compared.md",
+      "field": "date",
+      "issue": "Date should be in ISO 8601 format (YYYY-MM-DDTHH:mm:ss.sssZ)",
+      "value": "\"2025-09-09T12:00:00.000Z\"",
+      "line": "frontmatter"
+    },
+    {
+      "file": "2025-09-10-using-data-to-optimize-your-posting-schedule.md",
+      "field": "date",
+      "issue": "Date should be in ISO 8601 format (YYYY-MM-DDTHH:mm:ss.sssZ)",
+      "value": "\"2025-09-10T12:00:00.000Z\"",
+      "line": "frontmatter"
+    },
+    {
+      "file": "2025-09-12-open-source-alternatives-to-expensive-creator-tools.md",
+      "field": "date",
+      "issue": "Date should be in ISO 8601 format (YYYY-MM-DDTHH:mm:ss.sssZ)",
+      "value": "\"2025-09-12T12:00:00.000Z\"",
+      "line": "frontmatter"
+    },
+    {
+      "file": "2025-09-22-building-email-lists-through-social-media-content-the-complete-2025-strategy-guide.md",
+      "field": "date",
+      "issue": "Date should be in ISO 8601 format (YYYY-MM-DDTHH:mm:ss.sssZ)",
+      "value": "\"2025-09-22T12:00:00.000Z\"",
+      "line": "frontmatter"
+    },
+    {
+      "file": "2025-09-25-color-theory-and-design-principles-for-social-media.md",
+      "field": "date",
+      "issue": "Date should be in ISO 8601 format (YYYY-MM-DDTHH:mm:ss.sssZ)",
+      "value": "\"2025-09-25T12:00:00.000Z\"",
+      "line": "frontmatter"
+    },
+    {
+      "file": "2025-10-08-building-genuine-engagement-vs-vanity-metrics.md",
+      "field": "date",
+      "issue": "Date should be in ISO 8601 format (YYYY-MM-DDTHH:mm:ss.sssZ)",
+      "value": "\"2025-10-08T12:00:00.000Z\"",
+      "line": "frontmatter"
+    },
+    {
+      "file": "2025-10-13-turning-your-content-into-multiple-revenue-streams.md",
+      "field": "date",
+      "issue": "Date should be in ISO 8601 format (YYYY-MM-DDTHH:mm:ss.sssZ)",
+      "value": "\"2025-10-10T19:43:00.000Z\"",
+      "line": "frontmatter"
+    },
+    {
+      "file": "2025-10-20-mobile-photography-techniques-for-better-content.md",
+      "field": "date",
+      "issue": "Date should be in ISO 8601 format (YYYY-MM-DDTHH:mm:ss.sssZ)",
+      "value": "\"2025-10-20T13:52:00.000-04:00\"",
+      "line": "frontmatter"
+    }
+  ]
 }

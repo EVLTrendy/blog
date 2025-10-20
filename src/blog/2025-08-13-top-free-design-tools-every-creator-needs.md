@@ -1,20 +1,15 @@
 ---
 title: Top Free Design Tools Every Creator Needs
-description: >-
-  Ready to learn graphic design for free? Our guide to the best free design
-  tools shows you how. Find the perfect graphic design software for beginners
-  free and start creating stunning visuals today!
+description: Ready to learn graphic design for free? Our guide to the best free design tools shows you how. Find the perfect graphic design software for beginners free and start creating stunning visuals today!
 author: EvolvedLotus Team
-date: "1970-01-01T00:00:00.000Z""1970-01-01T00:00:00.000Z""2025-08-13T16:52:00.000Z"
+date: '"2025-08-13T16:52:00.000Z"'
 tags:
   - post
   - featured
   - misc
 image: /assets/blog/top-free-design-tools-every-creator-needs.png
 imageAlt: Top Free Design Tools Every Creator Needs
-keywords: >-
-  content creation, social media, digital marketing, blogging, SEO, content
-  strategy, social media marketing, online marketing
+keywords: 'content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing'
 schema_type: Article
 og_type: article
 ---

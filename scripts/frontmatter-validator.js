@@ -310,6 +310,13 @@ class FrontmatterValidator {
         needsFix = true;
       }
 
+      // Fix YAML formatting issues that might cause parsing errors
+      if (frontmatter.description && frontmatter.description.includes('\n')) {
+        console.log(`  🔧 Fixing ${fileName}: Escaping multiline description`);
+        fixedFrontmatter.description = frontmatter.description.replace(/\n/g, '\\n');
+        needsFix = true;
+      }
+
       if (needsFix) {
         const updatedContent = matter.stringify(content, fixedFrontmatter, { lineWidth: -1 });
         fs.writeFileSync(filePath, updatedContent);

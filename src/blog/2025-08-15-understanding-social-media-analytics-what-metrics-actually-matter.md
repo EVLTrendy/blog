@@ -1,10 +1,8 @@
 ---
 title: 'Understanding Social Media Analytics: What Metrics Actually Matter'
-description: >-
-  Get real social media growth! Learn how to use metrics like saves, shares, and
-  watch time to make a digital marketing plan that works.
+description: 'Get real social media growth! Learn how to use metrics like saves, shares, and watch time to make a digital marketing plan that works.'
 author: EvolvedLotus Team
-date: "1970-01-01T00:00:00.000Z""1970-01-01T00:00:00.000Z""2025-08-15T19:31:00.000Z"
+date: '"2025-08-15T19:31:00.000Z"'
 tags:
   - post
   - featured
@@ -13,12 +11,9 @@ tags:
   - yt
   - twitter
   - ig
-image: >-
-  /assets/blog/understanding-social-media-analytics-what-metrics-actually-matter.png
+image: /assets/blog/understanding-social-media-analytics-what-metrics-actually-matter.png
 imageAlt: 'Understanding Social Media Analytics: What Metrics Actually Matter'
-keywords: >-
-  content creation, social media, digital marketing, blogging, SEO, content
-  strategy, social media marketing, online marketing
+keywords: 'content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing'
 schema_type: Article
 og_type: article
 ---

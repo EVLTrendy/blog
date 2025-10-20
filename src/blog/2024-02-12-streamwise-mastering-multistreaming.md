@@ -1,7 +1,7 @@
 ---
 title: 'Streamwise: Mastering Multistreaming'
 author: Marc C.
-date: "2024-02-12T12:00:00.000Z"
+date: '"2024-02-12T12:00:00.000Z"'
 tags:
   - post
   - featured
@@ -9,12 +9,8 @@ tags:
   - tt
 image: /assets/blog/streamwise-mastering-multistreaming-1-.png
 imageAlt: 'Streamwise: Mastering Multistreaming'
-description: >-
-  Hey there, fellow streamers! Have you ever wanted to be in two places at once?
-  You kind of can, though, in the world of livestreaming! Now, let's discus...
-keywords: >-
-  content creation, social media, digital marketing, blogging, SEO, content
-  strategy, social media marketing, online marketing
+description: 'Hey there, fellow streamers! Have you ever wanted to be in two places at once? You kind of can, though, in the world of livestreaming! Now, let''s discus...'
+keywords: 'content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing'
 schema_type: Article
 og_type: article
 ---

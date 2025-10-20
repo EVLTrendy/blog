@@ -1,20 +1,15 @@
 ---
 title: 'Lotus Evolution: Twitch Wave Weekly'
 author: Marc C.
-date: "1970-01-01T00:00:00.000Z""2023-12-07T20:03:48.097Z"
+date: '"2023-12-07T20:03:48.097Z"'
 tags:
   - post
   - twitch
   - featured
 image: /assets/blog/lotus-evolution-twitch-wave-weekly.png
 imageAlt: letwwpic
-description: >-
-  Hey there, Twitch enthusiasts! As you prepare for an incredible week on
-  Twitch, you'll feel as though you're attending the hottest gaming party in
-  person
-keywords: >-
-  content creation, social media, digital marketing, blogging, SEO, content
-  strategy, social media marketing, online marketing
+description: 'Hey there, Twitch enthusiasts! As you prepare for an incredible week on Twitch, you''ll feel as though you''re attending the hottest gaming party in person'
+keywords: 'content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing'
 schema_type: Article
 og_type: article
 ---

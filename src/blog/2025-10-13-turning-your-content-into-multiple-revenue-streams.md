@@ -1,10 +1,8 @@
 ---
 title: Turning Your Content into Multiple Revenue Streams
-description: >-
-  Ultimate guide to social media monetization: TikTok, YouTube, Instagram &
-  more. Boost income with ads, brand deals, & digital products!
+description: 'Ultimate guide to social media monetization: TikTok, YouTube, Instagram & more. Boost income with ads, brand deals, & digital products!'
 author: The EvolvedLotus Team
-date: "1970-01-01T00:00:00.000Z""1970-01-01T00:00:00.000Z""2025-10-10T19:43:00.000Z"
+date: '"2025-10-10T19:43:00.000Z"'
 tags:
   - post
   - featured
@@ -17,9 +15,7 @@ tags:
   - ''
 image: /assets/blog/turning-your-content-into-multiple-revenue-streams.png
 imageAlt: Turning Your Content into Multiple Revenue Streams
-keywords: >-
-  content creation, social media, digital marketing, blogging, SEO, content
-  strategy, social media marketing, online marketing
+keywords: 'content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing'
 schema_type: Article
 og_type: article
 ---

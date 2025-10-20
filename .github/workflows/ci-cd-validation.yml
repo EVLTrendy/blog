@@ -25,7 +25,7 @@ jobs:
         run: npm ci
 
       - name: Run frontmatter validation
-        run: npm run build:validate
+        run: npm run validate
 
       - name: Build site
         run: npm run build

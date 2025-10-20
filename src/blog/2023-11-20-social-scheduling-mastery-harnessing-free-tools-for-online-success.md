@@ -1,7 +1,7 @@
 ---
 title: 'Scheduled Success: Mastering Free* Tools Online!'
 author: Marc C.
-date: "2023-11-20T12:00:00.000Z"
+date: '"2023-11-20T12:00:00.000Z"'
 tags:
   - post
   - featured
@@ -12,12 +12,8 @@ tags:
   - twitter
 image: /assets/blog/scheduled-success-mastering-free-tools-online-.png
 imageAlt: top6
-description: >-
-  Welcome, social media aficionados! In the dynamic landscape of online
-  platforms, keeping your content strategy on point is the key to success
-keywords: >-
-  content creation, social media, digital marketing, blogging, SEO, content
-  strategy, social media marketing, online marketing
+description: 'Welcome, social media aficionados! In the dynamic landscape of online platforms, keeping your content strategy on point is the key to success'
+keywords: 'content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing'
 schema_type: Article
 og_type: article
 ---

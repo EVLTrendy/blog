@@ -1,7 +1,7 @@
 ---
 title: 'Level Up Your Stream: From Bland to Grand'
 author: Marc C.
-date: "1970-01-01T00:00:00.000Z""1970-01-01T00:00:00.000Z""2024-04-10T15:30:00.000Z"
+date: '"2024-04-10T15:30:00.000Z"'
 tags:
   - post
   - featured
@@ -9,12 +9,8 @@ tags:
   - kick
 image: /assets/blog/level-up-your-stream-from-bland-to-grand.png
 imageAlt: 'Level Up Your Stream: From Bland to Grand'
-description: >-
-  Level Up Your Stream: From Bland to Grand - Transform your streaming experience
-  with professional overlays and designs for better audience engagement
-keywords: >-
-  content creation, social media, digital marketing, blogging, SEO, content
-  strategy, social media marketing, online marketing
+description: 'Level Up Your Stream: From Bland to Grand - Transform your streaming experience with professional overlays and designs for better audience engagement'
+keywords: 'content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing'
 schema_type: Article
 og_type: article
 ---

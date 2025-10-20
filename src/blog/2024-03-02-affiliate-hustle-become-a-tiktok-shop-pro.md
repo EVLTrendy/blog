@@ -1,19 +1,15 @@
 ---
 title: 'Affiliate Hustle: Become a TikTok Shop Pro'
 author: Marc C.
-date: "2024-03-02T12:00:00.000Z"
+date: '"2024-03-02T12:00:00.000Z"'
 tags:
   - post
   - featured
   - tiktok
 image: /assets/blog/affiliate-hustle-become-a-tiktok-shop-pro.png
 imageAlt: 'AffiliateHustle: Become a TikTok Shop Pro'
-description: >-
-  Ever considered generating some extra money on TikTok? You're in luck, because
-  I'm going to reveal a hot new trend: TikTok affiliate marketing, courtesy...
-keywords: >-
-  content creation, social media, digital marketing, blogging, SEO, content
-  strategy, social media marketing, online marketing
+description: 'Ever considered generating some extra money on TikTok? You''re in luck, because I''m going to reveal a hot new trend: TikTok affiliate marketing, courtesy...'
+keywords: 'content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing'
 schema_type: Article
 og_type: article
 ---

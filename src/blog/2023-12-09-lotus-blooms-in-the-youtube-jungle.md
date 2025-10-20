@@ -1,7 +1,7 @@
 ---
 title: Lotus Blooms in the YouTube Jungle
 author: 'Marc C. '
-date: "2023-12-09T12:00:00.000Z"
+date: '"2023-12-09T12:00:00.000Z"'
 tags:
   - post
   - featured
@@ -9,9 +9,7 @@ tags:
 image: /assets/blog/lotus-blooms-in-the-youtube-jungle.png
 imageAlt: lbitytj
 description: It's super important to know about the latest changes
-keywords: >-
-  content creation, social media, digital marketing, blogging, SEO, content
-  strategy, social media marketing, online marketing
+keywords: 'content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing'
 schema_type: Article
 og_type: article
 ---

@@ -1,10 +1,8 @@
 ---
 title: Using Data to Optimize Your Posting Schedule
-description: >-
-  Master 2025 social media posting: data-driven strategies, platform-specific
-  timing, and engagement hacks to reclaim 40% lost reach. Free checklist
+description: 'Master 2025 social media posting: data-driven strategies, platform-specific timing, and engagement hacks to reclaim 40% lost reach. Free checklist'
 author: EvolvedLotus Team
-date: "2025-09-10T12:00:00.000Z"
+date: '"2025-09-10T12:00:00.000Z"'
 tags:
   - post
   - featured
@@ -17,9 +15,7 @@ tags:
   - ''
 image: /assets/blog/using-data-to-optimize-your-posting-schedule.png
 imageAlt: Using Data to Optimize Your Posting Schedule
-keywords: >-
-  content creation, social media, digital marketing, blogging, SEO, content
-  strategy, social media marketing, online marketing
+keywords: 'content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing'
 schema_type: Article
 og_type: article
 ---

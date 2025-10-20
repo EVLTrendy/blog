@@ -9,7 +9,8 @@
     "build:validate": "node scripts/frontmatter-validator.js",
     "validate": "node scripts/frontmatter-validator.js",
     "validate:fix": "node scripts/frontmatter-validator.js --fix",
-    "new": "node scripts/new-post.js"
+    "new": "node scripts/new-post.js",
+    "pre-commit": "node scripts/frontmatter-validator.js"
   },
   "keywords": [],
   "author": "",

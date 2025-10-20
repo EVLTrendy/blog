@@ -1,19 +1,15 @@
 ---
 title: 'Are Instagram Ads Worth It? Plus, New Strategies for Organic Growth in 2025'
-description: >-
-  Instagram engagement down? Stop guessing! Learn 2025 ad & organic strategies,
-  leverage new insights, and truly grow your audience. 
+description: 'Instagram engagement down? Stop guessing! Learn 2025 ad & organic strategies, leverage new insights, and truly grow your audience. '
 author: EvolvedLotus Team
-date: "2025-07-29T12:00:00.000Z"
+date: '"2025-07-29T12:00:00.000Z"'
 tags:
   - post
   - featured
   - ig
 image: /assets/blog/come-closerrr.png
 imageAlt: 'Are Instagram Ads Worth It? Plus, New Strategies for Organic Growth in 2025'
-keywords: >-
-  content creation, social media, digital marketing, blogging, SEO, content
-  strategy, social media marketing, online marketing
+keywords: 'content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing'
 schema_type: Article
 og_type: article
 ---

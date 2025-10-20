@@ -1,7 +1,7 @@
 ---
 title: 'Tweeting Trends: Twitter''s 2024 Algorithm'
 author: Marc C.
-date: "2024-02-15T12:00:00.000Z"
+date: '"2024-02-15T12:00:00.000Z"'
 tags:
   - post
   - featured
@@ -9,9 +9,7 @@ tags:
 image: /assets/blog/tweeting-trends-twitter-s-2024-algorithm.png
 imageAlt: 'Tweeting Trends: Twitter''s 2024 Algorithm'
 description: 'Let us talk about Twitter, the ultimate hangout spot on the internet'
-keywords: >-
-  content creation, social media, digital marketing, blogging, SEO, content
-  strategy, social media marketing, online marketing
+keywords: 'content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing'
 schema_type: Article
 og_type: article
 ---
