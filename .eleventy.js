@@ -153,20 +153,26 @@ module.exports = function (eleventyConfig) {
         'src/_includes/short-url-preview.njk': 'r-shorturl/index.html'
     });
 
-    // Custom frontmatter parser to ensure dates remain as strings
+    // Set Eleventy to use custom data parsing to ensure dates remain as strings
+    eleventyConfig.setDataDeepMerge(false);
+
+    // Override the default frontmatter parsing to ensure dates stay as strings
     eleventyConfig.setFrontMatterParsingOptions({
+        excerpt: false,
+        excerpt_separator: '<!-- excerpt -->',
         engines: {
-            markdown: (content) => {
+            markdown: function(content) {
+                // Use gray-matter with custom options to preserve string dates
                 const parsed = matter(content, {
                     engines: {
                         yaml: {
-                            parse: (str) => {
+                            parse: function(str) {
                                 const data = require('js-yaml').safeLoad(str);
-                                // Ensure date remains as string if it's a valid ISO date
+                                // Ensure date remains as string for Eleventy compatibility
                                 if (data.date && typeof data.date === 'string') {
+                                    // Validate it's a proper ISO date but keep as string
                                     const datePattern = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}(Z|[+-]\d{2}:\d{2})$/;
                                     if (datePattern.test(data.date)) {
-                                        // Keep as string for Eleventy compatibility
                                         return data;
                                     }
                                 }
