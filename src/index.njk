@@ -31,45 +31,41 @@ layout: 'base.njk'
         <h2 class="section-title">Latest Updates</h2>
         <div class="notifications-slideshow">
           <div class="notifications-slider">
-            {%- for post in collections.post -%}
-              {% if loop.first %}
+              {% set featuredPosts = collections.blog | filterByTag('featured') %}
+              {% if featuredPosts.length > 0 %}
+              {% set latestFeaturedPost = featuredPosts[0] %}
               <div class="notification-item latest-post">
-                <a href="{{ post.url }}" class="latest-post-link">
+                <a href="{{ latestFeaturedPost.url }}" class="latest-post-link">
                   <div class="notification-content">
-                    {# Update the alt text for better accessibility if possible beyond just "Latest Post" #}
-                    <span class="latest-badge">Latest Post</span> 
+                    <span class="latest-badge">Latest Post</span>
                     <div class="latest-post-image">
-                      {# 
-                        Add width and height attributes here based on the actual dimensions 
-                        of your post images to prevent layout shifts. 
-                        Example: width="400" height="225" (adjust these to your image's aspect ratio)
-                      #}
-                      <img src="{{ post.data.image }}" alt="{{ post.data.imageAlt }}" loading="lazy" width="400" height="225">
+                      <img src="{{ latestFeaturedPost.data.image | default('/assets/images/default-blog.png') }}" alt="{{ latestFeaturedPost.data.imageAlt | default(latestFeaturedPost.data.title) }}" loading="lazy" width="400" height="225">
                     </div>
-                    <h3>{{ post.data.title }}</h3>
-                    <p>{{ post.data.description }}</p>
+                    <h3>{{ latestFeaturedPost.data.title }}</h3>
+                    <p>{{ latestFeaturedPost.data.description | truncate(120) }}</p>
                   </div>
                 </a>
               </div>
               {% endif %}
-            {%- endfor -%}
-            
-            {%- for notification in collections.notifications -%}
-            <div class="notification-item">
+              <div class="notification-item">
               <div class="notification-content">
-                <h3>{{ notification.data.title }}</h3>
-                <p>{{ notification.data.description }}</p>
-                {% if notification.data.link %}
-                {# 
-                  Changed "Learn More" to be more descriptive for SEO and Accessibility.
-                  Added aria-label for screen readers to get more context.
-                #}
-                <a href="{{ notification.data.link }}" class="notification-link" aria-label="Learn more about {{ notification.data.title }}">{{ notification.data.title }}</a>
-                {% endif %}
+                <h3>Welcome to Our New Features!</h3>
+                <p>We&#39;ve just launched our new notification system to keep you updated with the latest news and features.</p>
+
+
+                <a href="/blog" class="notification-link" aria-label="Learn more about Welcome to Our New Features!">Welcome to Our New Features!</a>
+
               </div>
-            </div>
-            {%- endfor -%}
-          </div>
+            </div><div class="notification-item">
+              <div class="notification-content">
+                <h3>Twitter | X  Reply Bot</h3>
+                <p>Exciting news! We’ve officially launched our latest tool—built for realistic Twitter replies. 🎉 Get 5 free uses daily, and more features are on the way. Perfect for creators, brands, and community managers. Stay tuned for even more updates!</p>
+
+
+                <a href="https://tools.evolvedlotus.com/twitterreplybot/tweet-replier/" class="notification-link" aria-label="Learn more about Twitter | X  Reply Bot">Twitter | X  Reply Bot</a>
+
+              </div>
+            </div></div>
           <div class="slider-controls">
             <div class="slider-dots"></div>
           </div>
