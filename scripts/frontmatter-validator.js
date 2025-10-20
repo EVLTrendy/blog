@@ -96,13 +96,16 @@ class FrontmatterValidator {
         });
       }
 
-      // Check if date is properly quoted as string (critical for Eleventy builds)
-      if (frontmatter.date && typeof frontmatter.date === 'string' && !frontmatter.date.startsWith('"')) {
-        this.errors.push({
-          file: fileName,
-          type: 'unquoted_date_string',
-          message: 'Date field must be quoted as string (e.g., "2023-12-07T20:03:48.097Z")'
-        });
+      // Check if date is properly formatted as ISO string
+      if (frontmatter.date && typeof frontmatter.date === 'string') {
+        // Check if it's a valid ISO date string
+        if (!this.isValidISODate(frontmatter.date)) {
+          this.errors.push({
+            file: fileName,
+            type: 'invalid_date_format',
+            message: 'Date field must be a valid ISO date string (e.g., "2023-12-07T20:03:48.097Z")'
+          });
+        }
       }
 
       if (frontmatter.tags && (!Array.isArray(frontmatter.tags) || frontmatter.tags.length === 0)) {
@@ -128,6 +131,20 @@ class FrontmatterValidator {
   isValidDate(dateString) {
     const date = new Date(dateString);
     return date instanceof Date && !isNaN(date);
+  }
+
+  /**
+   * Check if date is valid ISO format
+   */
+  isValidISODate(dateString) {
+    // Check if it's a valid date first
+    if (!this.isValidDate(dateString)) {
+      return false;
+    }
+
+    // Check if it matches ISO format pattern
+    const isoPattern = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}(Z|[+-]\d{2}:\d{2})$/;
+    return isoPattern.test(dateString);
   }
 
   /**

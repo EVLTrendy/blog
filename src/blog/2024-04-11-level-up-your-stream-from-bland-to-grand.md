@@ -9,7 +9,9 @@ tags:
   - kick
 image: /assets/blog/level-up-your-stream-from-bland-to-grand.png
 imageAlt: 'Level Up Your Stream: From Bland to Grand'
-description: Level Up Your Stream: From Bland to Grand - Transform your streaming experience with professional overlays and designs
+description: >-
+  Level Up Your Stream: From Bland to Grand - Transform your streaming experience
+  with professional overlays and designs for better audience engagement
 keywords: >-
   content creation, social media, digital marketing, blogging, SEO, content
   strategy, social media marketing, online marketing
