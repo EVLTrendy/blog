@@ -12,12 +12,6 @@ description: "Imagine scrolling through TikTok and coming across a video that ca
 keywords: "content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing"
 schema_type: "Article"
 og_type: "article"
-eleventyComputed:
-  date: >
-    (() => {
-      const { DateTime } = require("luxon");
-      return DateTime.fromISO("2023-12-14T12:00:00.000Z").toJSDate();
-    })()
 ---
 Imagine scrolling through TikTok and coming across a video that captivates you with its authenticity. Welcome to TikTok 2024, where genuine connections are more important than ever.
 

@@ -12,12 +12,6 @@ description: "Greetings, fellow content creators! Get ready for a blockbuster jo
 keywords: "content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing"
 schema_type: "Article"
 og_type: "article"
-eleventyComputed:
-  date: >
-    (() => {
-      const { DateTime } = require("luxon");
-      return DateTime.fromISO("2023-11-20T12:00:00.000Z").toJSDate();
-    })()
 ---
 Greetings, fellow content creators! Get ready for a blockbuster journey through the wild world of brand deals, with Signaturely as your trusty sidekick. Together, we'll streamline your collaborations and make paperwork a breeze.
 

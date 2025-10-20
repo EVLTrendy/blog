@@ -12,12 +12,6 @@ description: "The advertisers need to track trends as they are being set"
 keywords: "content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing"
 schema_type: "Article"
 og_type: "article"
-eleventyComputed:
-  date: >
-    (() => {
-      const { DateTime } = require("luxon");
-      return DateTime.fromISO("2024-07-20T12:00:00.000Z").toJSDate();
-    })()
 ---
 The advertisers need to track trends as they are being set. Trend Genius, a new tool that was created by X and Genius Sports, can now allow ad deployment to go straight into the conversation. In other words, Trend Genius enables brands to target their ads at the right time when topics are popular, thus reaching the peak of engagement.
 

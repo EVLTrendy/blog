@@ -13,12 +13,6 @@ description: "LinkedIn becomes more than just a platform; it becomes a beacon of
 keywords: "content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing"
 schema_type: "Article"
 og_type: "article"
-eleventyComputed:
-  date: >
-    (() => {
-      const { DateTime } = require("luxon");
-      return DateTime.fromISO("2023-12-05T12:00:00.000Z").toJSDate();
-    })()
 ---
 LinkedIn becomes more than just a platform; it becomes a beacon of hope for people attempting to negotiate the complex routes that lead to jobs and enterprises. Beneath the surface of an engaging profile is a subtle skill: the art of drawing in followers. It's a symphony of strategy and genuineness rather than just a simple number game. We set out to unravel the mystery in the tutorial that follows, unveiling the hidden techniques that not only attract followers but also create an enticing presence, raising the bar on LinkedIn like never before.
 

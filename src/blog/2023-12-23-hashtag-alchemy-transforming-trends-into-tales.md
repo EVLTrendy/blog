@@ -12,12 +12,6 @@ description: "Keeping up with trends is like learning an art form"
 keywords: "content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing"
 schema_type: "Article"
 og_type: "article"
-eleventyComputed:
-  date: >
-    (() => {
-      const { DateTime } = require("luxon");
-      return DateTime.fromISO("2023-12-23T12:00:00.000Z").toJSDate();
-    })()
 ---
 Keeping up with trends is like learning an art form. These symbols do more than merely connect communities, generate conversations, and change how we engage online. Understanding how to use them entails more than just keeping up with the current trends; it also entails getting into the beating heart of digital civilization.
 

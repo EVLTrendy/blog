@@ -13,12 +13,6 @@ imageAlt: "Best Video Recording Software 2025: Free & Paid Tools Compared"
 keywords: "content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing"
 schema_type: "Article"
 og_type: "article"
-eleventyComputed:
-  date: >
-    (() => {
-      const { DateTime } = require("luxon");
-      return DateTime.fromISO("2025-09-09T12:00:00.000Z").toJSDate();
-    })()
 ---
 Whether you're a gamer, a teacher, or an aspiring YouTuber, finding the right video recording software is key to creating high-quality content. But with so many options available, from free tools to all-in-one editing suites, how do you choose the best one for your needs? The perfect solution depends on what you're recording, your PC's hardware, and your budget.
 

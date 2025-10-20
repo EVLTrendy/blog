@@ -12,12 +12,6 @@ imageAlt: "Turn followers into loyal customers: learn how to build email lists f
 keywords: "content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing"
 schema_type: "Article"
 og_type: "article"
-eleventyComputed:
-  date: >
-    (() => {
-      const { DateTime } = require("luxon");
-      return DateTime.fromISO("2025-09-22T12:00:00.000Z").toJSDate();
-    })()
 ---
 Imagine every dollar you spend on marketing returning $36 to $40. That’s the real power of email marketing. By comparison, social media usually brings in just $2.80 per dollar spent, which clearly shows which strategy actually drives business results.
 

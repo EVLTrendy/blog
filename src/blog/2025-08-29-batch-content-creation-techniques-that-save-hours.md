@@ -12,12 +12,6 @@ imageAlt: "Batch Content Creation Techniques That Save Hours"
 keywords: "content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing"
 schema_type: "Article"
 og_type: "article"
-eleventyComputed:
-  date: >
-    (() => {
-      const { DateTime } = require("luxon");
-      return DateTime.fromISO("2025-08-29T12:00:00.000Z").toJSDate();
-    })()
 ---
 Ever wonder how top creators post consistently without burning out? The secret is batching. Instead of scrambling every day to create, edit, and post content, they dedicate focused blocks of time to produce 30 days of content in a single weekend.
 

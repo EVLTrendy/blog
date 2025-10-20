@@ -13,12 +13,6 @@ description: "Prepare for an enlightening discussion as we explore the future up
 keywords: "content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing"
 schema_type: "Article"
 og_type: "article"
-eleventyComputed:
-  date: >
-    (() => {
-      const { DateTime } = require("luxon");
-      return DateTime.fromISO("2024-04-25T12:00:00.000Z").toJSDate();
-    })()
 ---
 With the latest Twitch upgrade, how will you locate your next favorite streamer? We've got the answers (and maybe even a sneak peek) to the new enhancements that will refresh your Twitch experience!
 

@@ -16,12 +16,6 @@ description: "In the dynamic realm of content creation, one of the pivotal eleme
 keywords: "content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing"
 schema_type: "Article"
 og_type: "article"
-eleventyComputed:
-  date: >
-    (() => {
-      const { DateTime } = require("luxon");
-      return DateTime.fromISO("2023-11-22T12:00:00.000Z").toJSDate();
-    })()
 ---
 In the dynamic realm of content creation, one of the pivotal elements for expanding your reach is the strategic use of hashtags. Navigating this crucial aspect can significantly impact your visibility and facilitate connections with a broader audience. Here, we delve into three free hashtag research resources, each offering unique features to elevate your content and broaden your online footprint.
 

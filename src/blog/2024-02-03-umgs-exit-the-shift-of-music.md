@@ -12,12 +12,6 @@ description: "Have you heard the most recent news regarding TikTok? There appear
 keywords: "content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing"
 schema_type: "Article"
 og_type: "article"
-eleventyComputed:
-  date: >
-    (() => {
-      const { DateTime } = require("luxon");
-      return DateTime.fromISO("2024-02-03T12:00:00.000Z").toJSDate();
-    })()
 ---
 Have you heard the most recent news regarding TikTok? There appears to be a great deal of drama in the music industry. It seems like Universal Music Group has made the decision to take its complete catalog off the TikTok App. You read correctly: one of the largest brands in the business has severed ties with TikTok. 
 

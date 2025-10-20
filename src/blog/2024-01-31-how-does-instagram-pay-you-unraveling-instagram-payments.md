@@ -12,12 +12,6 @@ description: "Instagram is a great way for people to make money online because o
 keywords: "content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing"
 schema_type: "Article"
 og_type: "article"
-eleventyComputed:
-  date: >
-    (() => {
-      const { DateTime } = require("luxon");
-      return DateTime.fromISO("2024-01-31T12:00:00.000Z").toJSDate();
-    })()
 ---
 Instagram is a great way for people to make money online because of its enormous user base and varied content ecosystem. There are countless ways to make money on Instagram, from affiliate marketing to sponsored posts. However, even novice and experienced users may find it difficult to navigate Instagram's payment system.
 

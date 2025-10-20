@@ -12,12 +12,6 @@ imageAlt: "Are Instagram Ads Worth It? Plus, New Strategies for Organic Growth i
 keywords: "content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing"
 schema_type: "Article"
 og_type: "article"
-eleventyComputed:
-  date: >
-    (() => {
-      const { DateTime } = require("luxon");
-      return DateTime.fromISO("2025-07-29T12:00:00.000Z").toJSDate();
-    })()
 ---
 
 Is your Instagram engagement unpredictable? Stop guessing what works! Leverage hidden insights and adapt to algorithm shifts to grow your audience and make your content truly matter.

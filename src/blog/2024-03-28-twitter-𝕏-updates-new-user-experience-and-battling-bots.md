@@ -12,12 +12,6 @@ description: "Twitter, now known as 𝕏, has experienced substantial modificati
 keywords: "content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing"
 schema_type: "Article"
 og_type: "article"
-eleventyComputed:
-  date: >
-    (() => {
-      const { DateTime } = require("luxon");
-      return DateTime.fromISO("2024-03-28T12:00:00.000Z").toJSDate();
-    })()
 ---
 Twitter, now known as 𝕏, has experienced substantial modifications since its acquisition by Elon Musk in October 2022. These improvements have resulted in new features, policies, and tactics targeted at improving the user experience and tackling emergent issues. 
 

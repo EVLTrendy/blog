@@ -12,12 +12,6 @@ description: "Your LinkedIn profile serves as a dynamic representation of your p
 keywords: "content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing"
 schema_type: "Article"
 og_type: "article"
-eleventyComputed:
-  date: >
-    (() => {
-      const { DateTime } = require("luxon");
-      return DateTime.fromISO("2023-11-24T12:00:00.000Z").toJSDate();
-    })()
 ---
 Your LinkedIn profile serves as a dynamic representation of your professional identity within the ever-evolving landscape of business networking. In navigating this dynamic digital space, we employ strategic insights gleaned from pivotal articles to assist you in crafting a compelling personal brand. Our goal is to empower you to not only stand out but also make a lasting impression in the influential realm of LinkedIn.
  

@@ -12,12 +12,6 @@ description: "Do you still remember YouTube? It's a platform that remains a hotb
 keywords: "content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing"
 schema_type: "Article"
 og_type: "article"
-eleventyComputed:
-  date: >
-    (() => {
-      const { DateTime } = require("luxon");
-      return DateTime.fromISO("2023-12-30T12:00:00.000Z").toJSDate();
-    })()
 ---
 Do you still remember YouTube? It's a platform that remains a hotbed of creativity, particularly when it comes to cooking. But what if you want to share your passion for food without revealing your identity? 
 

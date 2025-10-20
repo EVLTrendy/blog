@@ -13,12 +13,6 @@ description: "Level Up Your Stream: From Bland to Grand - Transform your streami
 keywords: "content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing"
 schema_type: "Article"
 og_type: "article"
-eleventyComputed:
-  date: >
-    (() => {
-      const { DateTime } = require("luxon");
-      return DateTime.fromISO("2024-04-10T15:30:00.000Z").toJSDate();
-    })()
 ---
 Kick streaming has expanded beyond mere gameplay. It has evolved into an immersive experience, with intriguing overlays and designs playing an important role in generating a compelling viewing experience. 
 

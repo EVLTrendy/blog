@@ -12,12 +12,6 @@ description: "YouTube Shorts has recently gained a lot of traction and is now ve
 keywords: "content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing"
 schema_type: "Article"
 og_type: "article"
-eleventyComputed:
-  date: >
-    (() => {
-      const { DateTime } = require("luxon");
-      return DateTime.fromISO("2024-07-23T12:00:00.000Z").toJSDate();
-    })()
 ---
 YouTube Shorts has recently gained a lot of traction and is now very much in trend for short, catchy videos. It is the YouTube version of TikTok, and it is most certainly becoming popular. Recently, YouTube has released some cool updates and new features to make Shorts even better for creators and advertisers.
 

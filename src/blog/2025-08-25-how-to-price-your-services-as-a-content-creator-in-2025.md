@@ -12,12 +12,6 @@ imageAlt: "How to Price Your Services as a Content Creator in 2025"
 keywords: "content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing"
 schema_type: "Article"
 og_type: "article"
-eleventyComputed:
-  date: >
-    (() => {
-      const { DateTime } = require("luxon");
-      return DateTime.fromISO("2025-08-25T12:00:00.000Z").toJSDate();
-    })()
 ---
 
 What is the biggest shift in digital marketing right now? It is moving from just being seen to actually showing results.

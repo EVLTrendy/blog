@@ -12,12 +12,6 @@ description: "TikTok is a great platform for creators to express themselves and 
 keywords: "content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing"
 schema_type: "Article"
 og_type: "article"
-eleventyComputed:
-  date: >
-    (() => {
-      const { DateTime } = require("luxon");
-      return DateTime.fromISO("2023-12-10T12:00:00.000Z").toJSDate();
-    })()
 ---
 TikTok is a great platform for creators to express themselves and connect with different people. As it keeps changing, there's a chance for creators to inspire without showing who they are.
 

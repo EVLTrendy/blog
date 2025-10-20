@@ -18,12 +18,6 @@ imageAlt: "Color Theory and Design Principles for Social Media"
 keywords: "content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing"
 schema_type: "Article"
 og_type: "article"
-eleventyComputed:
-  date: >
-    (() => {
-      const { DateTime } = require("luxon");
-      return DateTime.fromISO("2025-09-25T12:00:00.000Z").toJSDate();
-    })()
 ---
 Ever wondered why 82% of users now prefer dark mode, yet marketers still insist that “red converts 21% better”? The truth is that color is not a magic button. It is a complex mix of psychology, platform behavior, and audience context. From rapid Instagram scrolls to mobile reading habits, even subtle changes in hue can determine whether your content grabs attention or gets ignored. This guide explores 2024–2025 data and real brand case studies, showing how top performers use color strategically instead of relying on assumptions. By the end, you’ll know not just what looks appealing, but what actually drives results and how to apply it with confidence.
 

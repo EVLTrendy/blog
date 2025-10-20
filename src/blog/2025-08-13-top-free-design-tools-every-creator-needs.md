@@ -12,12 +12,6 @@ imageAlt: "Top Free Design Tools Every Creator Needs"
 keywords: "content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing"
 schema_type: "Article"
 og_type: "article"
-eleventyComputed:
-  date: >
-    (() => {
-      const { DateTime } = require("luxon");
-      return DateTime.fromISO("2025-08-13T16:52:00.000Z").toJSDate();
-    })()
 ---
 Have you ever felt that overwhelming pressure to create stunning visuals for your brand, only to not know what software to use? The design industry is now valued at around $55.1 billion in 2025. The design industry is a beast. However, sifting through the thousands of free design tools available can be exhausting. So how can you improve your content, and how can you locate the best **free graphic design tools online**?
 

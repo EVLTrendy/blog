@@ -12,12 +12,6 @@ description: "We spend endless hours on YouTube, watching videos ranging from ca
 keywords: "content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing"
 schema_type: "Article"
 og_type: "article"
-eleventyComputed:
-  date: >
-    (() => {
-      const { DateTime } = require("luxon");
-      return DateTime.fromISO("2024-03-29T16:43:00.000Z").toJSDate();
-    })()
 ---
 We spend endless hours on YouTube, watching videos ranging from cat memes to DIY instructional. YouTube recently announced some interesting upgrades and news, and I'm here to share the specifics with you.
 

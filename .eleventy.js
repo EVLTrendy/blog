@@ -179,14 +179,12 @@ module.exports = function (eleventyConfig) {
             // Handle string dates safely for Node 18 compatibility
             if (typeof data.date === "string") {
                 try {
-                    // Validate it's a proper ISO string before converting
-                    const isoPattern = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z$/;
-                    if (isoPattern.test(data.date)) {
-                        const dateObj = new Date(data.date);
-                        if (!isNaN(dateObj.getTime())) {
-                            console.log(`✅ Normalized string date: ${data.date} for ${data.page?.inputPath || 'unknown'}`);
-                            return dateObj;
-                        }
+                    // Use Luxon for reliable ISO string parsing
+                    const dt = DateTime.fromISO(data.date, { zone: "utc" });
+                    if (dt.isValid) {
+                        const dateObj = dt.toJSDate();
+                        console.log(`✅ Normalized string date: ${data.date} for ${data.page?.inputPath || 'unknown'}`);
+                        return dateObj;
                     }
                 } catch (error) {
                     console.warn(`⚠️ Failed to parse date string: ${data.date}`, error.message);

@@ -12,12 +12,6 @@ description: "Ever wondered how far AI has come? Meta Llama 3, an open-source po
 keywords: "content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing"
 schema_type: "Article"
 og_type: "article"
-eleventyComputed:
-  date: >
-    (() => {
-      const { DateTime } = require("luxon");
-      return DateTime.fromISO("2024-05-10T12:00:00.000Z").toJSDate();
-    })()
 ---
 
 

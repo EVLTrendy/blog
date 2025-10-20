@@ -12,12 +12,6 @@ description: "Are you someone who loves to travel but wants to keep your identit
 keywords: "content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing"
 schema_type: "Article"
 og_type: "article"
-eleventyComputed:
-  date: >
-    (() => {
-      const { DateTime } = require("luxon");
-      return DateTime.fromISO("2024-04-18T12:00:00.000Z").toJSDate();
-    })()
 ---
 Are you someone who loves to travel but wants to keep your identity a secret? Faceless travel guides might be the solution you're looking for. 
 

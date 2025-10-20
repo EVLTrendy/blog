@@ -12,12 +12,6 @@ description: "Microsoft's Game Pass is a subscription service that allows stream
 keywords: "content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing"
 schema_type: "Article"
 og_type: "article"
-eleventyComputed:
-  date: >
-    (() => {
-      const { DateTime } = require("luxon");
-      return DateTime.fromISO("2023-12-18T12:00:00.000Z").toJSDate();
-    })()
 ---
 Microsoft's Game Pass is a subscription service that allows streamers to engage their audiences in new ways. It's a game-changer for streamers who want to spice up their content. Let's look at the possibilities that Game Pass brings to streaming as we approach the Winter Drops Fest, a 10-day celebration with exclusive rewards.
 

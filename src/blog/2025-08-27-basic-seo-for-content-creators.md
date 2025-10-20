@@ -12,12 +12,6 @@ imageAlt: "Basic SEO for Content Creators"
 keywords: "content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing"
 schema_type: "Article"
 og_type: "article"
-eleventyComputed:
-  date: >
-    (() => {
-      const { DateTime } = require("luxon");
-      return DateTime.fromISO("2025-08-27T12:00:00.000Z").toJSDate();
-    })()
 ---
 
 Remember that amazing idea you had for a blog post or a video? The one you poured hours into, only to have it disappear into the internet's black hole? You're not alone. We've all been there, creating incredible stuff that just doesn't get seen. That's where **SEO content creation** comes in.
