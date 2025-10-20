@@ -1,17 +1,23 @@
 ---
-title: 'X and Grok AI: Vision and News'
-author: Marc C.
-date: '"2024-05-06T12:00:00.000Z"'
+title: "X and Grok AI: Vision and News"
+author: "Marc C."
+date: "2024-05-06T12:00:00.000Z"
 tags:
-  - post
-  - featured
-  - twitter
-image: /assets/blog/x-and-grok-ai-sipping-news-smoothies-with-ai-powered-summaries.png
-imageAlt: 'X and Grok AI: Vision and News'
-description: 'Social media platform X shakes up news consumption with Grok AI, offering personalized, bite-sized summaries of trending stories'
-keywords: 'content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing'
-schema_type: Article
-og_type: article
+  - "post"
+  - "featured"
+  - "twitter"
+image: "/assets/blog/x-and-grok-ai-sipping-news-smoothies-with-ai-powered-summaries.png"
+imageAlt: "X and Grok AI: Vision and News"
+description: "Social media platform X shakes up news consumption with Grok AI, offering personalized, bite-sized summaries of trending stories"
+keywords: "content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing"
+schema_type: "Article"
+og_type: "article"
+eleventyComputed:
+  date: >
+    (() => {
+      const { DateTime } = require("luxon");
+      return DateTime.fromISO("2024-05-06T12:00:00.000Z").toJSDate();
+    })()
 ---
 Social media platform X shakes up news consumption with Grok AI, offering personalized, bite-sized summaries of trending stories.
 

@@ -1,23 +1,29 @@
 ---
-title: Turning Your Content into Multiple Revenue Streams
-description: 'Ultimate guide to social media monetization: TikTok, YouTube, Instagram & more. Boost income with ads, brand deals, & digital products!'
-author: The EvolvedLotus Team
-date: '"2025-10-10T19:43:00.000Z"'
+title: "Turning Your Content into Multiple Revenue Streams"
+description: "Ultimate guide to social media monetization: TikTok, YouTube, Instagram & more. Boost income with ads, brand deals, & digital products!"
+author: "The EvolvedLotus Team"
+date: "2025-10-10T19:43:00.000Z"
 tags:
-  - post
-  - featured
-  - misc
-  - tiktok
-  - yt
-  - twitter
-  - ig
-  - link
-  - ''
-image: /assets/blog/turning-your-content-into-multiple-revenue-streams.png
-imageAlt: Turning Your Content into Multiple Revenue Streams
-keywords: 'content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing'
-schema_type: Article
-og_type: article
+  - "post"
+  - "featured"
+  - "misc"
+  - "tiktok"
+  - "yt"
+  - "twitter"
+  - "ig"
+  - "link"
+  - ""
+image: "/assets/blog/turning-your-content-into-multiple-revenue-streams.png"
+imageAlt: "Turning Your Content into Multiple Revenue Streams"
+keywords: "content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing"
+schema_type: "Article"
+og_type: "article"
+eleventyComputed:
+  date: >
+    (() => {
+      const { DateTime } = require("luxon");
+      return DateTime.fromISO("2025-10-10T19:43:00.000Z").toJSDate();
+    })()
 ---
 Imagine starting with just 1,000 followers and turning that tiny audience into a full-time creator income in 12 months. It sounds like a dream. For thousands of creators around the world, it is entirely possible with the right strategy. Take Maya, for example. She began posting niche lifestyle videos on TikTok, experimented with affiliate marketing, and diversified across YouTube Shorts and Instagram Reels. By staying consistent, learning from analytics, and leveraging multiple income streams, she not only scaled her earnings but also built a resilient creator business.
 

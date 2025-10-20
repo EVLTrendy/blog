@@ -1,17 +1,23 @@
 ---
-title: Why Most Content Creators Are Setting Themselves Up for Failure
-description: Why Most Content Creators Are Setting Themselves Up for Failure
-author: EvolvedLotus Team
-date: '"2025-05-22T12:00:00.000Z"'
+title: "Why Most Content Creators Are Setting Themselves Up for Failure"
+description: "Why Most Content Creators Are Setting Themselves Up for Failure"
+author: "EvolvedLotus Team"
+date: "2025-05-22T12:00:00.000Z"
 tags:
-  - post
-  - featured
-  - misc
-image: /assets/blog/why-most-content-creators-are-setting-themselves-up-for-failure.png
-imageAlt: Why Most Content Creators Are Setting Themselves Up for Failure
-keywords: 'content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing'
-schema_type: Article
-og_type: article
+  - "post"
+  - "featured"
+  - "misc"
+image: "/assets/blog/why-most-content-creators-are-setting-themselves-up-for-failure.png"
+imageAlt: "Why Most Content Creators Are Setting Themselves Up for Failure"
+keywords: "content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing"
+schema_type: "Article"
+og_type: "article"
+eleventyComputed:
+  date: >
+    (() => {
+      const { DateTime } = require("luxon");
+      return DateTime.fromISO("2025-05-22T12:00:00.000Z").toJSDate();
+    })()
 ---
 Are you a **content creator** feeling stuck in your **niche**? Something unexpected is reshaping the **creator economy** right now. Many **digital entrepreneurs** who built massive **online presences** and are generating significant **creator income** are facing a critical challenge: **audience retention** issues when they try to expand beyond their initial **specialized content**. They've become known as "the Instagram guru" or "the finance expert," and find themselves trapped, unable to discuss anything else without risking **losing followers** and **audience engagement**. 
 

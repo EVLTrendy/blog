@@ -1,17 +1,23 @@
 ---
-title: 'From Sound Waves to Screens: The Intro to Podcast'
-author: Marc C.
-date: '"2023-12-26T12:00:00.000Z"'
+title: "From Sound Waves to Screens: The Intro to Podcast"
+author: "Marc C."
+date: "2023-12-26T12:00:00.000Z"
 tags:
-  - post
-  - featured
-  - yt
-image: /assets/blog/from-sound-waves-to-screens-the-intro-to-podcast.png
-imageAlt: 'From Sound Waves to Screens: The Intro to Podcast'
-description: 'Ever thought about taking your podcast to new heights, reaching audiences far and wide in the digital world? If you''ve ever dreamt of leaving a lasting ...'
-keywords: 'content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing'
-schema_type: Article
-og_type: article
+  - "post"
+  - "featured"
+  - "yt"
+image: "/assets/blog/from-sound-waves-to-screens-the-intro-to-podcast.png"
+imageAlt: "From Sound Waves to Screens: The Intro to Podcast"
+description: "Ever thought about taking your podcast to new heights, reaching audiences far and wide in the digital world? If you've ever dreamt of leaving a lasting ..."
+keywords: "content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing"
+schema_type: "Article"
+og_type: "article"
+eleventyComputed:
+  date: >
+    (() => {
+      const { DateTime } = require("luxon");
+      return DateTime.fromISO("2023-12-26T12:00:00.000Z").toJSDate();
+    })()
 ---
 Ever thought about taking your podcast to new heights, reaching audiences far and wide in the digital world? If you've ever dreamt of leaving a lasting impression and connecting with a larger audience, it's time to make those dreams a reality. Join me on this exciting journey beyond just audio, stepping into the vibrant visual world of YouTube.
 

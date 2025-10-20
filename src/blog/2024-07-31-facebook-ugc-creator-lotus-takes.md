@@ -1,17 +1,23 @@
 ---
-title: 'Facebook UGC Creator: Lotus Takes'
-author: Marc C.
-date: '"2024-07-31T12:00:00.000Z"'
+title: "Facebook UGC Creator: Lotus Takes"
+author: "Marc C."
+date: "2024-07-31T12:00:00.000Z"
 tags:
-  - post
-  - featured
-  - fb
-image: /assets/blog/facebook-ugc-creator-lotus-takes.png
-imageAlt: 'Facebook UGC Creator: Lotus Takes'
-description: 'User-generated content (UGC) refers to any content, such as posts, images, or videos, that originates from your audience rather than your brand'
-keywords: 'content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing'
-schema_type: Article
-og_type: article
+  - "post"
+  - "featured"
+  - "fb"
+image: "/assets/blog/facebook-ugc-creator-lotus-takes.png"
+imageAlt: "Facebook UGC Creator: Lotus Takes"
+description: "User-generated content (UGC) refers to any content, such as posts, images, or videos, that originates from your audience rather than your brand"
+keywords: "content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing"
+schema_type: "Article"
+og_type: "article"
+eleventyComputed:
+  date: >
+    (() => {
+      const { DateTime } = require("luxon");
+      return DateTime.fromISO("2024-07-31T12:00:00.000Z").toJSDate();
+    })()
 ---
 User-generated content (UGC) refers to any content, such as posts, images, or videos, that originates from your audience rather than your brand. It's crucial because it helps establish trust and authenticity. When real users share their experiences, it feels more authentic than something created in-house. 
 

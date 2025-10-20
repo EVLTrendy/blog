@@ -1,17 +1,23 @@
 ---
-title: 'Facebook Content Mastery: 5 Proven Strategies for Explosive Engagement'
-author: Marc C.
-date: '"2025-04-27T12:00:00.000Z"'
+title: "Facebook Content Mastery: 5 Proven Strategies for Explosive Engagement"
+author: "Marc C."
+date: "2025-04-27T12:00:00.000Z"
 tags:
-  - post
-  - featured
-  - fb
-image: /assets/blog/facebook-content-mastery-5-proven-strategies-for-explosive-engagement.png
-imageAlt: 'Facebook Content Mastery: 5 Proven Strategies for Explosive Engagement'
-description: Many Facebook users struggle to generate content that stands out to their audience
-keywords: 'content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing'
-schema_type: Article
-og_type: article
+  - "post"
+  - "featured"
+  - "fb"
+image: "/assets/blog/facebook-content-mastery-5-proven-strategies-for-explosive-engagement.png"
+imageAlt: "Facebook Content Mastery: 5 Proven Strategies for Explosive Engagement"
+description: "Many Facebook users struggle to generate content that stands out to their audience"
+keywords: "content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing"
+schema_type: "Article"
+og_type: "article"
+eleventyComputed:
+  date: >
+    (() => {
+      const { DateTime } = require("luxon");
+      return DateTime.fromISO("2025-04-27T12:00:00.000Z").toJSDate();
+    })()
 ---
 Many Facebook users struggle to generate content that stands out to their audience. You're not alone! Facebook users today experience a crowded internet environment wherein they struggle to gain attention and sustain a connection.
 

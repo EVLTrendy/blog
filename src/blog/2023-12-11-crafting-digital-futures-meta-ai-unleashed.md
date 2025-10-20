@@ -1,17 +1,23 @@
 ---
-title: Crafting Digital Futures Meta AI Unleashed
-author: Marc C.
-date: '"2023-12-11T12:00:00.000Z"'
+title: "Crafting Digital Futures Meta AI Unleashed"
+author: "Marc C."
+date: "2023-12-11T12:00:00.000Z"
 tags:
-  - post
-  - featured
-  - fb
-image: /assets/blog/crafting-digital-futures-meta-ai-unleashed.png
-imageAlt: Crafting Digital Futures Meta AI Unleashed
-description: 'Facebook leads the way, consistently pushing boundaries to redefine user experiences'
-keywords: 'content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing'
-schema_type: Article
-og_type: article
+  - "post"
+  - "featured"
+  - "fb"
+image: "/assets/blog/crafting-digital-futures-meta-ai-unleashed.png"
+imageAlt: "Crafting Digital Futures Meta AI Unleashed"
+description: "Facebook leads the way, consistently pushing boundaries to redefine user experiences"
+keywords: "content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing"
+schema_type: "Article"
+og_type: "article"
+eleventyComputed:
+  date: >
+    (() => {
+      const { DateTime } = require("luxon");
+      return DateTime.fromISO("2023-12-11T12:00:00.000Z").toJSDate();
+    })()
 ---
 Facebook leads the way, consistently pushing boundaries to redefine user experiences. In this exploration, we focus on Facebook's venture into artificial intelligence (AI), transforming the platform with cutting-edge features for enhanced interactions, growth, and monetization.
 

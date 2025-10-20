@@ -1,17 +1,23 @@
 ---
-title: 'Jams Without Jitters: Your Copyright-Free Soundtrack Guide!'
-author: Marc C.
-date: '"2023-11-20T12:00:00.000Z"'
+title: "Jams Without Jitters: Your Copyright-Free Soundtrack Guide!"
+author: "Marc C."
+date: "2023-11-20T12:00:00.000Z"
 tags:
-  - featured
-  - post
-  - misc
-image: /assets/blog/jams-without-jitters-your-copyright-free-soundtrack-guide-.png
-imageAlt: 'Jams Without Jitters: Your Copyright-Free Soundtrack Guide!'
-description: Navigating the realm of music selection as content creators presents a dynamic landscape rich with solutions to the copyright challenge
-keywords: 'content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing'
-schema_type: Article
-og_type: article
+  - "featured"
+  - "post"
+  - "misc"
+image: "/assets/blog/jams-without-jitters-your-copyright-free-soundtrack-guide-.png"
+imageAlt: "Jams Without Jitters: Your Copyright-Free Soundtrack Guide!"
+description: "Navigating the realm of music selection as content creators presents a dynamic landscape rich with solutions to the copyright challenge"
+keywords: "content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing"
+schema_type: "Article"
+og_type: "article"
+eleventyComputed:
+  date: >
+    (() => {
+      const { DateTime } = require("luxon");
+      return DateTime.fromISO("2023-11-20T12:00:00.000Z").toJSDate();
+    })()
 ---
 Navigating the realm of music selection as content creators presents a dynamic landscape rich with solutions to the copyright challenge. Embracing the diverse offerings from these platforms not only elevates your creative projects but also simplifies the copyright maze. Let's embark on a journey through some vibrant sources that redefine the way we experience non-copyrighted music.
 

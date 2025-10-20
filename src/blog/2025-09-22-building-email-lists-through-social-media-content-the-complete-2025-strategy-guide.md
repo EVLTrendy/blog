@@ -1,17 +1,23 @@
 ---
-title: 'Building Email Lists Through Social Media Content: The Complete 2025 Strategy Guide'
-description: 'Turn followers into loyal customers: learn how to build email lists from social media, boost conversions, and grow revenue step by step.'
-author: EvolvedLotus Team
-date: '"2025-09-22T12:00:00.000Z"'
+title: "Building Email Lists Through Social Media Content: The Complete 2025 Strategy Guide"
+description: "Turn followers into loyal customers: learn how to build email lists from social media, boost conversions, and grow revenue step by step."
+author: "EvolvedLotus Team"
+date: "2025-09-22T12:00:00.000Z"
 tags:
-  - post
-  - featured
-  - misc
-image: /assets/blog/building-email-lists-through-social-media-content-the-complete-2025-strategy-guide.png
-imageAlt: 'Turn followers into loyal customers: learn how to build email lists from social media, boost conversions, and grow revenue step by step.'
-keywords: 'content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing'
-schema_type: Article
-og_type: article
+  - "post"
+  - "featured"
+  - "misc"
+image: "/assets/blog/building-email-lists-through-social-media-content-the-complete-2025-strategy-guide.png"
+imageAlt: "Turn followers into loyal customers: learn how to build email lists from social media, boost conversions, and grow revenue step by step."
+keywords: "content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing"
+schema_type: "Article"
+og_type: "article"
+eleventyComputed:
+  date: >
+    (() => {
+      const { DateTime } = require("luxon");
+      return DateTime.fromISO("2025-09-22T12:00:00.000Z").toJSDate();
+    })()
 ---
 Imagine every dollar you spend on marketing returning $36 to $40. That’s the real power of email marketing. By comparison, social media usually brings in just $2.80 per dollar spent, which clearly shows which strategy actually drives business results.
 

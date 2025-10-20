@@ -1,18 +1,24 @@
 ---
-title: 'Streamwise: Mastering Multistreaming'
-author: Marc C.
-date: '"2024-02-12T12:00:00.000Z"'
+title: "Streamwise: Mastering Multistreaming"
+author: "Marc C."
+date: "2024-02-12T12:00:00.000Z"
 tags:
-  - post
-  - featured
-  - twitch
-  - tt
-image: /assets/blog/streamwise-mastering-multistreaming-1-.png
-imageAlt: 'Streamwise: Mastering Multistreaming'
-description: 'Hey there, fellow streamers! Have you ever wanted to be in two places at once? You kind of can, though, in the world of livestreaming! Now, let''s discus...'
-keywords: 'content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing'
-schema_type: Article
-og_type: article
+  - "post"
+  - "featured"
+  - "twitch"
+  - "tt"
+image: "/assets/blog/streamwise-mastering-multistreaming-1-.png"
+imageAlt: "Streamwise: Mastering Multistreaming"
+description: "Hey there, fellow streamers! Have you ever wanted to be in two places at once? You kind of can, though, in the world of livestreaming! Now, let's discus..."
+keywords: "content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing"
+schema_type: "Article"
+og_type: "article"
+eleventyComputed:
+  date: >
+    (() => {
+      const { DateTime } = require("luxon");
+      return DateTime.fromISO("2024-02-12T12:00:00.000Z").toJSDate();
+    })()
 ---
 Hey there, fellow streamers! Have you ever wanted to be in two places at once? You kind of can, though, in the world of livestreaming! Now, let's discuss multistreaming. Being able to simultaneously broadcast your stuff to every corner of the internet is like having superpowers.
 

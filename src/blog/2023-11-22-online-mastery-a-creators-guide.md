@@ -1,17 +1,23 @@
 ---
-title: 'Online Mastery: A Creator''s Guide'
-author: Marc C.
-date: '"2023-11-22T12:00:00.000Z"'
+title: "Online Mastery: A Creator's Guide"
+author: "Marc C."
+date: "2023-11-22T12:00:00.000Z"
 tags:
-  - post
-  - featured
-  - misc
-image: /assets/blog/zyro-image-6-.png
-imageAlt: mop
-description: 'In the ever-evolving landscape of content creation, mastering your online presence is the key to standing out in the digital crowd'
-keywords: 'content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing'
-schema_type: Article
-og_type: article
+  - "post"
+  - "featured"
+  - "misc"
+image: "/assets/blog/zyro-image-6-.png"
+imageAlt: "mop"
+description: "In the ever-evolving landscape of content creation, mastering your online presence is the key to standing out in the digital crowd"
+keywords: "content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing"
+schema_type: "Article"
+og_type: "article"
+eleventyComputed:
+  date: >
+    (() => {
+      const { DateTime } = require("luxon");
+      return DateTime.fromISO("2023-11-22T12:00:00.000Z").toJSDate();
+    })()
 ---
 In the ever-evolving landscape of content creation, mastering your online presence is the key to standing out in the digital crowd. One critical aspect of this journey is optimizing your social media profiles. Crafting a compelling bio, incorporating relevant keywords, and choosing an attention-grabbing profile picture are essential steps to captivate your audience. Whether you're navigating Instagram, YouTube, Twitter, or other platforms, this comprehensive guide unveils six universal online resources that provide invaluable insights for content creators aiming to enhance their online profiles and personal branding.
 

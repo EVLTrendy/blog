@@ -1,17 +1,23 @@
 ---
-title: 'Expand Your Reach, Don''t Preach? LinkedIn''s the Speech'
-author: Marc C.
-date: '"2024-04-12T12:00:00.000Z"'
+title: "Expand Your Reach, Don't Preach? LinkedIn's the Speech"
+author: "Marc C."
+date: "2024-04-12T12:00:00.000Z"
 tags:
-  - post
-  - featured
-  - link
-image: /assets/blog/expand-your-reach-don-t-preach-linkedin-s-the-speech.png
-imageAlt: 'Expand Your Reach, Don''t Preach? LinkedIn''s the Speech'
-description: 'That''s a common question, especially given how many other social media platforms compete for our attention'
-keywords: 'content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing'
-schema_type: Article
-og_type: article
+  - "post"
+  - "featured"
+  - "link"
+image: "/assets/blog/expand-your-reach-don-t-preach-linkedin-s-the-speech.png"
+imageAlt: "Expand Your Reach, Don't Preach? LinkedIn's the Speech"
+description: "That's a common question, especially given how many other social media platforms compete for our attention"
+keywords: "content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing"
+schema_type: "Article"
+og_type: "article"
+eleventyComputed:
+  date: >
+    (() => {
+      const { DateTime } = require("luxon");
+      return DateTime.fromISO("2024-04-12T12:00:00.000Z").toJSDate();
+    })()
 ---
 
 

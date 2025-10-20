@@ -1,17 +1,23 @@
 ---
-title: 'Unlock Facebook Growth: Your Ultimate Guide!'
-author: Marc C.
-date: '"2023-11-28T12:00:00.000Z"'
+title: "Unlock Facebook Growth: Your Ultimate Guide!"
+author: "Marc C."
+date: "2023-11-28T12:00:00.000Z"
 tags:
-  - post
-  - featured
-  - fb
-image: /assets/blog/skjadklame.png
-imageAlt: ufgyug
-description: 'Facebook, an indispensable force in today''s social media landscape, serves as more than just a platform; it''s a crucial tool for community building, con...'
-keywords: 'content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing'
-schema_type: Article
-og_type: article
+  - "post"
+  - "featured"
+  - "fb"
+image: "/assets/blog/skjadklame.png"
+imageAlt: "ufgyug"
+description: "Facebook, an indispensable force in today's social media landscape, serves as more than just a platform; it's a crucial tool for community building, con..."
+keywords: "content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing"
+schema_type: "Article"
+og_type: "article"
+eleventyComputed:
+  date: >
+    (() => {
+      const { DateTime } = require("luxon");
+      return DateTime.fromISO("2023-11-28T12:00:00.000Z").toJSDate();
+    })()
 ---
 Facebook, an indispensable force in today's social media landscape, serves as more than just a platform; it's a crucial tool for community building, consumer interaction, and business prominence. In the realm of advertising, organic development holds immense significance, especially for the growing network of small businesses navigating the vast internet space. In this comprehensive guide, we delve into a curated collection of valuable tips designed to naturally enhance your Facebook profile, transcending the conventional boundaries of online presence.
 

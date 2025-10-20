@@ -1,17 +1,23 @@
 ---
-title: 'YouTube Kids: Safe Channel Launch'
-author: Marc C.
-date: '"2024-08-27T12:00:00.000Z"'
+title: "YouTube Kids: Safe Channel Launch"
+author: "Marc C."
+date: "2024-08-27T12:00:00.000Z"
 tags:
-  - post
-  - featured
-  - yt
-image: /assets/blog/youtube-kids-safe-channel-launch.png
-imageAlt: 'YouTube Kids: Safe Channel Launch'
-description: YouTube is gradually becoming a favorite destination for kids as some of their favorite videos such as “Baby Shark Dance” receive the most views
-keywords: 'content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing'
-schema_type: Article
-og_type: article
+  - "post"
+  - "featured"
+  - "yt"
+image: "/assets/blog/youtube-kids-safe-channel-launch.png"
+imageAlt: "YouTube Kids: Safe Channel Launch"
+description: "YouTube is gradually becoming a favorite destination for kids as some of their favorite videos such as “Baby Shark Dance” receive the most views"
+keywords: "content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing"
+schema_type: "Article"
+og_type: "article"
+eleventyComputed:
+  date: >
+    (() => {
+      const { DateTime } = require("luxon");
+      return DateTime.fromISO("2024-08-27T12:00:00.000Z").toJSDate();
+    })()
 ---
 
 

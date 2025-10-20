@@ -1,18 +1,24 @@
 ---
-title: 'No More Regrets: Edit, Pin & Style Up Your Instagram DMs!'
-author: Marc C.
-date: '"2024-04-09T12:00:00.000Z"'
+title: "No More Regrets: Edit, Pin & Style Up Your Instagram DMs!"
+author: "Marc C."
+date: "2024-04-09T12:00:00.000Z"
 tags:
-  - post
-  - featured
-  - ig
-  - fb
-image: /assets/blog/no-more-regrets-edit-pin-style-up-your-instagram-dms-.png
-imageAlt: 'No More Regrets: Edit, Pin & Style Up Your Instagram DMs!'
-description: 'Attention, all Meta users! If, like me, you spend a lot of time chatting on the app, you''ll be glad to know that Meta added some new enhancements to the...'
-keywords: 'content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing'
-schema_type: Article
-og_type: article
+  - "post"
+  - "featured"
+  - "ig"
+  - "fb"
+image: "/assets/blog/no-more-regrets-edit-pin-style-up-your-instagram-dms-.png"
+imageAlt: "No More Regrets: Edit, Pin & Style Up Your Instagram DMs!"
+description: "Attention, all Meta users! If, like me, you spend a lot of time chatting on the app, you'll be glad to know that Meta added some new enhancements to the..."
+keywords: "content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing"
+schema_type: "Article"
+og_type: "article"
+eleventyComputed:
+  date: >
+    (() => {
+      const { DateTime } = require("luxon");
+      return DateTime.fromISO("2024-04-09T12:00:00.000Z").toJSDate();
+    })()
 ---
 Attention, all Meta users! If, like me, you spend a lot of time chatting on the app, you'll be glad to know that Meta added some new enhancements to the DM feature in March. These improvements will significantly improve your messaging experience. 
 

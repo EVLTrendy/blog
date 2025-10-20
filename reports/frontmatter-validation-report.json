@@ -1,10 +1,19 @@
 {
-  "timestamp": "2025-10-20T20:49:31.916Z",
+  "timestamp": "2025-10-20T20:54:21.873Z",
   "summary": {
     "totalFiles": 81,
     "errors": 0,
-    "warnings": 0
+    "warnings": 1
   },
   "errors": [],
-  "warnings": []
+  "warnings": [
+    {
+      "file": "2023-12-12-podcast-revolution-instagram-unleashes-creativity.md",
+      "type": "missing_recommended_fields",
+      "message": "Missing recommended fields: keywords",
+      "fields": [
+        "keywords"
+      ]
+    }
+  ]
 }

@@ -1,17 +1,23 @@
 ---
-title: 'How to Skyrocket Your TikTok Views and Engagement: A Simple Content Strategy'
-description: How to Skyrocket Your TikTok Views and Engagement - A Simple Content Strategy that actually works
-author: Marc C.
-date: '"2025-05-12T15:07:00.000Z"'
+title: "How to Skyrocket Your TikTok Views and Engagement: A Simple Content Strategy"
+description: "How to Skyrocket Your TikTok Views and Engagement - A Simple Content Strategy that actually works"
+author: "Marc C."
+date: "2025-05-12T15:07:00.000Z"
 tags:
-  - post
-  - featured
-  - tiktok
-image: /assets/blog/how-to-skyrocket-your-tiktok-views-and-engagement-a-simple-content-strategy.png
-imageAlt: 'How to Skyrocket Your TikTok Views and Engagement: A Simple Content Strategy'
-keywords: 'content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing'
-schema_type: Article
-og_type: article
+  - "post"
+  - "featured"
+  - "tiktok"
+image: "/assets/blog/how-to-skyrocket-your-tiktok-views-and-engagement-a-simple-content-strategy.png"
+imageAlt: "How to Skyrocket Your TikTok Views and Engagement: A Simple Content Strategy"
+keywords: "content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing"
+schema_type: "Article"
+og_type: "article"
+eleventyComputed:
+  date: >
+    (() => {
+      const { DateTime } = require("luxon");
+      return DateTime.fromISO("2025-05-12T15:07:00.000Z").toJSDate();
+    })()
 ---
 Stuck at 200-300 views on TikTok? I've been there. For months, I watched my videos flop despite hours of editing and following all the "expert" advice. It's frustrating to pour creativity into content that barely anyone sees. But here's the thing – there's a straightforward content strategy that transformed my TikTok presence and could do the same for yours. 
 

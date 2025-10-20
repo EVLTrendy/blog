@@ -1,17 +1,23 @@
 ---
-title: 'LinkedIn Lift-off 2023: Profile Power Unleashed!'
-author: Marc C.
-date: '"2023-11-24T12:00:00.000Z"'
+title: "LinkedIn Lift-off 2023: Profile Power Unleashed!"
+author: "Marc C."
+date: "2023-11-24T12:00:00.000Z"
 tags:
-  - post
-  - featured
-  - link
-image: /assets/blog/zyro-image.png
-imageAlt: liftofflinkedin
-description: Your LinkedIn profile serves as a dynamic representation of your professional identity within the ever-evolving landscape of business networking
-keywords: 'content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing'
-schema_type: Article
-og_type: article
+  - "post"
+  - "featured"
+  - "link"
+image: "/assets/blog/zyro-image.png"
+imageAlt: "liftofflinkedin"
+description: "Your LinkedIn profile serves as a dynamic representation of your professional identity within the ever-evolving landscape of business networking"
+keywords: "content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing"
+schema_type: "Article"
+og_type: "article"
+eleventyComputed:
+  date: >
+    (() => {
+      const { DateTime } = require("luxon");
+      return DateTime.fromISO("2023-11-24T12:00:00.000Z").toJSDate();
+    })()
 ---
 Your LinkedIn profile serves as a dynamic representation of your professional identity within the ever-evolving landscape of business networking. In navigating this dynamic digital space, we employ strategic insights gleaned from pivotal articles to assist you in crafting a compelling personal brand. Our goal is to empower you to not only stand out but also make a lasting impression in the influential realm of LinkedIn.
  

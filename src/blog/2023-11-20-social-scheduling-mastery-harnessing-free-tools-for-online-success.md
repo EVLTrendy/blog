@@ -1,21 +1,27 @@
 ---
-title: 'Scheduled Success: Mastering Free* Tools Online!'
-author: Marc C.
-date: '"2023-11-20T12:00:00.000Z"'
+title: "Scheduled Success: Mastering Free* Tools Online!"
+author: "Marc C."
+date: "2023-11-20T12:00:00.000Z"
 tags:
-  - post
-  - featured
-  - misc
-  - yt
-  - fb
-  - tiktok
-  - twitter
-image: /assets/blog/scheduled-success-mastering-free-tools-online-.png
-imageAlt: top6
-description: 'Welcome, social media aficionados! In the dynamic landscape of online platforms, keeping your content strategy on point is the key to success'
-keywords: 'content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing'
-schema_type: Article
-og_type: article
+  - "post"
+  - "featured"
+  - "misc"
+  - "yt"
+  - "fb"
+  - "tiktok"
+  - "twitter"
+image: "/assets/blog/scheduled-success-mastering-free-tools-online-.png"
+imageAlt: "top6"
+description: "Welcome, social media aficionados! In the dynamic landscape of online platforms, keeping your content strategy on point is the key to success"
+keywords: "content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing"
+schema_type: "Article"
+og_type: "article"
+eleventyComputed:
+  date: >
+    (() => {
+      const { DateTime } = require("luxon");
+      return DateTime.fromISO("2023-11-20T12:00:00.000Z").toJSDate();
+    })()
 ---
 Welcome, social media aficionados! In the dynamic landscape of online platforms, keeping your content strategy on point is the key to success. To make your life easier, we're delving into the realm of free* online scheduling resource tools that can supercharge your social media game. Let's explore the top six contenders!
 
