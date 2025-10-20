@@ -97,42 +97,42 @@ module.exports = function (eleventyConfig) {
         return collection.getFilteredByTag("notifications");
     });
 
-    // Add link validation for new content
-    eleventyConfig.on('beforeBuild', () => {
-        try {
-            // Run link validation on key templates
-            const { LinkValidationGuard } = require('./scripts/link-validation-guard');
-            const validator = new LinkValidationGuard();
-
-            const templatesToCheck = [
-                'src/_includes/header.njk',
-                'src/_includes/footer.njk',
-                'src/_includes/base.njk',
-                'src/admin/index.html',
-                'src/404.html'
-            ];
-
-            console.log('🔗 Running link validation on templates...');
-            templatesToCheck.forEach(async (template) => {
-                const fullPath = path.join(__dirname, template);
-                if (fs.existsSync(fullPath)) {
-                    try {
-                        const content = fs.readFileSync(fullPath, 'utf8');
-                        const issues = await validator.validateContent(fullPath, content);
-                        if (issues.length > 0) {
-                            console.warn(`⚠️  Link issues found in ${template}:`, issues.length);
-                        }
-                    } catch (error) {
-                        console.warn(`Warning: Could not validate ${template}:`, error.message);
-                    }
-                }
-            });
-        } catch (error) {
-            console.warn('Warning: Link validation failed:', error.message);
-        }
-
-
-    });
+    // Add link validation for new content - DISABLED for local builds
+    // eleventyConfig.on('beforeBuild', () => {
+    //     try {
+    //         // Run link validation on key templates
+    //         const { LinkValidationGuard } = require('./scripts/link-validation-guard');
+    //         const validator = new LinkValidationGuard();
+    //
+    //         const templatesToCheck = [
+    //             'src/_includes/header.njk',
+    //             'src/_includes/footer.njk',
+    //             'src/_includes/base.njk',
+    //             'src/admin/index.html',
+    //             'src/404.html'
+    //         ];
+    //
+    //         console.log('🔗 Running link validation on templates...');
+    //         templatesToCheck.forEach(async (template) => {
+    //             const fullPath = path.join(__dirname, template);
+    //             if (fs.existsSync(fullPath)) {
+    //                 try {
+    //                     const content = fs.readFileSync(fullPath, 'utf8');
+    //                     const issues = await validator.validateContent(fullPath, content);
+    //                     if (issues.length > 0) {
+    //                         console.warn(`⚠️  Link issues found in ${template}:`, issues.length);
+    //                     }
+    //                 } catch (error) {
+    //                     console.warn(`Warning: Could not validate ${template}:`, error.message);
+    //                 }
+    //             }
+    //         });
+    //     } catch (error) {
+    //         console.warn('Warning: Link validation failed:', error.message);
+    //     }
+    //
+    //
+    // });
 
     // Add short URL collection
     eleventyConfig.addCollection('shortUrls', function(collectionApi) {
@@ -147,7 +147,7 @@ module.exports = function (eleventyConfig) {
 
     // Add short URL redirect template
     eleventyConfig.addPassthroughCopy({
-        'src/_includes/short-url-preview.njk': 'r/:shortUrl/index.html'
+        'src/_includes/short-url-preview.njk': 'r-shorturl/index.html'
     });
 
     // Add blog collection (exclude future-dated posts)

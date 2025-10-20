@@ -1,0 +1,94 @@
+---
+layout: 'base.njk'
+ads: false
+---
+
+{# IMPORTANT SEO DIRECTIVES FOR THIS PREVIEW PAGE #}
+{# Tell search engines NOT to index this short URL preview page. #}
+<meta name="robots" content="noindex, follow">
+
+{# Override canonical URL to point to the original blog post #}
+{% set canonicalUrl = long_url %}
+
+<div class="preview-container">
+  <div class="preview-image">
+    <img src="{{ image | absoluteUrl }}" alt="{{ imageAlt }}" loading="lazy">
+  </div>
+  <div class="preview-content">
+    <h1 class="preview-title">{{ title }}</h1>
+    <p class="preview-description">{{ description }}</p>
+    <p class="preview-meta">By {{ author }} on {{ date | postDate }}</p>
+    <a href="{{ long_url }}" class="preview-button">Continue Reading</a>
+  </div>
+</div>
+
+<style>
+/* Your existing styles are fine */
+.preview-container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 1rem;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.preview-image {
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+}
+
+.preview-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.preview-content {
+  padding: 1rem;
+}
+
+.preview-title {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.preview-description {
+  font-size: 1.1rem;
+  color: #666;
+  margin-bottom: 1rem;
+  line-height: 1.5;
+}
+
+.preview-meta {
+  color: #888;
+  font-size: 0.9rem;
+  margin-bottom: 1.5rem;
+}
+
+.preview-button {
+  display: inline-block;
+  padding: 0.8rem 1.5rem;
+  background: #007bff;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: bold;
+  transition: background 0.2s;
+}
+
+.preview-button:hover {
+  background: #0056b3;
+}
+</style>
+
+<script>
+// Redirect after a short delay
+setTimeout(() => {
+  window.location.href = "{{ long_url }}";
+}, 3000);
+</script>

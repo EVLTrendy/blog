@@ -3,11 +3,47 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="robots" content="noindex" />
-  <title>Content Maanager</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Content Manager</title>
+  <link rel="canonical" href="https://blog.evolvedlotus.com/admin/">
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <style>
+    .admin-footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: #f8f9fa;
+      padding: 1rem;
+      text-align: center;
+      border-top: 1px solid #dee2e6;
+    }
+    .admin-footer a {
+      color: #007bff;
+      text-decoration: none;
+      margin: 0 0.5rem;
+    }
+    .admin-footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
 <body>
   <!-- Include the script that builds the page and powers Decap CMS -->
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+
+  <!-- Admin Footer with navigation links to fix "no outgoing links" issue -->
+  <div class="admin-footer">
+    <a href="/" aria-label="Return to EvolvedLotus homepage to explore our content creation guides and social media marketing resources">Back to Homepage</a> |
+    <a href="/blog/" aria-label="Browse our comprehensive collection of content creation tutorials, guides, and digital marketing insights">Browse All Guides</a> |
+    <a href="/about/" aria-label="Learn more about EvolvedLotus content creation expertise and our comprehensive social media marketing services">About EvolvedLotus</a> |
+    <a href="/contact/" aria-label="Contact us for personalized content strategy consultation and professional digital marketing assistance">Contact Support</a> |
+    <a href="/privacy-policy/" aria-label="Review our comprehensive privacy policy and data protection measures for content creators">Privacy Policy</a> |
+    <a href="/terms-of-service/" aria-label="Read our detailed terms of service and usage guidelines for content creation tools">Terms of Service</a> |
+    <a href="/x-tiktok/" aria-label="Explore TikTok content creation strategies and social media marketing tips">TikTok Platform</a> |
+    <a href="/x-instagram/" aria-label="Discover Instagram growth strategies and content creation techniques">Instagram Platform</a> |
+    <a href="/x-youtube/" aria-label="Learn YouTube content strategies and video marketing best practices">YouTube Platform</a> |
+    <a href="/x-twitter/" aria-label="Master Twitter marketing and content strategies for social media growth">Twitter Platform</a>
+  </div>
 </body>
+</html>
