@@ -8,7 +8,7 @@ tags:
   - twitter
 image: /assets/blog/blooming-amidst-the-x-storm-advertising-opportunity.png
 imageAlt: batxsaopic
-description: 'X, which used to be called Twitter'
+description: 'Blooming Amidst the X Storm: Advertising Opportunity in the changing social media landscape'
 keywords: >-
   content creation, social media, digital marketing, blogging, SEO, content
   strategy, social media marketing, online marketing

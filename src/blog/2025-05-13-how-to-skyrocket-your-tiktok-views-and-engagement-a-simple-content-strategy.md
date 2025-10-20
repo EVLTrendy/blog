@@ -1,6 +1,6 @@
 ---
 title: 'How to Skyrocket Your TikTok Views and Engagement: A Simple Content Strategy'
-description: Stuck at 200-300 views on TikTok? I've been there
+description: How to Skyrocket Your TikTok Views and Engagement - A Simple Content Strategy that actually works
 author: Marc C.
 date: 2025-05-12T15:07:00.000Z
 tags:

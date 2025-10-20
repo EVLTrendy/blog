@@ -9,7 +9,7 @@ tags:
   - kick
 image: /assets/blog/level-up-your-stream-from-bland-to-grand.png
 imageAlt: 'Level Up Your Stream: From Bland to Grand'
-description: Kick streaming has expanded beyond mere gameplay
+description: Level Up Your Stream: From Bland to Grand - Transform your streaming experience with professional overlays and designs
 keywords: >-
   content creation, social media, digital marketing, blogging, SEO, content
   strategy, social media marketing, online marketing
