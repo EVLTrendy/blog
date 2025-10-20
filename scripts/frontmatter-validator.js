@@ -278,6 +278,10 @@ class FrontmatterValidator {
       let needsFix = false;
       let fixedFrontmatter = { ...frontmatter };
 
+      // Check if this is a blog post or notification file
+      const isBlogPost = filePath.includes('/blog/');
+      const isNotification = filePath.includes('/notifications/');
+
       // Fix date field if it's not a string
       if (frontmatter.date && typeof frontmatter.date !== 'string') {
         console.log(`  🔧 Fixing ${fileName}: Converting date to string`);
@@ -285,13 +289,26 @@ class FrontmatterValidator {
         needsFix = true;
       }
 
-      // Fix unquoted dates
-      if (frontmatter.date && typeof frontmatter.date === 'string' && !frontmatter.date.startsWith('"')) {
+      // Handle dates differently for blog posts vs notifications
+      if (frontmatter.date && typeof frontmatter.date === 'string') {
         const datePattern = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}/;
-        if (datePattern.test(frontmatter.date)) {
-          console.log(`  🔧 Fixing ${fileName}: Quoting unquoted date`);
-          fixedFrontmatter.date = `"${frontmatter.date}"`;
-          needsFix = true;
+
+        if (isBlogPost) {
+          // For blog posts: Ensure dates are UNQUOTED for Eleventy v2 compatibility
+          if (frontmatter.date.startsWith('"') && frontmatter.date.endsWith('"')) {
+            console.log(`  🔧 Fixing ${fileName}: Unquoting date for Eleventy v2`);
+            fixedFrontmatter.date = frontmatter.date.slice(1, -1);
+            needsFix = true;
+          }
+        } else if (isNotification) {
+          // For notifications: Quote dates for YAML safety
+          if (!frontmatter.date.startsWith('"')) {
+            if (datePattern.test(frontmatter.date)) {
+              console.log(`  🔧 Fixing ${fileName}: Quoting unquoted date`);
+              fixedFrontmatter.date = `"${frontmatter.date}"`;
+              needsFix = true;
+            }
+          }
         }
       }
 
@@ -299,9 +316,18 @@ class FrontmatterValidator {
       if (!frontmatter.date) {
         const stats = fs.statSync(filePath);
         const fallbackDate = stats.mtime.toISOString();
-        console.log(`  🔧 Fixing ${fileName}: Adding missing date`);
-        fixedFrontmatter.date = `"${fallbackDate}"`;
-        needsFix = true;
+
+        if (isBlogPost) {
+          // Blog posts: unquoted for Eleventy
+          console.log(`  🔧 Fixing ${fileName}: Adding missing date`);
+          fixedFrontmatter.date = fallbackDate;
+          needsFix = true;
+        } else {
+          // Notifications: quoted for YAML safety
+          console.log(`  🔧 Fixing ${fileName}: Adding missing date`);
+          fixedFrontmatter.date = `"${fallbackDate}"`;
+          needsFix = true;
+        }
       }
 
       // Fix YAML formatting issues that might cause parsing errors
