@@ -1,0 +1,155 @@
+name: Validate Frontmatter
+
+on:
+  push:
+    branches: [ main, master ]
+    paths:
+      - 'src/blog/**'
+      - 'scripts/frontmatter-validator.js'
+      - 'scripts/direct-yaml-fix.js'
+  pull_request:
+    branches: [ main, master ]
+    paths:
+      - 'src/blog/**'
+      - 'scripts/frontmatter-validator.js'
+      - 'scripts/direct-yaml-fix.js'
+
+jobs:
+  validate-frontmatter:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+        token: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Run frontmatter validation with auto-fix
+      id: validate
+      run: |
+        echo "🔍 Running frontmatter validation..."
+        node scripts/frontmatter-validator.js --fix
+
+        # Check if there were CRITICAL errors (not just warnings)
+        # The validator returns 0 for warnings-only, 1 for actual errors
+        if [ $? -eq 1 ]; then
+          echo "❌ Critical errors found that couldn't be auto-fixed"
+          echo "validation_failed=true" >> $GITHUB_OUTPUT
+        else
+          echo "✅ Validation passed or issues were auto-fixed"
+          echo "validation_failed=false" >> $GITHUB_OUTPUT
+        fi
+
+    - name: Check for file changes
+      id: verify-changed-files
+      run: |
+        if [ -n "$(git status --porcelain)" ]; then
+          echo "Files were modified during validation"
+          echo "files_changed=true" >> $GITHUB_OUTPUT
+          git status --porcelain
+        else
+          echo "No files were modified"
+          echo "files_changed=false" >> $GITHUB_OUTPUT
+        fi
+
+    - name: Commit auto-fixes (if any)
+      if: steps.verify-changed-files.outputs.files_changed == 'true'
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+
+        # Add all changes
+        git add -A
+
+        # Check if this is a pull request
+        if [ "${{ github.event_name }}" == "pull_request" ]; then
+          echo "Creating a new commit for auto-fixes in PR"
+          git commit -m "🤖 Auto-fix frontmatter issues
+
+          - Fixed YAML date formatting
+          - Ensured proper string quoting
+          - Resolved validation errors
+
+          Co-authored-by: ${{ github.event.pull_request.user.login }} <${{ github.event.pull_request.user.login }}@users.noreply.github.com>"
+        else
+          echo "Creating a new commit for auto-fixes on main branch"
+          git commit -m "🤖 Auto-fix frontmatter issues
+
+          - Fixed YAML date formatting
+          - Ensured proper string quoting
+          - Resolved validation errors"
+        fi
+
+        # Push the changes
+        git push
+
+    - name: Comment on PR (if validation failed)
+      if: steps.validate.outputs.validation_failed == 'true' && github.event_name == 'pull_request'
+      uses: actions/github-script@v7
+      with:
+        script: |
+          github.rest.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: `❌ **Frontmatter validation failed**
+
+            The automated validation found unfixable errors in the YAML frontmatter. Please review and fix the following issues:
+
+            - Ensure all dates are properly quoted strings (e.g., "2023-12-07T20:03:48.097Z")
+            - Check for missing required fields (title, description, image)
+            - Verify YAML formatting is correct
+
+            Run \`npm run validate:fix\` locally to see detailed error messages and fix issues manually.
+
+            **Common fixes:**
+            - Change \`date: 2023-12-07T20:03:48.097Z\` to \`date: "2023-12-07T20:03:48.097Z"\`
+            - Ensure multiline descriptions are properly escaped
+            - Check that all required fields are present
+
+            Once fixed, push the changes and the validation will run again automatically.`
+          })
+
+    - name: Comment on PR (if auto-fixed)
+      if: steps.verify-changed-files.outputs.files_changed == 'true' && github.event_name == 'pull_request'
+      uses: actions/github-script@v7
+      with:
+        script: |
+          github.rest.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: `✅ **Frontmatter issues auto-fixed**
+
+            The automated validation found and fixed the following issues:
+
+            - YAML date formatting corrected
+            - String quoting standardized
+            - Missing fields added where possible
+
+            The changes have been automatically committed to your branch. Please review the changes and ensure they look correct before merging.
+
+            **What was fixed:**
+            - Dates are now properly quoted strings
+            - YAML formatting standardized
+            - Common validation errors resolved
+
+            If you notice any issues with the auto-fixes, you can revert the specific changes and fix them manually.`
+          })
+
+    - name: Fail build if validation errors remain
+      if: steps.validate.outputs.validation_failed == 'true'
+      run: |
+        echo "❌ Frontmatter validation failed with unfixable errors"
+        echo "Please fix the YAML frontmatter issues and try again"
+        exit 1

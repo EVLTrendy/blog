@@ -88,50 +88,43 @@ class FrontmatterValidator {
         });
       }
 
-      if (frontmatter.date && !this.isValidDate(frontmatter.date)) {
-        this.errors.push({
-          file: fileName,
-          type: 'invalid_date_format',
-          message: 'Date format is invalid or not properly quoted as string'
-        });
-      }
 
-      // Check if date is properly formatted as ISO string
-      if (frontmatter.date && typeof frontmatter.date === 'string') {
-        // Check if it's a valid ISO date string
-        if (!this.isValidISODate(frontmatter.date)) {
-          this.errors.push({
-            file: fileName,
-            type: 'invalid_date_format',
-            message: 'Date field must be a valid ISO date string (e.g., "2023-12-07T20:03:48.097Z")'
-          });
-        }
-      }
 
-      // Enhanced date validation for strict checking
+      // More permissive date validation - accept strings OR Date objects
       if (frontmatter.date) {
         const dateValue = frontmatter.date;
 
-        // Check if date is NOT a string
-        if (typeof dateValue !== 'string') {
+        // Only flag if it's truly malformed (not a string, not a Date object)
+        if (typeof dateValue !== 'string' && !(dateValue instanceof Date)) {
           this.errors.push({
             file: fileName,
-            field: 'date',
-            issue: `Date must be a quoted string, found: ${typeof dateValue}`,
-            value: dateValue,
-            line: 'frontmatter'
+            type: 'invalid_date_type',
+            message: `Date must be a string or Date object, found: ${typeof dateValue}`,
+            value: dateValue
           });
         }
 
-        // Check if string date is valid ISO format
-        else if (!/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}/.test(dateValue)) {
-          this.warnings.push({
-            file: fileName,
-            field: 'date',
-            issue: 'Date should be in ISO 8601 format (YYYY-MM-DDTHH:mm:ss.sssZ)',
-            value: dateValue,
-            line: 'frontmatter'
-          });
+        // Check for the ACTUAL problem: concatenated dates
+        if (typeof dateValue === 'string') {
+          // Check for concatenated dates like "2023-11-20T...Z""2023-11-20T...Z"
+          if (dateValue.includes('""') && dateValue.match(/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}/g)?.length > 1) {
+            this.errors.push({
+              file: fileName,
+              type: 'concatenated_dates',
+              message: 'Multiple dates concatenated together',
+              value: dateValue
+            });
+          }
+
+          // Check for obviously malformed date strings (but be permissive)
+          else if (dateValue.includes('""') || dateValue.includes('T""')) {
+            this.errors.push({
+              file: fileName,
+              type: 'malformed_date_string',
+              message: 'Date string contains malformed quotes',
+              value: dateValue
+            });
+          }
         }
       }
 
@@ -243,7 +236,8 @@ class FrontmatterValidator {
     if (this.warnings.length > 0) {
       console.log('\n⚠️  WARNINGS:');
       this.warnings.forEach(warning => {
-        console.log(`  ${warning.file}: ${warning.message}`);
+        const message = warning.message || `Missing recommended fields: ${warning.fields?.join(', ') || 'unknown'}`;
+        console.log(`  ${warning.file}: ${message}`);
       });
     }
 

@@ -5,12 +5,14 @@
   "main": "index.js",
   "scripts": {
     "start": "eleventy --serve",
-    "build": "node scripts/frontmatter-validator.js && eleventy",
+    "build": "node scripts/frontmatter-validator.js --fix && eleventy",
     "build:validate": "node scripts/frontmatter-validator.js",
     "validate": "node scripts/frontmatter-validator.js",
     "validate:fix": "node scripts/frontmatter-validator.js --fix",
+    "validate:yaml": "node scripts/debug-yaml-parsing.js",
+    "fix:yaml": "node scripts/direct-yaml-fix.js",
     "new": "node scripts/new-post.js",
-    "pre-commit": "node scripts/frontmatter-validator.js"
+    "pre-commit": "node scripts/frontmatter-validator.js --fix"
   },
   "keywords": [],
   "author": "",

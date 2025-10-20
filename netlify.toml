@@ -1,6 +1,6 @@
 [build]
   publish = "public"
-  command = "node scripts/frontmatter-validator.js || true && npm run build"
+  command = "node scripts/frontmatter-validator.js --fix || true && npm run build"
   functions = ".netlify/functions"
 
 [[headers]]
