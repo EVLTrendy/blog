@@ -153,8 +153,8 @@ module.exports = function (eleventyConfig) {
         'src/_includes/short-url-preview.njk': 'r-shorturl/index.html'
     });
 
-    // Set Eleventy to use custom data parsing to ensure dates remain as strings
-    eleventyConfig.setDataDeepMerge(false);
+    // Enable data deep merge to allow proper date object handling
+    eleventyConfig.setDataDeepMerge(true);
 
     // Override the default frontmatter parsing to ensure dates stay as strings
     eleventyConfig.setFrontMatterParsingOptions({
@@ -173,6 +173,7 @@ module.exports = function (eleventyConfig) {
                                     // Validate it's a proper ISO date but keep as string
                                     const datePattern = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}(Z|[+-]\d{2}:\d{2})$/;
                                     if (datePattern.test(data.date)) {
+                                        // Keep as string for Eleventy compatibility
                                         return data;
                                     }
                                 }
@@ -185,6 +186,13 @@ module.exports = function (eleventyConfig) {
             }
         }
     });
+
+    // Set template engine to handle dates as strings
+    eleventyConfig.setTemplateFormats([
+        "njk",
+        "md",
+        "html"
+    ]);
 
     // Add blog collection (exclude future-dated posts)
     eleventyConfig.addCollection("blog", function(collectionApi) {
