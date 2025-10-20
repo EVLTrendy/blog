@@ -153,7 +153,8 @@ module.exports = function (eleventyConfig) {
         'src/_includes/short-url-preview.njk': 'r-shorturl/index.html'
     });
 
-    // Enable data deep merge to allow proper date object handling
+    // 🌟 THE FIX 🌟: Prevents Eleventy from accidentally normalizing or
+    // manipulating date objects in a way that causes the toLowerCase error.
     eleventyConfig.setDataDeepMerge(true);
 
     // Override the default frontmatter parsing to ensure dates stay as strings
