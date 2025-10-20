@@ -54,7 +54,20 @@ module.exports = function (eleventyConfig) {
         }
     });
 
-    // Date filter
+    // Date normalization filter for frontmatter dates
+    eleventyConfig.addFilter("normalizeDate", (dateStr) => {
+        if (!dateStr) return new Date();
+        try {
+            let dt = DateTime.fromISO(dateStr, { zone: "utc" });
+            if (!dt.isValid) return new Date();
+            return dt.toJSDate();
+        } catch (error) {
+            console.warn(`Failed to parse date string: ${dateStr}`, error.message);
+            return new Date();
+        }
+    });
+
+    // Date filter for display formatting
     eleventyConfig.addFilter("postDate", (dateObj) => {
         try {
             // Handle string dates
