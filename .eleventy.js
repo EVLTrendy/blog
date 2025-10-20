@@ -155,8 +155,17 @@ module.exports = function (eleventyConfig) {
         const now = new Date();
         return collectionApi
             .getFilteredByGlob("src/blog/*.md")
-            .filter(post => post.date <= now)
-            .sort((a, b) => b.date - a.date);
+            .filter(post => {
+                // Handle both string and Date objects for date comparison
+                const postDate = typeof post.date === 'string' ? new Date(post.date) : post.date;
+                return postDate <= now;
+            })
+            .sort((a, b) => {
+                // Handle both string and Date objects for sorting
+                const dateA = typeof a.date === 'string' ? new Date(a.date) : a.date;
+                const dateB = typeof b.date === 'string' ? new Date(b.date) : b.date;
+                return dateB - dateA;
+            });
     });
 
     // Override default tag collection for `post` to also exclude future posts
@@ -164,8 +173,17 @@ module.exports = function (eleventyConfig) {
         const now = new Date();
         return collectionApi
             .getFilteredByTag("post")
-            .filter(post => post.date <= now)
-            .sort((a, b) => b.date - a.date);
+            .filter(post => {
+                // Handle both string and Date objects for date comparison
+                const postDate = typeof post.date === 'string' ? new Date(post.date) : post.date;
+                return postDate <= now;
+            })
+            .sort((a, b) => {
+                // Handle both string and Date objects for sorting
+                const dateA = typeof a.date === 'string' ? new Date(a.date) : a.date;
+                const dateB = typeof b.date === 'string' ? new Date(b.date) : b.date;
+                return dateB - dateA;
+            });
     });
 
     // Add custom filter to find blog posts by slug
