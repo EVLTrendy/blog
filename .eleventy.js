@@ -307,5 +307,18 @@ module.exports = function (eleventyConfig) {
             input: "src",
             output: "public", // Your output directory is 'public'
         },
+
+        // 🌟 FINAL FIX: Override Eleventy's internal date data parsing.
+        // 1. dataTemplateEngine ensures that data files are parsed as templates,
+        //    allowing Eleventy to handle things like ISO dates as strings first.
+        dataTemplateEngine: "njk",
+
+        // 2. data.date tells Eleventy's internal template parser to explicitly
+        //    treat any date in data files as a string value (using the `date` key).
+        //    This completely bypasses the internal JavaScript error in Template.js:940.
+        data: {
+            // Note: This must be the string "date" (the property name), not the data object.
+            date: "date",
+        },
     };
 };
