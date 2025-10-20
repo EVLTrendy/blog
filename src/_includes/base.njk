@@ -14,18 +14,6 @@
     {% set twitterImage = (twitter_image | absoluteUrl if twitter_image else ((metadata.twitter_image | absoluteUrl) if metadata.twitter_image else ogImage)) %}
 
     <!-- Frontmatter Validation and Enhanced Fallbacks -->
-    {% if not title %}
-      {% set warning = "Warning: Missing 'title' in frontmatter for " + page.inputPath %}
-      {{ warning | console }}
-    {% endif %}
-    {% if not description %}
-      {% set warning = "Warning: Missing 'description' in frontmatter for " + page.inputPath %}
-      {{ warning | console }}
-    {% endif %}
-    {% if not image %}
-      {% set warning = "Warning: Missing 'image' in frontmatter for " + page.inputPath %}
-      {{ warning | console }}
-    {% endif %}
 
     <meta property="og:title" content="{{ ogTitle }}">
     <meta property="og:type" content="{{ og_type if og_type else 'article' }}">
