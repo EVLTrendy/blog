@@ -339,6 +339,15 @@ module.exports = function (eleventyConfig) {
         return String(str || '').toLowerCase();
     });
 
+    // Add filterByTag filter for filtering collections by tags
+    eleventyConfig.addFilter("filterByTag", function(collection, tag) {
+        if (!collection || !tag) return [];
+        return collection.filter(item => {
+            const itemTags = item.data.tags || [];
+            return itemTags.includes(tag);
+        });
+    });
+
 
 
     return {
