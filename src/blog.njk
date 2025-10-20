@@ -83,6 +83,39 @@ layout: 'base.njk'
   </script>
 </div>
 
+<!-- Recent Blog Posts Section -->
+<div class="blog-posts-container">
+  <h2>Recent Blog Posts</h2>
+  <div class="blog-posts-grid">
+    {% for post in collections.post | reverse | slice(0, 20) %}
+    <article class="blog-post-card">
+      <div class="post-image">
+        {% if post.data.image %}
+        <img src="{{ post.data.image }}" alt="{{ post.data.imageAlt or post.data.title }}" loading="lazy">
+        {% endif %}
+      </div>
+      <div class="post-content">
+        <h3><a href="{{ post.url }}">{{ post.data.title }}</a></h3>
+        <p class="post-description">{{ post.data.description }}</p>
+        <div class="post-meta">
+          <time datetime="{{ post.date | isoDate }}">{{ post.date | postDate }}</time>
+          {% if post.data.author %}
+          <span class="author">by {{ post.data.author }}</span>
+          {% endif %}
+        </div>
+        {% if post.data.tags %}
+        <div class="post-tags">
+          {% for tag in post.data.tags %}
+          <span class="tag">{{ tag }}</span>
+          {% endfor %}
+        </div>
+        {% endif %}
+      </div>
+    </article>
+    {% endfor %}
+  </div>
+</div>
+
 
 
 <script>
@@ -321,6 +354,140 @@ document.addEventListener('click', (e) => {
 
   .social-icon span {
     font-size: 0.8rem;
+  }
+}
+
+/* Blog Posts Grid Styles */
+.blog-posts-container {
+  max-width: 1200px;
+  margin: 3rem auto;
+  padding: 0 1rem;
+}
+
+.blog-posts-container h2 {
+  text-align: center;
+  color: #33bdef;
+  margin-bottom: 2rem;
+  font-size: 2.5rem;
+}
+
+.blog-posts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.blog-post-card {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid #e1e5e9;
+}
+
+.blog-post-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.post-image {
+  height: 200px;
+  overflow: hidden;
+}
+
+.post-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.blog-post-card:hover .post-image img {
+  transform: scale(1.05);
+}
+
+.post-content {
+  padding: 1.5rem;
+}
+
+.post-content h3 {
+  margin: 0 0 1rem 0;
+  font-size: 1.25rem;
+  line-height: 1.4;
+}
+
+.post-content h3 a {
+  color: #2c3e50;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.post-content h3 a:hover {
+  color: #33bdef;
+}
+
+.post-description {
+  color: #666;
+  line-height: 1.6;
+  margin: 0 0 1rem 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.post-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+  color: #888;
+}
+
+.post-meta time {
+  font-weight: 500;
+}
+
+.post-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tag {
+  background: #33bdef;
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+/* Responsive adjustments for blog posts */
+@media (max-width: 768px) {
+  .blog-posts-container {
+    margin: 2rem auto;
+  }
+
+  .blog-posts-container h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .blog-posts-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .post-image {
+    height: 180px;
+  }
+
+  .post-content {
+    padding: 1.25rem;
   }
 }
 </style>
