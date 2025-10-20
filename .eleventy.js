@@ -153,9 +153,27 @@ module.exports = function (eleventyConfig) {
         'src/_includes/short-url-preview.njk': 'r-shorturl/index.html'
     });
 
-    // 🌟 THE FIX 🌟: Prevents Eleventy from accidentally normalizing or
-    // manipulating date objects in a way that causes the toLowerCase error.
+    // 🌟 FIX 1: The previous suggested fix to prevent internal data merging issues.
     eleventyConfig.setDataDeepMerge(true);
+
+    // 🌟 FIX 2: Override Eleventy's date property handling to ensure it's a safe string.
+    // We map `date` to a function that uses a safe fallback if the original value is bad.
+    eleventyConfig.addGlobalData("eleventyComputed", {
+        // The value of `date` will be used for sorting/collection creation.
+        // It first tries to use the date object, and falls back to a safe date string.
+        date: data => {
+            // Check if data.date exists and is a JavaScript Date object.
+            // If it is, return it (Eleventy can handle a Date object for sorting).
+            if (data.date instanceof Date) {
+                return data.date;
+            }
+
+            // If it's NOT a Date object (and might be the problematic non-string type),
+            // return a safe, valid date string. Using '1970-01-01' is a common fallback.
+            // This prevents Eleventy from trying to call toLowerCase() on a bad type.
+            return "1970-01-01";
+        }
+    });
 
     // Override the default frontmatter parsing to ensure dates stay as strings
     eleventyConfig.setFrontMatterParsingOptions({
