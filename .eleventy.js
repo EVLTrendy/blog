@@ -6,6 +6,9 @@ const crypto = require('crypto');
 // 1. Require the eleventy-plugin-seo plugin
 const pluginSEO = require("eleventy-plugin-seo");
 
+// Custom frontmatter parser to ensure dates remain as strings
+const matter = require('gray-matter');
+
 
 
 module.exports = function (eleventyConfig) {
@@ -148,6 +151,33 @@ module.exports = function (eleventyConfig) {
     // Add short URL redirect template
     eleventyConfig.addPassthroughCopy({
         'src/_includes/short-url-preview.njk': 'r-shorturl/index.html'
+    });
+
+    // Custom frontmatter parser to ensure dates remain as strings
+    eleventyConfig.setFrontMatterParsingOptions({
+        engines: {
+            markdown: (content) => {
+                const parsed = matter(content, {
+                    engines: {
+                        yaml: {
+                            parse: (str) => {
+                                const data = require('js-yaml').safeLoad(str);
+                                // Ensure date remains as string if it's a valid ISO date
+                                if (data.date && typeof data.date === 'string') {
+                                    const datePattern = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}(Z|[+-]\d{2}:\d{2})$/;
+                                    if (datePattern.test(data.date)) {
+                                        // Keep as string for Eleventy compatibility
+                                        return data;
+                                    }
+                                }
+                                return data;
+                            }
+                        }
+                    }
+                });
+                return parsed;
+            }
+        }
     });
 
     // Add blog collection (exclude future-dated posts)
