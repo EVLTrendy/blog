@@ -21,7 +21,7 @@ module.exports = function (eleventyConfig) {
     eleventyConfig.addPassthroughCopy('./src/_redirects');
     eleventyConfig.addPassthroughCopy('./src/robots.txt');
 
-    // 2. Add the eleventy-plugin-seo plugin configuration
+    // 2. Add the eleventy-plugin-seo pluugin configuration
     // IMPORTANT: Make sure to set your actual blog URL for 'url'
     eleventyConfig.addPlugin(pluginSEO, {
         url: "https://blog.evolvedlotus.com", // <--- THIS IS YOUR BLOG'S BASE URL!
