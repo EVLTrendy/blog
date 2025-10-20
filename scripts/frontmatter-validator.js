@@ -89,10 +89,19 @@ class FrontmatterValidator {
       }
 
       if (frontmatter.date && !this.isValidDate(frontmatter.date)) {
-        this.warnings.push({
+        this.errors.push({
           file: fileName,
-          type: 'invalid_date',
-          message: 'Date format appears to be invalid'
+          type: 'invalid_date_format',
+          message: 'Date format is invalid or not properly quoted as string'
+        });
+      }
+
+      // Check if date is properly quoted as string (critical for Eleventy builds)
+      if (frontmatter.date && typeof frontmatter.date === 'string' && !frontmatter.date.startsWith('"')) {
+        this.errors.push({
+          file: fileName,
+          type: 'unquoted_date_string',
+          message: 'Date field must be quoted as string (e.g., "2023-12-07T20:03:48.097Z")'
         });
       }
 
