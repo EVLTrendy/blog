@@ -131,13 +131,7 @@ module.exports = function (eleventyConfig) {
             console.warn('Warning: Link validation failed:', error.message);
         }
 
-        try {
-            // Run the short URL generator script
-            require('./scripts/generate-short-urls.js');
-        } catch (error) {
-            console.warn('Warning: Short URL generation failed:', error.message);
-            // Continue build even if short URL generation fails
-        }
+
     });
 
     // Add short URL collection

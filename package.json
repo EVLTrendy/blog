@@ -5,10 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "eleventy --serve",
-    "build": "eleventy",
-    "setup-db": "node scripts/setup-db.js",
-    "add-existing": "node scripts/add-existing-posts.js",
-    "generate-short-urls": "node scripts/generate-short-urls.js"
+    "build": "node scripts/frontmatter-validator.js && eleventy",
+    "build:validate": "node scripts/frontmatter-validator.js"
   },
   "keywords": [],
   "author": "",

@@ -1,61 +1,6 @@
 ---
 layout: 'base.njk'
 ---
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Article",
-  "headline": "{{ title }}",
-  "author": {
-    "@type": "Person",
-    "name": "{{ author }}"
-  },
-  "datePublished": "{{ date }}",
-  "image": "{{ image | absoluteUrl }}",
-  "publisher": {
-    "@type": "Organization",
-    "name": "EvolvedLotus",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://blog.evolvedlotus.com/assets/logo.png"
-    }
-  },
-  "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": "{{ page.url | absoluteUrl }}"
-  }
-}
-</script>
-
-<!-- Primary Meta Tags -->
-<meta name="title" content="{{ title }}">
-<meta name="description" content="{{ description }}">
-
-<!-- Open Graph / Facebook -->
-<meta property="og:type" content="article">
-<meta property="og:url" content="{{ page.url | absoluteUrl }}">
-<meta property="og:title" content="{{ title }}">
-<meta property="og:description" content="{{ description }}">
-<meta property="og:image" content="{{ image | absoluteUrl }}">
-<meta property="og:site_name" content="EvolvedLotus Blog">
-<meta property="article:published_time" content="{{ date }}">
-<meta property="article:author" content="{{ author }}">
-<meta property="article:section" content="Blog">
-
-<!-- Twitter -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:site" content="@evolvedlotus">
-<meta name="twitter:url" content="{{ page.url | absoluteUrl }}">
-<meta name="twitter:title" content="{{ title }}">
-<meta name="twitter:description" content="{{ description }}">
-<meta name="twitter:image" content="{{ image | absoluteUrl }}">
-
-<!-- Discord -->
-<meta property="discord:embed" content="true">
-<meta property="discord:embed:title" content="{{ title }}">
-<meta property="discord:embed:description" content="{{ description }}">
-<meta property="discord:embed:image" content="{{ image | absoluteUrl }}">
-<meta property="discord:embed:url" content="{{ page.url | absoluteUrl }}">
 
 <section class="articlesection">
   <div class="imagediv">
@@ -65,8 +10,7 @@ layout: 'base.njk'
       <img src="{{ image }}" alt="{{ imageAlt | default(title) }}" width="800" height="400">
     {% endif %}
   </div>
-  <h1 class="article_title">Complete Guide: {{ title }}</h1>
-  <h2>Overview</h2>
+  <h1 class="article_title">{{ title }}</h1>
   <p class="article_meta">
     By&nbsp;<span>{{ author }}</span>&nbsp;on&nbsp;<span>{{date | postDate}}</span>
     <div class="share-icons">

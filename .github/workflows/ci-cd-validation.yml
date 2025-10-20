@@ -1,0 +1,93 @@
+name: CI/CD with SEO Validation
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  validate-and-build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run frontmatter validation
+        run: npm run build:validate
+
+      - name: Build site
+        run: npm run build
+
+      - name: Upload validation report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: frontmatter-validation-report
+          path: reports/frontmatter-validation-report.json
+          retention-days: 30
+
+      - name: Upload build artifacts
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: built-site
+          path: public/
+          retention-days: 7
+
+      - name: Comment PR with validation results
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const path = 'reports/frontmatter-validation-report.json';
+
+            if (fs.existsSync(path)) {
+              const report = JSON.parse(fs.readFileSync(path, 'utf8'));
+
+              let comment = '## 🔍 SEO Validation Report\n\n';
+              comment += `**Total Files:** ${report.totalFiles}\n`;
+              comment += `**Errors:** ${report.errors}\n`;
+              comment += `**Warnings:** ${report.warnings}\n\n`;
+
+              if (report.warnings > 0) {
+                comment += '### ⚠️ Warnings:\n';
+                report.warningsList.forEach(warning => {
+                  comment += `- **${warning.file}**: ${warning.message}\n`;
+                });
+                comment += '\n';
+              }
+
+              if (report.errors > 0) {
+                comment += '### ❌ Errors:\n';
+                report.errorsList.forEach(error => {
+                  comment += `- **${error.file}**: ${error.message}\n`;
+                });
+                comment += '\n';
+              }
+
+              if (report.errors === 0 && report.warnings === 0) {
+                comment += '✅ **All validation checks passed!**';
+              } else {
+                comment += '🔧 **Please review and fix the issues above before merging.**';
+              }
+
+              github.rest.issues.createComment({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: comment
+              });
+            }

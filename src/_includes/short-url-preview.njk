@@ -7,58 +7,8 @@ ads: false
 {# Tell search engines NOT to index this short URL preview page. #}
 <meta name="robots" content="noindex, follow">
 
-{# Tell search engines that the canonical (original) version of this content #}
-{# is the long URL of the actual blog post. #}
-<link rel="canonical" href="{{ long_url }}">
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Article",
-  "headline": "{{ title }}",
-  "author": {
-    "@type": "Person",
-    "name": "{{ author }}"
-  },
-  "datePublished": "{{ date }}",
-  "image": "{{ image | absoluteUrl }}",
-  "publisher": {
-    "@type": "Organization",
-    "name": "EvolvedLotus",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://blog.evolvedlotus.com/assets/logo.png"
-    }
-  },
-  "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": "{{ long_url }}" {# This should be the canonical URL #}
-  }
-}
-</script>
-
-{# Open Graph / Social Sharing Tags for Facebook, LinkedIn etc. #}
-{# Ensure all these point to the LONG_URL and its content #}
-<meta property="og:title" content="{{ title }}">
-<meta property="og:description" content="{{ description }}">
-<meta property="og:image" content="{{ image | absoluteUrl }}">
-<meta property="og:url" content="{{ long_url }}"> {# OG URL should point to the long URL #}
-<meta property="og:type" content="article">
-<meta property="article:published_time" content="{{ date }}">
-<meta property="article:author" content="{{ author }}">
-<meta property="article:section" content="Blog">
-<meta property="og:site_name" content="EvolvedLotus Blog"> {# Added for completeness #}
-<meta property="og:image:alt" content="{{ imageAlt }}"> {# Added for completeness #}
-
-{# Twitter Card Tags #}
-{# Ensure all these point to the LONG_URL and its content #}
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="{{ title }}">
-<meta name="twitter:description" content="{{ description }}">
-<meta name="twitter:image" content="{{ image | absoluteUrl }}">
-<meta name="twitter:site" content="@evolvedlotus"> {# Your Twitter handle #}
-<meta name="twitter:creator" content="{{ author }}"> {# Or specific author's Twitter handle #}
-<meta name="twitter:image:alt" content="{{ imageAlt }}"> {# Added for completeness #}
+{# Override canonical URL to point to the original blog post #}
+{% set canonicalUrl = long_url %}
 
 <div class="preview-container">
   <div class="preview-image">
