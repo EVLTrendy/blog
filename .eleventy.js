@@ -232,6 +232,9 @@ module.exports = function (eleventyConfig) {
         "html"
     ]);
 
+    // Exclude template files from processing (they contain placeholder dates)
+    eleventyConfig.ignores.add("src/_templates/**");
+
     // Add blog collection (exclude future-dated posts and non-content files)
     eleventyConfig.addCollection("blog", function(collectionApi) {
         return collectionApi.getFilteredByGlob("src/blog/*.md")
