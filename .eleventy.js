@@ -213,11 +213,15 @@ module.exports = function (eleventyConfig) {
         "html"
     ]);
 
-    // Add blog collection (exclude future-dated posts)
+    // Add blog collection (exclude future-dated posts and non-content files)
     eleventyConfig.addCollection("blog", function(collectionApi) {
         const now = new Date();
         return collectionApi
             .getFilteredByGlob("src/blog/*.md")
+            .filter(post => {
+                // Use the isContent flag to ensure only valid content files are processed
+                return post.data.isContent === true;
+            })
             .filter(post => {
                 // Handle both string and Date objects for date comparison
                 const postDate = typeof post.date === 'string' ? new Date(post.date) : post.date;
@@ -231,11 +235,15 @@ module.exports = function (eleventyConfig) {
             });
     });
 
-    // Override default tag collection for `post` to also exclude future posts
+    // Override default tag collection for `post` to also exclude future posts and non-content files
     eleventyConfig.addCollection("post", function(collectionApi) {
         const now = new Date();
         return collectionApi
             .getFilteredByTag("post")
+            .filter(post => {
+                // Use the isContent flag to ensure only valid content files are processed
+                return post.data.isContent === true;
+            })
             .filter(post => {
                 // Handle both string and Date objects for date comparison
                 const postDate = typeof post.date === 'string' ? new Date(post.date) : post.date;
