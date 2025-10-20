@@ -159,54 +159,49 @@ module.exports = function (eleventyConfig) {
     });
 
     // ========================================
-    // CRITICAL: Date normalization cascade
-    // This runs BEFORE Eleventy processes dates
+    // CRITICAL: Date normalization for Node 18 + Eleventy v2 compatibility
     // ========================================
     eleventyConfig.addGlobalData("eleventyComputed", {
         date: (data) => {
-            // 1. If date is already a valid string, use it
-            if (typeof data.date === 'string' && data.date.trim()) {
-                console.log(`✅ Using existing string date: ${data.date} for ${data.page?.inputPath || 'unknown'}`);
+            // Handle string dates safely for Node 18 compatibility
+            if (typeof data.date === "string") {
+                try {
+                    // Validate it's a proper ISO string before converting
+                    const isoPattern = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z$/;
+                    if (isoPattern.test(data.date)) {
+                        const dateObj = new Date(data.date);
+                        if (!isNaN(dateObj.getTime())) {
+                            console.log(`✅ Normalized string date: ${data.date} for ${data.page?.inputPath || 'unknown'}`);
+                            return dateObj;
+                        }
+                    }
+                } catch (error) {
+                    console.warn(`⚠️ Failed to parse date string: ${data.date}`, error.message);
+                }
+            }
+
+            // If date is already a Date object, use it
+            if (data.date instanceof Date && !isNaN(data.date.getTime())) {
+                console.log(`✅ Using existing Date object for ${data.page?.inputPath || 'unknown'}`);
                 return data.date;
             }
 
-            // 2. If date is a Date object (from YAML parser), convert it
-            if (data.date instanceof Date && !isNaN(data.date.getTime())) {
-                const isoString = data.date.toISOString();
-                console.log(`✅ Converting Date object to ISO string: ${isoString} for ${data.page?.inputPath || 'unknown'}`);
-                return isoString;
-            }
-
-            // 3. CRITICAL: Extract date from filename (YYYY-MM-DD-slug.md)
+            // Fallback: extract from filename or use current date
             if (data.page?.inputPath) {
                 const filename = path.basename(data.page.inputPath);
-
-                // Match date pattern at start of filename
                 const dateMatch = filename.match(/^(\d{4})-(\d{2})-(\d{2})-/);
-
                 if (dateMatch) {
                     const [_, year, month, day] = dateMatch;
-                    // Return ISO string with extracted date
-                    const extractedDate = `${year}-${month}-${day}T12:00:00.000Z`;
-                    console.log(`✅ Extracted date from filename: ${extractedDate} for ${filename}`);
-                    return extractedDate;
-                }
-
-                // 4. Fallback: use file modification time
-                try {
-                    const stats = fs.statSync(data.page.inputPath);
-                    const fileDate = stats.mtime.toISOString();
-                    console.log(`✅ Using file modification time: ${fileDate} for ${data.page.inputPath}`);
-                    return fileDate;
-                } catch (e) {
-                    console.warn(`⚠️ Could not read file stats for ${data.page.inputPath}:`, e.message);
+                    const fallbackDate = new Date(`${year}-${month}-${day}T12:00:00.000Z`);
+                    console.log(`✅ Extracted date from filename: ${fallbackDate.toISOString()} for ${filename}`);
+                    return fallbackDate;
                 }
             }
 
-            // 5. Last resort: current date
-            const fallbackDate = new Date().toISOString();
+            // Last resort: current date
+            const currentDate = new Date();
             console.warn(`⚠️ Using current date for page without valid date: ${data.page?.inputPath || 'unknown'}`);
-            return fallbackDate;
+            return currentDate;
         }
     });
 
