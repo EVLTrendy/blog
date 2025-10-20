@@ -1,17 +1,17 @@
 ---
-title: "Brand Deals Made Easy with Signaturely!"
-author: "Marc C."
-date: "2023-11-20T12:00:00.000Z"
+title: Brand Deals Made Easy with Signaturely!
+author: Marc C.
+date: '"2023-11-20T12:00:00.000Z"'
 tags:
-  - "post"
-  - "featured"
-  - "misc"
-image: "/assets/blog/brand-deals-made-easy-with-signaturely-.png"
-imageAlt: "Brand Deals Made Easy with Signaturely!"
-description: "Greetings, fellow content creators! Get ready for a blockbuster journey through the wild world of brand deals, with Signaturely as your trusty sidekick"
-keywords: "content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing"
-schema_type: "Article"
-og_type: "article"
+  - post
+  - featured
+  - misc
+image: /assets/blog/brand-deals-made-easy-with-signaturely-.png
+imageAlt: Brand Deals Made Easy with Signaturely!
+description: 'Greetings, fellow content creators! Get ready for a blockbuster journey through the wild world of brand deals, with Signaturely as your trusty sidekick'
+keywords: 'content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing'
+schema_type: Article
+og_type: article
 ---
 Greetings, fellow content creators! Get ready for a blockbuster journey through the wild world of brand deals, with Signaturely as your trusty sidekick. Together, we'll streamline your collaborations and make paperwork a breeze.
 

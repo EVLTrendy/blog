@@ -1,17 +1,17 @@
 ---
-title: "New Short Way for YouTube Ads"
-author: "Marc C."
-date: "2024-07-23T12:00:00.000Z"
+title: New Short Way for YouTube Ads
+author: Marc C.
+date: '"2024-07-23T12:00:00.000Z"'
 tags:
-  - "post"
-  - "featured"
-  - "yt"
-image: "/assets/blog/new-short-way-for-youtube-ads.png"
-imageAlt: "New Short Way for YouTube Ads"
-description: "YouTube Shorts has recently gained a lot of traction and is now very much in trend for short, catchy videos"
-keywords: "content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing"
-schema_type: "Article"
-og_type: "article"
+  - post
+  - featured
+  - yt
+image: /assets/blog/new-short-way-for-youtube-ads.png
+imageAlt: New Short Way for YouTube Ads
+description: 'YouTube Shorts has recently gained a lot of traction and is now very much in trend for short, catchy videos'
+keywords: 'content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing'
+schema_type: Article
+og_type: article
 ---
 YouTube Shorts has recently gained a lot of traction and is now very much in trend for short, catchy videos. It is the YouTube version of TikTok, and it is most certainly becoming popular. Recently, YouTube has released some cool updates and new features to make Shorts even better for creators and advertisers.
 

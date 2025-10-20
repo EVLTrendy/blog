@@ -1,17 +1,17 @@
 ---
-title: "Twitter | 𝕏 Updates: New User Experience and Battling Bots "
-author: "Marc C."
-date: "2024-03-28T12:00:00.000Z"
+title: "Twitter | \U0001D54F Updates: New User Experience and Battling Bots "
+author: Marc C.
+date: '"2024-03-28T12:00:00.000Z"'
 tags:
-  - "post"
-  - "featured"
-  - "twitter"
-image: "/assets/blog/twitter-𝕏-updates-new-user-experience-and-battling-bots-.png"
-imageAlt: "Twitter | 𝕏 Updates: New User Experience and Battling Bots"
-description: "Twitter, now known as 𝕏, has experienced substantial modifications since its acquisition by Elon Musk in October 2022"
-keywords: "content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing"
-schema_type: "Article"
-og_type: "article"
+  - post
+  - featured
+  - twitter
+image: "/assets/blog/twitter-\U0001D54F-updates-new-user-experience-and-battling-bots-.png"
+imageAlt: "Twitter | \U0001D54F Updates: New User Experience and Battling Bots"
+description: "Twitter, now known as \U0001D54F, has experienced substantial modifications since its acquisition by Elon Musk in October 2022"
+keywords: 'content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing'
+schema_type: Article
+og_type: article
 ---
 Twitter, now known as 𝕏, has experienced substantial modifications since its acquisition by Elon Musk in October 2022. These improvements have resulted in new features, policies, and tactics targeted at improving the user experience and tackling emergent issues. 
 

@@ -1,17 +1,17 @@
 ---
-title: "Meta Llama 3: Your Next-Gen AI Assistant"
-author: "Marc C."
-date: "2024-05-10T12:00:00.000Z"
+title: 'Meta Llama 3: Your Next-Gen AI Assistant'
+author: Marc C.
+date: '"2024-05-10T12:00:00.000Z"'
 tags:
-  - "post"
-  - "featured"
-  - "fb"
-image: "/assets/blog/meta-llama-3-your-next-gen-ai-assistant.png"
-imageAlt: "Meta Llama 3: Your Next-Gen AI Assistant"
-description: "Ever wondered how far AI has come? Meta Llama 3, an open-source powerhouse, is shaking up the game for developers and businesses"
-keywords: "content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing"
-schema_type: "Article"
-og_type: "article"
+  - post
+  - featured
+  - fb
+image: /assets/blog/meta-llama-3-your-next-gen-ai-assistant.png
+imageAlt: 'Meta Llama 3: Your Next-Gen AI Assistant'
+description: 'Ever wondered how far AI has come? Meta Llama 3, an open-source powerhouse, is shaking up the game for developers and businesses'
+keywords: 'content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing'
+schema_type: Article
+og_type: article
 ---
 
 

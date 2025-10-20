@@ -1,17 +1,17 @@
 ---
-title: "LinkedIn's Influence on the Current"
-author: "Marc C."
-date: "2024-02-01T12:00:00.000Z"
+title: LinkedIn's Influence on the Current
+author: Marc C.
+date: '"2024-02-01T12:00:00.000Z"'
 tags:
-  - "post"
-  - "featured"
-  - "link"
-image: "/assets/blog/18-9tnudghrlogr1i6.png"
-imageAlt: "LinkedIn's Influence on the Current"
-description: "Are you wondering why LinkedIn is essential for your business? LinkedIn presence and how it can benefit your business"
-keywords: "content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing"
-schema_type: "Article"
-og_type: "article"
+  - post
+  - featured
+  - link
+image: /assets/blog/18-9tnudghrlogr1i6.png
+imageAlt: LinkedIn's Influence on the Current
+description: Are you wondering why LinkedIn is essential for your business? LinkedIn presence and how it can benefit your business
+keywords: 'content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing'
+schema_type: Article
+og_type: article
 ---
 Are you wondering why LinkedIn is essential for your business? LinkedIn presence and how it can benefit your business.\
 \

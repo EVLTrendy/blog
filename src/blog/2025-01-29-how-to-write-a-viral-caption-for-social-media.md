@@ -1,18 +1,18 @@
 ---
-title: "How to Write a Viral Caption for Social Media"
-author: "EvolvedLotus Team"
-date: "2025-01-29T12:00:00.000Z"
+title: How to Write a Viral Caption for Social Media
+author: EvolvedLotus Team
+date: '"2025-01-29T12:00:00.000Z"'
 tags:
-  - "post"
-  - "featured"
-  - "misc"
-image: "/assets/blog/how-to-write-a-viral-caption-for-social-media.png"
-imageAlt: "How to Write a Viral Caption for Social Media"
-shortUrl: "htwavcfsm129"
-description: "Captions are more than just text—they’re your ticket to turning a scroll into a stop"
-keywords: "content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing"
-schema_type: "Article"
-og_type: "article"
+  - post
+  - featured
+  - misc
+image: /assets/blog/how-to-write-a-viral-caption-for-social-media.png
+imageAlt: How to Write a Viral Caption for Social Media
+shortUrl: htwavcfsm129
+description: Captions are more than just text—they’re your ticket to turning a scroll into a stop
+keywords: 'content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing'
+schema_type: Article
+og_type: article
 ---
 Captions are more than just text—they’re your ticket to turning a scroll into a stop. Whether humor, value, or emotion, a great caption sets the tone and grabs attention in a crowded feed.
 

@@ -1,21 +1,21 @@
 ---
-title: "Understanding Social Media Analytics: What Metrics Actually Matter"
-description: "Get real social media growth! Learn how to use metrics like saves, shares, and watch time to make a digital marketing plan that works."
-author: "EvolvedLotus Team"
-date: "2025-08-15T19:31:00.000Z"
+title: 'Understanding Social Media Analytics: What Metrics Actually Matter'
+description: 'Get real social media growth! Learn how to use metrics like saves, shares, and watch time to make a digital marketing plan that works.'
+author: EvolvedLotus Team
+date: '"2025-08-15T19:31:00.000Z"'
 tags:
-  - "post"
-  - "featured"
-  - "misc"
-  - "tiktok"
-  - "yt"
-  - "twitter"
-  - "ig"
-image: "/assets/blog/understanding-social-media-analytics-what-metrics-actually-matter.png"
-imageAlt: "Understanding Social Media Analytics: What Metrics Actually Matter"
-keywords: "content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing"
-schema_type: "Article"
-og_type: "article"
+  - post
+  - featured
+  - misc
+  - tiktok
+  - yt
+  - twitter
+  - ig
+image: /assets/blog/understanding-social-media-analytics-what-metrics-actually-matter.png
+imageAlt: 'Understanding Social Media Analytics: What Metrics Actually Matter'
+keywords: 'content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing'
+schema_type: Article
+og_type: article
 ---
 Have you ever felt like you're just throwing content into the social media void? Algorithms are getting smarter, and so are your followers. The old days of simply "posting more" are over. To achieve real **[social media growth](/blog/2025-05-13-how-to-skyrocket-your-tiktok-views-and-engagement-a-simple-content-strategy/)**, you need a data-driven strategy. This guide is your secret weapon. We're moving past vanity metrics to focus on the key analytics that truly drive your success, helping you create a purposeful **[digital marketing](/blog/2025-04-27-facebook-content-mastery-5-proven-strategies-for-explosive-engagement/)** plan that actually works.
 
