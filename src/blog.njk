@@ -117,9 +117,9 @@ function showAutocomplete(searchTerm) {
     return;
   }
 
-  const matches = blogPosts.filter(post => 
-    post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    post.description.toLowerCase().includes(searchTerm.toLowerCase())
+  const matches = blogPosts.filter(post =>
+    String(post.title || '').toLowerCase().includes(searchTerm.toLowerCase()) ||
+    String(post.description || '').toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   if (matches.length > 0) {
