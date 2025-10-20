@@ -1,7 +1,7 @@
 ---
 title: Is 1of10 Really Worth It? Or Should You Save Your Money and Learn on Your Own?
 author: EvolvedLotus Team
-date: 2025-02-19T15:30:00.000Z
+date: "2025-02-20T12:00:00.000Z"
 tags:
   - post
   - featured

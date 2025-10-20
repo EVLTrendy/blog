@@ -1,7 +1,7 @@
 ---
 title: 'From Sound Waves to Screens: The Intro to Podcast'
 author: Marc C.
-date: 2023-12-26T14:52:10.709Z
+date: "2023-12-26T12:00:00.000Z"
 tags:
   - post
   - featured

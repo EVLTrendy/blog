@@ -1,7 +1,7 @@
 ---
 title: 'Online Mastery: A Creator''s Guide'
 author: Marc C.
-date: 2023-11-22T16:45:33.725Z
+date: "2023-11-22T12:00:00.000Z"
 tags:
   - post
   - featured

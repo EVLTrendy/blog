@@ -1,7 +1,7 @@
 ---
 title: 'LinkedIn Lift-off 2023: Profile Power Unleashed!'
 author: Marc C.
-date: 2023-11-24T18:49:44.041Z
+date: "2023-11-24T12:00:00.000Z"
 tags:
   - post
   - featured

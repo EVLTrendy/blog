@@ -1,7 +1,7 @@
 ---
 title: 'X and Grok AI: Vision and News'
 author: Marc C.
-date: 2024-05-06T15:30:00.000Z
+date: "2024-05-06T12:00:00.000Z"
 tags:
   - post
   - featured

@@ -1,7 +1,7 @@
 ---
 title: 'UMG''s Exit: The Shift of Music '
 author: Marc C.
-date: 2024-02-03T17:00:39.487Z
+date: "2024-02-03T12:00:00.000Z"
 tags:
   - post
   - featured

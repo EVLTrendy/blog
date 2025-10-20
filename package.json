@@ -6,7 +6,10 @@
   "scripts": {
     "start": "eleventy --serve",
     "build": "node scripts/frontmatter-validator.js && eleventy",
-    "build:validate": "node scripts/frontmatter-validator.js"
+    "build:validate": "node scripts/frontmatter-validator.js",
+    "validate": "node scripts/frontmatter-validator.js",
+    "validate:fix": "node scripts/frontmatter-validator.js --fix",
+    "new": "node scripts/new-post.js"
   },
   "keywords": [],
   "author": "",

@@ -1,7 +1,7 @@
 ---
 title: 'TikTok''s Faceless Recipes: EvolvedLotus Insights'
 author: Marc C.
-date: 2023-12-30T15:45:02.422Z
+date: "2023-12-30T12:00:00.000Z"
 tags:
   - post
   - featured

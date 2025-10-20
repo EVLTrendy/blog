@@ -108,6 +108,33 @@ class FrontmatterValidator {
         }
       }
 
+      // Enhanced date validation for strict checking
+      if (frontmatter.date) {
+        const dateValue = frontmatter.date;
+
+        // Check if date is NOT a string
+        if (typeof dateValue !== 'string') {
+          this.errors.push({
+            file: fileName,
+            field: 'date',
+            issue: `Date must be a quoted string, found: ${typeof dateValue}`,
+            value: dateValue,
+            line: 'frontmatter'
+          });
+        }
+
+        // Check if string date is valid ISO format
+        else if (!/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}/.test(dateValue)) {
+          this.warnings.push({
+            file: fileName,
+            field: 'date',
+            issue: 'Date should be in ISO 8601 format (YYYY-MM-DDTHH:mm:ss.sssZ)',
+            value: dateValue,
+            line: 'frontmatter'
+          });
+        }
+      }
+
       if (frontmatter.tags && (!Array.isArray(frontmatter.tags) || frontmatter.tags.length === 0)) {
         this.warnings.push({
           file: fileName,
@@ -244,16 +271,113 @@ class FrontmatterValidator {
   getExitCode() {
     return this.errors.length > 0 ? 1 : 0;
   }
+
+  /**
+   * Auto-fix capability for malformed dates
+   */
+  autoFix(filePath) {
+    try {
+      const fileContent = fs.readFileSync(filePath, 'utf8');
+      const { data: frontmatter, content } = matter(fileContent);
+      const fileName = path.basename(filePath);
+
+      let needsFix = false;
+      let fixedFrontmatter = { ...frontmatter };
+
+      // Fix date field if it's not a string
+      if (frontmatter.date && typeof frontmatter.date !== 'string') {
+        console.log(`  🔧 Fixing ${fileName}: Converting date to string`);
+        fixedFrontmatter.date = new Date(frontmatter.date).toISOString();
+        needsFix = true;
+      }
+
+      // Fix unquoted dates
+      if (frontmatter.date && typeof frontmatter.date === 'string' && !frontmatter.date.startsWith('"')) {
+        const datePattern = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}/;
+        if (datePattern.test(frontmatter.date)) {
+          console.log(`  🔧 Fixing ${fileName}: Quoting unquoted date`);
+          fixedFrontmatter.date = `"${frontmatter.date}"`;
+          needsFix = true;
+        }
+      }
+
+      // Fix missing dates
+      if (!frontmatter.date) {
+        const stats = fs.statSync(filePath);
+        const fallbackDate = stats.mtime.toISOString();
+        console.log(`  🔧 Fixing ${fileName}: Adding missing date`);
+        fixedFrontmatter.date = `"${fallbackDate}"`;
+        needsFix = true;
+      }
+
+      if (needsFix) {
+        const updatedContent = matter.stringify(content, fixedFrontmatter, { lineWidth: -1 });
+        fs.writeFileSync(filePath, updatedContent);
+        console.log(`  ✅ Auto-fixed: ${fileName}`);
+        return true;
+      }
+
+      return false;
+    } catch (error) {
+      console.error(`  ❌ Error auto-fixing ${path.basename(filePath)}:`, error.message);
+      return false;
+    }
+  }
+
+  /**
+   * Auto-fix all files with issues
+   */
+  autoFixAll() {
+    console.log('🔧 Starting auto-fix for frontmatter issues...\n');
+
+    try {
+      const files = fs.readdirSync(this.postsDirectory);
+      let fixedCount = 0;
+
+      files.forEach(file => {
+        if (file.endsWith('.md')) {
+          const filePath = path.join(this.postsDirectory, file);
+          if (this.autoFix(filePath)) {
+            fixedCount++;
+          }
+        }
+      });
+
+      console.log(`\n✅ Auto-fixed ${fixedCount} files`);
+      return fixedCount > 0;
+    } catch (error) {
+      console.error('❌ Error during auto-fix:', error.message);
+      return false;
+    }
+  }
 }
 
 /**
  * Main execution function
  */
 function main() {
-  const validator = new FrontmatterValidator();
-  validator.scanAllPosts();
-  const report = validator.printResults();
-  process.exit(validator.getExitCode());
+  // Check for --fix flag
+  if (process.argv.includes('--fix')) {
+    const validator = new FrontmatterValidator();
+    const wasFixed = validator.autoFixAll();
+
+    if (wasFixed) {
+      console.log('\n🔄 Running validation after fixes...');
+      // Run validation again after fixes
+      const newValidator = new FrontmatterValidator();
+      newValidator.scanAllPosts();
+      newValidator.printResults();
+      process.exit(newValidator.getExitCode());
+    } else {
+      console.log('\n✅ No fixes needed');
+      process.exit(0);
+    }
+  } else {
+    const validator = new FrontmatterValidator();
+    validator.scanAllPosts();
+    const report = validator.printResults();
+    process.exit(validator.getExitCode());
+  }
 }
 
 // Run if called directly

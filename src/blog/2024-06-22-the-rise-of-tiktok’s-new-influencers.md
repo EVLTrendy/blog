@@ -1,7 +1,7 @@
 ---
 title: The Rise of TikTok’s New Influencers
 author: Marc C.
-date: 2024-06-22T13:42:00.000Z
+date: "2024-06-22T12:00:00.000Z"
 tags:
   - post
   - featured

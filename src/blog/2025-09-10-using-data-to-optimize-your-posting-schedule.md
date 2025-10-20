@@ -4,7 +4,7 @@ description: >-
   Master 2025 social media posting: data-driven strategies, platform-specific
   timing, and engagement hacks to reclaim 40% lost reach. Free checklist
 author: EvolvedLotus Team
-date: 2025-09-10T17:15:00.000Z
+date: "2025-09-10T12:00:00.000Z"
 tags:
   - post
   - featured

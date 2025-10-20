@@ -1,7 +1,7 @@
 ---
 title: 'Lotus Harmony: Evolving Your Music'
 author: Marc C.
-date: 2023-12-06T18:45:44.183Z
+date: "2023-12-06T12:00:00.000Z"
 tags:
   - post
   - featured

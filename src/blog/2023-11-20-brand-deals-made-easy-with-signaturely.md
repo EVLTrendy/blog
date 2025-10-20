@@ -1,7 +1,7 @@
 ---
 title: Brand Deals Made Easy with Signaturely!
 author: Marc C.
-date: 2023-11-20T21:18:45.384Z
+date: "2023-11-20T12:00:00.000Z"
 tags:
   - post
   - featured

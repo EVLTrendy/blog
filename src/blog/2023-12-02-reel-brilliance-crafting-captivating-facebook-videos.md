@@ -1,7 +1,7 @@
 ---
 title: 'Reel Brilliance: Crafting Captivating Facebook Videos'
 author: Marc C.
-date: 2023-11-28T17:40:59.858Z
+date: "2023-12-02T12:00:00.000Z"
 tags:
   - post
   - featured

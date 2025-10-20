@@ -3,7 +3,7 @@ title: Mobile Photography Techniques for Better Content
 description: Master mobile photography in 2025! Learn lighting, composition, and
   editing techniques to create pro-quality content on your phone.
 author: EvolvedLotus Team
-date: "2025-10-20T13:52:00.000-04:00"
+date: "1970-01-01T00:00:00.000Z""1970-01-01T00:00:00.000Z""2025-10-20T13:52:00.000-04:00"
 tags:
   - post
   - featured

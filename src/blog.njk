@@ -118,8 +118,8 @@ function showAutocomplete(searchTerm) {
   }
 
   const matches = blogPosts.filter(post =>
-    String(post.title || '').toLowerCase().includes(searchTerm.toLowerCase()) ||
-    String(post.description || '').toLowerCase().includes(searchTerm.toLowerCase())
+    (post.title || '').toLowerCase().includes(searchTerm.toLowerCase()) ||
+    (post.description || '').toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   if (matches.length > 0) {

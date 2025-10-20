@@ -1,7 +1,7 @@
 ---
 title: 'YouTubeEvolved: YouTube 2024 Algorithm '
 author: Marc C.
-date: 2024-01-15T17:53:26.285Z
+date: "2024-01-15T12:00:00.000Z"
 tags:
   - post
   - featured

@@ -1,7 +1,7 @@
 ---
 title: 'Tweeting Trends: Twitter''s 2024 Algorithm'
 author: Marc C.
-date: 2024-02-14T19:58:51.487Z
+date: "2024-02-15T12:00:00.000Z"
 tags:
   - post
   - featured

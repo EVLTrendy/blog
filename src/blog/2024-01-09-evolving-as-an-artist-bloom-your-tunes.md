@@ -1,7 +1,7 @@
 ---
 title: 'Evolving As an Artist: Bloom Your Tunes'
 author: Marc C.
-date: 2024-01-09T01:19:40.746Z
+date: "2024-01-09T12:00:00.000Z"
 tags:
   - post
   - featured

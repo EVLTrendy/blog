@@ -1,7 +1,7 @@
 ---
 title: 'Follow the Lead: LinkedIn Unleashed – Your Follower Magnet!'
 author: 'Marc C. '
-date: 2023-12-05T16:23:17.619Z
+date: "2023-12-05T12:00:00.000Z"
 tags:
   - post
   - featured

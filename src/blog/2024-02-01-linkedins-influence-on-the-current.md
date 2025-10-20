@@ -1,7 +1,7 @@
 ---
 title: LinkedIn's Influence on the Current
 author: Marc C.
-date: 2024-02-01T20:22:12.099Z
+date: "2024-02-01T12:00:00.000Z"
 tags:
   - post
   - featured

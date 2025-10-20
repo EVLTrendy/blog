@@ -4,7 +4,7 @@ description: >-
   Best video recording software for gaming, YouTube & tutorials. Compare free vs
   paid options: ShadowPlay, OBS, Filmora & more. 2025 guide.
 author: EvolvedLotus Team
-date: 2025-09-08T19:18:00.000Z
+date: "2025-09-09T12:00:00.000Z"
 tags:
   - post
   - ft

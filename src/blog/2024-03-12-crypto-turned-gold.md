@@ -1,7 +1,7 @@
 ---
 title: 'Crypto turned Gold '
 author: Marc C.
-date: 2024-03-11T19:30:00.000Z
+date: "2024-03-12T12:00:00.000Z"
 tags:
   - post
   - featured

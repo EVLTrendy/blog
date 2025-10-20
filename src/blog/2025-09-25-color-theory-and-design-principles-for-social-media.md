@@ -4,7 +4,7 @@ description: >-
   Learn how color theory impacts design, social media, and everyday life.
   Discover AI personalization, dual-mode palettes, and practical tips.
 author: EvolvedLotus Team
-date: 2025-09-25T17:47:00.000Z
+date: "2025-09-25T12:00:00.000Z"
 tags:
   - post
   - featured

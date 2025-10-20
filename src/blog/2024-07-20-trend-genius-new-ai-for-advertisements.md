@@ -1,7 +1,7 @@
 ---
 title: 'Trend Genius: New AI For Advertisements '
 author: Marc C.
-date: 2024-07-20T13:23:00.000Z
+date: "2024-07-20T12:00:00.000Z"
 tags:
   - post
   - featured

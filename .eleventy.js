@@ -9,6 +9,11 @@ const pluginSEO = require("eleventy-plugin-seo");
 // Custom frontmatter parser to ensure dates remain as strings
 const matter = require('gray-matter');
 
+// ========================================
+// CRITICAL: Date normalization cascade
+// This runs BEFORE Eleventy processes dates
+// ========================================
+
 
 
 module.exports = function (eleventyConfig) {
@@ -153,26 +158,65 @@ module.exports = function (eleventyConfig) {
         'src/_includes/short-url-preview.njk': 'r-shorturl/index.html'
     });
 
-    // 🌟 FIX 1: The previous suggested fix to prevent internal data merging issues.
-    eleventyConfig.setDataDeepMerge(true);
-
-    // 🌟 FIX 2: Override Eleventy's date property handling to ensure it's a safe string.
-    // We map `date` to a function that uses a safe fallback if the original value is bad.
+    // ========================================
+    // CRITICAL: Date normalization cascade
+    // This runs BEFORE Eleventy processes dates
+    // ========================================
     eleventyConfig.addGlobalData("eleventyComputed", {
-        // The value of `date` will be used for sorting/collection creation.
-        // It first tries to use the date object, and falls back to a safe date string.
-        date: data => {
-            // Check if data.date exists and is a JavaScript Date object.
-            // If it is, return it (Eleventy can handle a Date object for sorting).
-            if (data.date instanceof Date) {
+        date: (data) => {
+            // 1. If date is already a valid string, use it
+            if (typeof data.date === 'string' && data.date.trim()) {
+                console.log(`✅ Using existing string date: ${data.date} for ${data.page?.inputPath || 'unknown'}`);
                 return data.date;
             }
 
-            // If it's NOT a Date object (and might be the problematic non-string type),
-            // return a safe, valid date string. Using '1970-01-01' is a common fallback.
-            // This prevents Eleventy from trying to call toLowerCase() on a bad type.
-            return "1970-01-01";
+            // 2. If date is a Date object (from YAML parser), convert it
+            if (data.date instanceof Date && !isNaN(data.date.getTime())) {
+                const isoString = data.date.toISOString();
+                console.log(`✅ Converting Date object to ISO string: ${isoString} for ${data.page?.inputPath || 'unknown'}`);
+                return isoString;
+            }
+
+            // 3. CRITICAL: Extract date from filename (YYYY-MM-DD-slug.md)
+            if (data.page?.inputPath) {
+                const filename = path.basename(data.page.inputPath);
+
+                // Match date pattern at start of filename
+                const dateMatch = filename.match(/^(\d{4})-(\d{2})-(\d{2})-/);
+
+                if (dateMatch) {
+                    const [_, year, month, day] = dateMatch;
+                    // Return ISO string with extracted date
+                    const extractedDate = `${year}-${month}-${day}T12:00:00.000Z`;
+                    console.log(`✅ Extracted date from filename: ${extractedDate} for ${filename}`);
+                    return extractedDate;
+                }
+
+                // 4. Fallback: use file modification time
+                try {
+                    const stats = fs.statSync(data.page.inputPath);
+                    const fileDate = stats.mtime.toISOString();
+                    console.log(`✅ Using file modification time: ${fileDate} for ${data.page.inputPath}`);
+                    return fileDate;
+                } catch (e) {
+                    console.warn(`⚠️ Could not read file stats for ${data.page.inputPath}:`, e.message);
+                }
+            }
+
+            // 5. Last resort: current date
+            const fallbackDate = new Date().toISOString();
+            console.warn(`⚠️ Using current date for page without valid date: ${data.page?.inputPath || 'unknown'}`);
+            return fallbackDate;
         }
+    });
+
+    // Prevent Eleventy from merging/transforming dates unexpectedly
+    eleventyConfig.setDataDeepMerge(true);
+
+    // Temporary debug logging (remove after fixing)
+    eleventyConfig.addFilter("debugDate", function(date) {
+        console.log(`🔍 Date value: ${date}, Type: ${typeof date}`);
+        return date;
     });
 
     // Override the default frontmatter parsing to ensure dates stay as strings
@@ -215,23 +259,21 @@ module.exports = function (eleventyConfig) {
 
     // Add blog collection (exclude future-dated posts and non-content files)
     eleventyConfig.addCollection("blog", function(collectionApi) {
-        const now = new Date();
-        return collectionApi
-            .getFilteredByGlob("src/blog/*.md")
+        return collectionApi.getFilteredByGlob("src/blog/*.md")
             .filter(post => {
-                // Use the isContent flag to ensure only valid content files are processed
-                return post.data.isContent === true;
-            })
-            .filter(post => {
-                // Handle both string and Date objects for date comparison
-                const postDate = typeof post.date === 'string' ? new Date(post.date) : post.date;
-                return postDate <= now;
+                // Only include posts with valid dates
+                const date = post.data.date;
+                if (!date) return false;
+
+                // Convert to Date object safely
+                const dateObj = date instanceof Date ? date : new Date(date);
+                return !isNaN(dateObj.getTime());
             })
             .sort((a, b) => {
-                // Handle both string and Date objects for sorting
-                const dateA = typeof a.date === 'string' ? new Date(a.date) : a.date;
-                const dateB = typeof b.date === 'string' ? new Date(b.date) : b.date;
-                return dateB - dateA;
+                // Safe date comparison
+                const dateA = a.data.date instanceof Date ? a.data.date : new Date(a.data.date);
+                const dateB = b.data.date instanceof Date ? b.data.date : new Date(b.data.date);
+                return dateB - dateA; // Newest first
             });
     });
 
@@ -306,6 +348,11 @@ module.exports = function (eleventyConfig) {
         paragraphs.splice(insertPoint, 0, adContainer);
 
         return paragraphs.join('');
+    });
+
+    // Add safe lowercase filter for templates
+    eleventyConfig.addFilter("lowercase", function(str) {
+        return String(str || '').toLowerCase();
     });
 
 

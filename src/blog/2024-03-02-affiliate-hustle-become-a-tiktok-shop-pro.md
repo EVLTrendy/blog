@@ -1,7 +1,7 @@
 ---
 title: 'Affiliate Hustle: Become a TikTok Shop Pro'
 author: Marc C.
-date: 2024-03-02T16:04:30.337Z
+date: "2024-03-02T12:00:00.000Z"
 tags:
   - post
   - featured

@@ -1,7 +1,7 @@
 ---
 title: EvolvedLotus View On Hootsuite’s 2025 Report
 author: EvolvedLotus Team
-date: 2025-01-22T13:35:00.000Z
+date: "2025-01-22T12:00:00.000Z"
 tags:
   - post
   - featured
