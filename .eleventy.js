@@ -155,20 +155,102 @@ module.exports = function (eleventyConfig) {
     //
     // });
 
-    // Add short URL collection
-    eleventyConfig.addCollection('shortUrls', function(collectionApi) {
+    // Add async short URL collection using Supabase
+    eleventyConfig.addCollection('shortUrls', async function(collectionApi) {
         try {
-            const shortUrlsData = require('./src/_data/shortUrls.json');
-            return shortUrlsData;
+            const { getShortUrlForPost } = require('./src/_data/shortUrls');
+
+            // Get all blog posts
+            const posts = collectionApi.getFilteredByGlob("src/blog/*.md");
+            const enhancedShortUrls = {};
+
+            // For each post, get or create short URL from Supabase
+            for (const post of posts) {
+                if (post.data.slug) {
+                    const shortUrlData = await getShortUrlForPost(post.data.slug);
+                    if (shortUrlData) {
+                        enhancedShortUrls[shortUrlData.short_id] = {
+                            shortId: shortUrlData.short_id,
+                            title: shortUrlData.title,
+                            slug: shortUrlData.post_slug,
+                            // Inherit all metadata from destination post for identical previews
+                            description: post.data.description,
+                            image: post.data.image,
+                            twitter_image: post.data.twitter_image,
+                            author: post.data.author,
+                            date: post.data.date,
+                            tags: post.data.tags,
+                            long_url: `https://blog.evolvedlotus.com/blog/${post.data.slug}/`
+                        };
+                    }
+                }
+            }
+
+            return enhancedShortUrls;
         } catch (error) {
-            console.warn('Warning: Could not load shortUrls.json:', error.message);
+            console.warn('Warning: Could not load short URLs from Supabase:', error.message);
             return {};
         }
     });
 
-    // Add short URL redirect template
-    eleventyConfig.addPassthroughCopy({
-        'src/_includes/short-url-preview.njk': 'r-shorturl/index.html'
+    // Add async short URL pages collection using Supabase
+    eleventyConfig.addCollection('shortUrlPages', async function(collectionApi) {
+        try {
+            const { getShortUrlById } = require('./src/_data/shortUrls');
+
+            // Get all blog posts for metadata inheritance
+            const posts = collectionApi.getFilteredByGlob("src/blog/*.md");
+            const postMap = new Map();
+            posts.forEach(post => {
+                if (post.data.slug) {
+                    postMap.set(post.data.slug, post);
+                }
+            });
+
+            // Get all short URLs from Supabase
+            const supabase = require('@supabase/supabase-js').createClient(
+                process.env.SUPABASE_URL,
+                process.env.SUPABASE_ANON_KEY
+            );
+
+            const { data: shortUrlsData, error } = await supabase
+                .from('short_urls')
+                .select('*');
+
+            if (error) {
+                console.warn('Warning: Could not load short URLs from Supabase:', error.message);
+                return [];
+            }
+
+            const pages = [];
+
+            // Create pages for each short URL
+            for (const shortUrlData of shortUrlsData) {
+                const post = postMap.get(shortUrlData.post_slug);
+                if (post) {
+                    pages.push({
+                        shortId: shortUrlData.short_id,
+                        title: shortUrlData.title,
+                        slug: shortUrlData.post_slug,
+                        // Inherit all metadata from destination post for identical previews
+                        description: post.data.description,
+                        image: post.data.image,
+                        twitter_image: post.data.twitter_image,
+                        author: post.data.author,
+                        date: post.data.date,
+                        tags: post.data.tags,
+                        long_url: `https://blog.evolvedlotus.com/blog/${post.data.slug}/`,
+                        layout: 'short-url-preview.njk',
+                        permalink: `/r/${shortUrlData.short_id}/index.html`
+                    });
+                }
+            }
+
+            return pages;
+        } catch (error) {
+            console.warn('Warning: Could not load short URL pages from Supabase:', error.message);
+            return [];
+        }
     });
 
     // ========================================

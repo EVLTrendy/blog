@@ -12,7 +12,8 @@
     "validate:yaml": "node scripts/debug-yaml-parsing.js",
     "fix:yaml": "node scripts/direct-yaml-fix.js",
     "new": "node scripts/new-post.js",
-    "pre-commit": "node scripts/frontmatter-validator.js --fix"
+    "pre-commit": "node scripts/frontmatter-validator.js --fix",
+    "setup:shorturls": "node scripts/setup-short-urls-db.js"
   },
   "keywords": [],
   "author": "",
