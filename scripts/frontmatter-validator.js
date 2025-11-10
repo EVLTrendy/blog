@@ -88,6 +88,17 @@ class FrontmatterValidator {
         });
       }
 
+      // Image dimension validation for Twitter Card optimization
+      if (frontmatter.image) {
+        this.warnings.push({
+          file: fileName,
+          type: 'image_dimensions_check',
+          message: 'Image at ' + frontmatter.image + ': Ensure dimensions are 1200x630px for optimal Twitter Card display',
+          field: 'image',
+          suggestion: 'Twitter cards work best with 1.91:1 ratio images (1200x630px)'
+        });
+      }
+
 
 
       // More permissive date validation - accept strings OR Date objects

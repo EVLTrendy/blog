@@ -1,10 +1,585 @@
 {
-  "timestamp": "2025-11-10T18:13:59.276Z",
+  "timestamp": "2025-11-10T19:13:29.006Z",
   "summary": {
     "totalFiles": 82,
     "errors": 0,
-    "warnings": 0
+    "warnings": 82
   },
   "errors": [],
-  "warnings": []
+  "warnings": [
+    {
+      "file": "2023-11-20-boost-tiktok-visuals-top-online-resources.md",
+      "type": "image_dimensions_check",
+      "message": "Image at /assets/blog/boost-tiktok-visuals-top-online-resources.png: Ensure dimensions are 1200x630px for optimal Twitter Card display",
+      "field": "image",
+      "suggestion": "Twitter cards work best with 1.91:1 ratio images (1200x630px)"
+    },
+    {
+      "file": "2023-11-20-brand-deals-made-easy-with-signaturely.md",
+      "type": "image_dimensions_check",
+      "message": "Image at /assets/blog/brand-deals-made-easy-with-signaturely-.png: Ensure dimensions are 1200x630px for optimal Twitter Card display",
+      "field": "image",
+      "suggestion": "Twitter cards work best with 1.91:1 ratio images (1200x630px)"
+    },
+    {
+      "file": "2023-11-20-jams-without-jitters-your-copyright-free-soundtrack-guide.md",
+      "type": "image_dimensions_check",
+      "message": "Image at /assets/blog/jams-without-jitters-your-copyright-free-soundtrack-guide-.png: Ensure dimensions are 1200x630px for optimal Twitter Card display",
+      "field": "image",
+      "suggestion": "Twitter cards work best with 1.91:1 ratio images (1200x630px)"
+    },
+    {
+      "file": "2023-11-20-social-scheduling-mastery-harnessing-free-tools-for-online-success.md",
+      "type": "image_dimensions_check",
+      "message": "Image at /assets/blog/scheduled-success-mastering-free-tools-online-.png: Ensure dimensions are 1200x630px for optimal Twitter Card display",
+      "field": "image",
+      "suggestion": "Twitter cards work best with 1.91:1 ratio images (1200x630px)"
+    },
+    {
+      "file": "2023-11-22-influencer-brilliance-unleash-online-power.md",
+      "type": "image_dimensions_check",
+      "message": "Image at /assets/blog/8-mnzbj9l68fa6ucx-1-1-.png: Ensure dimensions are 1200x630px for optimal Twitter Card display",
+      "field": "image",
+      "suggestion": "Twitter cards work best with 1.91:1 ratio images (1200x630px)"
+    },
+    {
+      "file": "2023-11-22-online-mastery-a-creators-guide.md",
+      "type": "image_dimensions_check",
+      "message": "Image at /assets/blog/zyro-image-6-.png: Ensure dimensions are 1200x630px for optimal Twitter Card display",
+      "field": "image",
+      "suggestion": "Twitter cards work best with 1.91:1 ratio images (1200x630px)"
+    },
+    {
+      "file": "2023-11-22-power-up-free-hashtag-tools-unleashed.md",
+      "type": "image_dimensions_check",
+      "message": "Image at /assets/blog/power-up-free-hashtag-tools-unleashed-.png: Ensure dimensions are 1200x630px for optimal Twitter Card display",
+      "field": "image",
+      "suggestion": "Twitter cards work best with 1.91:1 ratio images (1200x630px)"
+    },
+    {
+      "file": "2023-11-24-linkedin-lift-off-2023-profile-power-unleashed.md",
+      "type": "image_dimensions_check",
+      "message": "Image at /assets/blog/zyro-image.png: Ensure dimensions are 1200x630px for optimal Twitter Card display",
+      "field": "image",
+      "suggestion": "Twitter cards work best with 1.91:1 ratio images (1200x630px)"
+    },
+    {
+      "file": "2023-11-28-unlock-facebook-growth-your-ultimate-guide.md",
+      "type": "image_dimensions_check",
+      "message": "Image at /assets/blog/skjadklame.png: Ensure dimensions are 1200x630px for optimal Twitter Card display",
+      "field": "image",
+      "suggestion": "Twitter cards work best with 1.91:1 ratio images (1200x630px)"
+    },
+    {
+      "file": "2023-12-02-reel-brilliance-crafting-captivating-facebook-videos.md",
+      "type": "image_dimensions_check",
+      "message": "Image at /assets/blog/reel-brilliance-crafting-captivating-facebook-videos.png: Ensure dimensions are 1200x630px for optimal Twitter Card display",
+      "field": "image",
+      "suggestion": "Twitter cards work best with 1.91:1 ratio images (1200x630px)"
+    },
+    {
+      "file": "2023-12-03-decembers-dynamics-unleash-the-upcoming-trends.md",
+      "type": "image_dimensions_check",
+      "message": "Image at /assets/blog/december-s-dynamics-unleash-the-upcoming-trends-.png: Ensure dimensions are 1200x630px for optimal Twitter Card display",
+      "field": "image",
+      "suggestion": "Twitter cards work best with 1.91:1 ratio images (1200x630px)"
+    },
+    {
+      "file": "2023-12-04-twitchcraft-mastering-stream-settings-for-seamless-success.md",
+      "type": "image_dimensions_check",
+      "message": "Image at /assets/blog/twitchcraft-mastering-stream-settings-for-seamless-success.png: Ensure dimensions are 1200x630px for optimal Twitter Card display",
+      "field": "image",
+      "suggestion": "Twitter cards work best with 1.91:1 ratio images (1200x630px)"
+    },
+    {
+      "file": "2023-12-05-follow-the-lead-linkedin-unleashed-–-your-follower-magnet.md",
+      "type": "image_dimensions_check",
+      "message": "Image at /assets/blog/follow-the-lead-linkedin-unleashed-–-your-follower-magnet-.png: Ensure dimensions are 1200x630px for optimal Twitter Card display",
+      "field": "image",
+      "suggestion": "Twitter cards work best with 1.91:1 ratio images (1200x630px)"
+    },
+    {
+      "file": "2023-12-06-lotus-harmony-evolving-your-music.md",
+      "type": "image_dimensions_check",
+      "message": "Image at /assets/blog/lotus-harmony-evolving-your-music.png: Ensure dimensions are 1200x630px for optimal Twitter Card display",
+      "field": "image",
+      "suggestion": "Twitter cards work best with 1.91:1 ratio images (1200x630px)"
+    },
+    {
+      "file": "2023-12-07-lotus-evolution-twitch-wave-weekly.md",
+      "type": "image_dimensions_check",
+      "message": "Image at /assets/blog/lotus-evolution-twitch-wave-weekly.png: Ensure dimensions are 1200x630px for optimal Twitter Card display",
+      "field": "image",
+      "suggestion": "Twitter cards work best with 1.91:1 ratio images (1200x630px)"
+    },
+    {
+      "file": "2023-12-08-blooming-amidst-the-x-storm-advertising-opportunity.md",
+      "type": "image_dimensions_check",
+      "message": "Image at /assets/blog/blooming-amidst-the-x-storm-advertising-opportunity.png: Ensure dimensions are 1200x630px for optimal Twitter Card display",
+      "field": "image",
+      "suggestion": "Twitter cards work best with 1.91:1 ratio images (1200x630px)"
+    },
+    {
+      "file": "2023-12-09-lotus-blooms-in-the-youtube-jungle.md",
+      "type": "image_dimensions_check",
+      "message": "Image at /assets/blog/lotus-blooms-in-the-youtube-jungle.png: Ensure dimensions are 1200x630px for optimal Twitter Card display",
+      "field": "image",
+      "suggestion": "Twitter cards work best with 1.91:1 ratio images (1200x630px)"
+    },
+    {
+      "file": "2023-12-10-tiktoks-faceless-motivation-evolvedlotus-insights.md",
+      "type": "image_dimensions_check",
+      "message": "Image at /assets/blog/tiktok-s-faceless-motivation-evolvedlotus-insights.png: Ensure dimensions are 1200x630px for optimal Twitter Card display",
+      "field": "image",
+      "suggestion": "Twitter cards work best with 1.91:1 ratio images (1200x630px)"
+    },
+    {
+      "file": "2023-12-11-crafting-digital-futures-meta-ai-unleashed.md",
+      "type": "image_dimensions_check",
+      "message": "Image at /assets/blog/crafting-digital-futures-meta-ai-unleashed.png: Ensure dimensions are 1200x630px for optimal Twitter Card display",
+      "field": "image",
+      "suggestion": "Twitter cards work best with 1.91:1 ratio images (1200x630px)"
+    },
+    {
+      "file": "2023-12-12-podcast-revolution-instagram-unleashes-creativity.md",
+      "type": "image_dimensions_check",
+      "message": "Image at /assets/blog/podcast-revolution-instagram-unleashes-creativity-.png: Ensure dimensions are 1200x630px for optimal Twitter Card display",
+      "field": "image",
+      "suggestion": "Twitter cards work best with 1.91:1 ratio images (1200x630px)"
+    },
+    {
+      "file": "2023-12-14-2024-tiktok-forge-authentic-connections.md",
+      "type": "image_dimensions_check",
+      "message": "Image at /assets/blog/2024-tiktok-forge-authentic-connections.png: Ensure dimensions are 1200x630px for optimal Twitter Card display",
+      "field": "image",
+      "suggestion": "Twitter cards work best with 1.91:1 ratio images (1200x630px)"
+    },
+    {
+      "file": "2023-12-18-winter-streampass-winter-fest.md",
+      "type": "image_dimensions_check",
+      "message": "Image at /assets/blog/winter-streampass-winter-fest.png: Ensure dimensions are 1200x630px for optimal Twitter Card display",
+      "field": "image",
+      "suggestion": "Twitter cards work best with 1.91:1 ratio images (1200x630px)"
+    },
+    {
+      "file": "2023-12-23-hashtag-alchemy-transforming-trends-into-tales.md",
+      "type": "image_dimensions_check",
+      "message": "Image at /assets/blog/hatt.png: Ensure dimensions are 1200x630px for optimal Twitter Card display",
+      "field": "image",
+      "suggestion": "Twitter cards work best with 1.91:1 ratio images (1200x630px)"
+    },
+    {
+      "file": "2023-12-26-from-sound-waves-to-screens-the-intro-to-podcast.md",
+      "type": "image_dimensions_check",
+      "message": "Image at /assets/blog/from-sound-waves-to-screens-the-intro-to-podcast.png: Ensure dimensions are 1200x630px for optimal Twitter Card display",
+      "field": "image",
+      "suggestion": "Twitter cards work best with 1.91:1 ratio images (1200x630px)"
+    },
+    {
+      "file": "2023-12-30-tiktoks-faceless-recipes-evolvedlotus-insights.md",
+      "type": "image_dimensions_check",
+      "message": "Image at /assets/blog/tiktok-s-faceless-recipes-evolvedlotus-insights.png: Ensure dimensions are 1200x630px for optimal Twitter Card display",
+      "field": "image",
+      "suggestion": "Twitter cards work best with 1.91:1 ratio images (1200x630px)"
+    },
+    {
+      "file": "2024-01-04-evolving-taxes-twitch101-2024.md",
+      "type": "image_dimensions_check",
+      "message": "Image at /assets/blog/evolving-taxes-twitch101-2024.png: Ensure dimensions are 1200x630px for optimal Twitter Card display",
+      "field": "image",
+      "suggestion": "Twitter cards work best with 1.91:1 ratio images (1200x630px)"
+    },
+    {
+      "file": "2024-01-09-evolving-as-an-artist-bloom-your-tunes.md",
+      "type": "image_dimensions_check",
+      "message": "Image at /assets/blog/evolving-as-an-artist-bloom-your-tunes.png: Ensure dimensions are 1200x630px for optimal Twitter Card display",
+      "field": "image",
+      "suggestion": "Twitter cards work best with 1.91:1 ratio images (1200x630px)"
+    },
+    {
+      "file": "2024-01-15-youtubeevolved-youtube-2024-algorithm.md",
+      "type": "image_dimensions_check",
+      "message": "Image at /assets/blog/youtubeevolved-youtube-2024-algorithm.png: Ensure dimensions are 1200x630px for optimal Twitter Card display",
+      "field": "image",
+      "suggestion": "Twitter cards work best with 1.91:1 ratio images (1200x630px)"
+    },
+    {
+      "file": "2024-01-24-facebook-ads-with-evolvedlotus.md",
+      "type": "image_dimensions_check",
+      "message": "Image at /assets/blog/pro-4238d7e652af43dca1fed2a6d86679e8-1-.jpg: Ensure dimensions are 1200x630px for optimal Twitter Card display",
+      "field": "image",
+      "suggestion": "Twitter cards work best with 1.91:1 ratio images (1200x630px)"
+    },
+    {
+      "file": "2024-01-31-how-does-instagram-pay-you-unraveling-instagram-payments.md",
+      "type": "image_dimensions_check",
+      "message": "Image at /assets/blog/how-does-instagram-pay-you-unraveling-instagram-payments.jpg: Ensure dimensions are 1200x630px for optimal Twitter Card display",
+      "field": "image",
+      "suggestion": "Twitter cards work best with 1.91:1 ratio images (1200x630px)"
+    },
+    {
+      "file": "2024-02-01-linkedins-influence-on-the-current.md",
+      "type": "image_dimensions_check",
+      "message": "Image at /assets/blog/18-9tnudghrlogr1i6.png: Ensure dimensions are 1200x630px for optimal Twitter Card display",
+      "field": "image",
+      "suggestion": "Twitter cards work best with 1.91:1 ratio images (1200x630px)"
+    },
+    {
+      "file": "2024-02-03-umgs-exit-the-shift-of-music.md",
+      "type": "image_dimensions_check",
+      "message": "Image at /assets/blog/umg-s-exit-the-shift-of-music.jpg: Ensure dimensions are 1200x630px for optimal Twitter Card display",
+      "field": "image",
+      "suggestion": "Twitter cards work best with 1.91:1 ratio images (1200x630px)"
+    },
+    {
+      "file": "2024-02-12-streamwise-mastering-multistreaming.md",
+      "type": "image_dimensions_check",
+      "message": "Image at /assets/blog/streamwise-mastering-multistreaming-1-.png: Ensure dimensions are 1200x630px for optimal Twitter Card display",
+      "field": "image",
+      "suggestion": "Twitter cards work best with 1.91:1 ratio images (1200x630px)"
+    },
+    {
+      "file": "2024-02-15-tweeting-trends-twitters-2024-algorithm.md",
+      "type": "image_dimensions_check",
+      "message": "Image at /assets/blog/tweeting-trends-twitter-s-2024-algorithm.png: Ensure dimensions are 1200x630px for optimal Twitter Card display",
+      "field": "image",
+      "suggestion": "Twitter cards work best with 1.91:1 ratio images (1200x630px)"
+    },
+    {
+      "file": "2024-02-28-evolvedlist-februarys-thriving-creators.md",
+      "type": "image_dimensions_check",
+      "message": "Image at /assets/blog/evolvedlist-february-s-thriving-creators-.png: Ensure dimensions are 1200x630px for optimal Twitter Card display",
+      "field": "image",
+      "suggestion": "Twitter cards work best with 1.91:1 ratio images (1200x630px)"
+    },
+    {
+      "file": "2024-02-29-metas-stop-to-misinformation.md",
+      "type": "image_dimensions_check",
+      "message": "Image at /assets/blog/meta-s-stop-to-misinformation.png: Ensure dimensions are 1200x630px for optimal Twitter Card display",
+      "field": "image",
+      "suggestion": "Twitter cards work best with 1.91:1 ratio images (1200x630px)"
+    },
+    {
+      "file": "2024-03-02-affiliate-hustle-become-a-tiktok-shop-pro.md",
+      "type": "image_dimensions_check",
+      "message": "Image at /assets/blog/affiliate-hustle-become-a-tiktok-shop-pro.png: Ensure dimensions are 1200x630px for optimal Twitter Card display",
+      "field": "image",
+      "suggestion": "Twitter cards work best with 1.91:1 ratio images (1200x630px)"
+    },
+    {
+      "file": "2024-03-12-crypto-turned-gold.md",
+      "type": "image_dimensions_check",
+      "message": "Image at /assets/blog/crypto-turned-gold-.png: Ensure dimensions are 1200x630px for optimal Twitter Card display",
+      "field": "image",
+      "suggestion": "Twitter cards work best with 1.91:1 ratio images (1200x630px)"
+    },
+    {
+      "file": "2024-03-14-tiktok-implements-new-changes.md",
+      "type": "image_dimensions_check",
+      "message": "Image at /assets/blog/tiktok-implements-new-changes.png: Ensure dimensions are 1200x630px for optimal Twitter Card display",
+      "field": "image",
+      "suggestion": "Twitter cards work best with 1.91:1 ratio images (1200x630px)"
+    },
+    {
+      "file": "2024-03-27-game-changers-why-women-are-leading-the-gaming-revolution.md",
+      "type": "image_dimensions_check",
+      "message": "Image at /assets/blog/game-changers-why-women-are-leading-the-gaming-revolution.png: Ensure dimensions are 1200x630px for optimal Twitter Card display",
+      "field": "image",
+      "suggestion": "Twitter cards work best with 1.91:1 ratio images (1200x630px)"
+    },
+    {
+      "file": "2024-03-28-twitter-𝕏-updates-new-user-experience-and-battling-bots.md",
+      "type": "image_dimensions_check",
+      "message": "Image at /assets/blog/twitter-𝕏-updates-new-user-experience-and-battling-bots-.png: Ensure dimensions are 1200x630px for optimal Twitter Card display",
+      "field": "image",
+      "suggestion": "Twitter cards work best with 1.91:1 ratio images (1200x630px)"
+    },
+    {
+      "file": "2024-03-29-youtube-just-gave-creators-a-makeover-its-time-to-shine.md",
+      "type": "image_dimensions_check",
+      "message": "Image at /assets/blog/youtube-just-gave-creators-a-makeover-it-s-time-to-shine.png: Ensure dimensions are 1200x630px for optimal Twitter Card display",
+      "field": "image",
+      "suggestion": "Twitter cards work best with 1.91:1 ratio images (1200x630px)"
+    },
+    {
+      "file": "2024-04-09-no-more-regrets-edit-pin-style-up-your-instagram-dms.md",
+      "type": "image_dimensions_check",
+      "message": "Image at /assets/blog/no-more-regrets-edit-pin-style-up-your-instagram-dms-.png: Ensure dimensions are 1200x630px for optimal Twitter Card display",
+      "field": "image",
+      "suggestion": "Twitter cards work best with 1.91:1 ratio images (1200x630px)"
+    },
+    {
+      "file": "2024-04-11-level-up-your-stream-from-bland-to-grand.md",
+      "type": "image_dimensions_check",
+      "message": "Image at /assets/blog/level-up-your-stream-from-bland-to-grand.png: Ensure dimensions are 1200x630px for optimal Twitter Card display",
+      "field": "image",
+      "suggestion": "Twitter cards work best with 1.91:1 ratio images (1200x630px)"
+    },
+    {
+      "file": "2024-04-12-expand-your-reach-dont-preach-linkedins-the-speech.md",
+      "type": "image_dimensions_check",
+      "message": "Image at /assets/blog/expand-your-reach-don-t-preach-linkedin-s-the-speech.png: Ensure dimensions are 1200x630px for optimal Twitter Card display",
+      "field": "image",
+      "suggestion": "Twitter cards work best with 1.91:1 ratio images (1200x630px)"
+    },
+    {
+      "file": "2024-04-18-tiktoks-faceless-travel-tips-and-guide-evolvedlotus-insights.md",
+      "type": "image_dimensions_check",
+      "message": "Image at /assets/blog/tiktok-s-faceless-travel-tips-and-guide-evolvedlotus-insights.png: Ensure dimensions are 1200x630px for optimal Twitter Card display",
+      "field": "image",
+      "suggestion": "Twitter cards work best with 1.91:1 ratio images (1200x630px)"
+    },
+    {
+      "file": "2024-04-25-twitch-streamlined-secure.md",
+      "type": "image_dimensions_check",
+      "message": "Image at /assets/blog/twitch-streamlined-secure.png: Ensure dimensions are 1200x630px for optimal Twitter Card display",
+      "field": "image",
+      "suggestion": "Twitter cards work best with 1.91:1 ratio images (1200x630px)"
+    },
+    {
+      "file": "2024-05-06-x-and-grok-ai-sipping-news-smoothies-with-ai-powered-summaries.md",
+      "type": "image_dimensions_check",
+      "message": "Image at /assets/blog/x-and-grok-ai-sipping-news-smoothies-with-ai-powered-summaries.png: Ensure dimensions are 1200x630px for optimal Twitter Card display",
+      "field": "image",
+      "suggestion": "Twitter cards work best with 1.91:1 ratio images (1200x630px)"
+    },
+    {
+      "file": "2024-05-08-youtubes-ai-your-genie-for-content-ads.md",
+      "type": "image_dimensions_check",
+      "message": "Image at /assets/blog/youtube-s-ai-your-genie-for-content-ads-.png: Ensure dimensions are 1200x630px for optimal Twitter Card display",
+      "field": "image",
+      "suggestion": "Twitter cards work best with 1.91:1 ratio images (1200x630px)"
+    },
+    {
+      "file": "2024-05-10-meta-llama-3-your-next-gen-ai-assistant.md",
+      "type": "image_dimensions_check",
+      "message": "Image at /assets/blog/meta-llama-3-your-next-gen-ai-assistant.png: Ensure dimensions are 1200x630px for optimal Twitter Card display",
+      "field": "image",
+      "suggestion": "Twitter cards work best with 1.91:1 ratio images (1200x630px)"
+    },
+    {
+      "file": "2024-06-18-linkedin-gpt-microsoft-changes-job-searching.md",
+      "type": "image_dimensions_check",
+      "message": "Image at /assets/blog/linkedin-gpt-microsoft-changes-job-searching.png: Ensure dimensions are 1200x630px for optimal Twitter Card display",
+      "field": "image",
+      "suggestion": "Twitter cards work best with 1.91:1 ratio images (1200x630px)"
+    },
+    {
+      "file": "2024-06-22-the-rise-of-tiktok’s-new-influencers.md",
+      "type": "image_dimensions_check",
+      "message": "Image at /assets/blog/the-rise-of-tiktok’s-new-influencers.png: Ensure dimensions are 1200x630px for optimal Twitter Card display",
+      "field": "image",
+      "suggestion": "Twitter cards work best with 1.91:1 ratio images (1200x630px)"
+    },
+    {
+      "file": "2024-07-20-trend-genius-new-ai-for-advertisements.md",
+      "type": "image_dimensions_check",
+      "message": "Image at /assets/blog/trend-genius-new-ai-for-advertisements-1-.png: Ensure dimensions are 1200x630px for optimal Twitter Card display",
+      "field": "image",
+      "suggestion": "Twitter cards work best with 1.91:1 ratio images (1200x630px)"
+    },
+    {
+      "file": "2024-07-23-new-short-way-for-youtube-ads.md",
+      "type": "image_dimensions_check",
+      "message": "Image at /assets/blog/new-short-way-for-youtube-ads.png: Ensure dimensions are 1200x630px for optimal Twitter Card display",
+      "field": "image",
+      "suggestion": "Twitter cards work best with 1.91:1 ratio images (1200x630px)"
+    },
+    {
+      "file": "2024-07-31-facebook-ugc-creator-lotus-takes.md",
+      "type": "image_dimensions_check",
+      "message": "Image at /assets/blog/facebook-ugc-creator-lotus-takes.png: Ensure dimensions are 1200x630px for optimal Twitter Card display",
+      "field": "image",
+      "suggestion": "Twitter cards work best with 1.91:1 ratio images (1200x630px)"
+    },
+    {
+      "file": "2024-08-27-youtube-kids-safe-channel-launch.md",
+      "type": "image_dimensions_check",
+      "message": "Image at /assets/blog/youtube-kids-safe-channel-launch.png: Ensure dimensions are 1200x630px for optimal Twitter Card display",
+      "field": "image",
+      "suggestion": "Twitter cards work best with 1.91:1 ratio images (1200x630px)"
+    },
+    {
+      "file": "2024-09-27-evolved-insights-“tiny-twitter-niche”.md",
+      "type": "image_dimensions_check",
+      "message": "Image at /assets/blog/evolved-insights-“tiny-twitter-niche”.png: Ensure dimensions are 1200x630px for optimal Twitter Card display",
+      "field": "image",
+      "suggestion": "Twitter cards work best with 1.91:1 ratio images (1200x630px)"
+    },
+    {
+      "file": "2024-11-04-november’s-must-know-social-trends.md",
+      "type": "image_dimensions_check",
+      "message": "Image at /assets/blog/november’s-must-know-social-trends.png: Ensure dimensions are 1200x630px for optimal Twitter Card display",
+      "field": "image",
+      "suggestion": "Twitter cards work best with 1.91:1 ratio images (1200x630px)"
+    },
+    {
+      "file": "2025-01-22-evolvedlotus-view-on-hootsuite’s-2025-report.md",
+      "type": "image_dimensions_check",
+      "message": "Image at /assets/blog/evolvedlotus_view_on_hootsuites_2025_report.png: Ensure dimensions are 1200x630px for optimal Twitter Card display",
+      "field": "image",
+      "suggestion": "Twitter cards work best with 1.91:1 ratio images (1200x630px)"
+    },
+    {
+      "file": "2025-01-29-how-to-write-a-viral-caption-for-social-media.md",
+      "type": "image_dimensions_check",
+      "message": "Image at /assets/blog/how-to-write-a-viral-caption-for-social-media.png: Ensure dimensions are 1200x630px for optimal Twitter Card display",
+      "field": "image",
+      "suggestion": "Twitter cards work best with 1.91:1 ratio images (1200x630px)"
+    },
+    {
+      "file": "2025-02-20-is-1of10-really-worth-it-or-should-you-save-your-money-and-learn-on-your-own.md",
+      "type": "image_dimensions_check",
+      "message": "Image at /assets/blog/is-1-of-10-really-worth-it.png: Ensure dimensions are 1200x630px for optimal Twitter Card display",
+      "field": "image",
+      "suggestion": "Twitter cards work best with 1.91:1 ratio images (1200x630px)"
+    },
+    {
+      "file": "2025-04-27-facebook-content-mastery-5-proven-strategies-for-explosive-engagement.md",
+      "type": "image_dimensions_check",
+      "message": "Image at /assets/blog/facebook-content-mastery-5-proven-strategies-for-explosive-engagement.png: Ensure dimensions are 1200x630px for optimal Twitter Card display",
+      "field": "image",
+      "suggestion": "Twitter cards work best with 1.91:1 ratio images (1200x630px)"
+    },
+    {
+      "file": "2025-05-13-how-to-skyrocket-your-tiktok-views-and-engagement-a-simple-content-strategy.md",
+      "type": "image_dimensions_check",
+      "message": "Image at /assets/blog/how-to-skyrocket-your-tiktok-views-and-engagement-a-simple-content-strategy.png: Ensure dimensions are 1200x630px for optimal Twitter Card display",
+      "field": "image",
+      "suggestion": "Twitter cards work best with 1.91:1 ratio images (1200x630px)"
+    },
+    {
+      "file": "2025-05-19-streaming-in-2025-the-no-bs-guide-to-getting-started-or-leveling-up.md",
+      "type": "image_dimensions_check",
+      "message": "Image at /assets/blog/streaming-in-2025-the-no-bs-guide-to-getting-started.png: Ensure dimensions are 1200x630px for optimal Twitter Card display",
+      "field": "image",
+      "suggestion": "Twitter cards work best with 1.91:1 ratio images (1200x630px)"
+    },
+    {
+      "file": "2025-05-22-why-most-content-creators-are-setting-themselves-up-for-failure.md",
+      "type": "image_dimensions_check",
+      "message": "Image at /assets/blog/why-most-content-creators-are-setting-themselves-up-for-failure.png: Ensure dimensions are 1200x630px for optimal Twitter Card display",
+      "field": "image",
+      "suggestion": "Twitter cards work best with 1.91:1 ratio images (1200x630px)"
+    },
+    {
+      "file": "2025-07-29-are-instagram-ads-worth-it-plus-new-strategies-for-organic-growth-in-2025.md",
+      "type": "image_dimensions_check",
+      "message": "Image at /assets/blog/come-closerrr.png: Ensure dimensions are 1200x630px for optimal Twitter Card display",
+      "field": "image",
+      "suggestion": "Twitter cards work best with 1.91:1 ratio images (1200x630px)"
+    },
+    {
+      "file": "2025-07-30-twitter-x-unpacked-mastering-growth-engagement-with-latest-features-ai.md",
+      "type": "image_dimensions_check",
+      "message": "Image at /assets/blog/twitter-x-unpacked-mastering-growth-engagement-with-latest-features-ai.png: Ensure dimensions are 1200x630px for optimal Twitter Card display",
+      "field": "image",
+      "suggestion": "Twitter cards work best with 1.91:1 ratio images (1200x630px)"
+    },
+    {
+      "file": "2025-08-11-how-to-create-30-days-of-content-in-one-weekend.md",
+      "type": "image_dimensions_check",
+      "message": "Image at /assets/blog/how-to-create-30-days-of-content-in-one-weekend.png: Ensure dimensions are 1200x630px for optimal Twitter Card display",
+      "field": "image",
+      "suggestion": "Twitter cards work best with 1.91:1 ratio images (1200x630px)"
+    },
+    {
+      "file": "2025-08-13-top-free-design-tools-every-creator-needs.md",
+      "type": "image_dimensions_check",
+      "message": "Image at /assets/blog/top-free-design-tools-every-creator-needs.png: Ensure dimensions are 1200x630px for optimal Twitter Card display",
+      "field": "image",
+      "suggestion": "Twitter cards work best with 1.91:1 ratio images (1200x630px)"
+    },
+    {
+      "file": "2025-08-15-understanding-social-media-analytics-what-metrics-actually-matter.md",
+      "type": "image_dimensions_check",
+      "message": "Image at /assets/blog/understanding-social-media-analytics-what-metrics-actually-matter.png: Ensure dimensions are 1200x630px for optimal Twitter Card display",
+      "field": "image",
+      "suggestion": "Twitter cards work best with 1.91:1 ratio images (1200x630px)"
+    },
+    {
+      "file": "2025-08-25-how-to-price-your-services-as-a-content-creator-in-2025.md",
+      "type": "image_dimensions_check",
+      "message": "Image at /assets/blog/how-to-price-your-services-as-a-content-creator-in-2025.png: Ensure dimensions are 1200x630px for optimal Twitter Card display",
+      "field": "image",
+      "suggestion": "Twitter cards work best with 1.91:1 ratio images (1200x630px)"
+    },
+    {
+      "file": "2025-08-27-basic-seo-for-content-creators.md",
+      "type": "image_dimensions_check",
+      "message": "Image at /assets/blog/basic-seo-for-content-creators.png: Ensure dimensions are 1200x630px for optimal Twitter Card display",
+      "field": "image",
+      "suggestion": "Twitter cards work best with 1.91:1 ratio images (1200x630px)"
+    },
+    {
+      "file": "2025-08-29-batch-content-creation-techniques-that-save-hours.md",
+      "type": "image_dimensions_check",
+      "message": "Image at /assets/blog/batch-content-creation-techniques-that-save-hours.png: Ensure dimensions are 1200x630px for optimal Twitter Card display",
+      "field": "image",
+      "suggestion": "Twitter cards work best with 1.91:1 ratio images (1200x630px)"
+    },
+    {
+      "file": "2025-09-09-best-video-recording-software-2025-free-paid-tools-compared.md",
+      "type": "image_dimensions_check",
+      "message": "Image at /assets/blog/best-video-recording-software-2025-free-paid-tools-compared.png: Ensure dimensions are 1200x630px for optimal Twitter Card display",
+      "field": "image",
+      "suggestion": "Twitter cards work best with 1.91:1 ratio images (1200x630px)"
+    },
+    {
+      "file": "2025-09-10-using-data-to-optimize-your-posting-schedule.md",
+      "type": "image_dimensions_check",
+      "message": "Image at /assets/blog/using-data-to-optimize-your-posting-schedule.png: Ensure dimensions are 1200x630px for optimal Twitter Card display",
+      "field": "image",
+      "suggestion": "Twitter cards work best with 1.91:1 ratio images (1200x630px)"
+    },
+    {
+      "file": "2025-09-12-open-source-alternatives-to-expensive-creator-tools.md",
+      "type": "image_dimensions_check",
+      "message": "Image at /assets/blog/open-source-alternatives-to-expensive-creator-tools.png: Ensure dimensions are 1200x630px for optimal Twitter Card display",
+      "field": "image",
+      "suggestion": "Twitter cards work best with 1.91:1 ratio images (1200x630px)"
+    },
+    {
+      "file": "2025-09-22-building-email-lists-through-social-media-content-the-complete-2025-strategy-guide.md",
+      "type": "image_dimensions_check",
+      "message": "Image at /assets/blog/building-email-lists-through-social-media-content-the-complete-2025-strategy-guide.png: Ensure dimensions are 1200x630px for optimal Twitter Card display",
+      "field": "image",
+      "suggestion": "Twitter cards work best with 1.91:1 ratio images (1200x630px)"
+    },
+    {
+      "file": "2025-09-25-color-theory-and-design-principles-for-social-media.md",
+      "type": "image_dimensions_check",
+      "message": "Image at /assets/blog/color-theory-and-design-principles-for-social-media-.png: Ensure dimensions are 1200x630px for optimal Twitter Card display",
+      "field": "image",
+      "suggestion": "Twitter cards work best with 1.91:1 ratio images (1200x630px)"
+    },
+    {
+      "file": "2025-10-08-building-genuine-engagement-vs-vanity-metrics.md",
+      "type": "image_dimensions_check",
+      "message": "Image at /assets/blog/building-genuine-engagement-vs.-vanity-metrics.png: Ensure dimensions are 1200x630px for optimal Twitter Card display",
+      "field": "image",
+      "suggestion": "Twitter cards work best with 1.91:1 ratio images (1200x630px)"
+    },
+    {
+      "file": "2025-10-13-turning-your-content-into-multiple-revenue-streams.md",
+      "type": "image_dimensions_check",
+      "message": "Image at /assets/blog/turning-your-content-into-multiple-revenue-streams.png: Ensure dimensions are 1200x630px for optimal Twitter Card display",
+      "field": "image",
+      "suggestion": "Twitter cards work best with 1.91:1 ratio images (1200x630px)"
+    },
+    {
+      "file": "2025-10-20-mobile-photography-techniques-for-better-content.md",
+      "type": "image_dimensions_check",
+      "message": "Image at /assets/blog/mobile-photography-techniques-for-better-content.png: Ensure dimensions are 1200x630px for optimal Twitter Card display",
+      "field": "image",
+      "suggestion": "Twitter cards work best with 1.91:1 ratio images (1200x630px)"
+    },
+    {
+      "file": "2025-10-22-plan-batch-and-grow-your-social-media.md",
+      "type": "image_dimensions_check",
+      "message": "Image at /assets/blog/plan-batch-and-grow-your-social-media.png: Ensure dimensions are 1200x630px for optimal Twitter Card display",
+      "field": "image",
+      "suggestion": "Twitter cards work best with 1.91:1 ratio images (1200x630px)"
+    }
+  ]
 }
