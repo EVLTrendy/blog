@@ -11,7 +11,7 @@
     {% set ogDescription = (description | truncate(200) if description else ((metadata.description | truncate(200)) if metadata.description else 'Expert insights on content creation, social media marketing, and digital strategies for creators and businesses.')) %}
     {% set canonicalUrl = (canonical if canonical else page.url | absoluteUrl) %}
     {% set ogImage = (image | absoluteUrl if image else ((metadata.image | absoluteUrl) if metadata.image else 'https://blog.evolvedlotus.com/assets/images/default-og.png')) %}
-    {% set twitterImage = (twitter_image | absoluteUrl if twitter_image else ((metadata.twitter_image | absoluteUrl) if metadata.twitter_image else 'https://blog.evolvedlotus.com/assets/images/default-twitter.png')) %}
+    {% set twitterImage = ogImage %}
 
     <!-- Frontmatter Validation and Enhanced Fallbacks -->
 
