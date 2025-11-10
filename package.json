@@ -19,7 +19,8 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@11ty/eleventy": "^2.0.1"
+    "@11ty/eleventy": "^2.0.1",
+    "sharp": "^0.34.5"
   },
   "dependencies": {
     "@netlify/functions": "^2.4.0",
