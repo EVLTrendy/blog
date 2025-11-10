@@ -5,6 +5,40 @@
     <meta name="fo-verify" content="80725f6c-bd05-4617-9441-22d8dec11e7f" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    {# === MANDATORY OPEN GRAPH TAGS (2025 Standard) === #}
+    <meta property="og:url" content="{{ metadata.url }}{{ page.url }}">
+    <meta property="og:type" content="{% if schema_type %}{{ schema_type }}{% else %}article{% endif %}">
+    <meta property="og:title" content="{{ title or metadata.title }}">
+    <meta property="og:description" content="{{ description or metadata.description }}">
+
+    {% if image %}
+      {# Image with absolute URL #}
+      <meta property="og:image" content="{{ metadata.url }}{{ image }}">
+      {# MANDATORY DIMENSION TAGS for 2025 compliance #}
+      <meta property="og:image:width" content="1200">
+      <meta property="og:image:height" content="630">
+      <meta property="og:image:alt" content="{{ imageAlt or title }}">
+    {% else %}
+      {# Fallback image #}
+      <meta property="og:image" content="{{ metadata.url }}/assets/blog/default-og-image.jpg">
+      <meta property="og:image:width" content="1200">
+      <meta property="og:image:height" content="630">
+    {% endif %}
+
+    {# === TWITTER CARD TAGS (Explicit, not relying on fallback) === #}
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@{{ metadata.author.twitter }}">
+    <meta name="twitter:creator" content="@{{ metadata.author.twitter }}">
+    <meta name="twitter:title" content="{{ title or metadata.title }}">
+    <meta name="twitter:description" content="{{ description or metadata.description }}">
+
+    {% if image %}
+      <meta name="twitter:image" content="{{ metadata.url }}{{ image }}">
+      <meta name="twitter:image:alt" content="{{ imageAlt or title }}">
+    {% else %}
+      <meta name="twitter:image" content="{{ metadata.url }}/assets/blog/default-og-image.jpg">
+    {% endif %}
+
     <!-- WhatsApp Compliance: Critical meta tags must appear early in <head> -->
     <!-- Twitter Card Tags - MUST COME BEFORE Open Graph tags for Twitter to read them -->
     {% set ogTitle = (title | truncate(95) if title else 'EvolvedLotus - Content Creation & Social Media Blog') %}
