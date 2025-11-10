@@ -1,11 +1,8 @@
 const fs = require('fs');
 const path = require('path');
 
-// Check what meta tags are actually in the built HTML
 function checkMetaTags() {
   const buildDir = '_site';
-
-  // Find a sample blog post HTML file
   const blogDir = path.join(buildDir, 'blog');
 
   if (!fs.existsSync(blogDir)) {
@@ -13,7 +10,6 @@ function checkMetaTags() {
     return;
   }
 
-  // Get first blog post HTML file
   const files = fs.readdirSync(blogDir, { recursive: true })
     .filter(f => f.endsWith('index.html'));
 
@@ -27,71 +23,79 @@ function checkMetaTags() {
 
   const html = fs.readFileSync(sampleFile, 'utf8');
 
-  // Extract all meta tags
-  const metaTags = html.match(/<meta[^>]*>/g) || [];
+  console.log('=== TWITTER CARD VALIDATION ===\n');
 
-  console.log('=== ALL META TAGS ===\n');
+  // Check for CORRECT Twitter Card syntax (name="twitter:...")
+  const twitterCardCorrect = html.match(/<meta name="twitter:card"[^>]*>/);
+  const twitterImageCorrect = html.match(/<meta name="twitter:image"[^>]*>/);
 
-  const ogTags = metaTags.filter(tag => tag.includes('og:'));
-  const twitterTags = metaTags.filter(tag => tag.includes('twitter:'));
+  // Check for WRONG syntax (property="twitter:...")
+  const twitterCardWrong = html.match(/<meta property="twitter:card"[^>]*>/);
+  const twitterImageWrong = html.match(/<meta property="twitter:image"[^>]*>/);
 
-  console.log('--- Open Graph Tags ---');
-  if (ogTags.length === 0) {
-    console.log('❌ NO OG TAGS FOUND!\n');
+  if (twitterCardCorrect) {
+    console.log('✅ twitter:card found with CORRECT attribute (name="")');
+    console.log('   ', twitterCardCorrect[0]);
+  } else if (twitterCardWrong) {
+    console.log('❌ twitter:card found with WRONG attribute (property="")');
+    console.log('   ', twitterCardWrong[0]);
+    console.log('   FIX: Change property="" to name=""');
   } else {
-    ogTags.forEach(tag => console.log(tag));
-    console.log('');
+    console.log('❌ twitter:card NOT FOUND');
   }
 
-  console.log('--- Twitter Card Tags ---');
-  if (twitterTags.length === 0) {
-    console.log('❌ NO TWITTER TAGS FOUND!\n');
+  console.log('');
+
+  if (twitterImageCorrect) {
+    console.log('✅ twitter:image found with CORRECT attribute (name="")');
+    console.log('   ', twitterImageCorrect[0]);
+
+    // Extract and validate URL
+    const match = twitterImageCorrect[0].match(/content="([^"]*)"/);
+    if (match) {
+      const url = match[1];
+      console.log('\n   URL Analysis:');
+      console.log('   → Full URL:', url);
+      console.log('   → Starts with https://?', url.startsWith('https://'));
+      console.log('   → Is absolute?', url.startsWith('http'));
+
+      if (!url.startsWith('https://')) {
+        console.log('   ⚠️  WARNING: URL should start with https://');
+      }
+    }
+  } else if (twitterImageWrong) {
+    console.log('❌ twitter:image found with WRONG attribute (property="")');
+    console.log('   ', twitterImageWrong[0]);
+    console.log('   FIX: Change property="" to name=""');
   } else {
-    twitterTags.forEach(tag => console.log(tag));
-    console.log('');
+    console.log('❌ twitter:image NOT FOUND');
   }
 
-  // Check specific required tags
-  console.log('=== COMPLIANCE CHECK ===\n');
+  console.log('\n=== OPEN GRAPH VALIDATION ===\n');
 
-  const required = {
-    'og:url': html.includes('property="og:url"'),
-    'og:type': html.includes('property="og:type"'),
-    'og:title': html.includes('property="og:title"'),
-    'og:description': html.includes('property="og:description"'),
-    'og:image': html.includes('property="og:image"'),
-    'og:image:width': html.includes('property="og:image:width"'),
-    'og:image:height': html.includes('property="og:image:height"'),
-    'twitter:card': html.includes('name="twitter:card"'),
-    'twitter:image': html.includes('name="twitter:image"')
-  };
+  const ogImage = html.match(/<meta property="og:image"[^>]*>/);
+  const ogImageWidth = html.match(/<meta property="og:image:width"[^>]*>/);
+  const ogImageHeight = html.match(/<meta property="og:image:height"[^>]*>/);
 
-  Object.entries(required).forEach(([tag, exists]) => {
-    console.log(`${exists ? '✅' : '❌'} ${tag}`);
-  });
+  console.log(ogImage ? '✅' : '❌', 'og:image');
+  if (ogImage) console.log('   ', ogImage[0]);
 
-  // Extract image URLs
-  const ogImageMatch = html.match(/property="og:image"\s+content="([^"]*)"/);
-  const twitterImageMatch = html.match(/name="twitter:image"\s+content="([^"]*)"/);
+  console.log(ogImageWidth ? '✅' : '❌', 'og:image:width');
+  if (ogImageWidth) console.log('   ', ogImageWidth[0]);
 
-  console.log('\n=== IMAGE URLS ===\n');
+  console.log(ogImageHeight ? '✅' : '❌', 'og:image:height');
+  if (ogImageHeight) console.log('   ', ogImageHeight[0]);
 
-  if (ogImageMatch) {
-    const url = ogImageMatch[1];
-    console.log('og:image:', url);
-    console.log('  → Absolute URL?', url.startsWith('http'));
-    console.log('  → HTTPS?', url.startsWith('https://'));
+  console.log('\n=== SUMMARY ===\n');
+
+  if (twitterImageCorrect && ogImage) {
+    console.log('✅ All meta tags correctly formatted');
+    console.log('✅ Ready for Twitter Card validator');
+  } else if (twitterImageWrong) {
+    console.log('❌ CRITICAL: Twitter tags using property="" instead of name=""');
+    console.log('   This is why validator says "no Twitter Card image defined"');
   } else {
-    console.log('❌ No og:image found');
-  }
-
-  if (twitterImageMatch) {
-    const url = twitterImageMatch[1];
-    console.log('twitter:image:', url);
-    console.log('  → Absolute URL?', url.startsWith('http'));
-    console.log('  → HTTPS?', url.startsWith('https://'));
-  } else {
-    console.log('❌ No twitter:image found');
+    console.log('❌ Missing required meta tags');
   }
 }
 
