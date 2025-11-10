@@ -22,6 +22,8 @@ CREATE TABLE IF NOT EXISTS short_urls (
     post_slug TEXT NOT NULL,
     short_id TEXT NOT NULL UNIQUE,
     title TEXT,
+    description TEXT,
+    image TEXT,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
 

@@ -38,3 +38,9 @@
   to = "https://blog.evolvedlotus.com/:splat"
   status = 301
   force = true
+
+[[redirects]]
+  from = "/r/*"
+  to = "/.netlify/functions/shorten/:splat"
+  status = 200
+  force = true

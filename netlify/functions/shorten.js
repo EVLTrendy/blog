@@ -23,11 +23,14 @@ exports.handler = async (event, context) => {
         };
       }
 
+      // Extract post_slug from long_url (assuming format: https://blog.evolvedlotus.com/blog/{post_slug}/)
+      const postSlug = long_url.split('/blog/')[1]?.replace('/', '') || '';
+
       // Check if URL already exists
       const { data: existingUrl } = await supabase
         .from('short_urls')
         .select('*')
-        .eq('url', long_url)
+        .eq('post_slug', postSlug)
         .single();
 
       if (existingUrl) {
@@ -38,8 +41,8 @@ exports.handler = async (event, context) => {
           },
           body: JSON.stringify({
             message: 'URL already shortened',
-            shortUrl: `${process.env.URL}/r/${existingUrl.slug}`,
-            id: existingUrl.slug
+            shortUrl: `${process.env.URL}/r/${existingUrl.short_id}`,
+            id: existingUrl.short_id
           })
         };
       }
@@ -49,7 +52,7 @@ exports.handler = async (event, context) => {
         const { data: existing } = await supabase
           .from('short_urls')
           .select('*')
-          .eq('slug', slug)
+          .eq('short_id', slug)
           .single();
 
         if (existing) {
@@ -68,8 +71,8 @@ exports.handler = async (event, context) => {
         .from('short_urls')
         .insert([
           {
-            slug: finalSlug,
-            url: long_url,
+            short_id: finalSlug,
+            post_slug: postSlug,
             title: title || null,
             description: description || null,
             image: image || null,
@@ -101,89 +104,123 @@ exports.handler = async (event, context) => {
     }
   }
 
-  // Handle GET - Redirect with meta tags for link previews
-  if (httpMethod === 'GET') {
+  // In the GET handler (around line 50-120)
+  if (event.httpMethod === 'GET') {
+    const shortId = event.path.split('/').pop();
+    
     try {
-      // Extract slug from path (e.g., /r/abc123 -> abc123)
-      const slug = path.split('/').pop();
-
-      if (!slug) {
-        return {
-          statusCode: 404,
-          headers: { 'Content-Type': 'text/html' },
-          body: '<h1>Short URL not found</h1>'
-        };
-      }
-
-      // Fetch short URL from Supabase
-      const { data, error } = await supabase
+      const { data: urlData, error } = await supabase
         .from('short_urls')
-        .select('*')
-        .eq('slug', slug)
+        .select('post_slug, title, description, image')
+        .eq('short_id', shortId)
         .single();
 
-      if (error || !data) {
+      if (error || !urlData) {
         return {
           statusCode: 404,
-          headers: { 'Content-Type': 'text/html' },
-          body: '<h1>Short URL not found</h1>'
+          body: 'Short URL not found'
         };
       }
 
-      const destinationUrl = data.url;
-      const title = data.title || 'EvolvedLotus Blog';
-      const description = data.description || 'Content creation and social media marketing advice';
-      const image = data.image ? data.image.replace('/assets/blog/', '/assets/og/') : `${process.env.URL}/assets/og/default-og.png`;
+      const fullUrl = `https://blog.evolvedlotus.com/blog/${urlData.post_slug}/`;
+      
+      // Construct OG image path
+      const ogImagePath = urlData.image 
+        ? urlData.image.replace('/assets/blog/', '/assets/og/')
+        : '/assets/og/default-og.png';
+      
+      const ogImageUrl = `https://blog.evolvedlotus.com${ogImagePath}`;
+      
+      // Escape HTML entities for meta tags
+      const escapeHtml = (text) => {
+        if (!text) return '';
+        return String(text)
+          .replace(/&/g, '&')
+          .replace(/</g, '<')
+          .replace(/>/g, '>')
+          .replace(/"/g, '"')
+          .replace(/'/g, '&#039;');
+      };
+      
+      const safeTitle = escapeHtml(urlData.title || 'EvolvedLotus Blog');
+      const safeDescription = escapeHtml(urlData.description || 'Read more on EvolvedLotus Blog');
 
-      // CRITICAL: Return HTML with meta tags for social media scrapers
-      // This allows link previews to work on Twitter, Facebook, LinkedIn
-      return {
-        statusCode: 200,
-        headers: {
-          'Content-Type': 'text/html',
-          'Cache-Control': 'public, max-age=3600'
-        },
-        body: `<!DOCTYPE html>
+      // HTML response with proper meta tags for crawlers
+      const html = `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <!-- Open Graph / Facebook / LinkedIn -->
-  <meta property="og:url" content="${process.env.URL}/r/${slug}">
+  
+  <!-- Basic Meta Tags -->
+  <title>${safeTitle}</title>
+  <meta name="description" content="${safeDescription}">
+  
+  <!-- Open Graph / Facebook -->
   <meta property="og:type" content="article">
-  <meta property="og:title" content="${escapeHtml(title)}">
-  <meta property="og:description" content="${escapeHtml(description)}">
-  <meta property="og:image" content="${escapeHtml(image)}">
-
+  <meta property="og:url" content="${fullUrl}">
+  <meta property="og:title" content="${safeTitle}">
+  <meta property="og:description" content="${safeDescription}">
+  <meta property="og:image" content="${ogImageUrl}">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:site_name" content="EvolvedLotus Blog">
+  
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:url" content="${process.env.URL}/r/${slug}">
-  <meta name="twitter:title" content="${escapeHtml(title)}">
-  <meta name="twitter:description" content="${escapeHtml(description)}">
-  <meta name="twitter:image" content="${escapeHtml(image)}">
-
-  <!-- Canonical -->
-  <link rel="canonical" href="${escapeHtml(destinationUrl)}">
-
-  <!-- Instant redirect for browsers (after scrapers read meta tags) -->
-  <meta http-equiv="refresh" content="0;url=${escapeHtml(destinationUrl)}">
-  <script>window.location.href = "${escapeHtml(destinationUrl)}";</script>
-
-  <title>Redirecting...</title>
+  <meta name="twitter:url" content="${fullUrl}">
+  <meta name="twitter:title" content="${safeTitle}">
+  <meta name="twitter:description" content="${safeDescription}">
+  <meta name="twitter:image" content="${ogImageUrl}">
+  
+  <!-- Discord-specific -->
+  <meta property="og:image:alt" content="${safeTitle}">
+  
+  <!-- Canonical URL -->
+  <link rel="canonical" href="${fullUrl}">
+  
+  <!-- JavaScript redirect for browsers -->
+  <script>
+    if (!/bot|crawler|spider|crawling|facebookexternalhit|twitterbot|discordbot/i.test(navigator.userAgent)) {
+      setTimeout(function() {
+        window.location.href = '${fullUrl}';
+      }, 500);
+    }
+  </script>
+  
+  <!-- Fallback meta refresh -->
+  <noscript>
+    <meta http-equiv="refresh" content="1;url=${fullUrl}">
+  </noscript>
 </head>
 <body>
-  <p>Redirecting to <a href="${escapeHtml(destinationUrl)}">${escapeHtml(destinationUrl)}</a>...</p>
+  <div style="font-family: system-ui, -apple-system, sans-serif; max-width: 600px; margin: 100px auto; padding: 20px; text-align: center;">
+    <h1 style="color: #333; font-size: 24px; margin-bottom: 20px;">${safeTitle}</h1>
+    <p style="color: #666; margin-bottom: 30px;">${safeDescription}</p>
+    <p style="color: #999;">Redirecting to article...</p>
+    <a href="${fullUrl}" style="display: inline-block; margin-top: 20px; padding: 12px 24px; background: #007bff; color: white; text-decoration: none; border-radius: 5px;">
+      Click here if not redirected
+    </a>
+  </div>
 </body>
-</html>`
-      };
+</html>`;
 
+      return {
+        statusCode: 200,
+        headers: {
+          'Content-Type': 'text/html; charset=utf-8',
+          'Cache-Control': 'public, max-age=3600',
+          'X-Robots-Tag': 'noindex, follow'
+        },
+        body: html
+      };
+      
     } catch (error) {
-      console.error('GET error:', error);
+      console.error('Error fetching short URL:', error);
       return {
         statusCode: 500,
-        headers: { 'Content-Type': 'text/html' },
-        body: `<h1>Error: ${error.message}</h1>`
+        body: 'Internal server error'
       };
     }
   }
