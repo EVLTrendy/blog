@@ -12,13 +12,14 @@ exports.handler = async (event, context) => {
   // Handle POST - Create short URL
   if (httpMethod === 'POST') {
     try {
-      const { url, slug, title, description, image } = JSON.parse(body);
+      console.log('Received body:', body);
+      const { long_url, slug, title, description, image } = JSON.parse(body);
 
       // Validate inputs
-      if (!url) {
+      if (!long_url) {
         return {
           statusCode: 400,
-          body: JSON.stringify({ error: 'URL is required' })
+          body: JSON.stringify({ error: 'Missing long_url parameter' })
         };
       }
 
@@ -47,7 +48,7 @@ exports.handler = async (event, context) => {
         .insert([
           {
             slug: finalSlug,
-            url: url,
+            url: long_url,
             title: title || null,
             description: description || null,
             image: image || null,

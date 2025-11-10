@@ -83,13 +83,16 @@ layout: 'base.njk'
 <script>
 async function generateShortUrl() {
   try {
+    const fullUrl = '{{ metadata.url }}{{ page.url }}';
+    console.log('Sending long_url:', fullUrl);
+
     const response = await fetch('/.netlify/functions/shorten', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        url: window.location.href,
+        long_url: fullUrl,
         slug: '{{ page.fileSlug }}', // Use post slug as short URL slug
         title: '{{ title }}',
         description: '{{ description }}',
