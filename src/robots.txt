@@ -1,95 +1,152 @@
 # robots.txt for EvolvedLotus Blog
-# Optimized for social media crawler access
+# Based on 2025 Cross-Platform Crawler Research
+# Strategy: Defensive over-permissive configuration to compensate for documentation voids
 
-# === SOCIAL MEDIA CRAWLERS (MUST ALLOW) ===
-# These bots fetch Open Graph data for link previews
-
-# Twitter/X Bot
-User-agent: Twitterbot
+# ========================================================================
+# CRITICAL: DEFAULT ALLOW RULE
+# This is essential for platforms with undocumented or generic user-agents
+# ========================================================================
+User-agent: *
 Allow: /
 
-# Facebook Bot
+# ========================================================================
+# META/FACEBOOK ECOSYSTEM (FULLY DOCUMENTED)
+# Source: developers.facebook.com/docs/sharing/webmasters
+# ========================================================================
+
+# Primary Meta scraper (versioned)
 User-agent: facebookexternalhit
 Allow: /
 
+# Secondary Meta scraper
 User-agent: Facebot
 Allow: /
 
-# LinkedIn Bot
+# Note: WhatsApp uses Meta infrastructure and inherits these allowances
+
+# ========================================================================
+# X/TWITTER (DOCUMENTATION INACCESSIBLE - BLACK BOX RISK)
+# Legacy user-agent: Twitterbot
+# Status: Documentation unavailable since Twitter→X migration
+# Strategy: Maintain legacy allowance, assume continuity
+# ========================================================================
+User-agent: Twitterbot
+Allow: /
+
+# ========================================================================
+# LINKEDIN (DOCUMENTATION VOID - API-FIRST MODEL)
+# User-agent identified through observation, not official docs
+# Source: No explicit robots.txt rules in Share API documentation
+# Strategy: Explicit allowance to mitigate documentation void
+# ========================================================================
 User-agent: LinkedInBot
 Allow: /
 
-# Pinterest Bot
-User-agent: Pinterestbot
-Allow: /
-
-# WhatsApp Bot
-User-agent: WhatsApp
-Allow: /
-
-# Telegram Bot
-User-agent: TelegramBot
-Allow: /
-
-# Discord Bot
+# ========================================================================
+# DISCORD (DOCUMENTATION VOID - LOAD BALANCING OPACITY)
+# User-agent widely assumed, not documented in Channel Resource API
+# No caching policy, no error handling docs, no official IP ranges
+# Strategy: Explicit allowance required to prevent unintentional blocking
+# ========================================================================
 User-agent: Discordbot
 Allow: /
 
-# Reddit Bot
-User-agent: Redditbot
+# ========================================================================
+# PINTEREST
+# ========================================================================
+User-agent: Pinterestbot
 Allow: /
 
-# Slack Bot
+# ========================================================================
+# SLACK (MULTIPLE USER-AGENTS)
+# ========================================================================
 User-agent: Slackbot
 Allow: /
+
 User-agent: Slackbot-LinkExpanding
 Allow: /
 
-# Mastodon
-User-agent: Mastodon
+# ========================================================================
+# TELEGRAM
+# ========================================================================
+User-agent: TelegramBot
 Allow: /
 
-# iMessage (Apple)
+# ========================================================================
+# REDDIT
+# ========================================================================
+User-agent: Redditbot
+Allow: /
+
+# ========================================================================
+# APPLE/iMESSAGE
+# ========================================================================
 User-agent: Applebot
 Allow: /
 
-# Microsoft Teams
+# ========================================================================
+# MICROSOFT TEAMS
+# ========================================================================
 User-agent: Microsoft Teams
 Allow: /
 
-# === SEARCH ENGINE CRAWLERS ===
+# ========================================================================
+# MASTODON (FEDERATED INSTANCES)
+# ========================================================================
+User-agent: Mastodon
+Allow: /
+
+# ========================================================================
+# SEARCH ENGINES (FULLY DOCUMENTED)
+# ========================================================================
+
+# Google
 User-agent: Googlebot
 Allow: /
 
 User-agent: Googlebot-Image
 Allow: /
 
+User-agent: Googlebot-Video
+Allow: /
+
+# Bing
 User-agent: Bingbot
 Allow: /
 
+# DuckDuckGo
 User-agent: DuckDuckBot
 Allow: /
 
+# Baidu
 User-agent: Baiduspider
 Allow: /
 
+# Yandex
 User-agent: YandexBot
 Allow: /
 
-# === DEFAULT RULE FOR ALL OTHER BOTS ===
-User-agent: *
-Allow: /
-
-# Explicitly allow critical paths for social previews
+# ========================================================================
+# EXPLICIT ALLOWANCE FOR CRITICAL PATHS
+# These paths contain Open Graph meta tags and social preview images
+# ========================================================================
 Allow: /blog/
 Allow: /assets/og/
 Allow: /assets/blog/
 Allow: /s/
 
-# Disallow admin and build directories only
+# ========================================================================
+# MINIMAL DISALLOW RULES
+# Only block admin, build, and development directories
+# ========================================================================
 Disallow: /admin/
+Disallow: /_site/
+Disallow: /node_modules/
+Disallow: /.git/
 Disallow: /netlify/
 Disallow: /notifications/
 
-# === SITEMAP LOCATION ===
+# ========================================================================
+# SITEMAP DECLARATION
+# ========================================================================
 Sitemap: https://blog.evolvedlotus.com/sitemap.xml
