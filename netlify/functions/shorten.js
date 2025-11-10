@@ -23,6 +23,27 @@ exports.handler = async (event, context) => {
         };
       }
 
+      // Check if URL already exists
+      const { data: existingUrl } = await supabase
+        .from('short_urls')
+        .select('*')
+        .eq('url', long_url)
+        .single();
+
+      if (existingUrl) {
+        return {
+          statusCode: 200,
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            message: 'URL already shortened',
+            shortUrl: `${process.env.URL}/r/${existingUrl.slug}`,
+            id: existingUrl.slug
+          })
+        };
+      }
+
       // Check if slug already exists
       if (slug) {
         const { data: existing } = await supabase

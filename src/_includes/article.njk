@@ -108,11 +108,14 @@ async function generateShortUrl() {
       throw new Error(data.error || 'Failed to generate short URL');
     }
 
-    if (!data.shortUrl) {
+    // Handle both 'shortUrl' (new URLs) and 'id' (existing URLs) properties
+    const shortUrl = data.shortUrl || (data.id ? '{{ metadata.url }}/r/' + data.id : null);
+
+    if (!shortUrl) {
       throw new Error('No short URL returned from server');
     }
 
-    return data.shortUrl;
+    return shortUrl;
   } catch (error) {
     console.error('Error generating short URL:', error);
     throw error;
