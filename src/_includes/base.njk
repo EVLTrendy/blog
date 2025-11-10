@@ -15,17 +15,7 @@
 
     <!-- Frontmatter Validation and Enhanced Fallbacks -->
 
-    <!-- Twitter Card Tags - CRITICAL: Must come BEFORE Open Graph tags -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="@evolvedlotus">
-    <meta name="twitter:creator" content="@evolvedlotus">
-    <meta name="twitter:title" content="{{ title | truncate(65) if title else ogTitle }}">
-    <meta name="twitter:description" content="{{ ogDescription }}">
-    <meta name="twitter:image" content="{{ twitterImage }}">
-    <meta name="twitter:image:width" content="1200">
-    <meta name="twitter:image:height" content="630">
-    <meta name="twitter:image:type" content="image/png">
-    <meta name="twitter:image:alt" content="{{ imageAlt or title or 'EvolvedLotus Blog' }}">
+
 
     <!-- Open Graph Tags - Universal fallback for all platforms -->
     <meta property="og:title" content="{{ ogTitle }}">

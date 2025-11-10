@@ -35,7 +35,7 @@ module.exports = function (eleventyConfig) {
         author: "EvolvedLotus", // Your blog's author or organization name
         twitter: "evolvedlotus", // Your Twitter handle without the @ (e.g., "myhandle" if your handle is @myhandle)
         // Enhanced default image for social sharing - will be used if a specific post doesn't have its own 'image' in front matter
-        image: "/assets/blog/default-social-share.png", // Default social sharing image
+        image: "https://blog.evolvedlotus.com/assets/blog/article-1.jpg", // Default social sharing image with absolute URL
         lang: "en", // Default language for your content
         options: {
             // Enhanced SEO options for better social media compatibility
