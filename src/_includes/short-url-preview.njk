@@ -23,7 +23,7 @@ ads: false
 {% set og_type = 'article' %}
 {% set schema_type = 'Article' %}
 
-{# CRITICAL: Meta tags must be output immediately after head tag opens #}
+{# CRITICAL: Twitter Card tags MUST come BEFORE Open Graph tags for Twitter to read them #}
 {# This ensures social media scrapers read them before any redirect #}
 
 <div class="preview-container">
