@@ -25,6 +25,7 @@ module.exports = function (eleventyConfig) {
     eleventyConfig.addPassthroughCopy('./src/.well-known');
     eleventyConfig.addPassthroughCopy('./src/_redirects');
     eleventyConfig.addPassthroughCopy('./src/robots.txt');
+    // Copy auto-generated social media preview images
     eleventyConfig.addPassthroughCopy('./src/assets/og');
 
     // 2. Add the eleventy-plugin-seo plugin configuration

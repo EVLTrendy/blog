@@ -5,39 +5,50 @@
     <meta name="fo-verify" content="80725f6c-bd05-4617-9441-22d8dec11e7f" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    {# === OPEN GRAPH TAGS (all use property=\"\") === #}
-    <meta property="og:url" content="{{ metadata.url }}{{ page.url }}">
-    <meta property="og:type" content="{% if og_type %}{{ og_type }}{% else %}article{% endif %}">
-    <meta property="og:title" content="{{ title or metadata.title }}">
-    <meta property="og:description" content="{{ description or metadata.description }}">
-    <meta property="og:site_name" content="{{ metadata.title }}">
-
+    {# === OPEN GRAPH META TAGS (Facebook, LinkedIn, WhatsApp, etc.) === #}
     {% if image %}
-      <meta property="og:image" content="{{ metadata.url }}{{ image }}">
-      <meta property="og:image:secure_url" content="{{ metadata.url }}{{ image }}">
+      {# Extract filename and create OG path #}
+      {% set imageFilename = image | replace('/assets/blog/', '') | replace('\\\\', '/') %}
+      {% set ogImagePath = '/assets/og/' + imageFilename %}
+
+      <meta property="og:image" content="{{ metadata.url }}{{ ogImagePath }}">
+      <meta property="og:image:secure_url" content="{{ metadata.url }}{{ ogImagePath }}">
       <meta property="og:image:width" content="1200">
       <meta property="og:image:height" content="630">
-      <meta property="og:image:alt" content="{{ imageAlt or title }}">
+      <meta property="og:image:alt" content="{% if imageAlt %}{{ imageAlt }}{% else %}{{ title }}{% endif %}">
       <meta property="og:image:type" content="image/png">
-    {% else %}
-      <meta property="og:image" content="{{ metadata.url }}/assets/blog/default-og.png">
-      <meta property="og:image:secure_url" content="{{ metadata.url }}/assets/blog/default-og.png">
+    {% elif metadata.image %}
+      {# Fallback to site default if post has no image #}
+      {% set defaultFilename = metadata.image | replace('/assets/blog/', '') | replace('\\\\', '/') %}
+      {% set defaultOgPath = '/assets/og/' + defaultFilename %}
+      <meta property="og:image" content="{{ metadata.url }}{{ defaultOgPath }}">
+      <meta property="og:image:secure_url" content="{{ metadata.url }}{{ defaultOgPath }}">
       <meta property="og:image:width" content="1200">
       <meta property="og:image:height" content="630">
+      <meta property="og:image:alt" content="{{ metadata.title }}">
       <meta property="og:image:type" content="image/png">
     {% endif %}
 
-    {# === TWITTER CARD TAGS (all use name=\"\") === #}
+    <meta property="og:title" content="{% if title %}{{ title }}{% else %}{{ metadata.title }}{% endif %}">
+    <meta property="og:description" content="{% if description %}{{ description }}{% else %}{{ metadata.description }}{% endif %}">
+    <meta property="og:url" content="{{ metadata.url }}{{ page.url }}">
+    <meta property="og:type" content="{% if og_type %}{{ og_type }}{% else %}article{% endif %}">
+    <meta property="og:site_name" content="{{ metadata.title }}">
+
+    {# === TWITTER CARD META TAGS (X/Twitter) - SEPARATE from Open Graph === #}
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@{{ metadata.author.twitter }}">
-    <meta name="twitter:creator" content="@{{ metadata.author.twitter }}">
-    <meta name="twitter:title" content="{{ title or metadata.title }}">
-    <meta name="twitter:description" content="{{ description or metadata.description }}">
+    {% if author %}<meta name="twitter:creator" content="@{{ author | replace('@', '') }}">{% endif %}
+    <meta name="twitter:title" content="{% if title %}{{ title }}{% else %}{{ metadata.title }}{% endif %}">
+    <meta name="twitter:description" content="{% if description %}{{ description }}{% else %}{{ metadata.description }}{% endif %}">
 
     {% if image %}
-      <meta name="twitter:image" content="{{ metadata.url }}{{ image }}">
-    {% else %}
-      <meta name="twitter:image" content="{{ metadata.url }}/assets/blog/default-og.png">
+      {# Use same OG image path for Twitter #}
+      <meta name="twitter:image" content="{{ metadata.url }}{{ ogImagePath }}">
+      <meta name="twitter:image:alt" content="{% if imageAlt %}{{ imageAlt }}{% else %}{{ title }}{% endif %}">
+    {% elif metadata.image %}
+      <meta name="twitter:image" content="{{ metadata.url }}{{ defaultOgPath }}">
+      <meta name="twitter:image:alt" content="{{ metadata.title }}">
     {% endif %}
 
     <!-- WhatsApp Compliance: Critical meta tags must appear early in <head> -->

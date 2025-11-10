@@ -4,8 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "prestart": "node scripts/generate-og-images.js",
     "start": "eleventy --serve",
-    "build": "node scripts/generate-og-images.js && node scripts/frontmatter-validator.js --fix && eleventy",
+    "prebuild": "node scripts/generate-og-images.js",
+    "build": "node scripts/frontmatter-validator.js --fix && eleventy",
+    "build:prod": "npm run prebuild && npm run build",
+    "generate:og": "node scripts/generate-og-images.js",
     "build:validate": "node scripts/frontmatter-validator.js",
     "validate": "node scripts/frontmatter-validator.js",
     "validate:fix": "node scripts/frontmatter-validator.js --fix",
