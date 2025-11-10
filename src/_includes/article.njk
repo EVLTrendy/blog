@@ -89,23 +89,27 @@ async function generateShortUrl() {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        long_url: window.location.href
+        url: window.location.href,
+        slug: '{{ page.fileSlug }}', // Use post slug as short URL slug
+        title: '{{ title }}',
+        description: '{{ description }}',
+        image: '{{ image | absoluteUrl(metadata.url) }}'
       })
     });
-    
+
     console.log('Response status:', response.status);
     const data = await response.json();
     console.log('Response data:', data);
-    
+
     if (!response.ok) {
       throw new Error(data.error || 'Failed to generate short URL');
     }
-    
-    if (!data.id) {
-      throw new Error('No short URL ID returned from server');
+
+    if (!data.shortUrl) {
+      throw new Error('No short URL returned from server');
     }
-    
-    return `https://blog.evolvedlotus.com/r/${data.id}`;
+
+    return data.shortUrl;
   } catch (error) {
     console.error('Error generating short URL:', error);
     throw error;

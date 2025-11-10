@@ -1,7 +1,7 @@
 ---
 title: 'Influencer Brilliance: Unleash Online Power!'
 author: Marc C.
-date: '"2023-11-22T12:00:00.000Z"'
+date: '2023-11-22T12:00:00.000Z'
 tags:
   - post
   - featured

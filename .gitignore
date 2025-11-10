@@ -1,0 +1,45 @@
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Node modules
+node_modules/
+
+# Build output
+public/
+dist/
+
+# Logs
+*.log
+logs/
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Temporary files
+*.tmp
+*.temp
+
+# Netlify
+.netlify/
+
+# Reports and scans
+reports/
+scan-progress.log
+site-scan-report.json
+verification-log.json
+automated-scan.log
+outcome.txt

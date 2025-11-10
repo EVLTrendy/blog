@@ -1,9 +1,8 @@
 ---
-title: Plan, Batch, and Grow Your Social Media
-description: Free content calendar for social media with templates for Notion,
-  Google Sheets, and Instagram. Plan, batch, and grow your content easily.
+title: 'Plan, Batch, and Grow Your Social Media'
+description: 'Free content calendar for social media with templates for Notion, Google Sheets, and Instagram. Plan, batch, and grow your content easily.'
 author: EvolvedLotus Team
-date: 2025-10-22T13:17:00.000-04:00
+date: '2025-10-22T17:17:00.000Z'
 tags:
   - post
   - featured
@@ -13,9 +12,10 @@ tags:
   - twitter
   - ig
   - link
-  - ""
+  - ''
 image: /assets/blog/plan-batch-and-grow-your-social-media.png
-imageAlt: Plan, Batch, and Grow Your Social Media
+imageAlt: 'Plan, Batch, and Grow Your Social Media'
+keywords: 'content calendar, social media planning, Notion templates, batch content creation, free content tools, content strategy, social media growth'
 ---
 One week, you’re on fire — posting daily with energy, ideas flowing, and momentum at its peak. The next, silence. No posts. No plan. Your creativity didn’t disappear; your system did. Without a clear structure, content creation quickly becomes chaotic—a game of digital whack-a-mole that leaves you stressed, scattered, and spinning your wheels.
 

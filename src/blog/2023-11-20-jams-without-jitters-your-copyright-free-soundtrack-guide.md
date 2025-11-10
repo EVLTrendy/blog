@@ -1,7 +1,7 @@
 ---
 title: 'Jams Without Jitters: Your Copyright-Free Soundtrack Guide!'
 author: Marc C.
-date: '"2023-11-20T12:00:00.000Z"'
+date: '2023-11-20T12:00:00.000Z'
 tags:
   - featured
   - post
