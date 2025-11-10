@@ -40,33 +40,8 @@
     {% endif %}
 
     <!-- WhatsApp Compliance: Critical meta tags must appear early in <head> -->
-    <!-- Twitter Card Tags - MUST COME BEFORE Open Graph tags for Twitter to read them -->
-    {% set ogTitle = (title | truncate(95) if title else 'EvolvedLotus - Content Creation & Social Media Blog') %}
-    {% set ogDescription = (description | truncate(200) if description else ((metadata.description | truncate(200)) if metadata.description else 'Expert insights on content creation, social media marketing, and digital strategies for creators and businesses.')) %}
-    {% set canonicalUrl = (canonical if canonical else page.url | absoluteUrl) %}
-    {% set ogImage = (image | absoluteUrl if image else ((metadata.image | absoluteUrl) if metadata.image else 'https://blog.evolvedlotus.com/assets/images/default-og.png')) %}
-    {% set twitterImage = ogImage %}
-
-    <!-- Frontmatter Validation and Enhanced Fallbacks -->
-
-
-
-    <!-- Open Graph Tags - Universal fallback for all platforms -->
-    <meta property="og:title" content="{{ ogTitle }}">
-    <meta property="og:type" content="{{ og_type if og_type else 'article' }}">
-    <meta property="og:url" content="{{ canonicalUrl }}">
-    <meta property="og:image" content="{{ ogImage }}">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="627">
-    <meta property="og:image:type" content="image/png">
-    <meta property="og:description" content="{{ ogDescription }}">
-    <meta property="og:locale" content="en_US">
-    <meta property="og:site_name" content="EvolvedLotus Blog">
-    <meta property="fb:app_id" content="1234567890">
-
-    <!-- Enhanced Image Optimization for all platforms -->
-    <meta property="og:image:alt" content="{{ imageAlt or title or 'EvolvedLotus Blog' }}">
-    <meta name="twitter:image:alt" content="{{ imageAlt or title or 'EvolvedLotus Blog' }}">
+    <!-- REMOVED: Duplicate/conflicting Open Graph and Twitter tags that were causing issues -->
+    <!-- The manual tags above are now the single source of truth for social media meta tags -->
 
     <!-- Additdional meta tags for better SEO and social sharing -->
     <meta name="title" content="{{ title }}">
@@ -98,10 +73,10 @@
     <!-- Platform-specific enhancements -->
     <!-- Discord Embed Tags -->
     <meta property="discord:embed" content="true">
-    <meta property="discord:embed:title" content="{{ ogTitle }}">
-    <meta property="discord:embed:description" content="{{ ogDescription }}">
-    <meta property="discord:embed:image" content="{{ ogImage }}">
-    <meta property="discord:embed:url" content="{{ canonicalUrl }}">
+    <meta property="discord:embed:title" content="{{ title or metadata.title }}">
+    <meta property="discord:embed:description" content="{{ description or metadata.description }}">
+    <meta property="discord:embed:image" content="{% if image %}{{ metadata.url }}{{ image }}{% else %}{{ metadata.url }}/assets/blog/default-og-image.jpg{% endif %}">
+    <meta property="discord:embed:url" content="{{ metadata.url }}{{ page.url }}">
     <meta property="discord:embed:color" content="#007bff">
 
     <!-- LinkedIn Specific Tags -->
@@ -112,14 +87,14 @@
     <meta name="pinterest-rich-pin" content="true">
 
     <!-- WhatsApp Specific Tags (duplicates for priority) -->
-    <meta property="whatsapp:image" content="{{ ogImage }}">
-    <meta property="whatsapp:title" content="{{ ogTitle }}">
-    <meta property="whatsapp:description" content="{{ ogDescription }}">
+    <meta property="whatsapp:image" content="{% if image %}{{ metadata.url }}{{ image }}{% else %}{{ metadata.url }}/assets/blog/default-og-image.jpg{% endif %}">
+    <meta property="whatsapp:title" content="{{ title or metadata.title }}">
+    <meta property="whatsapp:description" content="{{ description or metadata.description }}">
 
     <!-- Telegram Specific Tags -->
-    <meta property="telegram:image" content="{{ ogImage }}">
-    <meta property="telegram:title" content="{{ ogTitle }}">
-    <meta property="telegram:description" content="{{ ogDescription }}">
+    <meta property="telegram:image" content="{% if image %}{{ metadata.url }}{{ image }}{% else %}{{ metadata.url }}/assets/blog/default-og-image.jpg{% endif %}">
+    <meta property="telegram:title" content="{{ title or metadata.title }}">
+    <meta property="telegram:description" content="{{ description or metadata.description }}">
 
     <!-- Reddit Specific Tags -->
     <meta property="reddit:card" content="summary_large_image">
@@ -130,14 +105,14 @@
     <meta name="msapplication-TileColor" content="#007bff">
 
     <!-- Structured Data for Rich Snippets -->
-    {% set jsonDescription = description if description else (metadata.description if metadata.description else ogDescription) %}
+    {% set jsonDescription = description if description else metadata.description %}
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "{{ schema_type if schema_type else 'Article' }}",
-      "headline": "{{ title if title else ogTitle }}",
+      "headline": "{{ title or metadata.title }}",
       "description": "{{ jsonDescription }}",
-      "image": "{{ ogImage }}",
+      "image": "{% if image %}{{ metadata.url }}{{ image }}{% else %}{{ metadata.url }}/assets/blog/default-og-image.jpg{% endif %}",
       "datePublished": "{{ date | isoDate if date }}",
       "dateModified": "{{ date | isoDate if date }}",
       "author": {
@@ -154,17 +129,17 @@
       },
       "mainEntityOfPage": {
         "@type": "WebPage",
-        "@id": "{{ canonicalUrl }}"
+        "@id": "{{ metadata.url }}{{ page.url }}"
       },
       {% if tags %}
       "keywords": "{{ tags | join(', ') }}",
       {% endif %}
-      "url": "{{ canonicalUrl }}"
+      "url": "{{ metadata.url }}{{ page.url }}"
     }
     </script>
 
-    <title>{{ title }}</title>
-    <link rel="canonical" href="{{ canonicalUrl }}" />
+    <title>{{ title or metadata.title }}</title>
+    <link rel="canonical" href="{{ metadata.url }}{{ page.url }}" />
     <!-- SEO Enhancement: Add canonical tags to prevent duplicate content issues -->
     <link rel="stylesheet" href="/style.css">
 
