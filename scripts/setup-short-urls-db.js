@@ -18,18 +18,17 @@ const supabase = createClient(supabaseUrl, supabaseKey);
 // SQL to create the short_urls table
 const createTableSQL = `
 CREATE TABLE IF NOT EXISTS short_urls (
-    id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
-    post_slug TEXT NOT NULL,
-    short_id TEXT NOT NULL UNIQUE,
+    id TEXT PRIMARY KEY,
+    long_url TEXT NOT NULL,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
     title TEXT,
     description TEXT,
-    image TEXT,
-    created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+    image TEXT
 );
 
 -- Create index for faster lookups
-CREATE INDEX IF NOT EXISTS idx_short_urls_post_slug ON short_urls(post_slug);
-CREATE INDEX IF NOT EXISTS idx_short_urls_short_id ON short_urls(short_id);
+CREATE INDEX IF NOT EXISTS idx_short_urls_long_url ON short_urls(long_url);
+CREATE INDEX IF NOT EXISTS idx_short_urls_id ON short_urls(id);
 `;
 
 async function setupDatabase() {
@@ -75,24 +74,25 @@ async function migrateExistingShortURLs() {
         // Check what's already in the database
         const { data: existingInDb, error: fetchError } = await supabase
             .from('short_urls')
-            .select('post_slug');
+            .select('long_url');
 
         if (fetchError) {
             console.error('❌ Error checking existing database entries:', fetchError);
             return;
         }
 
-        const existingSlugs = new Set(existingInDb.map(item => item.post_slug));
+        const existingUrls = new Set(existingInDb.map(item => item.long_url));
 
         // Migrate entries that don't exist in the database
         let migrated = 0;
         for (const [shortId, shortUrlData] of Object.entries(existingData)) {
-            if (!existingSlugs.has(shortUrlData.slug)) {
+            const longUrl = `https://blog.evolvedlotus.com/blog/${shortUrlData.slug}/`;
+            if (!existingUrls.has(longUrl)) {
                 const { error: insertError } = await supabase
                     .from('short_urls')
                     .insert([{
-                        post_slug: shortUrlData.slug,
-                        short_id: shortId,
+                        id: shortId,
+                        long_url: longUrl,
                         title: shortUrlData.title || '',
                         created_at: new Date().toISOString()
                     }]);
