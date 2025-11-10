@@ -85,8 +85,8 @@ class BuildWithSEOChecks {
         this.log('🏗️  Starting Eleventy build with SEO fixes...');
 
         const buildResult = this.runCommand(
-            'npx @11ty/eleventy',
-            'Building site with SEO fixes'
+            'npm run build',
+            'Building site with OG image generation and SEO fixes'
         );
 
         if (buildResult.success) {

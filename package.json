@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "eleventy --serve",
-    "build": "node scripts/frontmatter-validator.js --fix && eleventy",
+    "build": "node scripts/generate-og-images.js && node scripts/frontmatter-validator.js --fix && eleventy",
     "build:validate": "node scripts/frontmatter-validator.js",
     "validate": "node scripts/frontmatter-validator.js",
     "validate:fix": "node scripts/frontmatter-validator.js --fix",
@@ -29,6 +29,7 @@
     "gray-matter": "^4.0.3",
     "js-yaml": "^4.1.0",
     "jsdom": "^27.0.0",
+    "luxon": "^3.4.4",
     "nunjucks": "^3.2.4"
   }
 }

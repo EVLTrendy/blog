@@ -133,7 +133,7 @@ exports.handler = async (event, context) => {
       const destinationUrl = data.url;
       const title = data.title || 'EvolvedLotus Blog';
       const description = data.description || 'Content creation and social media marketing advice';
-      const image = data.image || `${process.env.URL}/assets/images/default-og.jpg`;
+      const image = data.image ? data.image.replace('/assets/blog/', '/assets/og/') : `${process.env.URL}/assets/og/default-og.png`;
 
       // CRITICAL: Return HTML with meta tags for social media scrapers
       // This allows link previews to work on Twitter, Facebook, LinkedIn
