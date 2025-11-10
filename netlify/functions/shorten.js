@@ -123,8 +123,8 @@ exports.handler = async (event, context) => {
 
       // Construct OG image path
       const ogImagePath = urlData.image
-        ? urlData.image.replace('/assets/blog/', '/assets/og/')
-        : '/assets/og/default-og.png';
+        ? urlData.image
+        : '/assets/blog/default-og.png';
 
       const ogImageUrl = `https://blog.evolvedlotus.com${ogImagePath}`;
 

@@ -29,15 +29,13 @@ module.exports = function (eleventyConfig) {
 
     // 2. Add the eleventy-plugin-seo plugin configuration
     // IMPORTANT: Make sure to set your actual blog URL for 'url'
-    // DISABLED image config to prevent conflicts with manual meta tags
     eleventyConfig.addPlugin(pluginSEO, {
         url: "https://blog.evolvedlotus.com", // <--- THIS IS YOUR BLOG'S BASE URL!
         title: "EvolvedLotus Blog", // Default site title for your blog
         description: "Blog for EvolvedLotus - Tech, Tutorials, and More. Your ultimate guide to content creation, social media marketing, and digital success.", // Enhanced default site description for SEO
         author: "EvolvedLotus", // Your blog's author or organization name
         twitter: "evolvedlotus", // Your Twitter handle without the @ (e.g., "myhandle" if your handle is @myhandle)
-        // DISABLED: image config removed to prevent conflicts with manual meta tags
-        // image: "https://blog.evolvedlotus.com/assets/blog/article-1.jpg", // Default social sharing image with absolute URL
+        image: "/assets/blog/default-og.png", // Default social sharing image
         lang: "en", // Default language for your content
         options: {
             // Enhanced SEO options for better social media compatibility
@@ -45,15 +43,15 @@ module.exports = function (eleventyConfig) {
             titleLengthWarning: 60,
             descriptionLengthEarlyWarning: 120,
             descriptionLengthWarning: 160,
-            // DISABLED: image dimensions removed to prevent conflicts
-            // imageWidth: 1200,
-            // imageHeight: 630,
+            imageWidth: 1200,
+            imageHeight: 630,
             twitterCardType: "summary_large_image",
-            openGraphType: "website",
-            includeOpenGraph: true,
-            includeTwitterCard: true,
+            openGraphType: "article", // Changed from "website" for blog posts
+            includeOpenGraph: false, // Disable to prevent duplicates with manual tags
+            includeTwitterCard: false, // Disable to prevent duplicates with manual tags
             includeJSONLD: true,
-            includeSchema: true
+            includeSchema: true,
+            imageWithBaseUrl: true // CRITICAL: Converts relative URLs to absolute
         }
     });
 

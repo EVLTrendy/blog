@@ -7,20 +7,21 @@
 
     {# === OPEN GRAPH TAGS (all use property=\"\") === #}
     <meta property="og:url" content="{{ metadata.url }}{{ page.url }}">
-    <meta property="og:type" content="{% if schema_type %}{{ schema_type }}{% else %}article{% endif %}">
+    <meta property="og:type" content="{% if og_type %}{{ og_type }}{% else %}article{% endif %}">
     <meta property="og:title" content="{{ title or metadata.title }}">
     <meta property="og:description" content="{{ description or metadata.description }}">
+    <meta property="og:site_name" content="{{ metadata.title }}">
 
     {% if image %}
-      <meta property="og:image" content="{{ metadata.url }}/assets/og/{{ image | replace('/assets/blog/', '') }}">
-      <meta property="og:image:secure_url" content="{{ metadata.url }}/assets/og/{{ image | replace('/assets/blog/', '') }}">
+      <meta property="og:image" content="{{ metadata.url }}{{ image }}">
+      <meta property="og:image:secure_url" content="{{ metadata.url }}{{ image }}">
       <meta property="og:image:width" content="1200">
       <meta property="og:image:height" content="630">
       <meta property="og:image:alt" content="{{ imageAlt or title }}">
       <meta property="og:image:type" content="image/png">
     {% else %}
-      <meta property="og:image" content="{{ metadata.url }}/assets/og/default-og.png">
-      <meta property="og:image:secure_url" content="{{ metadata.url }}/assets/og/default-og.png">
+      <meta property="og:image" content="{{ metadata.url }}/assets/blog/default-og.png">
+      <meta property="og:image:secure_url" content="{{ metadata.url }}/assets/blog/default-og.png">
       <meta property="og:image:width" content="1200">
       <meta property="og:image:height" content="630">
       <meta property="og:image:type" content="image/png">
@@ -34,9 +35,9 @@
     <meta name="twitter:description" content="{{ description or metadata.description }}">
 
     {% if image %}
-      <meta name="twitter:image" content="{{ metadata.url }}/assets/og/{{ image | replace('/assets/blog/', '') }}">
+      <meta name="twitter:image" content="{{ metadata.url }}{{ image }}">
     {% else %}
-      <meta name="twitter:image" content="{{ metadata.url }}/assets/og/default-og.png">
+      <meta name="twitter:image" content="{{ metadata.url }}/assets/blog/default-og.png">
     {% endif %}
 
     <!-- WhatsApp Compliance: Critical meta tags must appear early in <head> -->
