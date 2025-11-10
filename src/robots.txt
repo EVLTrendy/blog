@@ -1,15 +1,95 @@
+# robots.txt for EvolvedLotus Blog
+# Optimized for social media crawler access
+
+# === SOCIAL MEDIA CRAWLERS (MUST ALLOW) ===
+# These bots fetch Open Graph data for link previews
+
+# Twitter/X Bot
+User-agent: Twitterbot
+Allow: /
+
+# Facebook Bot
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: Facebot
+Allow: /
+
+# LinkedIn Bot
+User-agent: LinkedInBot
+Allow: /
+
+# Pinterest Bot
+User-agent: Pinterestbot
+Allow: /
+
+# WhatsApp Bot
+User-agent: WhatsApp
+Allow: /
+
+# Telegram Bot
+User-agent: TelegramBot
+Allow: /
+
+# Discord Bot
+User-agent: Discordbot
+Allow: /
+
+# Reddit Bot
+User-agent: Redditbot
+Allow: /
+
+# Slack Bot
+User-agent: Slackbot
+Allow: /
+User-agent: Slackbot-LinkExpanding
+Allow: /
+
+# Mastodon
+User-agent: Mastodon
+Allow: /
+
+# iMessage (Apple)
+User-agent: Applebot
+Allow: /
+
+# Microsoft Teams
+User-agent: Microsoft Teams
+Allow: /
+
+# === SEARCH ENGINE CRAWLERS ===
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+
+User-agent: YandexBot
+Allow: /
+
+# === DEFAULT RULE FOR ALL OTHER BOTS ===
 User-agent: *
 Allow: /
+
+# Explicitly allow critical paths for social previews
 Allow: /blog/
-Allow: /assets/
-Allow: /about/
-Allow: /contact/
-Allow: /terms-of-service/
-Allow: /privacy-policy/
-Disallow: /netlify/
+Allow: /assets/og/
+Allow: /assets/blog/
+Allow: /s/
+
+# Disallow admin and build directories only
 Disallow: /admin/
-Disallow: /r/
+Disallow: /netlify/
 Disallow: /notifications/
 
-# Sitemap
+# === SITEMAP LOCATION ===
 Sitemap: https://blog.evolvedlotus.com/sitemap.xml
