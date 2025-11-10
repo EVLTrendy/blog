@@ -287,6 +287,17 @@ module.exports = function (eleventyConfig) {
         return result === undefined ? defaultValue : result;
     });
 
+    // Add helper filter to find blog posts by URL for short URL template
+    eleventyConfig.addFilter("getPostByUrl", function(collection, url) {
+        if (!collection || !url) return null;
+        // Remove trailing slash and clean URL for matching
+        const cleanUrl = url.replace(/\/$/, '');
+        return collection.find(post => {
+            const postUrl = post.url.replace(/\/$/, '');
+            return postUrl === cleanUrl || post.url === url;
+        });
+    });
+
     // Add custom filter to insert ads after specified paragraphs
     eleventyConfig.addFilter('insertAdAfterParagraphs', function(content, paragraphCount) {
         if (!content || typeof content !== 'string') return content;

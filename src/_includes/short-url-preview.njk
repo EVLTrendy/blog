@@ -3,7 +3,7 @@ layout: 'base.njk'
 ads: false
 ---
 
-{# IMPORTANT SEO DIRECTIVES FOR THIS PREVIEW PAGE #}
+{# IMPORTANT: Meta tags must appear BEFORE any content for social media scrapers #}
 {# Tell search engines NOT to index this short URL preview page. #}
 <meta name="robots" content="noindex, follow">
 
@@ -22,6 +22,9 @@ ads: false
 {# Ensure proper Open Graph and Twitter Card meta tags for short URLs #}
 {% set og_type = 'article' %}
 {% set schema_type = 'Article' %}
+
+{# CRITICAL: Meta tags must be output immediately after head tag opens #}
+{# This ensures social media scrapers read them before any redirect #}
 
 <div class="preview-container">
   <div class="preview-image">
