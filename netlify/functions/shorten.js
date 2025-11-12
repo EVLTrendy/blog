@@ -104,6 +104,10 @@ exports.handler = async (event, context) => {
   // In the GET handler
   if (event.httpMethod === 'GET') {
     const shortId = event.path.split('/').pop();
+    const userAgent = event.headers['user-agent'] || event.headers['User-Agent'] || '';
+
+    // Check if request is from a social media crawler
+    const isCrawler = isSocialMediaCrawler(userAgent);
 
     try {
       const { data: urlData, error } = await supabase
@@ -121,12 +125,27 @@ exports.handler = async (event, context) => {
 
       const fullUrl = urlData.long_url;
 
-      // Construct OG image path
+      // If not a crawler, perform 301 redirect
+      if (!isCrawler) {
+        return {
+          statusCode: 301,
+          headers: {
+            'Location': fullUrl,
+            'Cache-Control': 'public, max-age=86400' // Cache for 24 hours
+          },
+          body: ''
+        };
+      }
+
+      // For crawlers, serve HTML with meta tags
       const ogImagePath = urlData.image
         ? urlData.image
         : '/assets/blog/default-og.png';
 
-      const ogImageUrl = `https://blog.evolvedlotus.com${ogImagePath}`;
+      // Ensure absolute URL for image
+      const ogImageUrl = ogImagePath.startsWith('http')
+        ? ogImagePath
+        : `https://blog.evolvedlotus.com${ogImagePath}`;
 
       const safeTitle = (urlData.title || 'EvolvedLotus Blog').replace(/"/g, '"');
       const safeDescription = (urlData.description || 'Read more on EvolvedLotus Blog').replace(/"/g, '"');
@@ -137,6 +156,11 @@ exports.handler = async (event, context) => {
   <meta charset="UTF-8">
   <title>${safeTitle}</title>
   <meta name="description" content="${safeDescription}">
+
+  <!-- Canonical URL to prevent duplicate content issues -->
+  <link rel="canonical" href="${fullUrl}" />
+
+  <!-- Open Graph Meta Tags -->
   <meta property="og:type" content="article">
   <meta property="og:url" content="${fullUrl}">
   <meta property="og:title" content="${safeTitle}">
@@ -144,21 +168,65 @@ exports.handler = async (event, context) => {
   <meta property="og:image" content="${ogImageUrl}">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="${safeTitle}">
+  <meta property="og:site_name" content="EvolvedLotus Blog">
+
+  <!-- Twitter Card Meta Tags -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="${safeTitle}">
   <meta name="twitter:description" content="${safeDescription}">
   <meta name="twitter:image" content="${ogImageUrl}">
-  <meta http-equiv="refresh" content="0;url=${fullUrl}">
+  <meta name="twitter:image:width" content="1200">
+  <meta name="twitter:image:height" content="630">
+  <meta name="twitter:image:alt" content="${safeTitle}">
+
+  <!-- Additional social media platforms -->
+  <meta property="og:image:secure_url" content="${ogImageUrl}">
+
+  <!-- Prevent indexing of short URLs -->
+  <meta name="robots" content="noindex, follow">
+
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      text-align: center;
+      padding: 50px;
+      background: #f5f5f5;
+    }
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      background: white;
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    h1 { color: #333; margin-bottom: 20px; }
+    p { color: #666; margin-bottom: 30px; }
+    .redirect-notice { font-size: 14px; color: #999; }
+  </style>
 </head>
 <body>
-  <p>Redirecting to ${safeTitle}...</p>
+  <div class="container">
+    <h1>${safeTitle}</h1>
+    <p>${safeDescription}</p>
+    <p class="redirect-notice">If you are not redirected automatically, <a href="${fullUrl}">click here</a>.</p>
+  </div>
+
+  <!-- Fallback redirect for crawlers that don't respect meta tags -->
+  <script>
+    setTimeout(function() {
+      window.location.href = "${fullUrl}";
+    }, 1000);
+  </script>
 </body>
 </html>`;
 
       return {
         statusCode: 200,
         headers: {
-          'Content-Type': 'text/html; charset=utf-8'
+          'Content-Type': 'text/html; charset=utf-8',
+          'Cache-Control': 'public, max-age=3600' // Cache for 1 hour
         },
         body: html
       };
@@ -186,6 +254,31 @@ function generateSlug() {
     slug += chars.charAt(Math.floor(Math.random() * chars.length));
   }
   return slug;
+}
+
+// Helper function to detect social media crawlers
+function isSocialMediaCrawler(userAgent) {
+  const crawlers = [
+    'facebookexternalhit',
+    'Twitterbot',
+    'LinkedInBot',
+    'WhatsApp',
+    'TelegramBot',
+    'Slackbot',
+    'Discordbot',
+    'facebookcatalog',
+    'Facebot',
+    'Instagram',
+    'Pinterest',
+    'redditbot',
+    'Snapchat',
+    'TikTok',
+    'vkShare',
+    'weibo'
+  ];
+
+  const lowerUserAgent = userAgent.toLowerCase();
+  return crawlers.some(crawler => lowerUserAgent.includes(crawler.toLowerCase()));
 }
 
 // Helper function to escape HTML entities
