@@ -5,6 +5,105 @@
    Include this AFTER style.css in base.njk
    ============================================ */
 
+/* ============================================
+   DARK MODE VARIABLES
+   ============================================ */
+:root {
+    /* Light Mode Colors */
+    --bg-primary: #ffffff;
+    --bg-secondary: #f1f5f9;
+    --text-primary: #1e293b;
+    --text-secondary: #64748b;
+    --card-bg: #ffffff;
+    --card-border: #e2e8f0;
+    --shadow-color: rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="dark"] {
+    /* Dark Mode Colors */
+    --bg-primary: #0f172a;
+    --bg-secondary: #1e293b;
+    --text-primary: #e2e8f0;
+    --text-secondary: #94a3b8;
+    --card-bg: #1e293b;
+    --card-border: #334155;
+    --shadow-color: rgba(0, 0, 0, 0.3);
+}
+
+/* Apply dark mode colors */
+body {
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+[data-theme="dark"] .blog-card,
+[data-theme="dark"] .notification-item,
+[data-theme="dark"] .latest-post {
+    background-color: var(--card-bg);
+    border-color: var(--card-border);
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .article_bodydiv,
+[data-theme="dark"] .article_title,
+[data-theme="dark"] h1,
+[data-theme="dark"] h2,
+[data-theme="dark"] h3,
+[data-theme="dark"] p {
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .maindiv {
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+}
+
+[data-theme="dark"] .featurediv {
+    background-color: #1e293b !important;
+}
+
+/* Theme Toggle Button Styles */
+#theme-toggle {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--card-bg);
+    border: 2px solid var(--card-border);
+    box-shadow: 0 4px 12px var(--shadow-color);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    transition: all 0.3s ease;
+    z-index: 1000;
+}
+
+#theme-toggle:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 16px var(--shadow-color);
+}
+
+#theme-toggle .theme-icon {
+    display: block;
+}
+
+#theme-toggle .theme-text {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    #theme-toggle {
+        bottom: 1rem;
+        right: 1rem;
+        width: 48px;
+        height: 48px;
+    }
+}
+
 /* Feature Section Layout Fix */
 @media only screen and (min-width: 1025px) {
     .featurediv {
@@ -118,16 +217,6 @@
 .footertext:hover {
     transform: translateY(-4px);
     box-shadow: 0 6px 12px rgba(51, 189, 239, 0.3);
-}
-
-/* Color Palette Updates per outcome.md */
-body {
-    background-color: #f1f5f9;
-}
-
-.article-ad-container,
-.ad-container {
-    background: #f1f5f9 !important;
 }
 
 /* Card Borders */

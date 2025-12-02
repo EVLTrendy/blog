@@ -1,0 +1,50 @@
+---
+layout: base.njk
+---
+<div class="hub-container">
+  <div class="hub-hero">
+    <h1>{{ title }}</h1>
+    <p class="hub-description">{{ description }}</p>
+  </div>
+
+  <div class="hub-content">
+    <div class="hub-featured">
+      <h2>Featured Guides</h2>
+      <div class="blog-grid">
+        {% for post in collections[hubCollection] | reverse | limit(3) %}
+          {% include "blog-card.njk" %}
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="hub-latest">
+      <h2>Latest in {{ title }}</h2>
+      <div class="blog-grid">
+        {% for post in collections[hubCollection] | reverse %}
+          {% include "blog-card.njk" %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .hub-hero {
+    text-align: center;
+    padding: 4rem 1rem;
+    background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--card-bg) 100%);
+    margin-bottom: 2rem;
+    border-radius: 16px;
+  }
+  
+  .hub-description {
+    max-width: 600px;
+    margin: 1rem auto;
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+  }
+  
+  .hub-section {
+    margin-bottom: 4rem;
+  }
+</style>

@@ -322,6 +322,28 @@ module.exports = function (eleventyConfig) {
 
 
 
+    // Create collections for content hubs based on tags
+    eleventyConfig.addCollection("tiktok", function (collectionApi) {
+        return collectionApi.getFilteredByTag("tiktok");
+    });
+
+    eleventyConfig.addCollection("instagram", function (collectionApi) {
+        return collectionApi.getFilteredByTag("instagram");
+    });
+
+    eleventyConfig.addCollection("youtube", function (collectionApi) {
+        return collectionApi.getFilteredByTag("youtube");
+    });
+
+    eleventyConfig.addCollection("ai", function (collectionApi) {
+        return collectionApi.getFilteredByTag("ai");
+    });
+
+    // Create a collection of all hub pages
+    eleventyConfig.addCollection("hubs", function (collectionApi) {
+        return collectionApi.getFilteredByGlob("src/hubs/*.md");
+    });
+
     return {
         dir: {
             input: "src",

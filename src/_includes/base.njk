@@ -187,6 +187,13 @@
     {% include 'blogsign.njk' %}
     {% include 'footer.njk' %}
 
+    <!-- Theme Toggle Button -->
+    <button id="theme-toggle" aria-label="Switch to dark mode">
+        <span class="theme-icon">🌙</span>
+        <span class="theme-text">Dark Mode</span>
+    </button>
+    <script src="/assets/js/theme-toggle.js" defer></script>
+
     {# 
       Moved all JavaScripts to just before the closing </body> tag for better performance.
       Added 'defer' to Netlify Identity, slideshow.js, and copy.js.
