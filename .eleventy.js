@@ -116,7 +116,7 @@ module.exports = function (eleventyConfig) {
         return DateTime.fromJSDate(dateObj).toFormat(format);
     });
 
-    eleventyConfig.addCollection("notifications", function(collection) {
+    eleventyConfig.addCollection("notifications", function (collection) {
         return collection.getFilteredByTag("notifications");
     });
 
@@ -208,7 +208,7 @@ module.exports = function (eleventyConfig) {
     eleventyConfig.setDataDeepMerge(true);
 
     // Temporary debug logging (remove after fixing)
-    eleventyConfig.addFilter("debugDate", function(date) {
+    eleventyConfig.addFilter("debugDate", function (date) {
         console.log(`🔍 Date value: ${date}, Type: ${typeof date}`);
         return date;
     });
@@ -230,7 +230,7 @@ module.exports = function (eleventyConfig) {
     eleventyConfig.ignores.add("src/_templates/**");
 
     // Add blog collection (exclude future-dated posts and non-content files)
-    eleventyConfig.addCollection("blog", function(collectionApi) {
+    eleventyConfig.addCollection("blog", function (collectionApi) {
         return collectionApi.getFilteredByGlob("src/blog/*.md")
             .filter(post => {
                 // Only include posts with valid dates
@@ -250,7 +250,7 @@ module.exports = function (eleventyConfig) {
     });
 
     // Override default tag collection for `post` to also exclude future posts and non-content files
-    eleventyConfig.addCollection("post", function(collectionApi) {
+    eleventyConfig.addCollection("post", function (collectionApi) {
         const now = new Date();
         return collectionApi
             .getFilteredByTag("post")
@@ -272,13 +272,13 @@ module.exports = function (eleventyConfig) {
     });
 
     // Add custom filter to find blog posts by slug
-    eleventyConfig.addFilter('findBySlug', function(collection, slug) {
+    eleventyConfig.addFilter('findBySlug', function (collection, slug) {
         if (!collection) return null;
         return collection.find(item => item.fileSlug === slug);
     });
 
     // Add custom filter to safely get nested properties
-    eleventyConfig.addFilter('get', function(obj, path, defaultValue) {
+    eleventyConfig.addFilter('get', function (obj, path, defaultValue) {
         if (!obj) return defaultValue;
         const keys = path.split('.');
         let result = obj;
@@ -290,7 +290,7 @@ module.exports = function (eleventyConfig) {
     });
 
     // Add helper filter to find blog posts by URL for short URL template
-    eleventyConfig.addFilter("getPostByUrl", function(collection, url) {
+    eleventyConfig.addFilter("getPostByUrl", function (collection, url) {
         if (!collection || !url) return null;
         // Remove trailing slash and clean URL for matching
         const cleanUrl = url.replace(/\/$/, '');
@@ -301,45 +301,18 @@ module.exports = function (eleventyConfig) {
     });
 
     // Add custom filter to insert ads after specified paragraphs
-    eleventyConfig.addFilter('insertAdAfterParagraphs', function(content, paragraphCount) {
-        if (!content || typeof content !== 'string') return content;
-
-        // Split content by paragraph tags
-        const paragraphs = content.split(/(<\/p>)/i);
-
-        if (paragraphs.length < paragraphCount * 2) {
-            return content; // Not enough paragraphs
-        }
-
-        // Insert ad after specified paragraph count
-        const insertPoint = paragraphCount * 2; // Each paragraph has opening and closing tags
-        const adContainer = `
-        <div class="ad-container in-content-ad">
-            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7311583434347173"
-             crossorigin="anonymous"></script>
-            <ins class="adsbygoogle"
-                 style="display:block; text-align:center;"
-                 data-ad-layout="in-article"
-                 data-ad-format="fluid"
-                 data-ad-client="ca-pub-7311583434347173"
-                 data-ad-slot="8410078957"></ins>
-            <script>
-                 (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-        </div>`;
-
-        paragraphs.splice(insertPoint, 0, adContainer);
-
-        return paragraphs.join('');
+    eleventyConfig.addFilter('insertAdAfterParagraphs', function (content, paragraphCount) {
+        // Ads removed as per user request
+        return content;
     });
 
     // Add safe lowercase filter for templates
-    eleventyConfig.addFilter("lowercase", function(str) {
+    eleventyConfig.addFilter("lowercase", function (str) {
         return String(str || '').toLowerCase();
     });
 
     // Add filterByTag filter for filtering collections by tags
-    eleventyConfig.addFilter("filterByTag", function(collection, tag) {
+    eleventyConfig.addFilter("filterByTag", function (collection, tag) {
         if (!collection || !tag) return [];
         return collection.filter(item => {
             const itemTags = item.data.tags || [];
