@@ -1,0 +1,54 @@
+/* ============================================
+   HOMEPAGE LAYOUT FIXES
+   ============================================ */
+.split-container {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: stretch !important;
+    gap: 2rem !important;
+    max-width: 1200px !important;
+    margin: 0 auto !important;
+    padding: 0 1rem !important;
+    flex-wrap: wrap !important;
+}
+
+.notifications-section,
+.browse-section {
+    flex: 1;
+    min-width: 300px;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+}
+
+.notifications-slideshow {
+    height: 500px !important;
+    flex: 1;
+}
+
+@media (max-width: 768px) {
+    .split-container {
+        flex-direction: column !important;
+    }
+
+    .notifications-section,
+    .browse-section {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+}
+
+/* ============================================
+   ARTICLE IMAGE FIXES
+   ============================================ */
+.imagediv img {
+    object-fit: contain !important;
+    background-color: #f8f9fa;
+}
+
+.blogpic {
+    margin: 1rem auto !important;
+    max-width: 100% !important;
+    height: auto !important;
+    display: block !important;
+}
