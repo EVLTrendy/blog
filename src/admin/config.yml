@@ -18,17 +18,53 @@ collections:
       - { label: "Date", name: "date", widget: "datetime" }
       - { label: "Tags", name: "tags", widget: "hidden", default: "notifications" }
 
+  - name: "hubs"
+    label: "Content Hubs"
+    folder: "src/hubs"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Hub Collection Tag", name: "hubCollection", widget: "string", hint: "Tag used to filter posts for this hub (e.g., tiktok, instagram)" }
+      - { label: "Permalink", name: "permalink", widget: "string" }
+      - { label: "Layout", name: "layout", widget: "hidden", default: "hub.njk" }
+
   - name: "blog"
-    label: "Blog"
+    label: "Blog Posts"
     folder: "src/blog"
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
       - { label: "Title", name: "title", widget: "string" }
-      - { label: "Description", name: "description", widget: "string" }
-      - { label: "Author", name: "author", widget: "string" }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Author", name: "author", widget: "string", default: "EvolvedLotus" }
       - { label: "Date", name: "date", widget: "datetime" }
-      - { label: "Tags", name: "tags", widget: "list", default: ["post"] }
       - { label: "Featured Image", name: "image", widget: "image" }
-      - { label: "Image Caption", name: "imageAlt", widget: "string" }
+      - { label: "Image Alt Text", name: "imageAlt", widget: "string" }
+      - { label: "Tags", name: "tags", widget: "list", default: ["post"] }
+      - { label: "Content Hub", name: "hub", widget: "relation", collection: "hubs", search_fields: ["title"], value_field: "hubCollection", display_fields: ["title"], required: false }
+      - { label: "Reading Time (min)", name: "readingTime", widget: "number", required: false, hint: "Auto-calculated by build script" }
+      - label: "SEO Settings"
+        name: "seo"
+        widget: "object"
+        collapsed: true
+        required: false
+        fields:
+          - { label: "Focus Keyword", name: "focusKeyword", widget: "string", required: false }
+          - { label: "Search Intent", name: "searchIntent", widget: "select", options: ["Informational", "Commercial", "Transactional", "Navigational"], required: false }
       - { label: "Body", name: "body", widget: "markdown" }
+
+  - name: "authors"
+    label: "Authors"
+    folder: "src/authors"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Name", name: "title", widget: "string" }
+      - { label: "Bio", name: "bio", widget: "text" }
+      - { label: "Avatar", name: "image", widget: "image" }
+      - { label: "Social Links", name: "social", widget: "object", fields: [
+          { label: "Twitter", name: "twitter", widget: "string", required: false },
+          { label: "LinkedIn", name: "linkedin", widget: "string", required: false }
+        ]}
