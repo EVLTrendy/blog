@@ -19,6 +19,8 @@ const matter = require('gray-matter');
 module.exports = function (eleventyConfig) {
     // Passthrough copies
     eleventyConfig.addPassthroughCopy('./src/style.css');
+    eleventyConfig.addPassthroughCopy('./src/enhancements.css');
+    eleventyConfig.addPassthroughCopy('./src/theme-toggle-header.css');
     eleventyConfig.addPassthroughCopy('./src/fonts.css');
     eleventyConfig.addPassthroughCopy('./src/assets');
     eleventyConfig.addPassthroughCopy('./src/admin');
