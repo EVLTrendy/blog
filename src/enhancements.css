@@ -1,0 +1,144 @@
+/* ============================================
+   OUTCOME.MD ENHANCEMENTS - CSS OVERRIDES
+   ============================================
+   This file contains all CSS updates from outcome.md
+   Include this AFTER style.css in base.njk
+   ============================================ */
+
+/* Feature Section Layout Fix */
+@media only screen and (min-width: 1025px) {
+    .featurediv {
+        height: auto !important;
+        min-height: 600px;
+        padding: 4rem 0;
+    }
+}
+
+/* Mobile featurediv fix */
+@media (max-width: 768px) {
+    .featurediv {
+        height: auto !important;
+        min-height: 600px;
+        padding: 1rem;
+    }
+}
+
+/* Notifications Section Fix */
+.split-container {
+    align-items: stretch !important;
+}
+
+.notifications-section,
+.browse-section {
+    display: flex;
+    flex-direction: column;
+}
+
+.notifications-slideshow {
+    height: 500px !important;
+    flex: 1;
+}
+
+/* Blog Grid Enhancements per outcome.md */
+.blog-grid {
+    gap: 2.5rem !important;
+}
+
+.blog-card {
+    border-radius: 16px !important;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.08) !important;
+    transition: all 0.3s ease;
+}
+
+.blog-card:hover {
+    transform: translateY(-4px);
+    border: 2px solid #33bdef;
+}
+
+/* Article Page Enhancements */
+.article_bodydiv {
+    max-width: 68ch !important;
+    line-height: 1.75 !important;
+}
+
+.article_bodydiv h2 {
+    margin-top: 3rem !important;
+}
+
+.article_bodydiv blockquote {
+    border-left: 4px solid #33bdef;
+    padding-left: 1.5rem;
+    margin: 2rem 0;
+    font-style: italic;
+    color: #40404F;
+}
+
+/* Mobile Experience Improvements */
+@media (max-width: 768px) {
+    html {
+        font-size: 16px !important;
+    }
+
+    h1 {
+        font-size: 2rem !important;
+    }
+
+    .share-button,
+    .social-link,
+    .footeritem a {
+        min-width: 88px !important;
+        min-height: 88px !important;
+    }
+
+    button,
+    .myButton,
+    .myButton2 {
+        padding: 0.5rem !important;
+    }
+
+    .blog-grid {
+        gap: 1.5rem !important;
+        padding: 1rem !important;
+    }
+}
+
+/* Homepage Hero Gradient */
+.maindiv {
+    background: linear-gradient(135deg, #f0f5fa 0%, #e3f2fd 100%);
+}
+
+/* CTA Hover Effect */
+.myButton:hover,
+.browse-button:hover {
+    transform: scale(1.05);
+}
+
+/* Social Grid Hover */
+.social-link:hover,
+.footertext:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 12px rgba(51, 189, 239, 0.3);
+}
+
+/* Color Palette Updates per outcome.md */
+body {
+    background-color: #f1f5f9;
+}
+
+.article-ad-container,
+.ad-container {
+    background: #f1f5f9 !important;
+}
+
+/* Card Borders */
+.blog-card,
+.notification-item,
+.latest-post {
+    border: 1px solid #e2e8f0;
+}
+
+/* Container Max Width */
+.main-container,
+.blog-grid {
+    max-width: 1400px !important;
+}
