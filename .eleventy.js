@@ -103,6 +103,11 @@ module.exports = function (eleventyConfig) {
         return DateTime.fromJSDate(date).toISO();
     });
 
+    // Add limit filter for array limiting
+    eleventyConfig.addFilter("limit", function (arr, limit) {
+        return arr.slice(0, limit);
+    });
+
     // Generic date formatting filter (luxon)
     eleventyConfig.addFilter("date", (value = new Date(), format = "yyyy-LL-dd") => {
         let dateObj;
