@@ -12,7 +12,7 @@ layout: base.njk
       <h2>Featured Guides</h2>
       <div class="blog-grid">
         {% for post in collections[hubCollection] | reverse | limit(3) %}
-          {% include "blog-card.njk" %}
+          {% include "article-snippet.njk" %}
         {% endfor %}
       </div>
     </div>
@@ -21,7 +21,7 @@ layout: base.njk
       <h2>Latest in {{ title }}</h2>
       <div class="blog-grid">
         {% for post in collections[hubCollection] | reverse %}
-          {% include "blog-card.njk" %}
+          {% include "article-snippet.njk" %}
         {% endfor %}
       </div>
     </div>
