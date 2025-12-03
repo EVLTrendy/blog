@@ -5,6 +5,7 @@ pagination:
   size: 1
   alias: author
 permalink: /authors/{{ author.data.slug }}/
+eleventyExcludeFromCollections: true
 eleventyComputed:
   title: "{{ author.data.name }} - Author at EvolvedLotus"
   description: "{{ author.data.bio }}"
