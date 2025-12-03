@@ -30,6 +30,8 @@ module.exports = function (eleventyConfig) {
     eleventyConfig.addPassthroughCopy('./src/_redirects');
     eleventyConfig.addPassthroughCopy('./src/robots.txt');
     eleventyConfig.addPassthroughCopy('./src/resources');
+    eleventyConfig.addPassthroughCopy('./src/manifest.json');
+    eleventyConfig.addPassthroughCopy('./src/sw.js');
     // Copy auto-generated social media preview images
     eleventyConfig.addPassthroughCopy('./src/assets/og');
 
