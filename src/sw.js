@@ -1,18 +1,10 @@
-const CACHE_NAME = 'blog-cache-v3';
+const CACHE_NAME = 'blog-cache-v5';
 const OFFLINE_URL = '/offline/';
 
 // Core assets to cache immediately
 const ASSETS_TO_CACHE = [
     OFFLINE_URL,
-    '/style.css',
-    '/enhancements.css',
-    '/layout-fixes.css',
-    '/ux-enhancements.css',
-    '/conversion-components.css',
-    '/fonts.css',
     '/assets/blog/default-og.png',
-    '/assets/js/copy.js',
-    '/assets/js/slideshow.js',
     '/manifest.json'
 ];
 
@@ -59,6 +51,28 @@ self.addEventListener('fetch', (event) => {
     // Skip API requests and dynamic content
     if (event.request.url.includes('/api/') ||
         event.request.url.includes('/.netlify/')) {
+        return;
+    }
+
+    // CSS and JS files: Network First (always get fresh version)
+    if (event.request.url.endsWith('.css') || event.request.url.endsWith('.js')) {
+        event.respondWith(
+            fetch(event.request)
+                .then((networkResponse) => {
+                    // Cache the new version
+                    if (networkResponse && networkResponse.status === 200) {
+                        const responseToCache = networkResponse.clone();
+                        caches.open(CACHE_NAME).then((cache) => {
+                            cache.put(event.request, responseToCache);
+                        });
+                    }
+                    return networkResponse;
+                })
+                .catch(() => {
+                    // Fallback to cache only if network fails
+                    return caches.match(event.request);
+                })
+        );
         return;
     }
 
