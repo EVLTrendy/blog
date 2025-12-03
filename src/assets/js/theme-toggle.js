@@ -3,7 +3,7 @@
     'use strict';
 
     const THEME_KEY = 'theme-preference';
-    const DARK_CLASS = 'dark-theme';
+    const DARK_CLASS = 'dark-mode';
 
     // Get saved theme or default to light
     function getTheme() {
