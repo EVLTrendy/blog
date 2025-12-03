@@ -4,11 +4,11 @@
    ============================================ */
 
 /* ============================================
-   HERO SECTION - High Impact
+   HERO SECTION - High Impact with Animated Background
    ============================================ */
 
 .hero-section {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #5BBCE8 0%, #33a8d8 100%);
     padding: 80px 20px;
     text-align: center;
     color: white;
@@ -16,6 +16,7 @@
     overflow: hidden;
 }
 
+/* Animated 3D Wave Background */
 .hero-section::before {
     content: '';
     position: absolute;
@@ -23,8 +24,45 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+    background:
+        linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.05) 30%, rgba(255, 255, 255, 0.05) 70%, transparent 70%),
+        linear-gradient(-45deg, transparent 30%, rgba(255, 255, 255, 0.03) 30%, rgba(255, 255, 255, 0.03) 70%, transparent 70%);
+    background-size: 60px 60px;
+    animation: waveMove 20s linear infinite;
+    opacity: 0.4;
+}
+
+.hero-section::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    right: -50%;
+    bottom: -50%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+    background-size: 50px 50px;
+    animation: rotateBackground 60s linear infinite;
     opacity: 0.3;
+}
+
+@keyframes waveMove {
+    0% {
+        background-position: 0 0, 0 0;
+    }
+
+    100% {
+        background-position: 60px 60px, -60px 60px;
+    }
+}
+
+@keyframes rotateBackground {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 .hero-content {
@@ -61,7 +99,7 @@
 .hero-cta {
     display: inline-block;
     background: white;
-    color: #667eea;
+    color: #5BBCE8;
     padding: 18px 45px;
     border-radius: 50px;
     font-size: 18px;
@@ -168,7 +206,7 @@
     top: 20px;
     left: 20px;
     font-size: 80px;
-    color: #667eea;
+    color: #5BBCE8;
     opacity: 0.1;
     font-family: Georgia, serif;
     line-height: 1;
@@ -196,7 +234,7 @@
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #5BBCE8 0%, #33a8d8 100%);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -280,7 +318,7 @@
     left: 0;
     right: 0;
     height: 5px;
-    background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(90deg, #5BBCE8 0%, #33a8d8 100%);
     transform: scaleX(0);
     transform-origin: left;
     transition: transform 0.3s ease;
@@ -292,8 +330,8 @@
 
 .category-panel:hover {
     transform: translateY(-8px);
-    box-shadow: 0 15px 50px rgba(102, 126, 234, 0.15);
-    border-color: #667eea;
+    box-shadow: 0 15px 50px rgba(91, 188, 232, 0.15);
+    border-color: #5BBCE8;
 }
 
 .category-header {
@@ -307,13 +345,15 @@
     width: 60px;
     height: 60px;
     border-radius: 16px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #5BBCE8 0%, #33a8d8 100%);
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 28px;
     flex-shrink: 0;
-    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    box-shadow: 0 4px 15px rgba(91, 188, 232, 0.3);
+    color: white;
+    font-weight: bold;
 }
 
 .category-title-group h3 {
@@ -371,7 +411,7 @@
 
 .category-post-link::before {
     content: '→';
-    color: #667eea;
+    color: #5BBCE8;
     font-weight: 700;
     transition: transform 0.2s ease;
 }
@@ -381,14 +421,14 @@
 }
 
 .category-post-link:hover {
-    color: #667eea;
+    color: #5BBCE8;
 }
 
 .view-all-link {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    color: #667eea;
+    color: #5BBCE8;
     font-weight: 700;
     text-decoration: none;
     font-size: 16px;
@@ -397,7 +437,7 @@
 
 .view-all-link:hover {
     gap: 12px;
-    color: #764ba2;
+    color: #33a8d8;
 }
 
 .view-all-link::after {
@@ -445,11 +485,11 @@
 
 .tab-button:hover,
 .tab-button.active {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #5BBCE8 0%, #33a8d8 100%);
     color: white;
-    border-color: #667eea;
+    border-color: #5BBCE8;
     transform: translateY(-2px);
-    box-shadow: 0 5px 20px rgba(102, 126, 234, 0.3);
+    box-shadow: 0 5px 20px rgba(91, 188, 232, 0.3);
 }
 
 .featured-grid {
@@ -487,7 +527,7 @@
 
 .featured-badge {
     display: inline-block;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #5BBCE8 0%, #33a8d8 100%);
     color: white;
     padding: 5px 15px;
     border-radius: 20px;
@@ -527,84 +567,6 @@
     gap: 5px;
 }
 
-/* ============================================
-   TOOLS & RESOURCES BAND
-   ============================================ */
-
-.tools-resources-band {
-    background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
-    padding: 60px 20px;
-    color: white;
-}
-
-.tools-container {
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.tools-header {
-    text-align: center;
-    margin-bottom: 50px;
-}
-
-.tools-header h2 {
-    font-size: clamp(28px, 4vw, 40px);
-    font-weight: 800;
-    margin-bottom: 15px;
-}
-
-.tools-header p {
-    font-size: 18px;
-    opacity: 0.9;
-}
-
-.tools-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 25px;
-}
-
-.tool-card {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 16px;
-    padding: 30px;
-    text-align: center;
-    transition: all 0.3s ease;
-    text-decoration: none;
-    color: white;
-    display: block;
-}
-
-.tool-card:hover {
-    background: rgba(255, 255, 255, 0.15);
-    transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-}
-
-.tool-icon {
-    font-size: 48px;
-    margin-bottom: 20px;
-    display: block;
-}
-
-.tool-name {
-    font-size: 20px;
-    font-weight: 700;
-    margin-bottom: 10px;
-}
-
-.tool-description {
-    font-size: 14px;
-    opacity: 0.9;
-    line-height: 1.5;
-}
-
-/* ============================================
-   INSIGHTS PANEL
-   ============================================ */
-
 .insights-panel {
     background: white;
     padding: 60px 20px;
@@ -633,7 +595,7 @@
 .insight-box:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    border-color: #667eea;
+    border-color: #5BBCE8;
 }
 
 .insight-title {
@@ -641,14 +603,6 @@
     font-weight: 800;
     color: #2d3748;
     margin-bottom: 20px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.insight-title::before {
-    content: '📊';
-    font-size: 24px;
 }
 
 .insight-list {
@@ -673,7 +627,7 @@
    ============================================ */
 
 .newsletter-section {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #5BBCE8 0%, #33a8d8 100%);
     padding: 80px 20px;
     color: white;
     text-align: center;
@@ -718,7 +672,7 @@
 .newsletter-button {
     padding: 18px 40px;
     background: white;
-    color: #667eea;
+    color: #5BBCE8;
     border: none;
     border-radius: 50px;
     font-size: 16px;
@@ -764,20 +718,20 @@
 
 .quick-button {
     padding: 18px 35px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #5BBCE8 0%, #33a8d8 100%);
     color: white;
     border-radius: 50px;
     text-decoration: none;
     font-weight: 700;
     font-size: 16px;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    box-shadow: 0 4px 15px rgba(91, 188, 232, 0.3);
     display: inline-block;
 }
 
 .quick-button:hover {
     transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+    box-shadow: 0 8px 25px rgba(91, 188, 232, 0.4);
 }
 
 /* ============================================
@@ -911,7 +865,7 @@
     position: absolute;
     top: -40px;
     left: 0;
-    background: #667eea;
+    background: #5BBCE8;
     color: white;
     padding: 8px;
     text-decoration: none;
@@ -926,7 +880,7 @@
 a:focus,
 button:focus,
 input:focus {
-    outline: 3px solid #667eea;
+    outline: 3px solid #5BBCE8;
     outline-offset: 2px;
 }
 
