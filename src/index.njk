@@ -312,12 +312,6 @@ function openTab(evt, tabName) {
     </div>
     
     <div class="tools-carousel-wrapper">
-      <button class="carousel-nav carousel-prev" aria-label="Previous">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="15 18 9 12 15 6"></polyline>
-        </svg>
-      </button>
-      
       <div class="tools-carousel">
         <div class="tools-carousel-track">
           <a href="https://tools.evolvedlotus.com/twitterreplybot/tweet-replier/" class="tool-card">
@@ -345,12 +339,6 @@ function openTab(evt, tabName) {
           </a>
         </div>
       </div>
-      
-      <button class="carousel-nav carousel-next" aria-label="Next">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="9 18 15 12 9 6"></polyline>
-        </svg>
-      </button>
     </div>
   </div>
 </section>
@@ -358,48 +346,45 @@ function openTab(evt, tabName) {
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   const track = document.querySelector('.tools-carousel-track');
-  const prevBtn = document.querySelector('.carousel-prev');
-  const nextBtn = document.querySelector('.carousel-next');
   const cards = document.querySelectorAll('.tool-card');
   
-  if (!track || !prevBtn || !nextBtn || cards.length === 0) return;
+  if (!track || cards.length === 0) return;
   
   let currentIndex = 0;
-  const cardWidth = cards[0].offsetWidth + 32; // card width + gap
-  const visibleCards = window.innerWidth >= 1024 ? 3 : (window.innerWidth >= 768 ? 2 : 1);
-  const maxIndex = Math.max(0, cards.length - visibleCards);
+  const totalCards = cards.length;
+  
+  // Auto-cycle every 5 seconds
+  function cycleCarousel() {
+    currentIndex = (currentIndex + 1) % totalCards;
+    updateCarousel();
+  }
   
   function updateCarousel() {
+    const cardWidth = cards[0].offsetWidth + 32; // card width + gap
     const offset = -currentIndex * cardWidth;
     track.style.transform = `translateX(${offset}px)`;
     
-    prevBtn.disabled = currentIndex === 0;
-    nextBtn.disabled = currentIndex >= maxIndex;
-    
-    prevBtn.style.opacity = currentIndex === 0 ? '0.3' : '1';
-    nextBtn.style.opacity = currentIndex >= maxIndex ? '0.3' : '1';
+    // Add blur effect to non-active cards
+    cards.forEach((card, index) => {
+      if (index === currentIndex) {
+        card.style.opacity = '1';
+        card.style.filter = 'blur(0px)';
+      } else if (index === currentIndex - 1 || index === currentIndex + 1 || 
+                 (currentIndex === 0 && index === totalCards - 1) || 
+                 (currentIndex === totalCards - 1 && index === 0)) {
+        card.style.opacity = '0.5';
+        card.style.filter = 'blur(2px)';
+      } else {
+        card.style.opacity = '0.3';
+        card.style.filter = 'blur(4px)';
+      }
+    });
   }
   
-  prevBtn.addEventListener('click', () => {
-    if (currentIndex > 0) {
-      currentIndex--;
-      updateCarousel();
-    }
-  });
+  // Start auto-cycling
+  setInterval(cycleCarousel, 5000);
   
-  nextBtn.addEventListener('click', () => {
-    if (currentIndex < maxIndex) {
-      currentIndex++;
-      updateCarousel();
-    }
-  });
-  
-  // Reset on window resize
-  window.addEventListener('resize', () => {
-    currentIndex = 0;
-    updateCarousel();
-  });
-  
+  // Initial setup
   updateCarousel();
 });
 </script>

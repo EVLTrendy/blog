@@ -31,36 +31,6 @@
     transition: transform 0.4s ease;
 }
 
-.carousel-nav {
-    background: white;
-    border: 2px solid #e1e5e9;
-    border-radius: 50%;
-    width: 48px;
-    height: 48px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    flex-shrink: 0;
-    z-index: 10;
-}
-
-.carousel-nav:hover:not(:disabled) {
-    background: #33bdef;
-    border-color: #33bdef;
-    color: white;
-}
-
-.carousel-nav:disabled {
-    cursor: not-allowed;
-    opacity: 0.3;
-}
-
-.carousel-nav svg {
-    color: inherit;
-}
-
 .tool-card {
     background: white;
     border-radius: 12px;
@@ -127,11 +97,6 @@
         min-width: 100%;
     }
 
-    .carousel-nav {
-        width: 40px;
-        height: 40px;
-    }
-
     .tools-carousel-track {
         gap: 1rem;
     }
@@ -151,34 +116,35 @@
 .insights-list {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
+    gap: 2.5rem;
 }
 
 .insight-item {
     background: white;
-    border-radius: 12px;
-    padding: 2rem;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 16px;
+    padding: 2.5rem;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
     border: 1px solid #e1e5e9;
     transition: all 0.3s ease;
     display: flex;
     flex-direction: column;
-    min-height: 250px;
+    min-height: 300px;
+    gap: 1rem;
 }
 
 .insight-item:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+    transform: translateY(-5px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
 }
 
 .insight-badge {
     display: inline-block;
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
-    font-size: 0.75rem;
-    font-weight: 600;
+    padding: 0.6rem 1.2rem;
+    border-radius: 24px;
+    font-size: 0.8rem;
+    font-weight: 700;
     text-transform: uppercase;
-    margin-bottom: 1.5rem;
+    letter-spacing: 0.5px;
     align-self: flex-start;
 }
 
@@ -186,20 +152,22 @@
     flex: 1;
     display: flex;
     flex-direction: column;
+    gap: 1rem;
 }
 
 .insight-content h3 {
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     color: #2c3e50;
-    margin: 0 0 1rem 0;
-    line-height: 1.3;
+    margin: 0;
+    line-height: 1.4;
+    font-weight: 700;
 }
 
 .insight-content p {
     color: #666;
-    font-size: 1rem;
+    font-size: 1.05rem;
     line-height: 1.8;
-    margin: 0 0 1.5rem 0;
+    margin: 0;
     flex: 1;
 }
 
@@ -207,21 +175,23 @@
     color: #33bdef;
     text-decoration: none;
     font-weight: 600;
-    font-size: 1rem;
-    transition: color 0.3s ease;
+    font-size: 1.05rem;
+    transition: all 0.3s ease;
     align-self: flex-start;
     margin-top: auto;
+    padding-top: 0.5rem;
 }
 
 .insight-link:hover {
     color: #1a8cba;
     text-decoration: underline;
+    transform: translateX(5px);
 }
 
 @media (max-width: 1024px) {
     .insights-list {
         grid-template-columns: repeat(2, 1fr);
-        gap: 1.5rem;
+        gap: 2rem;
     }
 }
 
@@ -237,15 +207,15 @@
     }
 
     .insight-item {
-        padding: 1.5rem;
+        padding: 2rem;
         min-height: auto;
     }
 
     .insight-content h3 {
-        font-size: 1.25rem;
+        font-size: 1.35rem;
     }
 
     .insight-content p {
-        font-size: 0.95rem;
+        font-size: 1rem;
     }
 }

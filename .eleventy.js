@@ -379,17 +379,30 @@ module.exports = function (eleventyConfig) {
         });
     });
 
-    // Add filterByCategory filter for filtering collections by primary category
+    // Add filterByCategory filter for filtering collections by tags (blog posts use tags, not category field)
     eleventyConfig.addFilter("filterByCategory", function (collection, category) {
         if (!collection || !category) return [];
         return collection.filter(item => {
-            // Check the primary category field
+            // Check the primary category field first (if it exists)
             const itemCategory = item.data.category;
             if (itemCategory === category) return true;
 
-            // Fallback: also check tags for backwards compatibility
+            // Main check: look in tags array (this is what blog posts actually use)
             const itemTags = item.data.tags || [];
-            return itemTags.includes(category);
+
+            // Map common category names to their tag equivalents
+            const categoryTagMap = {
+                'social-media': ['social-media', 'ig', 'twitter', 'tiktok', 'facebook', 'link'],
+                'content-creation': ['content-creation', 'misc', 'featured'],
+                'seo': ['seo', 'analytics'],
+                'strategy': ['strategy', 'digital-strategy'],
+                'tools': ['tools', 'automation'],
+                'growth': ['growth', 'growth-hacking']
+            };
+
+            // Check if any of the mapped tags exist in the item's tags
+            const mappedTags = categoryTagMap[category] || [category];
+            return itemTags.some(tag => mappedTags.includes(tag));
         });
     });
 
