@@ -1,20 +1,32 @@
 {
     "name": "EvolvedLotus Blog",
     "short_name": "EvolvedLotus",
+    "description": "Tech, Tutorials, and More. Your ultimate guide to content creation, social media marketing, and digital success.",
     "start_url": "/",
+    "id": "/",
     "display": "standalone",
+    "orientation": "any",
+    "scope": "/",
     "background_color": "#ffffff",
     "theme_color": "#007bff",
+    "categories": [
+        "technology",
+        "education",
+        "blog"
+    ],
+    "prefer_related_applications": false,
     "icons": [
         {
             "src": "/assets/blog/default-og.png",
             "sizes": "192x192",
-            "type": "image/png"
+            "type": "image/png",
+            "purpose": "any maskable"
         },
         {
             "src": "/assets/blog/default-og.png",
             "sizes": "512x512",
-            "type": "image/png"
+            "type": "image/png",
+            "purpose": "any maskable"
         }
     ]
 }

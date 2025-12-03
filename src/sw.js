@@ -1,6 +1,7 @@
-const CACHE_NAME = 'blog-cache-v2';
+const CACHE_NAME = 'blog-cache-v3';
 const OFFLINE_URL = '/offline/';
 
+// Core assets to cache immediately
 const ASSETS_TO_CACHE = [
     OFFLINE_URL,
     '/style.css',
@@ -11,12 +12,14 @@ const ASSETS_TO_CACHE = [
     '/fonts.css',
     '/assets/blog/default-og.png',
     '/assets/js/copy.js',
-    '/assets/js/slideshow.js'
+    '/assets/js/slideshow.js',
+    '/manifest.json'
 ];
 
 self.addEventListener('install', (event) => {
     event.waitUntil(
         caches.open(CACHE_NAME).then((cache) => {
+            console.log('[ServiceWorker] Pre-caching offline page');
             return cache.addAll(ASSETS_TO_CACHE);
         })
     );
@@ -29,6 +32,7 @@ self.addEventListener('activate', (event) => {
             return Promise.all(
                 cacheNames.map((cacheName) => {
                     if (cacheName !== CACHE_NAME) {
+                        console.log('[ServiceWorker] Removing old cache', cacheName);
                         return caches.delete(cacheName);
                     }
                 })
@@ -39,12 +43,12 @@ self.addEventListener('activate', (event) => {
 });
 
 self.addEventListener('fetch', (event) => {
-    // Skip cross-origin requests (like Google Analytics, fonts, etc.)
+    // Skip cross-origin requests (except for specific ones if needed, but keeping it safe)
     if (!event.request.url.startsWith(self.location.origin)) {
         return;
     }
 
-    // Skip Google Analytics requests
+    // Skip Google Analytics and other tracking
     if (event.request.url.includes('google-analytics.com') ||
         event.request.url.includes('googletagmanager.com') ||
         event.request.url.includes('analytics.js') ||
@@ -58,49 +62,102 @@ self.addEventListener('fetch', (event) => {
         return;
     }
 
-    // Navigation requests (HTML pages)
+    // HTML Navigation Strategy: Network First, falling back to Cache, then Offline Page
     if (event.request.mode === 'navigate') {
         event.respondWith(
             fetch(event.request)
+                .then((networkResponse) => {
+                    // Cache the visited page for offline reading
+                    if (networkResponse && networkResponse.status === 200 && networkResponse.type === 'basic') {
+                        const responseToCache = networkResponse.clone();
+                        caches.open(CACHE_NAME).then((cache) => {
+                            cache.put(event.request, responseToCache);
+                        });
+                    }
+                    return networkResponse;
+                })
                 .catch(() => {
-                    return caches.match(OFFLINE_URL);
+                    return caches.match(event.request)
+                        .then((cachedResponse) => {
+                            if (cachedResponse) {
+                                return cachedResponse;
+                            }
+                            return caches.match(OFFLINE_URL);
+                        });
                 })
         );
         return;
     }
 
-    // Static assets (CSS, JS, Images)
+    // Static Assets Strategy: Cache First, falling back to Network
     event.respondWith(
         caches.match(event.request).then((response) => {
-            // Return cached response if found
             if (response) {
                 return response;
             }
 
-            // Otherwise fetch from network
             return fetch(event.request).then((networkResponse) => {
-                // Check if we received a valid response
                 if (!networkResponse || networkResponse.status !== 200 || networkResponse.type !== 'basic') {
                     return networkResponse;
                 }
 
-                // Clone the response
+                // Cache new static assets
                 const responseToCache = networkResponse.clone();
-
-                // Cache the new resource (if it matches our criteria - optional)
-                // For now, we are only caching what's in ASSETS_TO_CACHE on install, 
-                // but we could add runtime caching here for other assets.
+                caches.open(CACHE_NAME).then((cache) => {
+                    cache.put(event.request, responseToCache);
+                });
 
                 return networkResponse;
             }).catch(() => {
-                // If fetch fails, return a fallback for images
+                // Fallback for images
                 if (event.request.destination === 'image') {
                     return caches.match('/assets/blog/default-og.png');
                 }
-                // For other resources, just fail silently
                 return new Response('', { status: 404 });
             });
         })
     );
+});
+
+// Push Notification Event Listener
+self.addEventListener('push', function (event) {
+    if (event.data) {
+        const data = event.data.json();
+        const options = {
+            body: data.body,
+            icon: '/assets/blog/default-og.png',
+            badge: '/assets/blog/default-og.png',
+            vibrate: [100, 50, 100],
+            data: {
+                dateOfArrival: Date.now(),
+                primaryKey: '2'
+            },
+            actions: [
+                {
+                    action: 'explore', title: 'Read Article',
+                    icon: '/assets/blog/default-og.png'
+                },
+                {
+                    action: 'close', title: 'Close',
+                    icon: '/assets/blog/default-og.png'
+                },
+            ]
+        };
+        event.waitUntil(
+            self.registration.showNotification(data.title, options)
+        );
+    }
+});
+
+self.addEventListener('notificationclick', function (e) {
+    var notification = e.notification;
+    var action = e.action;
+
+    if (action === 'close') {
+        notification.close();
+    } else {
+        clients.openWindow('https://blog.evolvedlotus.com');
+        notification.close();
+    }
 });
 
