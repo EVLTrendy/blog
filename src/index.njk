@@ -1,82 +1,453 @@
 ---
-title: Home page
+title: Your Hub for Social Media, Growth, & Digital Strategy
+description: Discover actionable insights, proven strategies, and expert resources for social media marketing, content creation, and digital growth. Your go-to resource hub for online success.
 layout: 'base.njk'
 ---
 
-<div class="maindiv">
-  <div class="spacediv20"></div>
-  <div class="maingroupdiv">
-    <div class="mainl">
-      <div class="maintxtcon">
-        <div class="maintxth">Discover EvolvedLotus</div>
-        <div class="maintxts">Unveiling Resources, Insights, and Creative Journeys</div>
+{# ============================================
+   HERO SECTION - High Impact Value Proposition
+   ============================================ #}
+<section class="hero-section">
+  <div class="hero-content">
+    <h1 class="hero-title">Your Hub for Social Media, Growth, & Digital Strategy</h1>
+    <p class="hero-subtitle">Actionable Insights for Content Creators & Digital Marketers</p>
+    <p class="hero-description">
+      Discover proven strategies, expert guides, and practical resources to grow your online presence, 
+      master social media, and build a thriving digital brand.
+    </p>
+    <a href="#categories" class="hero-cta">Explore Insights</a>
+    
+    <div class="hero-stats">
+      <div class="stat-item">
+        <span class="stat-number">500+</span>
+        <span class="stat-label">Articles</span>
       </div>
-    </div>
-    <div class="mainr">
-      <div class="mainrdivdisplay">
-        {# 
-          Added width="300" and height="300" to prevent layout shifts (CLS) 
-          and fetchpriority="high" as this is your LCP image.
-          Changed src to /300 as per PSI's "Expected size".
-        #}
-        <img class="mainrdisplay" src="/assets/blog/article-1.jpg" alt="EvolvedLotus branded graphic" width="300" height="300" fetchpriority="high">
+      <div class="stat-item">
+        <span class="stat-number">50K+</span>
+        <span class="stat-label">Readers</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">Weekly</span>
+        <span class="stat-label">Updates</span>
       </div>
     </div>
   </div>
-</div>
-<div class="featurediv">
-  <div class="ftbacksplash">
-    <div class="split-container">
-      <div class="notifications-section">
-        <h2 class="section-title">Latest Updates</h2>
-        <div class="notifications-slideshow">
-          <div class="notifications-slider">
-              {% set featuredPosts = collections.blog | filterByTag('featured') %}
-              {% if featuredPosts.length > 0 %}
-              {% set latestFeaturedPost = featuredPosts[0] %}
-              <div class="notification-item latest-post">
-                <a href="{{ latestFeaturedPost.url }}" class="latest-post-link">
-                  <div class="notification-content">
-                    <span class="latest-badge">Latest Post</span>
-                    <div class="latest-post-image">
-                      <img src="{{ latestFeaturedPost.data.image | default('/assets/images/default-blog.png') }}" alt="{{ latestFeaturedPost.data.imageAlt | default(latestFeaturedPost.data.title) }}" loading="lazy" width="400" height="225">
-                    </div>
-                    <h3>{{ latestFeaturedPost.data.title }}</h3>
-                    <p>{{ latestFeaturedPost.data.description | truncate(120) }}</p>
-                  </div>
-                </a>
-              </div>
-              {% endif %}
-              <div class="notification-item">
-              <div class="notification-content">
-                <h3>Welcome to Our New Features!</h3>
-                <p>We&#39;ve just launched our new notification system to keep you updated with the latest news and features.</p>
+</section>
 
-
-                <a href="/blog" class="notification-link" aria-label="Learn more about Welcome to Our New Features!">Welcome to Our New Features!</a>
-
-              </div>
-            </div><div class="notification-item">
-              <div class="notification-content">
-                <h3>Twitter | X  Reply Bot</h3>
-                <p>Exciting news! We’ve officially launched our latest tool—built for realistic Twitter replies. 🎉 Get 5 free uses daily, and more features are on the way. Perfect for creators, brands, and community managers. Stay tuned for even more updates!</p>
-
-
-                <a href="https://tools.evolvedlotus.com/twitterreplybot/tweet-replier/" class="notification-link" aria-label="Learn more about Twitter | X  Reply Bot">Twitter | X  Reply Bot</a>
-
-              </div>
-            </div></div>
-          <div class="slider-controls">
-            <div class="slider-dots"></div>
+{# ============================================
+   TESTIMONIALS SECTION - Social Proof
+   ============================================ #}
+<section class="testimonials-section">
+  <div class="testimonials-container">
+    <div class="section-header">
+      <h2>Trusted by Creators & Marketers</h2>
+      <p>See what our readers are saying about their experience</p>
+    </div>
+    
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <p class="testimonial-text">
+          "This blog has become my go-to place for practical, actionable insights. 
+          I always leave with something I can use immediately."
+        </p>
+        <div class="testimonial-author">
+          <div class="author-avatar">AR</div>
+          <div class="author-info">
+            <div class="author-name">Alyssa R.</div>
+            <div class="author-role">Digital Strategist</div>
           </div>
         </div>
       </div>
       
-      <div class="browse-section">
-        <h2 class="section-title">Browse Articles</h2>
-        <p class="browse-description">Explore our complete collection of articles, tutorials, and insights.</p>
-        <a href="https://blog.evolvedlotus.com/blog/" class="browse-button">Browse All Articles</a>
+      <div class="testimonial-card">
+        <p class="testimonial-text">
+          "The articles are refreshingly clear and well organized. 
+          It feels like having a personal mentor for online growth."
+        </p>
+        <div class="testimonial-author">
+          <div class="author-avatar">MT</div>
+          <div class="author-info">
+            <div class="author-name">Marcus T.</div>
+            <div class="author-role">Small Business Owner</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="testimonial-card">
+        <p class="testimonial-text">
+          "Every time I visit, I end up bookmarking at least two new posts. It's that good."
+        </p>
+        <div class="testimonial-author">
+          <div class="author-avatar">LM</div>
+          <div class="author-info">
+            <div class="author-name">Lena M.</div>
+            <div class="author-role">Content Creator</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="testimonial-card">
+        <p class="testimonial-text">
+          "It feels like a resource hub built for creators, not just another blog."
+        </p>
+        <div class="testimonial-author">
+          <div class="author-avatar">SP</div>
+          <div class="author-info">
+            <div class="author-name">Sam P.</div>
+            <div class="author-role">Social Media Manager</div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-</div>
+</section>
+
+{# ============================================
+   CATEGORY HUB - Resource Panels
+   ============================================ #}
+<section class="categories-hub" id="categories">
+  <div class="categories-container">
+    <div class="hub-intro">
+      <h2>Explore by Topic</h2>
+      <p>
+        Browse our comprehensive library of resources organized by category. 
+        Each section is packed with expert insights, step-by-step guides, and proven strategies.
+      </p>
+    </div>
+    
+    <div class="category-grid">
+      {# Social Media Marketing Category #}
+      <div class="category-panel">
+        <div class="category-header">
+          <div class="category-icon">📱</div>
+          <div class="category-title-group">
+            <h3>Social Media Marketing</h3>
+            <span class="category-count">150+ Articles</span>
+          </div>
+        </div>
+        <p class="category-description">
+          Master the art of social media with proven strategies for growth, engagement, and conversion across all major platforms.
+        </p>
+        <div class="category-posts">
+          {% set socialMediaPosts = collections.blog | filterByTag('social-media') | reverse | limit(3) %}
+          {% if socialMediaPosts.length === 0 %}
+            {% set socialMediaPosts = collections.blog | reverse | limit(3) %}
+          {% endif %}
+          {% for post in socialMediaPosts %}
+          <div class="category-post-item">
+            <a href="{{ post.url }}" class="category-post-link">{{ post.data.title }}</a>
+          </div>
+          {% endfor %}
+        </div>
+        <a href="/blog/" class="view-all-link">View All Posts</a>
+      </div>
+      
+      {# Content Creation Category #}
+      <div class="category-panel">
+        <div class="category-header">
+          <div class="category-icon">✍️</div>
+          <div class="category-title-group">
+            <h3>Content Creation</h3>
+            <span class="category-count">120+ Articles</span>
+          </div>
+        </div>
+        <p class="category-description">
+          Learn how to create compelling content that resonates with your audience and drives meaningful engagement.
+        </p>
+        <div class="category-posts">
+          {% set contentPosts = collections.blog | filterByTag('content-creation') | reverse | limit(3) %}
+          {% if contentPosts.length === 0 %}
+            {% set contentPosts = collections.blog | reverse | limit(3) %}
+          {% endif %}
+          {% for post in contentPosts %}
+          <div class="category-post-item">
+            <a href="{{ post.url }}" class="category-post-link">{{ post.data.title }}</a>
+          </div>
+          {% endfor %}
+        </div>
+        <a href="/blog/" class="view-all-link">View All Posts</a>
+      </div>
+      
+      {# SEO & Analytics Category #}
+      <div class="category-panel">
+        <div class="category-header">
+          <div class="category-icon">📊</div>
+          <div class="category-title-group">
+            <h3>SEO & Analytics</h3>
+            <span class="category-count">80+ Articles</span>
+          </div>
+        </div>
+        <p class="category-description">
+          Boost your search rankings and understand your data with expert SEO tactics and analytics insights.
+        </p>
+        <div class="category-posts">
+          {% set seoPosts = collections.blog | filterByTag('seo') | reverse | limit(3) %}
+          {% if seoPosts.length === 0 %}
+            {% set seoPosts = collections.blog | reverse | limit(3) %}
+          {% endif %}
+          {% for post in seoPosts %}
+          <div class="category-post-item">
+            <a href="{{ post.url }}" class="category-post-link">{{ post.data.title }}</a>
+          </div>
+          {% endfor %}
+        </div>
+        <a href="/blog/" class="view-all-link">View All Posts</a>
+      </div>
+      
+      {# Digital Strategy Category #}
+      <div class="category-panel">
+        <div class="category-header">
+          <div class="category-icon">🎯</div>
+          <div class="category-title-group">
+            <h3>Digital Strategy</h3>
+            <span class="category-count">90+ Articles</span>
+          </div>
+        </div>
+        <p class="category-description">
+          Build a winning digital strategy with frameworks, templates, and actionable plans for sustainable growth.
+        </p>
+        <div class="category-posts">
+          {% set strategyPosts = collections.blog | filterByTag('strategy') | reverse | limit(3) %}
+          {% if strategyPosts.length === 0 %}
+            {% set strategyPosts = collections.blog | reverse | limit(3) %}
+          {% endif %}
+          {% for post in strategyPosts %}
+          <div class="category-post-item">
+            <a href="{{ post.url }}" class="category-post-link">{{ post.data.title }}</a>
+          </div>
+          {% endfor %}
+        </div>
+        <a href="/blog/" class="view-all-link">View All Posts</a>
+      </div>
+      
+      {# Tools & Automation Category #}
+      <div class="category-panel">
+        <div class="category-header">
+          <div class="category-icon">🛠️</div>
+          <div class="category-title-group">
+            <h3>Tools & Automation</h3>
+            <span class="category-count">60+ Articles</span>
+          </div>
+        </div>
+        <p class="category-description">
+          Discover the best tools and automation strategies to streamline your workflow and maximize productivity.
+        </p>
+        <div class="category-posts">
+          {% set toolsPosts = collections.blog | filterByTag('tools') | reverse | limit(3) %}
+          {% if toolsPosts.length === 0 %}
+            {% set toolsPosts = collections.blog | reverse | limit(3) %}
+          {% endif %}
+          {% for post in toolsPosts %}
+          <div class="category-post-item">
+            <a href="{{ post.url }}" class="category-post-link">{{ post.data.title }}</a>
+          </div>
+          {% endfor %}
+        </div>
+        <a href="/blog/" class="view-all-link">View All Posts</a>
+      </div>
+      
+      {# Growth Hacking Category #}
+      <div class="category-panel">
+        <div class="category-header">
+          <div class="category-icon">🚀</div>
+          <div class="category-title-group">
+            <h3>Growth Hacking</h3>
+            <span class="category-count">70+ Articles</span>
+          </div>
+        </div>
+        <p class="category-description">
+          Unlock rapid growth with innovative tactics, experiments, and proven growth hacking methodologies.
+        </p>
+        <div class="category-posts">
+          {% set growthPosts = collections.blog | filterByTag('growth') | reverse | limit(3) %}
+          {% if growthPosts.length === 0 %}
+            {% set growthPosts = collections.blog | reverse | limit(3) %}
+          {% endif %}
+          {% for post in growthPosts %}
+          <div class="category-post-item">
+            <a href="{{ post.url }}" class="category-post-link">{{ post.data.title }}</a>
+          </div>
+          {% endfor %}
+        </div>
+        <a href="/blog/" class="view-all-link">View All Posts</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+{# ============================================
+   CONTENT SECTIONS - Trending, Popular, New
+   ============================================ #}
+<section class="content-sections">
+  <div class="content-sections-container">
+    <div class="section-header">
+      <h2>What's Hot Right Now</h2>
+      <p>Explore trending articles, reader favorites, and fresh content</p>
+    </div>
+    
+    <div class="section-tabs">
+      <a href="#trending" class="tab-button active">🔥 Trending Now</a>
+      <a href="#popular" class="tab-button">⭐ Most Shared</a>
+      <a href="#new" class="tab-button">✨ New This Week</a>
+      <a href="#favorites" class="tab-button">❤️ Reader Favorites</a>
+    </div>
+    
+    <div class="featured-grid">
+      {% set featuredPosts = collections.blog | filterByTag('featured') | reverse | limit(6) %}
+      {% if featuredPosts.length === 0 %}
+        {% set featuredPosts = collections.blog | reverse | limit(6) %}
+      {% endif %}
+      {% for post in featuredPosts %}
+      <a href="{{ post.url }}" class="featured-card">
+        <img src="{{ post.data.image | default('/assets/images/default-blog.png') }}" 
+             alt="{{ post.data.imageAlt | default(post.data.title) }}" 
+             class="featured-image"
+             loading="lazy"
+             width="400"
+             height="225">
+        <div class="featured-content">
+          <span class="featured-badge">Featured</span>
+          <h3 class="featured-title">{{ post.data.title }}</h3>
+          <p class="featured-description">{{ post.data.description | truncate(120) }}</p>
+          <div class="featured-meta">
+            <span class="meta-item">📅 {{ post.data.date | dateFormat }}</span>
+            <span class="meta-item">⏱️ {{ post.data.readingTime | default('5 min read') }}</span>
+          </div>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{# ============================================
+   TOOLS & RESOURCES BAND
+   ============================================ #}
+<section class="tools-resources-band">
+  <div class="tools-container">
+    <div class="tools-header">
+      <h2>Free Tools & Resources</h2>
+      <p>Powerful tools to accelerate your digital growth</p>
+    </div>
+    
+    <div class="tools-grid">
+      <a href="https://tools.evolvedlotus.com/twitterreplybot/tweet-replier/" class="tool-card">
+        <span class="tool-icon">🤖</span>
+        <h3 class="tool-name">Twitter Reply Bot</h3>
+        <p class="tool-description">Generate realistic Twitter replies with AI. 5 free uses daily.</p>
+      </a>
+      
+      <a href="/blog/2025-10-22-plan-batch-and-grow-your-social-media/" class="tool-card">
+        <span class="tool-icon">📅</span>
+        <h3 class="tool-name">Content Calendar</h3>
+        <p class="tool-description">Free templates for Notion, Google Sheets, and Instagram planning.</p>
+      </a>
+      
+      <a href="https://tools.evolvedlotus.com" class="tool-card">
+        <span class="tool-icon">⚡</span>
+        <h3 class="tool-name">Growth Tools</h3>
+        <p class="tool-description">Access our complete suite of marketing and automation tools.</p>
+      </a>
+      
+      <a href="/blog/?category=templates" class="tool-card">
+        <span class="tool-icon">📋</span>
+        <h3 class="tool-name">Templates Library</h3>
+        <p class="tool-description">Download ready-to-use templates and cheat sheets.</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+{# ============================================
+   INSIGHTS PANEL
+   ============================================ #}
+<section class="insights-panel">
+  <div class="insights-container">
+    <div class="section-header">
+      <h2>Quick Insights</h2>
+      <p>Stay updated with the latest trends and popular resources</p>
+    </div>
+    
+    <div class="insights-grid">
+      <div class="insight-box">
+        <h3 class="insight-title">Top Resources</h3>
+        <ul class="insight-list">
+          <li>Complete Social Media Strategy Guide</li>
+          <li>SEO Checklist for 2025</li>
+          <li>Content Calendar Templates</li>
+          <li>Email Marketing Automation</li>
+          <li>Instagram Growth Tactics</li>
+        </ul>
+      </div>
+      
+      <div class="insight-box">
+        <h3 class="insight-title">Popular Tags</h3>
+        <ul class="insight-list">
+          <li>#SocialMediaMarketing</li>
+          <li>#ContentStrategy</li>
+          <li>#SEOTips</li>
+          <li>#DigitalGrowth</li>
+          <li>#MarketingAutomation</li>
+        </ul>
+      </div>
+      
+      <div class="insight-box">
+        <h3 class="insight-title">Latest Updates</h3>
+        <ul class="insight-list">
+          <li>New Twitter Reply Bot launched</li>
+          <li>Updated content calendar templates</li>
+          <li>Fresh SEO optimization guides</li>
+          <li>Weekly newsletter available</li>
+          <li>Community Discord active</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+{# ============================================
+   NEWSLETTER SIGNUP
+   ============================================ #}
+<section class="newsletter-section">
+  <div class="newsletter-container">
+    <h2>Get Weekly Insights</h2>
+    <p>Join thousands of creators and marketers receiving actionable tips every week</p>
+    <form class="newsletter-form" action="https://mailchi.mp/78ca0b0ef493/newsletter" method="get" target="_blank">
+      <input type="email" class="newsletter-input" placeholder="Enter your email" required>
+      <button type="submit" class="newsletter-button">Subscribe Now</button>
+    </form>
+  </div>
+</section>
+
+{# ============================================
+   QUICK ACCESS BUTTONS
+   ============================================ #}
+<section class="quick-access">
+  <div class="quick-access-container">
+    <h2>Start Your Journey</h2>
+    <div class="quick-buttons">
+      <a href="/blog/" class="quick-button">Browse Categories</a>
+      <a href="/blog/?sort=latest" class="quick-button">Read the Latest</a>
+      <a href="/blog/?filter=guides" class="quick-button">View All Guides</a>
+      <a href="/blog/?recommended=true" class="quick-button">Recommended For You</a>
+    </div>
+  </div>
+</section>
+
+{# ============================================
+   CALL TO ACTION - Community
+   ============================================ #}
+<section class="testimonials-section">
+  <div class="testimonials-container">
+    <div class="section-header">
+      <h2>Grow with EvolvedLotus</h2>
+      <p>Join a community of creators and entrepreneurs taking their digital presence to the next level</p>
+    </div>
+    
+    <div class="quick-buttons" style="margin-top: 30px;">
+      <a href="https://TinyUrl.com/EVLDiscord" class="quick-button">Join Our Discord</a>
+      <a href="https://www.evolvedlotus.com/" class="quick-button">Visit Our Website</a>
+      <a href="mailto:management@evolvedlotus.com" class="quick-button">Email Us</a>
+    </div>
+  </div>
+</section>

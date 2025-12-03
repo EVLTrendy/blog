@@ -2,136 +2,282 @@ backend:
   name: git-gateway
   branch: main
 
+# Publish mode for editorial workflow
+publish_mode: editorial_workflow
+
 media_folder: "src/assets/blog"
 public_folder: "/assets/blog"
 
+# Site URL for preview
+site_url: https://blog.evolvedlotus.com
+display_url: https://blog.evolvedlotus.com
+
+# Logo
+logo_url: https://blog.evolvedlotus.com/assets/blog/logo.png
+
+# Localization
+locale: 'en'
+
 collections:
+  # ============================================
+  # BLOG POSTS - Primary Content
+  # ============================================
+  - name: "blog"
+    label: "📝 Blog Posts"
+    label_singular: "Blog Post"
+    folder: "src/blog"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    preview_path: "blog/{{slug}}"
+    editor:
+      preview: true
+    summary: "{{title}} - {{date | date('YYYY-MM-DD')}} - {{editorialStatus}}"
+    sortable_fields: ['date', 'title', 'editorialStatus', 'hub']
+    view_filters:
+      - label: "Published"
+        field: editorialStatus
+        pattern: 'published'
+      - label: "Draft"
+        field: editorialStatus
+        pattern: 'draft'
+      - label: "Scheduled"
+        field: editorialStatus
+        pattern: 'scheduled'
+      - label: "Needs Update"
+        field: editorialStatus
+        pattern: 'needs-update'
+    view_groups:
+      - label: "Status"
+        field: editorialStatus
+      - label: "Content Hub"
+        field: hub
+    fields:
+      # ============================================
+      # CORE CONTENT
+      # ============================================
+      - label: "📄 Basic Information"
+        name: "basic_info"
+        widget: "object"
+        collapsed: false
+        fields:
+          - { label: "Title", name: "title", widget: "string", hint: "Compelling, SEO-friendly title (50-60 characters ideal)" }
+          - { label: "Description", name: "description", widget: "text", hint: "Meta description for SEO (150-160 characters ideal)" }
+          - { label: "Author", name: "author", widget: "string", default: "EvolvedLotus" }
+          - { label: "Publish Date", name: "date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: "HH:mm", format: "YYYY-MM-DDTHH:mm:ss.SSSZ" }
+      
+      # ============================================
+      # MEDIA
+      # ============================================
+      - label: "🖼️ Featured Image"
+        name: "media"
+        widget: "object"
+        collapsed: false
+        fields:
+          - { label: "Image", name: "image", widget: "image", hint: "Recommended: 1200x630px for optimal social sharing" }
+          - { label: "Image Alt Text", name: "imageAlt", widget: "string", hint: "Describe the image for accessibility and SEO" }
+      
+      # ============================================
+      # ORGANIZATION
+      # ============================================
+      - label: "🏷️ Organization & Tags"
+        name: "organization"
+        widget: "object"
+        collapsed: false
+        fields:
+          - { label: "Tags", name: "tags", widget: "list", default: ["post"], hint: "Add relevant tags for categorization" }
+          - { label: "Content Hub", name: "hub", widget: "relation", collection: "hubs", search_fields: ["title"], value_field: "hubCollection", display_fields: ["title"], required: false, hint: "Assign to a content hub (e.g., TikTok, Instagram)" }
+          - label: "Featured Post"
+            name: "featured"
+            widget: "boolean"
+            default: false
+            required: false
+            hint: "Show this post in featured sections"
+      
+      # ============================================
+      # EDITORIAL WORKFLOW
+      # ============================================
+      - label: "📋 Editorial Workflow"
+        name: "editorial"
+        widget: "object"
+        collapsed: true
+        fields:
+          - label: "Status"
+            name: "editorialStatus"
+            widget: "select"
+            options:
+              - { label: "📝 Draft", value: "draft" }
+              - { label: "👀 In Review", value: "in-review" }
+              - { label: "✅ Approved", value: "approved" }
+              - { label: "📅 Scheduled", value: "scheduled" }
+              - { label: "🚀 Published", value: "published" }
+              - { label: "🔄 Needs Update", value: "needs-update" }
+            default: "draft"
+          - { label: "Scheduled Publish Date", name: "scheduledDate", widget: "datetime", required: false, hint: "When to publish this post" }
+          - { label: "Last Updated", name: "lastUpdated", widget: "datetime", required: false, hint: "Track content freshness" }
+          - { label: "Next Review Date", name: "nextReview", widget: "datetime", required: false, hint: "When to review/update" }
+          - { label: "Editorial Notes", name: "editorialNotes", widget: "text", required: false, hint: "Internal notes for editors" }
+      
+      # ============================================
+      # SEO OPTIMIZATION
+      # ============================================
+      - label: "🎯 SEO Optimization"
+        name: "seo"
+        widget: "object"
+        collapsed: true
+        fields:
+          - { label: "Focus Keyword", name: "focusKeyword", widget: "string", required: false, hint: "Primary keyword to rank for" }
+          - label: "Search Intent"
+            name: "searchIntent"
+            widget: "select"
+            options: ["Informational", "Commercial", "Transactional", "Navigational"]
+            required: false
+            hint: "What is the user looking for?"
+          - { label: "Meta Title Override", name: "metaTitle", widget: "string", required: false, hint: "Custom title for search results (leave blank to use post title)" }
+          - { label: "Meta Description Override", name: "metaDescription", widget: "text", required: false, hint: "Custom description for search results" }
+          - { label: "Canonical URL", name: "canonical", widget: "string", required: false, hint: "Prevent duplicate content issues" }
+          - { label: "Target Keywords", name: "targetKeywords", widget: "list", required: false, hint: "Additional keywords to target" }
+          - { label: "Internal Links", name: "internalLinks", widget: "list", required: false, hint: "Related posts to link to" }
+      
+      # ============================================
+      # CONTENT STRATEGY
+      # ============================================
+      - label: "📊 Content Strategy"
+        name: "strategy"
+        widget: "object"
+        collapsed: true
+        fields:
+          - label: "Content Type"
+            name: "contentType"
+            widget: "select"
+            options: ["Tutorial", "Guide", "Listicle", "Case Study", "Review", "News", "Opinion"]
+            required: false
+          - { label: "Evergreen Content", name: "evergreen", widget: "boolean", default: false, hint: "Content that remains relevant over time" }
+          - { label: "Seasonal Content", name: "seasonal", widget: "boolean", default: false, hint: "Time-sensitive or seasonal content" }
+          - { label: "Content Theme", name: "theme", widget: "string", required: false, hint: "Monthly theme or campaign" }
+          - { label: "Related Event", name: "event", widget: "string", required: false, hint: "Holiday, season, or special event" }
+          - label: "Priority Level"
+            name: "priority"
+            widget: "select"
+            options: ["Low", "Medium", "High", "Urgent"]
+            default: "Medium"
+            required: false
+      
+      # ============================================
+      # CONTENT SERIES
+      # ============================================
+      - label: "📚 Content Series"
+        name: "series"
+        widget: "object"
+        collapsed: true
+        required: false
+        fields:
+          - { label: "Series Name", name: "name", widget: "string", required: false, hint: "Name of the series this post belongs to" }
+          - { label: "Part Number", name: "part", widget: "number", required: false, min: 1 }
+          - { label: "Total Parts", name: "total", widget: "number", required: false, min: 1 }
+          - { label: "Series Description", name: "description", widget: "text", required: false }
+      
+      # ============================================
+      # REPURPOSING TRACKER
+      # ============================================
+      - label: "🔄 Content Repurposing"
+        name: "repurposing"
+        widget: "object"
+        collapsed: true
+        required: false
+        fields:
+          - { label: "YouTube Video URL", name: "youtube", widget: "string", required: false, pattern: ['^https?://(www\\.)?youtube\\.com.*|^https?://(www\\.)?youtu\\.be.*', 'Must be a valid YouTube URL'] }
+          - { label: "TikTok Profile/Hashtag", name: "tiktok", widget: "string", required: false }
+          - { label: "Instagram Post URL", name: "instagram", widget: "string", required: false, pattern: ['^https?://(www\\.)?instagram\\.com.*', 'Must be a valid Instagram URL'] }
+          - { label: "Twitter Thread URL", name: "twitter", widget: "string", required: false, pattern: ['^https?://(www\\.)?twitter\\.com.*|^https?://(www\\.)?x\\.com.*', 'Must be a valid Twitter/X URL'] }
+          - { label: "Email Newsletter", name: "email", widget: "boolean", default: false }
+          - { label: "Podcast Episode URL", name: "podcast", widget: "string", required: false }
+          - { label: "LinkedIn Post URL", name: "linkedin", widget: "string", required: false }
+          - { label: "Repurposing Notes", name: "notes", widget: "text", required: false, hint: "Track repurposing ideas and status" }
+      
+      # ============================================
+      # PERFORMANCE TRACKING
+      # ============================================
+      - label: "📈 Performance Metrics"
+        name: "performance"
+        widget: "object"
+        collapsed: true
+        required: false
+        fields:
+          - { label: "Performance Score", name: "score", widget: "number", min: 0, max: 100, required: false, hint: "0-100 based on analytics (auto-updated)" }
+          - { label: "Page Views (Monthly)", name: "pageViews", widget: "number", required: false }
+          - { label: "Avg. Time on Page (seconds)", name: "avgTime", widget: "number", required: false }
+          - { label: "Bounce Rate (%)", name: "bounceRate", widget: "number", min: 0, max: 100, required: false }
+          - { label: "Conversion Rate (%)", name: "conversionRate", widget: "number", min: 0, max: 100, required: false }
+          - { label: "Social Shares", name: "socialShares", widget: "number", required: false }
+          - { label: "Competitor Analysis Notes", name: "competitorNotes", widget: "text", required: false }
+      
+      # ============================================
+      # READING TIME (Auto-calculated)
+      # ============================================
+      - { label: "Reading Time (min)", name: "readingTime", widget: "number", required: false, hint: "Auto-calculated by build script" }
+      
+      # ============================================
+      # MAIN CONTENT
+      # ============================================
+      - { label: "✍️ Content", name: "body", widget: "markdown", hint: "Write your blog post content here" }
+
+  # ============================================
+  # CONTENT HUBS
+  # ============================================
+  - name: "hubs"
+    label: "🎯 Content Hubs"
+    label_singular: "Content Hub"
+    folder: "src/hubs"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string", hint: "Hub name (e.g., 'TikTok Marketing')" }
+      - { label: "Description", name: "description", widget: "text", hint: "Brief description of this content hub" }
+      - { label: "Hub Collection Tag", name: "hubCollection", widget: "string", hint: "Tag used to filter posts (e.g., 'tiktok', 'instagram')" }
+      - { label: "Icon/Emoji", name: "icon", widget: "string", required: false, hint: "Emoji or icon for visual identification" }
+      - { label: "Permalink", name: "permalink", widget: "string", hint: "URL path (e.g., '/x-tiktok/')" }
+      - { label: "Featured", name: "featured", widget: "boolean", default: false, hint: "Show in featured hubs section" }
+      - { label: "Layout", name: "layout", widget: "hidden", default: "hub.njk" }
+
+  # ============================================
+  # NOTIFICATIONS
+  # ============================================
   - name: "notifications"
-    label: "Notifications"
+    label: "🔔 Notifications"
+    label_singular: "Notification"
     folder: "src/notifications"
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Description", name: "description", widget: "text" }
-      - { label: "Link", name: "link", widget: "string", required: false }
+      - { label: "Link", name: "link", widget: "string", required: false, hint: "Optional link for 'Learn More'" }
+      - { label: "Type", name: "type", widget: "select", options: ["info", "success", "warning", "announcement"], default: "info" }
       - { label: "Date", name: "date", widget: "datetime" }
+      - { label: "Active", name: "active", widget: "boolean", default: true, hint: "Show this notification" }
       - { label: "Tags", name: "tags", widget: "hidden", default: "notifications" }
 
-  - name: "hubs"
-    label: "Content Hubs"
-    folder: "src/hubs"
-    create: true
-    slug: "{{slug}}"
-    fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Description", name: "description", widget: "text" }
-      - { label: "Hub Collection Tag", name: "hubCollection", widget: "string", hint: "Tag used to filter posts for this hub (e.g., tiktok, instagram)" }
-      - { label: "Permalink", name: "permalink", widget: "string" }
-      - { label: "Layout", name: "layout", widget: "hidden", default: "hub.njk" }
-
-  - name: "blog"
-    label: "Blog Posts"
-    folder: "src/blog"
-    create: true
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
-    fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Description", name: "description", widget: "text" }
-      - { label: "Author", name: "author", widget: "string", default: "EvolvedLotus" }
-      - { label: "Date", name: "date", widget: "datetime" }
-      - { label: "Featured Image", name: "image", widget: "image" }
-      - { label: "Image Alt Text", name: "imageAlt", widget: "string" }
-      - { label: "Tags", name: "tags", widget: "list", default: ["post"] }
-      - { label: "Content Hub", name: "hub", widget: "relation", collection: "hubs", search_fields: ["title"], value_field: "hubCollection", display_fields: ["title"], required: false }
-      - { label: "Reading Time (min)", name: "readingTime", widget: "number", required: false, hint: "Auto-calculated by build script" }
-      
-      # Editorial Workflow
-      - label: "Editorial Status"
-        name: "editorialStatus"
-        widget: "select"
-        options: ["draft", "in-review", "approved", "scheduled", "published", "needs-update"]
-        default: "draft"
-        required: false
-      
-      - { label: "Scheduled Publish Date", name: "scheduledDate", widget: "datetime", required: false, hint: "For content calendar planning" }
-      - { label: "Last Updated", name: "lastUpdated", widget: "datetime", required: false, hint: "Track content freshness" }
-      - { label: "Next Review Date", name: "nextReview", widget: "datetime", required: false, hint: "When to review/update this content" }
-      
-      # Content Series & Organization
-      - label: "Content Series"
-        name: "series"
-        widget: "object"
-        collapsed: true
-        required: false
-        fields:
-          - { label: "Series Name", name: "name", widget: "string", required: false }
-          - { label: "Part Number", name: "part", widget: "number", required: false }
-          - { label: "Total Parts", name: "total", widget: "number", required: false }
-      
-      # Content Repurposing Tracking
-      - label: "Repurposing"
-        name: "repurposing"
-        widget: "object"
-        collapsed: true
-        required: false
-        fields:
-          - { label: "YouTube Video", name: "youtube", widget: "string", required: false, hint: "YouTube video URL" }
-          - { label: "TikTok Series", name: "tiktok", widget: "string", required: false, hint: "TikTok profile or hashtag" }
-          - { label: "Instagram Post", name: "instagram", widget: "string", required: false, hint: "Instagram post URL" }
-          - { label: "Email Newsletter", name: "email", widget: "boolean", default: false, required: false }
-          - { label: "Podcast Episode", name: "podcast", widget: "string", required: false, hint: "Podcast episode URL" }
-          - { label: "Repurposing Notes", name: "notes", widget: "text", required: false }
-      
-      # Performance Tracking
-      - label: "Performance"
-        name: "performance"
-        widget: "object"
-        collapsed: true
-        required: false
-        fields:
-          - { label: "Performance Score", name: "score", widget: "number", min: 0, max: 100, required: false, hint: "0-100 based on analytics" }
-          - { label: "Target Keywords", name: "targetKeywords", widget: "list", required: false }
-          - { label: "Competitor Analysis", name: "competitorNotes", widget: "text", required: false }
-          - { label: "Seasonal Content", name: "seasonal", widget: "boolean", default: false, required: false }
-          - { label: "Evergreen Content", name: "evergreen", widget: "boolean", default: false, required: false }
-      
-      # SEO Settings (Enhanced)
-      - label: "SEO Settings"
-        name: "seo"
-        widget: "object"
-        collapsed: true
-        required: false
-        fields:
-          - { label: "Focus Keyword", name: "focusKeyword", widget: "string", required: false }
-          - { label: "Search Intent", name: "searchIntent", widget: "select", options: ["Informational", "Commercial", "Transactional", "Navigational"], required: false }
-          - { label: "Meta Title Override", name: "metaTitle", widget: "string", required: false, hint: "Leave blank to use post title" }
-          - { label: "Meta Description Override", name: "metaDescription", widget: "text", required: false, hint: "Leave blank to use post description" }
-          - { label: "Canonical URL", name: "canonical", widget: "string", required: false }
-      
-      # Content Calendar Integration
-      - label: "Calendar Planning"
-        name: "calendar"
-        widget: "object"
-        collapsed: true
-        required: false
-        fields:
-          - { label: "Content Theme", name: "theme", widget: "string", required: false, hint: "Monthly theme or campaign" }
-          - { label: "Related to Event", name: "event", widget: "string", required: false, hint: "Holiday, season, or special event" }
-          - { label: "Priority Level", name: "priority", widget: "select", options: ["low", "medium", "high", "urgent"], default: "medium", required: false }
-      
-      - { label: "Body", name: "body", widget: "markdown" }
-
+  # ============================================
+  # AUTHORS
+  # ============================================
   - name: "authors"
-    label: "Authors"
+    label: "👤 Authors"
+    label_singular: "Author"
     folder: "src/authors"
     create: true
     slug: "{{slug}}"
     fields:
       - { label: "Name", name: "title", widget: "string" }
-      - { label: "Bio", name: "bio", widget: "text" }
+      - { label: "Bio", name: "bio", widget: "text", hint: "Short author biography" }
       - { label: "Avatar", name: "image", widget: "image" }
-      - { label: "Social Links", name: "social", widget: "object", fields: [
-          { label: "Twitter", name: "twitter", widget: "string", required: false },
-          { label: "LinkedIn", name: "linkedin", widget: "string", required: false }
-        ]}
+      - { label: "Email", name: "email", widget: "string", required: false }
+      - { label: "Website", name: "website", widget: "string", required: false }
+      - label: "Social Links"
+        name: "social"
+        widget: "object"
+        fields:
+          - { label: "Twitter/X", name: "twitter", widget: "string", required: false }
+          - { label: "LinkedIn", name: "linkedin", widget: "string", required: false }
+          - { label: "Instagram", name: "instagram", widget: "string", required: false }
+          - { label: "TikTok", name: "tiktok", widget: "string", required: false }
+          - { label: "YouTube", name: "youtube", widget: "string", required: false }

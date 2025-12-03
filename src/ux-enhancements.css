@@ -4,84 +4,108 @@
    ============================================ */
 
 /* ============================================
+   SKIP LINK - ACCESSIBILITY
+   ============================================ */
+
+/* Hide skip link visually but keep it accessible for keyboard users */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: #33bdef;
+    color: white;
+    padding: 8px 16px;
+    text-decoration: none;
+    border-radius: 0 0 4px 0;
+    font-weight: 600;
+    z-index: 1000;
+    transition: top 0.3s ease;
+}
+
+/* Show skip link when focused (keyboard navigation) */
+.skip-link:focus {
+    top: 0;
+}
+
+/* ============================================
    MAIN CONTAINER & LAYOUT FLUSH
    ============================================ */
 
 /* Ensure the main container spans the full width to allow for full-width backgrounds */
-.main-container {
-    width: 100% !important;
-    max-width: 100% !important;
-    padding: 0 !important;
-    margin: 0 !important;
+body .main-container {
+    width: 100%;
+    max-width: 100%;
+    padding: 0;
+    margin: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
     /* Remove any default top margin to be flush with header */
-    margin-top: 0 !important;
+    margin-top: 0;
 }
 
 /* The content area wraps the actual content. 
    We let it span full width so inner sections can decide their own constraints. */
-.content-area {
+body .content-area {
     width: 100%;
-    max-width: 100% !important;
+    max-width: 100%;
     margin: 0 auto;
     padding: 0;
 }
 
 /* Constrain specific inner sections to a reasonable max-width for readability */
-.maingroupdiv,
-.split-container,
-.blog-grid,
-.article-with-toc,
-.articlesection {
-    max-width: 1400px !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-    padding-left: 1rem !important;
-    padding-right: 1rem !important;
+body .maingroupdiv,
+body .split-container,
+body .blog-grid,
+body .article-with-toc,
+body .articlesection {
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
     width: 100%;
 }
 
 /* Ensure the hero section background spans full width */
-.maindiv {
-    width: 100% !important;
-    max-width: 100% !important;
+body .maindiv {
+    width: 100%;
+    max-width: 100%;
     background: linear-gradient(135deg, #f0f5fa 0%, #e3f2fd 100%);
     padding-bottom: 2rem;
     /* Add some breathing room at the bottom */
 }
 
 /* Ensure the feature section background spans full width */
-.featurediv {
-    width: 100% !important;
-    max-width: 100% !important;
+body .featurediv {
+    width: 100%;
+    max-width: 100%;
     background-color: #ffffff;
     /* Explicit white background */
 }
 
 /* Adjust header spacing if needed */
-header {
-    margin-bottom: 0 !important;
+body header {
+    margin-bottom: 0;
     position: relative;
     z-index: 100;
 }
 
 /* Refine Article Page Layout */
-.article_bodydiv {
-    margin: 0 auto !important;
+body .article_bodydiv {
+    margin: 0 auto;
     /* max-width: 68ch is already set in enhancements.css */
 }
 
 /* Fix for specific sections to ensure they don't overflow or look weird */
-.split-container {
-    padding-top: 2rem !important;
-    padding-bottom: 2rem !important;
+body .split-container {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
 }
 
 /* Refine spacing for a "flush" look */
-.spacediv20 {
-    height: 2rem !important;
+body .spacediv20 {
+    height: 2rem;
     /* Standardize spacer */
 }
 

@@ -29,6 +29,7 @@ module.exports = function (eleventyConfig) {
     eleventyConfig.addPassthroughCopy('./src/fonts.css');
     eleventyConfig.addPassthroughCopy('./src/dark-mode.css');
     eleventyConfig.addPassthroughCopy('./src/article-layout.css');
+    eleventyConfig.addPassthroughCopy('./src/landing-page.css');
     eleventyConfig.addPassthroughCopy('./src/assets');
     eleventyConfig.addPassthroughCopy('./src/admin');
     eleventyConfig.addPassthroughCopy('./src/.well-known');
@@ -375,6 +376,32 @@ module.exports = function (eleventyConfig) {
             const itemTags = item.data.tags || [];
             return itemTags.includes(tag);
         });
+    });
+
+    // Add reverse filter for reversing arrays
+    eleventyConfig.addFilter("reverse", function (array) {
+        if (!Array.isArray(array)) return array;
+        return [...array].reverse();
+    });
+
+    // Add truncate filter for truncating strings
+    eleventyConfig.addFilter("truncate", function (str, length = 100) {
+        if (!str || typeof str !== 'string') return '';
+        if (str.length <= length) return str;
+        return str.substring(0, length).trim() + '...';
+    });
+
+    // Add dateFormat filter for formatting dates
+    eleventyConfig.addFilter("dateFormat", function (date) {
+        if (!date) return '';
+        let dateObj = date;
+        if (typeof date === 'string') {
+            dateObj = new Date(date.replace(/^['\"]+|['\"]+$/g, ''));
+        }
+        if (dateObj instanceof Date && !isNaN(dateObj.getTime())) {
+            return DateTime.fromJSDate(dateObj).toLocaleString(DateTime.DATE_MED);
+        }
+        return '';
     });
 
     // Add series-related filters for content series navigation

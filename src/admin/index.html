@@ -1,108 +1,605 @@
 <!doctype html>
-<html>
+<html lang="en">
 
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex, nofollow" />
-  <title>Content Manager</title>
-  <link rel="canonical" href="https://blog.evolvedlotus.com/admin/">
+  <title>EvolvedLotus Content Manager</title>
+  <link rel="canonical" href="https://blog.evolvedlotus.com/admin/" />
+  <link rel="icon" href="/assets/blog/favicon.ico" type="image/x-icon" />
+
+  <!-- Netlify Identity Widget -->
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
   <style>
-    /* Custom CMS UI Enhancements */
+    /* ============================================
+       MODERN CMS DESIGN SYSTEM
+       ============================================ */
+
     :root {
-      --brand-blue: #33bdef;
-      --brand-dark: #1e293b;
-      --brand-light: #f1f5f9;
+      /* Brand Colors */
+      --brand-primary: #33bdef;
+      --brand-primary-dark: #019ad2;
+      --brand-primary-light: #e8f7fc;
+
+      /* Neutrals */
+      --neutral-50: #f8fafc;
+      --neutral-100: #f1f5f9;
+      --neutral-200: #e2e8f0;
+      --neutral-300: #cbd5e1;
+      --neutral-400: #94a3b8;
+      --neutral-500: #64748b;
+      --neutral-600: #475569;
+      --neutral-700: #334155;
+      --neutral-800: #1e293b;
+      --neutral-900: #0f172a;
+
+      /* Semantic Colors */
+      --success: #10b981;
+      --success-light: #d1fae5;
+      --warning: #f59e0b;
+      --warning-light: #fef3c7;
+      --error: #ef4444;
+      --error-light: #fee2e2;
+      --info: #3b82f6;
+      --info-light: #dbeafe;
+
+      /* Shadows */
+      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+      --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+
+      /* Spacing */
+      --spacing-xs: 0.25rem;
+      --spacing-sm: 0.5rem;
+      --spacing-md: 1rem;
+      --spacing-lg: 1.5rem;
+      --spacing-xl: 2rem;
+      --spacing-2xl: 3rem;
+
+      /* Border Radius */
+      --radius-sm: 0.375rem;
+      --radius-md: 0.5rem;
+      --radius-lg: 0.75rem;
+      --radius-xl: 1rem;
+
+      /* Typography */
+      --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     }
 
-    /* Sidebar customization */
-    [class*="SidebarContainer"] {
-      background-color: var(--brand-dark) !important;
+    /* ============================================
+       GLOBAL RESETS & BASE STYLES
+       ============================================ */
+
+    * {
+      box-sizing: border-box;
     }
 
+    body {
+      font-family: var(--font-family) !important;
+      background: var(--neutral-50) !important;
+      color: var(--neutral-900) !important;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* ============================================
+       SIDEBAR CUSTOMIZATION
+       ============================================ */
+
+    /* Sidebar Container */
+    [class*="SidebarContainer"],
+    [class*="AppHeaderContent"] {
+      background: linear-gradient(180deg, var(--neutral-800) 0%, var(--neutral-900) 100%) !important;
+      border-right: 1px solid var(--neutral-700) !important;
+    }
+
+    /* Sidebar Navigation Links */
     [class*="SidebarNavLink"] {
-      border-left: 4px solid transparent;
+      border-left: 3px solid transparent !important;
+      margin: var(--spacing-xs) var(--spacing-sm) !important;
+      border-radius: var(--radius-md) !important;
+      transition: all 0.2s ease !important;
+      font-weight: 500 !important;
+      padding: var(--spacing-sm) var(--spacing-md) !important;
     }
 
-    [class*="SidebarNavLink"].active {
-      background-color: rgba(255, 255, 255, 0.1) !important;
-      border-left-color: var(--brand-blue) !important;
+    [class*="SidebarNavLink"]:hover {
+      background: rgba(255, 255, 255, 0.08) !important;
+      transform: translateX(2px);
     }
 
-    /* Button customization */
-    button[class*="Button"] {
-      border-radius: 6px !important;
+    [class*="SidebarNavLink"].active,
+    [class*="SidebarNavLink"][class*="active"] {
+      background: rgba(51, 189, 239, 0.15) !important;
+      border-left-color: var(--brand-primary) !important;
+      color: var(--brand-primary) !important;
+    }
+
+    /* Sidebar Icons */
+    [class*="SidebarNavLink"] svg {
+      opacity: 0.8;
+      transition: opacity 0.2s ease;
+    }
+
+    [class*="SidebarNavLink"]:hover svg,
+    [class*="SidebarNavLink"].active svg {
+      opacity: 1;
+    }
+
+    /* ============================================
+       HEADER CUSTOMIZATION
+       ============================================ */
+
+    [class*="AppHeader"] {
+      background: white !important;
+      border-bottom: 1px solid var(--neutral-200) !important;
+      box-shadow: var(--shadow-sm) !important;
+    }
+
+    [class*="AppHeaderButton"] {
+      border-radius: var(--radius-md) !important;
       font-weight: 600 !important;
+      transition: all 0.2s ease !important;
     }
 
-    /* Editor customization */
-    [class*="EditorContainer"] {
-      background-color: var(--brand-light) !important;
+    [class*="AppHeaderButton"]:hover {
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-md) !important;
     }
 
-    .admin-footer {
+    /* ============================================
+       BUTTON CUSTOMIZATION
+       ============================================ */
+
+    button[class*="Button"],
+    [class*="StyledButton"] {
+      border-radius: var(--radius-md) !important;
+      font-weight: 600 !important;
+      transition: all 0.2s ease !important;
+      font-family: var(--font-family) !important;
+      padding: var(--spacing-sm) var(--spacing-lg) !important;
+    }
+
+    button[class*="Button"]:hover,
+    [class*="StyledButton"]:hover {
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-md) !important;
+    }
+
+    /* Primary Button */
+    button[class*="Button"][class*="primary"],
+    [class*="StyledButton"][class*="primary"] {
+      background: linear-gradient(135deg, var(--brand-primary) 0%, var(--brand-primary-dark) 100%) !important;
+      border: none !important;
+    }
+
+    /* Secondary Button */
+    button[class*="Button"][class*="secondary"] {
+      background: var(--neutral-100) !important;
+      color: var(--neutral-700) !important;
+      border: 1px solid var(--neutral-300) !important;
+    }
+
+    button[class*="Button"][class*="secondary"]:hover {
+      background: var(--neutral-200) !important;
+    }
+
+    /* ============================================
+       CARD & PANEL CUSTOMIZATION
+       ============================================ */
+
+    [class*="Card"],
+    [class*="Panel"],
+    [class*="CollectionCard"] {
+      background: white !important;
+      border-radius: var(--radius-lg) !important;
+      box-shadow: var(--shadow-md) !important;
+      border: 1px solid var(--neutral-200) !important;
+      transition: all 0.2s ease !important;
+    }
+
+    [class*="Card"]:hover,
+    [class*="CollectionCard"]:hover {
+      box-shadow: var(--shadow-lg) !important;
+      transform: translateY(-2px);
+    }
+
+    /* ============================================
+       FORM FIELD CUSTOMIZATION
+       ============================================ */
+
+    /* Input Fields */
+    input[type="text"],
+    input[type="email"],
+    input[type="url"],
+    input[type="number"],
+    input[type="date"],
+    input[type="datetime-local"],
+    textarea,
+    select,
+    [class*="Input"],
+    [class*="TextArea"] {
+      border-radius: var(--radius-md) !important;
+      border: 1px solid var(--neutral-300) !important;
+      padding: var(--spacing-sm) var(--spacing-md) !important;
+      font-family: var(--font-family) !important;
+      transition: all 0.2s ease !important;
+      background: white !important;
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus,
+    [class*="Input"]:focus,
+    [class*="TextArea"]:focus {
+      outline: none !important;
+      border-color: var(--brand-primary) !important;
+      box-shadow: 0 0 0 3px var(--brand-primary-light) !important;
+    }
+
+    /* Field Labels */
+    label,
+    [class*="FieldLabel"] {
+      font-weight: 600 !important;
+      color: var(--neutral-700) !important;
+      margin-bottom: var(--spacing-xs) !important;
+      font-size: 0.875rem !important;
+    }
+
+    /* Field Hints */
+    [class*="FieldHint"],
+    [class*="hint"] {
+      color: var(--neutral-500) !important;
+      font-size: 0.8125rem !important;
+      font-style: italic;
+      margin-top: var(--spacing-xs) !important;
+    }
+
+    /* ============================================
+       EDITOR CUSTOMIZATION
+       ============================================ */
+
+    [class*="EditorContainer"],
+    [class*="EditorControl"] {
+      background: white !important;
+      border-radius: var(--radius-lg) !important;
+      box-shadow: var(--shadow-md) !important;
+    }
+
+    [class*="EditorToolbar"] {
+      background: var(--neutral-50) !important;
+      border-bottom: 1px solid var(--neutral-200) !important;
+      border-radius: var(--radius-lg) var(--radius-lg) 0 0 !important;
+      padding: var(--spacing-sm) !important;
+    }
+
+    [class*="EditorToolbar"] button {
+      border-radius: var(--radius-sm) !important;
+      transition: all 0.2s ease !important;
+    }
+
+    [class*="EditorToolbar"] button:hover {
+      background: var(--neutral-200) !important;
+    }
+
+    /* Markdown Editor */
+    [class*="MarkdownControl"] {
+      font-family: 'Monaco', 'Menlo', 'Consolas', monospace !important;
+      line-height: 1.8 !important;
+    }
+
+    /* ============================================
+       COLLECTION VIEW CUSTOMIZATION
+       ============================================ */
+
+    [class*="CollectionTop"] {
+      background: white !important;
+      border-radius: var(--radius-lg) !important;
+      padding: var(--spacing-lg) !important;
+      margin-bottom: var(--spacing-lg) !important;
+      box-shadow: var(--shadow-sm) !important;
+    }
+
+    [class*="CollectionControls"] {
+      gap: var(--spacing-md) !important;
+    }
+
+    /* Search Bar */
+    [class*="SearchInput"] {
+      border-radius: var(--radius-lg) !important;
+      padding: var(--spacing-sm) var(--spacing-lg) !important;
+      border: 2px solid var(--neutral-200) !important;
+    }
+
+    [class*="SearchInput"]:focus {
+      border-color: var(--brand-primary) !important;
+      box-shadow: 0 0 0 3px var(--brand-primary-light) !important;
+    }
+
+    /* ============================================
+       ENTRY CARD CUSTOMIZATION
+       ============================================ */
+
+    [class*="EntryCard"] {
+      background: white !important;
+      border-radius: var(--radius-lg) !important;
+      border: 1px solid var(--neutral-200) !important;
+      padding: var(--spacing-lg) !important;
+      margin-bottom: var(--spacing-md) !important;
+      transition: all 0.2s ease !important;
+    }
+
+    [class*="EntryCard"]:hover {
+      box-shadow: var(--shadow-lg) !important;
+      border-color: var(--brand-primary) !important;
+      transform: translateY(-2px);
+    }
+
+    /* ============================================
+       WIDGET CUSTOMIZATION
+       ============================================ */
+
+    /* Object Widget */
+    [class*="ObjectControl"] {
+      border: 1px solid var(--neutral-200) !important;
+      border-radius: var(--radius-lg) !important;
+      padding: var(--spacing-lg) !important;
+      background: var(--neutral-50) !important;
+      margin-bottom: var(--spacing-md) !important;
+    }
+
+    /* List Widget */
+    [class*="ListControl"] {
+      border: 1px solid var(--neutral-200) !important;
+      border-radius: var(--radius-lg) !important;
+      padding: var(--spacing-md) !important;
+    }
+
+    [class*="ListItem"] {
+      background: white !important;
+      border-radius: var(--radius-md) !important;
+      margin-bottom: var(--spacing-sm) !important;
+      padding: var(--spacing-sm) !important;
+      border: 1px solid var(--neutral-200) !important;
+    }
+
+    /* ============================================
+       STATUS BADGES
+       ============================================ */
+
+    [class*="Badge"],
+    [class*="StatusBadge"] {
+      border-radius: var(--radius-lg) !important;
+      padding: var(--spacing-xs) var(--spacing-md) !important;
+      font-weight: 600 !important;
+      font-size: 0.75rem !important;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* ============================================
+       TOAST NOTIFICATIONS
+       ============================================ */
+
+    [class*="Toast"],
+    [class*="Notification"] {
+      border-radius: var(--radius-lg) !important;
+      box-shadow: var(--shadow-xl) !important;
+      padding: var(--spacing-lg) !important;
+      font-weight: 500 !important;
+    }
+
+    [class*="Toast"][class*="success"] {
+      background: var(--success-light) !important;
+      border-left: 4px solid var(--success) !important;
+    }
+
+    [class*="Toast"][class*="error"] {
+      background: var(--error-light) !important;
+      border-left: 4px solid var(--error) !important;
+    }
+
+    [class*="Toast"][class*="info"] {
+      background: var(--info-light) !important;
+      border-left: 4px solid var(--info) !important;
+    }
+
+    /* ============================================
+       LOADING STATES
+       ============================================ */
+
+    [class*="Loader"],
+    [class*="Spinner"] {
+      color: var(--brand-primary) !important;
+    }
+
+    /* ============================================
+       SCROLLBAR CUSTOMIZATION
+       ============================================ */
+
+    ::-webkit-scrollbar {
+      width: 10px;
+      height: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--neutral-100);
+      border-radius: var(--radius-md);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--neutral-300);
+      border-radius: var(--radius-md);
+      transition: background 0.2s ease;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--neutral-400);
+    }
+
+    /* ============================================
+       FOOTER NAVIGATION
+       ============================================ */
+
+    .cms-footer {
       position: fixed;
       bottom: 0;
       left: 0;
       right: 0;
-      background: #f8f9fa;
-      padding: 1rem;
-      text-align: center;
-      border-top: 1px solid #dee2e6;
+      background: white;
+      padding: var(--spacing-md) var(--spacing-lg);
+      border-top: 1px solid var(--neutral-200);
+      box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
       z-index: 1000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: var(--spacing-md);
     }
 
-    .admin-footer a {
-      color: #007bff;
+    .cms-footer a {
+      color: var(--neutral-600);
       text-decoration: none;
-      margin: 0 0.5rem;
+      font-size: 0.875rem;
+      font-weight: 500;
+      padding: var(--spacing-xs) var(--spacing-sm);
+      border-radius: var(--radius-sm);
+      transition: all 0.2s ease;
     }
 
-    .admin-footer a:hover {
-      text-decoration: underline;
+    .cms-footer a:hover {
+      color: var(--brand-primary);
+      background: var(--brand-primary-light);
+    }
+
+    .cms-footer-divider {
+      width: 1px;
+      height: 16px;
+      background: var(--neutral-300);
+    }
+
+    /* ============================================
+       RESPONSIVE DESIGN
+       ============================================ */
+
+    @media (max-width: 768px) {
+      .cms-footer {
+        padding: var(--spacing-sm);
+        gap: var(--spacing-sm);
+      }
+
+      .cms-footer a {
+        font-size: 0.75rem;
+        padding: var(--spacing-xs);
+      }
+
+      .cms-footer-divider {
+        display: none;
+      }
+    }
+
+    /* ============================================
+       DARK MODE SUPPORT
+       ============================================ */
+
+    @media (prefers-color-scheme: dark) {
+      body {
+        background: var(--neutral-900) !important;
+        color: var(--neutral-100) !important;
+      }
+
+      [class*="Card"],
+      [class*="Panel"],
+      input,
+      textarea,
+      select {
+        background: var(--neutral-800) !important;
+        color: var(--neutral-100) !important;
+        border-color: var(--neutral-700) !important;
+      }
+
+      .cms-footer {
+        background: var(--neutral-800);
+        border-top-color: var(--neutral-700);
+      }
+    }
+
+    /* ============================================
+       ANIMATIONS
+       ============================================ */
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    [class*="Card"],
+    [class*="EntryCard"],
+    [class*="CollectionCard"] {
+      animation: fadeIn 0.3s ease;
     }
   </style>
 </head>
 
 <body>
-  <!-- Include the script that builds the page and powers Decap CMS -->
+  <!-- Decap CMS -->
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
 
   <!-- Register Preview Styles -->
   <script>
     CMS.registerPreviewStyle("/style.css");
     CMS.registerPreviewStyle("/enhancements.css");
+    CMS.registerPreviewStyle("/ux-enhancements.css");
+
+    // Custom Preview Template (Optional - can be expanded)
+    CMS.registerPreviewTemplate("blog", ({ entry, widgetFor }) => {
+      const data = entry.getIn(['data']).toJS();
+      return `
+        <div style="max-width: 800px; margin: 0 auto; padding: 2rem; font-family: Inter, sans-serif;">
+          <h1 style="font-size: 2.5rem; margin-bottom: 1rem; color: #1e293b;">${data.basic_info?.title || data.title}</h1>
+          <p style="color: #64748b; font-size: 1.125rem; margin-bottom: 2rem;">${data.basic_info?.description || data.description}</p>
+          <div style="color: #334155; line-height: 1.8;">
+            ${widgetFor('body')}
+          </div>
+        </div>
+      `;
+    });
   </script>
 
-  <!-- Admin Footer with navigation links to fix "no outgoing links" issue -->
-  <div class="admin-footer">
-    <a href="/"
-      aria-label="Return to EvolvedLotus homepage to explore our content creation guides and social media marketing resources">Back
-      to Homepage</a> |
-    <a href="/blog/"
-      aria-label="Browse our comprehensive collection of content creation tutorials, guides, and digital marketing insights">Browse
-      All Guides</a> |
-    <a href="/about/"
-      aria-label="Learn more about EvolvedLotus content creation expertise and our comprehensive social media marketing services">About
-      EvolvedLotus</a> |
-    <a href="/contact/"
-      aria-label="Contact us for personalized content strategy consultation and professional digital marketing assistance">Contact
-      Support</a> |
-    <a href="/privacy-policy/"
-      aria-label="Review our comprehensive privacy policy and data protection measures for content creators">Privacy
-      Policy</a> |
-    <a href="/terms-of-service/"
-      aria-label="Read our detailed terms of service and usage guidelines for content creation tools">Terms of
-      Service</a> |
-    <a href="/x-tiktok/" aria-label="Explore TikTok content creation strategies and social media marketing tips">TikTok
-      Platform</a> |
-    <a href="/x-instagram/" aria-label="Discover Instagram growth strategies and content creation techniques">Instagram
-      Platform</a> |
-    <a href="/x-youtube/" aria-label="Learn YouTube content strategies and video marketing best practices">YouTube
-      Platform</a> |
-    <a href="/x-twitter/" aria-label="Master Twitter marketing and content strategies for social media growth">Twitter
-      Platform</a>
+  <!-- Footer Navigation -->
+  <div class="cms-footer">
+    <a href="/" aria-label="Return to homepage">🏠 Homepage</a>
+    <span class="cms-footer-divider"></span>
+    <a href="/blog/" aria-label="Browse all blog posts">📚 All Posts</a>
+    <span class="cms-footer-divider"></span>
+    <a href="/x-tiktok/" aria-label="TikTok content hub">🎵 TikTok</a>
+    <span class="cms-footer-divider"></span>
+    <a href="/x-instagram/" aria-label="Instagram content hub">📸 Instagram</a>
+    <span class="cms-footer-divider"></span>
+    <a href="/x-youtube/" aria-label="YouTube content hub">📹 YouTube</a>
+    <span class="cms-footer-divider"></span>
+    <a href="/x-twitter/" aria-label="Twitter content hub">🐦 Twitter</a>
+    <span class="cms-footer-divider"></span>
+    <a href="/about/" aria-label="About EvolvedLotus">ℹ️ About</a>
+    <span class="cms-footer-divider"></span>
+    <a href="/contact/" aria-label="Contact support">✉️ Contact</a>
   </div>
 </body>
 
