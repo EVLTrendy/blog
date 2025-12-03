@@ -12,7 +12,7 @@ ads: false
     {% endif %}
   </div>
   <h1 class="article_title">{{ title }}</h1>
-  <p class="article_meta">
+  <div class="article_meta">
     By&nbsp;<span>{{ author }}</span>&nbsp;on&nbsp;<span>{{date | postDate}}</span>
     {% set age = date | contentAge(lastModified) %}
     {% if age == 'stale' %}
@@ -31,7 +31,7 @@ ads: false
     
     <!-- Tags Section -->
     {% if tags %}
-    <div class="article-tags" style="margin-top: 10px; margin-bottom: 10px;">
+    <div class="article-tags" style="margin-top: 10px; margin-bottom: 20px;">
       {% for tag in tags %}
         {% if tag != 'post' and tag != 'featured' %}
           <span class="tag" style="background: #eef2f6; padding: 4px 8px; border-radius: 4px; font-size: 0.85em; margin-right: 5px; color: #1e293b;">#{{ tag }}</span>
@@ -74,7 +74,7 @@ ads: false
         </svg>
       </button>
     </div>
-  </p>
+  </div>
   <div class="article_body">
     <!-- Article with TOC Layout -->
     <div class="article-with-toc">

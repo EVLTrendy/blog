@@ -437,6 +437,9 @@ module.exports = function (eleventyConfig) {
         return collectionApi.getFilteredByGlob("src/authors/*.md");
     });
 
+    // Set default language
+    eleventyConfig.addGlobalData("lang", "en");
+
     return {
         dir: {
             input: "src",
@@ -456,7 +459,4 @@ module.exports = function (eleventyConfig) {
             date: "date",
         },
     };
-
-    // Set default language
-    eleventyConfig.addGlobalData("lang", "en");
 };
