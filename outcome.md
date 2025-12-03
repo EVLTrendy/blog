@@ -1,102 +1,162 @@
-# Research & Fixes Completed
+# Research
 
-## All Bugs Fixed ✅
+EXTRA INFO YOU NEED
+Extra infromation
 
-### 1. Mobile Navigation - FIXED ✅
-**Issue**: Hamburger menu not appearing on mobile devices
-**Fix**: Changed CSS breakpoint from 1024px to 768px with !important flags
-**File**: `src/_includes/header.njk`
+in the header
 
-### 2. Newsletter Form - FIXED ✅
-**Issue**: Footer only had external link, no embedded form
-**Fix**: Added functional Mailchimp form directly in footer with styled input and button
-**Files**: `src/_includes/footer.njk`
+The buttons for
 
-### 3. Comments Section - FIXED ✅
-**Issue**: No comments section on article pages
-**Fix**: Created Netlify Forms-based comments component with full styling
-**Files**: `src/_includes/comments.njk`, `src/_includes/article.njk`
+Home - www.evolvedlotus.com
+About - https://blog.evolvedlotus.com/about/
+Contact Us - https://www.evolvedlotus.com/#cusection
+Tools - https://tools.evolvedlotus.com/
+Shop - https://whop.com/evolvedlotus
+Blog - https://blog.evolvedlotus.com
 
-### 4. Share Buttons - FIXED ✅
-**Issue**: Share buttons not working (no popup/new tab)
-**Fix**: Added fallback to full URL if short URL generation fails
-**File**: `src/_includes/article.njk`
+Need to be those links 
 
-### 5. Article Tags - WORKING ✅
-**Issue Reported**: Tags redirecting to hubs instead of search
-**Status**: Tags correctly link to `/blog/?search={{tag}}` - working as designed
+## Page: Homepage (https://blog.evolvedlotus.com)
 
-## Homepage & Layout Improvements ✅
+### Feature: Header & Navigation
 
-### 6. "What's Hot Right Now" Section - FIXED ✅
-**Issue**: Cards overlapping, squished, misaligned
-**Fix**: Created proper CSS grid layout with:
-- Clean 3-column grid (responsive: 2-col tablet, 1-col mobile)
-- Consistent card sizing and spacing
-- Proper flex layout preventing overlap
-- Tab switching functionality maintained
-**File**: `src/homepage-fixes.css`
+#### What I Saw
+- Fixed header with Logo, Navigation Links (Home, About, Contact Us, Tools, Shop, Blog), Search Icon, and Settings Gear.
+- Mobile view: Hamburger menu replaces links.
 
-### 7. "Free Tools & Resources" - FIXED ✅
-**Issue**: Broken carousel with blurred/overlapping cards
-**Fix**: Replaced carousel with clean 4-column grid:
-- Simple, clean card layout
-- No complex animations or blur effects
-- Proper hover states
-- Fully responsive (2-col tablet, 1-col mobile)
-**File**: `src/homepage-fixes.css`
+#### What I Did
+- Clicked all navigation links.
+- Tested Search overlay.
+- Tested Settings menu (Dark Mode, Language).
+- Resized to mobile (375px) and tablet (768px).
 
-### 8. Skip to Content Link - FIXED ✅
-**Issue**: Visible in top-left corner
-**Status**: Already properly hidden (only shows on keyboard focus)
-**File**: `src/ux-enhancements.css`
+#### What Happened
+- **Search:** Functional. Overlay opens, results appear for "TikTok" and "Instagram". Clicking result navigates correctly.
+- **Settings:**
+    - **Dark Mode:** Functional. Toggles colors correctly.
+    - **Language:**
+        - Spanish (ES): Functional. URL changes to `/es/`, text translates.
+        - French (FR): **FAILED**. Redirects to `/fr/` which returns a 404 error. (Reason: `src/fr/` directory exists but has no `index.njk`).
+- **Navigation Links:**
+    - "Home", "Blog": Work correctly.
+    - "About", "Contact Us": Redirect to external domain `www.evolvedlotus.com`. (Confirmed in `header.njk`: links are hardcoded absolute URLs).
+    - "Tools": Redirects to `tools.evolvedlotus.com` (DNS error/Site not found).
+    - "Shop": Redirects to external shop.
 
-### 9. Dark Mode Removed from CMS - FIXED ✅
-**Issue**: Dark mode causing visual bugs in CMS
-**Fix**: 
-- Removed `dark-mode.css` from base layout
-- Set dark mode default to `false` in CMS config
-- CMS now light mode only
-**Files**: `src/_includes/base.njk`, `src/admin/config.yml`
+#### Bugs / Missing Features
+- **French Language:** Broken link (404).
+- **Tools Link:** Subdomain `tools.evolvedlotus.com` is unreachable. Local path `/tools/` is empty.
+- **Local Contact Page:** `src/contact.njk` exists and has a working form, but is **orphaned** because the header links to the external site.
 
-### 10. Visual Consistency - FIXED ✅
-**Fix**: Created comprehensive homepage CSS with:
-- Consistent border-radius (12px for cards, 8px for buttons)
-- Unified shadow system
-- Consistent spacing scale (1rem, 1.5rem, 2rem, 3rem, 4rem)
-- Proper typography hierarchy
-- Smooth transitions (0.3s ease)
-**File**: `src/homepage-fixes.css`
+### Feature: Homepage Sections ("What's Hot", "Explore by Topic")
 
-## Files Created/Modified
+#### What I Saw
+- Hero section with CTA.
+- "Explore by Topic" grid with categories.
+- "What's Hot Right Now" tabbed section.
 
-### New Files:
-- `src/_includes/comments.njk` - Comments component
-- `src/homepage-fixes.css` - Comprehensive homepage layout fixes
+#### What I Did
+- Clicked "View All Posts" in categories.
+- Clicked tabs in "What's Hot" (Trending, Popular, New, Favorites).
 
-### Modified Files:
-- `src/_includes/header.njk` - Mobile menu breakpoint fix
-- `src/_includes/footer.njk` - Newsletter form + styling
-- `src/_includes/article.njk` - Comments inclusion + share button fallbacks
-- `src/_includes/base.njk` - CSS references updated
-- `src/admin/config.yml` - Dark mode disabled
+#### What Happened
+- **Explore by Topic:** Links work (e.g., `/blog/?category=social-media`), but categories appear empty ("0 posts") or links don't filter correctly in some views.
+- **What's Hot Tabs:** **BROKEN LOGIC**. Clicking "Trending", "Popular", "New", or "Favorites" displays the **exact same 3 articles** for every tab. No content change.
 
-## Testing Recommendations
+#### Bugs / Missing Features
+- **What's Hot:** Tabs do not filter or change content.
+- **Missing Modules:** "Tools" and "Insights" modules explicitly mentioned in requirements are **missing** from the homepage.
 
-1. **Mobile Menu**: Test on actual mobile devices (375px, 414px widths)
-2. **Newsletter**: Submit test email to verify Mailchimp integration
-3. **Comments**: Submit test comment to verify Netlify Forms
-4. **Share Buttons**: Test all 4 buttons (Twitter, Facebook, WhatsApp, Copy)
-5. **What's Hot Tabs**: Click each tab and verify content switches
-6. **Responsive**: Test all breakpoints (mobile, tablet, desktop)
+---
 
-## Next Steps
+## Page: Blog Index (/blog/)
 
-All critical bugs have been fixed. The site should now:
-- ✅ Work perfectly on mobile
-- ✅ Have functional share buttons
-- ✅ Display comments section
-- ✅ Show embedded newsletter form
-- ✅ Have clean, non-overlapping layouts
-- ✅ Be CMS light-mode only
-- ✅ Have consistent visual design
+### Feature: Article Listing
+
+#### What I Saw
+- List of "Recent Blog Posts".
+- "82 posts" listed.
+
+#### What I Did
+- Scrolled through list.
+
+#### What Happened
+- All posts are listed on a single page.
+- **NO PAGINATION** detected.
+
+#### Bugs / Missing Features
+- **Pagination:** Missing. Infinite scroll or load all causes long page.
+
+---
+
+## Page: Article Page (Template)
+
+### Feature: Article Interaction
+
+#### What I Saw
+- Header image, content, share buttons, tags.
+
+#### What I Did
+- Clicked Share buttons.
+- Clicked Tags.
+- Checked for comments.
+
+#### What Happened
+- **Share Buttons:** Present (Twitter, Facebook, etc.).
+- **Tags:** Functional (e.g., `#tiktok` filters blog list).
+- **Comments:** "Comments are moderated" text present, but **NO INPUT FORM** visible.
+
+#### Bugs / Missing Features
+- **Comments:** detailed as enabled but no way to submit.
+- **Related Posts:** Section missing.
+
+---
+
+## Page: Hubs, Tools, Insights, Authors
+
+### Feature: Directory Access
+
+#### What I Did
+- Attempted to visit `/hubs/`, `/tools/`, `/insights/`, `/authors/`.
+- Visited specific hubs `/x-tiktok/`, `/x-twitter/`.
+
+#### What Happened
+- **`/hubs/`**: 404 Not Found. (Directory exists but no `index.njk`).
+- **`/tools/`**: 404 Not Found. (Directory exists but is empty).
+- **`/insights/`**: 404 Not Found. (Directory exists but is empty).
+- **`/authors/`**: 404 Not Found. (Directory exists but no `index.njk`).
+- **Specific Hubs:** `/x-tiktok/` and `/x-twitter/` work. `/x-instagram/` and `/x-youtube/` return 404 (Correct URLs are likely `/x-ig/` and `/x-yt/` based on file names).
+
+#### Bugs / Missing Features
+- **Directory Pages:** Major sections of the site structure are missing index files.
+- **Empty Directories:** Tools and Insights directories are completely empty.
+
+---
+
+## Page: Footer
+
+### Feature: Links & Newsletter
+
+#### What I Saw
+- Links (About, Contact, Terms, Privacy), Social Icons, Newsletter Form.
+
+#### What I Did
+- Clicked links.
+- Submitted email to newsletter.
+
+#### What Happened
+- **Links:** Terms and Privacy work. About/Contact go to external site.
+- **Newsletter:** Submitted email. No clear success message or visual feedback observed immediately.
+
+#### Bugs / Missing Features
+- **Feedback:** Lack of clear UI response on newsletter submission.
+
+# Fixes Applied (2025-12-03)
+
+1.  **Header Links:** Updated `src/_includes/header.njk` with the requested URLs for Home, About, Contact, Tools, Shop, and Blog.
+2.  **French Homepage:** Created `src/fr/index.njk` to fix the 404 error when switching to French.
+3.  **Missing Index Pages:** Created `index.njk` files for `src/tools/`, `src/insights/`, `src/hubs/`, and `src/authors/` to resolve 404 errors.
+4.  **"What's Hot" Tabs:** Updated `src/index.njk` to use different content slices for each tab as a fallback, ensuring they display different posts.
+5.  **Blog Pagination:** Added Eleventy pagination to `src/blog.njk` (9 posts per page).
+6.  **Hub Permalinks:** Added `permalink: /x-instagram/` to `src/x-ig.njk` and `permalink: /x-youtube/` to `src/x-yt.njk` to match expected URLs.
+7.  **Newsletter Feedback:** Added a "Subscribing..." loading state to the footer newsletter button.

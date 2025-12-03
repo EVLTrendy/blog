@@ -243,7 +243,7 @@ layout: 'base.njk'
     <div id="trending" class="tab-content" style="display: block;">
       <div class="featured-grid">
         {% set trendingPosts = collections.blog | filterByTag('trending') | reverse | limit(3) %}
-        {% if trendingPosts.length === 0 %}{% set trendingPosts = collections.blog | reverse | limit(3) %}{% endif %}
+        {% if trendingPosts.length === 0 %}{% set trendingPosts = collections.blog | reverse | slice(0, 3) %}{% endif %}
         {% for post in trendingPosts %}
           {% include "article-snippet.njk" %}
         {% endfor %}
@@ -254,7 +254,7 @@ layout: 'base.njk'
     <div id="popular" class="tab-content" style="display: none;">
       <div class="featured-grid">
         {% set popularPosts = collections.blog | filterByTag('popular') | reverse | limit(3) %}
-        {% if popularPosts.length === 0 %}{% set popularPosts = collections.blog | reverse | limit(3) %}{% endif %}
+        {% if popularPosts.length === 0 %}{% set popularPosts = collections.blog | reverse | slice(3, 6) %}{% endif %}
         {% for post in popularPosts %}
           {% include "article-snippet.njk" %}
         {% endfor %}
@@ -275,7 +275,7 @@ layout: 'base.njk'
     <div id="favorites" class="tab-content" style="display: none;">
       <div class="featured-grid">
         {% set favoritePosts = collections.blog | filterByTag('favorite') | reverse | limit(3) %}
-        {% if favoritePosts.length === 0 %}{% set favoritePosts = collections.blog | reverse | limit(3) %}{% endif %}
+        {% if favoritePosts.length === 0 %}{% set favoritePosts = collections.blog | reverse | slice(6, 9) %}{% endif %}
         {% for post in favoritePosts %}
           {% include "article-snippet.njk" %}
         {% endfor %}

@@ -4,6 +4,11 @@ description: Explore our comprehensive collection of content creation guides, so
 keywords: content creation, social media, digital marketing, blogging, SEO, tutorials, guides, TikTok, Instagram, YouTube
 layout: 'base.njk'
 ads: false
+pagination:
+  data: collections.blog
+  size: 9
+  alias: posts
+  reverse: true
 ---
 
 <div class="search-container">
@@ -56,7 +61,7 @@ ads: false
 <div class="blog-posts-container">
   <h2>Recent Blog Posts</h2>
   <div class="blog-posts-grid" id="blog-posts-grid">
-    {% for post in collections.blog | reverse | slice(0, 50) %}
+    {% for post in posts %}
     <article class="blog-post-card">
       <div class="post-image">
         {% if post.data.image %}
@@ -88,7 +93,26 @@ ads: false
   
   <!-- Pagination Controls -->
   <div class="pagination-controls">
-    <p class="pagination-info">Showing <span id="posts-count">{{ collections.blog | length }}</span> posts</p>
+    <nav aria-label="Blog pagination">
+      <ul class="pagination-list" style="display: flex; justify-content: center; gap: 10px; list-style: none; padding: 0;">
+        {% if pagination.href.previous %}
+        <li><a href="{{ pagination.href.previous }}" class="pagination-link">Previous</a></li>
+        {% endif %}
+        
+        {% for pageEntry in pagination.pages %}
+        <li>
+          <a href="{{ pagination.hrefs[ loop.index0 ] }}" class="pagination-link {% if page.url == pagination.hrefs[ loop.index0 ] %}active{% endif %}">
+            {{ loop.index }}
+          </a>
+        </li>
+        {% endfor %}
+        
+        {% if pagination.href.next %}
+        <li><a href="{{ pagination.href.next }}" class="pagination-link">Next</a></li>
+        {% endif %}
+      </ul>
+    </nav>
+    <p class="pagination-info">Showing page {{ pagination.pageNumber + 1 }} of {{ pagination.pages.length }}</p>
   </div>
 </div>
 
