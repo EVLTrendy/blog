@@ -1,0 +1,283 @@
+{# Interactive Table of Contents Component #}
+{# Auto-generates TOC from H2/H3 headings with sticky sidebar and scroll highlighting #}
+
+<aside class="table-of-contents" id="toc-sidebar">
+  <div class="toc-header">
+    <h2>Table of Contents</h2>
+    <button class="toc-toggle" aria-label="Toggle table of contents">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <polyline points="6 9 12 15 18 9"></polyline>
+      </svg>
+    </button>
+  </div>
+  <nav class="toc-nav">
+    <ul class="toc-list" id="toc-list">
+      <!-- Generated dynamically by JavaScript -->
+    </ul>
+  </nav>
+</aside>
+
+<script>
+(function() {
+  'use strict';
+
+  // Only run on article pages
+  const articleBody = document.querySelector('.article_bodydiv');
+  if (!articleBody) return;
+
+  const tocList = document.getElementById('toc-list');
+  const tocSidebar = document.getElementById('toc-sidebar');
+  if (!tocList || !tocSidebar) return;
+
+  // Get all H2 and H3 headings from article
+  const headings = articleBody.querySelectorAll('h2, h3');
+  
+  if (headings.length === 0) {
+    // Hide TOC if no headings found
+    tocSidebar.style.display = 'none';
+    return;
+  }
+
+  // Generate TOC items
+  headings.forEach((heading, index) => {
+    // Create unique ID for heading if it doesn't have one
+    if (!heading.id) {
+      heading.id = 'heading-' + index;
+    }
+
+    const li = document.createElement('li');
+    li.className = heading.tagName.toLowerCase() === 'h3' ? 'toc-item toc-item-h3' : 'toc-item toc-item-h2';
+    
+    const a = document.createElement('a');
+    a.href = '#' + heading.id;
+    a.textContent = heading.textContent;
+    a.className = 'toc-link';
+    
+    // Smooth scroll to section
+    a.addEventListener('click', (e) => {
+      e.preventDefault();
+      heading.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      
+      // Update URL hash without jumping
+      history.pushState(null, null, '#' + heading.id);
+      
+      // Update active state
+      document.querySelectorAll('.toc-link').forEach(link => link.classList.remove('active'));
+      a.classList.add('active');
+    });
+    
+    li.appendChild(a);
+    tocList.appendChild(li);
+  });
+
+  // Highlight current section on scroll
+  let ticking = false;
+  
+  function updateActiveSection() {
+    const scrollPosition = window.scrollY + 100; // Offset for header
+    
+    let currentHeading = null;
+    headings.forEach(heading => {
+      if (heading.offsetTop <= scrollPosition) {
+        currentHeading = heading;
+      }
+    });
+    
+    if (currentHeading) {
+      document.querySelectorAll('.toc-link').forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === '#' + currentHeading.id) {
+          link.classList.add('active');
+        }
+      });
+    }
+  }
+
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        updateActiveSection();
+        ticking = false;
+      });
+      ticking = true;
+    }
+  });
+
+  // Initial update
+  updateActiveSection();
+
+  // Mobile toggle functionality
+  const tocToggle = document.querySelector('.toc-toggle');
+  const tocNav = document.querySelector('.toc-nav');
+  
+  if (tocToggle && tocNav) {
+    tocToggle.addEventListener('click', () => {
+      tocNav.classList.toggle('toc-nav-open');
+      tocToggle.classList.toggle('toc-toggle-open');
+    });
+  }
+})();
+</script>
+
+<style>
+.table-of-contents {
+  position: sticky;
+  top: 100px;
+  max-height: calc(100vh - 120px);
+  overflow-y: auto;
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e1e5e9;
+}
+
+.toc-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid #33bdef;
+}
+
+.toc-header h2 {
+  font-size: 1.1rem;
+  margin: 0;
+  color: #2c3e50;
+  font-weight: 600;
+}
+
+.toc-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.25rem;
+  color: #666;
+  transition: transform 0.3s ease;
+}
+
+.toc-toggle svg {
+  display: block;
+}
+
+.toc-toggle-open {
+  transform: rotate(180deg);
+}
+
+.toc-nav {
+  max-height: none;
+  overflow: visible;
+}
+
+.toc-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.toc-item {
+  margin: 0;
+}
+
+.toc-item-h2 {
+  margin-bottom: 0.5rem;
+}
+
+.toc-item-h3 {
+  margin-left: 1rem;
+  margin-bottom: 0.4rem;
+}
+
+.toc-link {
+  display: block;
+  padding: 0.5rem 0.75rem;
+  color: #666;
+  text-decoration: none;
+  border-left: 3px solid transparent;
+  transition: all 0.2s ease;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.toc-link:hover {
+  color: #33bdef;
+  background: #f8f9fa;
+  border-left-color: #33bdef;
+}
+
+.toc-link.active {
+  color: #33bdef;
+  background: #e8f7fc;
+  border-left-color: #33bdef;
+  font-weight: 600;
+}
+
+/* Dark mode support */
+body.dark-mode .table-of-contents {
+  background: #1e1e1e;
+  border-color: #333;
+}
+
+body.dark-mode .toc-header h2 {
+  color: #e0e0e0;
+}
+
+body.dark-mode .toc-link {
+  color: #b0b0b0;
+}
+
+body.dark-mode .toc-link:hover {
+  color: #33bdef;
+  background: #2a2a2a;
+}
+
+body.dark-mode .toc-link.active {
+  color: #33bdef;
+  background: #2a3a4a;
+}
+
+/* Mobile styles */
+@media (max-width: 1024px) {
+  .table-of-contents {
+    position: relative;
+    top: 0;
+    max-height: none;
+    margin-bottom: 2rem;
+  }
+
+  .toc-toggle {
+    display: block;
+  }
+
+  .toc-nav {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+
+  .toc-nav-open {
+    max-height: 500px;
+  }
+}
+
+/* Hide scrollbar but keep functionality */
+.table-of-contents::-webkit-scrollbar {
+  width: 6px;
+}
+
+.table-of-contents::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 3px;
+}
+
+.table-of-contents::-webkit-scrollbar-thumb {
+  background: #33bdef;
+  border-radius: 3px;
+}
+
+.table-of-contents::-webkit-scrollbar-thumb:hover {
+  background: #1a8cba;
+}
+</style>

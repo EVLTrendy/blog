@@ -95,7 +95,12 @@ let blogPosts = [
     {
       title: "{{ post.data.title }}",
       url: "{{ post.url }}",
-      description: "{{ post.data.description }}"
+      description: "{{ post.data.description }}",
+      image: "{{ post.data.image }}",
+      hub: "{{ post.data.hub }}",
+      tags: {{ post.data.tags | dump | safe }},
+      readingTime: "{{ post.data.readingTime }}",
+      date: "{{ post.date | postDate }}"
     }{% if not loop.last %},{% endif %}
   {% endfor %}
 ];
@@ -112,6 +117,29 @@ function debounce(func, wait) {
   };
 }
 
+// Simple fuzzy matching algorithm
+function fuzzyMatch(text, query) {
+  if (!text || !query) return false;
+  text = text.toLowerCase();
+  query = query.toLowerCase();
+  
+  // Exact match gets highest priority
+  if (text.includes(query)) return 100;
+  
+  // Fuzzy match
+  let queryIndex = 0;
+  let score = 0;
+  
+  for (let i = 0; i < text.length && queryIndex < query.length; i++) {
+    if (text[i] === query[queryIndex]) {
+      score += 10;
+      queryIndex++;
+    }
+  }
+  
+  return queryIndex === query.length ? score : 0;
+}
+
 function showAutocomplete(searchTerm) {
   if (!searchTerm) {
     autocompleteResults.innerHTML = '';
@@ -119,23 +147,77 @@ function showAutocomplete(searchTerm) {
     return;
   }
 
-  const matches = blogPosts.filter(post =>
-    (post.title || '').toLowerCase().includes(searchTerm.toLowerCase()) ||
-    (post.description || '').toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  // Score and filter posts with fuzzy matching
+  const scoredMatches = blogPosts.map(post => {
+    const titleScore = fuzzyMatch(post.title, searchTerm);
+    const descScore = fuzzyMatch(post.description, searchTerm) * 0.5;
+    const tagScore = post.tags ? post.tags.reduce((acc, tag) => 
+      acc + fuzzyMatch(tag, searchTerm) * 0.7, 0) : 0;
+    
+    return {
+      post,
+      score: titleScore + descScore + tagScore
+    };
+  }).filter(item => item.score > 0)
+    .sort((a, b) => b.score - a.score);
 
-  if (matches.length > 0) {
-    autocompleteResults.innerHTML = matches
-      .slice(0, 5)
-      .map(post => `
-        <div class="autocomplete-item" onclick="window.location.href='${post.url}'">
-          <div class="title">${post.title}</div>
-          <div class="description">${post.description}</div>
-        </div>
-      `).join('');
+  if (scoredMatches.length > 0) {
+    // Group by hub
+    const groupedResults = {};
+    scoredMatches.slice(0, 10).forEach(({ post }) => {
+      const hub = post.hub || 'Other';
+      if (!groupedResults[hub]) {
+        groupedResults[hub] = [];
+      }
+      groupedResults[hub].push(post);
+    });
+
+    let html = '<div class="search-results-enhanced">';
+    
+    Object.keys(groupedResults).forEach(hub => {
+      if (Object.keys(groupedResults).length > 1) {
+        html += `<h3 class="search-results-group-title">${hub}</h3>`;
+      }
+      
+      groupedResults[hub].forEach(post => {
+        html += `
+          <div class="search-result-item" onclick="window.location.href='${post.url}'">
+            ${post.image ? `
+              <div class="search-result-thumbnail">
+                <img src="${post.image}" alt="${post.title}" loading="lazy">
+              </div>
+            ` : ''}
+            <div class="search-result-content">
+              <h4 class="search-result-title">${post.title}</h4>
+              <div class="search-result-meta">
+                <span>📅 ${post.date}</span>
+                ${post.readingTime ? `<span>📖 ${post.readingTime} min read</span>` : ''}
+              </div>
+              <p class="search-result-description">${post.description}</p>
+              ${post.tags && post.tags.length > 0 ? `
+                <div class="search-result-tags">
+                  ${post.tags.slice(0, 3).map(tag => 
+                    `<span class="search-result-tag">${tag}</span>`
+                  ).join('')}
+                </div>
+              ` : ''}
+            </div>
+          </div>
+        `;
+      });
+    });
+    
+    html += '</div>';
+    autocompleteResults.innerHTML = html;
     autocompleteResults.style.display = 'block';
   } else {
-    autocompleteResults.innerHTML = '<div class="no-results">No matching posts found</div>';
+    autocompleteResults.innerHTML = `
+      <div class="search-no-results">
+        <div class="search-no-results-icon">🔍</div>
+        <div class="search-no-results-text">No matching posts found</div>
+        <div class="search-no-results-suggestion">Try different keywords or browse by category</div>
+      </div>
+    `;
     autocompleteResults.style.display = 'block';
   }
 }
@@ -149,6 +231,13 @@ searchInput.addEventListener('input', (e) => {
 document.addEventListener('click', (e) => {
   if (!searchInput.contains(e.target) && !autocompleteResults.contains(e.target)) {
     autocompleteResults.style.display = 'none';
+  }
+});
+
+// Show search on focus if there's a value
+searchInput.addEventListener('focus', (e) => {
+  if (e.target.value) {
+    debouncedShowAutocomplete(e.target.value);
   }
 });
 </script>

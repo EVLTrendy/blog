@@ -52,10 +52,20 @@ ads: false
     </div>
   </p>
   <div class="article_body">
-    <!-- Center Content Container -->
-    <div class="article-content-wrapper">
-      <div class="article_bodydiv">
-        {{ content | safe | replace('<h3', '<hr><h3') | replace('<img', '<img class="blogpic" loading="lazy"') | replace('<table', '<table><caption>Video Recording Software Comparison</caption>') }}
+    <!-- Article with TOC Layout -->
+    <div class="article-with-toc">
+      <!-- Main Article Content -->
+      <div class="article-main-content">
+        <div class="article-content-wrapper">
+          <div class="article_bodydiv">
+            {{ content | safe | replace('<h3', '<hr><h3') | replace('<img', '<img class="blogpic" loading="lazy"') | replace('<table', '<table><caption>Video Recording Software Comparison</caption>') }}
+          </div>
+        </div>
+      </div>
+      
+      <!-- Table of Contents Sidebar -->
+      <div class="article-toc-sidebar">
+        {% include "table-of-contents.njk" %}
       </div>
     </div>
   </div>
