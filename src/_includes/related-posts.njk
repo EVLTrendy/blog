@@ -1,0 +1,74 @@
+{# Related Posts Component #}
+{# Displays 3 related posts based on tags and hub #}
+
+{% set relatedPosts = [] %}
+{% set currentUrl = page.url %}
+{% set currentTags = tags or [] %}
+{% set currentHub = hub %}
+
+{# Score and collect all posts #}
+{% for post in collections.blog %}
+  {% if post.url != currentUrl %}
+    {% set score = 0 %}
+    
+    {# Same hub: +3 points #}
+    {% if post.data.hub == currentHub %}
+      {% set score = score + 3 %}
+    {% endif %}
+    
+    {# Shared tags: +2 points per tag #}
+    {% if post.data.tags %}
+      {% for tag in post.data.tags %}
+        {% if tag in currentTags %}
+          {% set score = score + 2 %}
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+    
+    {# Same author: +1 point #}
+    {% if post.data.author == author %}
+      {% set score = score + 1 %}
+    {% endif %}
+    
+    {# Only include if score > 0 #}
+    {% if score > 0 %}
+      {% set relatedPosts = (relatedPosts.push({
+        post: post,
+        score: score
+      }), relatedPosts) %}
+    {% endif %}
+  {% endif %}
+{% endfor %}
+
+{# Sort by score and take top 3 #}
+{% if relatedPosts.length > 0 %}
+<section class="related-posts">
+  <h2 class="related-posts-title">Related Articles</h2>
+  <div class="related-posts-grid">
+    {% for item in relatedPosts | sort(attribute='score') | reverse | limit(3) %}
+      {% set relatedPost = item.post %}
+      <article class="related-post-card">
+        {% if relatedPost.data.image %}
+        <div class="related-post-image">
+          <a href="{{ relatedPost.url }}">
+            <img src="{{ relatedPost.data.image }}" alt="{{ relatedPost.data.imageAlt or relatedPost.data.title }}" loading="lazy">
+          </a>
+        </div>
+        {% endif %}
+        <div class="related-post-content">
+          <h3 class="related-post-title">
+            <a href="{{ relatedPost.url }}">{{ relatedPost.data.title }}</a>
+          </h3>
+          <p class="related-post-excerpt">{{ relatedPost.data.description or relatedPost.data.excerpt }}</p>
+          <div class="related-post-meta">
+            <span class="related-post-date">{{ relatedPost.date | postDate }}</span>
+            {% if relatedPost.data.readingTime %}
+            <span class="related-post-reading-time">{{ relatedPost.data.readingTime }} min read</span>
+            {% endif %}
+          </div>
+        </div>
+      </article>
+    {% endfor %}
+  </div>
+</section>
+{% endif %}

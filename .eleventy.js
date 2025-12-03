@@ -124,6 +124,20 @@ module.exports = function (eleventyConfig) {
         return DateTime.fromJSDate(dateObj).toFormat(format);
     });
 
+    // Content Freshness Filter
+    eleventyConfig.addFilter("contentAge", (date, lastModified) => {
+        const checkDate = lastModified || date;
+        if (!checkDate) return 'unknown';
+
+        const contentDate = typeof checkDate === 'string' ? new Date(checkDate) : checkDate;
+        const now = new Date();
+        const monthsOld = (now - contentDate) / (1000 * 60 * 60 * 24 * 30);
+
+        if (monthsOld < 6) return 'fresh';
+        if (monthsOld < 12) return 'aging';
+        return 'stale';
+    });
+
     eleventyConfig.addCollection("notifications", function (collection) {
         return collection.getFilteredByTag("notifications");
     });

@@ -53,3 +53,202 @@
     height: auto !important;
     display: block !important;
 }
+/* ============================================
+   CONTENT FRESHNESS BADGES
+   ============================================ */
+.freshness-badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    margin-left: 1rem;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.freshness-badge.fresh {
+    background-color: #d1fae5;
+    color: #065f46;
+    border: 1px solid #10b981;
+}
+
+.freshness-badge.aging {
+    background-color: #fef3c7;
+    color: #92400e;
+    border: 1px solid #f59e0b;
+}
+
+.freshness-badge.stale {
+    background-color: #fee2e2;
+    color: #991b1b;
+    border: 1px solid #ef4444;
+}
+
+[data-theme="dark"] .freshness-badge.fresh {
+    background-color: #064e3b;
+    color: #6ee7b7;
+    border-color: #059669;
+}
+
+[data-theme="dark"] .freshness-badge.aging {
+    background-color: #78350f;
+    color: #fcd34d;
+    border-color: #d97706;
+}
+
+[data-theme="dark"] .freshness-badge.stale {
+    background-color: #7f1d1d;
+    color: #fca5a5;
+    border-color: #dc2626;
+}
+
+@media (max-width: 768px) {
+    .freshness-badge {
+        display: block;
+        margin-left: 0;
+        margin-top: 0.5rem;
+        text-align: center;
+    }
+}
+
+/* ============================================
+   RELATED POSTS MODULE
+   ============================================ */
+.related-posts {
+    max-width: 1200px;
+    margin: 4rem auto 2rem;
+    padding: 2rem 1rem;
+    background-color: var(--bg-secondary, #f8f9fa);
+    border-radius: 12px;
+}
+
+.related-posts-title {
+    text-align: center;
+    color: #33bdef;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+}
+
+.related-posts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.related-post-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #e2e8f0;
+}
+
+.related-post-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    border-color: #33bdef;
+}
+
+.related-post-image {
+    height: 200px;
+    overflow: hidden;
+}
+
+.related-post-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.related-post-card:hover .related-post-image img {
+    transform: scale(1.05);
+}
+
+.related-post-content {
+    padding: 1.5rem;
+}
+
+.related-post-title {
+    margin: 0 0 1rem 0;
+    font-size: 1.25rem;
+    line-height: 1.4;
+}
+
+.related-post-title a {
+    color: #2c3e50;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.related-post-title a:hover {
+    color: #33bdef;
+}
+
+.related-post-excerpt {
+    color: #666;
+    line-height: 1.6;
+    margin: 0 0 1rem 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.related-post-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+    color: #888;
+}
+
+.related-post-date {
+    font-weight: 500;
+}
+
+.related-post-reading-time {
+    color: #33bdef;
+}
+
+/* Dark Mode */
+[data-theme="dark"] .related-posts {
+    background-color: var(--bg-secondary, #1e293b);
+}
+
+[data-theme="dark"] .related-post-card {
+    background-color: var(--card-bg, #1e293b);
+    border-color: var(--card-border, #334155);
+}
+
+[data-theme="dark"] .related-post-title a {
+    color: var(--text-primary, #e2e8f0);
+}
+
+[data-theme="dark"] .related-post-excerpt {
+    color: var(--text-secondary, #94a3b8);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .related-posts {
+        margin: 2rem 0;
+        padding: 1.5rem 1rem;
+    }
+    
+    .related-posts-title {
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .related-posts-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .related-post-image {
+        height: 180px;
+    }
+}

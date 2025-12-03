@@ -14,6 +14,20 @@ ads: false
   <h1 class="article_title">{{ title }}</h1>
   <p class="article_meta">
     By&nbsp;<span>{{ author }}</span>&nbsp;on&nbsp;<span>{{date | postDate}}</span>
+    {% set age = date | contentAge(lastModified) %}
+    {% if age == 'stale' %}
+    <span class="freshness-badge stale" title="Content is over 12 months old">
+      ⚠️ Last updated {{ lastModified | postDate if lastModified else date | postDate }}
+    </span>
+    {% elif age == 'aging' %}
+    <span class="freshness-badge aging" title="Content is 6-12 months old">
+      📅 Updated {{ lastModified | postDate if lastModified else date | postDate }}
+    </span>
+    {% elif lastModified and lastModified != date %}
+    <span class="freshness-badge fresh" title="Recently updated">
+      ✨ Updated {{ lastModified | postDate }}
+    </span>
+    {% endif %}
     <div class="share-icons">
       <button data-action="twitter" title="Share on Twitter" class="share-button" type="button">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
@@ -45,6 +59,9 @@ ads: false
       </div>
     </div>
   </div>
+  
+  {# Related Posts Module #}
+  {% include "related-posts.njk" %}
 </section>
 
 <div id="toast"></div>
