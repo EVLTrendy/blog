@@ -6,12 +6,27 @@ layout: 'base.njk'
 permalink: /x-youtube/
 ---
 
-<div class="section-container">
+<div class="blog-posts-container">
     <h1>YouTube</h1>
-
-    <ul role="list" class="articles_list flow">
+    <div class="blog-posts-grid">
         {%- for post in collections.yt | reverse -%}
-            {% include 'article-snippet.njk' %}
+            <article class="blog-post-card">
+              <div class="post-image">
+                {% if post.data.image %}
+                <img src="{{ post.data.image }}" alt="{{ post.data.imageAlt or post.data.title }}" loading="lazy">
+                {% endif %}
+              </div>
+              <div class="post-content">
+                <h3><a href="{{ post.url }}">{{ post.data.title }}</a></h3>
+                <p class="post-description">{{ post.data.description }}</p>
+                <div class="post-meta">
+                  <time datetime="{{ post.date | isoDate }}">{{ post.date | postDate }}</time>
+                  {% if post.data.author %}
+                  <span class="author">by {{ post.data.author }}</span>
+                  {% endif %}
+                </div>
+              </div>
+            </article>
         {%- endfor -%}
-    </ul>
+    </div>
 </div>

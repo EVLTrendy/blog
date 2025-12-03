@@ -494,10 +494,18 @@ document.addEventListener('DOMContentLoaded', function() {
     <h2>Start Your Journey</h2>
     <div class="quick-buttons">
       <a href="/blog/" class="quick-button">Browse Categories</a>
-      <a href="/blog/?sort=latest" class="quick-button">Read the Latest</a>
-      <a href="/blog/?filter=guides" class="quick-button">View All Guides</a>
-      <a href="/blog/?recommended=true" class="quick-button">Recommended For You</a>
+      {% set latestPost = collections.blog | reverse | first %}
+      <a href="{{ latestPost.url }}" class="quick-button">Read the Latest</a>
+      <button onclick="recommendRandom()" class="quick-button">Recommended For You</button>
     </div>
+    <script>
+      function recommendRandom() {
+        const platform = prompt("Which platform are you interested in? (e.g., TikTok, YouTube, Instagram)");
+        if (platform) {
+          window.location.href = '/blog/?search=' + encodeURIComponent(platform);
+        }
+      }
+    </script>
   </div>
 </section>
 

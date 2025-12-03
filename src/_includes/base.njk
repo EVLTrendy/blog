@@ -133,6 +133,7 @@
     <link rel="canonical" href="{{ metadata.url }}{{ page.url }}" />
     <!-- SEO Enhancement: Add canonical tags to prevent duplicate content issues -->
     {% set cssVersion = "v=" + (page.date | date('X') if page.date else "20251203") %}
+    <link rel="stylesheet" href="/dark-mode.css?{{ cssVersion }}">
     <link rel="stylesheet" href="/style.css?{{ cssVersion }}">
     <link rel="stylesheet" href="/print.css?{{ cssVersion }}" media="print">
     <link rel="stylesheet" href="/enhancements.css?{{ cssVersion }}">

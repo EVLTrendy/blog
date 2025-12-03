@@ -33,7 +33,7 @@
     <div class="setting-item">
       <span class="setting-label">Language</span>
       <div class="language-switcher">
-        {% set cleanUrl = page.url | replace('/es/', '/') | replace('/fr/', '/') %}
+        {% set cleanUrl = page.url | replace('/es/', '/') | replace('/fr/', '/') | replace('//', '/') %}
         <a href="{{ cleanUrl }}" class="lang-link {% if lang == 'en' %}active{% endif %}" aria-label="English">EN</a>
         <a href="/es{{ cleanUrl }}" class="lang-link {% if lang == 'es' %}active{% endif %}" aria-label="Español">ES</a>
         <a href="/fr{{ cleanUrl }}" class="lang-link {% if lang == 'fr' %}active{% endif %}" aria-label="Français">FR</a>

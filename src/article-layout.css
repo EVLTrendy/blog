@@ -97,7 +97,7 @@
 }
 
 .article-tag {
-    background: var(--accent-color);
+    background: var(--accent-color, #33bdef);
     color: white;
     padding: 6px 14px;
     border-radius: 20px;
@@ -442,6 +442,7 @@
         margin-bottom: 2rem;
     }
 }
+
 /* ========== FOOTER SECTION (Bio & Related Posts) ========== */
 .article-footer-wrapper {
     max-width: 1200px;
@@ -473,7 +474,7 @@
     background: var(--card-bg);
     border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     display: flex;
     flex-direction: column;
@@ -481,7 +482,7 @@
 
 .related-post-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
 }
 
 .related-post-image {
