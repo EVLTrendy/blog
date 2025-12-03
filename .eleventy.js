@@ -77,6 +77,10 @@ module.exports = function (eleventyConfig) {
     // Date normalization filter for frontmatter dates
     eleventyConfig.addFilter("normalizeDate", (dateStr) => {
         if (!dateStr) return new Date();
+        // Strip extra quotes if present
+        if (typeof dateStr === 'string') {
+            dateStr = dateStr.replace(/^['"]+|['"]+$/g, '');
+        }
         try {
             let dt = DateTime.fromISO(dateStr, { zone: "utc" });
             if (!dt.isValid) return new Date();
@@ -92,6 +96,7 @@ module.exports = function (eleventyConfig) {
         try {
             // Handle string dates
             if (typeof dateObj === 'string') {
+                dateObj = dateObj.replace(/^['"]+|['"]+$/g, '');
                 return DateTime.fromISO(dateObj).toLocaleString(DateTime.DATE_MED);
             }
             // Handle Date objects
@@ -116,6 +121,7 @@ module.exports = function (eleventyConfig) {
     // Add ISO date filter for sitemap
     eleventyConfig.addFilter("isoDate", (date) => {
         if (typeof date === 'string') {
+            date = date.replace(/^['"]+|['"]+$/g, '');
             return DateTime.fromISO(date).toISO();
         }
         return DateTime.fromJSDate(date).toISO();
@@ -134,6 +140,8 @@ module.exports = function (eleventyConfig) {
         } else if (value instanceof Date) {
             dateObj = value;
         } else {
+            // Strip quotes
+            if (typeof value === 'string') value = value.replace(/^['"]+|['"]+$/g, '');
             dateObj = new Date(value);
         }
         return DateTime.fromJSDate(dateObj).toFormat(format);
@@ -141,12 +149,16 @@ module.exports = function (eleventyConfig) {
 
     // Content Freshness Filter
     eleventyConfig.addFilter("contentAge", (date, lastModified) => {
-        const checkDate = lastModified || date;
+        let checkDate = lastModified || date;
         if (!checkDate) return 'unknown';
 
-        const contentDate = typeof checkDate === 'string' ? new Date(checkDate) : checkDate;
+        if (typeof checkDate === 'string') {
+            checkDate = checkDate.replace(/^['"]+|['"]+$/g, '');
+            checkDate = new Date(checkDate);
+        }
+
         const now = new Date();
-        const monthsOld = (now - contentDate) / (1000 * 60 * 60 * 24 * 30);
+        const monthsOld = (now - checkDate) / (1000 * 60 * 60 * 24 * 30);
 
         if (monthsOld < 6) return 'fresh';
         if (monthsOld < 12) return 'aging';
@@ -156,6 +168,7 @@ module.exports = function (eleventyConfig) {
     // Add dateToRfc3339 filter for RSS
     eleventyConfig.addFilter("dateToRfc3339", (date) => {
         if (typeof date === 'string') {
+            date = date.replace(/^['"]+|['"]+$/g, '');
             return DateTime.fromISO(date).toISO();
         }
         return DateTime.fromJSDate(date).toISO();
@@ -186,45 +199,6 @@ module.exports = function (eleventyConfig) {
         return collection.getFilteredByTag("notifications");
     });
 
-    // Add link validation for new content - DISABLED for local builds
-    // eleventyConfig.on('beforeBuild', () => {
-    //     try {
-    //         // Run link validation on key templates
-    //         const { LinkValidationGuard } = require('./scripts/link-validation-guard');
-    //         const validator = new LinkValidationGuard();
-    //
-    //         const templatesToCheck = [
-    //             'src/_includes/header.njk',
-    //             'src/_includes/footer.njk',
-    //             'src/_includes/base.njk',
-    //             'src/admin/index.html',
-    //             'src/404.html'
-    //         ];
-    //
-    //         console.log('🔗 Running link validation on templates...');
-    //         templatesToCheck.forEach(async (template) => {
-    //             const fullPath = path.join(__dirname, template);
-    //             if (fs.existsSync(fullPath)) {
-    //                 try {
-    //                     const content = fs.readFileSync(fullPath, 'utf8');
-    //                     const issues = await validator.validateContent(fullPath, content);
-    //                     if (issues.length > 0) {
-    //                         console.warn(`⚠️  Link issues found in ${template}:`, issues.length);
-    //                     }
-    //                 } catch (error) {
-    //                     console.warn(`Warning: Could not validate ${template}:`, error.message);
-    //                 }
-    //             }
-    //         });
-    //     } catch (error) {
-    //         console.warn('Warning: Link validation failed:', error.message);
-    //     }
-    //
-    //
-    // });
-
-
-
     // ========================================
     // CRITICAL: Date normalization for Node 18 + Eleventy v2 compatibility
     // ========================================
@@ -233,11 +207,13 @@ module.exports = function (eleventyConfig) {
             // Handle string dates safely for Node 18 compatibility
             if (typeof data.date === "string") {
                 try {
+                    // Strip extra quotes
+                    const cleanDate = data.date.replace(/^['"]+|['"]+$/g, '');
                     // Use Luxon for reliable ISO string parsing
-                    const dt = DateTime.fromISO(data.date, { zone: "utc" });
+                    const dt = DateTime.fromISO(cleanDate, { zone: "utc" });
                     if (dt.isValid) {
                         const dateObj = dt.toJSDate();
-                        console.log(`✅ Normalized string date: ${data.date} for ${data.page?.inputPath || 'unknown'}`);
+                        console.log(`✅ Normalized string date: ${cleanDate} for ${data.page?.inputPath || 'unknown'}`);
                         return dateObj;
                     }
                 } catch (error) {
@@ -304,13 +280,21 @@ module.exports = function (eleventyConfig) {
                 if (!date) return false;
 
                 // Convert to Date object safely
-                const dateObj = date instanceof Date ? date : new Date(date);
+                let dateObj = date;
+                if (typeof date === 'string') {
+                    dateObj = new Date(date.replace(/^['"]+|['"]+$/g, ''));
+                }
+
                 return !isNaN(dateObj.getTime());
             })
             .sort((a, b) => {
                 // Safe date comparison
-                const dateA = a.data.date instanceof Date ? a.data.date : new Date(a.data.date);
-                const dateB = b.data.date instanceof Date ? b.data.date : new Date(b.data.date);
+                let dateA = a.data.date;
+                let dateB = b.data.date;
+
+                if (typeof dateA === 'string') dateA = new Date(dateA.replace(/^['"]+|['"]+$/g, ''));
+                if (typeof dateB === 'string') dateB = new Date(dateB.replace(/^['"]+|['"]+$/g, ''));
+
                 return dateB - dateA; // Newest first
             });
     });

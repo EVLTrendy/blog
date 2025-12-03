@@ -28,6 +28,18 @@ ads: false
       ✨ Updated {{ lastModified | postDate }}
     </span>
     {% endif %}
+    
+    <!-- Tags Section -->
+    {% if tags %}
+    <div class="article-tags" style="margin-top: 10px; margin-bottom: 10px;">
+      {% for tag in tags %}
+        {% if tag != 'post' and tag != 'featured' %}
+          <span class="tag" style="background: #eef2f6; padding: 4px 8px; border-radius: 4px; font-size: 0.85em; margin-right: 5px; color: #1e293b;">#{{ tag }}</span>
+        {% endif %}
+      {% endfor %}
+    </div>
+    {% endif %}
+
     <div class="share-icons">
       <button data-action="twitter" title="Share on Twitter" class="share-button" type="button">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
@@ -54,7 +66,7 @@ ads: false
               data-title="{{ title }}" 
               data-description="{{ description }}" 
               data-image="{{ image }}"
-              title="{{ 'actions.saveForLater' | i18n(lang) }}" 
+              title="{{ 'actions.saveForLater' | i18n(lang or 'en') }}" 
               class="share-button" 
               type="button">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="bookmark-icon">
@@ -96,6 +108,14 @@ ads: false
   
   {# Related Posts Module #}
   {% include "related-posts.njk" %}
+
+  {# Comments Section #}
+  <section class="comments-section" style="margin-top: 40px; padding-top: 20px; border-top: 1px solid #eee;">
+    <h3>Comments</h3>
+    <div class="comments-placeholder" style="background: #f9f9f9; padding: 20px; border-radius: 8px; text-align: center; color: #666;">
+      <p>Comments are currently disabled.</p>
+    </div>
+  </section>
   
   <script src="/assets/js/bookmarks.js" defer></script>
 </section>

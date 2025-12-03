@@ -2096,3 +2096,208 @@ cat reports/content-repurposing-report.md
 
 ---
 Research Section:
+
+## Page: Homepage (https://blog.evolvedlotus.com/)
+
+### Feature: Global Navigation (Header)
+#### What I Saw (Visual Description)
+- A navigation bar at the top with a logo on the left.
+- Navigation links on the right: "nav.home", "nav.blog", "nav.contact", "nav.tools".
+- A language switcher with options: EN, ES, FR.
+
+#### What I Did (Actions Taken)
+- Observed the link text.
+- Clicked the links (they navigate correctly).
+- Toggled the language switcher.
+
+#### What Happened (Actual Behavior)
+- **Bug**: Navigation links display raw translation keys (e.g., `nav.home`) instead of human-readable text (e.g., "Home").
+- **Bug**: Switching languages changes the URL (e.g., adds `?lang=es`) but **does not translate** the page content or the navigation keys.
+- **Bug**: No search icon or search bar is visible in the header.
+- **Note**: No Dark Mode toggle is present (consistent with removal request, but worth noting).
+
+#### What I Expected (Intended Purpose)
+- Navigation links should show "Home", "Blog", etc.
+- Language switcher should translate the UI.
+- Search feature should be available if intended.
+
+#### Bugs / Missing Features / Errors
+- **CRITICAL**: Navigation labels are broken (showing keys).
+- **CRITICAL**: Internationalization (i18n) is non-functional.
+
+### Feature: Responsive Design (Mobile/Tablet)
+#### What I Saw (Visual Description)
+- Resized window to Tablet (768px) and Mobile (375px).
+
+#### What I Did (Actions Taken)
+- Resized the browser window.
+- Looked for a mobile menu (hamburger icon).
+
+#### What Happened (Actual Behavior)
+- **Bug**: At smaller widths, the navigation links ("nav.tools", etc.) and language switcher simply disappear.
+- **Bug**: **No hamburger menu** or alternative navigation appears. The user is left with only the logo.
+
+#### What I Expected (Intended Purpose)
+- A hamburger menu or collapsible navigation should appear on mobile devices.
+
+#### Bugs / Missing Features / Errors
+- **CRITICAL**: Mobile navigation is non-existent.
+
+### Feature: Homepage Content
+#### What I Saw (Visual Description)
+- Hero section with "Latest Updates" slideshow.
+- "Browse All Articles" button.
+- "Grow with EvolvedLotus" section.
+
+#### What I Did (Actions Taken)
+- Interacted with the slideshow (manual navigation works).
+- Clicked "Browse All Articles" (works).
+
+#### What Happened (Actual Behavior)
+- Slideshow works.
+- Links work.
+- Visuals seem okay, but the broken navigation header detracts from the experience.
+
+#### What I Expected (Intended Purpose)
+- Functional homepage components.
+
+#### Bugs / Missing Features / Errors
+- None specific to the content body, but the global header issues persist.
+
+### Feature: Footer
+#### What I Saw (Visual Description)
+- Links to About, Contact, Privacy Policy.
+- Social Media icons.
+- Copyright text.
+
+#### What I Did (Actions Taken)
+- Clicked links and icons.
+
+#### What Happened (Actual Behavior)
+- Links navigate correctly.
+- Social icons point to correct URLs.
+
+#### What I Expected (Intended Purpose)
+- Functional footer.
+
+#### Bugs / Missing Features / Errors
+- None found in footer.
+
+## Page: Blog Listing (https://blog.evolvedlotus.com/blog/)
+
+### Feature: Post Grid
+#### What I Saw (Visual Description)
+- A page titled "Recent Blog Posts".
+- A search bar.
+- A social media link grid.
+
+#### What I Did (Actions Taken)
+- Navigated to the page.
+- Scrolled down.
+
+#### What Happened (Actual Behavior)
+- **Bug**: **NO blog posts are displayed** by default. The area below the title is empty.
+- **Bug**: Pagination controls are missing (likely because no posts loaded).
+
+#### What I Expected (Intended Purpose)
+- A grid of recent blog posts should appear.
+
+#### Bugs / Missing Features / Errors
+- **CRITICAL**: Blog listing is empty.
+
+### Feature: Search
+#### What I Saw (Visual Description)
+- A search input field.
+
+#### What I Did (Actions Taken)
+- Typed "TikTok" and pressed Enter.
+
+#### What Happened (Actual Behavior)
+- Search results appeared correctly. This is the **only** way to access articles currently.
+
+#### What I Expected (Intended Purpose)
+- Search should filter results.
+
+#### Bugs / Missing Features / Errors
+- Search works, but highlights the broken default listing.
+
+## Page: Article Page (e.g., /blog/2025-05-13-how-to-skyrocket-your-tiktok-views...)
+
+### Feature: Article Layout & Metadata
+#### What I Saw (Visual Description)
+- Title, Author, Date, Content.
+- Share buttons (Twitter, Facebook, WhatsApp, Copy Link, Save).
+
+#### What I Did (Actions Taken)
+- Viewed the article.
+- Clicked "Copy Link".
+- Clicked "Save for Later".
+
+#### What Happened (Actual Behavior)
+- Content renders correctly.
+- "Copy Link" works (shows toast).
+- "Save for Later" works but displays an **untranslated key** (`actions.saveForLater`) instead of text.
+- **Bug**: No "Comments" section exists.
+- **Bug**: No clear "Related Posts" section exists at the bottom.
+
+#### What I Expected (Intended Purpose)
+- Standard article features including comments and related posts.
+
+#### Bugs / Missing Features / Errors
+- **Minor**: Untranslated "Save" button label.
+- **Missing**: Comments section.
+- **Missing**: Related Posts section.
+
+## Page: Contact (https://blog.evolvedlotus.com/contact/)
+
+### Feature: Contact Form
+#### What I Saw (Visual Description)
+- A page with email addresses and social links.
+
+#### What I Did (Actions Taken)
+- Looked for a contact form.
+
+#### What Happened (Actual Behavior)
+- **Missing**: No contact form is present on the page.
+
+#### What I Expected (Intended Purpose)
+- A form to submit messages.
+
+#### Bugs / Missing Features / Errors
+- **Missing**: Contact form.
+
+## Page: About (https://blog.evolvedlotus.com/about/)
+
+### Feature: Page Content
+#### What I Saw (Visual Description)
+- Text content describing EvolvedLotus.
+
+#### What I Did (Actions Taken)
+- Viewed the page.
+
+#### What Happened (Actual Behavior)
+- Content displays correctly.
+
+#### What I Expected (Intended Purpose)
+- Informative content.
+
+#### Bugs / Missing Features / Errors
+- None.
+
+## Page: Article Page (revisited for Tags)
+
+### Feature: Tags
+#### What I Saw (Visual Description)
+- Scrolled through the article page content and bottom section.
+
+#### What I Did (Actions Taken)
+- Looked for clickable tags (e.g., #TikTok).
+
+#### What Happened (Actual Behavior)
+- **Missing**: No tags are visible or clickable on the article page.
+
+#### What I Expected (Intended Purpose)
+- Tags associated with the article, linking to tag archive pages.
+
+#### Bugs / Missing Features / Errors
+- **Missing**: Tags feature.
