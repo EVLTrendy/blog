@@ -6,9 +6,9 @@ ads: false
 <section class="articlesection">
   <div class="imagediv">
     {% if imageParentIsParagraph %}
-      <img src="{{ image }}" alt="{{ imageAlt | default(title) }}" width="800" height="400">
+      <img src="{{ image }}" alt="{{ imageAlt | default(title) }}" width="800" height="400" fetchpriority="high" decoding="async">
     {% else %}
-      <img src="{{ image }}" alt="{{ imageAlt | default(title) }}" width="800" height="400">
+      <img src="{{ image }}" alt="{{ imageAlt | default(title) }}" width="800" height="400" fetchpriority="high" decoding="async">
     {% endif %}
   </div>
   <h1 class="article_title">{{ title }}</h1>
@@ -41,7 +41,7 @@ ads: false
     <!-- Center Content Container -->
     <div class="article-content-wrapper">
       <div class="article_bodydiv">
-        {{ content | safe | replace('<h3', '<hr><h3') | replace('<img', '<img class="blogpic"') | replace('<table', '<table><caption>Video Recording Software Comparison</caption>') }}
+        {{ content | safe | replace('<h3', '<hr><h3') | replace('<img', '<img class="blogpic" loading="lazy"') | replace('<table', '<table><caption>Video Recording Software Comparison</caption>') }}
       </div>
     </div>
   </div>

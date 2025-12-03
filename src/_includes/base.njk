@@ -121,38 +121,7 @@
     <meta name="msapplication-TileColor" content="#007bff">
 
     <!-- Structured Data for Rich Snippets -->
-    {% set jsonDescription = description if description else metadata.description %}
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "{{ schema_type if schema_type else 'Article' }}",
-      "headline": "{{ title or metadata.title }}",
-      "description": "{{ jsonDescription }}",
-      "image": "{% if image %}{{ metadata.url }}{{ image }}{% else %}{{ metadata.url }}/assets/blog/default-og-image.jpg{% endif %}",
-      "datePublished": "{{ date | isoDate if date }}",
-      "dateModified": "{{ date | isoDate if date }}",
-      "author": {
-        "@type": "Person",
-        "name": "{{ author if author else 'EvolvedLotus' }}"
-      },
-      "publisher": {
-        "@type": "Organization",
-        "name": "EvolvedLotus",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "https://blog.evolvedlotus.com/assets/images/logo.png"
-        }
-      },
-      "mainEntityOfPage": {
-        "@type": "WebPage",
-        "@id": "{{ metadata.url }}{{ page.url }}"
-      },
-      {% if tags %}
-      "keywords": "{{ tags | join(', ') }}",
-      {% endif %}
-      "url": "{{ metadata.url }}{{ page.url }}"
-    }
-    </script>
+    {% include "schema.njk" %}
 
     <title>{{ title or metadata.title }}</title>
     <link rel="canonical" href="{{ metadata.url }}{{ page.url }}" />
