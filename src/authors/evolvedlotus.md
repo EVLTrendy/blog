@@ -15,4 +15,6 @@ expertise:
   - TikTok Strategy
   - Instagram Growth
   - YouTube Optimization
+permalink: false
 ---
+
