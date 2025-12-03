@@ -16,8 +16,15 @@
                     <div class="evl-footeritem">
                         <a class="evl-footertext" href="/privacy-policy/">Privacy Policy</a>
                     </div>
-                    <div class="evl-footeritem">
-                        <a class="evl-footertext" href="https://mailchi.mp/78ca0b0ef493/newsletter" target="_blank">Newsletter</a>
+                </div>
+            </div>
+            <div class="evl-footercontainer">
+                <div class="evl-footercolumn">
+                    <div class="evl-footeritem newsletter-signup">
+                        <form action="https://mailchi.mp/78ca0b0ef493/newsletter" method="get" target="_blank" class="footer-newsletter-form">
+                            <input type="email" name="EMAIL" placeholder="Subscribe to our newsletter" required class="footer-newsletter-input">
+                            <button type="submit" class="footer-newsletter-button">Subscribe</button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -146,6 +153,71 @@ footer {
 [data-theme="dark"] .evl-footeritem div[style*="color: #000000"] {
     color: #cbd5e1 !important;
 }
+
+/* Newsletter Form Styles */
+.newsletter-signup {
+    width: 100%;
+    max-width: 400px;
+    margin: 10px auto;
+}
+
+.footer-newsletter-form {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+}
+
+.footer-newsletter-input {
+    flex: 1;
+    padding: 10px 15px;
+    border: 2px solid #ffffff;
+    border-radius: 25px;
+    font-size: 14px;
+    outline: none;
+    background: rgba(255, 255, 255, 0.9);
+    color: #333;
+}
+
+.footer-newsletter-input::placeholder {
+    color: #666;
+}
+
+.footer-newsletter-button {
+    padding: 10px 25px;
+    background: #ffffff;
+    color: #5BBCE8;
+    border: none;
+    border-radius: 25px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.footer-newsletter-button:hover {
+    background: #f0f0f0;
+    transform: translateY(-2px);
+}
+
+[data-theme="dark"] .footer-newsletter-input {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: #cbd5e1;
+    color: #e2e8f0;
+}
+
+[data-theme="dark"] .footer-newsletter-input::placeholder {
+    color: #94a3b8;
+}
+
+[data-theme="dark"] .footer-newsletter-button {
+    background: #38bdf8;
+    color: #1e293b;
+}
+
+[data-theme="dark"] .footer-newsletter-button:hover {
+    background: #0ea5e9;
+}
+
 
 /* Mobile footer overrides */
 @media (max-width: 480px) {

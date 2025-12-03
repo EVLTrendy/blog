@@ -1,0 +1,148 @@
+<div class="comments-section">
+  <h3>Join the Conversation</h3>
+  <p>Share your thoughts, questions, or experiences related to this article.</p>
+  
+  <form name="comments" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="comment-form">
+    <input type="hidden" name="form-name" value="comments">
+    <input type="hidden" name="article-url" value="{{ page.url }}">
+    <input type="hidden" name="article-title" value="{{ title }}">
+    
+    <!-- Honeypot field for spam prevention -->
+    <p class="hidden">
+      <label>Don't fill this out if you're human: <input name="bot-field"></label>
+    </p>
+    
+    <div class="form-group">
+      <label for="comment-name">Name *</label>
+      <input type="text" id="comment-name" name="name" required>
+    </div>
+    
+    <div class="form-group">
+      <label for="comment-email">Email * (won't be published)</label>
+      <input type="email" id="comment-email" name="email" required>
+    </div>
+    
+    <div class="form-group">
+      <label for="comment-message">Comment *</label>
+      <textarea id="comment-message" name="message" rows="5" required></textarea>
+    </div>
+    
+    <button type="submit" class="comment-submit-btn">Post Comment</button>
+  </form>
+  
+  <p class="comment-notice">Comments are moderated and will appear after approval.</p>
+</div>
+
+<style>
+.comments-section {
+  max-width: 800px;
+  margin: 3rem auto;
+  padding: 2rem;
+  background: #f8f9fa;
+  border-radius: 12px;
+  border: 1px solid #e1e5e9;
+}
+
+.comments-section h3 {
+  color: #2c3e50;
+  margin-bottom: 0.5rem;
+}
+
+.comments-section > p {
+  color: #666;
+  margin-bottom: 2rem;
+}
+
+.comment-form {
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid #e1e5e9;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-family: inherit;
+  transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #33bdef;
+}
+
+.comment-submit-btn {
+  background: #33bdef;
+  color: white;
+  padding: 0.75rem 2rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.comment-submit-btn:hover {
+  background: #1a8cba;
+  transform: translateY(-2px);
+}
+
+.comment-notice {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: #888;
+  font-style: italic;
+}
+
+.hidden {
+  display: none;
+}
+
+[data-theme="dark"] .comments-section {
+  background: #1e293b;
+  border-color: #334155;
+}
+
+[data-theme="dark"] .comment-form {
+  background: #0f172a;
+}
+
+[data-theme="dark"] .comments-section h3,
+[data-theme="dark"] .form-group label {
+  color: #e2e8f0;
+}
+
+[data-theme="dark"] .comments-section > p,
+[data-theme="dark"] .comment-notice {
+  color: #94a3b8;
+}
+
+[data-theme="dark"] .form-group input,
+[data-theme="dark"] .form-group textarea {
+  background: #1e293b;
+  border-color: #334155;
+  color: #e2e8f0;
+}
+
+[data-theme="dark"] .form-group input:focus,
+[data-theme="dark"] .form-group textarea:focus {
+  border-color: #38bdf8;
+}
+</style>
