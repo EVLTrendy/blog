@@ -2,156 +2,208 @@
 
 ## Page: Homepage (https://blog.evolvedlotus.com/)
 
-### Feature: Global Navigation Header
+### Feature: Header Navigation
 #### What I Saw (Visual Description)
-- Fixed header at the top of the page.
-- Logo on the left side.
-- Navigation menu items on the right.
-- **Visual Error**: Navigation items are displaying raw translation keys (e.g., `nav.home`, `nav.about`, `nav.blog`) instead of human-readable text.
-- Language switcher dropdown/icons.
-- Search icon.
+-   Logo on the left.
+-   Navigation links on the right: `nav.home`, `nav.blog`, `nav.contact`, `nav.tools`.
+-   Language switcher (EN, ES, FR).
+-   Search icon (magnifying glass).
 
 #### What I Did (Actions Taken)
-- Hovered over navigation items.
-- Clicked on navigation links.
-- Attempted to switch languages using the switcher.
-- Scrolled down to check sticky behavior.
+-   Clicked links.
+-   Switched languages.
+-   Clicked search icon.
 
 #### What Happened (Actual Behavior)
-- Navigation links function correctly and navigate to the expected pages, despite the label error.
-- **Sticky Header**: The header remains fixed at the top when scrolling.
-- **Language Switcher**: Clicking a different language changes the URL (e.g., appends `/es/`), but the **content remains in English**. The translation feature appears non-functional.
+-   Links navigate correctly but text is raw translation keys.
+-   Language switcher changes URL path (e.g., `/es/`) but content remains in English and nav links remain as keys.
+-   Search icon navigates to `/blog#search`.
 
 #### What I Expected (Intended Purpose)
-- Navigation labels should be "Home", "About", "Blog", etc.
-- Language switcher should translate the page content into the selected language.
+-   Nav links should show "Home", "Blog", etc.
+-   Language switcher should translate content.
 
 #### Bugs / Missing Features / Errors
-- **CRITICAL BUG**: Navigation menu displays `nav.*` translation keys instead of text.
-- **CRITICAL BUG**: Language switcher updates URL but does not translate content.
-
-### Feature: Responsive Mobile Menu
-#### What I Saw (Visual Description)
-- On tablet (768px) and mobile (375px) viewports, the desktop menu is replaced by a "Hamburger" icon.
-
-#### What I Did (Actions Taken)
-- Resized browser window to simulate tablet and mobile devices.
-- Clicked the hamburger menu icon.
-
-#### What Happened (Actual Behavior)
-- The menu expands and collapses smoothly.
-- The menu items inside also display the broken `nav.*` translation keys.
-
-#### What I Expected (Intended Purpose)
-- A fully functional responsive menu with readable labels.
-
-#### Bugs / Missing Features / Errors
-- **Bug**: Mobile menu inherits the translation key error (`nav.*`).
+-   **Bug**: Navigation links display raw keys (`nav.home`).
+-   **Bug**: Language switcher does not translate content.
+-   **Missing**: Dark mode toggle.
 
 ### Feature: Footer
 #### What I Saw (Visual Description)
-- Located at the bottom of the page.
-- Contains social media icons, copyright text, and potentially other links.
+-   Links: About, Contact, Terms, Privacy, Newsletter.
+-   Social icons.
+-   Copyright text.
 
 #### What I Did (Actions Taken)
-- Scrolled to the bottom.
-- Checked for broken images or layout issues.
+-   Scrolled to bottom.
+-   Verified links exist.
 
 #### What Happened (Actual Behavior)
-- Footer is visible and appears structurally correct.
-- Social links are present.
+-   Links appear functional.
 
 #### What I Expected (Intended Purpose)
-- Informational footer with working links.
+-   Standard footer navigation.
 
 #### Bugs / Missing Features / Errors
-- None explicitly noted.
+-   None observed.
 
-### Feature: Homepage Content
+### Feature: Responsive Design (Mobile)
 #### What I Saw (Visual Description)
-- Hero section.
-- Post grid/list.
-- Pagination or "Load More" controls.
+-   Hamburger menu icon appears at mobile width (375px).
 
 #### What I Did (Actions Taken)
-- Scrolled through the content.
-- Hovered over post cards.
+-   Resized window to 375px.
+-   Clicked hamburger menu.
 
 #### What Happened (Actual Behavior)
-- Post cards have a hover effect (likely a lift or shadow change).
-- Layout is responsive.
+-   Menu opens correctly.
+-   Contains nav links (still keys), search, and language switcher.
+-   Language switcher inside menu also fails to translate.
 
 #### What I Expected (Intended Purpose)
-- Clean, responsive display of blog posts.
+-   Mobile-friendly navigation.
 
 #### Bugs / Missing Features / Errors
-- No layout errors reported.
+-   Same translation/key issues as desktop.
 
-## Page: Search Functionality
+## Page: Blog Listing (https://blog.evolvedlotus.com/blog/)
 
-### Feature: Search Bar
+### Feature: Blog Post Display
 #### What I Saw (Visual Description)
-- Search icon in the header.
-- Clicking it opens a search input field.
+-   Social media icons (Kick, Facebook, etc.) as filters near the top.
+-   Search bar below that.
+-   "Recent Blog Posts" heading, but NO posts listed by default below it.
+-   Posts only appear in a `search-results-enhanced` div *after* searching.
 
 #### What I Did (Actions Taken)
-- Clicked the search icon.
-- Typed "tiktok".
-- Pressed Enter / Clicked a result.
+-   Loaded the page, scrolled down.
 
 #### What Happened (Actual Behavior)
-- Search results appeared (e.g., "How to Skyrocket Your TikTok Views...").
-- Clicking a result navigated correctly to the article.
+-   No posts were listed by default. Only after searching did posts appear within a specific results div.
 
 #### What I Expected (Intended Purpose)
-- Functional search that finds relevant content.
+-   A list of recent blog posts should be displayed by default below "Recent Blog Posts".
 
 #### Bugs / Missing Features / Errors
-- None. Search appears to work correctly.
+-   **Bug**: Recent posts are not listed on initial page load of `/blog`.
+-   **Missing**: Pagination controls.
 
-## Page: Article Detail (e.g., /blog/2025-05-13-how-to-skyrocket-your-tiktok-views...)
-
-### Feature: Article Content & Interaction
+### Feature: Search Bar (/blog)
 #### What I Saw (Visual Description)
-- Title, Author, Date.
-- Main content image.
-- "Copy Link" button.
-- Share buttons (Twitter, Facebook, etc.).
-- **Missing**: Tags section (e.g., #tiktok, #marketing) was NOT visible on the page.
+-   Input field with placeholder "Search blogs...".
 
 #### What I Did (Actions Taken)
-- Navigated to the article.
-- Clicked "Copy Link".
-- Scrolled up and down looking for tags.
+-   Typed "TikTok", observed results.
+-   Cleared search.
 
 #### What Happened (Actual Behavior)
-- **Copy Link**: Clicking the button triggered a "Short URL copied to clipboard!" toast message. This works.
-- **Tags**: Could not find any clickable tags on the page.
+-   Typing dynamically filtered and showed relevant posts in a div below the search bar.
+-   Clearing emptied the results div.
 
 #### What I Expected (Intended Purpose)
-- "Copy Link" should copy URL (Success).
-- Tags should be visible and clickable to filter content.
+-   Search should filter blog posts.
 
 #### Bugs / Missing Features / Errors
-- **BUG**: Tags are missing from the article view. They should be displayed to allow category navigation.
+-   None for search functionality itself, but it highlights the lack of default post listing.
 
-## Page: 404 Error (e.g., /this-page-does-not-exist-123)
+## Page: Article (https://blog.evolvedlotus.com/blog/2025-05-13-how-to-skyrocket-your-tiktok-views...)
 
-### Feature: 404 Page
+### Feature: Article Layout & Metadata
 #### What I Saw (Visual Description)
-- A dedicated "404 - Page Not Found" message.
-- A "Back to Homepage" button/link.
+-   Article title at the top.
+-   Date found within the content body, not prominently displayed with title.
+-   No obvious author name near the title.
+-   No large cover image at the top.
 
 #### What I Did (Actions Taken)
-- Navigated to a non-existent URL.
-- Clicked "Back to Homepage".
+-   Viewed the page, scrolled.
 
 #### What Happened (Actual Behavior)
-- The 404 page displayed correctly.
-- The "Back to Homepage" link successfully navigated back to the home page.
+-   Basic article content is present.
 
 #### What I Expected (Intended Purpose)
-- A user-friendly error page with a way out.
+-   Expected date, author, and maybe cover image to be clearly displayed near the title.
 
 #### Bugs / Missing Features / Errors
-- None. Works as expected.
+-   **Missing**: Prominent author display.
+-   **Missing**: Cover image (if intended).
+
+### Feature: Social Share Buttons
+#### What I Saw (Visual Description)
+-   No visible share buttons (floating or inline).
+
+#### What I Did (Actions Taken)
+-   Scrolled through the article.
+
+#### What Happened (Actual Behavior)
+-   No share buttons found.
+
+#### What I Expected (Intended Purpose)
+-   Share buttons to allow easy sharing to social media.
+
+#### Bugs / Missing Features / Errors
+-   **Missing**: Social share buttons.
+
+### Feature: Tags
+#### What I Saw (Visual Description)
+-   No "Tags" section at the end of the article content.
+
+#### What I Did (Actions Taken)
+-   Scrolled to the bottom of the article content.
+
+#### What Happened (Actual Behavior)
+-   No tags found.
+
+#### What I Expected (Intended Purpose)
+-   A list of tags associated with the article, linking to tag archive pages.
+
+#### Bugs / Missing Features / Errors
+-   **Missing**: Tags section and tag links.
+
+### Feature: Related Articles / Next/Prev
+#### What I Saw (Visual Description)
+-   No "Related Articles" or "Next/Previous Post" links.
+
+#### What I Did (Actions Taken)
+-   Scrolled to the bottom.
+
+#### What Happened (Actual Behavior)
+-   No such links found.
+
+#### What I Expected (Intended Purpose)
+-   Links to other relevant content.
+
+#### Bugs / Missing Features / Errors
+-   **Missing**: Related/Next/Prev post links.
+
+### Feature: Comments
+#### What I Saw (Visual Description)
+-   "Comments" heading, followed by "Comments are currently disabled."
+
+#### What I Did (Actions Taken)
+-   Viewed the section.
+
+#### What Happened (Actual Behavior)
+-   Comments are disabled.
+
+#### What I Expected (Intended Purpose)
+-   Either a working comment form or no section if comments are not intended.
+
+#### Bugs / Missing Features / Errors
+-   None, it clearly states they are disabled.
+
+### Feature: Article Responsiveness (Mobile)
+#### What I Saw (Visual Description)
+-   Content reflows to fit mobile screen.
+
+#### What I Did (Actions Taken)
+-   Resized to 375px width.
+
+#### What Happened (Actual Behavior)
+-   Text readable, images fit.
+
+#### What I Expected (Intended Purpose)
+-   Good mobile reading experience.
+
+#### Bugs / Missing Features / Errors
+-   None.
