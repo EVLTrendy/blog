@@ -9,27 +9,20 @@ layout: 'base.njk'
    ============================================ #}
 <section class="hero-section">
   <div class="hero-content">
-    <h1 class="hero-title">Your Hub for Social Media, Growth, & Digital Strategy</h1>
-    <p class="hero-subtitle">Actionable Insights for Content Creators & Digital Marketers</p>
+    <h1 class="hero-title">{{ homepage.hero.title }}</h1>
+    <p class="hero-subtitle">{{ homepage.hero.subtitle }}</p>
     <p class="hero-description">
-      Discover proven strategies, expert guides, and practical resources to grow your online presence, 
-      master social media, and build a thriving digital brand.
+      {{ homepage.hero.description }}
     </p>
-    <a href="#categories" class="hero-cta">Explore Insights</a>
+    <a href="#categories" class="hero-cta">{{ homepage.hero.ctaText }}</a>
     
     <div class="hero-stats">
+      {% for stat in homepage.hero.stats %}
       <div class="stat-item">
-        <span class="stat-number">500+</span>
-        <span class="stat-label">Articles</span>
+        <span class="stat-number">{{ stat.number }}</span>
+        <span class="stat-label">{{ stat.label }}</span>
       </div>
-      <div class="stat-item">
-        <span class="stat-number">50K+</span>
-        <span class="stat-label">Readers</span>
-      </div>
-      <div class="stat-item">
-        <span class="stat-number">Weekly</span>
-        <span class="stat-label">Updates</span>
-      </div>
+      {% endfor %}
     </div>
   </div>
 </section>
@@ -40,10 +33,9 @@ layout: 'base.njk'
 <section class="categories-hub" id="categories">
   <div class="categories-container">
     <div class="hub-intro">
-      <h2>Explore by Topic</h2>
+      <h2>{{ homepage.categories.title }}</h2>
       <p>
-        Browse our comprehensive library of resources organized by category. 
-        Each section is packed with expert insights, step-by-step guides, and proven strategies.
+        {{ homepage.categories.description }}
       </p>
     </div>
     
@@ -59,7 +51,7 @@ layout: 'base.njk'
           </div>
         </div>
         <p class="category-description">
-          Master the art of social media with proven strategies for growth, engagement, and conversion across all major platforms.
+          {{ homepage.categories.panels.socialMedia.description }}
         </p>
         <div class="category-posts">
           {% set socialMediaPosts = collections.blog | filterByCategory('social-media') | reverse | limit(3) %}
@@ -87,7 +79,7 @@ layout: 'base.njk'
           </div>
         </div>
         <p class="category-description">
-          Learn how to create compelling content that resonates with your audience and drives meaningful engagement.
+          {{ homepage.categories.panels.contentCreation.description }}
         </p>
         <div class="category-posts">
           {% set contentPosts = collections.blog | filterByCategory('content-creation') | reverse | limit(3) %}
@@ -115,7 +107,7 @@ layout: 'base.njk'
           </div>
         </div>
         <p class="category-description">
-          Boost your search rankings and understand your data with expert SEO tactics and analytics insights.
+          {{ homepage.categories.panels.seo.description }}
         </p>
         <div class="category-posts">
           {% set seoPosts = collections.blog | filterByCategory('seo') | reverse | limit(3) %}
@@ -143,7 +135,7 @@ layout: 'base.njk'
           </div>
         </div>
         <p class="category-description">
-          Build a winning digital strategy with frameworks, templates, and actionable plans for sustainable growth.
+          {{ homepage.categories.panels.strategy.description }}
         </p>
         <div class="category-posts">
           {% set strategyPosts = collections.blog | filterByCategory('strategy') | reverse | limit(3) %}
@@ -171,7 +163,7 @@ layout: 'base.njk'
           </div>
         </div>
         <p class="category-description">
-          Discover the best tools and automation strategies to streamline your workflow and maximize productivity.
+          {{ homepage.categories.panels.tools.description }}
         </p>
         <div class="category-posts">
           {% set toolsPosts = collections.blog | filterByCategory('tools') | reverse | limit(3) %}
@@ -199,7 +191,7 @@ layout: 'base.njk'
           </div>
         </div>
         <p class="category-description">
-          Unlock rapid growth with innovative tactics, experiments, and proven growth hacking methodologies.
+          {{ homepage.categories.panels.growth.description }}
         </p>
         <div class="category-posts">
           {% set growthPosts = collections.blog | filterByCategory('growth') | reverse | limit(3) %}
@@ -228,8 +220,8 @@ layout: 'base.njk'
 <section class="content-sections">
   <div class="content-sections-container">
     <div class="section-header">
-      <h2>What's Hot Right Now</h2>
-      <p>Explore trending articles, reader favorites, and fresh content</p>
+      <h2>{{ homepage.whatsHot.title }}</h2>
+      <p>{{ homepage.whatsHot.subtitle }}</p>
     </div>
     
     <div class="section-tabs">
@@ -307,8 +299,8 @@ function openTab(evt, tabName) {
 <section class="tools-resources-band">
   <div class="tools-container">
     <div class="tools-header">
-      <h2>Free Tools & Resources</h2>
-      <p>Powerful tools to accelerate your digital growth</p>
+      <h2>{{ homepage.toolsSection.title }}</h2>
+      <p>{{ homepage.toolsSection.subtitle }}</p>
     </div>
     
     <div class="tools-carousel-wrapper">
@@ -437,37 +429,34 @@ document.addEventListener('DOMContentLoaded', function() {
 <section class="insights-panel">
   <div class="insights-container">
     <div class="section-header">
-      <h2>Quick Insights</h2>
-      <p>Latest updates and highlights from the community</p>
+      <h2>{{ homepage.insights.title }}</h2>
+      <p>{{ homepage.insights.subtitle }}</p>
     </div>
     
     <div class="insights-list">
-      <div class="insight-item">
-        <span class="insight-badge update">Update</span>
-        <div class="insight-content">
-          <h3>New Twitter Reply Bot Launched</h3>
-          <p>We've just released our AI-powered Twitter reply tool. Try it for free today!</p>
+      {% set insights = collections.insights | reverse | limit(3) %}
+      {% if insights.length > 0 %}
+        {% for insight in insights %}
+        <div class="insight-item">
+          <span class="insight-badge {{ insight.data.type | lower }}">{{ insight.data.type }}</span>
+          <div class="insight-content">
+            <h3>{{ insight.data.title }}</h3>
+            <p>{{ insight.data.summary }}</p>
+          </div>
+          <a href="{{ insight.url }}" class="insight-link">Read More</a>
         </div>
-        <a href="https://tools.evolvedlotus.com/twitterreplybot/tweet-replier/" class="insight-link">Try Now</a>
-      </div>
-
-      <div class="insight-item">
-        <span class="insight-badge resource">Resource</span>
-        <div class="insight-content">
-          <h3>2025 SEO Checklist Available</h3>
-          <p>Download our comprehensive guide to ranking higher in 2025.</p>
+        {% endfor %}
+      {% else %}
+        {# Fallback if no insights exist yet #}
+        <div class="insight-item">
+          <span class="insight-badge update">Update</span>
+          <div class="insight-content">
+            <h3>New Twitter Reply Bot Launched</h3>
+            <p>We've just released our AI-powered Twitter reply tool. Try it for free today!</p>
+          </div>
+          <a href="https://tools.evolvedlotus.com/twitterreplybot/tweet-replier/" class="insight-link">Try Now</a>
         </div>
-        <a href="/blog/seo-checklist-2025" class="insight-link">Download</a>
-      </div>
-
-      <div class="insight-item">
-        <span class="insight-badge community">Community</span>
-        <div class="insight-content">
-          <h3>Join our Discord Server</h3>
-          <p>Connect with 500+ other creators and marketers.</p>
-        </div>
-        <a href="#" class="insight-link">Join</a>
-      </div>
+      {% endif %}
     </div>
   </div>
 </section>
@@ -477,11 +466,11 @@ document.addEventListener('DOMContentLoaded', function() {
    ============================================ #}
 <section class="newsletter-section">
   <div class="newsletter-container">
-    <h2>Get Weekly Insights</h2>
-    <p>Join thousands of creators and marketers receiving actionable tips every week</p>
+    <h2>{{ homepage.newsletter.title }}</h2>
+    <p>{{ homepage.newsletter.description }}</p>
     <form class="newsletter-form" action="https://mailchi.mp/78ca0b0ef493/newsletter" method="get" target="_blank">
       <input type="email" class="newsletter-input" placeholder="Enter your email" required>
-      <button type="submit" class="newsletter-button">Subscribe Now</button>
+      <button type="submit" class="newsletter-button">{{ homepage.newsletter.buttonText }}</button>
     </form>
   </div>
 </section>
@@ -491,7 +480,7 @@ document.addEventListener('DOMContentLoaded', function() {
    ============================================ #}
 <section class="quick-access">
   <div class="quick-access-container">
-    <h2>Start Your Journey</h2>
+    <h2>{{ homepage.quickAccess.title }}</h2>
     <div class="quick-buttons">
       <a href="/blog/" class="quick-button">Browse Categories</a>
       {% set latestPost = collections.blog | reverse | first %}
@@ -515,64 +504,25 @@ document.addEventListener('DOMContentLoaded', function() {
 <section class="testimonials-section">
   <div class="testimonials-container">
     <div class="section-header">
-      <h2>Trusted by Creators & Marketers</h2>
-      <p>See what our readers are saying about their experience</p>
+      <h2>{{ homepage.testimonials.title }}</h2>
+      <p>{{ homepage.testimonials.subtitle }}</p>
     </div>
     
     <div class="testimonials-grid">
+      {% for testimonial in homepage.testimonials.items %}
       <div class="testimonial-card">
         <p class="testimonial-text">
-          "This blog has become my go-to place for practical, actionable insights. 
-          I always leave with something I can use immediately."
+          "{{ testimonial.text }}"
         </p>
         <div class="testimonial-author">
-          <div class="author-avatar">AR</div>
+          <div class="author-avatar">{{ testimonial.avatar }}</div>
           <div class="author-info">
-            <div class="author-name">Alyssa R.</div>
-            <div class="author-role">Digital Strategist</div>
+            <div class="author-name">{{ testimonial.author }}</div>
+            <div class="author-role">{{ testimonial.role }}</div>
           </div>
         </div>
       </div>
-      
-      <div class="testimonial-card">
-        <p class="testimonial-text">
-          "The articles are refreshingly clear and well organized. 
-          It feels like having a personal mentor for online growth."
-        </p>
-        <div class="testimonial-author">
-          <div class="author-avatar">MT</div>
-          <div class="author-info">
-            <div class="author-name">Marcus T.</div>
-            <div class="author-role">Small Business Owner</div>
-          </div>
-        </div>
-      </div>
-      
-      <div class="testimonial-card">
-        <p class="testimonial-text">
-          "Every time I visit, I end up bookmarking at least two new posts. It's that good."
-        </p>
-        <div class="testimonial-author">
-          <div class="author-avatar">LM</div>
-          <div class="author-info">
-            <div class="author-name">Lena M.</div>
-            <div class="author-role">Content Creator</div>
-          </div>
-        </div>
-      </div>
-      
-      <div class="testimonial-card">
-        <p class="testimonial-text">
-          "It feels like a resource hub built for creators, not just another blog."
-        </p>
-        <div class="testimonial-author">
-          <div class="author-avatar">SP</div>
-          <div class="author-info">
-            <div class="author-name">Sam P.</div>
-            <div class="author-role">Social Media Manager</div>
-          </div>
-        </div>
-      </div>
+      {% endfor %}
     </div>
   </div>
 </section>

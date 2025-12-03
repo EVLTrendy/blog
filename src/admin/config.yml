@@ -470,3 +470,99 @@ collections:
               { label: "Quick Insights", name: "quickInsights", widget: "boolean", default: true },
               { label: "Tools & Resources", name: "toolsResources", widget: "boolean", default: true }
             ] }
+      - label: "Homepage Configuration"
+        name: "homepage"
+        file: "src/_data/homepage.json"
+        fields:
+          - label: "Hero Section"
+            name: "hero"
+            widget: "object"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Subtitle", name: "subtitle", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+              - { label: "CTA Text", name: "ctaText", widget: "string" }
+              - label: "Stats"
+                name: "stats"
+                widget: "list"
+                fields:
+                  - { label: "Number", name: "number", widget: "string" }
+                  - { label: "Label", name: "label", widget: "string" }
+          - label: "Categories Section"
+            name: "categories"
+            widget: "object"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+              - label: "Category Panels"
+                name: "panels"
+                widget: "object"
+                fields:
+                  - label: "Social Media"
+                    name: "socialMedia"
+                    widget: "object"
+                    fields: [{ label: "Description", name: "description", widget: "text" }]
+                  - label: "Content Creation"
+                    name: "contentCreation"
+                    widget: "object"
+                    fields: [{ label: "Description", name: "description", widget: "text" }]
+                  - label: "SEO"
+                    name: "seo"
+                    widget: "object"
+                    fields: [{ label: "Description", name: "description", widget: "text" }]
+                  - label: "Strategy"
+                    name: "strategy"
+                    widget: "object"
+                    fields: [{ label: "Description", name: "description", widget: "text" }]
+                  - label: "Tools"
+                    name: "tools"
+                    widget: "object"
+                    fields: [{ label: "Description", name: "description", widget: "text" }]
+                  - label: "Growth"
+                    name: "growth"
+                    widget: "object"
+                    fields: [{ label: "Description", name: "description", widget: "text" }]
+          - label: "What's Hot Section"
+            name: "whatsHot"
+            widget: "object"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Subtitle", name: "subtitle", widget: "string" }
+          - label: "Tools Section"
+            name: "toolsSection"
+            widget: "object"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Subtitle", name: "subtitle", widget: "string" }
+          - label: "Insights Section"
+            name: "insights"
+            widget: "object"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Subtitle", name: "subtitle", widget: "string" }
+          - label: "Newsletter Section"
+            name: "newsletter"
+            widget: "object"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+              - { label: "Button Text", name: "buttonText", widget: "string" }
+          - label: "Quick Access Section"
+            name: "quickAccess"
+            widget: "object"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+          - label: "Testimonials Section"
+            name: "testimonials"
+            widget: "object"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Subtitle", name: "subtitle", widget: "string" }
+              - label: "Testimonials List"
+                name: "items"
+                widget: "list"
+                fields:
+                  - { label: "Quote", name: "text", widget: "text" }
+                  - { label: "Author Name", name: "author", widget: "string" }
+                  - { label: "Author Role", name: "role", widget: "string" }
+                  - { label: "Avatar Initials", name: "avatar", widget: "string" }
