@@ -19,6 +19,7 @@
 
     // Apply theme to document
     function applyTheme(theme) {
+        console.log('🎨 Applying theme:', theme);
         if (theme === 'dark') {
             document.documentElement.setAttribute('data-theme', 'dark');
             document.body.classList.add(DARK_CLASS);
@@ -27,12 +28,15 @@
             document.body.classList.remove(DARK_CLASS);
         }
         localStorage.setItem(THEME_KEY, theme);
+        console.log('✅ Theme applied. Body classes:', document.body.className);
+        console.log('✅ Data theme:', document.documentElement.getAttribute('data-theme'));
     }
 
     // Toggle between themes
     function toggleTheme() {
         const current = getTheme();
         const next = current === 'dark' ? 'light' : 'dark';
+        console.log('🎨 Theme toggle clicked:', { current, next });
         applyTheme(next);
         updateToggleButton(next);
     }
@@ -59,6 +63,7 @@
     // Initialize theme on page load
     function init() {
         const theme = getTheme();
+        console.log('🎨 Initializing theme:', theme);
         applyTheme(theme);
 
         // Wait for DOM to be ready
@@ -76,8 +81,10 @@
     // Setup toggle button event listener
     function setupToggleButton() {
         const button = document.getElementById('theme-toggle');
+        console.log('🔘 Setting up toggle button:', button ? 'Found' : 'NOT FOUND');
         if (button) {
             button.addEventListener('click', toggleTheme);
+            console.log('✅ Click listener added to theme toggle button');
         }
     }
 
