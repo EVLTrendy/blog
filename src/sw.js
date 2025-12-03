@@ -1,4 +1,4 @@
-const CACHE_NAME = 'blog-cache-v1';
+const CACHE_NAME = 'blog-cache-v2';
 const OFFLINE_URL = '/offline/';
 
 const ASSETS_TO_CACHE = [
@@ -39,6 +39,25 @@ self.addEventListener('activate', (event) => {
 });
 
 self.addEventListener('fetch', (event) => {
+    // Skip cross-origin requests (like Google Analytics, fonts, etc.)
+    if (!event.request.url.startsWith(self.location.origin)) {
+        return;
+    }
+
+    // Skip Google Analytics requests
+    if (event.request.url.includes('google-analytics.com') ||
+        event.request.url.includes('googletagmanager.com') ||
+        event.request.url.includes('analytics.js') ||
+        event.request.url.includes('/g/collect')) {
+        return;
+    }
+
+    // Skip API requests and dynamic content
+    if (event.request.url.includes('/api/') ||
+        event.request.url.includes('/.netlify/')) {
+        return;
+    }
+
     // Navigation requests (HTML pages)
     if (event.request.mode === 'navigate') {
         event.respondWith(
@@ -73,7 +92,15 @@ self.addEventListener('fetch', (event) => {
                 // but we could add runtime caching here for other assets.
 
                 return networkResponse;
+            }).catch(() => {
+                // If fetch fails, return a fallback for images
+                if (event.request.destination === 'image') {
+                    return caches.match('/assets/blog/default-og.png');
+                }
+                // For other resources, just fail silently
+                return new Response('', { status: 404 });
             });
         })
     );
 });
+

@@ -1,0 +1,428 @@
+{% macro quiz(quizData) %}
+<div class="interactive-quiz" data-quiz-id="{{ quizData.id }}">
+  <div class="quiz-header">
+    <h3 class="quiz-title">{{ quizData.title }}</h3>
+    {% if quizData.description %}
+    <p class="quiz-description">{{ quizData.description }}</p>
+    {% endif %}
+  </div>
+
+  <div class="quiz-questions">
+    {% for question in quizData.questions %}
+    <div class="quiz-question" data-question-index="{{ loop.index0 }}" data-correct-answer="{{ question.correctAnswer }}">
+      <div class="question-header">
+        <span class="question-number">Question {{ loop.index }} of {{ quizData.questions.length }}</span>
+        <h4 class="question-text">{{ question.text }}</h4>
+      </div>
+
+      <div class="question-options">
+        {% for option in question.options %}
+        <button class="quiz-option" data-option-index="{{ loop.index0 }}">
+          <span class="option-letter">{{ ['A', 'B', 'C', 'D'][loop.index0] }}</span>
+          <span class="option-text">{{ option }}</span>
+        </button>
+        {% endfor %}
+      </div>
+
+      <div class="question-feedback" style="display: none;">
+        <div class="feedback-content"></div>
+        {% if question.explanation %}
+        <p class="explanation">{{ question.explanation }}</p>
+        {% endif %}
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+  <div class="quiz-results" style="display: none;">
+    <div class="results-content">
+      <h3 class="results-title">Quiz Complete! 🎉</h3>
+      <div class="score-display">
+        <span class="score-number"></span>
+        <span class="score-label">out of {{ quizData.questions.length }}</span>
+      </div>
+      <p class="score-message"></p>
+      <button class="quiz-restart">Try Again</button>
+    </div>
+  </div>
+
+  <div class="quiz-progress">
+    <div class="progress-bar">
+      <div class="progress-fill" style="width: 0%"></div>
+    </div>
+    <p class="progress-text">0 of {{ quizData.questions.length }} answered</p>
+  </div>
+</div>
+
+<style>
+.interactive-quiz {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 16px;
+  padding: 2rem;
+  margin: 2rem 0;
+  color: white;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.quiz-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.quiz-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem 0;
+}
+
+.quiz-description {
+  opacity: 0.9;
+  font-size: 1rem;
+}
+
+.quiz-question {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  display: none;
+}
+
+.quiz-question.active {
+  display: block;
+  animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.question-header {
+  margin-bottom: 1.5rem;
+}
+
+.question-number {
+  display: block;
+  font-size: 0.875rem;
+  opacity: 0.8;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.question-text {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.question-options {
+  display: grid;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.quiz-option {
+  background: rgba(255, 255, 255, 0.15);
+  border: 2px solid transparent;
+  border-radius: 8px;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: white;
+  font-size: 1rem;
+  text-align: left;
+  width: 100%;
+}
+
+.quiz-option:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.25);
+  transform: translateX(4px);
+}
+
+.quiz-option:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.quiz-option.correct {
+  background: rgba(16, 185, 129, 0.3);
+  border-color: #10b981;
+}
+
+.quiz-option.incorrect {
+  background: rgba(239, 68, 68, 0.3);
+  border-color: #ef4444;
+}
+
+.option-letter {
+  background: rgba(255, 255, 255, 0.2);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.option-text {
+  flex: 1;
+}
+
+.question-feedback {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+}
+
+.feedback-content {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.explanation {
+  opacity: 0.9;
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.quiz-results {
+  text-align: center;
+  padding: 2rem;
+}
+
+.results-title {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.score-display {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.score-label {
+  font-size: 1.5rem;
+  opacity: 0.8;
+}
+
+.score-message {
+  font-size: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.quiz-restart {
+  background: white;
+  color: #667eea;
+  border: none;
+  padding: 0.75rem 2rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.quiz-restart:hover {
+  transform: scale(1.05);
+}
+
+.quiz-progress {
+  margin-top: 1.5rem;
+}
+
+.progress-bar {
+  background: rgba(255, 255, 255, 0.2);
+  height: 8px;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 0.5rem;
+}
+
+.progress-fill {
+  background: white;
+  height: 100%;
+  transition: width 0.3s ease;
+}
+
+.progress-text {
+  text-align: center;
+  font-size: 0.875rem;
+  opacity: 0.8;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .interactive-quiz {
+    padding: 1.5rem;
+    margin: 1.5rem -1rem;
+    border-radius: 0;
+  }
+
+  .quiz-title {
+    font-size: 1.5rem;
+  }
+
+  .question-text {
+    font-size: 1.1rem;
+  }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const quizzes = document.querySelectorAll('.interactive-quiz');
+  
+  quizzes.forEach(quiz => {
+    let currentQuestion = 0;
+    let score = 0;
+    let answered = 0;
+    
+    const questions = quiz.querySelectorAll('.quiz-question');
+    const resultsDiv = quiz.querySelector('.quiz-results');
+    const progressFill = quiz.querySelector('.progress-fill');
+    const progressText = quiz.querySelector('.progress-text');
+    const restartBtn = quiz.querySelector('.quiz-restart');
+    
+    // Show first question
+    if (questions.length > 0) {
+      questions[0].classList.add('active');
+    }
+    
+    // Handle option clicks
+    questions.forEach((question, qIndex) => {
+      const options = question.querySelectorAll('.quiz-option');
+      const feedback = question.querySelector('.question-feedback');
+      const feedbackContent = question.querySelector('.feedback-content');
+      const correctAnswer = parseInt(question.dataset.correctAnswer);
+      
+      options.forEach((option, oIndex) => {
+        option.addEventListener('click', function() {
+          if (this.disabled) return;
+          
+          // Disable all options
+          options.forEach(opt => opt.disabled = true);
+          
+          // Check answer
+          const isCorrect = oIndex === correctAnswer;
+          
+          if (isCorrect) {
+            this.classList.add('correct');
+            feedbackContent.innerHTML = '✅ Correct!';
+            score++;
+          } else {
+            this.classList.add('incorrect');
+            options[correctAnswer].classList.add('correct');
+            feedbackContent.innerHTML = '❌ Incorrect. The correct answer is highlighted.';
+          }
+          
+          // Show feedback
+          feedback.style.display = 'block';
+          
+          // Update progress
+          answered++;
+          updateProgress();
+          
+          // Track interaction
+          if (typeof gtag !== 'undefined') {
+            gtag('event', 'quiz_answer', {
+              quiz_id: quiz.dataset.quizId,
+              question_index: qIndex,
+              is_correct: isCorrect
+            });
+          }
+          
+          // Move to next question after delay
+          setTimeout(() => {
+            question.classList.remove('active');
+            currentQuestion++;
+            
+            if (currentQuestion < questions.length) {
+              questions[currentQuestion].classList.add('active');
+            } else {
+              showResults();
+            }
+          }, 2000);
+        });
+      });
+    });
+    
+    function updateProgress() {
+      const percentage = (answered / questions.length) * 100;
+      progressFill.style.width = percentage + '%';
+      progressText.textContent = `${answered} of ${questions.length} answered`;
+    }
+    
+    function showResults() {
+      const percentage = (score / questions.length) * 100;
+      let message = '';
+      
+      if (percentage === 100) {
+        message = 'Perfect score! You\'re a master! 🏆';
+      } else if (percentage >= 80) {
+        message = 'Excellent work! You really know your stuff! 🌟';
+      } else if (percentage >= 60) {
+        message = 'Good job! You\'re on the right track! 👍';
+      } else {
+        message = 'Keep learning! Try again to improve your score! 📚';
+      }
+      
+      quiz.querySelector('.score-number').textContent = score;
+      quiz.querySelector('.score-message').textContent = message;
+      resultsDiv.style.display = 'block';
+      
+      // Track completion
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'quiz_complete', {
+          quiz_id: quiz.dataset.quizId,
+          score: score,
+          total: questions.length,
+          percentage: percentage
+        });
+      }
+    }
+    
+    // Restart quiz
+    restartBtn.addEventListener('click', function() {
+      currentQuestion = 0;
+      score = 0;
+      answered = 0;
+      
+      resultsDiv.style.display = 'none';
+      updateProgress();
+      
+      questions.forEach(question => {
+        question.classList.remove('active');
+        const options = question.querySelectorAll('.quiz-option');
+        options.forEach(opt => {
+          opt.disabled = false;
+          opt.classList.remove('correct', 'incorrect');
+        });
+        question.querySelector('.question-feedback').style.display = 'none';
+      });
+      
+      questions[0].classList.add('active');
+    });
+  });
+});
+</script>
+{% endmacro %}

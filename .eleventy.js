@@ -375,6 +375,44 @@ module.exports = function (eleventyConfig) {
         });
     });
 
+    // Add series-related filters for content series navigation
+    eleventyConfig.addFilter("filterBySeriesName", function (collection, seriesName) {
+        if (!collection || !seriesName) return [];
+        return collection.filter(item => {
+            return item.data.series === seriesName;
+        });
+    });
+
+    eleventyConfig.addFilter("sortBySeriesOrder", function (collection) {
+        if (!collection) return [];
+        return collection.sort((a, b) => {
+            const orderA = a.data.seriesOrder || 0;
+            const orderB = b.data.seriesOrder || 0;
+            return orderA - orderB;
+        });
+    });
+
+    eleventyConfig.addFilter("findIndexByUrl", function (collection, url) {
+        if (!collection || !url) return -1;
+        return collection.findIndex(item => item.url === url);
+    });
+
+    // Add filter to filter posts by author
+    eleventyConfig.addFilter("filterByAuthor", function (collection, authorName) {
+        if (!collection || !authorName) return [];
+        return collection.filter(item => {
+            return item.data.author === authorName;
+        });
+    });
+
+    // Add filter to find author by name
+    eleventyConfig.addFilter("findByName", function (collection, name) {
+        if (!collection || !name) return null;
+        return collection.find(item => {
+            return item.data.name === name;
+        });
+    });
+
 
 
     // Create collections for content hubs based on tags
@@ -397,6 +435,11 @@ module.exports = function (eleventyConfig) {
     // Create a collection of all hub pages
     eleventyConfig.addCollection("hubs", function (collectionApi) {
         return collectionApi.getFilteredByGlob("src/hubs/*.md");
+    });
+
+    // Create authors collection
+    eleventyConfig.addCollection("authors", function (collectionApi) {
+        return collectionApi.getFilteredByGlob("src/authors/*.md");
     });
 
     return {

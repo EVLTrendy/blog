@@ -1,0 +1,316 @@
+{% if series %}
+{# Get all posts in this series #}
+{% set seriesPosts = collections.all | filterBySeriesName(series) | sortBySeriesOrder %}
+{% set currentIndex = seriesPosts | findIndexByUrl(page.url) %}
+{% set totalParts = seriesPosts.length %}
+{% set prevPost = seriesPosts[currentIndex - 1] if currentIndex > 0 else null %}
+{% set nextPost = seriesPosts[currentIndex + 1] if currentIndex < totalParts - 1 else null %}
+
+<div class="series-navigation">
+  <div class="series-header">
+    <div class="series-badge">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+      </svg>
+      <span>Series</span>
+    </div>
+    <h3 class="series-title">{{ series }}</h3>
+    <p class="series-progress">Part {{ seriesOrder | default(currentIndex + 1) }} of {{ totalParts }}</p>
+  </div>
+
+  {% if totalParts > 1 %}
+  <div class="series-parts">
+    <h4 class="series-parts-title">All Parts in This Series:</h4>
+    <ol class="series-list">
+      {% for post in seriesPosts %}
+      <li class="series-item {{ 'current' if post.url == page.url else '' }}">
+        {% if post.url == page.url %}
+          <span class="series-item-number">{{ loop.index }}</span>
+          <span class="series-item-title">{{ post.data.title }}</span>
+          <span class="series-item-badge">You are here</span>
+        {% else %}
+          <a href="{{ post.url }}" class="series-item-link">
+            <span class="series-item-number">{{ loop.index }}</span>
+            <span class="series-item-title">{{ post.data.title }}</span>
+            {% if loop.index < currentIndex + 1 %}
+              <span class="series-item-status completed">✓</span>
+            {% else %}
+              <span class="series-item-status upcoming">→</span>
+            {% endif %}
+          </a>
+        {% endif %}
+      </li>
+      {% endfor %}
+    </ol>
+  </div>
+
+  <div class="series-navigation-buttons">
+    {% if prevPost %}
+    <a href="{{ prevPost.url }}" class="series-nav-button prev">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M15 18l-6-6 6-6"></path>
+      </svg>
+      <div class="series-nav-content">
+        <span class="series-nav-label">Previous</span>
+        <span class="series-nav-title">{{ prevPost.data.title }}</span>
+      </div>
+    </a>
+    {% else %}
+    <div class="series-nav-button disabled">
+      <span class="series-nav-label">No previous post</span>
+    </div>
+    {% endif %}
+
+    {% if nextPost %}
+    <a href="{{ nextPost.url }}" class="series-nav-button next">
+      <div class="series-nav-content">
+        <span class="series-nav-label">Next</span>
+        <span class="series-nav-title">{{ nextPost.data.title }}</span>
+      </div>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M9 18l6-6-6-6"></path>
+      </svg>
+    </a>
+    {% else %}
+    <div class="series-nav-button disabled">
+      <span class="series-nav-label">No next post</span>
+    </div>
+    {% endif %}
+  </div>
+  {% endif %}
+</div>
+
+<style>
+.series-navigation {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 16px;
+  padding: 2rem;
+  margin: 2rem 0;
+  color: white;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.series-header {
+  text-align: center;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.series-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 1rem;
+}
+
+.series-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem 0;
+}
+
+.series-progress {
+  font-size: 1.125rem;
+  opacity: 0.9;
+  margin: 0;
+}
+
+.series-parts {
+  margin-bottom: 2rem;
+}
+
+.series-parts-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin: 0 0 1rem 0;
+  opacity: 0.9;
+}
+
+.series-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.series-item {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: all 0.2s ease;
+}
+
+.series-item.current {
+  background: rgba(255, 255, 255, 0.25);
+  border: 2px solid white;
+}
+
+.series-item-link {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  color: white;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.series-item-link:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateX(4px);
+}
+
+.series-item.current {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.series-item-number {
+  background: rgba(255, 255, 255, 0.2);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.series-item.current .series-item-number {
+  background: white;
+  color: #667eea;
+}
+
+.series-item-title {
+  flex: 1;
+  font-weight: 500;
+}
+
+.series-item-badge {
+  background: white;
+  color: #667eea;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.series-item-status {
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+
+.series-item-status.completed {
+  color: #10b981;
+}
+
+.series-item-status.upcoming {
+  opacity: 0.5;
+}
+
+.series-navigation-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.series-nav-button {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  padding: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: white;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.series-nav-button:not(.disabled):hover {
+  background: rgba(255, 255, 255, 0.25);
+  border-color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.series-nav-button.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  justify-content: center;
+}
+
+.series-nav-button.prev {
+  justify-content: flex-start;
+}
+
+.series-nav-button.next {
+  justify-content: flex-end;
+}
+
+.series-nav-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.series-nav-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  opacity: 0.8;
+}
+
+.series-nav-title {
+  font-weight: 600;
+  font-size: 0.875rem;
+  line-height: 1.3;
+}
+
+@media (max-width: 768px) {
+  .series-navigation {
+    padding: 1.5rem;
+    margin: 1.5rem -1rem;
+    border-radius: 0;
+  }
+
+  .series-title {
+    font-size: 1.5rem;
+  }
+
+  .series-navigation-buttons {
+    grid-template-columns: 1fr;
+  }
+
+  .series-nav-button.prev,
+  .series-nav-button.next {
+    justify-content: center;
+  }
+
+  .series-item-link {
+    padding: 0.75rem;
+  }
+
+  .series-item-title {
+    font-size: 0.9rem;
+  }
+}
+</style>
+{% endif %}

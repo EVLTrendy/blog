@@ -1,0 +1,461 @@
+{% macro calculator(calcData) %}
+<div class="interactive-calculator" data-calculator-id="{{ calcData.id }}">
+  <div class="calculator-header">
+    <h3 class="calculator-title">{{ calcData.title }}</h3>
+    {% if calcData.description %}
+    <p class="calculator-description">{{ calcData.description }}</p>
+    {% endif %}
+  </div>
+
+  <div class="calculator-body">
+    {% if calcData.type == 'engagement-rate' %}
+      {# Engagement Rate Calculator #}
+      <div class="calc-input-group">
+        <label for="likes-{{ calcData.id }}">Total Likes</label>
+        <input type="number" id="likes-{{ calcData.id }}" class="calc-input" placeholder="0" min="0">
+      </div>
+
+      <div class="calc-input-group">
+        <label for="comments-{{ calcData.id }}">Total Comments</label>
+        <input type="number" id="comments-{{ calcData.id }}" class="calc-input" placeholder="0" min="0">
+      </div>
+
+      <div class="calc-input-group">
+        <label for="shares-{{ calcData.id }}">Total Shares</label>
+        <input type="number" id="shares-{{ calcData.id }}" class="calc-input" placeholder="0" min="0">
+      </div>
+
+      <div class="calc-input-group">
+        <label for="followers-{{ calcData.id }}">Total Followers</label>
+        <input type="number" id="followers-{{ calcData.id }}" class="calc-input" placeholder="0" min="1">
+      </div>
+
+      <button class="calc-button" data-calc-type="engagement-rate">Calculate Engagement Rate</button>
+
+      <div class="calc-result" style="display: none;">
+        <div class="result-value"></div>
+        <div class="result-interpretation"></div>
+      </div>
+
+    {% elif calcData.type == 'posting-time' %}
+      {# Best Posting Time Calculator #}
+      <div class="calc-input-group">
+        <label for="timezone-{{ calcData.id }}">Your Timezone</label>
+        <select id="timezone-{{ calcData.id }}" class="calc-select">
+          <option value="EST">Eastern (EST/EDT)</option>
+          <option value="CST">Central (CST/CDT)</option>
+          <option value="MST">Mountain (MST/MDT)</option>
+          <option value="PST">Pacific (PST/PDT)</option>
+          <option value="GMT">GMT/UTC</option>
+        </select>
+      </div>
+
+      <div class="calc-input-group">
+        <label for="platform-{{ calcData.id }}">Platform</label>
+        <select id="platform-{{ calcData.id }}" class="calc-select">
+          <option value="tiktok">TikTok</option>
+          <option value="instagram">Instagram</option>
+          <option value="youtube">YouTube</option>
+          <option value="twitter">Twitter/X</option>
+          <option value="facebook">Facebook</option>
+        </select>
+      </div>
+
+      <div class="calc-input-group">
+        <label for="audience-{{ calcData.id }}">Primary Audience</label>
+        <select id="audience-{{ calcData.id }}" class="calc-select">
+          <option value="general">General</option>
+          <option value="teens">Teens (13-17)</option>
+          <option value="young-adults">Young Adults (18-24)</option>
+          <option value="adults">Adults (25-44)</option>
+          <option value="professionals">Professionals (45+)</option>
+        </select>
+      </div>
+
+      <button class="calc-button" data-calc-type="posting-time">Find Best Times</button>
+
+      <div class="calc-result" style="display: none;">
+        <div class="result-times"></div>
+      </div>
+
+    {% elif calcData.type == 'reach-estimate' %}
+      {# Reach Estimate Calculator #}
+      <div class="calc-input-group">
+        <label for="followers-reach-{{ calcData.id }}">Follower Count</label>
+        <input type="number" id="followers-reach-{{ calcData.id }}" class="calc-input" placeholder="0" min="0">
+      </div>
+
+      <div class="calc-input-group">
+        <label for="engagement-{{ calcData.id }}">Average Engagement Rate (%)</label>
+        <input type="number" id="engagement-{{ calcData.id }}" class="calc-input" placeholder="0" min="0" max="100" step="0.1">
+      </div>
+
+      <div class="calc-input-group">
+        <label for="platform-reach-{{ calcData.id }}">Platform</label>
+        <select id="platform-reach-{{ calcData.id }}" class="calc-select">
+          <option value="tiktok">TikTok</option>
+          <option value="instagram">Instagram</option>
+          <option value="youtube">YouTube</option>
+          <option value="twitter">Twitter/X</option>
+        </select>
+      </div>
+
+      <button class="calc-button" data-calc-type="reach-estimate">Estimate Reach</button>
+
+      <div class="calc-result" style="display: none;">
+        <div class="result-reach"></div>
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+<style>
+.interactive-calculator {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  border-radius: 16px;
+  padding: 2rem;
+  margin: 2rem 0;
+  color: white;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.calculator-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.calculator-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem 0;
+}
+
+.calculator-description {
+  opacity: 0.9;
+  font-size: 1rem;
+  margin: 0;
+}
+
+.calculator-body {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  padding: 2rem;
+}
+
+.calc-input-group {
+  margin-bottom: 1.5rem;
+}
+
+.calc-input-group label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.calc-input,
+.calc-select {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+}
+
+.calc-input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.calc-input:focus,
+.calc-select:focus {
+  outline: none;
+  border-color: white;
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.calc-select option {
+  background: #764ba2;
+  color: white;
+}
+
+.calc-button {
+  width: 100%;
+  padding: 1rem;
+  background: white;
+  color: #f5576c;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.calc-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.calc-button:active {
+  transform: translateY(0);
+}
+
+.calc-result {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.result-value {
+  font-size: 3rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.result-interpretation {
+  text-align: center;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.result-times,
+.result-reach {
+  font-size: 1.1rem;
+  line-height: 1.8;
+}
+
+.result-times h4,
+.result-reach h4 {
+  margin: 0 0 1rem 0;
+  font-size: 1.25rem;
+}
+
+.result-times ul,
+.result-reach ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.result-times li,
+.result-reach li {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.result-times li:last-child,
+.result-reach li:last-child {
+  border-bottom: none;
+}
+
+@media (max-width: 768px) {
+  .interactive-calculator {
+    padding: 1.5rem;
+    margin: 1.5rem -1rem;
+    border-radius: 0;
+  }
+
+  .calculator-title {
+    font-size: 1.5rem;
+  }
+
+  .calculator-body {
+    padding: 1.5rem;
+  }
+
+  .result-value {
+    font-size: 2.5rem;
+  }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const calculators = document.querySelectorAll('.interactive-calculator');
+  
+  calculators.forEach(calc => {
+    const button = calc.querySelector('.calc-button');
+    const result = calc.querySelector('.calc-result');
+    const calcType = button.dataset.calcType;
+    
+    button.addEventListener('click', function() {
+      if (calcType === 'engagement-rate') {
+        calculateEngagementRate(calc, result);
+      } else if (calcType === 'posting-time') {
+        calculateBestPostingTime(calc, result);
+      } else if (calcType === 'reach-estimate') {
+        calculateReachEstimate(calc, result);
+      }
+    });
+  });
+  
+  function calculateEngagementRate(calc, result) {
+    const likes = parseInt(calc.querySelector('[id^="likes-"]').value) || 0;
+    const comments = parseInt(calc.querySelector('[id^="comments-"]').value) || 0;
+    const shares = parseInt(calc.querySelector('[id^="shares-"]').value) || 0;
+    const followers = parseInt(calc.querySelector('[id^="followers-"]').value) || 1;
+    
+    const totalEngagement = likes + comments + shares;
+    const engagementRate = ((totalEngagement / followers) * 100).toFixed(2);
+    
+    let interpretation = '';
+    if (engagementRate >= 10) {
+      interpretation = '🔥 Exceptional! Your content is highly engaging!';
+    } else if (engagementRate >= 5) {
+      interpretation = '⭐ Great! You have strong audience engagement!';
+    } else if (engagementRate >= 2) {
+      interpretation = '👍 Good! Your engagement is above average!';
+    } else if (engagementRate >= 1) {
+      interpretation = '📈 Fair. There\'s room for improvement!';
+    } else {
+      interpretation = '💡 Focus on creating more engaging content!';
+    }
+    
+    result.querySelector('.result-value').textContent = engagementRate + '%';
+    result.querySelector('.result-interpretation').textContent = interpretation;
+    result.style.display = 'block';
+    
+    // Track calculation
+    if (typeof gtag !== 'undefined') {
+      gtag('event', 'calculator_use', {
+        calculator_type: 'engagement_rate',
+        result: engagementRate
+      });
+    }
+  }
+  
+  function calculateBestPostingTime(calc, result) {
+    const platform = calc.querySelector('[id^="platform-"]').value;
+    const audience = calc.querySelector('[id^="audience-"]').value;
+    const timezone = calc.querySelector('[id^="timezone-"]').value;
+    
+    // Best posting times database (simplified)
+    const postingTimes = {
+      tiktok: {
+        general: ['6-9 AM', '12-1 PM', '7-9 PM'],
+        teens: ['3-6 PM', '7-10 PM'],
+        'young-adults': ['12-2 PM', '7-11 PM'],
+        adults: ['6-9 AM', '12-1 PM', '5-7 PM'],
+        professionals: ['7-9 AM', '12-1 PM', '5-6 PM']
+      },
+      instagram: {
+        general: ['6-9 AM', '12-2 PM', '5-7 PM'],
+        teens: ['3-5 PM', '7-9 PM'],
+        'young-adults': ['11 AM-1 PM', '7-9 PM'],
+        adults: ['6-8 AM', '12-2 PM', '5-7 PM'],
+        professionals: ['7-9 AM', '12-1 PM', '5-6 PM']
+      },
+      youtube: {
+        general: ['2-4 PM', '6-9 PM'],
+        teens: ['3-6 PM', '7-10 PM'],
+        'young-adults': ['12-3 PM', '7-10 PM'],
+        adults: ['12-3 PM', '7-10 PM'],
+        professionals: ['12-2 PM', '6-9 PM']
+      },
+      twitter: {
+        general: ['8-10 AM', '12-1 PM', '5-6 PM'],
+        teens: ['3-5 PM', '8-10 PM'],
+        'young-adults': ['12-1 PM', '5-6 PM'],
+        adults: ['8-10 AM', '12-1 PM', '5-6 PM'],
+        professionals: ['7-9 AM', '12-1 PM', '5-6 PM']
+      },
+      facebook: {
+        general: ['9 AM-12 PM', '1-3 PM'],
+        teens: ['3-5 PM'],
+        'young-adults': ['12-2 PM', '7-9 PM'],
+        adults: ['9 AM-12 PM', '1-3 PM'],
+        professionals: ['9 AM-12 PM', '1-2 PM']
+      }
+    };
+    
+    const times = postingTimes[platform][audience];
+    
+    const timesHTML = `
+      <h4>Best Times to Post on ${platform.charAt(0).toUpperCase() + platform.slice(1)}</h4>
+      <p>For ${audience.replace('-', ' ')} audience in ${timezone} timezone:</p>
+      <ul>
+        ${times.map(time => `<li>⏰ ${time}</li>`).join('')}
+      </ul>
+      <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.9;">
+        💡 Tip: Test these times and track your analytics to find what works best for YOUR specific audience!
+      </p>
+    `;
+    
+    result.querySelector('.result-times').innerHTML = timesHTML;
+    result.style.display = 'block';
+    
+    // Track calculation
+    if (typeof gtag !== 'undefined') {
+      gtag('event', 'calculator_use', {
+        calculator_type: 'posting_time',
+        platform: platform,
+        audience: audience
+      });
+    }
+  }
+  
+  function calculateReachEstimate(calc, result) {
+    const followers = parseInt(calc.querySelector('[id^="followers-reach-"]').value) || 0;
+    const engagementRate = parseFloat(calc.querySelector('[id^="engagement-"]').value) || 0;
+    const platform = calc.querySelector('[id^="platform-reach-"]').value;
+    
+    // Platform reach multipliers (simplified estimates)
+    const reachMultipliers = {
+      tiktok: 3.5,      // TikTok has high viral potential
+      instagram: 1.2,   // Instagram reach is limited
+      youtube: 2.0,     // YouTube has good recommendation system
+      twitter: 1.5      // Twitter has moderate reach
+    };
+    
+    const multiplier = reachMultipliers[platform];
+    const organicReach = Math.round(followers * (engagementRate / 100) * multiplier);
+    const minReach = Math.round(organicReach * 0.7);
+    const maxReach = Math.round(organicReach * 1.5);
+    
+    const reachHTML = `
+      <h4>Estimated Reach</h4>
+      <div class="result-value">${organicReach.toLocaleString()}</div>
+      <p>Expected range: ${minReach.toLocaleString()} - ${maxReach.toLocaleString()} people</p>
+      <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.9;">
+        📊 This estimate is based on your follower count, engagement rate, and ${platform}'s typical reach patterns.
+        Actual reach can vary significantly based on content quality, timing, and trends.
+      </p>
+    `;
+    
+    result.querySelector('.result-reach').innerHTML = reachHTML;
+    result.style.display = 'block';
+    
+    // Track calculation
+    if (typeof gtag !== 'undefined') {
+      gtag('event', 'calculator_use', {
+        calculator_type: 'reach_estimate',
+        platform: platform,
+        result: organicReach
+      });
+    }
+  }
+});
+</script>
+{% endmacro %}
