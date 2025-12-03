@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="fo-verify" content="80725f6c-bd05-4617-9441-22d8dec11e7f" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="manifest" href="/manifest.json">
 
     {# === OPEN GRAPH META TAGS (Facebook, LinkedIn, WhatsApp, etc.) === #}
     {% if image %}
@@ -183,5 +184,17 @@
     <script src="/assets/js/reading-progress.js" defer></script>
     <script src="/assets/js/analytics-tracker.js" defer></script>
     <script src="/assets/js/ab-testing.js" defer></script>
+
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js').then(registration => {
+            console.log('ServiceWorker registration successful with scope: ', registration.scope);
+          }, err => {
+            console.log('ServiceWorker registration failed: ', err);
+          });
+        });
+      }
+    </script>
 </body>
 </html>

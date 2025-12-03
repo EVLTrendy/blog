@@ -21,7 +21,8 @@
     "setup:shorturls": "node scripts/setup-short-urls-db.js",
     "audit:content": "node scripts/content-freshness-audit.js",
     "generate:schema": "node scripts/generate-schema.js",
-    "generate:critical-css": "node scripts/inline-critical-css.js"
+    "generate:critical-css": "node scripts/inline-critical-css.js",
+    "optimize:images": "node scripts/optimize-images.js"
   },
   "keywords": [],
   "author": "",

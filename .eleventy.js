@@ -140,6 +140,35 @@ module.exports = function (eleventyConfig) {
         return 'stale';
     });
 
+    // Add dateToRfc3339 filter for RSS
+    eleventyConfig.addFilter("dateToRfc3339", (date) => {
+        if (typeof date === 'string') {
+            return DateTime.fromISO(date).toISO();
+        }
+        return DateTime.fromJSDate(date).toISO();
+    });
+
+    // Add htmlToAbsoluteUrls filter for RSS
+    eleventyConfig.addFilter("htmlToAbsoluteUrls", (html, base) => {
+        if (!html) return "";
+        const baseUrl = base.endsWith('/') ? base : base + '/';
+        return html.replace(/src="([^"]*)"/g, (match, p1) => {
+            if (p1.startsWith('http')) return match;
+            return `src="${baseUrl}${p1.startsWith('/') ? p1.slice(1) : p1}"`;
+        }).replace(/href="([^"]*)"/g, (match, p1) => {
+            if (p1.startsWith('http')) return match;
+            return `href="${baseUrl}${p1.startsWith('/') ? p1.slice(1) : p1}"`;
+        });
+    });
+
+    // Add getNewestCollectionItemDate filter for RSS
+    eleventyConfig.addFilter("getNewestCollectionItemDate", (collection) => {
+        if (!collection || !collection.length) return new Date();
+        return new Date(Math.max(...collection.map(item => {
+            return item.date;
+        })));
+    });
+
     eleventyConfig.addCollection("notifications", function (collection) {
         return collection.getFilteredByTag("notifications");
     });

@@ -1,0 +1,27 @@
+name: Weekly Content Audit
+
+on:
+  schedule:
+    - cron: '0 0 * * 1' # Every Monday
+  workflow_dispatch:
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          
+      - run: npm ci
+      
+      - name: Run Content Audit
+        run: npm run audit:content
+        
+      - name: Upload Report
+        uses: actions/upload-artifact@v3
+        with:
+          name: content-audit-report
+          path: content-audit-report.md

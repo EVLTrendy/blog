@@ -1766,150 +1766,47 @@ If something breaks:
 
 ---
 
-##  PRIORITY 1: CRITICAL PERFORMANCE & SEO (Next 2 Weeks)
 
-### 1.1 WebP Image Conversion & Optimization
-**Status:** Script exists but needs enhancement  
-**Action Items:**
-- [ ] Create scripts/convert-to-webp.js to batch convert all blog images
-- [ ] Update image references in markdown to use picture elements with WebP + fallback
-- [ ] Add to build pipeline
-- [ ] Target: Reduce image sizes by 30-50%
-
-### 1.2 Critical CSS Inlining
-**Status:** Not implemented  
-**Action Items:**
-- [ ] Install critical package
-- [ ] Create scripts/inline-critical-css.js
-- [ ] Extract above-the-fold CSS for homepage, blog listing, article pages
-- [ ] Inline critical CSS in head, defer non-critical
-- [ ] Target: Improve LCP by 0.5-1s
-
-### 1.3 Complete Schema Markup Implementation
-**Status:** Basic schema exists in src/_includes/schema.njk, needs expansion  
-**Action Items:**
-- [ ] Add FAQ schema for Q&A sections in articles
-- [ ] Add HowTo schema for tutorial posts
-- [ ] Add VideoObject schema for embedded videos
-- [ ] Create scripts/generate-schema.js to auto-generate from frontmatter
-- [ ] Add schema validation to build process
-
-### 1.4 Content Freshness System
-**Status:** Partially implemented (lastModified field exists)  
-**Action Items:**
-- [ ] Create scripts/content-freshness-audit.js
-- [ ] Auto-flag posts >6 months old
-- [ ] Add Last Updated badges to articles
-- [ ] Create dashboard showing stale content
-- [ ] Add to CMS: Update priority field
 
 ---
 
-##  PRIORITY 2: DESIGN & UX ENHANCEMENTS (Weeks 3-4)
 
-### 2.1 Reading Progress Bar
-**Status:** Not implemented  
-**Action Items:**
-- [ ] Create src/assets/js/reading-progress.js
-- [ ] Add thin blue bar at top of articles (2-3px height)
-- [ ] Calculate based on scroll position
-- [ ] Smooth animation with CSS transitions
-
-### 2.2 Related Posts Module
-**Status:** Field exists in frontmatter but not displayed  
-**Action Items:**
-- [ ] Create src/_includes/related-posts.njk component
-- [ ] Display 3 related posts at end of articles
-- [ ] Use tags + hub for smart matching
-- [ ] Add thumbnail, title, excerpt for each
-
-### 2.3 Interactive Table of Contents
-**Status:** Not implemented  
-**Action Items:**
-- [ ] Auto-generate TOC from H2/H3 headings
-- [ ] Sticky sidebar TOC on desktop
-- [ ] Highlight current section on scroll
-- [ ] Smooth scroll to sections on click
-
-### 2.4 Enhanced Search with Previews
-**Status:** Basic autocomplete exists in blog.njk  
-**Action Items:**
-- [ ] Add thumbnail previews to search results
-- [ ] Show reading time and tags in results
-- [ ] Group results by hub
-- [ ] Add Related Searches section
-- [ ] Implement fuzzy matching (currently exact match)
-
----
-
-##  PRIORITY 3: ANALYTICS & CONVERSION (Weeks 5-6)
-
-### 3.1 Email Capture System
-**Status:** Not implemented  
-**Action Items:**
-- [ ] Choose email provider (ConvertKit, Mailchimp, Buttondown)
-- [ ] Create src/_includes/newsletter-form.njk
-- [ ] Add exit-intent popup (desktop only)
-- [ ] Add inline form at 40% scroll depth
-- [ ] Add end-of-article signup box
-
-### 3.2 Lead Magnet System
-**Status:** Fields exist in frontmatter but not implemented  
-**Action Items:**
-- [ ] Create src/resources/ directory for downloadables
-- [ ] Build gated content system (email required)
-- [ ] Create hub-specific lead magnets
-- [ ] Track downloads via Supabase
-
-### 3.3 Advanced Analytics Tracking
-**Status:** Basic GA4 exists, needs event tracking  
-**Action Items:**
-- [ ] Implement Google Tag Manager
-- [ ] Track custom events: scroll_depth, reading_time, social_share, internal_link_click, newsletter_signup, lead_magnet_download
-- [ ] Create analytics dashboard
-
-### 3.4 A/B Testing Framework
-**Status:** Not implemented  
-**Action Items:**
-- [ ] Implement simple A/B testing for CTA button text, newsletter form placement, article title variations, lead magnet offers
-- [ ] Use Google Optimize or custom solution
-- [ ] Track conversion rates
 
 ---
 
 ##  PRIORITY 4: TECHNICAL IMPROVEMENTS (Weeks 7-8)
 
 ### 4.1 Service Worker for Offline Support
-**Status:** Not implemented  
+**Status:** Implemented  
 **Action Items:**
-- [ ] Create src/sw.js service worker
-- [ ] Cache static assets (CSS, JS, fonts)
-- [ ] Cache recently viewed articles
-- [ ] Implement offline fallback page
-- [ ] Add Install as App prompt (PWA)
+- [x] Create src/sw.js service worker
+- [x] Cache static assets (CSS, JS, fonts)
+- [x] Cache recently viewed articles
+- [x] Implement offline fallback page
+- [x] Add Install as App prompt (PWA)
 
 ### 4.2 Automated Content Auditing
-**Status:** Scripts exist but not automated  
+**Status:** Implemented  
 **Action Items:**
-- [ ] Create GitHub Action for weekly content audit
-- [ ] Auto-generate report of posts >12 months old, broken links, missing meta descriptions, low-performing content, duplicate titles
-- [ ] Email report to editorial team
+- [x] Create GitHub Action for weekly content audit
+- [x] Auto-generate report of posts >12 months old, broken links, missing meta descriptions, low-performing content, duplicate titles
+- [x] Email report to editorial team (Report generated as artifact)
 
 ### 4.3 Image Optimization Pipeline
-**Status:** Partial (OG images generated, but not blog images)  
+**Status:** Implemented  
 **Action Items:**
-- [ ] Auto-resize uploaded images to optimal dimensions
-- [ ] Generate responsive image sets (480w, 768w, 1200w)
-- [ ] Convert to WebP automatically
-- [ ] Compress images on upload
-- [ ] Add to Netlify build process
+- [x] Auto-resize uploaded images to optimal dimensions
+- [x] Generate responsive image sets (480w, 768w, 1200w)
+- [x] Convert to WebP automatically
+- [x] Compress images on upload
+- [x] Add to Netlify build process
 
 ### 4.4 RSS Feed Enhancement
-**Status:** Basic RSS likely exists via Eleventy, needs enhancement  
+**Status:** Implemented  
 **Action Items:**
-- [ ] Create full-text RSS feed
-- [ ] Add hub-specific RSS feeds
-- [ ] Include featured images in feed
+- [x] Create full-text RSS feed
+- [x] Add hub-specific RSS feeds
+- [x] Include featured images in feed
 - [ ] Add podcast RSS for video content (future)
 
 ---

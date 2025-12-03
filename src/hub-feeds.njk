@@ -1,0 +1,38 @@
+---
+pagination:
+  data: collections.hubs
+  size: 1
+  alias: hub
+permalink: "feeds/{{ hub.data.hubCollection }}.xml"
+eleventyExcludeFromCollections: true
+---
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>EvolvedLotus Blog - {{ hub.data.title }}</title>
+  <subtitle>{{ hub.data.description }}</subtitle>
+  <link href="https://blog.evolvedlotus.com/feeds/{{ hub.data.hubCollection }}.xml" rel="self"/>
+  <link href="https://blog.evolvedlotus.com{{ hub.url }}"/>
+  {% set hubPosts = collections[hub.data.hubCollection] %}
+  <updated>{{ hubPosts | getNewestCollectionItemDate | dateToRfc3339 }}</updated>
+  <id>https://blog.evolvedlotus.com{{ hub.url }}</id>
+  <author>
+    <name>EvolvedLotus</name>
+  </author>
+  {%- for post in hubPosts | reverse %}
+  {% set absolutePostUrl %}{{ post.url | url | absoluteUrl("https://blog.evolvedlotus.com") }}{% endset %}
+  <entry>
+    <title>{{ post.data.title }}</title>
+    <link href="{{ absolutePostUrl }}"/>
+    <updated>{{ post.date | dateToRfc3339 }}</updated>
+    <id>{{ absolutePostUrl }}</id>
+    <content type="html">
+      <![CDATA[
+      {% if post.data.image %}
+      <img src="{{ post.data.image | url | absoluteUrl("https://blog.evolvedlotus.com") }}" alt="{{ post.data.imageAlt }}" />
+      {% endif %}
+      {{ post.templateContent | htmlToAbsoluteUrls(absolutePostUrl) }}
+      ]]>
+    </content>
+  </entry>
+  {%- endfor %}
+</feed>
