@@ -1,0 +1,17 @@
+---
+permalink: /api/posts.json
+eleventyExcludeFromCollections: true
+---
+[
+  {% for post in collections.blog %}
+  {
+    "title": "{{ post.data.title | safe }}",
+    "url": "{{ metadata.url }}{{ post.url }}",
+    "date": "{{ post.date | isoDate }}",
+    "description": "{{ post.data.description | safe }}",
+    "image": "{% if post.data.image %}{{ metadata.url }}{{ post.data.image }}{% endif %}",
+    "tags": {{ post.data.tags | dump | safe }},
+    "author": "{{ post.data.author }}"
+  }{% if not loop.last %},{% endif %}
+  {% endfor %}
+]

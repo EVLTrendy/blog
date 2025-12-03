@@ -210,6 +210,9 @@ layout: 'base.njk'
 {# ============================================
    CONTENT SECTIONS - Trending, Popular, New
    ============================================ #}
+{# ============================================
+   CONTENT SECTIONS - Trending, Popular, New
+   ============================================ #}
 <section class="content-sections">
   <div class="content-sections-container">
     <div class="section-header">
@@ -218,39 +221,73 @@ layout: 'base.njk'
     </div>
     
     <div class="section-tabs">
-      <a href="/blog/?sort=trending" class="tab-button active">Trending Now</a>
-      <a href="/blog/?sort=popular" class="tab-button">Most Shared</a>
-      <a href="/blog/?sort=new" class="tab-button">New This Week</a>
-      <a href="/blog/?sort=favorites" class="tab-button">Reader Favorites</a>
+      <button class="tab-button active" onclick="openTab(event, 'trending')">Trending Now</button>
+      <button class="tab-button" onclick="openTab(event, 'popular')">Most Shared</button>
+      <button class="tab-button" onclick="openTab(event, 'new')">New This Week</button>
+      <button class="tab-button" onclick="openTab(event, 'favorites')">Reader Favorites</button>
     </div>
     
-    <div class="featured-grid">
-      {% set featuredPosts = collections.blog | filterByTag('featured') | reverse | limit(6) %}
-      {% if featuredPosts.length === 0 %}
-        {% set featuredPosts = collections.blog | reverse | limit(6) %}
-      {% endif %}
-      {% for post in featuredPosts %}
-      <a href="{{ post.url }}" class="featured-card">
-        <img src="{{ post.data.image | default('/assets/images/default-blog.png') }}" 
-             alt="{{ post.data.imageAlt | default(post.data.title) }}" 
-             class="featured-image"
-             loading="lazy"
-             width="400"
-             height="225">
-        <div class="featured-content">
-          <span class="featured-badge">Featured</span>
-          <h3 class="featured-title">{{ post.data.title }}</h3>
-          <p class="featured-description">{{ post.data.description | truncate(120) }}</p>
-          <div class="featured-meta">
-            <span class="meta-item">{{ post.data.date | dateFormat }}</span>
-            <span class="meta-item">{{ post.data.readingTime | default('5 min read') }}</span>
-          </div>
-        </div>
-      </a>
-      {% endfor %}
+    <!-- Tab Content: Trending -->
+    <div id="trending" class="tab-content" style="display: block;">
+      <div class="featured-grid">
+        {% set trendingPosts = collections.blog | filterByTag('trending') | reverse | limit(3) %}
+        {% if trendingPosts.length === 0 %}{% set trendingPosts = collections.blog | reverse | limit(3) %}{% endif %}
+        {% for post in trendingPosts %}
+          {% include "article-snippet.njk" %}
+        {% endfor %}
+      </div>
     </div>
+
+    <!-- Tab Content: Popular -->
+    <div id="popular" class="tab-content" style="display: none;">
+      <div class="featured-grid">
+        {% set popularPosts = collections.blog | filterByTag('popular') | reverse | limit(3) %}
+        {% if popularPosts.length === 0 %}{% set popularPosts = collections.blog | reverse | limit(3) %}{% endif %}
+        {% for post in popularPosts %}
+          {% include "article-snippet.njk" %}
+        {% endfor %}
+      </div>
+    </div>
+
+    <!-- Tab Content: New -->
+    <div id="new" class="tab-content" style="display: none;">
+      <div class="featured-grid">
+        {% set newPosts = collections.blog | reverse | limit(3) %}
+        {% for post in newPosts %}
+          {% include "article-snippet.njk" %}
+        {% endfor %}
+      </div>
+    </div>
+
+    <!-- Tab Content: Favorites -->
+    <div id="favorites" class="tab-content" style="display: none;">
+      <div class="featured-grid">
+        {% set favoritePosts = collections.blog | filterByTag('favorite') | reverse | limit(3) %}
+        {% if favoritePosts.length === 0 %}{% set favoritePosts = collections.blog | reverse | limit(3) %}{% endif %}
+        {% for post in favoritePosts %}
+          {% include "article-snippet.njk" %}
+        {% endfor %}
+      </div>
+    </div>
+    
   </div>
 </section>
+
+<script>
+function openTab(evt, tabName) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tab-content");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tab-button");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(tabName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+</script>
 
 {# ============================================
    TOOLS & RESOURCES BAND
@@ -264,21 +301,25 @@ layout: 'base.njk'
     
     <div class="tools-grid">
       <a href="https://tools.evolvedlotus.com/twitterreplybot/tweet-replier/" class="tool-card">
+        <div class="tool-icon">🤖</div>
         <h3 class="tool-name">Twitter Reply Bot</h3>
         <p class="tool-description">Generate realistic Twitter replies with AI. 5 free uses daily.</p>
       </a>
       
       <a href="/blog/2025-10-22-plan-batch-and-grow-your-social-media/" class="tool-card">
+        <div class="tool-icon">📅</div>
         <h3 class="tool-name">Content Calendar</h3>
         <p class="tool-description">Free templates for Notion, Google Sheets, and Instagram planning.</p>
       </a>
       
       <a href="https://tools.evolvedlotus.com" class="tool-card">
+        <div class="tool-icon">🚀</div>
         <h3 class="tool-name">Growth Tools</h3>
         <p class="tool-description">Access our complete suite of marketing and automation tools.</p>
       </a>
       
       <a href="/blog/?category=templates" class="tool-card">
+        <div class="tool-icon">📋</div>
         <h3 class="tool-name">Templates Library</h3>
         <p class="tool-description">Download ready-to-use templates and cheat sheets.</p>
       </a>
@@ -287,47 +328,41 @@ layout: 'base.njk'
 </section>
 
 {# ============================================
-   INSIGHTS PANEL
+   INSIGHTS PANEL (Redesigned)
    ============================================ #}
 <section class="insights-panel">
   <div class="insights-container">
     <div class="section-header">
       <h2>Quick Insights</h2>
-      <p>Stay updated with the latest trends and popular resources</p>
+      <p>Latest updates and highlights from the community</p>
     </div>
     
-    <div class="insights-grid">
-      <div class="insight-box">
-        <h3 class="insight-title">Top Resources</h3>
-        <ul class="insight-list">
-          <li>Complete Social Media Strategy Guide</li>
-          <li>SEO Checklist for 2025</li>
-          <li>Content Calendar Templates</li>
-          <li>Email Marketing Automation</li>
-          <li>Instagram Growth Tactics</li>
-        </ul>
+    <div class="insights-list">
+      <div class="insight-item">
+        <span class="insight-badge update">Update</span>
+        <div class="insight-content">
+          <h3>New Twitter Reply Bot Launched</h3>
+          <p>We've just released our AI-powered Twitter reply tool. Try it for free today!</p>
+        </div>
+        <a href="https://tools.evolvedlotus.com/twitterreplybot/tweet-replier/" class="insight-link">Try Now &rarr;</a>
       </div>
-      
-      <div class="insight-box">
-        <h3 class="insight-title">Popular Tags</h3>
-        <ul class="insight-list">
-          <li>Social Media Marketing</li>
-          <li>Content Strategy</li>
-          <li>SEO Tips</li>
-          <li>Digital Growth</li>
-          <li>Marketing Automation</li>
-        </ul>
+
+      <div class="insight-item">
+        <span class="insight-badge resource">Resource</span>
+        <div class="insight-content">
+          <h3>2025 SEO Checklist Available</h3>
+          <p>Download our comprehensive guide to ranking higher in 2025.</p>
+        </div>
+        <a href="/blog/seo-checklist-2025" class="insight-link">Download &rarr;</a>
       </div>
-      
-      <div class="insight-box">
-        <h3 class="insight-title">Latest Updates</h3>
-        <ul class="insight-list">
-          <li>New Twitter Reply Bot launched</li>
-          <li>Updated content calendar templates</li>
-          <li>Fresh SEO optimization guides</li>
-          <li>Weekly newsletter available</li>
-          <li>Community Discord active</li>
-        </ul>
+
+      <div class="insight-item">
+        <span class="insight-badge community">Community</span>
+        <div class="insight-content">
+          <h3>Join our Discord Server</h3>
+          <p>Connect with 500+ other creators and marketers.</p>
+        </div>
+        <a href="#" class="insight-link">Join &rarr;</a>
       </div>
     </div>
   </div>

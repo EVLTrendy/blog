@@ -1,0 +1,14 @@
+{
+    "name": "Default Trending",
+    "description": "Default rules for trending content",
+    "active": true,
+    "priority": 1,
+    "criteria": {
+        "timeFrame": 30,
+        "minViews": 100,
+        "categories": [
+            "social-media",
+            "growth"
+        ]
+    }
+}

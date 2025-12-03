@@ -148,14 +148,9 @@
     <link rel="preconnect" href="https://ep2.adtrafficquality.google">
     <link rel="preconnect" href="https://www.googletagmanager.com">
 
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-S3F130EPMN" crossorigin="anonymous"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-S3F130EPMN');
-    </script>
+    {% if settings.settings.analytics.googleAnalytics and settings.settings.analytics.googleAnalytics != "GA4_MEASUREMENT_ID" %}
+    {% include "analytics.js" %}
+    {% endif %}
 
 </head>
 <body>
@@ -208,6 +203,6 @@
     </script>
 
     <!-- Settings Widget (Dark Mode + Language Switcher) -->
-    {% include "settings-widget.njk" %}
+    <!-- Settings Widget moved to Header -->
 </body>
 </html>

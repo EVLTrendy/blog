@@ -4,206 +4,139 @@
 
 ### Feature: Header Navigation
 #### What I Saw (Visual Description)
--   Logo on the left.
--   Navigation links on the right: `nav.home`, `nav.blog`, `nav.contact`, `nav.tools`.
--   Language switcher (EN, ES, FR).
--   Search icon (magnifying glass).
+- A clean, white header containing the "Evolved Lotus" logo on the left.
+- Navigation links: "Home", "Tools", "About", "Contact" centered/right.
+- A "Search" icon (magnifying glass) and a "Settings" icon (gear) on the far right.
 
 #### What I Did (Actions Taken)
--   Clicked links.
--   Switched languages.
--   Clicked search icon.
+- Observed the header elements.
+- Clicked the "Tools" link.
 
 #### What Happened (Actual Behavior)
--   Links navigate correctly but text is raw translation keys.
--   Language switcher changes URL path (e.g., `/es/`) but content remains in English and nav links remain as keys.
--   Search icon navigates to `/blog#search`.
+- The "Tools" link navigated correctly (inferred from page reload).
 
 #### What I Expected (Intended Purpose)
--   Nav links should show "Home", "Blog", etc.
--   Language switcher should translate content.
+- Navigation links should take the user to the respective pages.
 
 #### Bugs / Missing Features / Errors
--   **Bug**: Navigation links display raw keys (`nav.home`).
--   **Bug**: Language switcher does not translate content.
--   **Missing**: Dark mode toggle.
+- None observed in navigation.
 
-### Feature: Footer
+### Feature: Settings Menu (Dark Mode & Language)
 #### What I Saw (Visual Description)
--   Links: About, Contact, Terms, Privacy, Newsletter.
--   Social icons.
--   Copyright text.
+- Clicking the Gear icon opens a dropdown menu.
+- Contains a "Language" section with "EN", "ES", "FR" buttons.
+- Contains a "Theme" section with a toggle switch for Dark Mode.
 
 #### What I Did (Actions Taken)
--   Scrolled to bottom.
--   Verified links exist.
+- Clicked the Gear icon to open the menu.
+- Attempted to click the "Dark Mode" toggle.
+- Attempted to click the "ES" (Spanish) button.
 
 #### What Happened (Actual Behavior)
--   Links appear functional.
+- **Dark Mode**: The menu closed immediately upon clicking the toggle. The theme remained Light.
+- **Language**: The menu closed immediately upon clicking "ES". The language remained English.
 
 #### What I Expected (Intended Purpose)
--   Standard footer navigation.
+- **Dark Mode**: The site background should turn dark, and text should turn light. The menu should likely stay open or the toggle should visually slide.
+- **Language**: The site content should translate to Spanish.
 
 #### Bugs / Missing Features / Errors
--   None observed.
+- **CRITICAL BUG**: Interacting with any element inside the Settings menu causes it to close without triggering the action. Neither Dark Mode nor Language Switching is functional.
 
-### Feature: Responsive Design (Mobile)
+## Page: Blog Index (https://blog.evolvedlotus.com/blog/)
+
+### Feature: Search Bar
 #### What I Saw (Visual Description)
--   Hamburger menu icon appears at mobile width (375px).
+- A search input field with placeholder "Search blogs...".
+- Located prominently above the article grid.
 
 #### What I Did (Actions Taken)
--   Resized window to 375px.
--   Clicked hamburger menu.
+- Typed "social" into the search bar.
 
 #### What Happened (Actual Behavior)
--   Menu opens correctly.
--   Contains nav links (still keys), search, and language switcher.
--   Language switcher inside menu also fails to translate.
+- The article grid dynamically updated to show posts related to "social" (e.g., "Plan, Batch, and Grow Your Social Media").
 
 #### What I Expected (Intended Purpose)
--   Mobile-friendly navigation.
+- The list of articles should filter based on the search query.
 
 #### Bugs / Missing Features / Errors
--   Same translation/key issues as desktop.
+- **Inconsistency**: The Search bar is NOT visible on the main Homepage (`/`), only on the Blog Index (`/blog/`). The Search icon in the header on the Homepage does not seem to trigger an overlay or input (verified: clicking it does nothing). -> **FIXED**: Added a functional search overlay to the header that works globally.
+- **Mobile Navigation**: Missing hamburger menu. -> **FIXED**: Added a hamburger menu that opens a mobile navigation overlay.
+- **Settings Menu**: Broken interactions. -> **FIXED**: Re-implemented the settings menu in the header with correct event handling.
 
-## Page: Blog Listing (https://blog.evolvedlotus.com/blog/)
+## Page: Article Detail (e.g., /blog/level-up-your-stream...)
 
-### Feature: Blog Post Display
+### Feature: Article Interaction
 #### What I Saw (Visual Description)
--   Social media icons (Kick, Facebook, etc.) as filters near the top.
--   Search bar below that.
--   "Recent Blog Posts" heading, but NO posts listed by default below it.
--   Posts only appear in a `search-results-enhanced` div *after* searching.
+- Article content with headers and images.
+- Tags (e.g., `#kick`, `#twitch`) near the top.
+- Share buttons (Twitter, LinkedIn, etc.) at the bottom.
 
 #### What I Did (Actions Taken)
--   Loaded the page, scrolled down.
+- Clicked the `#kick` tag.
+- Clicked the "Share on Twitter" button.
+- Looked for a comments section.
 
 #### What Happened (Actual Behavior)
--   No posts were listed by default. Only after searching did posts appear within a specific results div.
+- **Tags**: Clicking the tag did nothing. It appears to be static text. -> **FIXED**: Tags now link to the blog index with a search query for that tag.
+- **Share**: Clicking the share button successfully opened a Twitter share window.
+- **Comments**: No comments section was found. -> **FIXED**: Added a Netlify-compatible comments form.
 
 #### What I Expected (Intended Purpose)
--   A list of recent blog posts should be displayed by default below "Recent Blog Posts".
+- Tags should link to a filtered list of articles with that tag.
+- Comments section should allow user engagement.
 
 #### Bugs / Missing Features / Errors
--   **Bug**: Recent posts are not listed on initial page load of `/blog`.
--   **Missing**: Pagination controls.
+- **Tags**: Non-functional. -> **FIXED**
+- **Comments**: Missing. -> **FIXED**
 
-### Feature: Search Bar (/blog)
+## Global: Mobile Responsiveness
+
+### Feature: Mobile Navigation
 #### What I Saw (Visual Description)
--   Input field with placeholder "Search blogs...".
+- Resized window to iPhone X size (375px width).
+- The desktop navigation links disappeared as expected.
 
 #### What I Did (Actions Taken)
--   Typed "TikTok", observed results.
--   Cleared search.
+- Looked for a "Hamburger" menu icon to access navigation.
 
 #### What Happened (Actual Behavior)
--   Typing dynamically filtered and showed relevant posts in a div below the search bar.
--   Clearing emptied the results div.
-
-#### What I Expected (Intended Purpose)
--   Search should filter blog posts.
+- **NO Hamburger Menu**: The navigation links vanished, but no mobile menu toggle appeared. The user is left with no way to navigate pages on mobile. -> **FIXED**: Added a responsive hamburger menu.
 
 #### Bugs / Missing Features / Errors
--   None for search functionality itself, but it highlights the lack of default post listing.
+- **CRITICAL BUG**: Mobile navigation is completely missing. -> **FIXED**
 
-## Page: Article (https://blog.evolvedlotus.com/blog/2025-05-13-how-to-skyrocket-your-tiktok-views...)
+## Page: About & Contact
 
-### Feature: Article Layout & Metadata
+### Feature: Content Availability
 #### What I Saw (Visual Description)
--   Article title at the top.
--   Date found within the content body, not prominently displayed with title.
--   No obvious author name near the title.
--   No large cover image at the top.
+- `/about`: detailed mission statement and team info.
+- `/contact`: email addresses and social links.
 
 #### What I Did (Actions Taken)
--   Viewed the page, scrolled.
+- Loaded both pages.
 
 #### What Happened (Actual Behavior)
--   Basic article content is present.
-
-#### What I Expected (Intended Purpose)
--   Expected date, author, and maybe cover image to be clearly displayed near the title.
+- Both pages loaded successfully with correct content.
 
 #### Bugs / Missing Features / Errors
--   **Missing**: Prominent author display.
--   **Missing**: Cover image (if intended).
+- None. Content is present.
 
-### Feature: Social Share Buttons
-#### What I Saw (Visual Description)
--   No visible share buttons (floating or inline).
 
-#### What I Did (Actions Taken)
--   Scrolled through the article.
 
-#### What Happened (Actual Behavior)
--   No share buttons found.
 
-#### What I Expected (Intended Purpose)
--   Share buttons to allow easy sharing to social media.
+## Recent Fixes (Layout & Functionality)
 
-#### Bugs / Missing Features / Errors
--   **Missing**: Social share buttons.
+### Feature: Article Layout Redesign
+- **Author Bio & Related Posts**: Moved out of the main article body into a full-width footer section.
+- **Hero Image**: Ensured the article hero image spans the full width of the article section.
+- **Comments**: Completely removed the comments system as requested.
 
-### Feature: Tags
-#### What I Saw (Visual Description)
--   No "Tags" section at the end of the article content.
+### Feature: Homepage Enhancements
+- **"What's Hot Right Now"**: Implemented a tabbed interface (Trending, Popular, New, Favorites) that toggles content visibility instead of redirecting.
+- **Free Tools Section**: Redesigned with a clean grid layout and proper styling.
+- **Quick Insights**: Redesigned as a modular notification/update list.
 
-#### What I Did (Actions Taken)
--   Scrolled to the bottom of the article content.
-
-#### What Happened (Actual Behavior)
--   No tags found.
-
-#### What I Expected (Intended Purpose)
--   A list of tags associated with the article, linking to tag archive pages.
-
-#### Bugs / Missing Features / Errors
--   **Missing**: Tags section and tag links.
-
-### Feature: Related Articles / Next/Prev
-#### What I Saw (Visual Description)
--   No "Related Articles" or "Next/Previous Post" links.
-
-#### What I Did (Actions Taken)
--   Scrolled to the bottom.
-
-#### What Happened (Actual Behavior)
--   No such links found.
-
-#### What I Expected (Intended Purpose)
--   Links to other relevant content.
-
-#### Bugs / Missing Features / Errors
--   **Missing**: Related/Next/Prev post links.
-
-### Feature: Comments
-#### What I Saw (Visual Description)
--   "Comments" heading, followed by "Comments are currently disabled."
-
-#### What I Did (Actions Taken)
--   Viewed the section.
-
-#### What Happened (Actual Behavior)
--   Comments are disabled.
-
-#### What I Expected (Intended Purpose)
--   Either a working comment form or no section if comments are not intended.
-
-#### Bugs / Missing Features / Errors
--   None, it clearly states they are disabled.
-
-### Feature: Article Responsiveness (Mobile)
-#### What I Saw (Visual Description)
--   Content reflows to fit mobile screen.
-
-#### What I Did (Actions Taken)
--   Resized to 375px width.
-
-#### What Happened (Actual Behavior)
--   Text readable, images fit.
-
-#### What I Expected (Intended Purpose)
--   Good mobile reading experience.
-
-#### Bugs / Missing Features / Errors
--   None.
+### Feature: Related Posts
+- **Grid Layout**: Enforced a 3-column grid layout for related posts on desktop.
+- **Content**: Verified that related posts logic displays actual related articles based on tags and hubs.

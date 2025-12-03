@@ -1,0 +1,40 @@
+---
+layout: base.njk
+---
+<div class="page-container">
+  <header class="page-header">
+    <h1>{{ title }}</h1>
+    {% if description %}
+    <p class="page-description">{{ description }}</p>
+    {% endif %}
+  </header>
+  
+  <div class="page-content">
+    {{ content | safe }}
+  </div>
+</div>
+
+<style>
+.page-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 4rem 20px;
+}
+.page-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+.page-header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+}
+.page-description {
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+}
+.page-content {
+  line-height: 1.8;
+  font-size: 1.1rem;
+}
+</style>

@@ -471,6 +471,29 @@ module.exports = function (eleventyConfig) {
         return collectionApi.getFilteredByGlob("src/authors/*.md");
     });
 
+    // Create pages collection
+    eleventyConfig.addCollection("pages", function (collectionApi) {
+        return collectionApi.getFilteredByGlob("src/pages/*.md");
+    });
+
+    // Create tools collection
+    eleventyConfig.addCollection("tools", function (collectionApi) {
+        return collectionApi.getFilteredByGlob("src/tools/*.md");
+    });
+
+    // Create insights collection
+    eleventyConfig.addCollection("insights", function (collectionApi) {
+        return collectionApi.getFilteredByGlob("src/insights/*.md");
+    });
+
+    // What's Hot Collection (Rules-based)
+    eleventyConfig.addCollection("whatsHot", function (collectionApi) {
+        const posts = collectionApi.getFilteredByTag("post");
+        // In a real implementation, this would read src/_data/whats-hot-rules
+        // and apply scoring. For now, we simulate this by returning recent posts.
+        return posts.slice(0, 5);
+    });
+
     // Set default language
     eleventyConfig.addGlobalData("lang", "en");
 

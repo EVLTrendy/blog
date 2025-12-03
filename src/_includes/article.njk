@@ -45,7 +45,7 @@ ads: false
     <div class="article-tags-header">
       {% for tag in tags %}
         {% if tag != 'post' and tag != 'featured' %}
-          <span class="article-tag">#{{ tag }}</span>
+          <a href="/blog/?search={{ tag }}" class="article-tag">#{{ tag }}</a>
         {% endif %}
       {% endfor %}
     </div>
@@ -108,22 +108,8 @@ ads: false
       <!-- Series Navigation (if exists) -->
       {% include "series-navigation.njk" %}
       
-      <!-- Author Bio/Card at the end -->
-      {% include "author-bio.njk" %}
-      
       <!-- Lead Magnet (if exists) -->
       {% include "lead-magnet.njk" %}
-      
-      <!-- Related Posts -->
-      {% include "related-posts.njk" %}
-      
-      <!-- Comments Section -->
-      <section class="comments-section">
-        <h3>Comments</h3>
-        <div class="comments-placeholder">
-          <p>Comments are currently disabled.</p>
-        </div>
-      </section>
       
     </article>
     
@@ -132,6 +118,15 @@ ads: false
       {% include "table-of-contents.njk" %}
     </aside>
     
+  </div>
+  
+  <!-- Full Width Footer Section: Bio & Related Posts -->
+  <div class="article-footer-wrapper">
+    <!-- Author Bio/Card -->
+    {% include "author-bio.njk" %}
+    
+    <!-- Related Posts -->
+    {% include "related-posts.njk" %}
   </div>
   
   <script src="/assets/js/bookmarks.js" defer></script>
