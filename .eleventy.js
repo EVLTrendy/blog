@@ -23,12 +23,14 @@ module.exports = function (eleventyConfig) {
     eleventyConfig.addPassthroughCopy('./src/theme-toggle-header.css');
     eleventyConfig.addPassthroughCopy('./src/layout-fixes.css');
     eleventyConfig.addPassthroughCopy('./src/ux-enhancements.css');
+    eleventyConfig.addPassthroughCopy('./src/conversion-components.css');
     eleventyConfig.addPassthroughCopy('./src/fonts.css');
     eleventyConfig.addPassthroughCopy('./src/assets');
     eleventyConfig.addPassthroughCopy('./src/admin');
     eleventyConfig.addPassthroughCopy('./src/.well-known');
     eleventyConfig.addPassthroughCopy('./src/_redirects');
     eleventyConfig.addPassthroughCopy('./src/robots.txt');
+    eleventyConfig.addPassthroughCopy('./src/resources');
     // Copy auto-generated social media preview images
     eleventyConfig.addPassthroughCopy('./src/assets/og');
 

@@ -1,0 +1,141 @@
+{# Lead Magnet Gated Content Component #}
+{# Displays downloadable resources with email capture #}
+
+{% if leadMagnet %}
+<aside class="lead-magnet-container" data-magnet-id="{{ leadMagnet.id }}">
+  <div class="lead-magnet-card">
+    <div class="lead-magnet-icon">
+      {% if leadMagnet.type == 'pdf' %}
+        📄
+      {% elif leadMagnet.type == 'checklist' %}
+        ✅
+      {% elif leadMagnet.type == 'template' %}
+        📋
+      {% elif leadMagnet.type == 'guide' %}
+        📚
+      {% else %}
+        📦
+      {% endif %}
+    </div>
+    
+    <div class="lead-magnet-content">
+      <h3 class="lead-magnet-title">{{ leadMagnet.title }}</h3>
+      <p class="lead-magnet-description">{{ leadMagnet.description }}</p>
+      
+      <div class="lead-magnet-benefits">
+        <ul>
+          {% for benefit in leadMagnet.benefits %}
+          <li>{{ benefit }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+      
+      <form class="lead-magnet-form" data-magnet-form="{{ leadMagnet.id }}">
+        <div class="form-group">
+          <input 
+            type="email" 
+            name="email" 
+            placeholder="Enter your email address" 
+            required 
+            class="lead-magnet-email-input"
+            aria-label="Email address for download"
+          >
+        </div>
+        <button type="submit" class="lead-magnet-submit-btn">
+          <span class="btn-text">Download {{ leadMagnet.type | capitalize }}</span>
+          <span class="btn-icon">⬇️</span>
+        </button>
+        <p class="lead-magnet-privacy">
+          🔒 We respect your privacy. Unsubscribe at any time.
+        </p>
+      </form>
+      
+      <div class="lead-magnet-success" style="display: none;">
+        <div class="success-icon">✅</div>
+        <h4>Check your email!</h4>
+        <p>We've sent the download link to your inbox.</p>
+      </div>
+    </div>
+  </div>
+</aside>
+
+<script>
+(function() {
+  'use strict';
+  
+  const form = document.querySelector('[data-magnet-form="{{ leadMagnet.id }}"]');
+  if (!form) return;
+  
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    const email = form.querySelector('input[name="email"]').value;
+    const magnetId = '{{ leadMagnet.id }}';
+    const magnetTitle = '{{ leadMagnet.title }}';
+    const submitBtn = form.querySelector('.lead-magnet-submit-btn');
+    
+    // Disable button during submission
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<span class="btn-text">Processing...</span>';
+    
+    try {
+      // Track download attempt
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'lead_magnet_download', {
+          magnet_id: magnetId,
+          magnet_title: magnetTitle,
+          magnet_type: '{{ leadMagnet.type }}'
+        });
+      }
+      
+      // Send to Netlify Function for processing
+      const response = await fetch('/.netlify/functions/lead-magnet', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: email,
+          magnetId: magnetId,
+          magnetTitle: magnetTitle,
+          magnetType: '{{ leadMagnet.type }}',
+          downloadUrl: '{{ leadMagnet.downloadUrl }}',
+          pageUrl: window.location.href
+        })
+      });
+      
+      const data = await response.json();
+      
+      if (response.ok) {
+        // Show success message
+        form.style.display = 'none';
+        document.querySelector('.lead-magnet-success').style.display = 'block';
+        
+        // Track successful download
+        if (typeof gtag !== 'undefined') {
+          gtag('event', 'conversion', {
+            send_to: 'AW-CONVERSION_ID/CONVERSION_LABEL',
+            event_category: 'Lead Magnet',
+            event_label: magnetTitle
+          });
+        }
+        
+        // Trigger download if URL provided
+        if (data.downloadUrl) {
+          setTimeout(() => {
+            window.open(data.downloadUrl, '_blank');
+          }, 1000);
+        }
+      } else {
+        throw new Error(data.error || 'Failed to process request');
+      }
+    } catch (error) {
+      console.error('Lead magnet error:', error);
+      alert('Sorry, something went wrong. Please try again.');
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = '<span class="btn-text">Download {{ leadMagnet.type | capitalize }}</span><span class="btn-icon">⬇️</span>';
+    }
+  });
+})();
+</script>
+{% endif %}
