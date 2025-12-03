@@ -1,0 +1,80 @@
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({
+    pageLanguage: 'en',
+    includedLanguages: 'en,es,fr',
+    autoDisplay: false
+  }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+<script>
+// Custom Language Switcher Logic
+document.addEventListener('DOMContentLoaded', function() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const langParam = urlParams.get('lang');
+  
+  if (langParam) {
+    // Map lang codes if necessary
+    const targetLang = langParam;
+    const currentCookie = getCookie('googtrans');
+    const expectedCookie = '/en/' + targetLang;
+    
+    if (targetLang === 'en') {
+      // Clear translation
+      if (currentCookie) {
+        document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=' + window.location.hostname;
+        document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/';
+        window.location.reload();
+      }
+    } else {
+      // Set translation if not already set
+      if (currentCookie !== expectedCookie) {
+        // Set cookie for both domain and root path to be safe
+        document.cookie = 'googtrans=' + expectedCookie + '; path=/';
+        document.cookie = 'googtrans=' + expectedCookie + '; path=/; domain=' + window.location.hostname;
+        window.location.reload();
+      }
+    }
+  }
+});
+
+function getCookie(name) {
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2) return parts.pop().split(';').shift();
+}
+
+// Function to trigger translation from buttons
+window.triggerTranslation = function(lang) {
+  if (lang === 'en') {
+    window.location.href = window.location.pathname.split('?')[0] + '?lang=en';
+  } else {
+    window.location.href = window.location.pathname.split('?')[0] + '?lang=' + lang;
+  }
+};
+</script>
+
+<style>
+/* Hide Google Translate Top Bar */
+.goog-te-banner-frame.skiptranslate {
+    display: none !important;
+} 
+body {
+    top: 0px !important; 
+}
+/* Hide Google tooltip */
+.goog-tooltip {
+    display: none !important;
+}
+.goog-tooltip:hover {
+    display: none !important;
+}
+.goog-text-highlight {
+    background-color: transparent !important;
+    border: none !important; 
+    box-shadow: none !important;
+}
+</style>

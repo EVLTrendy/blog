@@ -471,6 +471,30 @@ module.exports = function (eleventyConfig) {
         });
     });
 
+    // Check if a translation exists for a given URL and language
+    eleventyConfig.addFilter("hasTranslation", function (url, lang, collection) {
+        if (!url || !lang || !collection) return false;
+
+        // Clean the URL to get the base path (remove existing lang prefix if any)
+        let cleanUrl = url;
+        if (cleanUrl.startsWith('/es/')) cleanUrl = cleanUrl.substring(3);
+        else if (cleanUrl.startsWith('/fr/')) cleanUrl = cleanUrl.substring(3);
+
+        // Construct expected URL
+        let targetUrl = (lang === 'en') ? cleanUrl : `/${lang}${cleanUrl}`;
+
+        // Ensure trailing slash consistency
+        if (!targetUrl.endsWith('/')) targetUrl += '/';
+
+        // Check if any page in the collection matches this URL
+        return collection.some(item => {
+            let itemUrl = item.url;
+            if (!itemUrl) return false;
+            if (!itemUrl.endsWith('/')) itemUrl += '/';
+            return itemUrl === targetUrl;
+        });
+    });
+
 
 
     // Create collections for content hubs based on tags

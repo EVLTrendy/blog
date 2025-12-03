@@ -34,9 +34,23 @@
       <span class="setting-label">Language</span>
       <div class="language-switcher">
         {% set cleanUrl = page.url | replace('/es/', '/') | replace('/fr/', '/') | replace('//', '/') %}
-        <a href="{{ cleanUrl }}" class="lang-link {% if lang == 'en' %}active{% endif %}" aria-label="English">EN</a>
-        <a href="/es{{ cleanUrl }}" class="lang-link {% if lang == 'es' %}active{% endif %}" aria-label="Español">ES</a>
-        <a href="/fr{{ cleanUrl }}" class="lang-link {% if lang == 'fr' %}active{% endif %}" aria-label="Français">FR</a>
+        
+        {# English #}
+        <a href="javascript:triggerTranslation('en')" class="lang-link {% if lang == 'en' %}active{% endif %}" aria-label="English">EN</a>
+        
+        {# Spanish #}
+        {% if cleanUrl | hasTranslation('es', collections.all) %}
+          <a href="/es{{ cleanUrl }}" class="lang-link {% if lang == 'es' %}active{% endif %}" aria-label="Español">ES</a>
+        {% else %}
+          <a href="javascript:triggerTranslation('es')" class="lang-link {% if lang == 'es' %}active{% endif %}" aria-label="Español">ES</a>
+        {% endif %}
+        
+        {# French #}
+        {% if cleanUrl | hasTranslation('fr', collections.all) %}
+          <a href="/fr{{ cleanUrl }}" class="lang-link {% if lang == 'fr' %}active{% endif %}" aria-label="Français">FR</a>
+        {% else %}
+          <a href="javascript:triggerTranslation('fr')" class="lang-link {% if lang == 'fr' %}active{% endif %}" aria-label="Français">FR</a>
+        {% endif %}
       </div>
     </div>
   </div>
