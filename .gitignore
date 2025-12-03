@@ -43,3 +43,7 @@ site-scan-report.json
 verification-log.json
 automated-scan.log
 outcome.txt
+
+# Backups (keep latest and README only)
+backups/backup-20*.json
+backups/backup-summary-*.txt

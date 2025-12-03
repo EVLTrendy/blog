@@ -45,6 +45,58 @@ collections:
       - { label: "Tags", name: "tags", widget: "list", default: ["post"] }
       - { label: "Content Hub", name: "hub", widget: "relation", collection: "hubs", search_fields: ["title"], value_field: "hubCollection", display_fields: ["title"], required: false }
       - { label: "Reading Time (min)", name: "readingTime", widget: "number", required: false, hint: "Auto-calculated by build script" }
+      
+      # Editorial Workflow
+      - label: "Editorial Status"
+        name: "editorialStatus"
+        widget: "select"
+        options: ["draft", "in-review", "approved", "scheduled", "published", "needs-update"]
+        default: "draft"
+        required: false
+      
+      - { label: "Scheduled Publish Date", name: "scheduledDate", widget: "datetime", required: false, hint: "For content calendar planning" }
+      - { label: "Last Updated", name: "lastUpdated", widget: "datetime", required: false, hint: "Track content freshness" }
+      - { label: "Next Review Date", name: "nextReview", widget: "datetime", required: false, hint: "When to review/update this content" }
+      
+      # Content Series & Organization
+      - label: "Content Series"
+        name: "series"
+        widget: "object"
+        collapsed: true
+        required: false
+        fields:
+          - { label: "Series Name", name: "name", widget: "string", required: false }
+          - { label: "Part Number", name: "part", widget: "number", required: false }
+          - { label: "Total Parts", name: "total", widget: "number", required: false }
+      
+      # Content Repurposing Tracking
+      - label: "Repurposing"
+        name: "repurposing"
+        widget: "object"
+        collapsed: true
+        required: false
+        fields:
+          - { label: "YouTube Video", name: "youtube", widget: "string", required: false, hint: "YouTube video URL" }
+          - { label: "TikTok Series", name: "tiktok", widget: "string", required: false, hint: "TikTok profile or hashtag" }
+          - { label: "Instagram Post", name: "instagram", widget: "string", required: false, hint: "Instagram post URL" }
+          - { label: "Email Newsletter", name: "email", widget: "boolean", default: false, required: false }
+          - { label: "Podcast Episode", name: "podcast", widget: "string", required: false, hint: "Podcast episode URL" }
+          - { label: "Repurposing Notes", name: "notes", widget: "text", required: false }
+      
+      # Performance Tracking
+      - label: "Performance"
+        name: "performance"
+        widget: "object"
+        collapsed: true
+        required: false
+        fields:
+          - { label: "Performance Score", name: "score", widget: "number", min: 0, max: 100, required: false, hint: "0-100 based on analytics" }
+          - { label: "Target Keywords", name: "targetKeywords", widget: "list", required: false }
+          - { label: "Competitor Analysis", name: "competitorNotes", widget: "text", required: false }
+          - { label: "Seasonal Content", name: "seasonal", widget: "boolean", default: false, required: false }
+          - { label: "Evergreen Content", name: "evergreen", widget: "boolean", default: false, required: false }
+      
+      # SEO Settings (Enhanced)
       - label: "SEO Settings"
         name: "seo"
         widget: "object"
@@ -53,6 +105,21 @@ collections:
         fields:
           - { label: "Focus Keyword", name: "focusKeyword", widget: "string", required: false }
           - { label: "Search Intent", name: "searchIntent", widget: "select", options: ["Informational", "Commercial", "Transactional", "Navigational"], required: false }
+          - { label: "Meta Title Override", name: "metaTitle", widget: "string", required: false, hint: "Leave blank to use post title" }
+          - { label: "Meta Description Override", name: "metaDescription", widget: "text", required: false, hint: "Leave blank to use post description" }
+          - { label: "Canonical URL", name: "canonical", widget: "string", required: false }
+      
+      # Content Calendar Integration
+      - label: "Calendar Planning"
+        name: "calendar"
+        widget: "object"
+        collapsed: true
+        required: false
+        fields:
+          - { label: "Content Theme", name: "theme", widget: "string", required: false, hint: "Monthly theme or campaign" }
+          - { label: "Related to Event", name: "event", widget: "string", required: false, hint: "Holiday, season, or special event" }
+          - { label: "Priority Level", name: "priority", widget: "select", options: ["low", "medium", "high", "urgent"], default: "medium", required: false }
+      
       - { label: "Body", name: "body", widget: "markdown" }
 
   - name: "authors"

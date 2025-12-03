@@ -22,7 +22,11 @@
     "audit:content": "node scripts/content-freshness-audit.js",
     "generate:schema": "node scripts/generate-schema.js",
     "generate:critical-css": "node scripts/inline-critical-css.js",
-    "optimize:images": "node scripts/optimize-images.js"
+    "optimize:images": "node scripts/optimize-images.js",
+    "strategy:calendar": "node scripts/content-calendar.js",
+    "strategy:competitors": "node scripts/competitor-analysis.js",
+    "strategy:repurpose": "node scripts/content-repurposing.js",
+    "strategy:all": "npm run strategy:calendar && npm run strategy:competitors && npm run strategy:repurpose"
   },
   "keywords": [],
   "author": "",
