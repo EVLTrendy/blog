@@ -1,7 +1,104 @@
 const { createClient } = require('@supabase/supabase-js');
 
+// In-memory rate limiting store (for serverless, consider using Supabase or Redis in production)
+const rateLimitStore = new Map();
+
+// Rate limiting configuration
+const RATE_LIMIT = {
+  MAX_REQUESTS: 10, // Maximum requests per time window
+  TIME_WINDOW: 60 * 60 * 1000, // 1 hour in milliseconds
+  CLEANUP_INTERVAL: 5 * 60 * 1000 // Clean up old entries every 5 minutes
+};
+
+// Clean up old rate limit entries periodically
+setInterval(() => {
+  const now = Date.now();
+  for (const [key, data] of rateLimitStore.entries()) {
+    if (now - data.resetTime > RATE_LIMIT.TIME_WINDOW) {
+      rateLimitStore.delete(key);
+    }
+  }
+}, RATE_LIMIT.CLEANUP_INTERVAL);
+
+// Rate limiting function
+function checkRateLimit(identifier) {
+  const now = Date.now();
+  const record = rateLimitStore.get(identifier);
+
+  if (!record) {
+    rateLimitStore.set(identifier, {
+      count: 1,
+      resetTime: now
+    });
+    return { allowed: true, remaining: RATE_LIMIT.MAX_REQUESTS - 1 };
+  }
+
+  // Reset if time window has passed
+  if (now - record.resetTime > RATE_LIMIT.TIME_WINDOW) {
+    rateLimitStore.set(identifier, {
+      count: 1,
+      resetTime: now
+    });
+    return { allowed: true, remaining: RATE_LIMIT.MAX_REQUESTS - 1 };
+  }
+
+  // Check if limit exceeded
+  if (record.count >= RATE_LIMIT.MAX_REQUESTS) {
+    const resetIn = Math.ceil((RATE_LIMIT.TIME_WINDOW - (now - record.resetTime)) / 1000);
+    return {
+      allowed: false,
+      remaining: 0,
+      resetIn
+    };
+  }
+
+  // Increment count
+  record.count++;
+  return {
+    allowed: true,
+    remaining: RATE_LIMIT.MAX_REQUESTS - record.count
+  };
+}
+
+// Detect suspicious patterns
+function isSuspiciousRequest(body, headers) {
+  try {
+    const data = JSON.parse(body);
+
+    // Check for very short or suspicious URLs
+    if (data.long_url && data.long_url.length < 10) {
+      return true;
+    }
+
+    // Check for common spam patterns
+    const spamPatterns = [
+      /viagra/i,
+      /casino/i,
+      /lottery/i,
+      /click.*here/i,
+      /free.*money/i
+    ];
+
+    const urlToCheck = data.long_url || '';
+    if (spamPatterns.some(pattern => pattern.test(urlToCheck))) {
+      return true;
+    }
+
+    // Check user agent for bot patterns
+    const userAgent = headers['user-agent'] || '';
+    const botPatterns = /bot|crawler|spider|scraper/i;
+    if (botPatterns.test(userAgent) && !userAgent.includes('Google')) {
+      return true;
+    }
+
+    return false;
+  } catch (e) {
+    return false;
+  }
+}
+
 exports.handler = async (event, context) => {
-  const { httpMethod, path, body } = event;
+  const { httpMethod, path, body, headers } = event;
 
   // Initialize Supabase
   const supabase = createClient(
@@ -12,6 +109,46 @@ exports.handler = async (event, context) => {
   // Handle POST - Create short URL
   if (httpMethod === 'POST') {
     try {
+      // Get client IP for rate limiting
+      const clientIP = headers['x-forwarded-for']?.split(',')[0] ||
+        headers['x-real-ip'] ||
+        'unknown';
+
+      // Check rate limit
+      const rateLimitResult = checkRateLimit(clientIP);
+      if (!rateLimitResult.allowed) {
+        return {
+          statusCode: 429,
+          headers: {
+            'Content-Type': 'application/json',
+            'Retry-After': rateLimitResult.resetIn.toString(),
+            'X-RateLimit-Limit': RATE_LIMIT.MAX_REQUESTS.toString(),
+            'X-RateLimit-Remaining': '0',
+            'X-RateLimit-Reset': rateLimitResult.resetIn.toString()
+          },
+          body: JSON.stringify({
+            error: 'Rate limit exceeded',
+            message: `Too many requests. Please try again in ${rateLimitResult.resetIn} seconds.`,
+            retryAfter: rateLimitResult.resetIn
+          })
+        };
+      }
+
+      // Check for suspicious activity
+      if (isSuspiciousRequest(body, headers)) {
+        console.warn('Suspicious request detected from IP:', clientIP);
+        return {
+          statusCode: 403,
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            error: 'Request rejected',
+            message: 'This request has been flagged as suspicious.'
+          })
+        };
+      }
+
       console.log('Received body:', body);
       const { long_url, slug, title, description, image } = JSON.parse(body);
 

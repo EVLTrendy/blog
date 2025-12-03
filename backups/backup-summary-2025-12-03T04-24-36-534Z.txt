@@ -1,0 +1,28 @@
+
+BACKUP SUMMARY
+==============
+Date: 2025-12-03T04:24:36.618Z
+Git Commit: b4253fb
+Git Branch: main
+
+STATISTICS
+----------
+Total Files: 139
+Blog Posts: 83
+Total Size: 1290.73 KB
+
+FILE TYPES
+----------
+.njk: 48
+.md: 91
+
+BACKUP FILES
+------------
+Main Backup: backup-2025-12-03T04-24-36-534Z.json
+Latest Link: backup-latest.json
+Summary: backup-summary-2025-12-03T04-24-36-534Z.txt
+
+RESTORATION
+-----------
+To restore from this backup, use the restore-backup.js script:
+  node scripts/restore-backup.js backup-2025-12-03T04-24-36-534Z.json
