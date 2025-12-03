@@ -1,0 +1,438 @@
+/* ========================================
+   DARK MODE STYLES
+   ======================================== */
+
+/* Root variables for light mode (default) */
+:root {
+    --bg-primary: #ffffff;
+    --bg-secondary: #f8f9fa;
+    --bg-tertiary: #f0f0f0;
+    --text-primary: #000000;
+    --text-secondary: #666666;
+    --text-tertiary: #888888;
+    --border-color: #e1e5e9;
+    --border-dark: #000000;
+    --accent-color: #33bdef;
+    --accent-hover: #1a8cba;
+    --card-bg: #ffffff;
+    --card-shadow: rgba(0, 0, 0, 0.1);
+    --card-shadow-hover: rgba(0, 0, 0, 0.15);
+    --input-bg: #ffffff;
+    --input-border: #33bdef;
+    --nav-bg: #ffffff;
+    --nav-text: #000000;
+    --nav-border: #000000;
+    --tag-bg: #33bdef;
+    --tag-text: #ffffff;
+    --link-color: #2c3e50;
+    --link-hover: #33bdef;
+    --code-bg: #f5f5f5;
+    --code-text: #333333;
+}
+
+/* Dark mode variables */
+[data-theme="dark"] {
+    --bg-primary: #1a1a1a;
+    --bg-secondary: #2d2d2d;
+    --bg-tertiary: #3a3a3a;
+    --text-primary: #ffffff;
+    --text-secondary: #b0b0b0;
+    --text-tertiary: #888888;
+    --border-color: #404040;
+    --border-dark: #ffffff;
+    --accent-color: #33bdef;
+    --accent-hover: #5ac8f5;
+    --card-bg: #2d2d2d;
+    --card-shadow: rgba(0, 0, 0, 0.3);
+    --card-shadow-hover: rgba(0, 0, 0, 0.5);
+    --input-bg: #2d2d2d;
+    --input-border: #33bdef;
+    --nav-bg: #1a1a1a;
+    --nav-text: #ffffff;
+    --nav-border: #ffffff;
+    --tag-bg: #33bdef;
+    --tag-text: #ffffff;
+    --link-color: #5ac8f5;
+    --link-hover: #33bdef;
+    --code-bg: #2d2d2d;
+    --code-text: #e0e0e0;
+}
+
+/* Smooth transitions for theme switching */
+html {
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Header & Navigation */
+header {
+    background-color: var(--nav-bg);
+    transition: background-color 0.3s ease;
+}
+
+.evl-navcontainer {
+    background-color: var(--nav-bg);
+    box-shadow: 0px 2px 4px var(--card-shadow);
+}
+
+.evl-navtxt {
+    color: var(--nav-text);
+    border-color: var(--nav-border);
+    transition: all 0.3s ease;
+}
+
+.evl-navtxt:hover {
+    background-color: var(--bg-tertiary);
+}
+
+.hamburger-line {
+    background: var(--nav-text);
+}
+
+/* Dark mode toggle button */
+#dark-mode-toggle {
+    border-color: var(--nav-border) !important;
+    color: var(--nav-text);
+}
+
+#dark-mode-toggle svg {
+    stroke: var(--nav-text);
+}
+
+/* Language switcher */
+.language-switcher .lang-link {
+    color: var(--text-secondary);
+    border-color: var(--border-color);
+    transition: all 0.3s ease;
+}
+
+.language-switcher .lang-link:hover,
+.language-switcher .lang-link.active {
+    background-color: var(--accent-color);
+    color: var(--tag-text);
+    border-color: var(--accent-color);
+}
+
+/* Main content */
+.main-container {
+    background-color: var(--bg-primary);
+}
+
+.content-area {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+}
+
+/* Cards & Blog Posts */
+.blog-post-card {
+    background: var(--card-bg);
+    border-color: var(--border-color);
+    box-shadow: 0 4px 6px var(--card-shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.blog-post-card:hover {
+    box-shadow: 0 8px 25px var(--card-shadow-hover);
+}
+
+.post-content h3 a {
+    color: var(--link-color);
+}
+
+.post-content h3 a:hover {
+    color: var(--link-hover);
+}
+
+.post-description {
+    color: var(--text-secondary);
+}
+
+.post-meta {
+    color: var(--text-tertiary);
+}
+
+/* Tags */
+.tag {
+    background: var(--tag-bg);
+    color: var(--tag-text);
+}
+
+/* Search */
+#searchInput {
+    background-color: var(--input-bg);
+    color: var(--text-primary);
+    border-color: var(--input-border);
+}
+
+.autocomplete-items {
+    background: var(--card-bg);
+    border-color: var(--border-color);
+}
+
+.autocomplete-item {
+    border-bottom-color: var(--border-color);
+}
+
+.autocomplete-item:hover {
+    background-color: var(--bg-tertiary);
+}
+
+.search-result-item {
+    background-color: var(--card-bg);
+    border-color: var(--border-color);
+}
+
+.search-result-item:hover {
+    background-color: var(--bg-tertiary);
+}
+
+.search-result-title {
+    color: var(--link-color);
+}
+
+.search-result-description {
+    color: var(--text-secondary);
+}
+
+.search-result-meta {
+    color: var(--text-tertiary);
+}
+
+/* Social icons */
+.social-icon {
+    color: var(--accent-color);
+}
+
+.social-icon:hover {
+    background: var(--bg-tertiary);
+}
+
+.social-icon span {
+    color: var(--text-secondary);
+}
+
+/* Articles */
+.articlesection {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+}
+
+.article_title {
+    color: var(--text-primary);
+}
+
+.article_meta {
+    color: var(--text-secondary);
+}
+
+.article_body {
+    color: var(--text-primary);
+}
+
+.article_body h2,
+.article_body h3,
+.article_body h4 {
+    color: var(--text-primary);
+}
+
+.article_body a {
+    color: var(--link-color);
+}
+
+.article_body a:hover {
+    color: var(--link-hover);
+}
+
+.article_body code {
+    background-color: var(--code-bg);
+    color: var(--code-text);
+}
+
+.article_body pre {
+    background-color: var(--code-bg);
+    border-color: var(--border-color);
+}
+
+/* Share buttons */
+.share-button {
+    color: var(--text-primary);
+    border-color: var(--border-color);
+    background-color: var(--card-bg);
+    transition: all 0.3s ease;
+}
+
+.share-button:hover {
+    background-color: var(--bg-tertiary);
+}
+
+/* Related posts */
+.related-posts {
+    background-color: var(--bg-secondary);
+}
+
+.related-posts-title {
+    color: var(--text-primary);
+}
+
+.related-post-card {
+    background-color: var(--card-bg);
+    border-color: var(--border-color);
+    box-shadow: 0 2px 4px var(--card-shadow);
+}
+
+.related-post-card:hover {
+    box-shadow: 0 4px 8px var(--card-shadow-hover);
+}
+
+.related-post-title a {
+    color: var(--link-color);
+}
+
+.related-post-title a:hover {
+    color: var(--link-hover);
+}
+
+.related-post-excerpt {
+    color: var(--text-secondary);
+}
+
+.related-post-meta {
+    color: var(--text-tertiary);
+}
+
+/* Footer */
+footer {
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    border-top-color: var(--border-color);
+}
+
+footer a {
+    color: var(--link-color);
+}
+
+footer a:hover {
+    color: var(--link-hover);
+}
+
+/* Pagination */
+.pagination-controls {
+    border-top-color: var(--border-color);
+}
+
+.pagination-info {
+    color: var(--text-secondary);
+}
+
+.pagination-info span {
+    color: var(--accent-color);
+}
+
+/* Tables */
+table {
+    background-color: var(--card-bg);
+    border-color: var(--border-color);
+}
+
+th {
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    border-color: var(--border-color);
+}
+
+td {
+    border-color: var(--border-color);
+    color: var(--text-primary);
+}
+
+/* Forms */
+input,
+textarea,
+select {
+    background-color: var(--input-bg);
+    color: var(--text-primary);
+    border-color: var(--border-color);
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    border-color: var(--accent-color);
+}
+
+/* Buttons */
+button {
+    background-color: var(--card-bg);
+    color: var(--text-primary);
+    border-color: var(--border-color);
+}
+
+button:hover {
+    background-color: var(--bg-tertiary);
+}
+
+/* Notifications */
+.notification-item {
+    background-color: var(--card-bg);
+    border-color: var(--border-color);
+}
+
+.notification-content h3 {
+    color: var(--text-primary);
+}
+
+.notification-content p {
+    color: var(--text-secondary);
+}
+
+.notification-link {
+    color: var(--accent-color);
+}
+
+.notification-link:hover {
+    color: var(--accent-hover);
+}
+
+/* Comments */
+.comments-section {
+    border-top-color: var(--border-color);
+}
+
+.comments-placeholder {
+    background: var(--bg-secondary);
+    color: var(--text-secondary);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .evl-rightnav {
+        background-color: var(--nav-bg);
+    }
+}
+
+/* Ensure SVG icons adapt to theme */
+svg {
+    transition: stroke 0.3s ease, fill 0.3s ease;
+}
+
+/* Logo SVG */
+.evl-SVGLogo path {
+    fill: var(--text-primary);
+}
+
+/* Print styles - force light mode */
+@media print {
+    html[data-theme="dark"] {
+        --bg-primary: #ffffff;
+        --bg-secondary: #f8f9fa;
+        --text-primary: #000000;
+        --text-secondary: #666666;
+        --card-bg: #ffffff;
+        --nav-bg: #ffffff;
+    }
+}

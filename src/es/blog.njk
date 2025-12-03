@@ -55,8 +55,8 @@ ads: false
 
 <div class="blog-posts-container">
   <h2>Entradas Recientes del Blog</h2>
-  <div class="blog-posts-grid">
-    {% for post in collections.blog | reverse | slice(0, 20) %}
+  <div class="blog-posts-grid" id="blog-posts-grid">
+    {% for post in collections.blog | reverse | slice(0, 50) %}
     <article class="blog-post-card">
       <div class="post-image">
         {% if post.data.image %}
@@ -75,13 +75,20 @@ ads: false
         {% if post.data.tags %}
         <div class="post-tags">
           {% for tag in post.data.tags %}
-          <span class="tag">{{ tag }}</span>
+            {% if tag != 'post' and tag != 'featured' %}
+            <span class="tag">{{ tag }}</span>
+            {% endif %}
           {% endfor %}
         </div>
         {% endif %}
       </div>
     </article>
     {% endfor %}
+  </div>
+  
+  <!-- Pagination Controls -->
+  <div class="pagination-controls">
+    <p class="pagination-info">Mostrando <span id="posts-count">{{ collections.blog | length }}</span> publicaciones</p>
   </div>
 </div>
 

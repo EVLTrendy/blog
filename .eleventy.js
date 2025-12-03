@@ -27,6 +27,7 @@ module.exports = function (eleventyConfig) {
     eleventyConfig.addPassthroughCopy('./src/ux-enhancements.css');
     eleventyConfig.addPassthroughCopy('./src/conversion-components.css');
     eleventyConfig.addPassthroughCopy('./src/fonts.css');
+    eleventyConfig.addPassthroughCopy('./src/dark-mode.css');
     eleventyConfig.addPassthroughCopy('./src/assets');
     eleventyConfig.addPassthroughCopy('./src/admin');
     eleventyConfig.addPassthroughCopy('./src/.well-known');
@@ -130,6 +131,11 @@ module.exports = function (eleventyConfig) {
     // Add limit filter for array limiting
     eleventyConfig.addFilter("limit", function (arr, limit) {
         return arr.slice(0, limit);
+    });
+
+    // Add slice filter for array slicing
+    eleventyConfig.addFilter("slice", function (arr, start, end) {
+        return arr.slice(start, end);
     });
 
     // Generic date formatting filter (luxon)
