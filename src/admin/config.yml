@@ -89,6 +89,18 @@ collections:
         widget: "object"
         collapsed: false
         fields:
+          - label: "Primary Category"
+            name: "category"
+            widget: "select"
+            required: true
+            hint: "Select the main category for this post (REQUIRED)"
+            options:
+              - { label: "📱 Social Media Marketing", value: "social-media" }
+              - { label: "✍️ Content Creation", value: "content-creation" }
+              - { label: "🎯 SEO & Analytics", value: "seo" }
+              - { label: "📊 Digital Strategy", value: "strategy" }
+              - { label: "🛠️ Tools & Automation", value: "tools" }
+              - { label: "🚀 Growth Hacking", value: "growth" }
           - { label: "Tags", name: "tags", widget: "list", default: ["post"], hint: "Add relevant tags for categorization" }
           - { label: "Content Hub", name: "hub", widget: "relation", collection: "hubs", search_fields: ["title"], value_field: "hubCollection", display_fields: ["title"], required: false, hint: "Assign to a content hub (e.g., TikTok, Instagram)" }
           - label: "Featured Post"

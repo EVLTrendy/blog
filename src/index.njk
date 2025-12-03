@@ -54,24 +54,26 @@ layout: 'base.njk'
           <div class="category-icon">SM</div>
           <div class="category-title-group">
             <h3>Social Media Marketing</h3>
-            <span class="category-count">150+ Articles</span>
+            {% set smCount = collections.blog | filterByCategory('social-media') | length %}
+            <span class="category-count">{{ smCount }} Article{% if smCount != 1 %}s{% endif %}</span>
           </div>
         </div>
         <p class="category-description">
           Master the art of social media with proven strategies for growth, engagement, and conversion across all major platforms.
         </p>
         <div class="category-posts">
-          {% set socialMediaPosts = collections.blog | filterByTag('social-media') | reverse | limit(3) %}
-          {% if socialMediaPosts.length === 0 %}
-            {% set socialMediaPosts = collections.blog | reverse | limit(3) %}
+          {% set socialMediaPosts = collections.blog | filterByCategory('social-media') | reverse | limit(3) %}
+          {% if socialMediaPosts.length > 0 %}
+            {% for post in socialMediaPosts %}
+            <div class="category-post-item">
+              <a href="{{ post.url }}" class="category-post-link">{{ post.data.title }}</a>
+            </div>
+            {% endfor %}
+          {% else %}
+            <p class="category-empty">No posts in this category yet.</p>
           {% endif %}
-          {% for post in socialMediaPosts %}
-          <div class="category-post-item">
-            <a href="{{ post.url }}" class="category-post-link">{{ post.data.title }}</a>
-          </div>
-          {% endfor %}
         </div>
-        <a href="/blog/" class="view-all-link">View All Posts</a>
+        <a href="/blog/?category=social-media" class="view-all-link">View All Posts</a>
       </div>
       
       {# Content Creation Category #}
@@ -80,24 +82,26 @@ layout: 'base.njk'
           <div class="category-icon">CC</div>
           <div class="category-title-group">
             <h3>Content Creation</h3>
-            <span class="category-count">120+ Articles</span>
+            {% set ccCount = collections.blog | filterByCategory('content-creation') | length %}
+            <span class="category-count">{{ ccCount }} Article{% if ccCount != 1 %}s{% endif %}</span>
           </div>
         </div>
         <p class="category-description">
           Learn how to create compelling content that resonates with your audience and drives meaningful engagement.
         </p>
         <div class="category-posts">
-          {% set contentPosts = collections.blog | filterByTag('content-creation') | reverse | limit(3) %}
-          {% if contentPosts.length === 0 %}
-            {% set contentPosts = collections.blog | reverse | limit(3) %}
+          {% set contentPosts = collections.blog | filterByCategory('content-creation') | reverse | limit(3) %}
+          {% if contentPosts.length > 0 %}
+            {% for post in contentPosts %}
+            <div class="category-post-item">
+              <a href="{{ post.url }}" class="category-post-link">{{ post.data.title }}</a>
+            </div>
+            {% endfor %}
+          {% else %}
+            <p class="category-empty">No posts in this category yet.</p>
           {% endif %}
-          {% for post in contentPosts %}
-          <div class="category-post-item">
-            <a href="{{ post.url }}" class="category-post-link">{{ post.data.title }}</a>
-          </div>
-          {% endfor %}
         </div>
-        <a href="/blog/" class="view-all-link">View All Posts</a>
+        <a href="/blog/?category=content-creation" class="view-all-link">View All Posts</a>
       </div>
       
       {# SEO & Analytics Category #}
@@ -106,24 +110,26 @@ layout: 'base.njk'
           <div class="category-icon">SEO</div>
           <div class="category-title-group">
             <h3>SEO & Analytics</h3>
-            <span class="category-count">80+ Articles</span>
+            {% set seoCount = collections.blog | filterByCategory('seo') | length %}
+            <span class="category-count">{{ seoCount }} Article{% if seoCount != 1 %}s{% endif %}</span>
           </div>
         </div>
         <p class="category-description">
           Boost your search rankings and understand your data with expert SEO tactics and analytics insights.
         </p>
         <div class="category-posts">
-          {% set seoPosts = collections.blog | filterByTag('seo') | reverse | limit(3) %}
-          {% if seoPosts.length === 0 %}
-            {% set seoPosts = collections.blog | reverse | limit(3) %}
+          {% set seoPosts = collections.blog | filterByCategory('seo') | reverse | limit(3) %}
+          {% if seoPosts.length > 0 %}
+            {% for post in seoPosts %}
+            <div class="category-post-item">
+              <a href="{{ post.url }}" class="category-post-link">{{ post.data.title }}</a>
+            </div>
+            {% endfor %}
+          {% else %}
+            <p class="category-empty">No posts in this category yet.</p>
           {% endif %}
-          {% for post in seoPosts %}
-          <div class="category-post-item">
-            <a href="{{ post.url }}" class="category-post-link">{{ post.data.title }}</a>
-          </div>
-          {% endfor %}
         </div>
-        <a href="/blog/" class="view-all-link">View All Posts</a>
+        <a href="/blog/?category=seo" class="view-all-link">View All Posts</a>
       </div>
       
       {# Digital Strategy Category #}
@@ -132,24 +138,26 @@ layout: 'base.njk'
           <div class="category-icon">DS</div>
           <div class="category-title-group">
             <h3>Digital Strategy</h3>
-            <span class="category-count">90+ Articles</span>
+            {% set dsCount = collections.blog | filterByCategory('strategy') | length %}
+            <span class="category-count">{{ dsCount }} Article{% if dsCount != 1 %}s{% endif %}</span>
           </div>
         </div>
         <p class="category-description">
           Build a winning digital strategy with frameworks, templates, and actionable plans for sustainable growth.
         </p>
         <div class="category-posts">
-          {% set strategyPosts = collections.blog | filterByTag('strategy') | reverse | limit(3) %}
-          {% if strategyPosts.length === 0 %}
-            {% set strategyPosts = collections.blog | reverse | limit(3) %}
+          {% set strategyPosts = collections.blog | filterByCategory('strategy') | reverse | limit(3) %}
+          {% if strategyPosts.length > 0 %}
+            {% for post in strategyPosts %}
+            <div class="category-post-item">
+              <a href="{{ post.url }}" class="category-post-link">{{ post.data.title }}</a>
+            </div>
+            {% endfor %}
+          {% else %}
+            <p class="category-empty">No posts in this category yet.</p>
           {% endif %}
-          {% for post in strategyPosts %}
-          <div class="category-post-item">
-            <a href="{{ post.url }}" class="category-post-link">{{ post.data.title }}</a>
-          </div>
-          {% endfor %}
         </div>
-        <a href="/blog/" class="view-all-link">View All Posts</a>
+        <a href="/blog/?category=strategy" class="view-all-link">View All Posts</a>
       </div>
       
       {# Tools & Automation Category #}
@@ -158,24 +166,26 @@ layout: 'base.njk'
           <div class="category-icon">TA</div>
           <div class="category-title-group">
             <h3>Tools & Automation</h3>
-            <span class="category-count">60+ Articles</span>
+            {% set taCount = collections.blog | filterByCategory('tools') | length %}
+            <span class="category-count">{{ taCount }} Article{% if taCount != 1 %}s{% endif %}</span>
           </div>
         </div>
         <p class="category-description">
           Discover the best tools and automation strategies to streamline your workflow and maximize productivity.
         </p>
         <div class="category-posts">
-          {% set toolsPosts = collections.blog | filterByTag('tools') | reverse | limit(3) %}
-          {% if toolsPosts.length === 0 %}
-            {% set toolsPosts = collections.blog | reverse | limit(3) %}
+          {% set toolsPosts = collections.blog | filterByCategory('tools') | reverse | limit(3) %}
+          {% if toolsPosts.length > 0 %}
+            {% for post in toolsPosts %}
+            <div class="category-post-item">
+              <a href="{{ post.url }}" class="category-post-link">{{ post.data.title }}</a>
+            </div>
+            {% endfor %}
+          {% else %}
+            <p class="category-empty">No posts in this category yet.</p>
           {% endif %}
-          {% for post in toolsPosts %}
-          <div class="category-post-item">
-            <a href="{{ post.url }}" class="category-post-link">{{ post.data.title }}</a>
-          </div>
-          {% endfor %}
         </div>
-        <a href="/blog/" class="view-all-link">View All Posts</a>
+        <a href="/blog/?category=tools" class="view-all-link">View All Posts</a>
       </div>
       
       {# Growth Hacking Category #}
@@ -184,24 +194,26 @@ layout: 'base.njk'
           <div class="category-icon">GH</div>
           <div class="category-title-group">
             <h3>Growth Hacking</h3>
-            <span class="category-count">70+ Articles</span>
+            {% set ghCount = collections.blog | filterByCategory('growth') | length %}
+            <span class="category-count">{{ ghCount }} Article{% if ghCount != 1 %}s{% endif %}</span>
           </div>
         </div>
         <p class="category-description">
           Unlock rapid growth with innovative tactics, experiments, and proven growth hacking methodologies.
         </p>
         <div class="category-posts">
-          {% set growthPosts = collections.blog | filterByTag('growth') | reverse | limit(3) %}
-          {% if growthPosts.length === 0 %}
-            {% set growthPosts = collections.blog | reverse | limit(3) %}
+          {% set growthPosts = collections.blog | filterByCategory('growth') | reverse | limit(3) %}
+          {% if growthPosts.length > 0 %}
+            {% for post in growthPosts %}
+            <div class="category-post-item">
+              <a href="{{ post.url }}" class="category-post-link">{{ post.data.title }}</a>
+            </div>
+            {% endfor %}
+          {% else %}
+            <p class="category-empty">No posts in this category yet.</p>
           {% endif %}
-          {% for post in growthPosts %}
-          <div class="category-post-item">
-            <a href="{{ post.url }}" class="category-post-link">{{ post.data.title }}</a>
-          </div>
-          {% endfor %}
         </div>
-        <a href="/blog/" class="view-all-link">View All Posts</a>
+        <a href="/blog/?category=growth" class="view-all-link">View All Posts</a>
       </div>
     </div>
   </div>

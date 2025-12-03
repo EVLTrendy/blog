@@ -28,6 +28,7 @@ module.exports = function (eleventyConfig) {
     eleventyConfig.addPassthroughCopy('./src/conversion-components.css');
     eleventyConfig.addPassthroughCopy('./src/fonts.css');
     eleventyConfig.addPassthroughCopy('./src/dark-mode.css');
+    eleventyConfig.addPassthroughCopy('./src/homepage-fixes.css');
     eleventyConfig.addPassthroughCopy('./src/article-layout.css');
     eleventyConfig.addPassthroughCopy('./src/landing-page.css');
     eleventyConfig.addPassthroughCopy('./src/assets');
@@ -375,6 +376,20 @@ module.exports = function (eleventyConfig) {
         return collection.filter(item => {
             const itemTags = item.data.tags || [];
             return itemTags.includes(tag);
+        });
+    });
+
+    // Add filterByCategory filter for filtering collections by primary category
+    eleventyConfig.addFilter("filterByCategory", function (collection, category) {
+        if (!collection || !category) return [];
+        return collection.filter(item => {
+            // Check the primary category field
+            const itemCategory = item.data.category;
+            if (itemCategory === category) return true;
+
+            // Fallback: also check tags for backwards compatibility
+            const itemTags = item.data.tags || [];
+            return itemTags.includes(category);
         });
     });
 
