@@ -1,162 +1,130 @@
-# Research
+# Comprehensive Site Feature & Functionality Audit
 
-EXTRA INFO YOU NEED
-Extra infromation
+This document provides an exhaustive list of every feature, setting, control, interaction, visual element, and intended function of the **EvolvedLotus Blog** ecosystem.
 
-in the header
+## 1. Core Navigation & Layout
 
-The buttons for
+### Header
+*   **Logo/Home Link:** SVG Logo linking to the main `evolvedlotus.com` site.
+*   **Desktop Navigation:**
+    *   Links: Home, About, Contact Us, Tools, Shop (External), Blog.
+    *   **Language Support:** Dynamic text rendering based on selected language (EN, ES, FR).
+*   **Mobile Navigation:**
+    *   **Hamburger Menu:** Icon button visible only on mobile (`max-width: 768px`).
+    *   **Slide-out Overlay:** Full-height menu sliding from the right.
+    *   **Overlay Actions:** Click outside to close, "X" button to close.
+*   **Search System:**
+    *   **Toggle:** Magnifying glass icon opens a full-screen search overlay.
+    *   **Real-time Filtering:** Client-side JavaScript filters blog posts as you type (min 2 chars).
+    *   **Results:** Displays clickable Title and Description.
+    *   **Focus:** Auto-focuses input field on open.
+*   **Settings Widget:**
+    *   **Dropdown:** Floating panel toggled by a "three-dots" icon.
+    *   **Dark Mode Toggle:** Switch control with Sun/Moon icons. Persists preference in `localStorage`.
+    *   **Language Switcher:** Links to switch between English (`/`), Spanish (`/es/`), and French (`/fr/`).
 
-Home - www.evolvedlotus.com
-About - https://blog.evolvedlotus.com/about/
-Contact Us - https://www.evolvedlotus.com/#cusection
-Tools - https://tools.evolvedlotus.com/
-Shop - https://whop.com/evolvedlotus
-Blog - https://blog.evolvedlotus.com
+### Footer
+*   **Navigation Links:** About, Contact, Terms of Service, Privacy Policy.
+*   **Newsletter Signup:**
+    *   Embedded Mailchimp form.
+    *   **Interactive Button:** Changes text to "Subscribing..." on click.
+*   **Social Media:** Icons for Twitter, Facebook, Discord, LinkedIn (open in new tab).
+*   **Copyright:** Dynamic footer text.
 
-Need to be those links 
+## 2. Content Discovery & Interaction
 
-## Page: Homepage (https://blog.evolvedlotus.com)
+### Homepage (Hub)
+*   **Hero Section:**
+    *   **Value Prop:** High-impact title and subtitle.
+    *   **Stats:** Visual counters for Articles, Readers, Updates.
+    *   **CTA:** "Explore Insights" anchor link to categories.
+*   **Category Hubs:**
+    *   **Panels:** 6 distinct categories (Social Media, Content Creation, SEO, Strategy, Tools, Growth).
+    *   **Dynamic Counts:** Shows the number of articles in each category.
+    *   **Recent Previews:** Lists the 3 most recent posts per category.
+    *   **"View All" Links:** Deep links to the blog listing page with category filters.
+*   **Content Tabs (Interactive):**
+    *   **Tabs:** Trending Now, Most Shared, New This Week, Reader Favorites.
+    *   **Logic:** JavaScript-based tab switching without page reload.
+    *   **Filtering:** Displays posts based on tags (`trending`, `popular`, `favorite`).
+*   **Tools & Resources Band:**
+    *   **Cards:** Visual links to internal and external tools (Twitter Bot, Content Calendar, etc.).
+*   **Quick Insights Panel:**
+    *   **Badges:** Visual indicators for "Update", "Resource", "Community".
+    *   **Action Links:** "Try Now", "Download", "Join".
 
-### Feature: Header & Navigation
+### Article Pages
+*   **Reading Progress Bar:**
+    *   **Visual:** Gradient blue line fixed at the top of the viewport.
+    *   **Logic:** Expands width from 0% to 100% based on scroll position.
+*   **Bookmarking System:**
+    *   **Save Button:** Interactive button to "Save for Later".
+    *   **State:** Toggles icon fill and tooltip text.
+    *   **Storage:** Saves article metadata to `localStorage`.
+    *   **Feedback:** Toast notifications ("Article saved!", "Article removed").
+*   **Short URL Generator:**
+    *   **Action:** "Copy Link" button.
+    *   **Backend:** Generates or retrieves a 6-character short code via Supabase.
+    *   **Feedback:** Button text changes to "Generating..." -> "Copied!".
+    *   **Format:** `.../r/abcdef/`
 
-#### What I Saw
-- Fixed header with Logo, Navigation Links (Home, About, Contact Us, Tools, Shop, Blog), Search Icon, and Settings Gear.
-- Mobile view: Hamburger menu replaces links.
+## 3. User Personalization & Settings
 
-#### What I Did
-- Clicked all navigation links.
-- Tested Search overlay.
-- Tested Settings menu (Dark Mode, Language).
-- Resized to mobile (375px) and tablet (768px).
+*   **Dark Mode:**
+    *   **System:** CSS Variable-based theming (`[data-theme="dark"]`).
+    *   **Scope:** Affects background, text, borders, inputs, and specific components like the footer and nav.
+    *   **Persistence:** Remembers user choice across sessions.
+*   **Language Localization:**
+    *   **Support:** English (default), Spanish, French.
+    *   **Implementation:** URL-based routing (`/es/`, `/fr/`) and Nunjucks templating.
+*   **A/B Testing Framework:**
+    *   **Client-side Logic:** Randomly assigns users to "control" or "variant" groups.
+    *   **Persistence:** Cookie/LocalStorage (30 days).
+    *   **Active Tests:**
+        *   `cta_button_text`: Button copy variations.
+        *   `newsletter_form_placement`: Inline vs. Bottom positioning.
+        *   `article_title_style`: Standard vs. Question format.
+        *   `lead_magnet_offer`: Offer text variations.
+    *   **Tracking:** Sends conversion events to Google Analytics (`gtag`).
 
-#### What Happened
-- **Search:** Functional. Overlay opens, results appear for "TikTok" and "Instagram". Clicking result navigates correctly.
-- **Settings:**
-    - **Dark Mode:** Functional. Toggles colors correctly.
-    - **Language:**
-        - Spanish (ES): Functional. URL changes to `/es/`, text translates.
-        - French (FR): **FAILED**. Redirects to `/fr/` which returns a 404 error. (Reason: `src/fr/` directory exists but has no `index.njk`).
-- **Navigation Links:**
-    - "Home", "Blog": Work correctly.
-    - "About", "Contact Us": Redirect to external domain `www.evolvedlotus.com`. (Confirmed in `header.njk`: links are hardcoded absolute URLs).
-    - "Tools": Redirects to `tools.evolvedlotus.com` (DNS error/Site not found).
-    - "Shop": Redirects to external shop.
+## 4. Content Management System (CMS)
 
-#### Bugs / Missing Features
-- **French Language:** Broken link (404).
-- **Tools Link:** Subdomain `tools.evolvedlotus.com` is unreachable. Local path `/tools/` is empty.
-- **Local Contact Page:** `src/contact.njk` exists and has a working form, but is **orphaned** because the header links to the external site.
+### Collections
+*   **Blog Posts:**
+    *   **Editorial Workflow:** Status tracking (Draft, In Review, Scheduled, Published).
+    *   **SEO Suite:** Focus keywords, Search Intent, Meta overrides, Canonical URLs.
+    *   **Content Strategy:** Evergreen/Seasonal toggles, Priority levels.
+    *   **Repurposing Tracker:** Fields to track URLs for YouTube, TikTok, Instagram, etc.
+    *   **Performance:** Manual entry for Page Views, Bounce Rate, etc.
+*   **Content Hubs:** Manage specific topic hubs (e.g., TikTok Marketing) with icons and descriptions.
+*   **Notifications:** Create site-wide alerts (Info, Success, Warning) with start dates.
+*   **Authors:** Manage author profiles, bios, and social links.
+*   **Tools & Resources:** Database of recommended tools with pricing, platform, and ratings.
+*   **Quick Insights:** Short-form tips and updates.
+*   **What's Hot Rules:** Define criteria (views, engagement) for trending content.
 
-### Feature: Homepage Sections ("What's Hot", "Explore by Topic")
+### Global Settings
+*   **Feature Toggles:** Enable/Disable Comments, Newsletter, Dark Mode, Social Sharing, etc.
+*   **Analytics:** Manage IDs for GA4, Facebook Pixel, Hotjar.
+*   **Social Media:** Centralized management of social profile URLs.
 
-#### What I Saw
-- Hero section with CTA.
-- "Explore by Topic" grid with categories.
-- "What's Hot Right Now" tabbed section.
+## 5. Visual Elements & Feedback
 
-#### What I Did
-- Clicked "View All Posts" in categories.
-- Clicked tabs in "What's Hot" (Trending, Popular, New, Favorites).
+*   **Micro-Interactions:**
+    *   **Hover Effects:** Color changes on icons, links, and buttons.
+    *   **Transitions:** Smooth fading for mobile menus and search overlays.
+    *   **Button States:** Loading/Success states for Newsletter and Short URL buttons.
+*   **Responsive Layouts:**
+    *   **Grid Systems:** Auto-adjusting grids for categories and testimonials.
+    *   **Visibility:** `desktop-only` and `mobile-only` utility classes.
+*   **Toast Notifications:** Non-intrusive popup messages for system feedback (e.g., "Article Saved").
 
-#### What Happened
-- **Explore by Topic:** Links work (e.g., `/blog/?category=social-media`), but categories appear empty ("0 posts") or links don't filter correctly in some views.
-- **What's Hot Tabs:** **BROKEN LOGIC**. Clicking "Trending", "Popular", "New", or "Favorites" displays the **exact same 3 articles** for every tab. No content change.
+## 6. Hidden & Background Features
 
-#### Bugs / Missing Features
-- **What's Hot:** Tabs do not filter or change content.
-- **Missing Modules:** "Tools" and "Insights" modules explicitly mentioned in requirements are **missing** from the homepage.
-
----
-
-## Page: Blog Index (/blog/)
-
-### Feature: Article Listing
-
-#### What I Saw
-- List of "Recent Blog Posts".
-- "82 posts" listed.
-
-#### What I Did
-- Scrolled through list.
-
-#### What Happened
-- All posts are listed on a single page.
-- **NO PAGINATION** detected.
-
-#### Bugs / Missing Features
-- **Pagination:** Missing. Infinite scroll or load all causes long page.
-
----
-
-## Page: Article Page (Template)
-
-### Feature: Article Interaction
-
-#### What I Saw
-- Header image, content, share buttons, tags.
-
-#### What I Did
-- Clicked Share buttons.
-- Clicked Tags.
-- Checked for comments.
-
-#### What Happened
-- **Share Buttons:** Present (Twitter, Facebook, etc.).
-- **Tags:** Functional (e.g., `#tiktok` filters blog list).
-- **Comments:** "Comments are moderated" text present, but **NO INPUT FORM** visible.
-
-#### Bugs / Missing Features
-- **Comments:** detailed as enabled but no way to submit.
-- **Related Posts:** Section missing.
-
----
-
-## Page: Hubs, Tools, Insights, Authors
-
-### Feature: Directory Access
-
-#### What I Did
-- Attempted to visit `/hubs/`, `/tools/`, `/insights/`, `/authors/`.
-- Visited specific hubs `/x-tiktok/`, `/x-twitter/`.
-
-#### What Happened
-- **`/hubs/`**: 404 Not Found. (Directory exists but no `index.njk`).
-- **`/tools/`**: 404 Not Found. (Directory exists but is empty).
-- **`/insights/`**: 404 Not Found. (Directory exists but is empty).
-- **`/authors/`**: 404 Not Found. (Directory exists but no `index.njk`).
-- **Specific Hubs:** `/x-tiktok/` and `/x-twitter/` work. `/x-instagram/` and `/x-youtube/` return 404 (Correct URLs are likely `/x-ig/` and `/x-yt/` based on file names).
-
-#### Bugs / Missing Features
-- **Directory Pages:** Major sections of the site structure are missing index files.
-- **Empty Directories:** Tools and Insights directories are completely empty.
-
----
-
-## Page: Footer
-
-### Feature: Links & Newsletter
-
-#### What I Saw
-- Links (About, Contact, Terms, Privacy), Social Icons, Newsletter Form.
-
-#### What I Did
-- Clicked links.
-- Submitted email to newsletter.
-
-#### What Happened
-- **Links:** Terms and Privacy work. About/Contact go to external site.
-- **Newsletter:** Submitted email. No clear success message or visual feedback observed immediately.
-
-#### Bugs / Missing Features
-- **Feedback:** Lack of clear UI response on newsletter submission.
-
-# Fixes Applied (2025-12-03)
-
-1.  **Header Links:** Updated `src/_includes/header.njk` with the requested URLs for Home, About, Contact, Tools, Shop, and Blog.
-2.  **French Homepage:** Created `src/fr/index.njk` to fix the 404 error when switching to French.
-3.  **Missing Index Pages:** Created `index.njk` files for `src/tools/`, `src/insights/`, `src/hubs/`, and `src/authors/` to resolve 404 errors.
-4.  **"What's Hot" Tabs:** Updated `src/index.njk` to use different content slices for each tab as a fallback, ensuring they display different posts.
-5.  **Blog Pagination:** Added Eleventy pagination to `src/blog.njk` (9 posts per page).
-6.  **Hub Permalinks:** Added `permalink: /x-instagram/` to `src/x-ig.njk` and `permalink: /x-youtube/` to `src/x-yt.njk` to match expected URLs.
-7.  **Newsletter Feedback:** Added a "Subscribing..." loading state to the footer newsletter button.
+*   **Service Worker (`sw.js`):** Offline support and caching strategies (implied by file existence).
+*   **Redirects (`_redirects`):** Netlify-specific rules for handling URL changes.
+*   **Robots.txt:** SEO directives for search engine crawlers.
+*   **Sitemap:** Auto-generated XML sitemap for SEO.
+*   **Analytics Tracking:**
+    *   `analytics-tracker.js`: Custom event tracking wrapper.
+    *   Integration with Google Analytics, Facebook Pixel, and Hotjar.

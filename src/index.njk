@@ -302,7 +302,7 @@ function openTab(evt, tabName) {
 </script>
 
 {# ============================================
-   TOOLS & RESOURCES BAND
+   TOOLS & RESOURCES BAND - CAROUSEL
    ============================================ #}
 <section class="tools-resources-band">
   <div class="tools-container">
@@ -311,33 +311,98 @@ function openTab(evt, tabName) {
       <p>Powerful tools to accelerate your digital growth</p>
     </div>
     
-    <div class="tools-grid">
-      <a href="https://tools.evolvedlotus.com/twitterreplybot/tweet-replier/" class="tool-card">
-        <div class="tool-icon">🤖</div>
-        <h3 class="tool-name">Twitter Reply Bot</h3>
-        <p class="tool-description">Generate realistic Twitter replies with AI. 5 free uses daily.</p>
-      </a>
+    <div class="tools-carousel-wrapper">
+      <button class="carousel-nav carousel-prev" aria-label="Previous">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+      </button>
       
-      <a href="/blog/2025-10-22-plan-batch-and-grow-your-social-media/" class="tool-card">
-        <div class="tool-icon">📅</div>
-        <h3 class="tool-name">Content Calendar</h3>
-        <p class="tool-description">Free templates for Notion, Google Sheets, and Instagram planning.</p>
-      </a>
+      <div class="tools-carousel">
+        <div class="tools-carousel-track">
+          <a href="https://tools.evolvedlotus.com/twitterreplybot/tweet-replier/" class="tool-card">
+            <div class="tool-icon">🤖</div>
+            <h3 class="tool-name">Twitter Reply Bot</h3>
+            <p class="tool-description">Generate realistic Twitter replies with AI. 5 free uses daily.</p>
+          </a>
+          
+          <a href="/blog/2025-10-22-plan-batch-and-grow-your-social-media/" class="tool-card">
+            <div class="tool-icon">📅</div>
+            <h3 class="tool-name">Content Calendar</h3>
+            <p class="tool-description">Free templates for Notion, Google Sheets, and Instagram planning.</p>
+          </a>
+          
+          <a href="https://tools.evolvedlotus.com" class="tool-card">
+            <div class="tool-icon">🚀</div>
+            <h3 class="tool-name">Growth Tools</h3>
+            <p class="tool-description">Access our complete suite of marketing and automation tools.</p>
+          </a>
+          
+          <a href="/blog/?category=templates" class="tool-card">
+            <div class="tool-icon">📋</div>
+            <h3 class="tool-name">Templates Library</h3>
+            <p class="tool-description">Download ready-to-use templates and cheat sheets.</p>
+          </a>
+        </div>
+      </div>
       
-      <a href="https://tools.evolvedlotus.com" class="tool-card">
-        <div class="tool-icon">🚀</div>
-        <h3 class="tool-name">Growth Tools</h3>
-        <p class="tool-description">Access our complete suite of marketing and automation tools.</p>
-      </a>
-      
-      <a href="/blog/?category=templates" class="tool-card">
-        <div class="tool-icon">📋</div>
-        <h3 class="tool-name">Templates Library</h3>
-        <p class="tool-description">Download ready-to-use templates and cheat sheets.</p>
-      </a>
+      <button class="carousel-nav carousel-next" aria-label="Next">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </button>
     </div>
   </div>
 </section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const track = document.querySelector('.tools-carousel-track');
+  const prevBtn = document.querySelector('.carousel-prev');
+  const nextBtn = document.querySelector('.carousel-next');
+  const cards = document.querySelectorAll('.tool-card');
+  
+  if (!track || !prevBtn || !nextBtn || cards.length === 0) return;
+  
+  let currentIndex = 0;
+  const cardWidth = cards[0].offsetWidth + 32; // card width + gap
+  const visibleCards = window.innerWidth >= 1024 ? 3 : (window.innerWidth >= 768 ? 2 : 1);
+  const maxIndex = Math.max(0, cards.length - visibleCards);
+  
+  function updateCarousel() {
+    const offset = -currentIndex * cardWidth;
+    track.style.transform = `translateX(${offset}px)`;
+    
+    prevBtn.disabled = currentIndex === 0;
+    nextBtn.disabled = currentIndex >= maxIndex;
+    
+    prevBtn.style.opacity = currentIndex === 0 ? '0.3' : '1';
+    nextBtn.style.opacity = currentIndex >= maxIndex ? '0.3' : '1';
+  }
+  
+  prevBtn.addEventListener('click', () => {
+    if (currentIndex > 0) {
+      currentIndex--;
+      updateCarousel();
+    }
+  });
+  
+  nextBtn.addEventListener('click', () => {
+    if (currentIndex < maxIndex) {
+      currentIndex++;
+      updateCarousel();
+    }
+  });
+  
+  // Reset on window resize
+  window.addEventListener('resize', () => {
+    currentIndex = 0;
+    updateCarousel();
+  });
+  
+  updateCarousel();
+});
+</script>
 
 {# ============================================
    INSIGHTS PANEL (Redesigned)

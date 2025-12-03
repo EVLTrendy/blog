@@ -176,6 +176,23 @@
     gap: 15px;
 }
 
+/* Navigation Text - ALWAYS BLACK */
+.evl-navtxt {
+    color: #000000 !important;
+    text-decoration: none;
+    font-weight: 500;
+    transition: opacity 0.3s;
+}
+
+.evl-navtxt:hover {
+    opacity: 0.7;
+}
+
+.evl-navdivtxt a {
+    color: #000000 !important;
+    text-decoration: none;
+}
+
 .icon-btn {
     background: none;
     border: none;
@@ -417,6 +434,12 @@
 [data-theme="dark"] .mobile-menu-content {
     background: #1e293b;
     color: #e2e8f0;
+}
+
+/* Navigation text ALWAYS stays black */
+[data-theme="dark"] .evl-navtxt,
+[data-theme="dark"] .evl-navdivtxt a {
+    color: #000000 !important;
 }
 
 [data-theme="dark"] .icon-btn {
