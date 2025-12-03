@@ -22,7 +22,8 @@
 }
 
 .notifications-slideshow {
-    height: 500px !important;
+    height: auto !important;
+    min-height: 500px;
     flex: 1;
 }
 
