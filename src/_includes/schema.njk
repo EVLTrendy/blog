@@ -105,6 +105,58 @@
       "inLanguage": "en-US"
     }
     {% endif %}
+    {% if faqs and faqs.length > 0 %}
+    ,{
+      "@type": "FAQPage",
+      "mainEntity": [
+        {% for faq in faqs %}
+        {
+          "@type": "Question",
+          "name": "{{ faq.question }}",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "{{ faq.answer }}"
+          }
+        }{% if not loop.last %},{% endif %}
+        {% endfor %}
+      ]
+    }
+    {% endif %}
+    {% if schemaType == 'HowTo' and howToSteps %}
+    ,{
+      "@type": "HowTo",
+      "name": "{{ title }}",
+      "description": "{{ description }}",
+      "image": "{{ metadata.url }}{{ image }}",
+      "totalTime": "{{ totalTime or 'PT30M' }}",
+      "step": [
+        {% for step in howToSteps %}
+        {
+          "@type": "HowToStep",
+          "position": {{ loop.index }},
+          "name": "{{ step.name }}",
+          "text": "{{ step.text }}"{% if step.image %},
+          "image": "{{ metadata.url }}{{ step.image }}"{% endif %}
+        }{% if not loop.last %},{% endif %}
+        {% endfor %}
+      ]
+    }
+    {% endif %}
+    {% if videoUrl %}
+    ,{
+      "@type": "VideoObject",
+      "name": "{{ title }}",
+      "description": "{{ description }}",
+      "thumbnailUrl": "{{ metadata.url }}{{ videoThumbnail or image }}",
+      "uploadDate": "{{ date | isoDate }}",
+      "duration": "{{ videoDuration or 'PT10M' }}",
+      "contentUrl": "{{ videoUrl }}",
+      "embedUrl": "{{ videoUrl }}",
+      "publisher": {
+        "@id": "{{ metadata.url }}/#organization"
+      }
+    }
+    {% endif %}
   ]
 }
 </script>

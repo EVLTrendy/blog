@@ -6,10 +6,11 @@
   "scripts": {
     "prestart": "node scripts/generate-og-images.js",
     "start": "eleventy --serve",
-    "prebuild": "node scripts/generate-og-images.js",
+    "prebuild": "node scripts/convert-to-webp.js && node scripts/generate-og-images.js",
     "build": "node scripts/frontmatter-validator.js --fix && eleventy",
     "build:prod": "npm run prebuild && npm run build",
     "generate:og": "node scripts/generate-og-images.js",
+    "convert:webp": "node scripts/convert-to-webp.js",
     "build:validate": "node scripts/frontmatter-validator.js",
     "validate": "node scripts/frontmatter-validator.js",
     "validate:fix": "node scripts/frontmatter-validator.js --fix",
@@ -17,7 +18,10 @@
     "fix:yaml": "node scripts/direct-yaml-fix.js",
     "new": "node scripts/new-post.js",
     "pre-commit": "node scripts/frontmatter-validator.js --fix",
-    "setup:shorturls": "node scripts/setup-short-urls-db.js"
+    "setup:shorturls": "node scripts/setup-short-urls-db.js",
+    "audit:content": "node scripts/content-freshness-audit.js",
+    "generate:schema": "node scripts/generate-schema.js",
+    "generate:critical-css": "node scripts/inline-critical-css.js"
   },
   "keywords": [],
   "author": "",
