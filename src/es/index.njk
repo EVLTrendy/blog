@@ -1,0 +1,72 @@
+---
+title: Página de Inicio
+layout: 'base.njk'
+lang: es
+---
+
+<div class="maindiv">
+  <div class="spacediv20"></div>
+  <div class="maingroupdiv">
+    <div class="mainl">
+      <div class="maintxtcon">
+        <div class="maintxth">Descubre EvolvedLotus</div>
+        <div class="maintxts">Revelando Recursos, Perspectivas y Viajes Creativos</div>
+      </div>
+    </div>
+    <div class="mainr">
+      <div class="mainrdivdisplay">
+        <img class="mainrdisplay" src="/assets/blog/article-1.jpg" alt="Gráfico de marca EvolvedLotus" width="300" height="300" fetchpriority="high">
+      </div>
+    </div>
+  </div>
+</div>
+<div class="featurediv">
+  <div class="ftbacksplash">
+    <div class="split-container">
+      <div class="notifications-section">
+        <h2 class="section-title">Últimas Actualizaciones</h2>
+        <div class="notifications-slideshow">
+          <div class="notifications-slider">
+              {% set featuredPosts = collections.blog | filterByTag('featured') %}
+              {% if featuredPosts.length > 0 %}
+              {% set latestFeaturedPost = featuredPosts[0] %}
+              <div class="notification-item latest-post">
+                <a href="{{ latestFeaturedPost.url }}" class="latest-post-link">
+                  <div class="notification-content">
+                    <span class="latest-badge">Última Publicación</span>
+                    <div class="latest-post-image">
+                      <img src="{{ latestFeaturedPost.data.image | default('/assets/images/default-blog.png') }}" alt="{{ latestFeaturedPost.data.imageAlt | default(latestFeaturedPost.data.title) }}" loading="lazy" width="400" height="225">
+                    </div>
+                    <h3>{{ latestFeaturedPost.data.title }}</h3>
+                    <p>{{ latestFeaturedPost.data.description | truncate(120) }}</p>
+                  </div>
+                </a>
+              </div>
+              {% endif %}
+              <div class="notification-item">
+              <div class="notification-content">
+                <h3>¡Bienvenido a nuestras nuevas funciones!</h3>
+                <p>Acabamos de lanzar nuestro nuevo sistema de notificaciones para mantenerte actualizado con las últimas noticias y características.</p>
+                <a href="/blog" class="notification-link" aria-label="Leer más sobre ¡Bienvenido a nuestras nuevas funciones!">¡Bienvenido a nuestras nuevas funciones!</a>
+              </div>
+            </div><div class="notification-item">
+              <div class="notification-content">
+                <h3>Bot de Respuesta de Twitter | X</h3>
+                <p>¡Noticias emocionantes! Hemos lanzado oficialmente nuestra última herramienta, creada para respuestas realistas en Twitter. 🎉 Obtén 5 usos gratuitos diarios, y más funciones están en camino. Perfecto para creadores, marcas y gestores de comunidades. ¡Mantente atento para más actualizaciones!</p>
+                <a href="https://tools.evolvedlotus.com/twitterreplybot/tweet-replier/" class="notification-link" aria-label="Leer más sobre Bot de Respuesta de Twitter | X">Bot de Respuesta de Twitter | X</a>
+              </div>
+            </div></div>
+          <div class="slider-controls">
+            <div class="slider-dots"></div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="browse-section">
+        <h2 class="section-title">Explorar Artículos</h2>
+        <p class="browse-description">Explora nuestra colección completa de artículos, tutoriales y perspectivas.</p>
+        <a href="/es/blog/" class="browse-button">Explorar Todos los Artículos</a>
+      </div>
+    </div>
+  </div>
+</div>

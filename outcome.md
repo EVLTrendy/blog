@@ -1811,72 +1811,37 @@ If something breaks:
 
 ---
 
-##  PRIORITY 5: CONTENT FEATURES (Weeks 9-10)
 
-### 5.1 Video Embed System
-**Status:** ✅ Implemented  
-**Action Items:**
-- [x] Create src/_includes/video-embed.njk
-- [x] Support YouTube, Vimeo, TikTok embeds
-- [x] Add lazy loading for video iframes
-- [x] Include video transcripts
-- [x] Add VideoObject schema markup
-
-### 5.2 Interactive Elements
-**Status:** ✅ Implemented  
-**Action Items:**
-- [x] Create quiz component for engagement
-- [x] Add comparison tables with filters
-- [x] Implement calculators (engagement rate, posting time)
-- [x] Add interactive infographics
-- [x] Track interactions via analytics
-
-### 5.3 Content Series Management
-**Status:** ✅ Implemented  
-**Action Items:**
-- [x] Display series navigation in articles
-- [x] Show Part X of Y indicator
-- [x] Add Next in Series CTA
-- [x] Create series landing pages
-
-### 5.4 Author Pages & Profiles
-**Status:** ✅ Implemented  
-**Action Items:**
-- [x] Create src/authors/ directory
-- [x] Build author profile pages
-- [x] List all posts by author
-- [x] Add author bio and social links
-- [x] Display author info in articles
 
 ---
 
 ##  PRIORITY 6: ADVANCED FEATURES (Weeks 11-12)
 
 ### 6.1 Multi-Language Support (i18n)
-**Status:** Not implemented  
+**Status:** ✅ Implemented  
 **Action Items:**
-- [ ] Install eleventy-plugin-i18n
-- [ ] Create language switcher
-- [ ] Translate key pages to Spanish (largest audience)
-- [ ] Use subdirectories: /es/, /fr/
-- [ ] Update hreflang tags
+- [x] Install eleventy-plugin-i18n
+- [x] Create language switcher
+- [x] Translate key pages to Spanish (largest audience)
+- [x] Use subdirectories: /es/, /fr/
+- [x] Update hreflang tags
 
 
 ### 6.3 Bookmark/Save for Later
-**Status:** Not implemented  
+**Status:** ✅ Implemented  
 **Action Items:**
-- [ ] Add Save button to articles
-- [ ] Store in localStorage
-- [ ] Create My Saved Articles page
-- [ ] Sync across devices (optional, requires backend)
+- [x] Add Save button to articles
+- [x] Store in localStorage
+- [x] Create My Saved Articles page
+- [x] Sync across devices (optional, requires backend)
 
 ### 6.4 Print Stylesheet
-**Status:** Not implemented  
+**Status:** ✅ Implemented  
 **Action Items:**
-- [ ] Create src/print.css
-- [ ] Optimize article layout for printing
-- [ ] Hide navigation, ads, sidebars
-- [ ] Add print-friendly formatting
+- [x] Create src/print.css
+- [x] Optimize article layout for printing
+- [x] Hide navigation, ads, sidebars
+- [x] Add print-friendly formatting
 
 ---
 

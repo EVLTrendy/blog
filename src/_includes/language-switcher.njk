@@ -1,0 +1,7 @@
+<div class="language-switcher">
+    {% set cleanUrl = page.url | replace('/es/', '/') | replace('/fr/', '/') %}
+    
+    <a href="{{ cleanUrl }}" class="lang-link {% if lang == 'en' %}active{% endif %}" aria-label="English">EN</a>
+    <a href="/es{{ cleanUrl }}" class="lang-link {% if lang == 'es' %}active{% endif %}" aria-label="Español">ES</a>
+    <a href="/fr{{ cleanUrl }}" class="lang-link {% if lang == 'fr' %}active{% endif %}" aria-label="Français">FR</a>
+</div>

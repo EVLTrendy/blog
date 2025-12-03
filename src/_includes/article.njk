@@ -49,6 +49,18 @@ ads: false
           <path d="M13.723 18.654l-3.61 3.609c-2.316 2.315-6.063 2.315-8.378 0-2.315-2.316-2.315-6.062 0-8.377L4.868 9.85a.75.75 0 1 1 1.06 1.06l-3.133 3.136c-1.732 1.732-1.732 4.53 0 6.262 1.732 1.731 4.53 1.731 6.262 0l3.61-3.61a.75.75 0 0 1 1.06 1.06l-.004-.003ZM19.132 14.15l-3.133 3.134a.75.75 0 0 1-1.06-1.06l3.133-3.136c1.732-1.732 1.732-4.53 0-6.262-1.732-1.731-4.53-1.731-6.262 0l-3.61 3.61a.75.75 0 0 1-1.06-1.06l3.61-3.61c2.315-2.315 6.062-2.315 8.377 0 2.315 2.316 2.315 6.062 0 8.377l.005.007Z"/>
         </svg>
       </button>
+      <button data-action="save" 
+              data-url="{{ page.url }}" 
+              data-title="{{ title }}" 
+              data-description="{{ description }}" 
+              data-image="{{ image }}"
+              title="{{ 'actions.saveForLater' | i18n(lang) }}" 
+              class="share-button" 
+              type="button">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="bookmark-icon">
+          <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+        </svg>
+      </button>
     </div>
   </p>
   <div class="article_body">
@@ -84,6 +96,8 @@ ads: false
   
   {# Related Posts Module #}
   {% include "related-posts.njk" %}
+  
+  <script src="/assets/js/bookmarks.js" defer></script>
 </section>
 
 <div id="toast"></div>

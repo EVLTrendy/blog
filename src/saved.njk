@@ -1,0 +1,71 @@
+---
+title: My Saved Articles
+layout: 'base.njk'
+---
+
+<div class="blog-posts-container">
+  <h2>My Saved Articles</h2>
+  <div id="saved-articles-grid" class="blog-posts-grid">
+    <!-- Saved articles will be populated here -->
+  </div>
+  <div id="no-saved-articles" style="display: none; text-align: center; padding: 2rem;">
+    <p>You haven't saved any articles yet.</p>
+    <a href="/blog" class="myButton">Browse Articles</a>
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const grid = document.getElementById('saved-articles-grid');
+  const noSaved = document.getElementById('no-saved-articles');
+  const bookmarks = JSON.parse(localStorage.getItem('evolvedlotus_bookmarks') || '[]');
+
+  if (bookmarks.length === 0) {
+    noSaved.style.display = 'block';
+    return;
+  }
+
+  bookmarks.forEach(article => {
+    const card = document.createElement('article');
+    card.className = 'blog-post-card';
+    card.innerHTML = `
+      <div class="post-image">
+        ${article.image ? `<img src="${article.image}" alt="${article.title}" loading="lazy">` : ''}
+      </div>
+      <div class="post-content">
+        <h3><a href="${article.url}">${article.title}</a></h3>
+        <p class="post-description">${article.description}</p>
+        <div class="post-meta">
+          <button class="remove-bookmark-btn" data-url="${article.url}" style="background:none; border:none; color:#ff4444; cursor:pointer; display:flex; align-items:center; gap:0.5rem;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+            </svg>
+            Remove
+          </button>
+        </div>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+
+  // Add remove functionality
+  document.querySelectorAll('.remove-bookmark-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const url = e.currentTarget.dataset.url;
+      // Use the global bookmarkManager instance if available, or create new
+      if (typeof bookmarkManager !== 'undefined') {
+        bookmarkManager.removeBookmark(url);
+      } else {
+        // Fallback if script not loaded yet (though it is included below)
+        const manager = new BookmarkManager();
+        manager.removeBookmark(url);
+      }
+      e.target.closest('.blog-post-card').remove();
+      if (grid.children.length === 0) {
+        noSaved.style.display = 'block';
+      }
+    });
+  });
+});
+</script>
+<script src="/assets/js/bookmarks.js"></script>

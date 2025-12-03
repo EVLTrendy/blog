@@ -5,6 +5,8 @@ const crypto = require('crypto');
 
 // 1. Require the eleventy-plugin-seo plugin
 const pluginSEO = require("eleventy-plugin-seo");
+const i18n = require('eleventy-plugin-i18n');
+const translations = require('./src/_data/translations.js');
 
 // Custom frontmatter parser to ensure dates remain as strings
 const matter = require('gray-matter');
@@ -19,6 +21,7 @@ const matter = require('gray-matter');
 module.exports = function (eleventyConfig) {
     // Passthrough copies
     eleventyConfig.addPassthroughCopy('./src/style.css');
+    eleventyConfig.addPassthroughCopy('./src/print.css');
     eleventyConfig.addPassthroughCopy('./src/enhancements.css');
     eleventyConfig.addPassthroughCopy('./src/layout-fixes.css');
     eleventyConfig.addPassthroughCopy('./src/ux-enhancements.css');
@@ -60,6 +63,14 @@ module.exports = function (eleventyConfig) {
             includeJSONLD: true,
             includeSchema: true,
             imageWithBaseUrl: true // CRITICAL: Converts relative URLs to absolute
+        }
+    });
+
+    // i18n Plugin Configuration
+    eleventyConfig.addPlugin(i18n, {
+        translations,
+        fallbackLocales: {
+            '*': 'en'
         }
     });
 
@@ -461,4 +472,7 @@ module.exports = function (eleventyConfig) {
             date: "date",
         },
     };
+
+    // Set default language
+    eleventyConfig.addGlobalData("lang", "en");
 };

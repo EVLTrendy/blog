@@ -1,0 +1,132 @@
+@media print {
+
+    /* Hide non-essential elements */
+    header,
+    footer,
+    .share-icons,
+    .related-posts,
+    .ad-container,
+    .sidebar-ad,
+    .article-toc-sidebar,
+    .video-embed,
+    .lead-magnet,
+    .series-navigation,
+    #toast,
+    .language-switcher,
+    .theme-toggle,
+    .blogsign,
+    .social-grid-container,
+    .search-container,
+    .freshness-badge,
+    .myButton,
+    .myButton2,
+    .blogsignature {
+        display: none !important;
+    }
+
+    /* Reset layout */
+    body,
+    .main-container,
+    .content-area,
+    .article_body,
+    .article_bodydiv {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        display: block !important;
+        background: white !important;
+        color: black !important;
+        box-shadow: none !important;
+    }
+
+    /* Typography for print */
+    body {
+        font-family: Georgia, 'Times New Roman', serif;
+        font-size: 12pt;
+        line-height: 1.5;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        color: black !important;
+        page-break-after: avoid;
+        font-family: Arial, sans-serif;
+    }
+
+    h1 {
+        font-size: 24pt;
+        border-bottom: 2px solid #000;
+        margin-bottom: 20px;
+        text-align: left;
+    }
+
+    p {
+        orphans: 3;
+        widows: 3;
+        color: #000 !important;
+    }
+
+    /* Links */
+    a {
+        text-decoration: none !important;
+        color: black !important;
+    }
+
+    /* Show URL for external links only */
+    a[href^="http"]:not([href*="evolvedlotus.com"]):after {
+        content: " (" attr(href) ")";
+        font-size: 10pt;
+        font-style: italic;
+    }
+
+    /* Images */
+    img {
+        max-width: 100% !important;
+        height: auto !important;
+        page-break-inside: avoid;
+        border: none !important;
+        box-shadow: none !important;
+    }
+
+    /* Code blocks */
+    pre,
+    code {
+        background-color: #f5f5f5 !important;
+        border: 1px solid #ccc !important;
+        page-break-inside: avoid;
+        white-space: pre-wrap !important;
+        color: #000 !important;
+    }
+
+    /* Tables */
+    table {
+        page-break-inside: avoid;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    th,
+    td {
+        border: 1px solid #000;
+        padding: 5px;
+    }
+
+    /* Article specific overrides */
+    .article_meta {
+        text-align: left;
+        margin-bottom: 20px;
+        font-style: italic;
+        color: #666 !important;
+    }
+
+    .imagediv {
+        margin: 0 0 20px 0;
+        max-height: 400px;
+        overflow: hidden;
+    }
+}
