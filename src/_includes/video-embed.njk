@@ -19,7 +19,16 @@
   {% set thumbnailUrl = '' %}
 {% endif %}
 
-<div class="video-embed-container" data-video-platform="{{ 'youtube' if isYouTube else 'vimeo' if isVimeo else 'tiktok' if isTikTok else 'unknown' }}">
+{% set platform = 'unknown' %}
+{% if isYouTube %}
+  {% set platform = 'youtube' %}
+{% elif isVimeo %}
+  {% set platform = 'vimeo' %}
+{% elif isTikTok %}
+  {% set platform = 'tiktok' %}
+{% endif %}
+
+<div class="video-embed-container" data-video-platform="{{ platform }}">
   <div class="video-wrapper">
     {% if isYouTube %}
       {# YouTube with lazy loading #}
