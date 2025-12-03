@@ -163,50 +163,6 @@
     font-size: 1rem;
 }
 
-/* Dark mode support */
-body.dark-mode .lead-magnet-card,
-[data-theme="dark"] .lead-magnet-card {
-    background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
-    border-color: #33bdef;
-}
-
-body.dark-mode .lead-magnet-title,
-[data-theme="dark"] .lead-magnet-title {
-    color: #e2e8f0;
-}
-
-body.dark-mode .lead-magnet-description,
-[data-theme="dark"] .lead-magnet-description {
-    color: #cbd5e1;
-}
-
-body.dark-mode .lead-magnet-benefits li,
-[data-theme="dark"] .lead-magnet-benefits li {
-    color: #cbd5e1;
-}
-
-body.dark-mode .lead-magnet-email-input,
-[data-theme="dark"] .lead-magnet-email-input {
-    background: #1e293b;
-    border-color: #475569;
-    color: #e2e8f0;
-}
-
-body.dark-mode .lead-magnet-email-input:focus,
-[data-theme="dark"] .lead-magnet-email-input:focus {
-    border-color: #33bdef;
-}
-
-body.dark-mode .lead-magnet-success h4,
-[data-theme="dark"] .lead-magnet-success h4 {
-    color: #e2e8f0;
-}
-
-body.dark-mode .lead-magnet-success p,
-[data-theme="dark"] .lead-magnet-success p {
-    color: #cbd5e1;
-}
-
 /* ============================================
    A/B TESTING VARIANTS
    ============================================ */
@@ -226,12 +182,6 @@ body.dark-mode .lead-magnet-success p,
     background: white;
     box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.1);
     padding: 1rem;
-}
-
-body.dark-mode .newsletter-bottom,
-[data-theme="dark"] .newsletter-bottom {
-    background: #1e293b;
-    box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.3);
 }
 
 /* CTA button variants */

@@ -128,7 +128,6 @@
     <!-- SEO Enhancement: Add canonical tags to prevent duplicate content issues -->
     <link rel="stylesheet" href="/style.css">
     <link rel="stylesheet" href="/enhancements.css">
-    <link rel="stylesheet" href="/theme-toggle-header.css">
     <link rel="stylesheet" href="/layout-fixes.css">
     <link rel="stylesheet" href="/ux-enhancements.css">
     <link rel="stylesheet" href="/conversion-components.css">
@@ -160,12 +159,6 @@
     {% include 'blogsign.njk' %}
     {% include 'footer.njk' %}
 
-    <!-- Theme Toggle Button -->
-    <button id="theme-toggle" aria-label="Switch to dark mode">
-        <span class="theme-icon">🌙</span>
-        <span class="theme-text">Dark Mode</span>
-    </button>
-
     {# 
       Moved all JavaScripts to just before the closing </body> tag for better performance.
       Added 'defer' to Netlify Identity, slideshow.js, and copy.js.
@@ -184,7 +177,6 @@
         }
     </script>
 
-    <script src="/assets/js/theme-toggle.js" defer></script>
     <script src="/assets/js/slideshow.js" defer></script>
     <script src="/assets/js/copy.js" defer></script>
     <script src="/assets/js/short-url.js" defer></script>
