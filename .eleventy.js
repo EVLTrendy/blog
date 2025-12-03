@@ -28,6 +28,7 @@ module.exports = function (eleventyConfig) {
     eleventyConfig.addPassthroughCopy('./src/conversion-components.css');
     eleventyConfig.addPassthroughCopy('./src/fonts.css');
     eleventyConfig.addPassthroughCopy('./src/dark-mode.css');
+    eleventyConfig.addPassthroughCopy('./src/article-layout.css');
     eleventyConfig.addPassthroughCopy('./src/assets');
     eleventyConfig.addPassthroughCopy('./src/admin');
     eleventyConfig.addPassthroughCopy('./src/.well-known');
