@@ -7,14 +7,15 @@
 
 .article-header-wrapper {
     max-width: 1200px;
-    margin: 0 auto 3rem auto;
+    margin: 0 auto 4rem auto;
     padding: 0 20px;
+    text-align: center;
 }
 
-/* 1. Hero Image - Full Width, Original Aspect Ratio */
+/* 1. Hero Image - Full Width, Full Resolution */
 .article-hero-image {
     width: 100%;
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
     border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
@@ -24,21 +25,24 @@
     width: 100%;
     height: auto;
     display: block;
+    /* No max-width or height constraints - uses full resolution */
 }
 
-/* 2. Title - Full Width */
+/* 2. Title - Full Width, Centered */
 .article-title-main {
     font-size: 2.75rem;
     font-weight: 700;
     line-height: 1.2;
     margin: 0 0 1.5rem 0;
     color: var(--text-primary);
+    text-align: center;
 }
 
-/* 3. Author and Date - Full Width */
+/* 3. Author and Date - Full Width, Centered */
 .article-byline {
     display: flex;
     align-items: center;
+    justify-content: center;
     flex-wrap: wrap;
     gap: 0.5rem;
     margin-bottom: 1.5rem;
@@ -83,10 +87,11 @@
     color: #721c24;
 }
 
-/* 4. Tags - Full Width */
+/* 4. Tags - Full Width, Centered */
 .article-tags-header {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     gap: 0.6rem;
     margin-bottom: 1.5rem;
 }
@@ -107,13 +112,16 @@
     transform: translateY(-2px);
 }
 
-/* 5. Share Links - Full Width */
+/* 5. Share Links - Full Width, Centered, Single Line */
 .article-share-header {
     display: flex;
+    justify-content: center;
     gap: 0.75rem;
     margin-bottom: 0;
-    padding-bottom: 2rem;
+    padding-bottom: 2.5rem;
     border-bottom: 2px solid var(--border-color);
+    flex-wrap: nowrap;
+    /* Keep all buttons on one line */
 }
 
 .share-button {
@@ -128,6 +136,8 @@
     color: var(--text-primary);
     cursor: pointer;
     transition: all 0.3s ease;
+    flex-shrink: 0;
+    /* Prevent buttons from shrinking */
 }
 
 .share-button:hover {
@@ -151,7 +161,8 @@
     gap: 40px;
     max-width: 1400px;
     margin: 0 auto;
-    padding: 0 20px 40px 20px;
+    padding: 3rem 20px 40px 20px;
+    /* Added top padding for spacing after header */
 }
 
 /* Main Article Content Column */
@@ -166,6 +177,8 @@
     line-height: 1.8;
     color: var(--text-primary);
     margin-bottom: 3rem;
+    text-align: left;
+    /* Reset text alignment for article content */
 }
 
 .article-text h2 {
@@ -327,7 +340,7 @@
     .article-body-wrapper {
         grid-template-columns: 1fr;
         gap: 0;
-        padding: 0 20px 40px 20px;
+        padding: 2rem 20px 40px 20px;
     }
 
     .article-spacer-left {
@@ -359,7 +372,7 @@
     }
 
     .article-body-wrapper {
-        padding: 0 15px 30px 15px;
+        padding: 2rem 15px 30px 15px;
     }
 
     .article-title-main {
@@ -372,6 +385,8 @@
 
     .article-share-header {
         flex-wrap: wrap;
+        /* Allow wrapping on very small screens */
+        justify-content: center;
     }
 
     .share-button {

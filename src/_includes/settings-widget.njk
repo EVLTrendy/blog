@@ -1,0 +1,259 @@
+<!-- Floating Settings Widget (Dark Mode + Language Switcher) -->
+<div class="settings-widget">
+  <button id="settings-toggle" class="settings-toggle-btn" aria-label="Open settings">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="3"></circle>
+      <path d="M12 1v6m0 6v6m5.2-13.2l-4.2 4.2m0 6l4.2 4.2M1 12h6m6 0h6m-13.2 5.2l4.2-4.2m0-6L5.8 5.8"></path>
+    </svg>
+  </button>
+  
+  <div id="settings-panel" class="settings-panel">
+    <!-- Dark Mode Toggle -->
+    <div class="setting-item">
+      <span class="setting-label">Dark Mode</span>
+      <button id="dark-mode-toggle" class="toggle-switch" aria-label="Toggle dark mode">
+        <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="5"></circle>
+          <line x1="12" y1="1" x2="12" y2="3"></line>
+          <line x1="12" y1="21" x2="12" y2="23"></line>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+          <line x1="1" y1="12" x2="3" y2="12"></line>
+          <line x1="21" y1="12" x2="23" y2="12"></line>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+        <svg class="moon-icon" style="display: none;" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+      </button>
+    </div>
+    
+    <!-- Language Switcher -->
+    <div class="setting-item">
+      <span class="setting-label">Language</span>
+      <div class="language-switcher">
+        {% set cleanUrl = page.url | replace('/es/', '/') | replace('/fr/', '/') %}
+        <a href="{{ cleanUrl }}" class="lang-link {% if lang == 'en' %}active{% endif %}" aria-label="English">EN</a>
+        <a href="/es{{ cleanUrl }}" class="lang-link {% if lang == 'es' %}active{% endif %}" aria-label="Español">ES</a>
+        <a href="/fr{{ cleanUrl }}" class="lang-link {% if lang == 'fr' %}active{% endif %}" aria-label="Français">FR</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+/* Settings Widget Styles */
+.settings-widget {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  z-index: 1000;
+}
+
+.settings-toggle-btn {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--accent-color);
+  border: none;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(51, 189, 239, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.settings-toggle-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(51, 189, 239, 0.6);
+}
+
+.settings-toggle-btn svg {
+  width: 28px;
+  height: 28px;
+}
+
+.settings-panel {
+  position: absolute;
+  bottom: 70px;
+  right: 0;
+  background: var(--card-bg);
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+  min-width: 250px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
+  border: 2px solid var(--border-color);
+}
+
+.settings-panel.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.setting-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.setting-item:last-child {
+  border-bottom: none;
+}
+
+.setting-label {
+  font-weight: 600;
+  color: var(--text-primary);
+  font-size: 14px;
+}
+
+.toggle-switch {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 2px solid var(--border-color);
+  background: var(--card-bg);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.toggle-switch:hover {
+  background: var(--accent-color);
+  border-color: var(--accent-color);
+}
+
+.toggle-switch:hover svg {
+  stroke: white;
+}
+
+.toggle-switch svg {
+  stroke: var(--text-primary);
+  transition: stroke 0.3s ease;
+}
+
+.language-switcher {
+  display: flex;
+  gap: 8px;
+}
+
+.language-switcher .lang-link {
+  padding: 6px 12px;
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.language-switcher .lang-link:hover {
+  background-color: var(--bg-tertiary);
+  border-color: var(--accent-color);
+  color: var(--accent-color);
+}
+
+.language-switcher .lang-link.active {
+  background-color: var(--accent-color);
+  border-color: var(--accent-color);
+  color: white;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .settings-widget {
+    bottom: 20px;
+    right: 20px;
+  }
+  
+  .settings-toggle-btn {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .settings-toggle-btn svg {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .settings-panel {
+    min-width: 220px;
+    padding: 15px;
+  }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Settings panel toggle
+  const settingsToggle = document.getElementById('settings-toggle');
+  const settingsPanel = document.getElementById('settings-panel');
+  
+  if (settingsToggle && settingsPanel) {
+    settingsToggle.addEventListener('click', function() {
+      settingsPanel.classList.toggle('active');
+    });
+    
+    // Close panel when clicking outside
+    document.addEventListener('click', function(event) {
+      if (!settingsToggle.contains(event.target) && !settingsPanel.contains(event.target)) {
+        settingsPanel.classList.remove('active');
+      }
+    });
+  }
+  
+  // Dark mode functionality
+  const darkModeToggle = document.getElementById('dark-mode-toggle');
+  const sunIcon = document.querySelector('.sun-icon');
+  const moonIcon = document.querySelector('.moon-icon');
+  const html = document.documentElement;
+
+  // Check for saved dark mode preference
+  const currentMode = localStorage.getItem('darkMode') || 'light';
+  
+  // Apply saved mode on load
+  if (currentMode === 'dark') {
+    html.setAttribute('data-theme', 'dark');
+    if (sunIcon && moonIcon) {
+      sunIcon.style.display = 'none';
+      moonIcon.style.display = 'block';
+    }
+  }
+
+  // Toggle dark mode
+  if (darkModeToggle) {
+    darkModeToggle.addEventListener('click', function() {
+      const isDark = html.getAttribute('data-theme') === 'dark';
+      
+      if (isDark) {
+        html.setAttribute('data-theme', 'light');
+        localStorage.setItem('darkMode', 'light');
+        if (sunIcon && moonIcon) {
+          sunIcon.style.display = 'block';
+          moonIcon.style.display = 'none';
+        }
+      } else {
+        html.setAttribute('data-theme', 'dark');
+        localStorage.setItem('darkMode', 'dark');
+        if (sunIcon && moonIcon) {
+          sunIcon.style.display = 'none';
+          moonIcon.style.display = 'block';
+        }
+      }
+    });
+  }
+});
+</script>
