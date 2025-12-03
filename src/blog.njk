@@ -56,7 +56,7 @@ ads: false
 <div class="blog-posts-container">
   <h2>Recent Blog Posts</h2>
   <div class="blog-posts-grid">
-    {% for post in collections.post | reverse | slice(0, 20) %}
+    {% for post in collections.blog | reverse | slice(0, 20) %}
     <article class="blog-post-card">
       <div class="post-image">
         {% if post.data.image %}
@@ -91,7 +91,7 @@ ads: false
 const searchInput = document.getElementById('searchInput');
 const autocompleteResults = document.getElementById('autocompleteResults');
 let blogPosts = [
-  {% for post in collections.post %}
+  {% for post in collections.blog %}
     {
       title: "{{ post.data.title }}",
       url: "{{ post.url }}",
