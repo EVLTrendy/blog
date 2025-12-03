@@ -46,11 +46,11 @@
         const text = button.querySelector('.theme-text');
 
         if (theme === 'dark') {
-            icon.textContent = '☀️';
+            if (icon) icon.textContent = '☀️';
             if (text) text.textContent = 'Light Mode';
             button.setAttribute('aria-label', 'Switch to light mode');
         } else {
-            icon.textContent = '🌙';
+            if (icon) icon.textContent = '🌙';
             if (text) text.textContent = 'Dark Mode';
             button.setAttribute('aria-label', 'Switch to dark mode');
         }

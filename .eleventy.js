@@ -22,6 +22,7 @@ module.exports = function (eleventyConfig) {
     eleventyConfig.addPassthroughCopy('./src/enhancements.css');
     eleventyConfig.addPassthroughCopy('./src/theme-toggle-header.css');
     eleventyConfig.addPassthroughCopy('./src/layout-fixes.css');
+    eleventyConfig.addPassthroughCopy('./src/ux-enhancements.css');
     eleventyConfig.addPassthroughCopy('./src/fonts.css');
     eleventyConfig.addPassthroughCopy('./src/assets');
     eleventyConfig.addPassthroughCopy('./src/admin');
