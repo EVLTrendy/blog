@@ -452,7 +452,7 @@ collections:
               { label: "Comments", name: "comments", widget: "boolean", default: false },
               { label: "Newsletter", name: "newsletter", widget: "boolean", default: true },
               { label: "Social Sharing", name: "socialSharing", widget: "boolean", default: true },
-              { label: "Dark Mode", name: "darkMode", widget: "boolean", default: true },
+              { label: "Dark Mode", name: "darkMode", widget: "boolean", default: false },
               { label: "Related Posts", name: "relatedPosts", widget: "boolean", default: true },
               { label: "What's Hot", name: "whatsHot", widget: "boolean", default: true },
               { label: "Quick Insights", name: "quickInsights", widget: "boolean", default: true },
