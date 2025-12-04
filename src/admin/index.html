@@ -21,86 +21,27 @@
 
   <style>
     /* ============================================
-       SLEEK LIGHT CMS DESIGN SYSTEM
+       MINIMALIST LIGHT CMS THEME
        ============================================ */
 
     :root {
-      /* Brand Colors - Refined for Light Mode */
-      --brand-primary: #0ea5e9;
-      /* Sky 500 */
-      --brand-primary-hover: #0284c7;
-      /* Sky 600 */
-      --brand-primary-light: #e0f2fe;
-      /* Sky 100 */
-      --brand-accent: #6366f1;
-      /* Indigo 500 */
-
-      /* Neutrals - Clean & Crisp */
-      --bg-app: #f1f5f9;
-      /* Slate 100 */
-      --bg-panel: #ffffff;
-      --bg-sidebar: #ffffff;
-
-      --text-main: #0f172a;
-      /* Slate 900 */
-      --text-secondary: #475569;
-      /* Slate 600 */
-      --text-muted: #94a3b8;
-      /* Slate 400 */
-
-      --border-light: #e2e8f0;
-      /* Slate 200 */
-      --border-medium: #cbd5e1;
-      /* Slate 300 */
-
-      /* Semantic Colors */
-      --success: #10b981;
-      --success-bg: #d1fae5;
-      --warning: #f59e0b;
-      --warning-bg: #fef3c7;
-      --error: #ef4444;
-      --error-bg: #fee2e2;
-
-      /* Shadows - Soft & Modern */
-      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
-      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.025);
-      --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.02);
-
-      /* Spacing */
-      --spacing-xs: 0.25rem;
-      --spacing-sm: 0.5rem;
-      --spacing-md: 1rem;
-      --spacing-lg: 1.5rem;
-      --spacing-xl: 2rem;
-
-      /* Radius */
-      --radius-sm: 6px;
-      --radius-md: 8px;
-      --radius-lg: 12px;
-      --radius-xl: 16px;
-
-      /* Typography */
       --font-heading: 'Outfit', sans-serif;
       --font-body: 'Inter', sans-serif;
-    }
-
-    /* ============================================
-       GLOBAL RESETS
-       ============================================ */
-
-    * {
-      box-sizing: border-box;
+      --color-primary: #0ea5e9;
+      --color-bg: #f8fafc;
+      --color-surface: #ffffff;
+      --color-text: #0f172a;
+      --color-border: #e2e8f0;
     }
 
     body {
       font-family: var(--font-body) !important;
-      background: var(--bg-app) !important;
-      color: var(--text-main) !important;
-      line-height: 1.6;
+      background-color: var(--color-bg) !important;
+      color: var(--color-text) !important;
       -webkit-font-smoothing: antialiased;
     }
 
+    /* Typography Overrides */
     h1,
     h2,
     h3,
@@ -108,265 +49,111 @@
     h5,
     h6 {
       font-family: var(--font-heading) !important;
-      font-weight: 600 !important;
-      letter-spacing: -0.02em;
     }
 
-    /* ============================================
-       SIDEBAR - Light & Clean
-       ============================================ */
+    /* CMS UI Overrides - targeted and minimal */
 
-    [class*="SidebarContainer"] {
-      background: var(--bg-sidebar) !important;
-      border-right: 1px solid var(--border-light) !important;
-      box-shadow: var(--shadow-sm) !important;
+    /* Sidebar */
+    div[class*="SidebarContainer"] {
+      background-color: var(--color-surface) !important;
+      border-right: 1px solid var(--color-border) !important;
     }
 
-    [class*="SidebarBrand"] {
-      color: var(--brand-primary) !important;
-      font-family: var(--font-heading) !important;
-      font-weight: 700 !important;
+    a[class*="SidebarNavLink"] {
+      border-radius: 6px !important;
+      margin: 4px 8px !important;
     }
 
-    [class*="SidebarNavLink"] {
-      color: var(--text-secondary) !important;
-      border-radius: var(--radius-md) !important;
-      margin: 4px 12px !important;
-      padding: 10px 16px !important;
-      transition: all 0.2s ease !important;
-      border-left: none !important;
-      font-weight: 500 !important;
-    }
-
-    [class*="SidebarNavLink"]:hover {
-      background: var(--brand-primary-light) !important;
-      color: var(--brand-primary) !important;
-      transform: translateX(4px);
-    }
-
-    [class*="SidebarNavLink"].active,
-    [class*="SidebarNavLink"][class*="active"] {
-      background: var(--brand-primary) !important;
+    a[class*="SidebarNavLink"][class*="active"] {
+      background-color: var(--color-primary) !important;
       color: white !important;
-      box-shadow: var(--shadow-md) !important;
     }
 
-    [class*="SidebarNavLink"] svg {
-      fill: currentColor !important;
+    /* Main Content Area */
+    main {
+      background-color: var(--color-bg) !important;
     }
 
-    /* ============================================
-       HEADER
-       ============================================ */
-
-    [class*="AppHeader"] {
-      background: rgba(255, 255, 255, 0.9) !important;
-      backdrop-filter: blur(8px);
-      border-bottom: 1px solid var(--border-light) !important;
-      box-shadow: var(--shadow-sm) !important;
-      position: sticky !important;
-      top: 0;
-      z-index: 100;
+    /* Cards & Lists */
+    div[class*="EntryCard"] {
+      background: var(--color-surface) !important;
+      border: 1px solid var(--color-border) !important;
+      border-radius: 8px !important;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) !important;
+      margin-bottom: 12px !important;
     }
 
-    [class*="AppHeaderButton"] {
+    /* Header Area */
+    div[class*="CollectionTop"] {
       background: transparent !important;
-      color: var(--text-secondary) !important;
-      font-weight: 600 !important;
+      border: none !important;
+      box-shadow: none !important;
+      padding: 20px 0 !important;
     }
 
-    [class*="AppHeaderButton"]:hover {
-      color: var(--brand-primary) !important;
-      background: var(--brand-primary-light) !important;
-    }
-
-    /* ============================================
-       MAIN CONTENT AREA
-       ============================================ */
-
-    [class*="CollectionTop"] {
-      background: var(--bg-panel) !important;
-      border-radius: var(--radius-lg) !important;
-      border: 1px solid var(--border-light) !important;
-      box-shadow: var(--shadow-sm) !important;
-      margin-bottom: var(--spacing-lg) !important;
-      padding: var(--spacing-lg) !important;
-    }
-
-    [class*="CollectionTop"] h1 {
-      color: var(--text-main) !important;
-      font-size: 1.75rem !important;
-    }
-
-    /* Cards (Entries) */
-    [class*="EntryCard"] {
-      background: var(--bg-panel) !important;
-      border: 1px solid var(--border-light) !important;
-      border-radius: var(--radius-lg) !important;
-      box-shadow: var(--shadow-sm) !important;
-      transition: all 0.2s ease !important;
-      margin-bottom: var(--spacing-md) !important;
-    }
-
-    [class*="EntryCard"]:hover {
-      border-color: var(--brand-primary) !important;
-      box-shadow: var(--shadow-lg) !important;
-      transform: translateY(-2px);
-    }
-
-    [class*="Card"] {
-      background: var(--bg-panel) !important;
-      border-radius: var(--radius-lg) !important;
-      box-shadow: var(--shadow-md) !important;
-    }
-
-    /* ============================================
-       BUTTONS
-       ============================================ */
-
-    button,
-    [class*="Button"] {
-      border-radius: var(--radius-md) !important;
+    /* Buttons */
+    button[class*="Button"] {
+      border-radius: 6px !important;
       font-family: var(--font-heading) !important;
-      font-weight: 600 !important;
-      letter-spacing: 0.01em !important;
-      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+      font-weight: 500 !important;
       text-transform: none !important;
     }
 
-    /* Primary Actions */
-    [class*="Button"][class*="primary"],
-    button[class*="primary"] {
-      background: var(--brand-primary) !important;
-      color: white !important;
-      border: none !important;
-      box-shadow: 0 4px 6px -1px rgba(14, 165, 233, 0.3) !important;
-    }
-
-    [class*="Button"][class*="primary"]:hover {
-      background: var(--brand-primary-hover) !important;
-      transform: translateY(-1px);
-      box-shadow: 0 6px 8px -1px rgba(14, 165, 233, 0.4) !important;
-    }
-
-    /* Secondary Actions */
-    [class*="Button"][class*="gray"],
-    [class*="Button"][class*="secondary"] {
-      background: white !important;
-      border: 1px solid var(--border-medium) !important;
-      color: var(--text-secondary) !important;
-    }
-
-    [class*="Button"][class*="gray"]:hover {
-      border-color: var(--text-secondary) !important;
-      background: var(--neutral-50) !important;
-    }
-
-    /* ============================================
-       FORMS & INPUTS
-       ============================================ */
-
+    /* Inputs */
     input,
     textarea,
-    select,
-    [class*="Control"] {
-      background: white !important;
-      border: 1px solid var(--border-medium) !important;
-      border-radius: var(--radius-md) !important;
-      color: var(--text-main) !important;
-      font-family: var(--font-body) !important;
-      padding: 10px 14px !important;
-      transition: all 0.2s ease !important;
+    select {
+      border-radius: 6px !important;
+      border: 1px solid var(--color-border) !important;
+      background: var(--color-surface) !important;
+      padding: 8px 12px !important;
     }
 
     input:focus,
     textarea:focus,
     select:focus {
-      border-color: var(--brand-primary) !important;
-      box-shadow: 0 0 0 3px var(--brand-primary-light) !important;
+      border-color: var(--color-primary) !important;
+      box-shadow: 0 0 0 2px rgba(14, 165, 233, 0.2) !important;
       outline: none !important;
     }
 
-    label {
-      color: var(--text-secondary) !important;
-      font-weight: 600 !important;
-      font-size: 0.9rem !important;
-      margin-bottom: 6px !important;
-    }
-
-    /* Editor Toolbar */
-    [class*="EditorToolbar"] {
-      background: var(--bg-app) !important;
-      border-bottom: 1px solid var(--border-light) !important;
-    }
-
-    /* ============================================
-       STATUS BADGES
-       ============================================ */
-
-    [class*="StatusBadge"] {
-      border-radius: 20px !important;
-      font-weight: 600 !important;
-      padding: 4px 12px !important;
-      font-size: 0.75rem !important;
-      text-transform: uppercase;
-    }
-
-    /* ============================================
-       FOOTER NAV
-       ============================================ */
-
+    /* Footer Navigation - Clean & Simple */
     .cms-footer {
       position: fixed;
       bottom: 0;
       left: 0;
       right: 0;
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(10px);
-      padding: 12px 24px;
-      border-top: 1px solid var(--border-light);
-      box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.05);
-      z-index: 1000;
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(8px);
+      border-top: 1px solid var(--color-border);
+      padding: 10px;
       display: flex;
       justify-content: center;
-      align-items: center;
-      gap: 24px;
+      gap: 20px;
+      z-index: 1000;
     }
 
     .cms-footer a {
-      color: var(--text-secondary);
+      color: #64748b;
       text-decoration: none;
-      font-size: 0.85rem;
+      font-size: 13px;
       font-weight: 500;
-      padding: 6px 12px;
-      border-radius: 20px;
-      background: transparent;
-      transition: all 0.2s ease;
       display: flex;
       align-items: center;
       gap: 6px;
+      padding: 6px 12px;
+      border-radius: 20px;
+      transition: all 0.2s;
     }
 
     .cms-footer a:hover {
-      background: var(--brand-primary-light);
-      color: var(--brand-primary);
-      transform: translateY(-1px);
+      background: #f1f5f9;
+      color: var(--color-primary);
     }
 
-    .cms-footer-divider {
-      width: 4px;
-      height: 4px;
-      background: var(--border-medium);
-      border-radius: 50%;
-    }
-
-    /* ============================================
-       CUSTOM SCROLLBAR
-       ============================================ */
-
+    /* Scrollbar */
     ::-webkit-scrollbar {
       width: 8px;
-      height: 8px;
     }
 
     ::-webkit-scrollbar-track {
@@ -374,12 +161,12 @@
     }
 
     ::-webkit-scrollbar-thumb {
-      background: var(--border-medium);
+      background: #cbd5e1;
       border-radius: 4px;
     }
 
     ::-webkit-scrollbar-thumb:hover {
-      background: var(--text-muted);
+      background: #94a3b8;
     }
   </style>
 </head>
@@ -392,20 +179,13 @@
   <script>
     CMS.registerPreviewStyle("/style.css");
 
-    // Custom Preview Template for Blog Posts
+    // Simple Preview Template
     CMS.registerPreviewTemplate("blog", ({ entry, widgetFor }) => {
       const data = entry.getIn(['data']).toJS();
-      const title = data.basic_info?.title || data.title || 'Untitled';
-      const date = data.basic_info?.date ? new Date(data.basic_info.date).toLocaleDateString() : 'No date';
-
       return `
-        <div style="max-width: 800px; margin: 40px auto; padding: 0 20px; font-family: 'Inter', sans-serif; color: #0f172a;">
-          <header style="margin-bottom: 40px; text-align: center;">
-            <div style="font-size: 0.9rem; color: #64748b; margin-bottom: 1rem;">${date}</div>
-            <h1 style="font-size: 3rem; font-weight: 700; line-height: 1.2; margin-bottom: 1.5rem; letter-spacing: -0.02em;">${title}</h1>
-            ${data.media?.image ? `<img src="${data.media.image}" style="width: 100%; height: auto; border-radius: 12px; box-shadow: 0 10px 30px -10px rgba(0,0,0,0.1);" />` : ''}
-          </header>
-          <div style="font-size: 1.125rem; line-height: 1.8; color: #334155;">
+        <div style="max-width: 800px; margin: 40px auto; padding: 0 20px; font-family: 'Inter', sans-serif;">
+          <h1 style="font-size: 2.5rem; font-weight: 700; color: #0f172a; margin-bottom: 1rem;">${data.title}</h1>
+          <div style="font-size: 1.1rem; line-height: 1.7; color: #334155;">
             ${widgetFor('body')}
           </div>
         </div>
@@ -416,17 +196,10 @@
   <!-- Footer Navigation -->
   <div class="cms-footer">
     <a href="/" target="_blank">🏠 Home</a>
-    <span class="cms-footer-divider"></span>
     <a href="/blog/" target="_blank">📝 Blog</a>
-    <span class="cms-footer-divider"></span>
-    <a href="/admin/#/collections/blog" onclick="event.preventDefault(); window.location.hash='#/collections/blog'">✍️
-      Write</a>
-    <span class="cms-footer-divider"></span>
-    <a href="/admin/#/collections/pages" onclick="event.preventDefault(); window.location.hash='#/collections/pages'">📄
-      Pages</a>
-    <span class="cms-footer-divider"></span>
-    <a href="/admin/#/collections/settings"
-      onclick="event.preventDefault(); window.location.hash='#/collections/settings'">⚙️ Settings</a>
+    <a href="/admin/#/collections/blog">✍️ Write</a>
+    <a href="/admin/#/collections/pages">📄 Pages</a>
+    <a href="/admin/#/collections/settings">⚙️ Settings</a>
   </div>
 </body>
 

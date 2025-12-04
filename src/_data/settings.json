@@ -13,7 +13,7 @@
     "linkedin": "https://linkedin.com/company/EvolvedLotus"
   },
   "analytics": {
-    "googleAnalytics": "GA4_MEASUREMENT_ID",
+    "googleAnalytics": "G-ZG7Y9WH396",
     "facebookPixel": "FB_PIXEL_ID",
     "hotjar": "HOTJAR_ID"
   },
@@ -26,7 +26,6 @@
     "comments": false,
     "newsletter": true,
     "socialSharing": true,
-    "darkMode": true,
     "relatedPosts": true,
     "whatsHot": true,
     "quickInsights": true,
