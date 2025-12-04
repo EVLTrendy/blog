@@ -47,7 +47,8 @@ collections:
       - label: "Primary Category"
         name: "category"
         widget: "select"
-        required: true
+        required: false
+        default: "content-creation"
         hint: "Select the main category for this post"
         options:
           - { label: "📱 Social Media Marketing", value: "social-media" }
@@ -58,14 +59,14 @@ collections:
           - { label: "🚀 Growth Hacking", value: "growth" }
       - { label: "Tags", name: "tags", widget: "list", default: ["post"], hint: "Add relevant tags for categorization" }
       - { label: "Content Hub", name: "hub", widget: "relation", collection: "hubs", search_fields: ["title"], value_field: "hubCollection", display_fields: ["title"], required: false, hint: "Assign to a content hub (e.g., TikTok, Instagram)" }
-      - { label: "Featured Post", name: "featured", widget: "boolean", default: false, required: true, hint: "Show this post in featured sections" }
+      - { label: "Featured Post", name: "featured", widget: "boolean", default: false, required: false, hint: "Show this post in featured sections" }
       
       # ============================================
       # SEO FIELDS
       # ============================================
       - { label: "Keywords", name: "keywords", widget: "string", required: false, hint: "Comma-separated keywords for SEO" }
-      - { label: "Schema Type", name: "schema_type", widget: "string", default: "Article", required: true }
-      - { label: "OG Type", name: "og_type", widget: "string", default: "article", required: true }
+      - { label: "Schema Type", name: "schema_type", widget: "string", default: "Article", required: false }
+      - { label: "OG Type", name: "og_type", widget: "string", default: "article", required: false }
       
       # ============================================
       # MAIN CONTENT
