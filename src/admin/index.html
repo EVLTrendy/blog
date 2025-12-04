@@ -173,9 +173,36 @@
   <script src="https://unpkg.com/netlify-cms@2.9.7/dist/netlify-cms.js?t=1733321440000"></script>
   <!-- Using stable 2.9.7 version for React compatibility -->
 
+  <!-- FORCE COMPLETE CACHE CLEAR ON ALL DEVICES -->
+  <script>
+    // Nuclear cache clearing - runs before anything else
+    const cacheKey = 'cms_cache_version_v173332iscard';
+    const currentVersion = 'v1733321460000';
+
+    // Clear all caches if version doesn't match
+    if (localStorage.getItem(cacheKey) !== currentVersion) {
+      // Clear ALL browser storage
+      localStorage.clear();
+      sessionStorage.clear();
+
+      // Clear service worker caches
+      if ('caches' in window) {
+        caches.keys().then(function(names) {
+          names.forEach(function(name) {
+            caches.delete(name);
+          });
+        });
+      }
+
+      // Force page reload to get fresh version
+      localStorage.setItem(cacheKey, currentVersion);
+      window.location.reload(true); // Force reload from server
+    }
+  </script>
+
   <!-- Register Preview Styles -->
   <script>
-    CMS.registerPreviewStyle("/style.css");
+    CMS.registerPreviewStyle("/style.css?t=" + Date.now());
 
     // Simple Preview Template
     CMS.registerPreviewTemplate("blog", ({ entry, widgetFor }) => {
