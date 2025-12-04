@@ -28,7 +28,8 @@
       style-src 'self' 'unsafe-inline'
         https://fonts.googleapis.com
         https://cdn.jsdelivr.net
-        https://app.cloudcannon.com;
+        https://app.cloudcannon.com
+        https://unpkg.com;
       img-src 'self' data: https: blob:;
       font-src 'self' 
         https://fonts.gstatic.com 

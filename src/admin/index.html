@@ -360,28 +360,153 @@
       }
     }
 
-    function loadBlogPosts() {
-      const mockPosts = [
-        { id: '2025-10-20-mobile-photography', title: 'Mobile Photography Techniques for Better Content', date: '2025-10-20', author: 'Marc C.', featured: true },
-        { id: '2025-08-15-analytics-metrics', title: 'Understanding Social Media Analytics', date: '2025-08-15', author: 'EvolvedLotus Team' },
-        { id: '2025-05-13-tiktok-strategy', title: 'How to Skyrocket Your TikTok Views', date: '2025-05-13', author: 'Marc C.' },
-      ];
+    // Load content data from API
+    async function loadContentData() {
+      try {
+        const response = await fetch('/api/posts.json');
+        const data = await response.json();
+        contentData = data;
 
-      let html = '';
-      mockPosts.forEach(post => {
-        html += `
-          <div class="content-item">
-            <h4>${post.title} ${post.featured ? '<span class="badge">FEATURED</span>' : ''}</h4>
-            <div class="content-meta">Published: ${post.date} | Author: ${post.author}</div>
-            <div class="content-actions">
-              <button class="btn info" onclick="editContent('blog', '${post.id}')">Edit</button>
-              <button class="btn success" onclick="viewContent('blog', '${post.id}')">View Post</button>
-              <button class="btn danger" onclick="deleteContent('blog', '${post.id}')">Delete</button>
+        // Update stats
+        if (data.stats) {
+          document.querySelector('.stat-number:nth-child(1)').textContent = data.stats.totalBlogPosts + '+';
+          document.querySelector('.stat-number:nth-child(3)').textContent = data.stats.totalAuthors;
+          document.querySelector('.stat-number:nth-child(2)').textContent = data.stats.totalHubs;
+        }
+
+        return data;
+      } catch (error) {
+        console.error('Error loading content data:', error);
+        return null;
+      }
+    }
+
+    function loadBlogPosts(posts = contentData.blog || []) {
+      let html = `<h3>📋 Your Blog Posts (${posts.length})</h3>`;
+      if (posts.length === 0) {
+        html += '<p>No blog posts found.</p>';
+      } else {
+        posts.forEach(post => {
+          const isFeatured = post.featured;
+          const tags = post.tags ? post.tags.slice(0, 3).join(', ') : '';
+          html += `
+            <div class="content-item">
+              <h4>${post.title} ${isFeatured ? '<span class="badge">FEATURED</span>' : ''}</h4>
+              <div class="content-meta">
+                Published: ${post.date} | Author: ${post.author}
+                ${post.category ? ` | Category: ${post.category}` : ''}
+                ${tags ? ` | Tags: ${tags}` : ''}
+              </div>
+              ${post.image ? `<div class="content-meta"><small>📸 Featured Image: ${post.image}</small></div>` : ''}
+              <div class="content-actions">
+                <button class="btn info" onclick="editContent('blog', '${post.id}')">Edit</button>
+                <button class="btn success" onclick="viewContent('${post.url}')">View Post</button>
+                <button class="btn warning" onclick="previewContent('${post.url}')">Preview</button>
+              </div>
             </div>
-          </div>
-        `;
-      });
+          `;
+        });
+      }
       document.getElementById('blogList').innerHTML = html;
+    }
+
+    function loadHubContent(hubs = contentData.hubs || []) {
+      let html = `<h3>🔗 Content Hubs (${hubs.length})</h3>`;
+      if (hubs.length === 0) {
+        html += '<p>No hubs found.</p>';
+      } else {
+        hubs.forEach(hub => {
+          html += `
+            <div class="content-item">
+              <h4>${hub.title}</h4>
+              <div class="content-meta">Platform: ${hub.platform} | Description: ${hub.description || 'No description'}</div>
+              <div class="content-actions">
+                <button class="btn info" onclick="editContent('hub', '${hub.id}')">Edit Hub</button>
+                <button class="btn success" onclick="viewContent('${hub.url}')">View Hub</button>
+              </div>
+            </div>
+          `;
+        });
+      }
+      document.getElementById('hubsList').innerHTML = html;
+    }
+
+    function loadAuthors(authors = contentData.authors || []) {
+      let html = `<h3>👥 Authors (${authors.length})</h3>`;
+      if (authors.length === 0) {
+        html += '<p>No authors found.</p>';
+      } else {
+        authors.forEach(author => {
+          const expertise = author.expertise ? author.expertise.join(', ') : '';
+          html += `
+            <div class="content-item">
+              <h4>${author.name}</h4>
+              <div class="content-meta">${author.role} | Bio: ${author.bio || 'No bio'}</div>
+              ${expertise ? `<div class="content-meta">Expertise: ${expertise}</div>` : ''}
+              <div class="content-actions">
+                <button class="btn info" onclick="editContent('author', '${author.id}')">Edit Profile</button>
+                <button class="btn success" onclick="viewContent('${author.url}')">View Profile</button>
+              </div>
+            </div>
+          `;
+        });
+      }
+      document.getElementById('authorsList').innerHTML = html;
+    }
+
+    function loadPages(pages = contentData.pages || []) {
+      let html = `<h3>📄 Pages (${pages.length})</h3>`;
+      if (pages.length === 0) {
+        html += '<p>No pages found.</p>';
+      } else {
+        pages.forEach(page => {
+          html += `
+            <div class="content-item">
+              <h4>${page.title}</h4>
+              <div class="content-meta">Layout: ${page.layout} | ${page.description || 'No description'}</div>
+              <div class="content-actions">
+                <button class="btn info" onclick="editContent('page', '${page.id}')">Edit</button>
+                <button class="btn success" onclick="viewContent('${page.url}')">View Page</button>
+              </div>
+            </div>
+          `;
+        });
+      }
+      document.getElementById('pagesList').innerHTML = html;
+    }
+
+    function loadNotifications(notifications = contentData.notifications || []) {
+      let html = `<h3>🔔 Notifications (${notifications.length})</h3>`;
+      if (notifications.length === 0) {
+        html += '<p>No notifications found.</p>';
+      } else {
+        notifications.forEach(notification => {
+          const tags = notification.tags ? notification.tags.join(', ') : '';
+          html += `
+            <div class="content-item">
+              <h4>${notification.title}</h4>
+              <div class="content-meta">Date: ${notification.date} ${tags ? ` | Tags: ${tags}` : ''}</div>
+              ${notification.link ? `<div class="content-meta">Link: <a href="${notification.link}" target="_blank">${notification.link}</a></div>` : ''}
+              <div class="content-actions">
+                <button class="btn info" onclick="editContent('notification', '${notification.id}')">Edit</button>
+                <button class="btn success" onclick="viewContent('${notification.link || '#'}')">${notification.link ? 'View Link' : 'No Action'}</button>
+              </div>
+            </div>
+          `;
+        });
+      }
+      document.getElementById('notificationsList').innerHTML = html;
+    }
+
+    function loadMedia() {
+      const html = `<h3>🖼️ Media Library</h3>
+        <p>Media management would show all uploaded images and assets...</p>
+        <div style="padding: 20px; background: #f8f9fa; border-radius: 8px; margin: 10px 0;">
+          <strong>Total Assets:</strong> ${contentData.stats?.totalBlogPosts * 2 || 0} (estimated)<br>
+          <strong>Last Updated:</strong> ${contentData.stats?.lastUpdated || 'Unknown'}<br>
+          <em>Advanced media management requires backend integration</em>
+        </div>`;
+      document.getElementById('mediaList').innerHTML = html;
     }
 
     function createNewContent(type) {
@@ -404,22 +529,28 @@
       document.getElementById('deleteBtn').style.display = 'inline-block';
 
       // Load content data (in real CMS this would fetch from backend)
-      if (contentData[id]) {
-        // Populate form with existing data
+      if (contentData[type] && contentData[type].find(item => item.id === id)) {
+        const item = contentData[type].find(item => item.id === id);
+        if (type === 'blog') {
+          document.getElementById('title').value = item.title || '';
+          document.getElementById('description').value = item.description || '';
+          document.getElementById('date').value = item.date + 'T12:00';
+          document.getElementById('author').value = item.author || '';
+          document.getElementById('tags').value = item.tags ? item.tags.join(', ') : '';
+          document.getElementById('category').value = item.category || '';
+          document.getElementById('featured').checked = item.featured || false;
+        }
       }
 
       document.getElementById('editModal').style.display = 'block';
     }
 
-    function viewContent(type, id) {
-      const urls = {
-        blog: `/blog/${id}`,
-        hub: `/hubs/${id}`,
-        author: `/authors/${id}`,
-        notification: `/notifications/${id}`,
-        page: `/${id}`
-      };
-      window.open(urls[type] || '/', '_blank');
+    function viewContent(url) {
+      window.open(url, '_blank');
+    }
+
+    function previewContent(url) {
+      window.open(url + '?preview=true', '_blank');
     }
 
     function closeModal() {
@@ -427,7 +558,8 @@
     }
 
     // Initialize
-    window.onload = function() {
+    window.onload = async function() {
+      await loadContentData();
       loadBlogPosts();
     };
 
