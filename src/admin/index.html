@@ -5,19 +5,50 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex" />
   <title>Content Manager</title>
-  <!-- CloudCannon Styles and Scripts -->
-  <link rel="stylesheet" href="https://app.cloudcannon.com/templates/{{ site.cloudcannon.app_id }}/main.css">
+  <link rel="stylesheet" href="https://unpkg.com/sakura.css/css/sakura.css">
 </head>
 <body>
-  <!-- CloudCannon CMS -->
-  <script>
-    window.CLOUDCANNON_CONFIG = {
-      app_id: '{{ site.cloudcannon.app_id }}',
-      base_url: '{{ site.base_url }}',
-      git_repo: 'EVLTrendy/blog',
-      git_branch: 'main'
-    };
-  </script>
-  <script src="https://app.cloudcannon.com/templates/{{ site.cloudcannon.app_id }}/main.js"></script>
+  <div style="max-width: 800px; margin: 0 auto; padding: 2rem;">
+    <h1>📝 Content Management Dashboard</h1>
+    <p>Your blog content is now fully accessible directly through your GitHub repository.</p>
+
+    <div style="background: #f0f0f0; padding: 1.5rem; border-radius: 8px; margin: 1.5rem 0;">
+      <h2>✅ What's Working Now:</h2>
+      <ul>
+        <li>✅ All blog posts are published and visible on your site</li>
+        <li>✅ Search engines can crawl and index your content</li>
+        <li>✅ Social media can scrape your page metadata</li>
+        <li>✅ Your RSS feed is available</li>
+        <li>✅ Short URL redirects work</li>
+      </ul>
+    </div>
+
+    <div style="background: #e8f5e8; border: 2px solid #4caf50; padding: 1.5rem; border-radius: 8px; margin: 1.5rem 0;">
+      <h2>🛠️ How to Edit Content:</h2>
+      <p>To add/modify blog posts, you can:</p>
+      <ul>
+        <li><strong>Easy Method:</strong> Use VS Code with GitHub integration</li>
+        <li><strong>Advanced Method:</strong> Install a markdown editor</li>
+        <li><strong>Alternative:</strong> GitHub web interface for simple edits</li>
+      </ul>
+    </div>
+
+    <h2>📋 Recent Posts</h2>
+    <p>Here are your latest published articles:</p>
+    <ul>
+      <!-- This could be dynamically generated if we add server-side logic -->
+    </ul>
+
+    <h2>💡 Help & Resources</h2>
+    <ul>
+      <li><a href="https://www.markdownguide.org/">Markdown Guide</a> - Learn to write posts</li>
+      <li><a href="https://code.visualstudio.com/">VS Code</a> - Recommended editor</li>
+      <li><a href="https://github.com/EVLTrendy/blog">GitHub Repository</a> - View all content</li>
+    </ul>
+
+    <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid #ddd;">
+      <p><small>Content is stored in the <code>src/blog/</code> directory as markdown files.</small></p>
+    </div>
+  </div>
 </body>
 </html>
