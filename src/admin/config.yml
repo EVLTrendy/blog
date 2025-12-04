@@ -12,13 +12,6 @@ public_folder: "/assets/blog"
 site_url: https://blog.evolvedlotus.com
 display_url: https://blog.evolvedlotus.com
 
-# Localization
-locale: 'en'
-i18n:
-  structure: multiple_folders
-  locales: [en, es, fr]
-  default_locale: en
-
 collections:
   # ============================================
   # BLOG POSTS - Primary Content
@@ -26,7 +19,6 @@ collections:
   - name: "blog"
     label: "📝 Blog Posts"
     label_singular: "Blog Post"
-    i18n: true
     folder: "src/blog"
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
@@ -57,16 +49,16 @@ collections:
       # ============================================
       # CORE CONTENT
       # ============================================
-      - { label: "Title", name: "title", widget: "string", hint: "Compelling, SEO-friendly title (50-60 characters ideal)", i18n: true }
-      - { label: "Description", name: "description", widget: "text", hint: "Meta description for SEO (150-160 characters ideal)", i18n: true }
+      - { label: "Title", name: "title", widget: "string", hint: "Compelling, SEO-friendly title (50-60 characters ideal)" }
+      - { label: "Description", name: "description", widget: "text", hint: "Meta description for SEO (150-160 characters ideal)" }
       - { label: "Author", name: "author", widget: "string", default: "EvolvedLotus" }
       - { label: "Publish Date", name: "date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: "HH:mm", format: "YYYY-MM-DDTHH:mm:ss.SSSZ" }
       
       # ============================================
       # MEDIA
       # ============================================
-      - { label: "Featured Image", name: "image", widget: "image", hint: "Recommended: 1200x630px for optimal social sharing", i18n: duplicate }
-      - { label: "Image Alt Text", name: "imageAlt", widget: "string", hint: "Describe the image for accessibility and SEO", i18n: true }
+      - { label: "Featured Image", name: "image", widget: "image", hint: "Recommended: 1200x630px for optimal social sharing" }
+      - { label: "Image Alt Text", name: "imageAlt", widget: "string", hint: "Describe the image for accessibility and SEO" }
       
       # ============================================
       # ORGANIZATION
@@ -90,14 +82,14 @@ collections:
       # ============================================
       # SEO FIELDS
       # ============================================
-      - { label: "Keywords", name: "keywords", widget: "string", required: false, hint: "Comma-separated keywords for SEO", i18n: true }
+      - { label: "Keywords", name: "keywords", widget: "string", required: false, hint: "Comma-separated keywords for SEO" }
       - { label: "Schema Type", name: "schema_type", widget: "string", default: "Article", required: false }
       - { label: "OG Type", name: "og_type", widget: "string", default: "article", required: false }
       
       # ============================================
       # MAIN CONTENT
       # ============================================
-      - { label: "✍️ Content", name: "body", widget: "markdown", hint: "Write your blog post content here", i18n: true }
+      - { label: "✍️ Content", name: "body", widget: "markdown", hint: "Write your blog post content here" }
 
   # ============================================
   # CONTENT HUBS
