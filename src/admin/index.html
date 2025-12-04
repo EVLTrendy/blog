@@ -39,6 +39,7 @@
       background-color: var(--color-bg) !important;
       color: var(--color-text) !important;
       -webkit-font-smoothing: antialiased;
+      margin: 0;
     }
 
     /* Typography Overrides */
@@ -52,8 +53,6 @@
     }
 
     /* CMS UI Overrides - targeted and minimal */
-
-    /* Sidebar */
     div[class*="SidebarContainer"] {
       background-color: var(--color-surface) !important;
       border-right: 1px solid var(--color-border) !important;
@@ -69,12 +68,10 @@
       color: white !important;
     }
 
-    /* Main Content Area */
     main {
       background-color: var(--color-bg) !important;
     }
 
-    /* Cards & Lists */
     div[class*="EntryCard"] {
       background: var(--color-surface) !important;
       border: 1px solid var(--color-border) !important;
@@ -83,7 +80,6 @@
       margin-bottom: 12px !important;
     }
 
-    /* Header Area */
     div[class*="CollectionTop"] {
       background: transparent !important;
       border: none !important;
@@ -91,7 +87,6 @@
       padding: 20px 0 !important;
     }
 
-    /* Buttons */
     button[class*="Button"] {
       border-radius: 6px !important;
       font-family: var(--font-heading) !important;
@@ -99,7 +94,6 @@
       text-transform: none !important;
     }
 
-    /* Inputs */
     input,
     textarea,
     select {
@@ -117,7 +111,7 @@
       outline: none !important;
     }
 
-    /* Footer Navigation - Clean & Simple */
+    /* Footer Navigation */
     .cms-footer {
       position: fixed;
       bottom: 0;
@@ -151,7 +145,6 @@
       color: var(--color-primary);
     }
 
-    /* Scrollbar */
     ::-webkit-scrollbar {
       width: 8px;
     }
@@ -191,6 +184,57 @@
         </div>
       `;
     });
+
+    // Manual Init to bypass config.yml caching issues
+    var config = {
+      backend: {
+        name: 'git-gateway',
+        branch: 'main',
+      },
+      publish_mode: 'simple',
+      media_folder: 'src/assets/blog',
+      public_folder: '/assets/blog',
+      collections: [
+        {
+          name: 'notifications',
+          label: 'Notifications',
+          folder: 'src/notifications',
+          create: true,
+          slug: '{{year}}-{{month}}-{{day}}-{{slug}}',
+          fields: [
+            { label: 'Title', name: 'title', widget: 'string' },
+            { label: 'Description', name: 'description', widget: 'text' },
+            { label: 'Link', name: 'link', widget: 'string', required: false },
+            { label: 'Date', name: 'date', widget: 'datetime' },
+            { label: 'Tags', name: 'tags', widget: 'hidden', default: 'notifications' }
+          ]
+        },
+        {
+          name: 'blog',
+          label: 'Blog',
+          folder: 'src/blog',
+          create: true,
+          slug: '{{year}}-{{month}}-{{day}}-{{slug}}',
+          fields: [
+            { label: 'Title', name: 'title', widget: 'string' },
+            { label: 'Description', name: 'description', widget: 'text' },
+            { label: 'Author', name: 'author', widget: 'string', default: 'EvolvedLotus Team' },
+            { label: 'Date', name: 'date', widget: 'datetime' },
+            { label: 'Tags', name: 'tags', widget: 'list', default: ['post'] },
+            { label: 'Featured Image', name: 'image', widget: 'image' },
+            { label: 'Image Alt Text', name: 'imageAlt', widget: 'string' },
+            { label: 'Keywords', name: 'keywords', widget: 'string', required: false },
+            { label: 'Category', name: 'category', widget: 'string', required: false },
+            { label: 'Featured', name: 'featured', widget: 'boolean', default: false, required: false },
+            { label: 'Schema Type', name: 'schema_type', widget: 'string', default: 'Article', required: false },
+            { label: 'OG Type', name: 'og_type', widget: 'string', default: 'article', required: false },
+            { label: 'Body', name: 'body', widget: 'markdown' }
+          ]
+        }
+      ]
+    };
+
+    CMS.init({ config: config });
   </script>
 
   <!-- Footer Navigation -->
