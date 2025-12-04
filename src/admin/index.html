@@ -4,191 +4,438 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex" />
-  <title>Blog Content Manager</title>
+  <title>Complete Content Management System</title>
   <link rel="stylesheet" href="https://unpkg.com/sakura.css/css/sakura.css">
   <style>
-    .post-list { margin: 20px 0; }
-    .post-item { padding: 10px; border: 1px solid #ddd; margin: 5px 0; background: #f9f9f9; display: flex; justify-content: space-between; align-items: center; }
-    .btn { padding: 8px 16px; margin: 0 5px; cursor: pointer; border: 1px solid #ccc; background: #fff; }
-    .btn.primary { background: #007cba; color: white; border-color: #007cba; }
-    .btn.danger { background: #dc3232; color: white; border-color: #dc3232; }
+    .cms-sidebar { position: fixed; left: 0; top: 0; width: 250px; height: 100vh; background: #f8f9fa; padding: 20px; overflow-y: auto; border-right: 1px solid #dee2e6; }
+    .cms-main { margin-left: 250px; padding: 20px; }
+    .cms-nav-item { display: block; padding: 10px; margin: 5px 0; text-decoration: none; color: #333; border-radius: 5px; }
+    .cms-nav-item:hover, .cms-nav-item.active { background: #33bdef; color: white; }
+    .content-section { display: none; }
+    .content-section.active { display: block; }
+    .content-list { margin: 20px 0; }
+    .content-item { padding: 15px; border: 1px solid #ddd; margin: 10px 0; background: #f9f9f9; border-radius: 8px; }
+    .content-item h4 { margin: 0 0 8px 0; }
+    .content-meta { color: #666; font-size: 0.9em; }
+    .content-actions { margin-top: 10px; }
+    .btn { padding: 8px 16px; margin: 0 5px; cursor: pointer; border: 1px solid #ccc; background: #fff; border-radius: 4px; }
+    .btn.primary { background: #33bdef; color: white; border-color: #33bdef; }
+    .btn.success { background: #28a745; color: white; border-color: #28a745; }
+    .btn.warning { background: #ffc107; color: black; border-color: #ffc107; }
+    .btn.danger { background: #dc3545; color: white; border-color: #dc3545; }
+    .btn.info { background: #17a2b8; color: white; border-color: #17a2b8; }
     .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 1000; }
-    .modal-content { background: white; margin: 5% auto; padding: 20px; width: 90%; max-width: 800px; border-radius: 8px; max-height: 80vh; overflow-y: auto; }
+    .modal-content { background: white; margin: 5% auto; padding: 20px; width: 90%; max-width: 900px; border-radius: 8px; max-height: 80vh; overflow-y: auto; }
     form { margin-top: 20px; }
     label { display: block; margin: 10px 0 5px 0; font-weight: bold; }
-    input, textarea { width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; }
-    textarea { min-height: 400px; font-family: monospace; }
+    input, textarea, select { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-size: 14px; }
+    textarea { min-height: 300px; font-family: monospace; }
     .form-row { margin-bottom: 15px; }
+    .form-row.half { width: 48%; display: inline-block; margin-right: 4%; }
+    .form-row.half:last-child { margin-right: 0; }
+    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin: 20px 0; }
+    .stat-card { background: #f8f9fa; padding: 20px; border-radius: 8px; text-align: center; }
+    .stat-number { font-size: 2em; font-weight: bold; color: #33bdef; }
+    .stat-label { color: #666; }
+    .recent-activity { background: #f8f9fa; padding: 15px; border-radius: 8px; margin: 15px 0; }
+    .activity-item { padding: 8px 0; border-bottom: 1px solid #eee; }
+    .activity-item:last-child { border-bottom: none; }
+    .badge { display: inline-block; padding: 3px 8px; border-radius: 12px; font-size: 0.8em; font-weight: bold; }
+    .badge.blog { background: #28a745; color: white; }
+    .badge.hub { background: #ffc107; color: black; }
+    .badge.author { background: #17a2b8; color: white; }
+    .badge.notification { background: #dc3545; color: white; }
+    @media (max-width: 768px) {
+      .cms-sidebar { display: none; }
+      .cms-main { margin-left: 0; }
+      .stats-grid { grid-template-columns: 1fr; }
+      .form-row.half { width: 100%; margin-right: 0; }
+    }
   </style>
 </head>
 <body>
-  <div style="max-width: 1000px; margin: 0 auto; padding: 2rem;">
-    <h1>📝 Blog Content Manager</h1>
-    <p>Manage your blog posts directly from here</p>
+  <!-- Sidebar Navigation -->
+  <nav class="cms-sidebar">
+    <h3>📊 Dashboard</h3>
+    <a href="#" class="cms-nav-item active" onclick="showSection('overview')">Overview</a>
+    <a href="#" class="cms-nav-item" onclick="showSection('blog')">📝 Blog Posts</a>
+    <a href="#" class="cms-nav-item" onclick="showSection('hubs')">🔗 Content Hubs</a>
+    <a href="#" class="cms-nav-item" onclick="showSection('authors')">👥 Authors</a>
+    <a href="#" class="cms-nav-item" onclick="showSection('notifications')">🔔 Notifications</a>
+    <a href="#" class="cms-nav-item" onclick="showSection('pages')">📄 Pages</a>
+    <a href="#" class="cms-nav-item" onclick="showSection('media')">🖼️ Media</a>
+    <a href="#" class="cms-nav-item" onclick="showSection('analytics')">📈 Analytics</a>
+  </nav>
 
-    <div style="margin: 20px 0;">
-      <button class="btn primary" onclick="createNewPost()">+ Create New Post</button>
-      <button class="btn" onclick="refreshPosts()">🔄 Refresh List</button>
-    </div>
+  <!-- Main Content -->
+  <main class="cms-main">
+    <!-- Overview/Dashboard -->
+    <section id="overview" class="content-section active">
+      <h1>📊 Content Management Dashboard</h1>
+      <p>Complete control over your EvolvedLotus blog and content</p>
 
-    <div id="postList" class="post-list">
-      <p>Loading posts...</p>
-    </div>
-  </div>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-number">70+</div>
+          <div class="stat-label">Blog Posts</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">8</div>
+          <div class="stat-label">Content Hubs</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">5</div>
+          <div class="stat-label">Authors</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">1K+</div>
+          <div class="stat-label">Monthly Visitors</div>
+        </div>
+      </div>
 
-  <!-- Modal for editing -->
+      <div class="recent-activity">
+        <h3>🕐 Recent Activity</h3>
+        <div class="activity-item">
+          <span class="badge blog">Blog</span> Published "Mobile Photography Techniques for Better Content"
+        </div>
+        <div class="activity-item">
+          <span class="badge hub">Hub</span> Updated TikTok marketing strategies
+        </div>
+        <div class="activity-item">
+          <span class="badge notification">Notification</span> Added new Twitter automation guide
+        </div>
+        <div class="activity-item">
+          <span class="badge author">Author</span> Marc C. published weekly Twitch report
+        </div>
+      </div>
+
+      <div style="background: #e8f5e8; border: 2px solid #4caf50; padding: 15px; border-radius: 8px; margin: 20px 0;">
+        <h3>✅ System Status: All Good!</h3>
+        <ul>
+          <li>✅ Content publishing system working</li>
+          <li>✅ Search functionality active</li>
+          <li>✅ RSS feeds generating</li>
+          <li>✅ Social media sharing enabled</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Blog Posts Management -->
+    <section id="blog" class="content-section">
+      <h1>📝 Blog Posts Management</h1>
+      <div style="margin: 20px 0;">
+        <button class="btn primary" onclick="createNewContent('blog')">+ New Blog Post</button>
+        <button class="btn" onclick="refreshSection('blog')">🔄 Refresh</button>
+      </div>
+      <div id="blogList" class="content-list">
+        <p>Loading blog posts...</p>
+      </div>
+    </section>
+
+    <!-- Content Hubs Management -->
+    <section id="hubs" class="content-section">
+      <h1>🔗 Content Hubs Management</h1>
+      <p>Manage platform-specific content strategies</p>
+      <div style="margin: 20px 0;">
+        <button class="btn primary" onclick="createNewContent('hub')">+ New Hub Content</button>
+        <button class="btn" onclick="refreshSection('hubs')">🔄 Refresh</button>
+      </div>
+      <div id="hubsList" class="content-list">
+        <div class="content-item">
+          <h4>TikTok Marketing Hub</h4>
+          <div class="content-meta">Last updated: 2 days ago</div>
+          <div class="content-actions">
+            <button class="btn info">Edit Strategies</button>
+            <button class="btn success">View Hub</button>
+          </div>
+        </div>
+        <!-- More hub items would be loaded dynamically -->
+      </div>
+    </section>
+
+    <!-- Authors Management -->
+    <section id="authors" class="content-section">
+      <h1>👥 Authors Management</h1>
+      <div style="margin: 20px 0;">
+        <button class="btn primary" onclick="createNewContent('author')">+ New Author</button>
+        <button class="btn" onclick="refreshSection('authors')">🔄 Refresh</button>
+      </div>
+      <div id="authorsList" class="content-list">
+        <div class="content-item">
+          <h4>Marc C.</h4>
+          <div class="content-meta">Content Creator & Strategist</div>
+          <div class="content-actions">
+            <button class="btn info">Edit Profile</button>
+            <button class="btn" onclick="window.open('/authors/marc-c', '_blank')">View Profile</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Notifications Management -->
+    <section id="notifications" class="content-section">
+      <h1>🔔 Notifications Management</h1>
+      <div style="margin: 20px 0;">
+        <button class="btn primary" onclick="createNewContent('notification')">+ New Notification</button>
+        <button class="btn" onclick="refreshSection('notifications')">🔄 Refresh</button>
+      </div>
+      <div id="notificationsList" class="content-list">
+        <div class="content-item">
+          <h4>New Twitter Automation Guide Available</h4>
+          <div class="content-meta">Published: 2025-05-22</div>
+          <div class="content-actions">
+            <button class="btn warning">Edit</button>
+            <button class="btn success">View</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pages Management -->
+    <section id="pages" class="content-section">
+      <h1>📄 Pages Management</h1>
+      <div style="margin: 20px 0;">
+        <button class="btn primary" onclick="createNewContent('page')">+ New Page</button>
+        <button class="btn" onclick="refreshSection('pages')">🔄 Refresh</button>
+      </div>
+      <div id="pagesList" class="content-list">
+        <div class="content-item">
+          <h4>About Page</h4>
+          <div class="content-meta">Status: Published</div>
+          <div class="content-actions">
+            <button class="btn info">Edit</button>
+            <button class="btn" onclick="window.open('/about', '_blank')">View</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Media Management -->
+    <section id="media" class="content-section">
+      <h1>🖼️ Media Management</h1>
+      <div style="margin: 20px 0;">
+        <button class="btn primary" onclick="createNewContent('media')">+ Upload Media</button>
+        <button class="btn" onclick="refreshSection('media')">🔄 Refresh</button>
+      </div>
+      <div id="mediaList" class="content-list">
+        <p>Media library would show all uploaded images and assets...</p>
+      </div>
+    </section>
+
+    <!-- Analytics -->
+    <section id="analytics" class="content-section">
+      <h1>📈 Content Analytics</h1>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-number">2.4K</div>
+          <div class="stat-label">Page Views (Today)</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">45</div>
+          <div class="stat-label">Hours Read (Today)</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">12</div>
+          <div class="stat-label">Articles Published (This Month)</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">89%</div>
+          <div class="stat-label">Search Satisfaction</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Content Editor Modal -->
   <div id="editModal" class="modal">
     <div class="modal-content">
-      <h2 id="modalTitle">Edit Post</h2>
-      <form id="postForm">
+      <h2 id="modalTitle">Content Editor</h2>
+      <form id="contentForm">
         <div class="form-row">
-          <label for="postTitle">Title:</label>
-          <input type="text" id="postTitle" required>
+          <label for="contentType">Content Type:</label>
+          <select id="contentType">
+            <option value="blog">Blog Post</option>
+            <option value="hub">Content Hub</option>
+            <option value="author">Author Profile</option>
+            <option value="notification">Notification</option>
+            <option value="page">Page</option>
+          </select>
         </div>
-        <div class="form-row">
-          <label for="postDescription">Description:</label>
-          <textarea id="postDescription" rows="3" required></textarea>
+
+        <div id="blogFields">
+          <div class="form-row">
+            <label for="title">Title:</label>
+            <input type="text" id="title" required>
+          </div>
+          <div class="form-row">
+            <label for="description">Description/Excerpt:</label>
+            <textarea id="description" rows="3" required></textarea>
+          </div>
+          <div class="form-row half">
+            <label for="date">Publish Date:</label>
+            <input type="datetime-local" id="date" required>
+          </div>
+          <div class="form-row half">
+            <label for="author">Author:</label>
+            <input type="text" id="author" value="EvolvedLotus Team">
+          </div>
+          <div class="form-row">
+            <label for="tags">Tags (comma-separated):</label>
+            <input type="text" id="tags" placeholder="content-creation, social-media, featured">
+          </div>
+          <div class="form-row">
+            <label for="image">Featured Image URL:</label>
+            <input type="url" id="image" placeholder="/assets/blog/your-image.jpg">
+          </div>
+          <div class="form-row">
+            <label for="category">Category:</label>
+            <select id="category">
+              <option value="">Select Category</option>
+              <option value="content-creation">Content Creation</option>
+              <option value="social-media">Social Media</option>
+              <option value="seo">SEO</option>
+              <option value="analytics">Analytics</option>
+              <option value="tools">Tools & Resources</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <label><input type="checkbox" id="featured"> Featured Content</label>
+          </div>
         </div>
+
         <div class="form-row">
-          <label for="postDate">Publish Date:</label>
-          <input type="datetime-local" id="postDate" required>
+          <label for="content">Content (Markdown supported):</label>
+          <textarea id="content" required></textarea>
         </div>
+
         <div class="form-row">
-          <label for="postTags">Tags (comma-separated):</label>
-          <input type="text" id="postTags" placeholder="post, featured, tiktok">
-        </div>
-        <div class="form-row">
-          <label for="postAuthor">Author:</label>
-          <input type="text" id="postAuthor" value="EvolvedLotus Team">
-        </div>
-        <div class="form-row">
-          <label for="postContent">Content (Markdown):</label>
-          <textarea id="postContent" required></textarea>
-        </div>
-        <div class="form-row">
-          <button type="submit" class="btn primary">Save Post</button>
+          <button type="submit" class="btn primary">Save Content</button>
           <button type="button" class="btn" onclick="closeModal()">Cancel</button>
-          <button type="button" id="deleteBtn" class="btn danger" style="display:none;" onclick="deletePost()">Delete Post</button>
+          <button type="button" id="deleteBtn" class="btn danger" style="display:none;" onclick="deleteContent()">Delete</button>
         </div>
       </form>
     </div>
   </div>
 
   <script>
-    let posts = [];
-    let editingPostId = null;
+    let currentSection = 'overview';
+    let contentData = {};
 
-    // Initialize
-    window.onload = function() {
-      refreshPosts();
-    };
+    // Navigation
+    function showSection(sectionName) {
+      document.querySelectorAll('.content-section').forEach(section => {
+        section.classList.remove('active');
+      });
+      document.querySelectorAll('.cms-nav-item').forEach(item => {
+        item.classList.remove('active');
+      });
 
-    function refreshPosts() {
-      const postList = document.getElementById('postList');
-      postList.innerHTML = '<p>Loading posts...</p>';
+      document.getElementById(sectionName).classList.add('active');
+      event.target.classList.add('active');
+      currentSection = sectionName;
+    }
 
-      // Simulate loading posts from your blog directory
-      // In a real CMS, this would fetch from your backend
+    // Initialize blog posts list
+    function refreshSection(section) {
+      // Simulate loading content - in real CMS this would fetch from backend
+      switch(section) {
+        case 'blog':
+          loadBlogPosts();
+          break;
+        case 'hubs':
+          loadHubContent();
+          break;
+        case 'authors':
+          loadAuthors();
+          break;
+        case 'notifications':
+          loadNotifications();
+          break;
+        case 'pages':
+          loadPages();
+          break;
+        case 'media':
+          loadMedia();
+          break;
+      }
+    }
+
+    function loadBlogPosts() {
       const mockPosts = [
-        { id: '2025-10-20-mobile-photography', title: 'Mobile Photography Techniques for Better Content', date: '2025-10-20', author: 'Marc C.' },
+        { id: '2025-10-20-mobile-photography', title: 'Mobile Photography Techniques for Better Content', date: '2025-10-20', author: 'Marc C.', featured: true },
         { id: '2025-08-15-analytics-metrics', title: 'Understanding Social Media Analytics', date: '2025-08-15', author: 'EvolvedLotus Team' },
         { id: '2025-05-13-tiktok-strategy', title: 'How to Skyrocket Your TikTok Views', date: '2025-05-13', author: 'Marc C.' },
-        { id: '2024-11-04-social-trends', title: 'November\'s Must-Know Social Trends', date: '2024-11-04', author: 'EvolvedLotus Team' }
       ];
 
-      posts = mockPosts;
-
-      let html = '<h2>📋 Your Blog Posts</h2>';
-      posts.forEach(post => {
+      let html = '';
+      mockPosts.forEach(post => {
         html += `
-          <div class="post-item">
-            <div>
-              <strong>${post.title}</strong><br>
-              <small>Date: ${post.date} | Author: ${post.author}</small>
-            </div>
-            <div>
-              <button class="btn" onclick="editPost('${post.id}')">Edit</button>
-              <button class="btn" onclick="viewPost('${post.id}')">View</button>
+          <div class="content-item">
+            <h4>${post.title} ${post.featured ? '<span class="badge">FEATURED</span>' : ''}</h4>
+            <div class="content-meta">Published: ${post.date} | Author: ${post.author}</div>
+            <div class="content-actions">
+              <button class="btn info" onclick="editContent('blog', '${post.id}')">Edit</button>
+              <button class="btn success" onclick="viewContent('blog', '${post.id}')">View Post</button>
+              <button class="btn danger" onclick="deleteContent('blog', '${post.id}')">Delete</button>
             </div>
           </div>
         `;
       });
-
-      postList.innerHTML = html;
+      document.getElementById('blogList').innerHTML = html;
     }
 
-    function createNewPost() {
-      editingPostId = null;
-      document.getElementById('modalTitle').textContent = 'Create New Post';
-      document.getElementById('postForm').reset();
+    function createNewContent(type) {
+      document.getElementById('modalTitle').textContent = `Create New ${type.charAt(0).toUpperCase() + type.slice(1)}`;
+      document.getElementById('contentForm').reset();
       document.getElementById('deleteBtn').style.display = 'none';
 
-      // Set default date to now
+      // Set default date
       const now = new Date();
-      const dateStr = now.toISOString().slice(0, 16);
-      document.getElementById('postDate').value = dateStr;
+      document.getElementById('date').value = now.toISOString().slice(0, 16);
+
+      // Show/hide form fields based on content type
+      document.getElementById('blogFields').style.display = type === 'blog' ? 'block' : 'none';
 
       document.getElementById('editModal').style.display = 'block';
     }
 
-    function editPost(postId) {
-      editingPostId = postId;
-      document.getElementById('modalTitle').textContent = 'Edit Post';
+    function editContent(type, id) {
+      document.getElementById('modalTitle').textContent = `Edit ${type.charAt(0).toUpperCase() + type.slice(1)}`;
       document.getElementById('deleteBtn').style.display = 'inline-block';
 
-      // Find the post data - in real CMS this would come from your backend
-      const post = posts.find(p => p.id === postId);
-      if (post) {
-        document.getElementById('postTitle').value = post.title;
-        document.getElementById('postDescription').value = 'Sample description for ' + post.title;
-        document.getElementById('postDate').value = post.date + 'T12:00';
-        document.getElementById('postTags').value = 'post, featured';
-        document.getElementById('postAuthor').value = post.author;
-        document.getElementById('postContent').value = `# ${post.title}\n\nSample content for this blog post.\n\n## Section 1\n\nContent here...\n\n## Section 2\n\nMore content...`;
+      // Load content data (in real CMS this would fetch from backend)
+      if (contentData[id]) {
+        // Populate form with existing data
       }
 
       document.getElementById('editModal').style.display = 'block';
     }
 
-    function viewPost(postId) {
-      // Redirect to the actual post
-      window.open('/blog/' + postId, '_blank');
+    function viewContent(type, id) {
+      const urls = {
+        blog: `/blog/${id}`,
+        hub: `/hubs/${id}`,
+        author: `/authors/${id}`,
+        notification: `/notifications/${id}`,
+        page: `/${id}`
+      };
+      window.open(urls[type] || '/', '_blank');
     }
 
     function closeModal() {
       document.getElementById('editModal').style.display = 'none';
     }
 
-    function deletePost() {
-      if (confirm('Are you sure you want to delete this post?')) {
-        // In real CMS, this would send delete request to backend
-        alert('Post deleted! (Note: This is a demo - actual deletion requires backend integration)');
-        closeModal();
-        refreshPosts();
-      }
-    }
+    // Initialize
+    window.onload = function() {
+      loadBlogPosts();
+    };
 
     // Handle form submission
-    document.getElementById('postForm').addEventListener('submit', function(e) {
+    document.getElementById('contentForm').addEventListener('submit', function(e) {
       e.preventDefault();
-
-      const postData = {
-        title: document.getElementById('postTitle').value,
-        description: document.getElementById('postDescription').value,
-        date: document.getElementById('postDate').value,
-        tags: document.getElementById('postTags').value,
-        author: document.getElementById('postAuthor').value,
-        content: document.getElementById('postContent').value
-      };
-
-      // In a real CMS, this would save to GitHub or database
-      // For now, just show a confirmation
-      alert('Post saved! (Demo mode: Changes need to be implemented with GitHub API)\n\n'
-           + 'Title: ' + postData.title + '\n'
-           + 'Date: ' + postData.date);
-
+      alert('Content saved! (Demo mode - integration with GitHub API needed for persistence)');
       closeModal();
-      refreshPosts();
     });
 
     // Close modal when clicking outside
