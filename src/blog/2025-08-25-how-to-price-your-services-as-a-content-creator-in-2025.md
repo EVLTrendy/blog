@@ -1,8 +1,8 @@
----
+﻿---
 title: How to Price Your Services as a Content Creator in 2025
 description: 'Transform your digital marketing business. Learn how to get paid for usage rights, negotiate deals, and leverage audience engagement for social media growth.'
 author: EvolvedLotus Team
-date: '"2025-08-25T12:00:00.000Z"'
+date: 2025-08-25T12:00:00.000Z
 tags:
   - post
   - featured

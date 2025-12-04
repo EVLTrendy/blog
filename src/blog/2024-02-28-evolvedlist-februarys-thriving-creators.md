@@ -1,7 +1,7 @@
----
+﻿---
 title: 'EvolvedList: February''s Thriving Creators '
 author: Marc C.
-date: '"2024-02-28T12:00:00.000Z"'
+date: 2024-02-28T12:00:00.000Z
 tags:
   - post
   - featured

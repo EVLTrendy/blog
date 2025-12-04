@@ -1,7 +1,7 @@
----
+﻿---
 title: 'Facebook UGC Creator: Lotus Takes'
 author: Marc C.
-date: '"2024-07-31T12:00:00.000Z"'
+date: 2024-07-31T12:00:00.000Z
 tags:
   - post
   - featured

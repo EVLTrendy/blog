@@ -1,7 +1,7 @@
----
+﻿---
 title: 'YouTube''s AI: Your Genie for Content & Ads!'
 author: Marc C.
-date: '"2024-05-08T12:00:00.000Z"'
+date: 2024-05-08T12:00:00.000Z
 tags:
   - post
   - featured

@@ -1,7 +1,7 @@
----
+﻿---
 title: 'TwitchCraft: Mastering Stream Settings for Seamless Success'
 author: Marc C.
-date: '"2023-12-04T12:00:00.000Z"'
+date: 2023-12-04T12:00:00.000Z
 tags:
   - post
   - featured

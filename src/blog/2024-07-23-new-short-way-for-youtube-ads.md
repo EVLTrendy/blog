@@ -1,7 +1,7 @@
----
+﻿---
 title: New Short Way for YouTube Ads
 author: Marc C.
-date: '"2024-07-23T12:00:00.000Z"'
+date: 2024-07-23T12:00:00.000Z
 tags:
   - post
   - featured

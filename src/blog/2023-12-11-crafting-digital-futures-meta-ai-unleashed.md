@@ -1,7 +1,7 @@
----
+﻿---
 title: Crafting Digital Futures Meta AI Unleashed
 author: Marc C.
-date: '"2023-12-11T12:00:00.000Z"'
+date: 2023-12-11T12:00:00.000Z
 tags:
   - post
   - featured

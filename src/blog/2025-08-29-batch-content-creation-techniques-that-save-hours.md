@@ -1,8 +1,8 @@
----
+﻿---
 title: Batch Content Creation Techniques That Save Hours
 description: 'Automate your workflow & save hours. Learn batch content creation with AI video editing tools like Descript, OpusClip, & FunClip for max efficiency'
 author: EvolvedLotus Team
-date: '"2025-08-29T12:00:00.000Z"'
+date: 2025-08-29T12:00:00.000Z
 tags:
   - post
   - featured

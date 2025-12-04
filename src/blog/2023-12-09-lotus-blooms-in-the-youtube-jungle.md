@@ -1,7 +1,7 @@
----
+﻿---
 title: Lotus Blooms in the YouTube Jungle
 author: 'Marc C. '
-date: '"2023-12-09T12:00:00.000Z"'
+date: 2023-12-09T12:00:00.000Z
 tags:
   - post
   - featured

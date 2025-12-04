@@ -1,7 +1,7 @@
----
+﻿---
 title: How Does Instagram Pay You? Unraveling Instagram Payments
 author: Marc C.
-date: '"2024-01-31T12:00:00.000Z"'
+date: 2024-01-31T12:00:00.000Z
 tags:
   - post
   - featured

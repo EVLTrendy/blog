@@ -1,8 +1,8 @@
----
+﻿---
 title: How to Create 30 Days of Content in One Weekend
 description: Content planning for social media and content planning and strategy. Learn how to make content and a content planning calendar. Our guide helps with content planning canva and other tools.
 author: EvolvedLotus Team
-date: '"2025-08-11T19:23:00.000Z"'
+date: 2025-08-11T19:23:00.000Z
 tags:
   - post
   - featured

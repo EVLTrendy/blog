@@ -1,8 +1,8 @@
----
+﻿---
 title: Building Genuine Engagement vs. Vanity Metrics
 description: 'Stop chasing likes and start measuring what truly matters. Learn how to track engagement, not vanity metrics, for real growth.'
 author: EvolvedLotus Team
-date: '"2025-10-08T12:00:00.000Z"'
+date: 2025-10-08T12:00:00.000Z
 tags:
   - post
   - featured

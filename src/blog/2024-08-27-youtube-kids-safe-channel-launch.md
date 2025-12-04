@@ -1,7 +1,7 @@
----
+﻿---
 title: 'YouTube Kids: Safe Channel Launch'
 author: Marc C.
-date: '"2024-08-27T12:00:00.000Z"'
+date: 2024-08-27T12:00:00.000Z
 tags:
   - post
   - featured

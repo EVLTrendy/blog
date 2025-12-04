@@ -1,7 +1,7 @@
----
+﻿---
 title: 'Streamwise: Mastering Multistreaming'
 author: Marc C.
-date: '"2024-02-12T12:00:00.000Z"'
+date: 2024-02-12T12:00:00.000Z
 tags:
   - post
   - featured

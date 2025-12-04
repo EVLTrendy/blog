@@ -1,8 +1,8 @@
----
+﻿---
 title: 'Streaming in 2025: The No-BS Guide to Getting Started (or Leveling Up)'
 description: 'Streaming in 2025: The No-BS Guide to Getting Started (or Leveling Up)'
 author: Marc C.
-date: '"2025-05-19T12:00:00.000Z"'
+date: 2025-05-19T12:00:00.000Z
 tags:
   - post
   - featured

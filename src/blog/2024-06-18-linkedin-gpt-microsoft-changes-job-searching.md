@@ -1,7 +1,7 @@
----
+﻿---
 title: 'LinkedIn-GPT: Microsoft Changes Job Searching'
 author: Marc C.
-date: '"2024-06-18T12:00:00.000Z"'
+date: 2024-06-18T12:00:00.000Z
 tags:
   - post
   - featured

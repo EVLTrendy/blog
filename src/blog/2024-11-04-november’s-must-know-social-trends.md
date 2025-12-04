@@ -1,7 +1,7 @@
----
+﻿---
 title: November’s Must-Know Social Trends
 author: EvolvedLotus Team
-date: '"2024-11-04T12:00:00.000Z"'
+date: 2024-11-04T12:00:00.000Z
 tags:
   - post
   - featured

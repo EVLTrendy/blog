@@ -1,8 +1,8 @@
----
+﻿---
 title: Top Free Design Tools Every Creator Needs
 description: Ready to learn graphic design for free? Our guide to the best free design tools shows you how. Find the perfect graphic design software for beginners free and start creating stunning visuals today!
 author: EvolvedLotus Team
-date: '"2025-08-13T16:52:00.000Z"'
+date: 2025-08-13T16:52:00.000Z
 tags:
   - post
   - featured

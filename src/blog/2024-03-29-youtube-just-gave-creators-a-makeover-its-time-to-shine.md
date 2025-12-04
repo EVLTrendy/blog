@@ -1,7 +1,7 @@
----
+﻿---
 title: 'YouTube Just Gave Creators a Makeover: It''s Time to Shine'
 author: Marc C.
-date: '"2024-03-29T16:43:00.000Z"'
+date: 2024-03-29T16:43:00.000Z
 tags:
   - post
   - featured
