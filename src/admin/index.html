@@ -4,51 +4,199 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex" />
-  <title>Content Manager</title>
+  <title>Blog Content Manager</title>
   <link rel="stylesheet" href="https://unpkg.com/sakura.css/css/sakura.css">
+  <style>
+    .post-list { margin: 20px 0; }
+    .post-item { padding: 10px; border: 1px solid #ddd; margin: 5px 0; background: #f9f9f9; display: flex; justify-content: space-between; align-items: center; }
+    .btn { padding: 8px 16px; margin: 0 5px; cursor: pointer; border: 1px solid #ccc; background: #fff; }
+    .btn.primary { background: #007cba; color: white; border-color: #007cba; }
+    .btn.danger { background: #dc3232; color: white; border-color: #dc3232; }
+    .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 1000; }
+    .modal-content { background: white; margin: 5% auto; padding: 20px; width: 90%; max-width: 800px; border-radius: 8px; max-height: 80vh; overflow-y: auto; }
+    form { margin-top: 20px; }
+    label { display: block; margin: 10px 0 5px 0; font-weight: bold; }
+    input, textarea { width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; }
+    textarea { min-height: 400px; font-family: monospace; }
+    .form-row { margin-bottom: 15px; }
+  </style>
 </head>
 <body>
-  <div style="max-width: 800px; margin: 0 auto; padding: 2rem;">
-    <h1>📝 Content Management Dashboard</h1>
-    <p>Your blog content is now fully accessible directly through your GitHub repository.</p>
+  <div style="max-width: 1000px; margin: 0 auto; padding: 2rem;">
+    <h1>📝 Blog Content Manager</h1>
+    <p>Manage your blog posts directly from here</p>
 
-    <div style="background: #f0f0f0; padding: 1.5rem; border-radius: 8px; margin: 1.5rem 0;">
-      <h2>✅ What's Working Now:</h2>
-      <ul>
-        <li>✅ All blog posts are published and visible on your site</li>
-        <li>✅ Search engines can crawl and index your content</li>
-        <li>✅ Social media can scrape your page metadata</li>
-        <li>✅ Your RSS feed is available</li>
-        <li>✅ Short URL redirects work</li>
-      </ul>
+    <div style="margin: 20px 0;">
+      <button class="btn primary" onclick="createNewPost()">+ Create New Post</button>
+      <button class="btn" onclick="refreshPosts()">🔄 Refresh List</button>
     </div>
 
-    <div style="background: #e8f5e8; border: 2px solid #4caf50; padding: 1.5rem; border-radius: 8px; margin: 1.5rem 0;">
-      <h2>🛠️ How to Edit Content:</h2>
-      <p>To add/modify blog posts, you can:</p>
-      <ul>
-        <li><strong>Easy Method:</strong> Use VS Code with GitHub integration</li>
-        <li><strong>Advanced Method:</strong> Install a markdown editor</li>
-        <li><strong>Alternative:</strong> GitHub web interface for simple edits</li>
-      </ul>
-    </div>
-
-    <h2>📋 Recent Posts</h2>
-    <p>Here are your latest published articles:</p>
-    <ul>
-      <!-- This could be dynamically generated if we add server-side logic -->
-    </ul>
-
-    <h2>💡 Help & Resources</h2>
-    <ul>
-      <li><a href="https://www.markdownguide.org/">Markdown Guide</a> - Learn to write posts</li>
-      <li><a href="https://code.visualstudio.com/">VS Code</a> - Recommended editor</li>
-      <li><a href="https://github.com/EVLTrendy/blog">GitHub Repository</a> - View all content</li>
-    </ul>
-
-    <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid #ddd;">
-      <p><small>Content is stored in the <code>src/blog/</code> directory as markdown files.</small></p>
+    <div id="postList" class="post-list">
+      <p>Loading posts...</p>
     </div>
   </div>
+
+  <!-- Modal for editing -->
+  <div id="editModal" class="modal">
+    <div class="modal-content">
+      <h2 id="modalTitle">Edit Post</h2>
+      <form id="postForm">
+        <div class="form-row">
+          <label for="postTitle">Title:</label>
+          <input type="text" id="postTitle" required>
+        </div>
+        <div class="form-row">
+          <label for="postDescription">Description:</label>
+          <textarea id="postDescription" rows="3" required></textarea>
+        </div>
+        <div class="form-row">
+          <label for="postDate">Publish Date:</label>
+          <input type="datetime-local" id="postDate" required>
+        </div>
+        <div class="form-row">
+          <label for="postTags">Tags (comma-separated):</label>
+          <input type="text" id="postTags" placeholder="post, featured, tiktok">
+        </div>
+        <div class="form-row">
+          <label for="postAuthor">Author:</label>
+          <input type="text" id="postAuthor" value="EvolvedLotus Team">
+        </div>
+        <div class="form-row">
+          <label for="postContent">Content (Markdown):</label>
+          <textarea id="postContent" required></textarea>
+        </div>
+        <div class="form-row">
+          <button type="submit" class="btn primary">Save Post</button>
+          <button type="button" class="btn" onclick="closeModal()">Cancel</button>
+          <button type="button" id="deleteBtn" class="btn danger" style="display:none;" onclick="deletePost()">Delete Post</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    let posts = [];
+    let editingPostId = null;
+
+    // Initialize
+    window.onload = function() {
+      refreshPosts();
+    };
+
+    function refreshPosts() {
+      const postList = document.getElementById('postList');
+      postList.innerHTML = '<p>Loading posts...</p>';
+
+      // Simulate loading posts from your blog directory
+      // In a real CMS, this would fetch from your backend
+      const mockPosts = [
+        { id: '2025-10-20-mobile-photography', title: 'Mobile Photography Techniques for Better Content', date: '2025-10-20', author: 'Marc C.' },
+        { id: '2025-08-15-analytics-metrics', title: 'Understanding Social Media Analytics', date: '2025-08-15', author: 'EvolvedLotus Team' },
+        { id: '2025-05-13-tiktok-strategy', title: 'How to Skyrocket Your TikTok Views', date: '2025-05-13', author: 'Marc C.' },
+        { id: '2024-11-04-social-trends', title: 'November\'s Must-Know Social Trends', date: '2024-11-04', author: 'EvolvedLotus Team' }
+      ];
+
+      posts = mockPosts;
+
+      let html = '<h2>📋 Your Blog Posts</h2>';
+      posts.forEach(post => {
+        html += `
+          <div class="post-item">
+            <div>
+              <strong>${post.title}</strong><br>
+              <small>Date: ${post.date} | Author: ${post.author}</small>
+            </div>
+            <div>
+              <button class="btn" onclick="editPost('${post.id}')">Edit</button>
+              <button class="btn" onclick="viewPost('${post.id}')">View</button>
+            </div>
+          </div>
+        `;
+      });
+
+      postList.innerHTML = html;
+    }
+
+    function createNewPost() {
+      editingPostId = null;
+      document.getElementById('modalTitle').textContent = 'Create New Post';
+      document.getElementById('postForm').reset();
+      document.getElementById('deleteBtn').style.display = 'none';
+
+      // Set default date to now
+      const now = new Date();
+      const dateStr = now.toISOString().slice(0, 16);
+      document.getElementById('postDate').value = dateStr;
+
+      document.getElementById('editModal').style.display = 'block';
+    }
+
+    function editPost(postId) {
+      editingPostId = postId;
+      document.getElementById('modalTitle').textContent = 'Edit Post';
+      document.getElementById('deleteBtn').style.display = 'inline-block';
+
+      // Find the post data - in real CMS this would come from your backend
+      const post = posts.find(p => p.id === postId);
+      if (post) {
+        document.getElementById('postTitle').value = post.title;
+        document.getElementById('postDescription').value = 'Sample description for ' + post.title;
+        document.getElementById('postDate').value = post.date + 'T12:00';
+        document.getElementById('postTags').value = 'post, featured';
+        document.getElementById('postAuthor').value = post.author;
+        document.getElementById('postContent').value = `# ${post.title}\n\nSample content for this blog post.\n\n## Section 1\n\nContent here...\n\n## Section 2\n\nMore content...`;
+      }
+
+      document.getElementById('editModal').style.display = 'block';
+    }
+
+    function viewPost(postId) {
+      // Redirect to the actual post
+      window.open('/blog/' + postId, '_blank');
+    }
+
+    function closeModal() {
+      document.getElementById('editModal').style.display = 'none';
+    }
+
+    function deletePost() {
+      if (confirm('Are you sure you want to delete this post?')) {
+        // In real CMS, this would send delete request to backend
+        alert('Post deleted! (Note: This is a demo - actual deletion requires backend integration)');
+        closeModal();
+        refreshPosts();
+      }
+    }
+
+    // Handle form submission
+    document.getElementById('postForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const postData = {
+        title: document.getElementById('postTitle').value,
+        description: document.getElementById('postDescription').value,
+        date: document.getElementById('postDate').value,
+        tags: document.getElementById('postTags').value,
+        author: document.getElementById('postAuthor').value,
+        content: document.getElementById('postContent').value
+      };
+
+      // In a real CMS, this would save to GitHub or database
+      // For now, just show a confirmation
+      alert('Post saved! (Demo mode: Changes need to be implemented with GitHub API)\n\n'
+           + 'Title: ' + postData.title + '\n'
+           + 'Date: ' + postData.date);
+
+      closeModal();
+      refreshPosts();
+    });
+
+    // Close modal when clicking outside
+    window.onclick = function(event) {
+      if (event.target === document.getElementById('editModal')) {
+        closeModal();
+      }
+    }
+  </script>
 </body>
 </html>
