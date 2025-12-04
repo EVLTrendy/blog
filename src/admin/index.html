@@ -168,9 +168,16 @@
 </head>
 
 <body>
-  <!-- Decap CMS (formerly Netlify CMS) -->
+  <!-- CMS LOADING DIRECTLY - NO AUTHENTICATION -->
+  <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: white; display: flex; align-items: center; justify-content: center; z-index: 10000;">
+    <div style="text-align: center;">
+      <div style="width: 40px; height: 40px; border: 4px solid #f3f3f3; border-top: 4px solid #667eea; border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 20px;"></div>
+      <p style="color: #666; font-size: 16px;">Loading CMS...</p>
+    </div>
+  </div>
+
+  <!-- Decap CMS (formerly Netlify CMS) - LOADS DIRECTLY -->
   <script src="https://unpkg.com/decap-cms@3.0.0/dist/decap-cms.js?t=1733321470000"></script>
-  <!-- Using stable 2.9.7 version for React compatibility -->
 
   <!-- FORCE COMPLETE CACHE CLEAR ON ALL DEVICES -->
   <script>

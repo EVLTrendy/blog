@@ -1,49 +1,234 @@
 <!doctype html>
-<html>
+<html lang="en">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex, nofollow" />
-  <title>Content Manager</title>
-  <link rel="canonical" href="https://blog.evolvedlotus.com/admin/">
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <title>EvolvedLotus Content Manager</title>
+  <link rel="canonical" href="https://blog.evolvedlotus.com/admin/" />
+  <!-- Remove icon reference to avoid 404 -->
+  <meta property="og:image" content="/assets/blog/default-og.png" />
+
+  <!-- Netlify Identity Widget -->
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js?v=1"></script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
+
   <style>
-    .admin-footer {
+    /* ============================================
+       MINIMALIST LIGHT CMS THEME
+       ============================================ */
+
+    :root {
+      --font-heading: 'Outfit', sans-serif;
+      --font-body: 'Inter', sans-serif;
+      --color-primary: #0ea5e9;
+      --color-bg: #f8fafc;
+      --color-surface: #ffffff;
+      --color-text: #0f172a;
+      --color-border: #e2e8f0;
+    }
+
+    body {
+      font-family: var(--font-body) !important;
+      background-color: var(--color-bg) !important;
+      color: var(--color-text) !important;
+      -webkit-font-smoothing: antialiased;
+      margin: 0;
+    }
+
+    /* Typography Overrides */
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-family: var(--font-heading) !important;
+    }
+
+    /* CMS UI Overrides - targeted and minimal */
+    div[class*="SidebarContainer"] {
+      background-color: var(--color-surface) !important;
+      border-right: 1px solid var(--color-border) !important;
+    }
+
+    a[class*="SidebarNavLink"] {
+      border-radius: 6px !important;
+      margin: 4px 8px !important;
+    }
+
+    a[class*="SidebarNavLink"][class*="active"] {
+      background-color: var(--color-primary) !important;
+      color: white !important;
+    }
+
+    main {
+      background-color: var(--color-bg) !important;
+    }
+
+    div[class*="EntryCard"] {
+      background: var(--color-surface) !important;
+      border: 1px solid var(--color-border) !important;
+      border-radius: 8px !important;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) !important;
+      margin-bottom: 12px !important;
+    }
+
+    div[class*="CollectionTop"] {
+      background: transparent !important;
+      border: none !important;
+      box-shadow: none !important;
+      padding: 20px 0 !important;
+    }
+
+    button[class*="Button"] {
+      border-radius: 6px !important;
+      font-family: var(--font-heading) !important;
+      font-weight: 500 !important;
+      text-transform: none !important;
+    }
+
+    input,
+    textarea,
+    select {
+      border-radius: 6px !important;
+      border: 1px solid var(--color-border) !important;
+      background: var(--color-surface) !important;
+      padding: 8px 12px !important;
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+      border-color: var(--color-primary) !important;
+      box-shadow: 0 0 0 2px rgba(14, 165, 233, 0.2) !important;
+      outline: none !important;
+    }
+
+    /* Footer Navigation */
+    .cms-footer {
       position: fixed;
       bottom: 0;
       left: 0;
       right: 0;
-      background: #f8f9fa;
-      padding: 1rem;
-      text-align: center;
-      border-top: 1px solid #dee2e6;
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(8px);
+      border-top: 1px solid var(--color-border);
+      padding: 10px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      z-index: 1000;
     }
-    .admin-footer a {
-      color: #007bff;
+
+    .cms-footer a {
+      color: #64748b;
       text-decoration: none;
-      margin: 0 0.5rem;
+      font-size: 13px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      border-radius: 20px;
+      transition: all 0.2s;
     }
-    .admin-footer a:hover {
-      text-decoration: underline;
+
+    .cms-footer a:hover {
+      background: #f1f5f9;
+      color: var(--color-primary);
+    }
+
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
     }
   </style>
 </head>
-<body>
-  <!-- Include the script that builds the page and powers Decap CMS -->
-  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
 
-  <!-- Admin Footer with navigation links to fix "no outgoing links" issue -->
-  <div class="admin-footer">
-    <a href="/" aria-label="Return to EvolvedLotus homepage to explore our content creation guides and social media marketing resources">Back to Homepage</a> |
-    <a href="/blog/" aria-label="Browse our comprehensive collection of content creation tutorials, guides, and digital marketing insights">Browse All Guides</a> |
-    <a href="/about/" aria-label="Learn more about EvolvedLotus content creation expertise and our comprehensive social media marketing services">About EvolvedLotus</a> |
-    <a href="/contact/" aria-label="Contact us for personalized content strategy consultation and professional digital marketing assistance">Contact Support</a> |
-    <a href="/privacy-policy/" aria-label="Review our comprehensive privacy policy and data protection measures for content creators">Privacy Policy</a> |
-    <a href="/terms-of-service/" aria-label="Read our detailed terms of service and usage guidelines for content creation tools">Terms of Service</a> |
-    <a href="/x-tiktok/" aria-label="Explore TikTok content creation strategies and social media marketing tips">TikTok Platform</a> |
-    <a href="/x-instagram/" aria-label="Discover Instagram growth strategies and content creation techniques">Instagram Platform</a> |
-    <a href="/x-youtube/" aria-label="Learn YouTube content strategies and video marketing best practices">YouTube Platform</a> |
-    <a href="/x-twitter/" aria-label="Master Twitter marketing and content strategies for social media growth">Twitter Platform</a>
+<body>
+  <!-- Netlify CMS -->
+  <script src="https://unpkg.com/netlify-cms@2.9.7/dist/netlify-cms.js?t=1733321440000"></script>
+  <!-- Using stable 2.9.7 version for React compatibility -->
+
+  <!-- FORCE COMPLETE CACHE CLEAR ON ALL DEVICES -->
+  <script>
+    // Nuclear cache clearing - runs before anything else
+    const cacheKey = 'cms_cache_version_v173332iscard';
+    const currentVersion = 'v1733321460000';
+
+    // Clear all caches if version doesn't match
+    if (localStorage.getItem(cacheKey) !== currentVersion) {
+      // Clear ALL browser storage
+      localStorage.clear();
+      sessionStorage.clear();
+
+      // Clear service worker caches
+      if ('caches' in window) {
+        caches.keys().then(function(names) {
+          names.forEach(function(name) {
+            caches.delete(name);
+          });
+        });
+      }
+
+      // Force page reload to get fresh version
+      localStorage.setItem(cacheKey, currentVersion);
+      window.location.reload(true); // Force reload from server
+    }
+  </script>
+
+  <!-- Register Preview Styles -->
+  <script>
+    CMS.registerPreviewStyle("/style.css?t=" + Date.now());
+
+    // Simple Preview Template
+    CMS.registerPreviewTemplate("blog", ({ entry, widgetFor }) => {
+      const data = entry.getIn(['data']).toJS();
+      return `
+        <div style="max-width: 800px; margin: 40px auto; padding: 0 20px; font-family: 'Inter', sans-serif;">
+          <h1 style="font-size: 2.5rem; font-weight: 700; color: #0f172a; margin-bottom: 1rem;">${data.title}</h1>
+          <div style="font-size: 1.1rem; line-height: 1.7; color: #334155;">
+            ${widgetFor('body')}
+          </div>
+        </div>
+      `;
+    });
+
+    // Initialize CMS - loads configuration from config.yml
+    CMS.init();
+  </script>
+
+  <!-- Footer Navigation -->
+  <div class="cms-footer">
+    <a href="/" target="_blank">🏠 Home</a>
+    <a href="/blog/" target="_blank">📝 Blog</a>
+    <a href="/admin/#/collections/blog">✍️ Write</a>
+    <a href="/admin/#/collections/pages">📄 Pages</a>
+    <a href="/admin/#/collections/settings">⚙️ Settings</a>
   </div>
 </body>
+
 </html>
