@@ -110,13 +110,13 @@ collections:
     slug: "{{slug}}"
     summary: "{{title}}"
     fields:
+      - { label: "Layout", name: "layout", widget: "hidden", default: "hub.njk" }
       - { label: "Title", name: "title", widget: "string", hint: "Hub name (e.g., 'TikTok Marketing')" }
       - { label: "Description", name: "description", widget: "text", hint: "Brief description of this content hub" }
+      - { label: "Permalink", name: "permalink", widget: "string", hint: "URL path (e.g., '/hubs/tiktok-marketing/')" }
       - { label: "Hub Collection Tag", name: "hubCollection", widget: "string", hint: "Tag used to filter posts (e.g., 'tiktok', 'instagram')" }
       - { label: "Icon/Emoji", name: "icon", widget: "string", required: false, hint: "Emoji or icon for visual identification" }
-      - { label: "Permalink", name: "permalink", widget: "string", hint: "URL path (e.g., '/x-tiktok/')" }
-      - { label: "Featured", name: "featured", widget: "boolean", default: false, hint: "Show in featured hubs section" }
-      - { label: "Layout", name: "layout", widget: "hidden", default: "hub.njk" }
+      - { label: "Featured", name: "featured", widget: "boolean", default: false, required: false, hint: "Show in featured hubs section" }
 
   # ============================================
   # NOTIFICATIONS
@@ -130,10 +130,8 @@ collections:
     fields:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Description", name: "description", widget: "text" }
-      - { label: "Link", name: "link", widget: "string", required: false, hint: "Optional link for 'Learn More'" }
-      - { label: "Type", name: "type", widget: "select", options: ["info", "success", "warning", "announcement"], default: "info" }
       - { label: "Date", name: "date", widget: "datetime" }
-      - { label: "Active", name: "active", widget: "boolean", default: true, hint: "Show this notification" }
+      - { label: "Link", name: "link", widget: "string", required: false, hint: "Optional link for 'Learn More'" }
       - { label: "Tags", name: "tags", widget: "hidden", default: "notifications" }
 
   # ============================================
@@ -145,11 +143,13 @@ collections:
     folder: "src/authors"
     create: true
     slug: "{{slug}}"
-    summary: "{{title}}"
+    summary: "{{name}}"
     fields:
-      - { label: "Name", name: "title", widget: "string" }
+      - { label: "Name", name: "name", widget: "string" }
+      - { label: "Slug", name: "slug", widget: "string", hint: "URL-friendly identifier" }
       - { label: "Bio", name: "bio", widget: "text", hint: "Short author biography" }
-      - { label: "Avatar", name: "image", widget: "image" }
+      - { label: "Avatar", name: "avatar", widget: "image" }
+      - { label: "Role", name: "role", widget: "string", required: false }
       - { label: "Email", name: "email", widget: "string", required: false }
       - { label: "Website", name: "website", widget: "string", required: false }
       - label: "Social Links"
