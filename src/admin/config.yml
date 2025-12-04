@@ -21,30 +21,14 @@ collections:
     label_singular: "Blog Post"
     folder: "src/blog"
     create: true
+    extension: md
+    format: frontmatter
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     preview_path: "blog/{{slug}}"
     editor:
       preview: true
     summary: "{{title}} - {{date | date('YYYY-MM-DD')}}"
-    sortable_fields: ['date', 'title', 'hub']
-    view_filters:
-      - label: "Published"
-        field: editorialStatus
-        pattern: 'published'
-      - label: "Draft"
-        field: editorialStatus
-        pattern: 'draft'
-      - label: "Scheduled"
-        field: editorialStatus
-        pattern: 'scheduled'
-      - label: "Needs Update"
-        field: editorialStatus
-        pattern: 'needs-update'
-    view_groups:
-      - label: "Status"
-        field: editorialStatus
-      - label: "Content Hub"
-        field: hub
+    sortable_fields: ['date', 'title']
     fields:
       # ============================================
       # CORE CONTENT
