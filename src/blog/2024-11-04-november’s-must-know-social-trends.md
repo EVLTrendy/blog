@@ -1,7 +1,7 @@
-﻿---
+---
 title: November’s Must-Know Social Trends
 author: EvolvedLotus Team
-date: 2024-11-04T12:00:00.000Z
+date: '2024-11-04T12:00:00.000Z'
 tags:
   - post
   - featured
@@ -12,6 +12,8 @@ description: 'As November approaches, seize the opportunity to connect with your
 keywords: 'content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing'
 schema_type: Article
 og_type: article
+category: content-creation
+featured: true
 ---
 As November approaches, seize the opportunity to connect with your audience through meaningful content ideas centered around important observances like Take a Hike Day, Stress Awareness Day, and Thanksgiving. Enhance your online presence and engage with your followers on a personal level by incorporating these themes into your content strategy.
 

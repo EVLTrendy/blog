@@ -1,7 +1,7 @@
-﻿---
+---
 title: 'Streamwise: Mastering Multistreaming'
 author: Marc C.
-date: 2024-02-12T12:00:00.000Z
+date: '2024-02-12T12:00:00.000Z'
 tags:
   - post
   - featured
@@ -13,6 +13,8 @@ description: 'Hey there, fellow streamers! Have you ever wanted to be in two pla
 keywords: 'content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing'
 schema_type: Article
 og_type: article
+category: content-creation
+featured: true
 ---
 Hey there, fellow streamers! Have you ever wanted to be in two places at once? You kind of can, though, in the world of livestreaming! Now, let's discuss multistreaming. Being able to simultaneously broadcast your stuff to every corner of the internet is like having superpowers.
 

@@ -1,7 +1,7 @@
-﻿---
+---
 title: 'Expand Your Reach, Don''t Preach? LinkedIn''s the Speech'
 author: Marc C.
-date: 2024-04-12T12:00:00.000Z
+date: '2024-04-12T12:00:00.000Z'
 tags:
   - post
   - featured
@@ -12,6 +12,8 @@ description: 'That''s a common question, especially given how many other social 
 keywords: 'content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing'
 schema_type: Article
 og_type: article
+category: content-creation
+featured: true
 ---
 
 

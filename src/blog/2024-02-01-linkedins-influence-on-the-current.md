@@ -1,7 +1,7 @@
-﻿---
+---
 title: LinkedIn's Influence on the Current
 author: Marc C.
-date: 2024-02-01T12:00:00.000Z
+date: '2024-02-01T12:00:00.000Z'
 tags:
   - post
   - featured
@@ -12,6 +12,8 @@ description: Are you wondering why LinkedIn is essential for your business? Link
 keywords: 'content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing'
 schema_type: Article
 og_type: article
+category: content-creation
+featured: true
 ---
 Are you wondering why LinkedIn is essential for your business? LinkedIn presence and how it can benefit your business.\
 \

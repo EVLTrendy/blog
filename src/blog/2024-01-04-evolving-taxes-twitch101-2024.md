@@ -1,7 +1,7 @@
-﻿---
+---
 title: 'Evolving Taxes: Twitch-101 2024'
 author: Marc C.
-date: 2024-01-04T12:00:00.000Z
+date: '2024-01-04T12:00:00.000Z'
 tags:
   - post
   - featured
@@ -12,6 +12,8 @@ description: Have you ever heard of Twitch? It's this incredible platform that c
 keywords: 'content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing'
 schema_type: Article
 og_type: article
+category: content-creation
+featured: true
 ---
 Have you ever heard of Twitch? It's this incredible platform that connects millions of people from across the globe through live streaming. It's amazing how it started as a gaming hub back in 2011 and now, it offers so much more. From live music performances to intricate LEGO builds, there's something for everyone on Twitch. What sets it apart from other online streaming platforms is its interactive chat feature that creates a sense of community and belonging. It's like you're in a virtual room with people who share your interests and passions. It's truly a unique experience!
 

@@ -1,7 +1,7 @@
-﻿---
+---
 title: 'No More Regrets: Edit, Pin & Style Up Your Instagram DMs!'
 author: Marc C.
-date: 2024-04-09T12:00:00.000Z
+date: '2024-04-09T12:00:00.000Z'
 tags:
   - post
   - featured
@@ -13,6 +13,8 @@ description: 'Attention, all Meta users! If, like me, you spend a lot of time ch
 keywords: 'content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing'
 schema_type: Article
 og_type: article
+category: content-creation
+featured: true
 ---
 Attention, all Meta users! If, like me, you spend a lot of time chatting on the app, you'll be glad to know that Meta added some new enhancements to the DM feature in March. These improvements will significantly improve your messaging experience. 
 

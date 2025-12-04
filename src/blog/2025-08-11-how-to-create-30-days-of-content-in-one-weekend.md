@@ -1,8 +1,8 @@
-﻿---
+---
 title: How to Create 30 Days of Content in One Weekend
 description: Content planning for social media and content planning and strategy. Learn how to make content and a content planning calendar. Our guide helps with content planning canva and other tools.
 author: EvolvedLotus Team
-date: 2025-08-11T19:23:00.000Z
+date: '2025-08-11T19:23:00.000Z'
 tags:
   - post
   - featured
@@ -12,6 +12,8 @@ imageAlt: How to Create 30 Days of Content in One Weekend
 keywords: 'content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing'
 schema_type: Article
 og_type: article
+category: content-creation
+featured: true
 ---
 Ever feel like you’re just running on a treadmill, creating content on the fly without a real plan? It’s a common pitfall in today’s fast-paced digital world. In 2025, the key to winning isn't just working harder—it's working smarter. The world doesn't need more content; it needs better content, and that’s where the power of **content batching** comes in.
 

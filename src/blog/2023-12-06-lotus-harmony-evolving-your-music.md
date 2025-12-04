@@ -1,7 +1,7 @@
-﻿---
+---
 title: 'Lotus Harmony: Evolving Your Music'
 author: Marc C.
-date: 2023-12-06T12:00:00.000Z
+date: '2023-12-06T12:00:00.000Z'
 tags:
   - post
   - featured
@@ -12,6 +12,8 @@ description: 'The relationship between melody and meter is a fascinating journey
 keywords: 'content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing'
 schema_type: Article
 og_type: article
+category: content-creation
+featured: true
 ---
 The relationship between melody and meter is a fascinating journey for musicians, offering a challenging and complex terrain to navigate. Striking the correct notes is just the beginning in this energetic orchestra, where musicians must skillfully blend melody and meter to create a captivating musical experience.
 

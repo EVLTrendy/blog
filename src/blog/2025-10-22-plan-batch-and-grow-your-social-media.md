@@ -12,10 +12,13 @@ tags:
   - twitter
   - ig
   - link
-  - ''
 image: /assets/blog/plan-batch-and-grow-your-social-media.png
 imageAlt: 'Plan, Batch, and Grow Your Social Media'
 keywords: 'content calendar, social media planning, Notion templates, batch content creation, free content tools, content strategy, social media growth'
+category: content-creation
+featured: true
+schema_type: Article
+og_type: article
 ---
 One week, you’re on fire — posting daily with energy, ideas flowing, and momentum at its peak. The next, silence. No posts. No plan. Your creativity didn’t disappear; your system did. Without a clear structure, content creation quickly becomes chaotic—a game of digital whack-a-mole that leaves you stressed, scattered, and spinning your wheels.
 

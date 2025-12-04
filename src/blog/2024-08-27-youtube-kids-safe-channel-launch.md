@@ -1,7 +1,7 @@
-﻿---
+---
 title: 'YouTube Kids: Safe Channel Launch'
 author: Marc C.
-date: 2024-08-27T12:00:00.000Z
+date: '2024-08-27T12:00:00.000Z'
 tags:
   - post
   - featured
@@ -12,6 +12,8 @@ description: YouTube is gradually becoming a favorite destination for kids as so
 keywords: 'content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing'
 schema_type: Article
 og_type: article
+category: content-creation
+featured: true
 ---
 
 

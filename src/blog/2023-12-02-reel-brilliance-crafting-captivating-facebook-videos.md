@@ -1,7 +1,7 @@
-﻿---
+---
 title: 'Reel Brilliance: Crafting Captivating Facebook Videos'
 author: Marc C.
-date: 2023-12-02T12:00:00.000Z
+date: '2023-12-02T12:00:00.000Z'
 tags:
   - post
   - featured
@@ -12,6 +12,8 @@ description: 'As short-form videos continue to dominate the digital landscape, F
 keywords: 'content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing'
 schema_type: Article
 og_type: article
+category: content-creation
+featured: true
 ---
 ## Elevate Your Presence: A Guide to Crafting Compelling Facebook Reels
 

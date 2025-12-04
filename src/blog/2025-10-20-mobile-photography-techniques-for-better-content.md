@@ -1,8 +1,8 @@
-﻿---
+---
 title: Mobile Photography Techniques for Better Content
 description: 'Master mobile photography in 2025! Learn lighting, composition, and editing techniques to create pro-quality content on your phone.'
 author: EvolvedLotus Team
-date: 2025-10-20T13:52:00.000-04:00
+date: '2025-10-20T17:52:00.000Z'
 tags:
   - post
   - featured
@@ -12,10 +12,13 @@ tags:
   - twitter
   - ig
   - link
-  - ''
 keywords: 'content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing, mobile photography, content creation tips, social media strategy, digital marketing, visual content, photography tips, social media growth, content strategy, mobile content creation, visual storytelling, social media marketing, digital content, photography techniques, content marketing'
 image: /assets/blog/mobile-photography-techniques-for-better-content.png
 imageAlt: Mobile Photography Techniques for Better Content
+category: content-creation
+featured: true
+schema_type: Article
+og_type: article
 ---
 Did you know 92.5% of all photos today are taken on smartphones? That’s more than a fun fact, it’s a wake-up call. Almost every image you scroll past on Instagram, TikTok, or Pinterest started on a mobile device. If you haven’t mastered mobile photography and videography yet, you’re quietly handing your audience and your competition the advantage.
 

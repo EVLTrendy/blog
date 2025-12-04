@@ -348,6 +348,39 @@ class FrontmatterValidator {
         needsFix = true;
       }
 
+      // Fix missing category
+      if (!frontmatter.category) {
+        console.log(`  🔧 Fixing ${fileName}: Adding missing category`);
+        fixedFrontmatter.category = 'content-creation';
+        needsFix = true;
+      }
+
+      // Fix missing featured
+      if (frontmatter.featured === undefined) {
+        console.log(`  🔧 Fixing ${fileName}: Adding missing featured`);
+        // Check if tags include 'featured'
+        if (frontmatter.tags && Array.isArray(frontmatter.tags) && frontmatter.tags.includes('featured')) {
+          fixedFrontmatter.featured = true;
+        } else {
+          fixedFrontmatter.featured = false;
+        }
+        needsFix = true;
+      }
+
+      // Fix missing schema_type
+      if (!frontmatter.schema_type) {
+        console.log(`  🔧 Fixing ${fileName}: Adding missing schema_type`);
+        fixedFrontmatter.schema_type = 'Article';
+        needsFix = true;
+      }
+
+      // Fix missing og_type
+      if (!frontmatter.og_type) {
+        console.log(`  🔧 Fixing ${fileName}: Adding missing og_type`);
+        fixedFrontmatter.og_type = 'article';
+        needsFix = true;
+      }
+
       if (needsFix) {
         const updatedContent = matter.stringify(content, fixedFrontmatter, { lineWidth: -1 });
         fs.writeFileSync(filePath, updatedContent);
