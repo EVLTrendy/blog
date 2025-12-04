@@ -141,94 +141,94 @@ collections:
   # ============================================
   # PAGES - Static/content pages
   # ============================================
-  - name: "pages"
-    label: "📄 Pages"
-    label_singular: "Page"
-    i18n: true
-    folder: "src/pages"
-    create: true
-    slug: "{{slug}}"
-    summary: "{{title}} ({{permalink}})"
-    sortable_fields: ['title', 'navOrder']
-    fields:
-      - { label: "Title", name: "title", widget: "string", hint: "Page title for SEO" }
-      - { label: "Description", name: "description", widget: "text", hint: "Meta description" }
-      - { label: "Permalink", name: "permalink", widget: "string", hint: "Custom URL path (e.g., '/about/')" }
-      - { label: "Layout", name: "layout", widget: "select", options: ["page.njk", "landing.njk"], default: "page.njk" }
-      - { label: "Show in Navigation", name: "inNav", widget: "boolean", default: true }
-      - { label: "Navigation Order", name: "navOrder", widget: "number", required: false }
-      - { label: "Body", name: "body", widget: "markdown" }
+  # - name: "pages"
+  #   label: "📄 Pages"
+  #   label_singular: "Page"
+  #   i18n: true
+  #   folder: "src/pages"
+  #   create: true
+  #   slug: "{{slug}}"
+  #   summary: "{{title}} ({{permalink}})"
+  #   sortable_fields: ['title', 'navOrder']
+  #   fields:
+  #     - { label: "Title", name: "title", widget: "string", hint: "Page title for SEO" }
+  #     - { label: "Description", name: "description", widget: "text", hint: "Meta description" }
+  #     - { label: "Permalink", name: "permalink", widget: "string", hint: "Custom URL path (e.g., '/about/')" }
+  #     - { label: "Layout", name: "layout", widget: "select", options: ["page.njk", "landing.njk"], default: "page.njk" }
+  #     - { label: "Show in Navigation", name: "inNav", widget: "boolean", default: true }
+  #     - { label: "Navigation Order", name: "navOrder", widget: "number", required: false }
+  #     - { label: "Body", name: "body", widget: "markdown" }
 
   # ============================================
   # TOOLS & RESOURCES
   # ============================================
-  - name: "tools"
-    label: "🛠️ Tools & Resources"
-    label_singular: "Tool/Resource"
-    folder: "src/tools"
-    create: true
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
-    summary: "{{title}} - {{type}} - {{category}}"
-    sortable_fields: ['date', 'title', 'type', 'category', 'rating']
-    view_filters:
-      - label: "Featured"
-        field: featured
-        pattern: true
-      - label: "Tools"
-        field: type
-        pattern: "tool"
-      - label: "Resources"
-        field: type
-        pattern: "resource"
-    view_groups:
-      - label: "Type"
-        field: type
-      - label: "Category"
-        field: category
-    fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Description", name: "description", widget: "text" }
-      - { label: "Type", name: "type", widget: "select", options: ["tool", "resource", "template", "guide"], default: "tool" }
-      - { label: "Category", name: "category", widget: "select", options: ["Design", "Marketing", "Analytics", "Writing", "Video", "Social Media", "Development", "Other"] }
-      - { label: "URL", name: "url", widget: "string", hint: "Link to the tool/resource" }
-      - { label: "Image", name: "image", widget: "image" }
-      - { label: "Free/Paid", name: "pricing", widget: "select", options: ["Free", "Freemium", "Paid"], default: "Free" }
-      - { label: "Platform", name: "platform", widget: "select", options: ["Web", "Desktop", "Mobile", "Browser Extension", "API"] }
-      - { label: "Rating", name: "rating", widget: "number", min: 1, max: 5, required: false }
-      - { label: "Featured", name: "featured", widget: "boolean", default: false }
-      - { label: "Publish Date", name: "date", widget: "datetime" }
-      - { label: "Body", name: "body", widget: "markdown", required: false, hint: "Detailed description or usage instructions" }
+  # - name: "tools"
+  #   label: "🛠️ Tools & Resources"
+  #   label_singular: "Tool/Resource"
+  #   folder: "src/tools"
+  #   create: true
+  #   slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+  #   summary: "{{title}} - {{type}} - {{category}}"
+  #   sortable_fields: ['date', 'title', 'type', 'category', 'rating']
+  #   view_filters:
+  #     - label: "Featured"
+  #       field: featured
+  #       pattern: true
+  #     - label: "Tools"
+  #       field: type
+  #       pattern: "tool"
+  #     - label: "Resources"
+  #       field: type
+  #       pattern: "resource"
+  #   view_groups:
+  #     - label: "Type"
+  #       field: type
+  #     - label: "Category"
+  #       field: category
+  #   fields:
+  #     - { label: "Title", name: "title", widget: "string" }
+  #     - { label: "Description", name: "description", widget: "text" }
+  #     - { label: "Type", name: "type", widget: "select", options: ["tool", "resource", "template", "guide"], default: "tool" }
+  #     - { label: "Category", name: "category", widget: "select", options: ["Design", "Marketing", "Analytics", "Writing", "Video", "Social Media", "Development", "Other"] }
+  #     - { label: "URL", name: "url", widget: "string", hint: "Link to the tool/resource" }
+  #     - { label: "Image", name: "image", widget: "image" }
+  #     - { label: "Free/Paid", name: "pricing", widget: "select", options: ["Free", "Freemium", "Paid"], default: "Free" }
+  #     - { label: "Platform", name: "platform", widget: "select", options: ["Web", "Desktop", "Mobile", "Browser Extension", "API"] }
+  #     - { label: "Rating", name: "rating", widget: "number", min: 1, max: 5, required: false }
+  #     - { label: "Featured", name: "featured", widget: "boolean", default: false }
+  #     - { label: "Publish Date", name: "date", widget: "datetime" }
+  #     - { label: "Body", name: "body", widget: "markdown", required: false, hint: "Detailed description or usage instructions" }
 
   # ============================================
   # QUICK INSIGHTS
   # ============================================
-  - name: "insights"
-    label: "💡 Quick Insights"
-    label_singular: "Insight"
-    folder: "src/insights"
-    create: true
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
-    summary: "{{title}} - {{category}} - {{type}}"
-    sortable_fields: ['date', 'title', 'category', 'type']
-    view_filters:
-      - label: "Active"
-        field: active
-        pattern: true
-    view_groups:
-      - label: "Category"
-        field: category
-      - label: "Type"
-        field: type
-    fields:
-      - { label: "Title", name: "title", widget: "string", hint: "Short, punchy title" }
-      - { label: "Category", name: "category", widget: "select", options: ["TikTok", "Instagram", "YouTube", "Twitter", "LinkedIn", "General"] }
-      - { label: "Type", name: "type", widget: "select", options: ["Tip", "Hack", "Update", "Trend", "Strategy"] }
-      - { label: "Quick Summary", name: "summary", widget: "text", hint: "1-2 sentence summary" }
-      - { label: "Read Time", name: "readTime", widget: "number", min: 1, max: 10, default: 1, hint: "Minutes to read" }
-      - { label: "Featured Image", name: "image", widget: "image", required: false }
-      - { label: "Publish Date", name: "date", widget: "datetime" }
-      - { label: "Active", name: "active", widget: "boolean", default: true }
-      - { label: "Body", name: "body", widget: "markdown", hint: "Detailed insight content" }
+  # - name: "insights"
+  #   label: "💡 Quick Insights"
+  #   label_singular: "Insight"
+  #   folder: "src/insights"
+  #   create: true
+  #   slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+  #   summary: "{{title}} - {{category}} - {{type}}"
+  #   sortable_fields: ['date', 'title', 'category', 'type']
+  #   view_filters:
+  #     - label: "Active"
+  #       field: active
+  #       pattern: true
+  #   view_groups:
+  #     - label: "Category"
+  #       field: category
+  #     - label: "Type"
+  #       field: type
+  #   fields:
+  #     - { label: "Title", name: "title", widget: "string", hint: "Short, punchy title" }
+  #     - { label: "Category", name: "category", widget: "select", options: ["TikTok", "Instagram", "YouTube", "Twitter", "LinkedIn", "General"] }
+  #     - { label: "Type", name: "type", widget: "select", options: ["Tip", "Hack", "Update", "Trend", "Strategy"] }
+  #     - { label: "Quick Summary", name: "summary", widget: "text", hint: "1-2 sentence summary" }
+  #     - { label: "Read Time", name: "readTime", widget: "number", min: 1, max: 10, default: 1, hint: "Minutes to read" }
+  #     - { label: "Featured Image", name: "image", widget: "image", required: false }
+  #     - { label: "Publish Date", name: "date", widget: "datetime" }
+  #     - { label: "Active", name: "active", widget: "boolean", default: true }
+  #     - { label: "Body", name: "body", widget: "markdown", hint: "Detailed insight content" }
 
   # ============================================
   # WHAT'S HOT RULES
