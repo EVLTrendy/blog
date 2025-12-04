@@ -1,0 +1,57 @@
+---
+title: Blog Post Schema
+
+fields:
+  - key: title
+    type: string
+    label: Title
+    required: true
+    
+  - key: description  
+    type: text
+    label: Description
+    required: true
+    
+  - key: author
+    type: string
+    label: Author
+    default: "EvolvedLotus Team"
+    
+  - key: date
+    type: datetime
+    label: Publish Date
+    required: true
+    
+  - key: tags
+    type: array
+    label: Tags
+    default:
+      - post
+      
+  - key: image
+    type: image
+    label: Featured Image
+    
+  - key: imageAlt
+    type: string
+    label: Image Alt Text
+    
+  - key: category
+    type: string
+    label: Category
+    
+  - key: featured  
+    type: boolean
+    label: Featured
+    default: false
+    
+  - key: keywords
+    type: string
+    label: Keywords
+    
+  - key: body
+    type: markdown
+    label: Content
+    required: true
+
+layout: post

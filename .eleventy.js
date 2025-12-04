@@ -278,6 +278,11 @@ module.exports = function (eleventyConfig) {
         "html"
     ]);
 
+    // CloudCannon CMS Configuration
+    eleventyConfig.addGlobalData("cloudcannon", {
+        app_id: "blog-evolved-lotus"
+    });
+
     // Exclude template files from processing (they contain placeholder dates)
     eleventyConfig.ignores.add("src/_templates/**");
 

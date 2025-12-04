@@ -1,32 +1,23 @@
 <!doctype html>
 <html>
-
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex" />
   <title>Content Manager</title>
-
-  <!-- Netlify Identity Widget -->
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <!-- CloudCannon Styles and Scripts -->
+  <link rel="stylesheet" href="https://app.cloudcannon.com/templates/{{ site.cloudcannon.app_id }}/main.css">
 </head>
-
 <body>
-  <!-- Decap CMS -->
-  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
-
-  <!-- Netlify Identity Redirect -->
+  <!-- CloudCannon CMS -->
   <script>
-    if (window.netlifyIdentity) {
-      window.netlifyIdentity.on("init", user => {
-        if (!user) {
-          window.netlifyIdentity.on("login", () => {
-            document.location.href = "/admin/";
-          });
-        }
-      });
-    }
+    window.CLOUDCANNON_CONFIG = {
+      app_id: '{{ site.cloudcannon.app_id }}',
+      base_url: '{{ site.base_url }}',
+      git_repo: 'EVLTrendy/blog',
+      git_branch: 'main'
+    };
   </script>
+  <script src="https://app.cloudcannon.com/templates/{{ site.cloudcannon.app_id }}/main.js"></script>
 </body>
-
 </html>
