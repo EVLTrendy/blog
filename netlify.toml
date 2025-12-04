@@ -38,7 +38,8 @@
         https://ep2.adtrafficquality.google
         https://identity.netlify.com
         https://*.supabase.co
-        https://region1.google-analytics.com;
+        https://region1.google-analytics.com
+        https://unpkg.com;
       frame-src 'self' 
         https://www.google.com 
         https://googleads.g.doubleclick.net

@@ -12,9 +12,6 @@ public_folder: "/assets/blog"
 site_url: https://blog.evolvedlotus.com
 display_url: https://blog.evolvedlotus.com
 
-# Logo
-logo_url: https://blog.evolvedlotus.com/assets/blog/logo.png
-
 # Localization
 locale: 'en'
 i18n:
@@ -36,8 +33,8 @@ collections:
     preview_path: "blog/{{slug}}"
     editor:
       preview: true
-    summary: "{{title}} - {{date | date('YYYY-MM-DD')}} - {{editorialStatus}}"
-    sortable_fields: ['date', 'title', 'editorialStatus', 'hub']
+    summary: "{{title}} - {{date | date('YYYY-MM-DD')}}"
+    sortable_fields: ['date', 'title', 'hub']
     view_filters:
       - label: "Published"
         field: editorialStatus
@@ -60,183 +57,47 @@ collections:
       # ============================================
       # CORE CONTENT
       # ============================================
-      - label: "📄 Basic Information"
-        name: "basic_info"
-        widget: "object"
-        collapsed: false
-        fields:
-          - { label: "Title", name: "title", widget: "string", hint: "Compelling, SEO-friendly title (50-60 characters ideal)" }
-          - { label: "Description", name: "description", widget: "text", hint: "Meta description for SEO (150-160 characters ideal)" }
-          - { label: "Author", name: "author", widget: "string", default: "EvolvedLotus" }
-          - { label: "Publish Date", name: "date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: "HH:mm", format: "YYYY-MM-DDTHH:mm:ss.SSSZ" }
+      - { label: "Title", name: "title", widget: "string", hint: "Compelling, SEO-friendly title (50-60 characters ideal)", i18n: true }
+      - { label: "Description", name: "description", widget: "text", hint: "Meta description for SEO (150-160 characters ideal)", i18n: true }
+      - { label: "Author", name: "author", widget: "string", default: "EvolvedLotus" }
+      - { label: "Publish Date", name: "date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: "HH:mm", format: "YYYY-MM-DDTHH:mm:ss.SSSZ" }
       
       # ============================================
       # MEDIA
       # ============================================
-      - label: "🖼️ Featured Image"
-        name: "media"
-        widget: "object"
-        collapsed: false
-        fields:
-          - { label: "Image", name: "image", widget: "image", hint: "Recommended: 1200x630px for optimal social sharing" }
-          - { label: "Image Alt Text", name: "imageAlt", widget: "string", hint: "Describe the image for accessibility and SEO" }
+      - { label: "Featured Image", name: "image", widget: "image", hint: "Recommended: 1200x630px for optimal social sharing", i18n: duplicate }
+      - { label: "Image Alt Text", name: "imageAlt", widget: "string", hint: "Describe the image for accessibility and SEO", i18n: true }
       
       # ============================================
       # ORGANIZATION
       # ============================================
-      - label: "🏷️ Organization & Tags"
-        name: "organization"
-        widget: "object"
-        collapsed: false
-        fields:
-          - label: "Primary Category"
-            name: "category"
-            widget: "select"
-            required: true
-            hint: "Select the main category for this post (REQUIRED)"
-            options:
-              - { label: "📱 Social Media Marketing", value: "social-media" }
-              - { label: "✍️ Content Creation", value: "content-creation" }
-              - { label: "🎯 SEO & Analytics", value: "seo" }
-              - { label: "📊 Digital Strategy", value: "strategy" }
-              - { label: "🛠️ Tools & Automation", value: "tools" }
-              - { label: "🚀 Growth Hacking", value: "growth" }
-          - { label: "Tags", name: "tags", widget: "list", default: ["post"], hint: "Add relevant tags for categorization" }
-          - { label: "Content Hub", name: "hub", widget: "relation", collection: "hubs", search_fields: ["title"], value_field: "hubCollection", display_fields: ["title"], required: false, hint: "Assign to a content hub (e.g., TikTok, Instagram)" }
-          - label: "Featured Post"
-            name: "featured"
-            widget: "boolean"
-            default: false
-            required: false
-            hint: "Show this post in featured sections"
-      
-      # ============================================
-      # EDITORIAL WORKFLOW
-      # ============================================
-      - label: "📋 Editorial Workflow"
-        name: "editorial"
-        widget: "object"
-        collapsed: true
-        fields:
-          - label: "Status"
-            name: "editorialStatus"
-            widget: "select"
-            options:
-              - { label: "📝 Draft", value: "draft" }
-              - { label: "👀 In Review", value: "in-review" }
-              - { label: "✅ Approved", value: "approved" }
-              - { label: "📅 Scheduled", value: "scheduled" }
-              - { label: "🚀 Published", value: "published" }
-              - { label: "🔄 Needs Update", value: "needs-update" }
-            default: "draft"
-          - { label: "Scheduled Publish Date", name: "scheduledDate", widget: "datetime", required: false, hint: "When to publish this post" }
-          - { label: "Last Updated", name: "lastUpdated", widget: "datetime", required: false, hint: "Track content freshness" }
-          - { label: "Next Review Date", name: "nextReview", widget: "datetime", required: false, hint: "When to review/update" }
-          - { label: "Editorial Notes", name: "editorialNotes", widget: "text", required: false, hint: "Internal notes for editors" }
-      
-      # ============================================
-      # SEO OPTIMIZATION
-      # ============================================
-      - label: "🎯 SEO Optimization"
-        name: "seo"
-        widget: "object"
-        collapsed: true
-        fields:
-          - { label: "Focus Keyword", name: "focusKeyword", widget: "string", required: false, hint: "Primary keyword to rank for" }
-          - label: "Search Intent"
-            name: "searchIntent"
-            widget: "select"
-            options: ["Informational", "Commercial", "Transactional", "Navigational"]
-            required: false
-            hint: "What is the user looking for?"
-          - { label: "Meta Title Override", name: "metaTitle", widget: "string", required: false, hint: "Custom title for search results (leave blank to use post title)" }
-          - { label: "Meta Description Override", name: "metaDescription", widget: "text", required: false, hint: "Custom description for search results" }
-          - { label: "Canonical URL", name: "canonical", widget: "string", required: false, hint: "Prevent duplicate content issues" }
-          - { label: "Target Keywords", name: "targetKeywords", widget: "list", required: false, hint: "Additional keywords to target" }
-          - { label: "Internal Links", name: "internalLinks", widget: "list", required: false, hint: "Related posts to link to" }
-      
-      # ============================================
-      # CONTENT STRATEGY
-      # ============================================
-      - label: "📊 Content Strategy"
-        name: "strategy"
-        widget: "object"
-        collapsed: true
-        fields:
-          - label: "Content Type"
-            name: "contentType"
-            widget: "select"
-            options: ["Tutorial", "Guide", "Listicle", "Case Study", "Review", "News", "Opinion"]
-            required: false
-          - { label: "Evergreen Content", name: "evergreen", widget: "boolean", default: false, hint: "Content that remains relevant over time" }
-          - { label: "Seasonal Content", name: "seasonal", widget: "boolean", default: false, hint: "Time-sensitive or seasonal content" }
-          - { label: "Content Theme", name: "theme", widget: "string", required: false, hint: "Monthly theme or campaign" }
-          - { label: "Related Event", name: "event", widget: "string", required: false, hint: "Holiday, season, or special event" }
-          - label: "Priority Level"
-            name: "priority"
-            widget: "select"
-            options: ["Low", "Medium", "High", "Urgent"]
-            default: "Medium"
-            required: false
-      
-      # ============================================
-      # CONTENT SERIES
-      # ============================================
-      - label: "📚 Content Series"
-        name: "series"
-        widget: "object"
-        collapsed: true
+      - label: "Primary Category"
+        name: "category"
+        widget: "select"
         required: false
-        fields:
-          - { label: "Series Name", name: "name", widget: "string", required: false, hint: "Name of the series this post belongs to" }
-          - { label: "Part Number", name: "part", widget: "number", required: false, min: 1 }
-          - { label: "Total Parts", name: "total", widget: "number", required: false, min: 1 }
-          - { label: "Series Description", name: "description", widget: "text", required: false }
+        hint: "Select the main category for this post"
+        options:
+          - { label: "📱 Social Media Marketing", value: "social-media" }
+          - { label: "✍️ Content Creation", value: "content-creation" }
+          - { label: "🎯 SEO & Analytics", value: "seo" }
+          - { label: "📊 Digital Strategy", value: "strategy" }
+          - { label: "🛠️ Tools & Automation", value: "tools" }
+          - { label: "🚀 Growth Hacking", value: "growth" }
+      - { label: "Tags", name: "tags", widget: "list", default: ["post"], hint: "Add relevant tags for categorization" }
+      - { label: "Content Hub", name: "hub", widget: "relation", collection: "hubs", search_fields: ["title"], value_field: "hubCollection", display_fields: ["title"], required: false, hint: "Assign to a content hub (e.g., TikTok, Instagram)" }
+      - { label: "Featured Post", name: "featured", widget: "boolean", default: false, required: false, hint: "Show this post in featured sections" }
       
       # ============================================
-      # REPURPOSING TRACKER
+      # SEO FIELDS
       # ============================================
-      - label: "🔄 Content Repurposing"
-        name: "repurposing"
-        widget: "object"
-        collapsed: true
-        required: false
-        fields:
-          - { label: "YouTube Video URL", name: "youtube", widget: "string", required: false, pattern: ['^https?://(www\\.)?youtube\\.com.*|^https?://(www\\.)?youtu\\.be.*', 'Must be a valid YouTube URL'] }
-          - { label: "TikTok Profile/Hashtag", name: "tiktok", widget: "string", required: false }
-          - { label: "Instagram Post URL", name: "instagram", widget: "string", required: false, pattern: ['^https?://(www\\.)?instagram\\.com.*', 'Must be a valid Instagram URL'] }
-          - { label: "Twitter Thread URL", name: "twitter", widget: "string", required: false, pattern: ['^https?://(www\\.)?twitter\\.com.*|^https?://(www\\.)?x\\.com.*', 'Must be a valid Twitter/X URL'] }
-          - { label: "Email Newsletter", name: "email", widget: "boolean", default: false }
-          - { label: "Podcast Episode URL", name: "podcast", widget: "string", required: false }
-          - { label: "LinkedIn Post URL", name: "linkedin", widget: "string", required: false }
-          - { label: "Repurposing Notes", name: "notes", widget: "text", required: false, hint: "Track repurposing ideas and status" }
-      
-      # ============================================
-      # PERFORMANCE TRACKING
-      # ============================================
-      - label: "📈 Performance Metrics"
-        name: "performance"
-        widget: "object"
-        collapsed: true
-        required: false
-        fields:
-          - { label: "Performance Score", name: "score", widget: "number", min: 0, max: 100, required: false, hint: "0-100 based on analytics (auto-updated)" }
-          - { label: "Page Views (Monthly)", name: "pageViews", widget: "number", required: false }
-          - { label: "Avg. Time on Page (seconds)", name: "avgTime", widget: "number", required: false }
-          - { label: "Bounce Rate (%)", name: "bounceRate", widget: "number", min: 0, max: 100, required: false }
-          - { label: "Conversion Rate (%)", name: "conversionRate", widget: "number", min: 0, max: 100, required: false }
-          - { label: "Social Shares", name: "socialShares", widget: "number", required: false }
-          - { label: "Competitor Analysis Notes", name: "competitorNotes", widget: "text", required: false }
-      
-      # ============================================
-      # READING TIME (Auto-calculated)
-      # ============================================
-      - { label: "Reading Time (min)", name: "readingTime", widget: "number", required: false, hint: "Auto-calculated by build script" }
+      - { label: "Keywords", name: "keywords", widget: "string", required: false, hint: "Comma-separated keywords for SEO", i18n: true }
+      - { label: "Schema Type", name: "schema_type", widget: "string", default: "Article", required: false }
+      - { label: "OG Type", name: "og_type", widget: "string", default: "article", required: false }
       
       # ============================================
       # MAIN CONTENT
       # ============================================
-      - { label: "✍️ Content", name: "body", widget: "markdown", hint: "Write your blog post content here" }
+      - { label: "✍️ Content", name: "body", widget: "markdown", hint: "Write your blog post content here", i18n: true }
 
   # ============================================
   # CONTENT HUBS
