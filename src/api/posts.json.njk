@@ -11,7 +11,7 @@ eleventyExcludeFromCollections: true
       "description": "{{ post.data.description | replace('"', '\\"') | default('') }}",
       "date": "{{ post.date | date('YYYY-MM-DD') }}",
       "author": "{{ post.data.author | default('EvolvedLotus Team') }}",
-      "tags": {{ post.data.tags | default([]) | dump }},
+      "tags": {{ post.data.tags | default([]) | dump | safe }},
       "category": "{{ post.data.category | default('') }}",
       "featured": {{ post.data.featured | default(false) }},
       "image": "{{ post.data.image | default('') }}",
@@ -39,8 +39,8 @@ eleventyExcludeFromCollections: true
       "name": "{{ author.data.name | replace('"', '\\"') }}",
       "bio": "{{ author.data.bio | replace('"', '\\"') | default('') }}",
       "role": "{{ author.data.role | default('Content Creator') }}",
-      "expertise": {{ author.data.expertise | default([]) | dump }},
-      "social": {{ author.data.social | default({}) | dump }},
+      "expertise": {{ author.data.expertise | default([]) | dump | safe }},
+      "social": {{ author.data.social | default({}) | dump | safe }},
       "avatar": "{{ author.data.avatar | default('') }}",
       "url": "{{ author.url }}"
     }{% if not loop.last %},{% endif %}
@@ -65,7 +65,7 @@ eleventyExcludeFromCollections: true
       "description": "{{ notification.data.description | replace('"', '\\"') | default('') }}",
       "date": "{{ notification.date | date('YYYY-MM-DD') }}",
       "link": "{{ notification.data.link | default('') }}",
-      "tags": {{ notification.data.tags | default([]) | dump }}
+      "tags": {{ notification.data.tags | default([]) | dump | safe }}
     }{% if not loop.last %},{% endif %}
     {% endfor %}
   ],
