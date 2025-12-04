@@ -15,46 +15,57 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
 
   <style>
     /* ============================================
-       MODERN CMS DESIGN SYSTEM
+       SLEEK LIGHT CMS DESIGN SYSTEM
        ============================================ */
 
     :root {
-      /* Brand Colors */
-      --brand-primary: #33bdef;
-      --brand-primary-dark: #019ad2;
-      --brand-primary-light: #e8f7fc;
+      /* Brand Colors - Refined for Light Mode */
+      --brand-primary: #0ea5e9;
+      /* Sky 500 */
+      --brand-primary-hover: #0284c7;
+      /* Sky 600 */
+      --brand-primary-light: #e0f2fe;
+      /* Sky 100 */
+      --brand-accent: #6366f1;
+      /* Indigo 500 */
 
-      /* Neutrals */
-      --neutral-50: #f8fafc;
-      --neutral-100: #f1f5f9;
-      --neutral-200: #e2e8f0;
-      --neutral-300: #cbd5e1;
-      --neutral-400: #94a3b8;
-      --neutral-500: #64748b;
-      --neutral-600: #475569;
-      --neutral-700: #334155;
-      --neutral-800: #1e293b;
-      --neutral-900: #0f172a;
+      /* Neutrals - Clean & Crisp */
+      --bg-app: #f1f5f9;
+      /* Slate 100 */
+      --bg-panel: #ffffff;
+      --bg-sidebar: #ffffff;
+
+      --text-main: #0f172a;
+      /* Slate 900 */
+      --text-secondary: #475569;
+      /* Slate 600 */
+      --text-muted: #94a3b8;
+      /* Slate 400 */
+
+      --border-light: #e2e8f0;
+      /* Slate 200 */
+      --border-medium: #cbd5e1;
+      /* Slate 300 */
 
       /* Semantic Colors */
       --success: #10b981;
-      --success-light: #d1fae5;
+      --success-bg: #d1fae5;
       --warning: #f59e0b;
-      --warning-light: #fef3c7;
+      --warning-bg: #fef3c7;
       --error: #ef4444;
-      --error-light: #fee2e2;
-      --info: #3b82f6;
-      --info-light: #dbeafe;
+      --error-bg: #fee2e2;
 
-      /* Shadows */
+      /* Shadows - Soft & Modern */
       --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-      --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.025);
+      --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.02);
 
       /* Spacing */
       --spacing-xs: 0.25rem;
@@ -62,20 +73,20 @@
       --spacing-md: 1rem;
       --spacing-lg: 1.5rem;
       --spacing-xl: 2rem;
-      --spacing-2xl: 3rem;
 
-      /* Border Radius */
-      --radius-sm: 4px;
-      --radius-md: 6px;
-      --radius-lg: 8px;
-      --radius-xl: 12px;
+      /* Radius */
+      --radius-sm: 6px;
+      --radius-md: 8px;
+      --radius-lg: 12px;
+      --radius-xl: 16px;
 
       /* Typography */
-      --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --font-heading: 'Outfit', sans-serif;
+      --font-body: 'Inter', sans-serif;
     }
 
     /* ============================================
-       GLOBAL RESETS & BASE STYLES
+       GLOBAL RESETS
        ============================================ */
 
     * {
@@ -83,371 +94,226 @@
     }
 
     body {
-      font-family: var(--font-family) !important;
-      background: var(--neutral-50) !important;
-      color: var(--neutral-900) !important;
+      font-family: var(--font-body) !important;
+      background: var(--bg-app) !important;
+      color: var(--text-main) !important;
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-family: var(--font-heading) !important;
+      font-weight: 600 !important;
+      letter-spacing: -0.02em;
     }
 
     /* ============================================
-       SIDEBAR CUSTOMIZATION
+       SIDEBAR - Light & Clean
        ============================================ */
 
-    /* Sidebar Container */
-    [class*="SidebarContainer"],
-    [class*="AppHeaderContent"] {
-      background: linear-gradient(180deg, var(--neutral-800) 0%, var(--neutral-900) 100%) !important;
-      border-right: 1px solid var(--neutral-700) !important;
+    [class*="SidebarContainer"] {
+      background: var(--bg-sidebar) !important;
+      border-right: 1px solid var(--border-light) !important;
+      box-shadow: var(--shadow-sm) !important;
     }
 
-    /* Sidebar Navigation Links */
+    [class*="SidebarBrand"] {
+      color: var(--brand-primary) !important;
+      font-family: var(--font-heading) !important;
+      font-weight: 700 !important;
+    }
+
     [class*="SidebarNavLink"] {
-      border-left: 3px solid transparent !important;
-      margin: var(--spacing-xs) var(--spacing-sm) !important;
+      color: var(--text-secondary) !important;
       border-radius: var(--radius-md) !important;
+      margin: 4px 12px !important;
+      padding: 10px 16px !important;
       transition: all 0.2s ease !important;
+      border-left: none !important;
       font-weight: 500 !important;
-      padding: var(--spacing-sm) var(--spacing-md) !important;
     }
 
     [class*="SidebarNavLink"]:hover {
-      background: rgba(255, 255, 255, 0.08) !important;
-      transform: translateX(2px);
+      background: var(--brand-primary-light) !important;
+      color: var(--brand-primary) !important;
+      transform: translateX(4px);
     }
 
     [class*="SidebarNavLink"].active,
     [class*="SidebarNavLink"][class*="active"] {
-      background: rgba(51, 189, 239, 0.15) !important;
-      border-left-color: var(--brand-primary) !important;
-      color: var(--brand-primary) !important;
+      background: var(--brand-primary) !important;
+      color: white !important;
+      box-shadow: var(--shadow-md) !important;
     }
 
-    /* Sidebar Icons */
     [class*="SidebarNavLink"] svg {
-      opacity: 0.8;
-      transition: opacity 0.2s ease;
-    }
-
-    [class*="SidebarNavLink"]:hover svg,
-    [class*="SidebarNavLink"].active svg {
-      opacity: 1;
+      fill: currentColor !important;
     }
 
     /* ============================================
-       HEADER CUSTOMIZATION
+       HEADER
        ============================================ */
 
     [class*="AppHeader"] {
-      background: white !important;
-      border-bottom: 1px solid var(--neutral-200) !important;
+      background: rgba(255, 255, 255, 0.9) !important;
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border-light) !important;
       box-shadow: var(--shadow-sm) !important;
+      position: sticky !important;
+      top: 0;
+      z-index: 100;
     }
 
     [class*="AppHeaderButton"] {
-      border-radius: var(--radius-md) !important;
+      background: transparent !important;
+      color: var(--text-secondary) !important;
       font-weight: 600 !important;
-      transition: all 0.2s ease !important;
     }
 
     [class*="AppHeaderButton"]:hover {
-      transform: translateY(-1px);
-      box-shadow: var(--shadow-md) !important;
+      color: var(--brand-primary) !important;
+      background: var(--brand-primary-light) !important;
     }
 
     /* ============================================
-       BUTTON CUSTOMIZATION
+       MAIN CONTENT AREA
        ============================================ */
 
-    button[class*="Button"],
-    [class*="StyledButton"] {
-      border-radius: var(--radius-md) !important;
-      font-weight: 600 !important;
-      transition: all 0.2s ease !important;
-      font-family: var(--font-family) !important;
-      padding: var(--spacing-sm) var(--spacing-lg) !important;
-    }
-
-    button[class*="Button"]:hover,
-    [class*="StyledButton"]:hover {
-      transform: translateY(-1px);
-      box-shadow: var(--shadow-md) !important;
-    }
-
-    /* Primary Button */
-    button[class*="Button"][class*="primary"],
-    [class*="StyledButton"][class*="primary"] {
-      background: linear-gradient(135deg, var(--brand-primary) 0%, var(--brand-primary-dark) 100%) !important;
-      border: none !important;
-    }
-
-    /* Secondary Button */
-    button[class*="Button"][class*="secondary"] {
-      background: var(--neutral-100) !important;
-      color: var(--neutral-700) !important;
-      border: 1px solid var(--neutral-300) !important;
-    }
-
-    button[class*="Button"][class*="secondary"]:hover {
-      background: var(--neutral-200) !important;
-    }
-
-    /* ============================================
-       CARD & PANEL CUSTOMIZATION
-       ============================================ */
-
-    [class*="Card"],
-    [class*="Panel"],
-    [class*="CollectionCard"] {
-      background: white !important;
+    [class*="CollectionTop"] {
+      background: var(--bg-panel) !important;
       border-radius: var(--radius-lg) !important;
-      box-shadow: var(--shadow-md) !important;
-      border: 1px solid var(--neutral-200) !important;
-      transition: all 0.2s ease !important;
+      border: 1px solid var(--border-light) !important;
+      box-shadow: var(--shadow-sm) !important;
+      margin-bottom: var(--spacing-lg) !important;
+      padding: var(--spacing-lg) !important;
     }
 
-    [class*="Card"]:hover,
-    [class*="CollectionCard"]:hover {
+    [class*="CollectionTop"] h1 {
+      color: var(--text-main) !important;
+      font-size: 1.75rem !important;
+    }
+
+    /* Cards (Entries) */
+    [class*="EntryCard"] {
+      background: var(--bg-panel) !important;
+      border: 1px solid var(--border-light) !important;
+      border-radius: var(--radius-lg) !important;
+      box-shadow: var(--shadow-sm) !important;
+      transition: all 0.2s ease !important;
+      margin-bottom: var(--spacing-md) !important;
+    }
+
+    [class*="EntryCard"]:hover {
+      border-color: var(--brand-primary) !important;
       box-shadow: var(--shadow-lg) !important;
       transform: translateY(-2px);
     }
 
+    [class*="Card"] {
+      background: var(--bg-panel) !important;
+      border-radius: var(--radius-lg) !important;
+      box-shadow: var(--shadow-md) !important;
+    }
+
     /* ============================================
-       FORM FIELD CUSTOMIZATION
+       BUTTONS
        ============================================ */
 
-    /* Input Fields */
-    input[type="text"],
-    input[type="email"],
-    input[type="url"],
-    input[type="number"],
-    input[type="date"],
-    input[type="datetime-local"],
+    button,
+    [class*="Button"] {
+      border-radius: var(--radius-md) !important;
+      font-family: var(--font-heading) !important;
+      font-weight: 600 !important;
+      letter-spacing: 0.01em !important;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+      text-transform: none !important;
+    }
+
+    /* Primary Actions */
+    [class*="Button"][class*="primary"],
+    button[class*="primary"] {
+      background: var(--brand-primary) !important;
+      color: white !important;
+      border: none !important;
+      box-shadow: 0 4px 6px -1px rgba(14, 165, 233, 0.3) !important;
+    }
+
+    [class*="Button"][class*="primary"]:hover {
+      background: var(--brand-primary-hover) !important;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 8px -1px rgba(14, 165, 233, 0.4) !important;
+    }
+
+    /* Secondary Actions */
+    [class*="Button"][class*="gray"],
+    [class*="Button"][class*="secondary"] {
+      background: white !important;
+      border: 1px solid var(--border-medium) !important;
+      color: var(--text-secondary) !important;
+    }
+
+    [class*="Button"][class*="gray"]:hover {
+      border-color: var(--text-secondary) !important;
+      background: var(--neutral-50) !important;
+    }
+
+    /* ============================================
+       FORMS & INPUTS
+       ============================================ */
+
+    input,
     textarea,
     select,
-    [class*="Input"],
-    [class*="TextArea"] {
-      border-radius: var(--radius-md) !important;
-      border: 1px solid var(--neutral-300) !important;
-      padding: var(--spacing-sm) var(--spacing-md) !important;
-      font-family: var(--font-family) !important;
-      transition: all 0.2s ease !important;
+    [class*="Control"] {
       background: white !important;
+      border: 1px solid var(--border-medium) !important;
+      border-radius: var(--radius-md) !important;
+      color: var(--text-main) !important;
+      font-family: var(--font-body) !important;
+      padding: 10px 14px !important;
+      transition: all 0.2s ease !important;
     }
 
     input:focus,
     textarea:focus,
-    select:focus,
-    [class*="Input"]:focus,
-    [class*="TextArea"]:focus {
+    select:focus {
+      border-color: var(--brand-primary) !important;
+      box-shadow: 0 0 0 3px var(--brand-primary-light) !important;
       outline: none !important;
-      border-color: var(--brand-primary) !important;
-      box-shadow: 0 0 0 3px var(--brand-primary-light) !important;
     }
 
-    /* Field Labels */
-    label,
-    [class*="FieldLabel"] {
+    label {
+      color: var(--text-secondary) !important;
       font-weight: 600 !important;
-      color: var(--neutral-700) !important;
-      margin-bottom: var(--spacing-xs) !important;
-      font-size: 0.875rem !important;
+      font-size: 0.9rem !important;
+      margin-bottom: 6px !important;
     }
 
-    /* Field Hints */
-    [class*="FieldHint"],
-    [class*="hint"] {
-      color: var(--neutral-500) !important;
-      font-size: 0.8125rem !important;
-      font-style: italic;
-      margin-top: var(--spacing-xs) !important;
-    }
-
-    /* ============================================
-       EDITOR CUSTOMIZATION
-       ============================================ */
-
-    [class*="EditorContainer"],
-    [class*="EditorControl"] {
-      background: white !important;
-      border-radius: var(--radius-lg) !important;
-      box-shadow: var(--shadow-md) !important;
-    }
-
+    /* Editor Toolbar */
     [class*="EditorToolbar"] {
-      background: var(--neutral-50) !important;
-      border-bottom: 1px solid var(--neutral-200) !important;
-      border-radius: var(--radius-lg) var(--radius-lg) 0 0 !important;
-      padding: var(--spacing-sm) !important;
-    }
-
-    [class*="EditorToolbar"] button {
-      border-radius: var(--radius-sm) !important;
-      transition: all 0.2s ease !important;
-    }
-
-    [class*="EditorToolbar"] button:hover {
-      background: var(--neutral-200) !important;
-    }
-
-    /* Markdown Editor */
-    [class*="MarkdownControl"] {
-      font-family: 'Monaco', 'Menlo', 'Consolas', monospace !important;
-      line-height: 1.8 !important;
-    }
-
-    /* ============================================
-       COLLECTION VIEW CUSTOMIZATION
-       ============================================ */
-
-    [class*="CollectionTop"] {
-      background: white !important;
-      border-radius: var(--radius-lg) !important;
-      padding: var(--spacing-lg) !important;
-      margin-bottom: var(--spacing-lg) !important;
-      box-shadow: var(--shadow-sm) !important;
-    }
-
-    [class*="CollectionControls"] {
-      gap: var(--spacing-md) !important;
-    }
-
-    /* Search Bar */
-    [class*="SearchInput"] {
-      border-radius: var(--radius-lg) !important;
-      padding: var(--spacing-sm) var(--spacing-lg) !important;
-      border: 2px solid var(--neutral-200) !important;
-    }
-
-    [class*="SearchInput"]:focus {
-      border-color: var(--brand-primary) !important;
-      box-shadow: 0 0 0 3px var(--brand-primary-light) !important;
-    }
-
-    /* ============================================
-       ENTRY CARD CUSTOMIZATION
-       ============================================ */
-
-    [class*="EntryCard"] {
-      background: white !important;
-      border-radius: var(--radius-lg) !important;
-      border: 1px solid var(--neutral-200) !important;
-      padding: var(--spacing-lg) !important;
-      margin-bottom: var(--spacing-md) !important;
-      transition: all 0.2s ease !important;
-    }
-
-    [class*="EntryCard"]:hover {
-      box-shadow: var(--shadow-lg) !important;
-      border-color: var(--brand-primary) !important;
-      transform: translateY(-2px);
-    }
-
-    /* ============================================
-       WIDGET CUSTOMIZATION
-       ============================================ */
-
-    /* Object Widget */
-    [class*="ObjectControl"] {
-      border: 1px solid var(--neutral-200) !important;
-      border-radius: var(--radius-lg) !important;
-      padding: var(--spacing-lg) !important;
-      background: var(--neutral-50) !important;
-      margin-bottom: var(--spacing-md) !important;
-    }
-
-    /* List Widget */
-    [class*="ListControl"] {
-      border: 1px solid var(--neutral-200) !important;
-      border-radius: var(--radius-lg) !important;
-      padding: var(--spacing-md) !important;
-    }
-
-    [class*="ListItem"] {
-      background: white !important;
-      border-radius: var(--radius-md) !important;
-      margin-bottom: var(--spacing-sm) !important;
-      padding: var(--spacing-sm) !important;
-      border: 1px solid var(--neutral-200) !important;
+      background: var(--bg-app) !important;
+      border-bottom: 1px solid var(--border-light) !important;
     }
 
     /* ============================================
        STATUS BADGES
        ============================================ */
 
-    [class*="Badge"],
     [class*="StatusBadge"] {
-      border-radius: var(--radius-lg) !important;
-      padding: var(--spacing-xs) var(--spacing-md) !important;
+      border-radius: 20px !important;
       font-weight: 600 !important;
+      padding: 4px 12px !important;
       font-size: 0.75rem !important;
       text-transform: uppercase;
-      letter-spacing: 0.5px;
     }
 
     /* ============================================
-       TOAST NOTIFICATIONS
-       ============================================ */
-
-    [class*="Toast"],
-    [class*="Notification"] {
-      border-radius: var(--radius-lg) !important;
-      box-shadow: var(--shadow-xl) !important;
-      padding: var(--spacing-lg) !important;
-      font-weight: 500 !important;
-    }
-
-    [class*="Toast"][class*="success"] {
-      background: var(--success-light) !important;
-      border-left: 4px solid var(--success) !important;
-    }
-
-    [class*="Toast"][class*="error"] {
-      background: var(--error-light) !important;
-      border-left: 4px solid var(--error) !important;
-    }
-
-    [class*="Toast"][class*="info"] {
-      background: var(--info-light) !important;
-      border-left: 4px solid var(--info) !important;
-    }
-
-    /* ============================================
-       LOADING STATES
-       ============================================ */
-
-    [class*="Loader"],
-    [class*="Spinner"] {
-      color: var(--brand-primary) !important;
-    }
-
-    /* ============================================
-       SCROLLBAR CUSTOMIZATION
-       ============================================ */
-
-    ::-webkit-scrollbar {
-      width: 10px;
-      height: 10px;
-    }
-
-    ::-webkit-scrollbar-track {
-      background: var(--neutral-100);
-      border-radius: var(--radius-md);
-    }
-
-    ::-webkit-scrollbar-thumb {
-      background: var(--neutral-300);
-      border-radius: var(--radius-md);
-      transition: background 0.2s ease;
-    }
-
-    ::-webkit-scrollbar-thumb:hover {
-      background: var(--neutral-400);
-    }
-
-    /* ============================================
-       FOOTER NAVIGATION
+       FOOTER NAV
        ============================================ */
 
     .cms-footer {
@@ -455,79 +321,65 @@
       bottom: 0;
       left: 0;
       right: 0;
-      background: white;
-      padding: var(--spacing-md) var(--spacing-lg);
-      border-top: 1px solid var(--neutral-200);
-      box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 12px 24px;
+      border-top: 1px solid var(--border-light);
+      box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.05);
       z-index: 1000;
       display: flex;
       justify-content: center;
       align-items: center;
-      flex-wrap: wrap;
-      gap: var(--spacing-md);
+      gap: 24px;
     }
 
     .cms-footer a {
-      color: var(--neutral-600);
+      color: var(--text-secondary);
       text-decoration: none;
-      font-size: 0.875rem;
+      font-size: 0.85rem;
       font-weight: 500;
-      padding: var(--spacing-xs) var(--spacing-sm);
-      border-radius: var(--radius-sm);
+      padding: 6px 12px;
+      border-radius: 20px;
+      background: transparent;
       transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 6px;
     }
 
     .cms-footer a:hover {
-      color: var(--brand-primary);
       background: var(--brand-primary-light);
+      color: var(--brand-primary);
+      transform: translateY(-1px);
     }
 
     .cms-footer-divider {
-      width: 1px;
-      height: 16px;
-      background: var(--neutral-300);
+      width: 4px;
+      height: 4px;
+      background: var(--border-medium);
+      border-radius: 50%;
     }
 
     /* ============================================
-       RESPONSIVE DESIGN
+       CUSTOM SCROLLBAR
        ============================================ */
 
-    @media (max-width: 768px) {
-      .cms-footer {
-        padding: var(--spacing-sm);
-        gap: var(--spacing-sm);
-      }
-
-      .cms-footer a {
-        font-size: 0.75rem;
-        padding: var(--spacing-xs);
-      }
-
-      .cms-footer-divider {
-        display: none;
-      }
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
     }
 
-    /* ============================================
-       ANIMATIONS
-       ============================================ */
-
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(10px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    ::-webkit-scrollbar-track {
+      background: transparent;
     }
 
-    [class*="Card"],
-    [class*="EntryCard"],
-    [class*="CollectionCard"] {
-      animation: fadeIn 0.3s ease;
+    ::-webkit-scrollbar-thumb {
+      background: var(--border-medium);
+      border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--text-muted);
     }
   </style>
 </head>
@@ -539,17 +391,21 @@
   <!-- Register Preview Styles -->
   <script>
     CMS.registerPreviewStyle("/style.css");
-    CMS.registerPreviewStyle("/enhancements.css");
-    CMS.registerPreviewStyle("/ux-enhancements.css");
 
-    // Custom Preview Template (Optional - can be expanded)
+    // Custom Preview Template for Blog Posts
     CMS.registerPreviewTemplate("blog", ({ entry, widgetFor }) => {
       const data = entry.getIn(['data']).toJS();
+      const title = data.basic_info?.title || data.title || 'Untitled';
+      const date = data.basic_info?.date ? new Date(data.basic_info.date).toLocaleDateString() : 'No date';
+
       return `
-        <div style="max-width: 800px; margin: 0 auto; padding: 2rem; font-family: Inter, sans-serif;">
-          <h1 style="font-size: 2.5rem; margin-bottom: 1rem; color: #1e293b;">${data.basic_info?.title || data.title}</h1>
-          <p style="color: #64748b; font-size: 1.125rem; margin-bottom: 2rem;">${data.basic_info?.description || data.description}</p>
-          <div style="color: #334155; line-height: 1.8;">
+        <div style="max-width: 800px; margin: 40px auto; padding: 0 20px; font-family: 'Inter', sans-serif; color: #0f172a;">
+          <header style="margin-bottom: 40px; text-align: center;">
+            <div style="font-size: 0.9rem; color: #64748b; margin-bottom: 1rem;">${date}</div>
+            <h1 style="font-size: 3rem; font-weight: 700; line-height: 1.2; margin-bottom: 1.5rem; letter-spacing: -0.02em;">${title}</h1>
+            ${data.media?.image ? `<img src="${data.media.image}" style="width: 100%; height: auto; border-radius: 12px; box-shadow: 0 10px 30px -10px rgba(0,0,0,0.1);" />` : ''}
+          </header>
+          <div style="font-size: 1.125rem; line-height: 1.8; color: #334155;">
             ${widgetFor('body')}
           </div>
         </div>
@@ -559,21 +415,18 @@
 
   <!-- Footer Navigation -->
   <div class="cms-footer">
-    <a href="/" aria-label="Return to homepage">🏠 Homepage</a>
+    <a href="/" target="_blank">🏠 Home</a>
     <span class="cms-footer-divider"></span>
-    <a href="/blog/" aria-label="Browse all blog posts">📚 All Posts</a>
+    <a href="/blog/" target="_blank">📝 Blog</a>
     <span class="cms-footer-divider"></span>
-    <a href="/x-tiktok/" aria-label="TikTok content hub">🎵 TikTok</a>
+    <a href="/admin/#/collections/blog" onclick="event.preventDefault(); window.location.hash='#/collections/blog'">✍️
+      Write</a>
     <span class="cms-footer-divider"></span>
-    <a href="/x-instagram/" aria-label="Instagram content hub">📸 Instagram</a>
+    <a href="/admin/#/collections/pages" onclick="event.preventDefault(); window.location.hash='#/collections/pages'">📄
+      Pages</a>
     <span class="cms-footer-divider"></span>
-    <a href="/x-youtube/" aria-label="YouTube content hub">📹 YouTube</a>
-    <span class="cms-footer-divider"></span>
-    <a href="/x-twitter/" aria-label="Twitter content hub">🐦 Twitter</a>
-    <span class="cms-footer-divider"></span>
-    <a href="/about/" aria-label="About EvolvedLotus">ℹ️ About</a>
-    <span class="cms-footer-divider"></span>
-    <a href="/contact/" aria-label="Contact support">✉️ Contact</a>
+    <a href="/admin/#/collections/settings"
+      onclick="event.preventDefault(); window.location.hash='#/collections/settings'">⚙️ Settings</a>
   </div>
 </body>
 
