@@ -1,10 +1,10 @@
 {
-  "title": "EvolvedLotus Blog",
-  "description": "Social media strategies, content creation tips, and creator economy insights.",
-  "url": "https://blog.evolvedlotus.com",
+  "analytics": {
+    "googleAnalytics": "G-ZG7Y9WH396",
+    "facebookPixel": "FB_PIXEL_ID",
+    "hotjar": "HOTJAR_ID"
+  },
   "defaultAuthor": "EvolvedLotus",
-  "language": "en",
-  "timezone": "America/New_York",
   "social": {
     "twitter": "https://twitter.com/EvolvedLotus",
     "instagram": "https://instagram.com/EvolvedLotus",
@@ -12,16 +12,16 @@
     "tiktok": "https://tiktok.com/@EvolvedLotus",
     "linkedin": "https://linkedin.com/company/EvolvedLotus"
   },
-  "analytics": {
-    "googleAnalytics": "GA4_MEASUREMENT_ID",
-    "facebookPixel": "FB_PIXEL_ID",
-    "hotjar": "HOTJAR_ID"
-  },
+  "url": "https://blog.evolvedlotus.com",
   "performance": {
     "cdnUrl": "https://cdn.evolvedlotus.com",
     "imageOptimization": true,
     "criticalCss": true
   },
+  "title": "EvolvedLotus Blog",
+  "language": "en",
+  "timezone": "America/New_York",
+  "description": "Social media strategies, content creation tips, and creator economy insights.",
   "features": {
     "comments": false,
     "newsletter": true,
