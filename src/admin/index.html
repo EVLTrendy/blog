@@ -185,56 +185,8 @@
       `;
     });
 
-    // Manual Init to bypass config.yml caching issues
-    var config = {
-      backend: {
-        name: 'git-gateway',
-        branch: 'main',
-      },
-      publish_mode: 'simple',
-      media_folder: 'src/assets/blog',
-      public_folder: '/assets/blog',
-      collections: [
-        {
-          name: 'notifications',
-          label: 'Notifications',
-          folder: 'src/notifications',
-          create: true,
-          slug: '{{year}}-{{month}}-{{day}}-{{slug}}',
-          fields: [
-            { label: 'Title', name: 'title', widget: 'string' },
-            { label: 'Description', name: 'description', widget: 'text' },
-            { label: 'Link', name: 'link', widget: 'string', required: false },
-            { label: 'Date', name: 'date', widget: 'datetime' },
-            { label: 'Tags', name: 'tags', widget: 'hidden', default: 'notifications' }
-          ]
-        },
-        {
-          name: 'blog',
-          label: 'Blog',
-          folder: 'src/blog',
-          create: true,
-          slug: '{{year}}-{{month}}-{{day}}-{{slug}}',
-          fields: [
-            { label: 'Title', name: 'title', widget: 'string' },
-            { label: 'Description', name: 'description', widget: 'text' },
-            { label: 'Author', name: 'author', widget: 'string', default: 'EvolvedLotus Team' },
-            { label: 'Date', name: 'date', widget: 'datetime' },
-            { label: 'Tags', name: 'tags', widget: 'list', default: ['post'] },
-            { label: 'Featured Image', name: 'image', widget: 'image' },
-            { label: 'Image Alt Text', name: 'imageAlt', widget: 'string' },
-            { label: 'Keywords', name: 'keywords', widget: 'string', required: false },
-            { label: 'Category', name: 'category', widget: 'string', required: false },
-            { label: 'Featured', name: 'featured', widget: 'boolean', default: false, required: false },
-            { label: 'Schema Type', name: 'schema_type', widget: 'string', default: 'Article', required: false },
-            { label: 'OG Type', name: 'og_type', widget: 'string', default: 'article', required: false },
-            { label: 'Body', name: 'body', widget: 'markdown' }
-          ]
-        }
-      ]
-    };
-
-    CMS.init({ config: config, load_config_file: false });
+    // Initialize CMS - loads configuration from config.yml
+    CMS.init();
   </script>
 
   <!-- Footer Navigation -->
