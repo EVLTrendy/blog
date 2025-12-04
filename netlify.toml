@@ -39,7 +39,10 @@
         https://identity.netlify.com
         https://*.supabase.co
         https://region1.google-analytics.com
-        https://unpkg.com;
+        https://unpkg.com
+        https://www.netlifystatus.com
+        https://api.github.com
+        https://raw.githubusercontent.com;
       frame-src 'self' 
         https://www.google.com 
         https://googleads.g.doubleclick.net
