@@ -37,7 +37,7 @@ eleventyExcludeFromCollections: true
       "id": "{{ hub.fileSlug }}",
       "url": "{{ hub.url }}",
       "title": {{ hub.data.title | dump | safe }},
-      "platform": {{ hub.data.platform | dump | safe }},
+      "platform": {{ hub.data.platform | default("") | dump | safe }},
       "description": {{ hub.data.description | dump | safe }}
     }{% if not loop.last %},{% endif %}
     {%- endfor -%}
