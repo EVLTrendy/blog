@@ -1,0 +1,55 @@
+---
+permalink: /api/posts.json
+eleventyExcludeFromCollections: true
+---
+{
+  "stats": {
+    "totalBlogPosts": {{ collections.post | length }},
+    "totalHubs": {{ collections.hubs | length if collections.hubs else 0 }},
+    "totalAuthors": {{ collections.authors | length if collections.authors else 0 }},
+    "lastUpdated": "{{ "now" | date("yyyy-MM-dd HH:mm:ss") }}"
+  },
+  "blog": [
+    {%- for post in collections.post | reverse -%}
+    {
+      "id": "{{ post.fileSlug }}",
+      "url": "{{ post.url }}",
+      "title": {{ post.data.title | dump | safe }},
+      "description": {{ post.data.description | dump | safe }},
+      "date": "{{ post.date | date("yyyy-MM-dd") }}",
+      "author": {{ post.data.author | default("EvolvedLotus Team") | dump | safe }},
+      "tags": {{ post.data.tags | dump | safe }},
+      "category": {{ post.data.category | dump | safe }},
+      "featured": {{ post.data.featured | default(false) }},
+      "image": {{ post.data.image | dump | safe }},
+      "imageAlt": {{ post.data.imageAlt | dump | safe }},
+      "keywords": {{ post.data.keywords | dump | safe }},
+      "schema_type": {{ post.data.schema_type | default("Article") | dump | safe }},
+      "og_type": {{ post.data.og_type | default("article") | dump | safe }}
+    }{% if not loop.last %},{% endif %}
+    {%- endfor -%}
+  ],
+  "hubs": [
+    {%- for hub in collections.hubs -%}
+    {
+      "id": "{{ hub.fileSlug }}",
+      "url": "{{ hub.url }}",
+      "title": {{ hub.data.title | dump | safe }},
+      "platform": {{ hub.data.platform | dump | safe }},
+      "description": {{ hub.data.description | dump | safe }}
+    }{% if not loop.last %},{% endif %}
+    {%- endfor -%}
+  ],
+  "authors": [
+    {%- for author in collections.authors -%}
+    {
+      "id": "{{ author.fileSlug }}",
+      "url": "{{ author.url }}",
+      "name": {{ author.data.name | dump | safe }},
+      "role": {{ author.data.role | dump | safe }},
+      "bio": {{ author.data.bio | dump | safe }},
+      "expertise": {{ author.data.expertise | dump | safe }}
+    }{% if not loop.last %},{% endif %}
+    {%- endfor -%}
+  ]
+}

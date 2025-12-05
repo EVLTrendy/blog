@@ -1,0 +1,15 @@
+---
+permalink: /api/media.json
+eleventyExcludeFromCollections: true
+---
+{
+  "media": [
+    {%- for file in mediaFiles -%}
+    {
+      "name": "{{ file.name }}",
+      "path": "{{ file.path }}",
+      "size": {{ file.size }}
+    }{% if not loop.last %},{% endif %}
+    {%- endfor -%}
+  ]
+}

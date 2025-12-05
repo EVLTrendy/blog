@@ -23,7 +23,8 @@
       width: 260px;
       height: 100vh;
       background: #ffffff;
-      padding: 25px;
+      padding: 25px 35px 25px 25px;
+      /* Added right padding */
       overflow-y: auto;
       border-right: 1px solid #e1e4e8;
       box-shadow: 2px 0 5px rgba(0, 0, 0, 0.03);
@@ -31,10 +32,10 @@
     }
 
     .cms-main {
-      margin-left: 260px;
+      margin-left: 300px;
+      /* Increased to separate from sidebar */
       padding: 40px;
       max-width: 1600px;
-      /* Optimal reading width on ultra-wide, but fills 16:9 nicely */
       margin-right: auto;
     }
 
@@ -114,6 +115,15 @@
       margin-top: 15px;
       display: flex;
       gap: 10px;
+    }
+
+    .form-section {
+      display: none;
+      animation: fadeIn 0.3s;
+    }
+
+    .form-section.active {
+      display: block;
     }
 
     .btn {
@@ -222,7 +232,6 @@
 
     textarea {
       min-height: 400px;
-      /* Taller editor for writing posts */
       font-family: 'Consolas', 'Monaco', monospace;
       line-height: 1.6;
     }
@@ -333,16 +342,14 @@
         padding: 20px 10px;
       }
 
-      .cms-sidebar h3 {
-        display: none;
-      }
-
       .cms-nav-item {
         text-align: center;
         padding: 15px 5px;
         font-size: 1.5em;
-        /* Show only icons */
-        margin-bottom: 5px;
+      }
+
+      .cms-sidebar h3 {
+        display: none;
       }
 
       .cms-main {
@@ -371,16 +378,15 @@
       }
 
       .modal-content {
-        padding: 20px;
         width: 95%;
         margin: 10px auto;
+        padding: 20px;
       }
     }
   </style>
 </head>
 
 <body>
-  <!-- Sidebar Navigation -->
   <nav class="cms-sidebar">
     <h3>📊 Dashboard</h3>
     <a href="#" class="cms-nav-item active" onclick="showSection('overview')">Overview</a>
@@ -393,24 +399,22 @@
     <a href="#" class="cms-nav-item" onclick="showSection('analytics')">📈 Analytics</a>
   </nav>
 
-  <!-- Main Content -->
   <main class="cms-main">
-    <!-- Overview/Dashboard -->
     <section id="overview" class="content-section active">
       <h1>📊 Content Management Dashboard</h1>
       <p>Complete control over your EvolvedLotus blog and content</p>
 
       <div class="stats-grid">
         <div class="stat-card">
-          <div class="stat-number">70+</div>
+          <div class="stat-number">0</div>
           <div class="stat-label">Blog Posts</div>
         </div>
         <div class="stat-card">
-          <div class="stat-number">8</div>
+          <div class="stat-number">0</div>
           <div class="stat-label">Content Hubs</div>
         </div>
         <div class="stat-card">
-          <div class="stat-number">5</div>
+          <div class="stat-number">0</div>
           <div class="stat-label">Authors</div>
         </div>
         <div class="stat-card">
@@ -424,29 +428,10 @@
         <div class="activity-item">
           <span class="badge blog">Blog</span> Published "Mobile Photography Techniques for Better Content"
         </div>
-        <div class="activity-item">
-          <span class="badge hub">Hub</span> Updated TikTok marketing strategies
-        </div>
-        <div class="activity-item">
-          <span class="badge notification">Notification</span> Added new Twitter automation guide
-        </div>
-        <div class="activity-item">
-          <span class="badge author">Author</span> Marc C. published weekly Twitch report
-        </div>
-      </div>
-
-      <div style="background: #e8f5e8; border: 2px solid #4caf50; padding: 15px; border-radius: 8px; margin: 20px 0;">
-        <h3>✅ System Status: All Good!</h3>
-        <ul>
-          <li>✅ Content publishing system working</li>
-          <li>✅ Search functionality active</li>
-          <li>✅ RSS feeds generating</li>
-          <li>✅ Social media sharing enabled</li>
-        </ul>
+        <!-- Static placeholders for now, could be dynamic later -->
       </div>
     </section>
 
-    <!-- Blog Posts Management -->
     <section id="blog" class="content-section">
       <h1>📝 Blog Posts Management</h1>
       <div style="margin: 20px 0;">
@@ -454,32 +439,21 @@
         <button class="btn" onclick="refreshSection('blog')">🔄 Refresh</button>
       </div>
       <div id="blogList" class="content-list">
-        <p>Loading blog posts...</p>
+        <p>Loading...</p>
       </div>
     </section>
 
-    <!-- Content Hubs Management -->
     <section id="hubs" class="content-section">
       <h1>🔗 Content Hubs Management</h1>
-      <p>Manage platform-specific content strategies</p>
       <div style="margin: 20px 0;">
         <button class="btn primary" onclick="createNewContent('hub')">+ New Hub Content</button>
         <button class="btn" onclick="refreshSection('hubs')">🔄 Refresh</button>
       </div>
       <div id="hubsList" class="content-list">
-        <div class="content-item">
-          <h4>TikTok Marketing Hub</h4>
-          <div class="content-meta">Last updated: 2 days ago</div>
-          <div class="content-actions">
-            <button class="btn info">Edit Strategies</button>
-            <button class="btn success">View Hub</button>
-          </div>
-        </div>
-        <!-- More hub items would be loaded dynamically -->
+        <p>Loading...</p>
       </div>
     </section>
 
-    <!-- Authors Management -->
     <section id="authors" class="content-section">
       <h1>👥 Authors Management</h1>
       <div style="margin: 20px 0;">
@@ -487,18 +461,10 @@
         <button class="btn" onclick="refreshSection('authors')">🔄 Refresh</button>
       </div>
       <div id="authorsList" class="content-list">
-        <div class="content-item">
-          <h4>Marc C.</h4>
-          <div class="content-meta">Content Creator & Strategist</div>
-          <div class="content-actions">
-            <button class="btn info">Edit Profile</button>
-            <button class="btn" onclick="window.open('/authors/marc-c', '_blank')">View Profile</button>
-          </div>
-        </div>
+        <p>Loading...</p>
       </div>
     </section>
 
-    <!-- Notifications Management -->
     <section id="notifications" class="content-section">
       <h1>🔔 Notifications Management</h1>
       <div style="margin: 20px 0;">
@@ -506,18 +472,10 @@
         <button class="btn" onclick="refreshSection('notifications')">🔄 Refresh</button>
       </div>
       <div id="notificationsList" class="content-list">
-        <div class="content-item">
-          <h4>New Twitter Automation Guide Available</h4>
-          <div class="content-meta">Published: 2025-05-22</div>
-          <div class="content-actions">
-            <button class="btn warning">Edit</button>
-            <button class="btn success">View</button>
-          </div>
-        </div>
+        <p>Loading...</p>
       </div>
     </section>
 
-    <!-- Pages Management -->
     <section id="pages" class="content-section">
       <h1>📄 Pages Management</h1>
       <div style="margin: 20px 0;">
@@ -525,18 +483,10 @@
         <button class="btn" onclick="refreshSection('pages')">🔄 Refresh</button>
       </div>
       <div id="pagesList" class="content-list">
-        <div class="content-item">
-          <h4>About Page</h4>
-          <div class="content-meta">Status: Published</div>
-          <div class="content-actions">
-            <button class="btn info">Edit</button>
-            <button class="btn" onclick="window.open('/about', '_blank')">View</button>
-          </div>
-        </div>
+        <p>Loading...</p>
       </div>
     </section>
 
-    <!-- Media Management -->
     <section id="media" class="content-section">
       <h1>🖼️ Media Management</h1>
       <div style="margin: 20px 0;">
@@ -544,11 +494,10 @@
         <button class="btn" onclick="refreshSection('media')">🔄 Refresh</button>
       </div>
       <div id="mediaList" class="content-list">
-        <p>Media library would show all uploaded images and assets...</p>
+        <p>Loading...</p>
       </div>
     </section>
 
-    <!-- Analytics -->
     <section id="analytics" class="content-section">
       <h1>📈 Content Analytics</h1>
       <div class="stats-grid">
@@ -575,47 +524,39 @@
   <!-- Content Editor Modal -->
   <div id="editModal" class="modal">
     <div class="modal-content">
-      <h2 id="modalTitle">Content Editor</h2>
+      <div style="display:flex; justify-content:space-between; align-items:center;">
+        <h2 id="modalTitle" style="margin:0;">Content Editor</h2>
+        <button onclick="closeModal()"
+          style="background:none; border:none; font-size:1.5em; cursor:pointer;">&times;</button>
+      </div>
       <form id="contentForm">
-        <div class="form-row">
-          <label for="contentType">Content Type:</label>
-          <select id="contentType">
-            <option value="blog">Blog Post</option>
-            <option value="hub">Content Hub</option>
-            <option value="author">Author Profile</option>
-            <option value="notification">Notification</option>
-            <option value="page">Page</option>
-          </select>
-        </div>
+        <input type="hidden" id="contentType">
 
-        <div id="blogFields">
+        <!-- 📝 BLOG POST FIELDS -->
+        <div id="blogFields" class="form-section">
           <div class="form-row">
-            <label for="title">Title:</label>
-            <input type="text" id="title" required>
+            <label for="blogTitle">Post Title:</label>
+            <input type="text" id="blogTitle" placeholder="10 Tips for...">
           </div>
           <div class="form-row">
-            <label for="description">Description/Excerpt:</label>
-            <textarea id="description" rows="3" required></textarea>
+            <label for="blogDesc">Description (SEO):</label>
+            <textarea id="blogDesc" rows="2"></textarea>
           </div>
           <div class="form-row half">
-            <label for="date">Publish Date:</label>
-            <input type="datetime-local" id="date" required>
+            <label for="blogDate">Publish Date:</label>
+            <input type="datetime-local" id="blogDate" required>
           </div>
           <div class="form-row half">
-            <label for="author">Author:</label>
-            <input type="text" id="author" value="EvolvedLotus Team">
+            <label for="blogAuthor">Author:</label>
+            <input type="text" id="blogAuthor" value="EvolvedLotus Team">
           </div>
           <div class="form-row">
-            <label for="tags">Tags (comma-separated):</label>
-            <input type="text" id="tags" placeholder="content-creation, social-media, featured">
+            <label for="blogTags">Tags (comma-separated):</label>
+            <input type="text" id="blogTags" placeholder="marketing, guide, 2024">
           </div>
-          <div class="form-row">
-            <label for="image">Featured Image URL:</label>
-            <input type="url" id="image" placeholder="/assets/blog/your-image.jpg">
-          </div>
-          <div class="form-row">
-            <label for="category">Category:</label>
-            <select id="category">
+          <div class="form-row half">
+            <label for="blogCategory">Category:</label>
+            <select id="blogCategory">
               <option value="">Select Category</option>
               <option value="content-creation">Content Creation</option>
               <option value="social-media">Social Media</option>
@@ -624,21 +565,144 @@
               <option value="tools">Tools & Resources</option>
             </select>
           </div>
+          <div class="form-row half">
+            <label for="blogImage">Featured Image URL:</label>
+            <input type="text" id="blogImage" placeholder="/assets/blog/...">
+          </div>
           <div class="form-row">
-            <label><input type="checkbox" id="featured"> Featured Content</label>
+            <label><input type="checkbox" id="blogFeatured"> Featured</label>
+            <label style="margin-left:15px;"><input type="checkbox" id="blogDraft"> Draft</label>
+          </div>
+
+          <h4 style="border-bottom:1px solid #eee; padding-bottom:5px; margin-top:20px;">SEO Advanced</h4>
+          <div class="form-row"><input type="text" id="blogImageAlt" placeholder="Image Alt Text"></div>
+          <div class="form-row"><input type="text" id="blogKeywords" placeholder="Keywords (comma sep)"></div>
+          <div class="form-row half">
+            <select id="blogSchema">
+              <option value="Article">Article Schema</option>
+              <option value="BlogPosting">BlogPosting</option>
+            </select>
+          </div>
+          <div class="form-row half">
+            <select id="blogOg">
+              <option value="article">OG: Article</option>
+              <option value="website">OG: Website</option>
+            </select>
           </div>
         </div>
 
-        <div class="form-row">
-          <label for="content">Content (Markdown supported):</label>
-          <textarea id="content" required></textarea>
+        <!-- 🔗 HUB FIELDS -->
+        <div id="hubFields" class="form-section">
+          <div class="form-row">
+            <label for="hubTitle">Hub Title:</label>
+            <input type="text" id="hubTitle">
+          </div>
+          <div class="form-row">
+            <label for="hubDesc">Description:</label>
+            <textarea id="hubDesc" rows="3"></textarea>
+          </div>
+          <div class="form-row">
+            <label for="hubCollection">Hub Collection Strategy:</label>
+            <select id="hubCollection">
+              <option value="tiktok">TikTok (tiktok)</option>
+              <option value="instagram">Instagram (instagram)</option>
+              <option value="youtube">YouTube (youtube)</option>
+              <option value="ai">AI Tools (ai)</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <label for="hubPermalink">Permalink:</label>
+            <input type="text" id="hubPermalink" placeholder="/hubs/my-topic/">
+          </div>
+        </div>
+
+        <!-- 👥 AUTHOR FIELDS -->
+        <div id="authorFields" class="form-section">
+          <div class="form-row half">
+            <label for="authorName">Full Name:</label>
+            <input type="text" id="authorName">
+          </div>
+          <div class="form-row half">
+            <label for="authorRole">Role:</label>
+            <input type="text" id="authorRole">
+          </div>
+          <div class="form-row">
+            <label for="authorBio">Bio:</label>
+            <textarea id="authorBio" rows="3"></textarea>
+          </div>
+          <div class="form-row">
+            <label for="authorAvatar">Avatar URL:</label>
+            <input type="text" id="authorAvatar" placeholder="/assets/authors/name.png">
+          </div>
+          <div class="form-row">
+            <label>Social Media Links:</label>
+            <input type="url" id="authorTwitter" placeholder="Twitter URL" style="margin-bottom:5px;">
+            <input type="url" id="authorInsta" placeholder="Instagram URL" style="margin-bottom:5px;">
+            <input type="url" id="authorTiktok" placeholder="TikTok URL">
+          </div>
+          <div class="form-row">
+            <label for="authorExpertise">Expertise (One per line):</label>
+            <textarea id="authorExpertise" rows="4"></textarea>
+          </div>
+        </div>
+
+        <!-- 🔔 NOTIFICATION FIELDS -->
+        <div id="notificationFields" class="form-section">
+          <div class="form-row">
+            <label for="notifTitle">Title:</label>
+            <input type="text" id="notifTitle">
+          </div>
+          <div class="form-row">
+            <label for="notifDate">Date:</label>
+            <input type="date" id="notifDate">
+          </div>
+          <div class="form-row">
+            <label for="notifLink">Link (Optional):</label>
+            <input type="url" id="notifLink">
+          </div>
+          <div class="form-row">
+            <label for="notifTags">Tags:</label>
+            <input type="text" id="notifTags" value="notification" placeholder="notification, alert">
+          </div>
+        </div>
+
+        <!-- 📄 PAGE FIELDS -->
+        <div id="pageFields" class="form-section">
+          <div class="form-row">
+            <label for="pageTitle">Page Title:</label>
+            <input type="text" id="pageTitle">
+          </div>
+          <div class="form-row">
+            <label for="pageLayout">Layout:</label>
+            <input type="text" id="pageLayout" value="page.njk">
+          </div>
+          <div class="form-row">
+            <label for="pagePermalink">Permalink:</label>
+            <input type="text" id="pagePermalink" placeholder="/my-page/">
+          </div>
+        </div>
+
+        <!-- 🖼️ MEDIA FIELDS -->
+        <div id="mediaFields" class="form-section">
+          <div class="form-row">
+            <label>Select File to Upload:</label>
+            <div style="border: 2px dashed #ccc; padding: 40px; text-align:center; border-radius:8px; cursor:pointer;"
+              onclick="alert('Drag & drop simulated')">
+              <p>📂 Drag and drop files here or click to browse</p>
+              <small>(Static Demo - No backend upload service)</small>
+            </div>
+          </div>
+        </div>
+
+        <!-- COMMON CONTENT TEXTAREA (Shared by Blog, Hub, Page, Notif) -->
+        <div class="form-row" id="commonContentRow">
+          <label for="mainContent">Body Content (Markdown):</label>
+          <textarea id="mainContent" style="min-height:300px;"></textarea>
         </div>
 
         <div class="form-row">
-          <button type="submit" class="btn primary">Save Content</button>
+          <button type="submit" class="btn primary">Save & Copy Code</button>
           <button type="button" class="btn" onclick="closeModal()">Cancel</button>
-          <button type="button" id="deleteBtn" class="btn danger" style="display:none;"
-            onclick="deleteContent()">Delete</button>
         </div>
       </form>
     </div>
@@ -648,269 +712,248 @@
     let currentSection = 'overview';
     let contentData = {};
 
-    // Navigation
-    function showSection(sectionName) {
-      document.querySelectorAll('.content-section').forEach(section => {
-        section.classList.remove('active');
-      });
-      document.querySelectorAll('.cms-nav-item').forEach(item => {
-        item.classList.remove('active');
-      });
-
-      document.getElementById(sectionName).classList.add('active');
+    function showSection(name) {
+      document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
+      document.querySelectorAll('.cms-nav-item').forEach(i => i.classList.remove('active'));
+      document.getElementById(name).classList.add('active');
       event.target.classList.add('active');
-      currentSection = sectionName;
+      currentSection = name;
     }
 
-    // Initialize blog posts list
-    function refreshSection(section) {
-      // Simulate loading content - in real CMS this would fetch from backend
-      switch (section) {
-        case 'blog':
-          loadBlogPosts();
-          break;
-        case 'hubs':
-          loadHubContent();
-          break;
-        case 'authors':
-          loadAuthors();
-          break;
-        case 'notifications':
-          loadNotifications();
-          break;
-        case 'pages':
-          loadPages();
-          break;
-        case 'media':
-          loadMedia();
-          break;
-      }
+    function refreshSection(sec) {
+      if (sec === 'blog') loadBlogPosts();
+      if (sec === 'hubs') loadHubContent();
+      if (sec === 'authors') loadAuthors();
+      if (sec === 'notifications') loadNotifications();
+      if (sec === 'pages') loadPages();
+      if (sec === 'media') loadMedia();
     }
 
-    // Load content data from API
     async function loadContentData() {
       try {
-        const response = await fetch('/api/posts.json');
-        const data = await response.json();
+        const res = await fetch('/api/posts.json');
+        const data = await res.json();
         contentData = data;
-
-        // Update stats
         if (data.stats) {
-          const statNumbers = document.querySelectorAll('.stat-number');
-          if (statNumbers.length >= 3) {
-            statNumbers[0].textContent = data.stats.totalBlogPosts + '+';
-            statNumbers[1].textContent = data.stats.totalHubs;
-            statNumbers[2].textContent = data.stats.totalAuthors;
+          const stats = document.querySelectorAll('.stat-number');
+          if (stats.length >= 3) {
+            stats[0].textContent = data.stats.totalBlogPosts;
+            stats[1].textContent = data.stats.totalHubs;
+            stats[2].textContent = data.stats.totalAuthors;
           }
         }
-
         return data;
-      } catch (error) {
-        console.error('Error loading content data:', error);
-        return null;
-      }
+      } catch (e) { console.error(e); }
     }
 
-    function loadBlogPosts(posts = contentData.blog || []) {
-      let html = `<h3>📋 Your Blog Posts (${posts.length})</h3>`;
-      if (posts.length === 0) {
-        html += '<p>No blog posts found.</p>';
-      } else {
-        posts.forEach(post => {
-          const isFeatured = post.featured;
-          const tags = post.tags ? post.tags.slice(0, 3).join(', ') : '';
-          html += `
-            <div class="content-item">
-              <h4>${post.title} ${isFeatured ? '<span class="badge">FEATURED</span>' : ''}</h4>
-              <div class="content-meta">
-                Published: ${post.date} | Author: ${post.author}
-                ${post.category ? ` | Category: ${post.category}` : ''}
-                ${tags ? ` | Tags: ${tags}` : ''}
-              </div>
-              ${post.image ? `<div class="content-meta"><small>📸 Featured Image: ${post.image}</small></div>` : ''}
-              <div class="content-actions">
-                <button class="btn info" onclick="editContent('blog', '${post.id}')">Edit</button>
-                <button class="btn success" onclick="viewContent('${post.url}')">View Post</button>
-                <button class="btn warning" onclick="previewContent('${post.url}')">Preview</button>
-              </div>
-            </div>
-          `;
-        });
-      }
-      document.getElementById('blogList').innerHTML = html;
+    // loaders
+    function loadBlogPosts() {
+      const posts = contentData.blog || [];
+      document.getElementById('blogList').innerHTML = posts.length ? posts.map(p => `
+        <div class="content-item">
+          <h4>${p.title} ${p.featured ? '<span class="badge">FEATURED</span>' : ''}</h4>
+          <div class="content-meta">Published: ${p.date} | ${p.author}</div>
+          <div class="content-actions">
+            <button class="btn info" onclick="editContent('blog','${p.id}')">Edit</button>
+            <button class="btn success" onclick="viewContent('${p.url}')">View</button>
+          </div>
+        </div>`).join('') : '<p>No posts.</p>';
+    }
+    function loadHubContent() {
+      const hubs = contentData.hubs || [];
+      document.getElementById('hubsList').innerHTML = hubs.length ? hubs.map(h => `
+        <div class="content-item">
+          <h4>${h.title}</h4>
+          <div class="content-meta">${h.platform}</div>
+          <div class="content-actions"><button class="btn info" onclick="editContent('hub','${h.id}')">Edit</button></div>
+        </div>`).join('') : '<p>No hubs.</p>';
+    }
+    function loadAuthors() {
+      const auths = contentData.authors || [];
+      document.getElementById('authorsList').innerHTML = auths.length ? auths.map(a => `
+        <div class="content-item">
+          <h4>${a.name}</h4>
+          <div class="content-meta">${a.role}</div>
+          <div class="content-actions"><button class="btn info" onclick="editContent('author','${a.id}')">Edit</button></div>
+        </div>`).join('') : '<p>No authors.</p>';
+    }
+    function loadNotifications() {
+      document.getElementById('notificationsList').innerHTML = '<p>Check _src/blog/notifications/_ logic needed.</p>';
+    }
+    function loadPages() {
+      document.getElementById('pagesList').innerHTML = '<p>Static pages (About/Contact) managed via src/pages/.</p>';
+    }
+    async function loadMedia() {
+      try {
+        const r = await fetch('/api/media.json');
+        const d = await r.json();
+        const list = d.media || [];
+        document.getElementById('mediaList').innerHTML = list.length ? `<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:10px;">
+            ${list.map(f => `<div class="content-item" style="text-align:center;padding:5px;">
+              <img src="${f.path}" style="height:80px;width:100%;object-fit:cover;">
+              <div style="font-size:0.7em;overflow:hidden;text-overflow:ellipsis;">${f.name}</div>
+              <button class="btn info" style="font-size:0.6em;padding:2px;" onclick="navigator.clipboard.writeText('${f.path}');alert('Copied!')">Copy URL</button>
+            </div>`).join('')}</div>` : '<p>No media.</p>';
+      } catch (e) { }
     }
 
-    function loadHubContent(hubs = contentData.hubs || []) {
-      let html = `<h3>🔗 Content Hubs (${hubs.length})</h3>`;
-      if (hubs.length === 0) {
-        html += '<p>No hubs found.</p>';
-      } else {
-        hubs.forEach(hub => {
-          html += `
-            <div class="content-item">
-              <h4>${hub.title}</h4>
-              <div class="content-meta">Platform: ${hub.platform} | Description: ${hub.description || 'No description'}</div>
-              <div class="content-actions">
-                <button class="btn info" onclick="editContent('hub', '${hub.id}')">Edit Hub</button>
-                <button class="btn success" onclick="viewContent('${hub.url}')">View Hub</button>
-              </div>
-            </div>
-          `;
-        });
-      }
-      document.getElementById('hubsList').innerHTML = html;
-    }
-
-    function loadAuthors(authors = contentData.authors || []) {
-      let html = `<h3>👥 Authors (${authors.length})</h3>`;
-      if (authors.length === 0) {
-        html += '<p>No authors found.</p>';
-      } else {
-        authors.forEach(author => {
-          const expertise = author.expertise ? author.expertise.join(', ') : '';
-          html += `
-            <div class="content-item">
-              <h4>${author.name}</h4>
-              <div class="content-meta">${author.role} | Bio: ${author.bio || 'No bio'}</div>
-              ${expertise ? `<div class="content-meta">Expertise: ${expertise}</div>` : ''}
-              <div class="content-actions">
-                <button class="btn info" onclick="editContent('author', '${author.id}')">Edit Profile</button>
-                <button class="btn success" onclick="viewContent('${author.url}')">View Profile</button>
-              </div>
-            </div>
-          `;
-        });
-      }
-      document.getElementById('authorsList').innerHTML = html;
-    }
-
-    function loadPages(pages = contentData.pages || []) {
-      let html = `<h3>📄 Pages (${pages.length})</h3>`;
-      if (pages.length === 0) {
-        html += '<p>No pages found.</p>';
-      } else {
-        pages.forEach(page => {
-          html += `
-            <div class="content-item">
-              <h4>${page.title}</h4>
-              <div class="content-meta">Layout: ${page.layout} | ${page.description || 'No description'}</div>
-              <div class="content-actions">
-                <button class="btn info" onclick="editContent('page', '${page.id}')">Edit</button>
-                <button class="btn success" onclick="viewContent('${page.url}')">View Page</button>
-              </div>
-            </div>
-          `;
-        });
-      }
-      document.getElementById('pagesList').innerHTML = html;
-    }
-
-    function loadNotifications(notifications = contentData.notifications || []) {
-      let html = `<h3>🔔 Notifications (${notifications.length})</h3>`;
-      if (notifications.length === 0) {
-        html += '<p>No notifications found.</p>';
-      } else {
-        notifications.forEach(notification => {
-          const tags = notification.tags ? notification.tags.join(', ') : '';
-          html += `
-            <div class="content-item">
-              <h4>${notification.title}</h4>
-              <div class="content-meta">Date: ${notification.date} ${tags ? ` | Tags: ${tags}` : ''}</div>
-              ${notification.link ? `<div class="content-meta">Link: <a href="${notification.link}" target="_blank">${notification.link}</a></div>` : ''}
-              <div class="content-actions">
-                <button class="btn info" onclick="editContent('notification', '${notification.id}')">Edit</button>
-                <button class="btn success" onclick="viewContent('${notification.link || '#'}')">${notification.link ? 'View Link' : 'No Action'}</button>
-              </div>
-            </div>
-          `;
-        });
-      }
-      document.getElementById('notificationsList').innerHTML = html;
-    }
-
-    function loadMedia() {
-      const html = `<h3>🖼️ Media Library</h3>
-        <p>Media management would show all uploaded images and assets...</p>
-        <div style="padding: 20px; background: #f8f9fa; border-radius: 8px; margin: 10px 0;">
-          <strong>Total Assets:</strong> ${contentData.stats?.totalBlogPosts * 2 || 0} (estimated)<br>
-          <strong>Last Updated:</strong> ${contentData.stats?.lastUpdated || 'Unknown'}<br>
-          <em>Advanced media management requires backend integration</em>
-        </div>`;
-      document.getElementById('mediaList').innerHTML = html;
-    }
-
+    // CREATE / EDIT
     function createNewContent(type) {
-      document.getElementById('modalTitle').textContent = `Create New ${type.charAt(0).toUpperCase() + type.slice(1)}`;
       document.getElementById('contentForm').reset();
-      document.getElementById('deleteBtn').style.display = 'none';
+      document.getElementById('contentType').value = type;
+      document.getElementById('modalTitle').textContent = 'Create New ' + type.charAt(0).toUpperCase() + type.slice(1);
 
-      // Set default date
-      const now = new Date();
-      document.getElementById('date').value = now.toISOString().slice(0, 16);
+      // Hide all sections
+      document.querySelectorAll('.form-section').forEach(el => el.classList.remove('active'));
+      document.getElementById('commonContentRow').style.display = (type === 'media') ? 'none' : 'block';
 
-      // Show/hide form fields based on content type
-      document.getElementById('blogFields').style.display = type === 'blog' ? 'block' : 'none';
+      // Show specific section
+      if (type === 'blog') document.getElementById('blogFields').classList.add('active');
+      if (type === 'hub') document.getElementById('hubFields').classList.add('active');
+      if (type === 'author') document.getElementById('authorFields').classList.add('active');
+      if (type === 'notification') document.getElementById('notificationFields').classList.add('active');
+      if (type === 'page') document.getElementById('pageFields').classList.add('active');
+      if (type === 'media') document.getElementById('mediaFields').classList.add('active');
 
       document.getElementById('editModal').style.display = 'block';
+
+      // Defaults
+      if (type === 'blog') {
+        const now = new Date();
+        now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+        document.getElementById('blogDate').value = now.toISOString().slice(0, 16);
+      }
     }
 
     function editContent(type, id) {
-      document.getElementById('modalTitle').textContent = `Edit ${type.charAt(0).toUpperCase() + type.slice(1)}`;
-      document.getElementById('deleteBtn').style.display = 'inline-block';
+      createNewContent(type); // Reset and show form
+      document.getElementById('modalTitle').textContent = 'Edit ' + type;
 
-      // Load content data (in real CMS this would fetch from backend)
-      if (contentData[type] && contentData[type].find(item => item.id === id)) {
-        const item = contentData[type].find(item => item.id === id);
-        if (type === 'blog') {
-          document.getElementById('title').value = item.title || '';
-          document.getElementById('description').value = item.description || '';
-          document.getElementById('date').value = item.date + 'T12:00';
-          document.getElementById('author').value = item.author || '';
-          document.getElementById('tags').value = item.tags ? item.tags.join(', ') : '';
-          document.getElementById('category').value = item.category || '';
-          document.getElementById('featured').checked = item.featured || false;
+      const item = contentData[type]?.find(i => i.id === id);
+      if (!item) return;
+
+      if (type === 'blog') {
+        document.getElementById('blogTitle').value = item.title || '';
+        document.getElementById('blogDesc').value = item.description || '';
+        document.getElementById('blogDate').value = item.date + 'T12:00';
+        document.getElementById('blogAuthor').value = item.author || 'EvolvedLotus Team';
+        document.getElementById('blogTags').value = item.tags ? (Array.isArray(item.tags) ? item.tags.join(',') : item.tags) : '';
+        document.getElementById('blogCategory').value = item.category || '';
+        document.getElementById('blogImage').value = item.image || '';
+        document.getElementById('blogImageAlt').value = item.imageAlt || '';
+        document.getElementById('blogKeywords').value = item.keywords || '';
+        document.getElementById('blogSchema').value = item.schema_type || 'Article';
+        document.getElementById('blogOg').value = item.og_type || 'article';
+        document.getElementById('blogFeatured').checked = !!item.featured;
+        document.getElementById('blogDraft').checked = !!item.draft;
+      }
+      if (type === 'hub') {
+        document.getElementById('hubTitle').value = item.title || '';
+        document.getElementById('hubDesc').value = item.description || '';
+        document.getElementById('hubCollection').value = item.platform || '';
+        document.getElementById('hubPermalink').value = item.url || '';
+      }
+      if (type === 'author') {
+        document.getElementById('authorName').value = item.name || '';
+        document.getElementById('authorRole').value = item.role || '';
+        document.getElementById('authorBio').value = item.bio || '';
+        // Map expertise if array
+        if (item.expertise && Array.isArray(item.expertise)) {
+          document.getElementById('authorExpertise').value = item.expertise.join('\n');
         }
       }
 
-      document.getElementById('editModal').style.display = 'block';
+      document.getElementById('mainContent').value = "Content loading skipped for static demo.";
     }
 
-    function viewContent(url) {
-      window.open(url, '_blank');
+    function generateFrontmatter(e) {
+      e.preventDefault();
+      const type = document.getElementById('contentType').value;
+      let fm = '---\n';
+      let filename = 'content';
+
+      if (type === 'blog') {
+        const t = document.getElementById('blogTitle').value;
+        fm += `title: "${t.replace(/"/g, '\\"')}"\n`;
+        fm += `description: "${document.getElementById('blogDesc').value.replace(/"/g, '\\"')}"\n`;
+        fm += `date: ${new Date(document.getElementById('blogDate').value).toISOString()}\n`;
+        fm += `author: "${document.getElementById('blogAuthor').value}"\n`;
+        const tags = document.getElementById('blogTags').value;
+        if (tags) { fm += 'tags:\n'; tags.split(',').forEach(t => fm += `  - ${t.trim()}\n`); }
+        const img = document.getElementById('blogImage').value;
+        if (img) fm += `image: ${img}\n`;
+        const cat = document.getElementById('blogCategory').value;
+        if (cat) fm += `category: ${cat}\n`;
+        if (document.getElementById('blogFeatured').checked) fm += `featured: true\n`;
+        if (document.getElementById('blogDraft').checked) fm += `draft: true\n`;
+        const alt = document.getElementById('blogImageAlt').value;
+        if (alt) fm += `imageAlt: "${alt}"\n`;
+        const kw = document.getElementById('blogKeywords').value;
+        if (kw) fm += `keywords: "${kw}"\n`;
+        fm += `schema_type: ${document.getElementById('blogSchema').value}\n`;
+        fm += `og_type: ${document.getElementById('blogOg').value}\n`;
+        filename = 'blog/' + document.getElementById('blogDate').value.split('T')[0] + '-' + t.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+      }
+      else if (type === 'hub') {
+        const t = document.getElementById('hubTitle').value;
+        fm += `layout: hub.njk\n`;
+        fm += `title: "${t}"\n`;
+        fm += `description: "${document.getElementById('hubDesc').value}"\n`;
+        fm += `hubCollection: ${document.getElementById('hubCollection').value}\n`;
+        fm += `permalink: ${document.getElementById('hubPermalink').value}\n`;
+        filename = 'hubs/' + t.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+      }
+      else if (type === 'author') {
+        const n = document.getElementById('authorName').value;
+        fm += `name: "${n}"\n`;
+        fm += `slug: ${n.toLowerCase().replace(/ /g, '-')}\n`;
+        fm += `role: "${document.getElementById('authorRole').value}"\n`;
+        fm += `bio: "${document.getElementById('authorBio').value}"\n`;
+        const av = document.getElementById('authorAvatar').value;
+        if (av) fm += `avatar: ${av}\n`;
+        fm += `social:\n`;
+        if (document.getElementById('authorTwitter').value) fm += `  twitter: ${document.getElementById('authorTwitter').value}\n`;
+        if (document.getElementById('authorInsta').value) fm += `  instagram: ${document.getElementById('authorInsta').value}\n`;
+        if (document.getElementById('authorTiktok').value) fm += `  tiktok: ${document.getElementById('authorTiktok').value}\n`;
+        const exp = document.getElementById('authorExpertise').value;
+        if (exp) { fm += `expertise:\n`; exp.split('\n').forEach(x => { if (x.trim()) fm += `  - ${x.trim()}\n`; }); }
+        filename = 'authors/' + n.toLowerCase().replace(/ /g, '-');
+      }
+      else if (type === 'notification') {
+        const t = document.getElementById('notifTitle').value;
+        fm += `title: "${t}"\n`;
+        fm += `date: ${document.getElementById('notifDate').value}\n`;
+        if (document.getElementById('notifLink').value) fm += `link: ${document.getElementById('notifLink').value}\n`;
+        fm += `tags:\n  - notification\n`;
+        filename = 'notifications/' + t.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+      }
+      else if (type === 'page') {
+        const t = document.getElementById('pageTitle').value;
+        fm += `title: "${t}"\n`;
+        fm += `layout: ${document.getElementById('pageLayout').value}\n`;
+        fm += `permalink: ${document.getElementById('pagePermalink').value}\n`;
+        filename = 'pages/' + t.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+      }
+
+      fm += '---\n\n' + document.getElementById('mainContent').value;
+
+      navigator.clipboard.writeText(fm).then(() => alert(`Copied to clipboard!\nCreate: src/${filename}.md`));
     }
 
-    function previewContent(url) {
-      window.open(url + '?preview=true', '_blank');
-    }
+    document.getElementById('contentForm').addEventListener('submit', generateFrontmatter);
+    function viewContent(url) { window.open(url, '_blank'); }
+    function closeModal() { document.getElementById('editModal').style.display = 'none'; }
+    window.onclick = function (e) { if (e.target == document.getElementById('editModal')) closeModal(); }
 
-    function closeModal() {
-      document.getElementById('editModal').style.display = 'none';
-    }
-
-    // Initialize
     window.onload = async function () {
       await loadContentData();
       loadBlogPosts();
       loadHubContent();
       loadAuthors();
-      loadNotifications();
-      loadPages();
       loadMedia();
-    };
-
-    // Handle form submission
-    document.getElementById('contentForm').addEventListener('submit', function (e) {
-      e.preventDefault();
-      alert('Content saved! (Demo mode - integration with GitHub API needed for persistence)');
-      closeModal();
-    });
-
-    // Close modal when clicking outside
-    window.onclick = function (event) {
-      if (event.target === document.getElementById('editModal')) {
-        closeModal();
-      }
     }
+
+
   </script>
 </body>
 
