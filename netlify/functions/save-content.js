@@ -35,9 +35,24 @@ exports.handler = async (event, context) => {
     }
 
     // Check if running locally vs production
-    const isLocal = process.env.NODE_ENV === 'development' ||
-      process.env.CONTEXT === 'local' ||
-      !process.env.NETLIFY;
+    // Netlify Functions have AWS_LAMBDA_FUNCTION_NAME set
+    // Local CLI has NETLIFY_DEV=true
+    const isProduction = process.env.AWS_LAMBDA_FUNCTION_NAME ||
+      process.env.AWS_REGION ||
+      process.env.NETLIFY === 'true';
+    const isLocal = !isProduction && (
+      process.env.NODE_ENV === 'development' ||
+      process.env.NETLIFY_DEV === 'true' ||
+      process.env.CONTEXT === 'local'
+    );
+
+    console.log('Environment check:', {
+      isLocal,
+      isProduction,
+      AWS_LAMBDA: !!process.env.AWS_LAMBDA_FUNCTION_NAME,
+      filename,
+      type
+    });
 
     if (isLocal) {
       // Local development - write directly to file system
