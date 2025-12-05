@@ -27,7 +27,8 @@ eleventyExcludeFromCollections: true
       "imageAlt": {{ post.data.imageAlt | dump | safe }},
       "keywords": {{ post.data.keywords | dump | safe }},
       "schema_type": {{ post.data.schema_type | default("Article") | dump | safe }},
-      "og_type": {{ post.data.og_type | default("article") | dump | safe }}
+      "og_type": {{ post.data.og_type | default("article") | dump | safe }},
+      "body": {{ post.templateContent | dump | safe }}
     }{% if not loop.last %},{% endif %}
     {%- endfor -%}
   ],
@@ -38,7 +39,8 @@ eleventyExcludeFromCollections: true
       "url": "{{ hub.url }}",
       "title": {{ hub.data.title | dump | safe }},
       "platform": {{ hub.data.platform | default("") | dump | safe }},
-      "description": {{ hub.data.description | dump | safe }}
+      "description": {{ hub.data.description | dump | safe }},
+      "body": {{ hub.templateContent | dump | safe }}
     }{% if not loop.last %},{% endif %}
     {%- endfor -%}
   ],
@@ -61,7 +63,8 @@ eleventyExcludeFromCollections: true
       "url": "{{ notif.url }}",
       "title": {{ notif.data.title | dump | safe }},
       "date": "{{ notif.date | date("yyyy-MM-dd") }}",
-      "link": {{ notif.data.link | dump | safe }}
+      "link": {{ notif.data.link | dump | safe }},
+      "body": {{ notif.templateContent | dump | safe }}
     }{% if not loop.last %},{% endif %}
     {%- endfor -%}
   ],
@@ -71,7 +74,8 @@ eleventyExcludeFromCollections: true
       "id": "{{ page.fileSlug }}",
       "url": "{{ page.url }}",
       "title": {{ page.data.title | dump | safe }},
-      "layout": {{ page.data.layout | dump | safe }}
+      "layout": {{ page.data.layout | dump | safe }},
+      "body": {{ page.templateContent | dump | safe }}
     }{% if not loop.last %},{% endif %}
     {%- endfor -%}
   ]
