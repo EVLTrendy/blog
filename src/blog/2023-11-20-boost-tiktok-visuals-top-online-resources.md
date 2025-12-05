@@ -1,8 +1,8 @@
 ---
-title: "Boost TikTok Visuals: Top Online Resources"
-description: "In the ever-evolving realm of TikTok, where capturing attention is the golden ticket, mastering visually appealing content is non-negotiable"
-date: 2023-11-20T17:00:00.000Z
-author: "EvolvedLotus Team"
+title: 'Boost TikTok Visuals: Top Online Resources'
+description: 'In the ever-evolving realm of TikTok, where capturing attention is the golden ticket, mastering visually appealing content is non-negotiable'
+date: '2023-11-20T17:00:00.000Z'
+author: EvolvedLotus Team
 tags:
   - post
   - post
@@ -11,8 +11,8 @@ tags:
 image: /assets/blog/boost-tiktok-visuals-top-online-resources.png
 category: content-creation
 featured: true
-imageAlt: "Boost TikTok Visuals: Top Online Resources"
-keywords: "content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing"
+imageAlt: 'Boost TikTok Visuals: Top Online Resources'
+keywords: 'content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing'
 schema_type: Article
 og_type: article
 ---

@@ -1,9 +1,9 @@
 {
-  "timestamp": "2025-12-05T10:07:13.140Z",
+  "timestamp": "2025-12-05T11:10:54.086Z",
   "summary": {
-    "totalFiles": 82,
+    "totalFiles": 83,
     "errors": 0,
-    "warnings": 82
+    "warnings": 83
   },
   "errors": [],
   "warnings": [
@@ -18,6 +18,13 @@
       "file": "2023-11-20-brand-deals-made-easy-with-signaturely.md",
       "type": "image_dimensions_check",
       "message": "Image at /assets/blog/brand-deals-made-easy-with-signaturely-.png: Ensure dimensions are 1200x630px for optimal Twitter Card display",
+      "field": "image",
+      "suggestion": "Twitter cards work best with 1.91:1 ratio images (1200x630px)"
+    },
+    {
+      "file": "2023-11-20-jams-without-jitters-your-copyright-free-soundtrack-guide-.md",
+      "type": "image_dimensions_check",
+      "message": "Image at /assets/blog/jams-without-jitters-your-copyright-free-soundtrack-guide-.png: Ensure dimensions are 1200x630px for optimal Twitter Card display",
       "field": "image",
       "suggestion": "Twitter cards work best with 1.91:1 ratio images (1200x630px)"
     },
