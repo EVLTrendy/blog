@@ -857,9 +857,14 @@
 
     async function loadContentData() {
       try {
+        console.log('Fetching from /api/posts.json...');
         const res = await fetch('/api/posts.json');
+        console.log('Response status:', res.status);
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        const data = await res.json();
+        const rawText = await res.text();
+        console.log('Raw response:', rawText.substring(0, 500) + '...');
+        const data = JSON.parse(rawText);
+        console.log('Successfully parsed data:', Object.keys(data));
         contentData = { ...contentData, ...data };
 
         // Update dashboard stats
