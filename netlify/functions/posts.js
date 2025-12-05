@@ -50,7 +50,7 @@ exports.handler = async (event, context) => {
       lastUpdated: new Date().toISOString()
     };
 
-    // Return the complete data structure
+    // Return the complete data structure with sanitized data
     const data = {
       stats,
       blog: blogPosts,
@@ -60,18 +60,23 @@ exports.handler = async (event, context) => {
       pages
     };
 
-    // Ensure clean JSON serialization
-    const cleanData = JSON.parse(JSON.stringify(data, (key, value) => {
-      if (value === null || value === undefined) {
-        return '';
+    // Simple sanitization - replace any null/undefined with empty strings
+    const sanitizedData = JSON.parse(JSON.stringify(data));
+    function sanitize(obj) {
+      for (let key in obj) {
+        if (obj[key] === null || obj[key] === undefined) {
+          obj[key] = '';
+        } else if (typeof obj[key] === 'object' && obj[key] !== null) {
+          sanitize(obj[key]);
+        }
       }
-      return value;
-    }));
+    }
+    sanitize(sanitizedData);
 
     return {
       statusCode: 200,
       headers,
-      body: JSON.stringify(cleanData),
+      body: JSON.stringify(sanitizedData),
     };
 
   } catch (error) {
