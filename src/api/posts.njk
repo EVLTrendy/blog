@@ -14,7 +14,8 @@ eleventyExcludeFromCollections: true
   "blog": [
     {%- for post in collections.post | reverse -%}
     {
-      "id": "{{ post.fileSlug }}",
+      "id": "{{ post.url | replace('/blog/', '') | replace('/', '') }}",
+      "slug": "{{ post.fileSlug }}",
       "url": "{{ post.url }}",
       "title": {{ post.data.title | dump | safe }},
       "description": {{ post.data.description | dump | safe }},

@@ -2,13 +2,6 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     
     <url>
-        <loc>https://blog.evolvedlotus.com/blog/2023-11-20-boost-tiktok-visuals-top-online-resources/</loc>
-        <lastmod>2023-11-19T21:53:05.277-05:00</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    
-    <url>
         <loc>https://blog.evolvedlotus.com/blog/2023-11-20-brand-deals-made-easy-with-signaturely/</loc>
         <lastmod>2023-11-20T07:00:00.000-05:00</lastmod>
         <changefreq>weekly</changefreq>
@@ -25,6 +18,20 @@
     <url>
         <loc>https://blog.evolvedlotus.com/blog/2023-11-20-social-scheduling-mastery-harnessing-free-tools-for-online-success/</loc>
         <lastmod>2023-11-20T07:00:00.000-05:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <url>
+        <loc>https://blog.evolvedlotus.com/blog/2023-11-20-boost-tiktok-visuals-top-online-resources/</loc>
+        <lastmod>2023-11-20T12:00:00.000-05:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <url>
+        <loc>https://blog.evolvedlotus.com/blog/2023-11-20-jams-without-jitters-your-copyright-free-soundtrack-guide-/</loc>
+        <lastmod>2023-11-20T12:00:00.000-05:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
@@ -822,7 +829,7 @@
     
     <url>
         <loc>https://blog.evolvedlotus.com/admin/</loc>
-        <lastmod>2025-12-05T04:55:05.673-05:00</lastmod>
+        <lastmod>2025-12-05T13:43:00.919-05:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
