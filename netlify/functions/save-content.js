@@ -51,14 +51,21 @@ exports.handler = async (event, context) => {
       isProduction,
       AWS_LAMBDA: !!process.env.AWS_LAMBDA_FUNCTION_NAME,
       filename,
-      type
+      type,
+      action
     });
 
     if (isLocal) {
-      // Local development - write directly to file system
+      // Local development - handle locally
+      if (action === 'delete') {
+        return await handleLocalDelete(filename, type);
+      }
       return await handleLocalSave(filename, content, type);
     } else {
-      // Production - commit to GitHub
+      // Production - use GitHub API
+      if (action === 'delete') {
+        return await handleGitHubDelete(filename, type);
+      }
       return await handleGitHubCommit(filename, content, type);
     }
 
@@ -106,6 +113,111 @@ async function handleLocalSave(filename, content, type) {
       statusCode: 500,
       body: JSON.stringify({
         error: 'Failed to save file locally',
+        message: error.message
+      })
+    };
+  }
+}
+
+async function handleLocalDelete(filename, type) {
+  const fs = require('fs').promises;
+  const path = require('path');
+
+  try {
+    const fullPath = path.join(__dirname, '../../src', filename + '.md');
+    await fs.unlink(fullPath);
+
+    return {
+      statusCode: 200,
+      body: JSON.stringify({
+        success: true,
+        message: `File deleted locally: src/${filename}.md`,
+        type,
+        filename,
+        local: true
+      })
+    };
+  } catch (error) {
+    console.error('Error deleting file locally:', error);
+    return {
+      statusCode: 500,
+      body: JSON.stringify({
+        error: 'Failed to delete file locally',
+        message: error.message
+      })
+    };
+  }
+}
+
+async function handleGitHubDelete(filename, type) {
+  const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
+  const GITHUB_REPO = process.env.GITHUB_REPOSITORY || 'EVLTrendy/blog';
+  const BRANCH = process.env.HEAD || 'main';
+
+  if (!GITHUB_TOKEN) {
+    return {
+      statusCode: 500,
+      body: JSON.stringify({
+        error: 'GitHub token not configured'
+      })
+    };
+  }
+
+  try {
+    // Get current file SHA (required for deletion)
+    const getResponse = await makeGitHubRequest(
+      `GET /repos/${GITHUB_REPO}/contents/src/${filename}.md?ref=${BRANCH}`,
+      null,
+      GITHUB_TOKEN
+    );
+
+    if (!getResponse.sha) {
+      return {
+        statusCode: 404,
+        body: JSON.stringify({
+          error: 'File not found',
+          message: `src/${filename}.md does not exist`
+        })
+      };
+    }
+
+    // Delete the file
+    const deleteData = {
+      message: `${type}: Delete ${filename}.md`,
+      sha: getResponse.sha,
+      branch: BRANCH
+    };
+
+    await makeGitHubRequest(
+      `DELETE /repos/${GITHUB_REPO}/contents/src/${filename}.md`,
+      deleteData,
+      GITHUB_TOKEN
+    );
+
+    // Trigger rebuild
+    try {
+      await triggerNetlifyBuild();
+    } catch (buildError) {
+      console.warn('Failed to trigger build:', buildError.message);
+    }
+
+    return {
+      statusCode: 200,
+      body: JSON.stringify({
+        success: true,
+        message: `File deleted from ${GITHUB_REPO}`,
+        type,
+        filename,
+        buildTriggered: true
+      })
+    };
+
+  } catch (error) {
+    console.error('GitHub delete error:', error);
+    return {
+      statusCode: 500,
+      body: JSON.stringify({
+        error: 'Failed to delete from GitHub',
         message: error.message
       })
     };

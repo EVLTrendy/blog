@@ -788,6 +788,7 @@
     let currentSection = 'overview';
     let contentData = {};
     let simpleMDE = null;
+    let editingItemId = null; // Track the ID of item being edited (null = new content)
 
     // Initialize SimpleMDE when modal opens
     function initializeEditor() {
@@ -1086,6 +1087,7 @@
       document.getElementById('contentForm').reset();
       document.getElementById('contentType').value = type;
       document.getElementById('modalTitle').textContent = 'Create New ' + type.charAt(0).toUpperCase() + type.slice(1);
+      editingItemId = null; // Reset - this is a new item
 
       // Hide all sections
       document.querySelectorAll('.form-section').forEach(el => el.classList.remove('active'));
@@ -1143,6 +1145,9 @@
         return;
       }
       console.log('Found item:', item);
+
+      // Store the item ID for editing (so we update the same file)
+      editingItemId = id;
 
       if (type === 'blog') {
         document.getElementById('blogTitle').value = item.title || '';
@@ -1232,15 +1237,14 @@
         if (response.ok) {
           const result = await response.json();
           alert(`✅ Content saved successfully!\n\nFile: src/${filename}.md\n\nChanges will be reflected after rebuild.`);
-          // Reload to refresh the API data
           setTimeout(() => window.location.reload(), 1000);
           return true;
         }
       } catch (e) {
-        console.warn('Local development server not available, falling back to clipboard');
+        console.warn('Local development server not available, trying Netlify function...');
       }
 
-      // Production/GitHub workflow - commit to repository (if GitHub token configured)
+      // Production/GitHub workflow - commit to repository
       try {
         const response = await fetch('/.netlify/functions/save-content', {
           method: 'POST',
@@ -1251,18 +1255,27 @@
             filename: filename,
             content: fm,
             type: type.charAt(0).toUpperCase() + type.slice(1),
-            action: 'commit' // Indicate we want to commit to Git
+            action: 'commit'
           })
         });
 
-        if (response.ok) {
-          const result = await response.json();
+        const result = await response.json();
+
+        if (response.ok && result.success) {
           alert(`✅ Content committed to repository!\n\nFile: src/${filename}.md\n\nThe site will be rebuilt automatically.`);
           closeModal();
+          // Refresh data after short delay to allow build to start
+          setTimeout(() => window.location.reload(), 2000);
           return true;
+        } else {
+          // Show the actual error from the API
+          const errorMsg = result.message || result.error || 'Unknown error';
+          alert(`❌ Failed to save content:\n\n${errorMsg}\n\nPlease check your GitHub token permissions.`);
+          return false;
         }
       } catch (e) {
-        console.warn('Git commit failed (might need GitHub token):', e);
+        console.error('Save content error:', e);
+        alert(`❌ Failed to save content:\n\n${e.message}\n\nFalling back to clipboard method.`);
       }
 
       // Fallback to clipboard copy - always available
@@ -1300,7 +1313,13 @@
         if (kw) fm += `keywords: "${kw}"\n`;
         fm += `schema_type: ${document.getElementById('blogSchema').value}\n`;
         fm += `og_type: ${document.getElementById('blogOg').value}\n`;
-        filename = 'blog/' + document.getElementById('blogDate').value.split('T')[0] + '-' + t.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+
+        // Use original filename if editing, otherwise generate new
+        if (editingItemId) {
+          filename = 'blog/' + editingItemId;
+        } else {
+          filename = 'blog/' + document.getElementById('blogDate').value.split('T')[0] + '-' + t.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+        }
       }
       else if (type === 'hub') {
         const t = document.getElementById('hubTitle').value;
@@ -1313,7 +1332,12 @@
         fm += `description: "${document.getElementById('hubDesc').value}"\n`;
         fm += `hubCollection: ${document.getElementById('hubCollection').value}\n`;
         fm += `permalink: ${document.getElementById('hubPermalink').value}\n`;
-        filename = 'hubs/' + t.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+
+        if (editingItemId) {
+          filename = 'hubs/' + editingItemId;
+        } else {
+          filename = 'hubs/' + t.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+        }
       }
       else if (type === 'author') {
         const n = document.getElementById('authorName').value;
@@ -1333,7 +1357,12 @@
         if (document.getElementById('authorTiktok').value) fm += `  tiktok: ${document.getElementById('authorTiktok').value}\n`;
         const exp = document.getElementById('authorExpertise').value;
         if (exp) { fm += `expertise:\n`; exp.split('\n').forEach(x => { if (x.trim()) fm += `  - ${x.trim()}\n`; }); }
-        filename = 'authors/' + n.toLowerCase().replace(/ /g, '-');
+
+        if (editingItemId) {
+          filename = 'authors/' + editingItemId;
+        } else {
+          filename = 'authors/' + n.toLowerCase().replace(/ /g, '-');
+        }
       }
       else if (type === 'notification') {
         const t = document.getElementById('notifTitle').value;
@@ -1345,7 +1374,12 @@
         fm += `date: ${document.getElementById('notifDate').value}\n`;
         if (document.getElementById('notifLink').value) fm += `link: ${document.getElementById('notifLink').value}\n`;
         fm += `tags:\n  - notification\n`;
-        filename = 'notifications/' + t.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+
+        if (editingItemId) {
+          filename = 'notifications/' + editingItemId;
+        } else {
+          filename = 'notifications/' + t.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+        }
       }
       else if (type === 'page') {
         const t = document.getElementById('pageTitle').value;
@@ -1356,7 +1390,12 @@
         fm += `title: "${t}"\n`;
         fm += `layout: ${document.getElementById('pageLayout').value}\n`;
         fm += `permalink: ${document.getElementById('pagePermalink').value}\n`;
-        filename = 'pages/' + t.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+
+        if (editingItemId) {
+          filename = 'pages/' + editingItemId;
+        } else {
+          filename = 'pages/' + t.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+        }
       }
 
       const content = simpleMDE ? simpleMDE.value() : document.getElementById('mainContent').value;
@@ -1432,18 +1471,51 @@
       }
     }
 
-    // Delete content with confirmation
-    function deleteContent(type, id, title) {
-      const confirmMsg = `⚠️ Are you sure you want to delete "${title}"?\n\nThis will require you to manually delete the file:\nsrc/${type}/${id}.md\n\nClick OK to get the file path copied to clipboard.`;
+    // Delete content via GitHub API
+    async function deleteContent(type, id, title) {
+      const confirmMsg = `⚠️ Are you sure you want to delete "${title}"?\n\nThis action cannot be undone!`;
 
-      if (confirm(confirmMsg)) {
-        const filePath = `src/${type}/${id}.md`;
-        navigator.clipboard.writeText(filePath).then(() => {
-          alert(`✅ File path copied to clipboard!\n\n${filePath}\n\nPlease delete this file manually and commit the changes.`);
-        }).catch(err => {
-          alert(`Please manually delete:\n${filePath}`);
-          console.error(err);
+      if (!confirm(confirmMsg)) {
+        return;
+      }
+
+      // Map type to directory
+      const typeToDir = {
+        'blog': 'blog',
+        'hub': 'hubs',
+        'author': 'authors',
+        'notification': 'notifications',
+        'page': 'pages'
+      };
+      const dir = typeToDir[type] || type;
+      const filename = `${dir}/${id}`;
+
+      try {
+        const response = await fetch('/.netlify/functions/save-content', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            filename: filename,
+            type: type.charAt(0).toUpperCase() + type.slice(1),
+            action: 'delete'
+          })
         });
+
+        const result = await response.json();
+
+        if (response.ok && result.success) {
+          alert(`✅ Content deleted successfully!\n\nFile: src/${filename}.md\n\nThe site will be rebuilt automatically.`);
+          // Refresh the page to update the list
+          setTimeout(() => window.location.reload(), 2000);
+        } else {
+          const errorMsg = result.message || result.error || 'Unknown error';
+          alert(`❌ Failed to delete content:\n\n${errorMsg}`);
+        }
+      } catch (e) {
+        console.error('Delete error:', e);
+        alert(`❌ Failed to delete content:\n\n${e.message}\n\nYou can manually delete: src/${filename}.md`);
       }
     }
 
