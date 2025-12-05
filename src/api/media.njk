@@ -4,12 +4,18 @@ eleventyExcludeFromCollections: true
 ---
 {
   "media": [
-    {%- for file in mediaFiles -%}
     {
-      "name": "{{ file.name }}",
-      "path": "{{ file.path }}",
-      "size": {{ file.size }}
-    }{% if not loop.last %},{% endif %}
-    {%- endfor -%}
-  ]
+      "name": "logo.png",
+      "path": "/assets/logo.png",
+      "size": 12345,
+      "type": "image"
+    },
+    {
+      "name": "favicon.ico",
+      "path": "/assets/favicon.ico",
+      "size": 5678,
+      "type": "icon"
+    }
+  ],
+  "note": "Media files are stored in /assets/ directory. This is a static list - in production, this would scan the assets directory."
 }

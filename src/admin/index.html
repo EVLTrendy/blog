@@ -7,6 +7,9 @@
   <meta name="robots" content="noindex" />
   <title>Complete Content Management System</title>
   <link rel="stylesheet" href="https://unpkg.com/sakura.css/css/sakura.css">
+  <!-- SimpleMDE for Rich Text Editing -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+  <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
   <style>
     /* Reset Sakura constraints for full-width CMS layout */
     body {
@@ -24,7 +27,6 @@
       height: 100vh;
       background: #ffffff;
       padding: 25px 35px 25px 25px;
-      /* Added right padding */
       overflow-y: auto;
       border-right: 1px solid #e1e4e8;
       box-shadow: 2px 0 5px rgba(0, 0, 0, 0.03);
@@ -33,7 +35,6 @@
 
     .cms-main {
       margin-left: 300px;
-      /* Increased to separate from sidebar */
       padding: 40px;
       max-width: 1600px;
       margin-right: auto;
@@ -48,6 +49,7 @@
       border-radius: 8px;
       transition: all 0.2s ease;
       font-weight: 500;
+      cursor: pointer;
     }
 
     .cms-nav-item:hover,
@@ -173,6 +175,11 @@
       color: white;
     }
 
+    .btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
     .modal {
       display: none;
       position: fixed;
@@ -231,7 +238,7 @@
     }
 
     textarea {
-      min-height: 400px;
+      min-height: 120px;
       font-family: 'Consolas', 'Monaco', monospace;
       line-height: 1.6;
     }
@@ -266,6 +273,7 @@
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
       border: 1px solid #e1e4e8;
       transition: transform 0.2s;
+      cursor: pointer;
     }
 
     .stat-card:hover {
@@ -336,6 +344,62 @@
       color: #742a2a;
     }
 
+    .loading-spinner {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border: 3px solid #f3f3f3;
+      border-top: 3px solid #33bdef;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    .error-message {
+      background: #fed7d7;
+      color: #742a2a;
+      padding: 15px;
+      border-radius: 8px;
+      margin: 20px 0;
+    }
+
+    .success-message {
+      background: #c6f6d5;
+      color: #22543d;
+      padding: 15px;
+      border-radius: 8px;
+      margin: 20px 0;
+    }
+
+    .slug-preview {
+      font-size: 0.85em;
+      color: #718096;
+      margin-top: 5px;
+      font-family: monospace;
+    }
+
+    /* SimpleMDE overrides */
+    .CodeMirror {
+      min-height: 300px;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+    }
+
+    .editor-toolbar {
+      border: 1px solid #e2e8f0;
+      border-bottom: none;
+      border-radius: 6px 6px 0 0;
+    }
+
     @media (max-width: 1024px) {
       .cms-sidebar {
         width: 80px;
@@ -389,14 +453,14 @@
 <body>
   <nav class="cms-sidebar">
     <h3>📊 Dashboard</h3>
-    <a href="#" class="cms-nav-item active" onclick="showSection('overview')">Overview</a>
-    <a href="#" class="cms-nav-item" onclick="showSection('blog')">📝 Blog Posts</a>
-    <a href="#" class="cms-nav-item" onclick="showSection('hubs')">🔗 Content Hubs</a>
-    <a href="#" class="cms-nav-item" onclick="showSection('authors')">👥 Authors</a>
-    <a href="#" class="cms-nav-item" onclick="showSection('notifications')">🔔 Notifications</a>
-    <a href="#" class="cms-nav-item" onclick="showSection('pages')">📄 Pages</a>
-    <a href="#" class="cms-nav-item" onclick="showSection('media')">🖼️ Media</a>
-    <a href="#" class="cms-nav-item" onclick="showSection('analytics')">📈 Analytics</a>
+    <a href="#" class="cms-nav-item active" onclick="showSection('overview'); return false;">Overview</a>
+    <a href="#" class="cms-nav-item" onclick="showSection('blog'); return false;">📝 Blog Posts</a>
+    <a href="#" class="cms-nav-item" onclick="showSection('hubs'); return false;">🔗 Content Hubs</a>
+    <a href="#" class="cms-nav-item" onclick="showSection('authors'); return false;">👥 Authors</a>
+    <a href="#" class="cms-nav-item" onclick="showSection('notifications'); return false;">🔔 Notifications</a>
+    <a href="#" class="cms-nav-item" onclick="showSection('pages'); return false;">📄 Pages</a>
+    <a href="#" class="cms-nav-item" onclick="showSection('media'); return false;">🖼️ Media</a>
+    <a href="#" class="cms-nav-item" onclick="showSection('analytics'); return false;">📈 Analytics</a>
   </nav>
 
   <main class="cms-main">
@@ -405,16 +469,16 @@
       <p>Complete control over your EvolvedLotus blog and content</p>
 
       <div class="stats-grid">
-        <div class="stat-card">
-          <div class="stat-number">0</div>
+        <div class="stat-card" onclick="showSection('blog')">
+          <div class="stat-number" id="statBlogPosts">0</div>
           <div class="stat-label">Blog Posts</div>
         </div>
-        <div class="stat-card">
-          <div class="stat-number">0</div>
+        <div class="stat-card" onclick="showSection('hubs')">
+          <div class="stat-number" id="statHubs">0</div>
           <div class="stat-label">Content Hubs</div>
         </div>
-        <div class="stat-card">
-          <div class="stat-number">0</div>
+        <div class="stat-card" onclick="showSection('authors')">
+          <div class="stat-number" id="statAuthors">0</div>
           <div class="stat-label">Authors</div>
         </div>
         <div class="stat-card">
@@ -425,10 +489,11 @@
 
       <div class="recent-activity">
         <h3>🕐 Recent Activity</h3>
-        <div class="activity-item">
-          <span class="badge blog">Blog</span> Published "Mobile Photography Techniques for Better Content"
+        <div id="recentActivityList">
+          <div class="activity-item">
+            <span class="badge blog">Blog</span> <span id="lastUpdated">Loading...</span>
+          </div>
         </div>
-        <!-- Static placeholders for now, could be dynamic later -->
       </div>
     </section>
 
@@ -439,7 +504,7 @@
         <button class="btn" onclick="refreshSection('blog')">🔄 Refresh</button>
       </div>
       <div id="blogList" class="content-list">
-        <p>Loading...</p>
+        <p><span class="loading-spinner"></span> Loading blog posts...</p>
       </div>
     </section>
 
@@ -450,7 +515,7 @@
         <button class="btn" onclick="refreshSection('hubs')">🔄 Refresh</button>
       </div>
       <div id="hubsList" class="content-list">
-        <p>Loading...</p>
+        <p><span class="loading-spinner"></span> Loading content hubs...</p>
       </div>
     </section>
 
@@ -461,7 +526,7 @@
         <button class="btn" onclick="refreshSection('authors')">🔄 Refresh</button>
       </div>
       <div id="authorsList" class="content-list">
-        <p>Loading...</p>
+        <p><span class="loading-spinner"></span> Loading authors...</p>
       </div>
     </section>
 
@@ -472,7 +537,7 @@
         <button class="btn" onclick="refreshSection('notifications')">🔄 Refresh</button>
       </div>
       <div id="notificationsList" class="content-list">
-        <p>Loading...</p>
+        <p><span class="loading-spinner"></span> Loading notifications...</p>
       </div>
     </section>
 
@@ -483,7 +548,7 @@
         <button class="btn" onclick="refreshSection('pages')">🔄 Refresh</button>
       </div>
       <div id="pagesList" class="content-list">
-        <p>Loading...</p>
+        <p><span class="loading-spinner"></span> Loading pages...</p>
       </div>
     </section>
 
@@ -494,7 +559,7 @@
         <button class="btn" onclick="refreshSection('media')">🔄 Refresh</button>
       </div>
       <div id="mediaList" class="content-list">
-        <p>Loading...</p>
+        <p><span class="loading-spinner"></span> Loading media files...</p>
       </div>
     </section>
 
@@ -510,7 +575,7 @@
           <div class="stat-label">Hours Read (Today)</div>
         </div>
         <div class="stat-card">
-          <div class="stat-number">12</div>
+          <div class="stat-number" id="analyticsPostCount">0</div>
           <div class="stat-label">Articles Published (This Month)</div>
         </div>
         <div class="stat-card">
@@ -536,7 +601,8 @@
         <div id="blogFields" class="form-section">
           <div class="form-row">
             <label for="blogTitle">Post Title:</label>
-            <input type="text" id="blogTitle" placeholder="10 Tips for...">
+            <input type="text" id="blogTitle" placeholder="10 Tips for..." oninput="updateSlug('blog')">
+            <div class="slug-preview" id="blogSlugPreview"></div>
           </div>
           <div class="form-row">
             <label for="blogDesc">Description (SEO):</label>
@@ -548,7 +614,9 @@
           </div>
           <div class="form-row half">
             <label for="blogAuthor">Author:</label>
-            <input type="text" id="blogAuthor" value="EvolvedLotus Team">
+            <select id="blogAuthor">
+              <option value="EvolvedLotus Team">EvolvedLotus Team</option>
+            </select>
           </div>
           <div class="form-row">
             <label for="blogTags">Tags (comma-separated):</label>
@@ -595,7 +663,8 @@
         <div id="hubFields" class="form-section">
           <div class="form-row">
             <label for="hubTitle">Hub Title:</label>
-            <input type="text" id="hubTitle">
+            <input type="text" id="hubTitle" oninput="updateSlug('hub')">
+            <div class="slug-preview" id="hubSlugPreview"></div>
           </div>
           <div class="form-row">
             <label for="hubDesc">Description:</label>
@@ -620,7 +689,8 @@
         <div id="authorFields" class="form-section">
           <div class="form-row half">
             <label for="authorName">Full Name:</label>
-            <input type="text" id="authorName">
+            <input type="text" id="authorName" oninput="updateSlug('author')">
+            <div class="slug-preview" id="authorSlugPreview"></div>
           </div>
           <div class="form-row half">
             <label for="authorRole">Role:</label>
@@ -650,7 +720,8 @@
         <div id="notificationFields" class="form-section">
           <div class="form-row">
             <label for="notifTitle">Title:</label>
-            <input type="text" id="notifTitle">
+            <input type="text" id="notifTitle" oninput="updateSlug('notification')">
+            <div class="slug-preview" id="notificationSlugPreview"></div>
           </div>
           <div class="form-row">
             <label for="notifDate">Date:</label>
@@ -670,7 +741,8 @@
         <div id="pageFields" class="form-section">
           <div class="form-row">
             <label for="pageTitle">Page Title:</label>
-            <input type="text" id="pageTitle">
+            <input type="text" id="pageTitle" oninput="updateSlug('page')">
+            <div class="slug-preview" id="pageSlugPreview"></div>
           </div>
           <div class="form-row">
             <label for="pageLayout">Layout:</label>
@@ -687,7 +759,7 @@
           <div class="form-row">
             <label>Select File to Upload:</label>
             <div style="border: 2px dashed #ccc; padding: 40px; text-align:center; border-radius:8px; cursor:pointer;"
-              onclick="alert('Drag & drop simulated')">
+              onclick="alert('Drag & drop simulated - In production, this would connect to a file upload service')">
               <p>📂 Drag and drop files here or click to browse</p>
               <small>(Static Demo - No backend upload service)</small>
             </div>
@@ -697,7 +769,7 @@
         <!-- COMMON CONTENT TEXTAREA (Shared by Blog, Hub, Page, Notif) -->
         <div class="form-row" id="commonContentRow">
           <label for="mainContent">Body Content (Markdown):</label>
-          <textarea id="mainContent" style="min-height:300px;"></textarea>
+          <textarea id="mainContent"></textarea>
         </div>
 
         <div class="form-row">
@@ -711,6 +783,52 @@
   <script>
     let currentSection = 'overview';
     let contentData = {};
+    let simpleMDE = null;
+
+    // Initialize SimpleMDE when modal opens
+    function initializeEditor() {
+      if (!simpleMDE) {
+        simpleMDE = new SimpleMDE({
+          element: document.getElementById("mainContent"),
+          spellChecker: false,
+          placeholder: "Write your content here using Markdown...",
+          status: ["lines", "words", "cursor"],
+          toolbar: ["bold", "italic", "heading", "|", "quote", "unordered-list", "ordered-list", "|", "link", "image", "|", "preview", "side-by-side", "fullscreen", "|", "guide"]
+        });
+      }
+    }
+
+    // Auto-slug generation
+    function updateSlug(type) {
+      let title = '';
+      let previewId = '';
+
+      if (type === 'blog') {
+        title = document.getElementById('blogTitle').value;
+        previewId = 'blogSlugPreview';
+      } else if (type === 'hub') {
+        title = document.getElementById('hubTitle').value;
+        previewId = 'hubSlugPreview';
+      } else if (type === 'author') {
+        title = document.getElementById('authorName').value;
+        previewId = 'authorSlugPreview';
+      } else if (type === 'notification') {
+        title = document.getElementById('notifTitle').value;
+        previewId = 'notificationSlugPreview';
+      } else if (type === 'page') {
+        title = document.getElementById('pageTitle').value;
+        previewId = 'pageSlugPreview';
+      }
+
+      const slug = title.toLowerCase()
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/^-+|-+$/g, '');
+
+      const previewEl = document.getElementById(previewId);
+      if (previewEl) {
+        previewEl.textContent = slug ? `Slug: ${slug}` : '';
+      }
+    }
 
     function showSection(name) {
       document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
@@ -718,83 +836,232 @@
       document.getElementById(name).classList.add('active');
       event.target.classList.add('active');
       currentSection = name;
+
+      // Load section data if not already loaded
+      if (name === 'blog' && !contentData.blogLoaded) loadBlogPosts();
+      if (name === 'hubs' && !contentData.hubsLoaded) loadHubContent();
+      if (name === 'authors' && !contentData.authorsLoaded) loadAuthors();
+      if (name === 'notifications' && !contentData.notificationsLoaded) loadNotifications();
+      if (name === 'pages' && !contentData.pagesLoaded) loadPages();
+      if (name === 'media' && !contentData.mediaLoaded) loadMedia();
     }
 
     function refreshSection(sec) {
-      if (sec === 'blog') loadBlogPosts();
-      if (sec === 'hubs') loadHubContent();
-      if (sec === 'authors') loadAuthors();
-      if (sec === 'notifications') loadNotifications();
-      if (sec === 'pages') loadPages();
-      if (sec === 'media') loadMedia();
+      if (sec === 'blog') { contentData.blogLoaded = false; loadBlogPosts(); }
+      if (sec === 'hubs') { contentData.hubsLoaded = false; loadHubContent(); }
+      if (sec === 'authors') { contentData.authorsLoaded = false; loadAuthors(); }
+      if (sec === 'notifications') { contentData.notificationsLoaded = false; loadNotifications(); }
+      if (sec === 'pages') { contentData.pagesLoaded = false; loadPages(); }
+      if (sec === 'media') { contentData.mediaLoaded = false; loadMedia(); }
     }
 
     async function loadContentData() {
       try {
         const res = await fetch('/api/posts.json');
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const data = await res.json();
-        contentData = data;
+        contentData = { ...contentData, ...data };
+
+        // Update dashboard stats
         if (data.stats) {
-          const stats = document.querySelectorAll('.stat-number');
-          if (stats.length >= 3) {
-            stats[0].textContent = data.stats.totalBlogPosts;
-            stats[1].textContent = data.stats.totalHubs;
-            stats[2].textContent = data.stats.totalAuthors;
-          }
+          document.getElementById('statBlogPosts').textContent = data.stats.totalBlogPosts || 0;
+          document.getElementById('statHubs').textContent = data.stats.totalHubs || 0;
+          document.getElementById('statAuthors').textContent = data.stats.totalAuthors || 0;
+          document.getElementById('lastUpdated').textContent = `Last updated: ${data.stats.lastUpdated || 'Unknown'}`;
         }
+
+        // Update analytics
+        if (data.blog) {
+          const thisMonth = data.blog.filter(p => {
+            const postDate = new Date(p.date);
+            const now = new Date();
+            return postDate.getMonth() === now.getMonth() && postDate.getFullYear() === now.getFullYear();
+          });
+          document.getElementById('analyticsPostCount').textContent = thisMonth.length;
+        }
+
+        // Populate author dropdown
+        if (data.authors && data.authors.length > 0) {
+          const authorSelect = document.getElementById('blogAuthor');
+          authorSelect.innerHTML = '<option value="EvolvedLotus Team">EvolvedLotus Team</option>';
+          data.authors.forEach(author => {
+            const option = document.createElement('option');
+            option.value = author.name;
+            option.textContent = author.name;
+            authorSelect.appendChild(option);
+          });
+        }
+
         return data;
-      } catch (e) { console.error(e); }
+      } catch (e) {
+        console.error('Error loading content data:', e);
+        document.getElementById('lastUpdated').textContent = 'Error loading data';
+        return null;
+      }
     }
 
-    // loaders
+    // Loaders with error handling
     function loadBlogPosts() {
-      const posts = contentData.blog || [];
-      document.getElementById('blogList').innerHTML = posts.length ? posts.map(p => `
-        <div class="content-item">
-          <h4>${p.title} ${p.featured ? '<span class="badge">FEATURED</span>' : ''}</h4>
-          <div class="content-meta">Published: ${p.date} | ${p.author}</div>
-          <div class="content-actions">
-            <button class="btn info" onclick="editContent('blog','${p.id}')">Edit</button>
-            <button class="btn success" onclick="viewContent('${p.url}')">View</button>
-          </div>
-        </div>`).join('') : '<p>No posts.</p>';
+      const listEl = document.getElementById('blogList');
+      try {
+        const posts = contentData.blog || [];
+        contentData.blogLoaded = true;
+
+        if (posts.length === 0) {
+          listEl.innerHTML = '<p>No posts found. Click "+ New Blog Post" to create your first post!</p>';
+          return;
+        }
+
+        listEl.innerHTML = posts.map(p => `
+          <div class="content-item">
+            <h4>${p.title || 'Untitled'} ${p.featured ? '<span class="badge blog">FEATURED</span>' : ''}</h4>
+            <div class="content-meta">Published: ${p.date || 'No date'} | ${p.author || 'Unknown author'}</div>
+            ${p.category ? `<div class="content-meta">Category: ${p.category}</div>` : ''}
+            <div class="content-actions">
+              <button class="btn info" onclick="editContent('blog','${p.id}')">Edit</button>
+              <button class="btn success" onclick="viewContent('${p.url}')">View</button>
+            </div>
+          </div>`).join('');
+      } catch (e) {
+        console.error('Error loading blog posts:', e);
+        listEl.innerHTML = '<div class="error-message">Error loading blog posts. Please refresh the page.</div>';
+      }
     }
+
     function loadHubContent() {
-      const hubs = contentData.hubs || [];
-      document.getElementById('hubsList').innerHTML = hubs.length ? hubs.map(h => `
-        <div class="content-item">
-          <h4>${h.title}</h4>
-          <div class="content-meta">${h.platform}</div>
-          <div class="content-actions"><button class="btn info" onclick="editContent('hub','${h.id}')">Edit</button></div>
-        </div>`).join('') : '<p>No hubs.</p>';
+      const listEl = document.getElementById('hubsList');
+      try {
+        const hubs = contentData.hubs || [];
+        contentData.hubsLoaded = true;
+
+        if (hubs.length === 0) {
+          listEl.innerHTML = '<p>No content hubs found. Click "+ New Hub Content" to create your first hub!</p>';
+          return;
+        }
+
+        listEl.innerHTML = hubs.map(h => `
+          <div class="content-item">
+            <h4>${h.title || 'Untitled Hub'}</h4>
+            <div class="content-meta">Platform: ${h.platform || 'Not specified'}</div>
+            ${h.description ? `<div class="content-meta">${h.description}</div>` : ''}
+            <div class="content-actions">
+              <button class="btn info" onclick="editContent('hub','${h.id}')">Edit</button>
+              <button class="btn success" onclick="viewContent('${h.url}')">View</button>
+            </div>
+          </div>`).join('');
+      } catch (e) {
+        console.error('Error loading hubs:', e);
+        listEl.innerHTML = '<div class="error-message">Error loading content hubs. Please refresh the page.</div>';
+      }
     }
+
     function loadAuthors() {
-      const auths = contentData.authors || [];
-      document.getElementById('authorsList').innerHTML = auths.length ? auths.map(a => `
-        <div class="content-item">
-          <h4>${a.name}</h4>
-          <div class="content-meta">${a.role}</div>
-          <div class="content-actions"><button class="btn info" onclick="editContent('author','${a.id}')">Edit</button></div>
-        </div>`).join('') : '<p>No authors.</p>';
+      const listEl = document.getElementById('authorsList');
+      try {
+        const auths = contentData.authors || [];
+        contentData.authorsLoaded = true;
+
+        if (auths.length === 0) {
+          listEl.innerHTML = '<p>No authors found. Click "+ New Author" to create your first author profile!</p>';
+          return;
+        }
+
+        listEl.innerHTML = auths.map(a => `
+          <div class="content-item">
+            <h4>${a.name || 'Unnamed Author'}</h4>
+            <div class="content-meta">${a.role || 'No role specified'}</div>
+            ${a.bio ? `<div class="content-meta">${a.bio.substring(0, 100)}${a.bio.length > 100 ? '...' : ''}</div>` : ''}
+            <div class="content-actions">
+              <button class="btn info" onclick="editContent('author','${a.id}')">Edit</button>
+            </div>
+          </div>`).join('');
+      } catch (e) {
+        console.error('Error loading authors:', e);
+        listEl.innerHTML = '<div class="error-message">Error loading authors. Please refresh the page.</div>';
+      }
     }
+
     function loadNotifications() {
-      document.getElementById('notificationsList').innerHTML = '<p>Check _src/blog/notifications/_ logic needed.</p>';
+      const listEl = document.getElementById('notificationsList');
+      try {
+        // Check if notifications collection exists
+        const notifs = contentData.notifications || [];
+        contentData.notificationsLoaded = true;
+
+        if (notifs.length === 0) {
+          listEl.innerHTML = '<p>No notifications found. Click "+ New Notification" to create your first notification!</p>';
+          return;
+        }
+
+        listEl.innerHTML = notifs.map(n => `
+          <div class="content-item">
+            <h4>${n.title || 'Untitled Notification'}</h4>
+            <div class="content-meta">Date: ${n.date || 'No date'}</div>
+            <div class="content-actions">
+              <button class="btn info" onclick="editContent('notification','${n.id}')">Edit</button>
+            </div>
+          </div>`).join('');
+      } catch (e) {
+        console.error('Error loading notifications:', e);
+        listEl.innerHTML = '<div class="error-message">Error loading notifications. Please refresh the page.</div>';
+      }
     }
+
     function loadPages() {
-      document.getElementById('pagesList').innerHTML = '<p>Static pages (About/Contact) managed via src/pages/.</p>';
+      const listEl = document.getElementById('pagesList');
+      try {
+        // Pages are typically static - list common ones
+        const pages = contentData.pages || [];
+        contentData.pagesLoaded = true;
+
+        if (pages.length === 0) {
+          listEl.innerHTML = `
+            <p>Static pages are managed in the <code>src/pages/</code> directory.</p>
+            <p>Common pages: About, Contact, Privacy Policy</p>
+            <p>Click "+ New Page" to create a new static page!</p>
+          `;
+          return;
+        }
+
+        listEl.innerHTML = pages.map(p => `
+          <div class="content-item">
+            <h4>${p.title || 'Untitled Page'}</h4>
+            <div class="content-meta">Layout: ${p.layout || 'page.njk'}</div>
+            <div class="content-actions">
+              <button class="btn info" onclick="editContent('page','${p.id}')">Edit</button>
+              <button class="btn success" onclick="viewContent('${p.url}')">View</button>
+            </div>
+          </div>`).join('');
+      } catch (e) {
+        console.error('Error loading pages:', e);
+        listEl.innerHTML = '<div class="error-message">Error loading pages. Please refresh the page.</div>';
+      }
     }
+
     async function loadMedia() {
+      const listEl = document.getElementById('mediaList');
       try {
         const r = await fetch('/api/media.json');
+        if (!r.ok) throw new Error(`HTTP ${r.status}`);
         const d = await r.json();
         const list = d.media || [];
-        document.getElementById('mediaList').innerHTML = list.length ? `<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:10px;">
-            ${list.map(f => `<div class="content-item" style="text-align:center;padding:5px;">
-              <img src="${f.path}" style="height:80px;width:100%;object-fit:cover;">
-              <div style="font-size:0.7em;overflow:hidden;text-overflow:ellipsis;">${f.name}</div>
-              <button class="btn info" style="font-size:0.6em;padding:2px;" onclick="navigator.clipboard.writeText('${f.path}');alert('Copied!')">Copy URL</button>
-            </div>`).join('')}</div>` : '<p>No media.</p>';
-      } catch (e) { }
+        contentData.mediaLoaded = true;
+
+        if (list.length === 0) {
+          listEl.innerHTML = '<p>No media files found. Click "+ Upload Media" to add images and files!</p>';
+          return;
+        }
+
+        listEl.innerHTML = `<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:15px;">
+            ${list.map(f => `<div class="content-item" style="text-align:center;padding:10px;">
+              <img src="${f.path}" style="height:100px;width:100%;object-fit:cover;border-radius:6px;margin-bottom:8px;" alt="${f.name}">
+              <div style="font-size:0.8em;overflow:hidden;text-overflow:ellipsis;margin-bottom:8px;">${f.name}</div>
+              <button class="btn info" style="font-size:0.7em;padding:5px 10px;" onclick="navigator.clipboard.writeText('${f.path}');alert('URL copied to clipboard!')">Copy URL</button>
+            </div>`).join('')}</div>`;
+      } catch (e) {
+        console.error('Error loading media:', e);
+        listEl.innerHTML = '<div class="error-message">Error loading media files. Please refresh the page.</div>';
+      }
     }
 
     // CREATE / EDIT
@@ -817,20 +1084,32 @@
 
       document.getElementById('editModal').style.display = 'block';
 
+      // Initialize rich text editor
+      if (type !== 'media') {
+        setTimeout(() => initializeEditor(), 100);
+      }
+
       // Defaults
       if (type === 'blog') {
         const now = new Date();
         now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
         document.getElementById('blogDate').value = now.toISOString().slice(0, 16);
       }
+      if (type === 'notification') {
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('notifDate').value = today;
+      }
     }
 
     function editContent(type, id) {
-      createNewContent(type); // Reset and show form
-      document.getElementById('modalTitle').textContent = 'Edit ' + type;
+      createNewContent(type);
+      document.getElementById('modalTitle').textContent = 'Edit ' + type.charAt(0).toUpperCase() + type.slice(1);
 
       const item = contentData[type]?.find(i => i.id === id);
-      if (!item) return;
+      if (!item) {
+        alert('Content not found');
+        return;
+      }
 
       if (type === 'blog') {
         document.getElementById('blogTitle').value = item.title || '';
@@ -846,24 +1125,28 @@
         document.getElementById('blogOg').value = item.og_type || 'article';
         document.getElementById('blogFeatured').checked = !!item.featured;
         document.getElementById('blogDraft').checked = !!item.draft;
+        updateSlug('blog');
       }
       if (type === 'hub') {
         document.getElementById('hubTitle').value = item.title || '';
         document.getElementById('hubDesc').value = item.description || '';
         document.getElementById('hubCollection').value = item.platform || '';
         document.getElementById('hubPermalink').value = item.url || '';
+        updateSlug('hub');
       }
       if (type === 'author') {
         document.getElementById('authorName').value = item.name || '';
         document.getElementById('authorRole').value = item.role || '';
         document.getElementById('authorBio').value = item.bio || '';
-        // Map expertise if array
         if (item.expertise && Array.isArray(item.expertise)) {
           document.getElementById('authorExpertise').value = item.expertise.join('\n');
         }
+        updateSlug('author');
       }
 
-      document.getElementById('mainContent').value = "Content loading skipped for static demo.";
+      if (simpleMDE) {
+        simpleMDE.value("# Content\n\nEdit your content here...");
+      }
     }
 
     function generateFrontmatter(e) {
@@ -874,6 +1157,10 @@
 
       if (type === 'blog') {
         const t = document.getElementById('blogTitle').value;
+        if (!t) {
+          alert('Please enter a post title');
+          return;
+        }
         fm += `title: "${t.replace(/"/g, '\\"')}"\n`;
         fm += `description: "${document.getElementById('blogDesc').value.replace(/"/g, '\\"')}"\n`;
         fm += `date: ${new Date(document.getElementById('blogDate').value).toISOString()}\n`;
@@ -896,6 +1183,10 @@
       }
       else if (type === 'hub') {
         const t = document.getElementById('hubTitle').value;
+        if (!t) {
+          alert('Please enter a hub title');
+          return;
+        }
         fm += `layout: hub.njk\n`;
         fm += `title: "${t}"\n`;
         fm += `description: "${document.getElementById('hubDesc').value}"\n`;
@@ -905,6 +1196,10 @@
       }
       else if (type === 'author') {
         const n = document.getElementById('authorName').value;
+        if (!n) {
+          alert('Please enter author name');
+          return;
+        }
         fm += `name: "${n}"\n`;
         fm += `slug: ${n.toLowerCase().replace(/ /g, '-')}\n`;
         fm += `role: "${document.getElementById('authorRole').value}"\n`;
@@ -921,6 +1216,10 @@
       }
       else if (type === 'notification') {
         const t = document.getElementById('notifTitle').value;
+        if (!t) {
+          alert('Please enter notification title');
+          return;
+        }
         fm += `title: "${t}"\n`;
         fm += `date: ${document.getElementById('notifDate').value}\n`;
         if (document.getElementById('notifLink').value) fm += `link: ${document.getElementById('notifLink').value}\n`;
@@ -929,31 +1228,48 @@
       }
       else if (type === 'page') {
         const t = document.getElementById('pageTitle').value;
+        if (!t) {
+          alert('Please enter page title');
+          return;
+        }
         fm += `title: "${t}"\n`;
         fm += `layout: ${document.getElementById('pageLayout').value}\n`;
         fm += `permalink: ${document.getElementById('pagePermalink').value}\n`;
         filename = 'pages/' + t.toLowerCase().replace(/[^a-z0-9]+/g, '-');
       }
 
-      fm += '---\n\n' + document.getElementById('mainContent').value;
+      const content = simpleMDE ? simpleMDE.value() : document.getElementById('mainContent').value;
+      fm += '---\n\n' + content;
 
-      navigator.clipboard.writeText(fm).then(() => alert(`Copied to clipboard!\nCreate: src/${filename}.md`));
+      navigator.clipboard.writeText(fm).then(() => {
+        alert(`✅ Content copied to clipboard!\n\nCreate file: src/${filename}.md\n\nPaste the content and save the file.`);
+        closeModal();
+      }).catch(err => {
+        alert('Error copying to clipboard. Please copy manually.');
+        console.error(err);
+      });
     }
 
     document.getElementById('contentForm').addEventListener('submit', generateFrontmatter);
     function viewContent(url) { window.open(url, '_blank'); }
-    function closeModal() { document.getElementById('editModal').style.display = 'none'; }
+    function closeModal() {
+      document.getElementById('editModal').style.display = 'none';
+      if (simpleMDE) {
+        simpleMDE.toTextArea();
+        simpleMDE = null;
+      }
+    }
     window.onclick = function (e) { if (e.target == document.getElementById('editModal')) closeModal(); }
 
+    // Initialize on load
     window.onload = async function () {
+      console.log('Loading CMS data...');
       await loadContentData();
       loadBlogPosts();
       loadHubContent();
       loadAuthors();
-      loadMedia();
+      console.log('CMS initialized successfully');
     }
-
-
   </script>
 </body>
 

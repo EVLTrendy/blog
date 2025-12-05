@@ -7,6 +7,8 @@ eleventyExcludeFromCollections: true
     "totalBlogPosts": {{ collections.post | length }},
     "totalHubs": {{ collections.hubs | length if collections.hubs else 0 }},
     "totalAuthors": {{ collections.authors | length if collections.authors else 0 }},
+    "totalNotifications": {{ collections.notifications | length if collections.notifications else 0 }},
+    "totalPages": {{ collections.pages | length if collections.pages else 0 }},
     "lastUpdated": "{{ "now" | date("yyyy-MM-dd HH:mm:ss") }}"
   },
   "blog": [
@@ -49,6 +51,27 @@ eleventyExcludeFromCollections: true
       "role": {{ author.data.role | dump | safe }},
       "bio": {{ author.data.bio | dump | safe }},
       "expertise": {{ author.data.expertise | dump | safe }}
+    }{% if not loop.last %},{% endif %}
+    {%- endfor -%}
+  ],
+  "notifications": [
+    {%- for notif in collections.notifications -%}
+    {
+      "id": "{{ notif.fileSlug }}",
+      "url": "{{ notif.url }}",
+      "title": {{ notif.data.title | dump | safe }},
+      "date": "{{ notif.date | date("yyyy-MM-dd") }}",
+      "link": {{ notif.data.link | dump | safe }}
+    }{% if not loop.last %},{% endif %}
+    {%- endfor -%}
+  ],
+  "pages": [
+    {%- for page in collections.pages -%}
+    {
+      "id": "{{ page.fileSlug }}",
+      "url": "{{ page.url }}",
+      "title": {{ page.data.title | dump | safe }},
+      "layout": {{ page.data.layout | dump | safe }}
     }{% if not loop.last %},{% endif %}
     {%- endfor -%}
   ]
