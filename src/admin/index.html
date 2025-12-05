@@ -11,6 +11,8 @@
   <!-- SimpleMDE for Rich Text Editing -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
   <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+  <!-- Font Awesome for SimpleMDE icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css">
   <style>
     /* Reset Sakura constraints for full-width CMS layout */
     body {
@@ -795,7 +797,8 @@
           placeholder: "Write your content here using Markdown...",
           status: ["lines", "words", "cursor"],
           toolbar: ["bold", "italic", "heading", "|", "quote", "unordered-list", "ordered-list", "|", "link", "image", "|", "preview", "side-by-side", "fullscreen", "|", "guide"],
-          forceSync: true // Force sync with textarea
+          forceSync: true, // Force sync with textarea
+          autoDownloadFontAwesome: false
         });
       }
     }
