@@ -4,6 +4,10 @@
 # Short URL redirects
 /r/*    /.netlify/functions/shorten    200!
 
+# Asset redirects for default browser requests
+/favicon.ico    /assets/blog/favicon.ico    200
+/logo.png       /assets/blog/logo.png       200
+
 # Primary redirects - ensure no redirect chains
 # Removed blog redirect to prevent redirect chains - internal links should point directly to final destinations
 # /    /index.html    200
