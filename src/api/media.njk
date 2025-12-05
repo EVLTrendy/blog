@@ -4,18 +4,17 @@ eleventyExcludeFromCollections: true
 ---
 {
   "media": [
+    {%- for file in mediaFiles -%}
     {
-      "name": "logo.png",
-      "path": "/assets/logo.png",
-      "size": 12345,
-      "type": "image"
-    },
-    {
-      "name": "favicon.ico",
-      "path": "/assets/favicon.ico",
-      "size": 5678,
-      "type": "icon"
-    }
+      "name": {{ file.name | dump | safe }},
+      "path": {{ file.path | dump | safe }},
+      "size": {{ file.size }},
+      "type": {{ file.type | dump | safe }},
+      "extension": {{ file.extension | dump | safe }},
+      "modified": {{ file.modified | dump | safe }}
+    }{% if not loop.last %},{% endif %}
+    {%- endfor -%}
   ],
-  "note": "Media files are stored in /assets/ directory. This is a static list - in production, this would scan the assets directory."
+  "totalFiles": {{ mediaFiles | length }},
+  "note": "Media files are dynamically scanned from /assets/ directory"
 }

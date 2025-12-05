@@ -926,6 +926,7 @@
             <div class="content-actions">
               <button class="btn info" onclick="editContent('blog','${p.id}')">Edit</button>
               <button class="btn success" onclick="viewContent('${p.url}')">View</button>
+              <button class="btn danger" onclick="deleteContent('blog','${p.id}','${(p.title || 'Untitled').replace(/'/g, "\\'")}')">Delete</button>
             </div>
           </div>`).join('');
       } catch (e) {
@@ -1265,6 +1266,22 @@
         simpleMDE = null;
       }
     }
+
+    // Delete content with confirmation
+    function deleteContent(type, id, title) {
+      const confirmMsg = `⚠️ Are you sure you want to delete "${title}"?\n\nThis will require you to manually delete the file:\nsrc/${type}/${id}.md\n\nClick OK to get the file path copied to clipboard.`;
+
+      if (confirm(confirmMsg)) {
+        const filePath = `src/${type}/${id}.md`;
+        navigator.clipboard.writeText(filePath).then(() => {
+          alert(`✅ File path copied to clipboard!\n\n${filePath}\n\nPlease delete this file manually and commit the changes.`);
+        }).catch(err => {
+          alert(`Please manually delete:\n${filePath}`);
+          console.error(err);
+        });
+      }
+    }
+
     window.onclick = function (e) { if (e.target == document.getElementById('editModal')) closeModal(); }
 
     // Initialize on load

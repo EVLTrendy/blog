@@ -320,10 +320,6 @@ module.exports = function (eleventyConfig) {
         return collectionApi
             .getFilteredByTag("post")
             .filter(post => {
-                // Use the isContent flag to ensure only valid content files are processed
-                return post.data.isContent === true;
-            })
-            .filter(post => {
                 // Handle both string and Date objects for date comparison
                 const postDate = typeof post.date === 'string' ? new Date(post.date) : post.date;
                 return postDate <= now;
