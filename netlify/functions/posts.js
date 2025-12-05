@@ -104,7 +104,14 @@ async function scanBlogPosts(dir) {
       try {
         const filePath = path.join(dir, file);
         const content = fs.readFileSync(filePath, 'utf8');
-        const { data, content: bodyContent } = matter(content);
+
+        // Debug: Log file and content start
+        console.log(`Processing file: ${file}, content preview: ${content.substring(0, 100)}`);
+
+        const matterResult = matter(content);
+        console.log(`Matter result for ${file}:`, { hasData: !!matterResult.data, hasContent: !!matterResult.content, contentLength: matterResult.content?.length });
+
+        const { data, content: bodyContent } = matterResult;
 
         // Generate slug from filename (remove date prefix and extension)
         const slug = file.replace(/^\d{4}-\d{2}-\d{2}-/, '').replace('.md', '');
