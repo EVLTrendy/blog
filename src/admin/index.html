@@ -1179,36 +1179,32 @@
     }
 
     async function saveContent(fm, filename, type) {
-      // Try to save directly if running locally (development)
-      const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.origin.includes('localhost');
+      // Try local development server first (port 3001)
+      try {
+        const response = await fetch('http://localhost:3001/api/save-content', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            filename: filename,
+            content: fm,
+            type: type.charAt(0).toUpperCase() + type.slice(1)
+          })
+        });
 
-      if (isLocalhost) {
-        try {
-          const response = await fetch('/api/save-content', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-              filename: filename,
-              content: fm,
-              type: type.charAt(0).toUpperCase() + type.slice(1)
-            })
-          });
-
-          if (response.ok) {
-            const result = await response.json();
-            alert(`✅ Content saved successfully!\n\nFile: src/${filename}.md\n\nChanges will be reflected after rebuild.`);
-            // Reload to refresh the API data
-            setTimeout(() => window.location.reload(), 1000);
-            return true;
-          }
-        } catch (e) {
-          console.warn('Direct save failed, falling back to commit workflow:', e);
+        if (response.ok) {
+          const result = await response.json();
+          alert(`✅ Content saved successfully!\n\nFile: src/${filename}.md\n\nChanges will be reflected after rebuild.`);
+          // Reload to refresh the API data
+          setTimeout(() => window.location.reload(), 1000);
+          return true;
         }
+      } catch (e) {
+        console.warn('Local development server not available, falling back to clipboard');
       }
 
-      // Production/GitHub workflow - commit to repository
+      // Production/GitHub workflow - commit to repository (if GitHub token configured)
       try {
         const response = await fetch('/.netlify/functions/save-content', {
           method: 'POST',
@@ -1230,10 +1226,11 @@
           return true;
         }
       } catch (e) {
-        console.warn('Git commit failed:', e);
+        console.warn('Git commit failed (might need GitHub token):', e);
       }
 
-      // Fallback to clipboard copy
+      // Fallback to clipboard copy - always available
+      console.log('Using clipboard fallback');
       return false;
     }
 
