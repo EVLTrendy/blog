@@ -1229,7 +1229,17 @@
 
       // Hide all sections
       document.querySelectorAll('.form-section').forEach(el => el.classList.remove('active'));
-      document.getElementById('commonContentRow').style.display = (type === 'media') ? 'none' : 'block';
+
+      // Hide content row and action buttons for media (has its own upload button)
+      const isMedia = (type === 'media');
+      document.getElementById('commonContentRow').style.display = isMedia ? 'none' : 'block';
+      document.getElementById('saveBtn').style.display = isMedia ? 'none' : 'inline-block';
+      document.querySelector('button[onclick="generateFrontmatterProto()"]').style.display = isMedia ? 'none' : 'inline-block';
+
+      // Clear media upload state
+      if (isMedia) {
+        clearMediaUpload();
+      }
 
       // Show specific section
       if (type === 'blog') document.getElementById('blogFields').classList.add('active');
@@ -1424,6 +1434,13 @@
     function generateFrontmatter(e) {
       e.preventDefault();
       const type = document.getElementById('contentType').value;
+
+      // Media has its own upload button
+      if (type === 'media') {
+        alert('Please use the "Upload to Repository" button to upload media files.');
+        return;
+      }
+
       let fm = '---\n';
       let filename = 'content';
 
