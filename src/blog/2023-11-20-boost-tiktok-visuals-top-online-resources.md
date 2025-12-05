@@ -7,6 +7,7 @@ tags:
   - post
   - post
   - featured
+  - popular
   - tiktok
 image: /assets/blog/boost-tiktok-visuals-top-online-resources.png
 category: content-creation

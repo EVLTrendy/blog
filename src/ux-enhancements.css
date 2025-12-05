@@ -450,3 +450,19 @@ html {
 :target {
     scroll-margin-top: 100px;
 }
+
+/* ============================================
+   SECTION EMPTY STATE
+   Used for tab content that has no items
+   ============================================ */
+
+.section-empty-state {
+    text-align: center;
+    padding: 3rem 1rem;
+    background: #f8f9fa;
+    border-radius: 12px;
+    color: #6c757d;
+    font-size: 1.1rem;
+    border: 2px dashed #e9ecef;
+    margin: 1rem 0;
+}
