@@ -1,5 +1,6 @@
 <!doctype html>
 <html>
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,52 +8,260 @@
   <title>Complete Content Management System</title>
   <link rel="stylesheet" href="https://unpkg.com/sakura.css/css/sakura.css">
   <style>
-    .cms-sidebar { position: fixed; left: 0; top: 0; width: 250px; height: 100vh; background: #f8f9fa; padding: 20px; overflow-y: auto; border-right: 1px solid #dee2e6; }
-    .cms-main { margin-left: 250px; padding: 20px; }
-    .cms-nav-item { display: block; padding: 10px; margin: 5px 0; text-decoration: none; color: #333; border-radius: 5px; }
-    .cms-nav-item:hover, .cms-nav-item.active { background: #33bdef; color: white; }
-    .content-section { display: none; }
-    .content-section.active { display: block; }
-    .content-list { margin: 20px 0; }
-    .content-item { padding: 15px; border: 1px solid #ddd; margin: 10px 0; background: #f9f9f9; border-radius: 8px; }
-    .content-item h4 { margin: 0 0 8px 0; }
-    .content-meta { color: #666; font-size: 0.9em; }
-    .content-actions { margin-top: 10px; }
-    .btn { padding: 8px 16px; margin: 0 5px; cursor: pointer; border: 1px solid #ccc; background: #fff; border-radius: 4px; }
-    .btn.primary { background: #33bdef; color: white; border-color: #33bdef; }
-    .btn.success { background: #28a745; color: white; border-color: #28a745; }
-    .btn.warning { background: #ffc107; color: black; border-color: #ffc107; }
-    .btn.danger { background: #dc3545; color: white; border-color: #dc3545; }
-    .btn.info { background: #17a2b8; color: white; border-color: #17a2b8; }
-    .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 1000; }
-    .modal-content { background: white; margin: 5% auto; padding: 20px; width: 90%; max-width: 900px; border-radius: 8px; max-height: 80vh; overflow-y: auto; }
-    form { margin-top: 20px; }
-    label { display: block; margin: 10px 0 5px 0; font-weight: bold; }
-    input, textarea, select { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-size: 14px; }
-    textarea { min-height: 300px; font-family: monospace; }
-    .form-row { margin-bottom: 15px; }
-    .form-row.half { width: 48%; display: inline-block; margin-right: 4%; }
-    .form-row.half:last-child { margin-right: 0; }
-    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin: 20px 0; }
-    .stat-card { background: #f8f9fa; padding: 20px; border-radius: 8px; text-align: center; }
-    .stat-number { font-size: 2em; font-weight: bold; color: #33bdef; }
-    .stat-label { color: #666; }
-    .recent-activity { background: #f8f9fa; padding: 15px; border-radius: 8px; margin: 15px 0; }
-    .activity-item { padding: 8px 0; border-bottom: 1px solid #eee; }
-    .activity-item:last-child { border-bottom: none; }
-    .badge { display: inline-block; padding: 3px 8px; border-radius: 12px; font-size: 0.8em; font-weight: bold; }
-    .badge.blog { background: #28a745; color: white; }
-    .badge.hub { background: #ffc107; color: black; }
-    .badge.author { background: #17a2b8; color: white; }
-    .badge.notification { background: #dc3545; color: white; }
+    .cms-sidebar {
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 250px;
+      height: 100vh;
+      background: #f8f9fa;
+      padding: 20px;
+      overflow-y: auto;
+      border-right: 1px solid #dee2e6;
+    }
+
+    .cms-main {
+      margin-left: 250px;
+      padding: 20px;
+    }
+
+    .cms-nav-item {
+      display: block;
+      padding: 10px;
+      margin: 5px 0;
+      text-decoration: none;
+      color: #333;
+      border-radius: 5px;
+    }
+
+    .cms-nav-item:hover,
+    .cms-nav-item.active {
+      background: #33bdef;
+      color: white;
+    }
+
+    .content-section {
+      display: none;
+    }
+
+    .content-section.active {
+      display: block;
+    }
+
+    .content-list {
+      margin: 20px 0;
+    }
+
+    .content-item {
+      padding: 15px;
+      border: 1px solid #ddd;
+      margin: 10px 0;
+      background: #f9f9f9;
+      border-radius: 8px;
+    }
+
+    .content-item h4 {
+      margin: 0 0 8px 0;
+    }
+
+    .content-meta {
+      color: #666;
+      font-size: 0.9em;
+    }
+
+    .content-actions {
+      margin-top: 10px;
+    }
+
+    .btn {
+      padding: 8px 16px;
+      margin: 0 5px;
+      cursor: pointer;
+      border: 1px solid #ccc;
+      background: #fff;
+      border-radius: 4px;
+    }
+
+    .btn.primary {
+      background: #33bdef;
+      color: white;
+      border-color: #33bdef;
+    }
+
+    .btn.success {
+      background: #28a745;
+      color: white;
+      border-color: #28a745;
+    }
+
+    .btn.warning {
+      background: #ffc107;
+      color: black;
+      border-color: #ffc107;
+    }
+
+    .btn.danger {
+      background: #dc3545;
+      color: white;
+      border-color: #dc3545;
+    }
+
+    .btn.info {
+      background: #17a2b8;
+      color: white;
+      border-color: #17a2b8;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      z-index: 1000;
+    }
+
+    .modal-content {
+      background: white;
+      margin: 5% auto;
+      padding: 20px;
+      width: 90%;
+      max-width: 900px;
+      border-radius: 8px;
+      max-height: 80vh;
+      overflow-y: auto;
+    }
+
+    form {
+      margin-top: 20px;
+    }
+
+    label {
+      display: block;
+      margin: 10px 0 5px 0;
+      font-weight: bold;
+    }
+
+    input,
+    textarea,
+    select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+
+    textarea {
+      min-height: 300px;
+      font-family: monospace;
+    }
+
+    .form-row {
+      margin-bottom: 15px;
+    }
+
+    .form-row.half {
+      width: 48%;
+      display: inline-block;
+      margin-right: 4%;
+    }
+
+    .form-row.half:last-child {
+      margin-right: 0;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin: 20px 0;
+    }
+
+    .stat-card {
+      background: #f8f9fa;
+      padding: 20px;
+      border-radius: 8px;
+      text-align: center;
+    }
+
+    .stat-number {
+      font-size: 2em;
+      font-weight: bold;
+      color: #33bdef;
+    }
+
+    .stat-label {
+      color: #666;
+    }
+
+    .recent-activity {
+      background: #f8f9fa;
+      padding: 15px;
+      border-radius: 8px;
+      margin: 15px 0;
+    }
+
+    .activity-item {
+      padding: 8px 0;
+      border-bottom: 1px solid #eee;
+    }
+
+    .activity-item:last-child {
+      border-bottom: none;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 3px 8px;
+      border-radius: 12px;
+      font-size: 0.8em;
+      font-weight: bold;
+    }
+
+    .badge.blog {
+      background: #28a745;
+      color: white;
+    }
+
+    .badge.hub {
+      background: #ffc107;
+      color: black;
+    }
+
+    .badge.author {
+      background: #17a2b8;
+      color: white;
+    }
+
+    .badge.notification {
+      background: #dc3545;
+      color: white;
+    }
+
     @media (max-width: 768px) {
-      .cms-sidebar { display: none; }
-      .cms-main { margin-left: 0; }
-      .stats-grid { grid-template-columns: 1fr; }
-      .form-row.half { width: 100%; margin-right: 0; }
+      .cms-sidebar {
+        display: none;
+      }
+
+      .cms-main {
+        margin-left: 0;
+      }
+
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .form-row.half {
+        width: 100%;
+        margin-right: 0;
+      }
     }
   </style>
 </head>
+
 <body>
   <!-- Sidebar Navigation -->
   <nav class="cms-sidebar">
@@ -311,7 +520,8 @@
         <div class="form-row">
           <button type="submit" class="btn primary">Save Content</button>
           <button type="button" class="btn" onclick="closeModal()">Cancel</button>
-          <button type="button" id="deleteBtn" class="btn danger" style="display:none;" onclick="deleteContent()">Delete</button>
+          <button type="button" id="deleteBtn" class="btn danger" style="display:none;"
+            onclick="deleteContent()">Delete</button>
         </div>
       </form>
     </div>
@@ -338,7 +548,7 @@
     // Initialize blog posts list
     function refreshSection(section) {
       // Simulate loading content - in real CMS this would fetch from backend
-      switch(section) {
+      switch (section) {
         case 'blog':
           loadBlogPosts();
           break;
@@ -369,9 +579,12 @@
 
         // Update stats
         if (data.stats) {
-          document.querySelector('.stat-number:nth-child(1)').textContent = data.stats.totalBlogPosts + '+';
-          document.querySelector('.stat-number:nth-child(3)').textContent = data.stats.totalAuthors;
-          document.querySelector('.stat-number:nth-child(2)').textContent = data.stats.totalHubs;
+          const statNumbers = document.querySelectorAll('.stat-number');
+          if (statNumbers.length >= 3) {
+            statNumbers[0].textContent = data.stats.totalBlogPosts + '+';
+            statNumbers[1].textContent = data.stats.totalHubs;
+            statNumbers[2].textContent = data.stats.totalAuthors;
+          }
         }
 
         return data;
@@ -558,24 +771,25 @@
     }
 
     // Initialize
-    window.onload = async function() {
+    window.onload = async function () {
       await loadContentData();
       loadBlogPosts();
     };
 
     // Handle form submission
-    document.getElementById('contentForm').addEventListener('submit', function(e) {
+    document.getElementById('contentForm').addEventListener('submit', function (e) {
       e.preventDefault();
       alert('Content saved! (Demo mode - integration with GitHub API needed for persistence)');
       closeModal();
     });
 
     // Close modal when clicking outside
-    window.onclick = function(event) {
+    window.onclick = function (event) {
       if (event.target === document.getElementById('editModal')) {
         closeModal();
       }
     }
   </script>
 </body>
+
 </html>
