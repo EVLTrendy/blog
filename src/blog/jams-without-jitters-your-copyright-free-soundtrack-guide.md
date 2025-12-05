@@ -1,8 +1,8 @@
 ---
-title: "Jams Without Jitters: Your Copyright-Free Soundtrack Guide!"
-description: "Navigating the realm of music selection as content creators presents a dynamic landscape rich with solutions to the copyright challenge"
-date: 2023-11-20T17:00:00.000Z
-author: "EvolvedLotus Team"
+title: 'Jams Without Jitters: Your Copyright-Free Soundtrack Guide!'
+description: Navigating the realm of music selection as content creators presents a dynamic landscape rich with solutions to the copyright challenge
+date: '2023-11-20T17:00:00.000Z'
+author: EvolvedLotus Team
 tags:
   - post
   - featured
@@ -11,8 +11,8 @@ tags:
 image: /assets/blog/jams-without-jitters-your-copyright-free-soundtrack-guide-.png
 category: content-creation
 featured: true
-imageAlt: "Jams Without Jitters: Your Copyright-Free Soundtrack Guide!"
-keywords: "content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing"
+imageAlt: 'Jams Without Jitters: Your Copyright-Free Soundtrack Guide!'
+keywords: 'content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing'
 schema_type: Article
 og_type: article
 ---

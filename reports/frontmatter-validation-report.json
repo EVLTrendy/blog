@@ -1,9 +1,9 @@
 {
-  "timestamp": "2025-12-05T11:10:54.086Z",
+  "timestamp": "2025-12-05T18:46:18.434Z",
   "summary": {
-    "totalFiles": 83,
+    "totalFiles": 84,
     "errors": 0,
-    "warnings": 83
+    "warnings": 84
   },
   "errors": [],
   "warnings": [
@@ -585,6 +585,13 @@
       "file": "2025-10-22-plan-batch-and-grow-your-social-media.md",
       "type": "image_dimensions_check",
       "message": "Image at /assets/blog/plan-batch-and-grow-your-social-media.png: Ensure dimensions are 1200x630px for optimal Twitter Card display",
+      "field": "image",
+      "suggestion": "Twitter cards work best with 1.91:1 ratio images (1200x630px)"
+    },
+    {
+      "file": "jams-without-jitters-your-copyright-free-soundtrack-guide.md",
+      "type": "image_dimensions_check",
+      "message": "Image at /assets/blog/jams-without-jitters-your-copyright-free-soundtrack-guide-.png: Ensure dimensions are 1200x630px for optimal Twitter Card display",
       "field": "image",
       "suggestion": "Twitter cards work best with 1.91:1 ratio images (1200x630px)"
     }
