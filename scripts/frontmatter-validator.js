@@ -259,8 +259,13 @@ class FrontmatterValidator {
     console.log('='.repeat(60));
 
     // Save report to file
-    const reportPath = path.join(__dirname, '..', 'reports', 'frontmatter-validation-report.json');
+    const reportDir = path.join(__dirname, '..', 'reports');
+    const reportPath = path.join(reportDir, 'frontmatter-validation-report.json');
     try {
+      // Ensure reports directory exists (it's gitignored so won't exist in CI)
+      if (!fs.existsSync(reportDir)) {
+        fs.mkdirSync(reportDir, { recursive: true });
+      }
       fs.writeFileSync(reportPath, JSON.stringify(report, null, 2));
       console.log(`\n📄 Report saved to: ${reportPath}`);
     } catch (error) {

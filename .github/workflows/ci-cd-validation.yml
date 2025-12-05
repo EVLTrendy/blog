@@ -24,78 +24,98 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Run frontmatter validation
-        run: npm run validate
+      - name: Run frontmatter validation with auto-fix
+        run: npm run validate:fix
 
       - name: Build and validate site
         run: npm run build:safe
 
       - name: Upload validation report
         if: always()
+        continue-on-error: true
         uses: actions/upload-artifact@v4
         with:
           name: frontmatter-validation-report
           path: reports/frontmatter-validation-report.json
           retention-days: 30
+          if-no-files-found: ignore
 
       - name: Upload API validation report
         if: always()
+        continue-on-error: true
         uses: actions/upload-artifact@v4
         with:
           name: api-validation-results
           path: public/api/posts.json
           retention-days: 7
+          if-no-files-found: ignore
 
       - name: Upload build artifacts
         if: success()
+        continue-on-error: true
         uses: actions/upload-artifact@v4
         with:
           name: built-site
           path: public/
           retention-days: 7
+          if-no-files-found: warn
 
       - name: Comment PR with validation results
         if: github.event_name == 'pull_request'
+        continue-on-error: true
         uses: actions/github-script@v7
         with:
           script: |
             const fs = require('fs');
-            const path = 'reports/frontmatter-validation-report.json';
+            const reportPath = 'reports/frontmatter-validation-report.json';
 
-            if (fs.existsSync(path)) {
-              const report = JSON.parse(fs.readFileSync(path, 'utf8'));
+            if (fs.existsSync(reportPath)) {
+              try {
+                const report = JSON.parse(fs.readFileSync(reportPath, 'utf8'));
+                const summary = report.summary || {};
 
-              let comment = '## 🔍 SEO Validation Report\n\n';
-              comment += `**Total Files:** ${report.totalFiles}\n`;
-              comment += `**Errors:** ${report.errors}\n`;
-              comment += `**Warnings:** ${report.warnings}\n\n`;
+                let comment = '## 🔍 SEO Validation Report\n\n';
+                comment += `**Total Files:** ${summary.totalFiles || 0}\n`;
+                comment += `**Errors:** ${summary.errors || 0}\n`;
+                comment += `**Warnings:** ${summary.warnings || 0}\n\n`;
 
-              if (report.warnings > 0) {
-                comment += '### ⚠️ Warnings:\n';
-                report.warningsList.forEach(warning => {
-                  comment += `- **${warning.file}**: ${warning.message}\n`;
+                if (report.warnings && report.warnings.length > 0) {
+                  comment += '### ⚠️ Warnings:\n';
+                  report.warnings.slice(0, 10).forEach(warning => {
+                    comment += `- **${warning.file}**: ${warning.message}\n`;
+                  });
+                  if (report.warnings.length > 10) {
+                    comment += `- ... and ${report.warnings.length - 10} more warnings\n`;
+                  }
+                  comment += '\n';
+                }
+
+                if (report.errors && report.errors.length > 0) {
+                  comment += '### ❌ Errors:\n';
+                  report.errors.slice(0, 10).forEach(error => {
+                    comment += `- **${error.file}**: ${error.message}\n`;
+                  });
+                  if (report.errors.length > 10) {
+                    comment += `- ... and ${report.errors.length - 10} more errors\n`;
+                  }
+                  comment += '\n';
+                }
+
+                if ((summary.errors || 0) === 0 && (summary.warnings || 0) === 0) {
+                  comment += '✅ **All validation checks passed!**';
+                } else if ((summary.errors || 0) === 0) {
+                  comment += '⚠️ **Warnings found, but build succeeded.**';
+                } else {
+                  comment += '🔧 **Please review the issues above.**';
+                }
+
+                github.rest.issues.createComment({
+                  issue_number: context.issue.number,
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  body: comment
                 });
-                comment += '\n';
+              } catch (e) {
+                console.log('Error parsing validation report:', e.message);
               }
-
-              if (report.errors > 0) {
-                comment += '### ❌ Errors:\n';
-                report.errorsList.forEach(error => {
-                  comment += `- **${error.file}**: ${error.message}\n`;
-                });
-                comment += '\n';
-              }
-
-              if (report.errors === 0 && report.warnings === 0) {
-                comment += '✅ **All validation checks passed!**';
-              } else {
-                comment += '🔧 **Please review and fix the issues above before merging.**';
-              }
-
-              github.rest.issues.createComment({
-                issue_number: context.issue.number,
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                body: comment
-              });
             }

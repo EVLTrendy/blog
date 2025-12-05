@@ -1,234 +1,1448 @@
 <!doctype html>
-<html lang="en">
+<html>
 
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="robots" content="noindex, nofollow" />
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-  <meta http-equiv="Pragma" content="no-cache" />
-  <meta http-equiv="Expires" content="0" />
-  <title>EvolvedLotus Content Manager</title>
-  <link rel="canonical" href="https://blog.evolvedlotus.com/admin/" />
-  <!-- Remove icon reference to avoid 404 -->
-  <meta property="og:image" content="/assets/blog/default-og.png" />
-
-  <!-- Netlify Identity Widget -->
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js?v=1"></script>
-
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"
-    rel="stylesheet">
-
+  <meta name="robots" content="noindex" />
+  <title>Complete Content Management System</title>
+  <link rel="icon" type="image/x-icon" href="/assets/blog/favicon.ico">
+  <link rel="stylesheet" href="https://unpkg.com/sakura.css/css/sakura.css">
+  <!-- SimpleMDE for Rich Text Editing -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+  <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+  <!-- Font Awesome for SimpleMDE icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css">
   <style>
-    /* ============================================
-       MINIMALIST LIGHT CMS THEME
-       ============================================ */
-
-    :root {
-      --font-heading: 'Outfit', sans-serif;
-      --font-body: 'Inter', sans-serif;
-      --color-primary: #0ea5e9;
-      --color-bg: #f8fafc;
-      --color-surface: #ffffff;
-      --color-text: #0f172a;
-      --color-border: #e2e8f0;
-    }
-
+    /* Reset Sakura constraints for full-width CMS layout */
     body {
-      font-family: var(--font-body) !important;
-      background-color: var(--color-bg) !important;
-      color: var(--color-text) !important;
-      -webkit-font-smoothing: antialiased;
+      max-width: 100% !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      background-color: #f0f2f5;
+    }
+
+    .cms-sidebar {
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 260px;
+      height: 100vh;
+      background: #ffffff;
+      padding: 25px 35px 25px 25px;
+      overflow-y: auto;
+      border-right: 1px solid #e1e4e8;
+      box-shadow: 2px 0 5px rgba(0, 0, 0, 0.03);
+      z-index: 100;
+    }
+
+    .cms-main {
+      margin-left: 300px;
+      padding: 40px;
+      max-width: 1600px;
+      margin-right: auto;
+    }
+
+    .cms-nav-item {
+      display: block;
+      padding: 12px 15px;
+      margin: 8px 0;
+      text-decoration: none;
+      color: #4a5568;
+      border-radius: 8px;
+      transition: all 0.2s ease;
+      font-weight: 500;
+      cursor: pointer;
+    }
+
+    .cms-nav-item:hover,
+    .cms-nav-item.active {
+      background: #33bdef;
+      color: white;
+      transform: translateX(5px);
+    }
+
+    .content-section {
+      display: none;
+      animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .content-section.active {
+      display: block;
+    }
+
+    .content-list {
+      margin: 25px 0;
+      display: grid;
+      gap: 15px;
+    }
+
+    .content-item {
+      padding: 20px;
+      border: 1px solid #e2e8f0;
       margin: 0;
+      background: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
 
-    /* Typography Overrides */
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
-      font-family: var(--font-heading) !important;
+    .content-item:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     }
 
-    /* CMS UI Overrides - targeted and minimal */
-    div[class*="SidebarContainer"] {
-      background-color: var(--color-surface) !important;
-      border-right: 1px solid var(--color-border) !important;
+    .content-item h4 {
+      margin: 0 0 10px 0;
+      font-size: 1.1em;
+      color: #2d3748;
     }
 
-    a[class*="SidebarNavLink"] {
-      border-radius: 6px !important;
-      margin: 4px 8px !important;
+    .content-meta {
+      color: #718096;
+      font-size: 0.9em;
+      line-height: 1.5;
     }
 
-    a[class*="SidebarNavLink"][class*="active"] {
-      background-color: var(--color-primary) !important;
-      color: white !important;
+    .content-actions {
+      margin-top: 15px;
+      display: flex;
+      gap: 10px;
     }
 
-    main {
-      background-color: var(--color-bg) !important;
+    .form-section {
+      display: none;
+      animation: fadeIn 0.3s;
     }
 
-    div[class*="EntryCard"] {
-      background: var(--color-surface) !important;
-      border: 1px solid var(--color-border) !important;
-      border-radius: 8px !important;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) !important;
-      margin-bottom: 12px !important;
+    .form-section.active {
+      display: block;
     }
 
-    div[class*="CollectionTop"] {
-      background: transparent !important;
-      border: none !important;
-      box-shadow: none !important;
-      padding: 20px 0 !important;
+    .btn {
+      padding: 10px 20px;
+      margin: 0;
+      cursor: pointer;
+      border: 1px solid transparent;
+      background: #edf2f7;
+      border-radius: 6px;
+      font-weight: 500;
+      transition: all 0.2s;
     }
 
-    button[class*="Button"] {
-      border-radius: 6px !important;
-      font-family: var(--font-heading) !important;
-      font-weight: 500 !important;
-      text-transform: none !important;
+    .btn:hover {
+      filter: brightness(95%);
+      transform: translateY(-1px);
+    }
+
+    .btn.primary {
+      background: #33bdef;
+      color: white;
+      box-shadow: 0 2px 4px rgba(51, 189, 239, 0.3);
+    }
+
+    .btn.primary:hover {
+      background: #2daadd;
+      box-shadow: 0 4px 6px rgba(51, 189, 239, 0.4);
+    }
+
+    .btn.success {
+      background: #48bb78;
+      color: white;
+    }
+
+    .btn.warning {
+      background: #ecc94b;
+      color: #2d3748;
+    }
+
+    .btn.danger {
+      background: #f56565;
+      color: white;
+    }
+
+    .btn.info {
+      background: #4299e1;
+      color: white;
+    }
+
+    .btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(26, 32, 44, 0.7);
+      z-index: 1000;
+      backdrop-filter: blur(4px);
+    }
+
+    .modal-content {
+      background: white;
+      margin: 3vh auto;
+      padding: 40px;
+      width: 90%;
+      max-width: 1200px;
+      border-radius: 12px;
+      max-height: 94vh;
+      overflow-y: auto;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    }
+
+    form {
+      margin-top: 25px;
+    }
+
+    label {
+      display: block;
+      margin: 15px 0 8px 0;
+      font-weight: 600;
+      color: #2d3748;
+      font-size: 0.95em;
     }
 
     input,
     textarea,
     select {
-      border-radius: 6px !important;
-      border: 1px solid var(--color-border) !important;
-      background: var(--color-surface) !important;
-      padding: 8px 12px !important;
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      font-size: 15px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      background: #f8fafc;
     }
 
     input:focus,
     textarea:focus,
     select:focus {
-      border-color: var(--color-primary) !important;
-      box-shadow: 0 0 0 2px rgba(14, 165, 233, 0.2) !important;
-      outline: none !important;
+      outline: none;
+      border-color: #33bdef;
+      background: white;
+      box-shadow: 0 0 0 3px rgba(51, 189, 239, 0.1);
     }
 
-    /* Footer Navigation */
-    .cms-footer {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: rgba(255, 255, 255, 0.9);
-      backdrop-filter: blur(8px);
-      border-top: 1px solid var(--color-border);
-      padding: 10px;
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      z-index: 1000;
+    textarea {
+      min-height: 120px;
+      font-family: 'Consolas', 'Monaco', monospace;
+      line-height: 1.6;
     }
 
-    .cms-footer a {
-      color: #64748b;
-      text-decoration: none;
-      font-size: 13px;
+    .form-row {
+      margin-bottom: 20px;
+    }
+
+    .form-row.half {
+      width: 49%;
+      display: inline-block;
+      margin-right: 2%;
+      vertical-align: top;
+    }
+
+    .form-row.half:last-child {
+      margin-right: 0;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 25px;
+      margin: 30px 0;
+    }
+
+    .stat-card {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+      border: 1px solid #e1e4e8;
+      transition: transform 0.2s;
+      cursor: pointer;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 15px rgba(0, 0, 0, 0.05);
+    }
+
+    .stat-number {
+      font-size: 2.5em;
+      font-weight: 700;
+      color: #33bdef;
+      margin-bottom: 5px;
+    }
+
+    .stat-label {
+      color: #718096;
       font-weight: 500;
+    }
+
+    .recent-activity {
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      margin: 30px 0;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+      border: 1px solid #e1e4e8;
+    }
+
+    .activity-item {
+      padding: 12px 0;
+      border-bottom: 1px solid #f0f4f8;
       display: flex;
       align-items: center;
-      gap: 6px;
-      padding: 6px 12px;
+      gap: 10px;
+    }
+
+    .activity-item:last-child {
+      border-bottom: none;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 4px 10px;
       border-radius: 20px;
-      transition: all 0.2s;
+      font-size: 0.75em;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
     }
 
-    .cms-footer a:hover {
-      background: #f1f5f9;
-      color: var(--color-primary);
+    .badge.blog {
+      background: #c6f6d5;
+      color: #22543d;
     }
 
-    ::-webkit-scrollbar {
-      width: 8px;
+    .badge.hub {
+      background: #feebc8;
+      color: #744210;
     }
 
-    ::-webkit-scrollbar-track {
-      background: transparent;
+    .badge.author {
+      background: #bee3f8;
+      color: #2a4365;
     }
 
-    ::-webkit-scrollbar-thumb {
-      background: #cbd5e1;
-      border-radius: 4px;
+    .badge.notification {
+      background: #fed7d7;
+      color: #742a2a;
     }
 
-    ::-webkit-scrollbar-thumb:hover {
-      background: #94a3b8;
+    .loading-spinner {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border: 3px solid #f3f3f3;
+      border-top: 3px solid #33bdef;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    .error-message {
+      background: #fed7d7;
+      color: #742a2a;
+      padding: 15px;
+      border-radius: 8px;
+      margin: 20px 0;
+    }
+
+    .success-message {
+      background: #c6f6d5;
+      color: #22543d;
+      padding: 15px;
+      border-radius: 8px;
+      margin: 20px 0;
+    }
+
+    .slug-preview {
+      font-size: 0.85em;
+      color: #718096;
+      margin-top: 5px;
+      font-family: monospace;
+    }
+
+    /* SimpleMDE overrides */
+    .CodeMirror {
+      min-height: 300px;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+    }
+
+    .editor-toolbar {
+      border: 1px solid #e2e8f0;
+      border-bottom: none;
+      border-radius: 6px 6px 0 0;
+    }
+
+    @media (max-width: 1024px) {
+      .cms-sidebar {
+        width: 80px;
+        padding: 20px 10px;
+      }
+
+      .cms-nav-item {
+        text-align: center;
+        padding: 15px 5px;
+        font-size: 1.5em;
+      }
+
+      .cms-sidebar h3 {
+        display: none;
+      }
+
+      .cms-main {
+        margin-left: 80px;
+        padding: 20px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .cms-sidebar {
+        display: none;
+      }
+
+      .cms-main {
+        margin-left: 0;
+        padding: 15px;
+      }
+
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .form-row.half {
+        width: 100%;
+        margin-right: 0;
+      }
+
+      .modal-content {
+        width: 95%;
+        margin: 10px auto;
+        padding: 20px;
+      }
     }
   </style>
 </head>
 
 <body>
-  <!-- Netlify CMS -->
-  <script src="https://unpkg.com/netlify-cms@2.9.7/dist/netlify-cms.js?t=1733321440000"></script>
-  <!-- Using stable 2.9.7 version for React compatibility -->
+  <nav class="cms-sidebar">
+    <h3>📊 Dashboard</h3>
+    <a href="#" class="cms-nav-item active" onclick="showSection('overview'); return false;">Overview</a>
+    <a href="#" class="cms-nav-item" onclick="showSection('blog'); return false;">📝 Blog Posts</a>
+    <a href="#" class="cms-nav-item" onclick="showSection('hubs'); return false;">🔗 Content Hubs</a>
+    <a href="#" class="cms-nav-item" onclick="showSection('authors'); return false;">👥 Authors</a>
+    <a href="#" class="cms-nav-item" onclick="showSection('notifications'); return false;">🔔 Notifications</a>
+    <a href="#" class="cms-nav-item" onclick="showSection('pages'); return false;">📄 Pages</a>
+    <a href="#" class="cms-nav-item" onclick="showSection('media'); return false;">🖼️ Media</a>
+    <a href="#" class="cms-nav-item" onclick="showSection('analytics'); return false;">📈 Analytics</a>
+  </nav>
 
-  <!-- FORCE COMPLETE CACHE CLEAR ON ALL DEVICES -->
-  <script>
-    // Nuclear cache clearing - runs before anything else
-    const cacheKey = 'cms_cache_version_v173332iscard';
-    const currentVersion = 'v1733321460000';
+  <main class="cms-main">
+    <section id="overview" class="content-section active">
+      <h1>📊 Content Management Dashboard</h1>
+      <p>Complete control over your EvolvedLotus blog and content</p>
 
-    // Clear all caches if version doesn't match
-    if (localStorage.getItem(cacheKey) !== currentVersion) {
-      // Clear ALL browser storage
-      localStorage.clear();
-      sessionStorage.clear();
+      <div class="stats-grid">
+        <div class="stat-card" onclick="showSection('blog')">
+          <div class="stat-number" id="statBlogPosts">0</div>
+          <div class="stat-label">Blog Posts</div>
+        </div>
+        <div class="stat-card" onclick="showSection('hubs')">
+          <div class="stat-number" id="statHubs">0</div>
+          <div class="stat-label">Content Hubs</div>
+        </div>
+        <div class="stat-card" onclick="showSection('authors')">
+          <div class="stat-number" id="statAuthors">0</div>
+          <div class="stat-label">Authors</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">1K+</div>
+          <div class="stat-label">Monthly Visitors</div>
+        </div>
+      </div>
 
-      // Clear service worker caches
-      if ('caches' in window) {
-        caches.keys().then(function(names) {
-          names.forEach(function(name) {
-            caches.delete(name);
-          });
-        });
-      }
-
-      // Force page reload to get fresh version
-      localStorage.setItem(cacheKey, currentVersion);
-      window.location.reload(true); // Force reload from server
-    }
-  </script>
-
-  <!-- Register Preview Styles -->
-  <script>
-    CMS.registerPreviewStyle("/style.css?t=" + Date.now());
-
-    // Simple Preview Template
-    CMS.registerPreviewTemplate("blog", ({ entry, widgetFor }) => {
-      const data = entry.getIn(['data']).toJS();
-      return `
-        <div style="max-width: 800px; margin: 40px auto; padding: 0 20px; font-family: 'Inter', sans-serif;">
-          <h1 style="font-size: 2.5rem; font-weight: 700; color: #0f172a; margin-bottom: 1rem;">${data.title}</h1>
-          <div style="font-size: 1.1rem; line-height: 1.7; color: #334155;">
-            ${widgetFor('body')}
+      <div class="recent-activity">
+        <h3>🕐 Recent Activity</h3>
+        <div id="recentActivityList">
+          <div class="activity-item">
+            <span class="badge blog">Blog</span> <span id="lastUpdated">Loading...</span>
           </div>
         </div>
-      `;
-    });
+      </div>
+    </section>
 
-    // Initialize CMS - loads configuration from config.yml
-    CMS.init();
-  </script>
+    <section id="blog" class="content-section">
+      <h1>📝 Blog Posts Management</h1>
+      <div style="margin: 20px 0;">
+        <button class="btn primary" onclick="createNewContent('blog')">+ New Blog Post</button>
+        <button class="btn" onclick="refreshSection('blog')">🔄 Refresh</button>
+      </div>
+      <div id="blogList" class="content-list">
+        <p><span class="loading-spinner"></span> Loading blog posts...</p>
+      </div>
+    </section>
 
-  <!-- Footer Navigation -->
-  <div class="cms-footer">
-    <a href="/" target="_blank">🏠 Home</a>
-    <a href="/blog/" target="_blank">📝 Blog</a>
-    <a href="/admin/#/collections/blog">✍️ Write</a>
-    <a href="/admin/#/collections/pages">📄 Pages</a>
-    <a href="/admin/#/collections/settings">⚙️ Settings</a>
+    <section id="hubs" class="content-section">
+      <h1>🔗 Content Hubs Management</h1>
+      <div style="margin: 20px 0;">
+        <button class="btn primary" onclick="createNewContent('hub')">+ New Hub Content</button>
+        <button class="btn" onclick="refreshSection('hubs')">🔄 Refresh</button>
+      </div>
+      <div id="hubsList" class="content-list">
+        <p><span class="loading-spinner"></span> Loading content hubs...</p>
+      </div>
+    </section>
+
+    <section id="authors" class="content-section">
+      <h1>👥 Authors Management</h1>
+      <div style="margin: 20px 0;">
+        <button class="btn primary" onclick="createNewContent('author')">+ New Author</button>
+        <button class="btn" onclick="refreshSection('authors')">🔄 Refresh</button>
+      </div>
+      <div id="authorsList" class="content-list">
+        <p><span class="loading-spinner"></span> Loading authors...</p>
+      </div>
+    </section>
+
+    <section id="notifications" class="content-section">
+      <h1>🔔 Notifications Management</h1>
+      <div style="margin: 20px 0;">
+        <button class="btn primary" onclick="createNewContent('notification')">+ New Notification</button>
+        <button class="btn" onclick="refreshSection('notifications')">🔄 Refresh</button>
+      </div>
+      <div id="notificationsList" class="content-list">
+        <p><span class="loading-spinner"></span> Loading notifications...</p>
+      </div>
+    </section>
+
+    <section id="pages" class="content-section">
+      <h1>📄 Pages Management</h1>
+      <div style="margin: 20px 0;">
+        <button class="btn primary" onclick="createNewContent('page')">+ New Page</button>
+        <button class="btn" onclick="refreshSection('pages')">🔄 Refresh</button>
+      </div>
+      <div id="pagesList" class="content-list">
+        <p><span class="loading-spinner"></span> Loading pages...</p>
+      </div>
+    </section>
+
+    <section id="media" class="content-section">
+      <h1>🖼️ Media Management</h1>
+      <div style="margin: 20px 0;">
+        <button class="btn primary" onclick="createNewContent('media')">+ Upload Media</button>
+        <button class="btn" onclick="refreshSection('media')">🔄 Refresh</button>
+      </div>
+      <div id="mediaList" class="content-list">
+        <p><span class="loading-spinner"></span> Loading media files...</p>
+      </div>
+    </section>
+
+    <section id="analytics" class="content-section">
+      <h1>📈 Content Analytics</h1>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-number">2.4K</div>
+          <div class="stat-label">Page Views (Today)</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">45</div>
+          <div class="stat-label">Hours Read (Today)</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" id="analyticsPostCount">0</div>
+          <div class="stat-label">Articles Published (This Month)</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">89%</div>
+          <div class="stat-label">Search Satisfaction</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Content Editor Modal -->
+  <div id="editModal" class="modal">
+    <div class="modal-content">
+      <div style="display:flex; justify-content:space-between; align-items:center;">
+        <h2 id="modalTitle" style="margin:0;">Content Editor</h2>
+        <button onclick="closeModal()"
+          style="background:none; border:none; font-size:1.5em; cursor:pointer;">&times;</button>
+      </div>
+      <form id="contentForm">
+        <input type="hidden" id="contentType">
+
+        <!-- 📝 BLOG POST FIELDS -->
+        <div id="blogFields" class="form-section">
+          <div class="form-row">
+            <label for="blogTitle">Post Title:</label>
+            <input type="text" id="blogTitle" placeholder="10 Tips for..." oninput="updateSlug('blog')">
+            <div class="slug-preview" id="blogSlugPreview"></div>
+          </div>
+          <div class="form-row">
+            <label for="blogDesc">Description (SEO):</label>
+            <textarea id="blogDesc" rows="2"></textarea>
+          </div>
+          <div class="form-row half">
+            <label for="blogDate">Publish Date:</label>
+            <input type="datetime-local" id="blogDate" required>
+          </div>
+          <div class="form-row half">
+            <label for="blogAuthor">Author:</label>
+            <select id="blogAuthor">
+              <option value="EvolvedLotus Team">EvolvedLotus Team</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <label for="blogTags">Tags (comma-separated):</label>
+            <input type="text" id="blogTags" placeholder="marketing, guide, 2024">
+          </div>
+          <div class="form-row half">
+            <label for="blogCategory">Category:</label>
+            <select id="blogCategory">
+              <option value="">Select Category</option>
+              <option value="content-creation">Content Creation</option>
+              <option value="social-media">Social Media</option>
+              <option value="seo">SEO</option>
+              <option value="analytics">Analytics</option>
+              <option value="tools">Tools & Resources</option>
+            </select>
+          </div>
+          <div class="form-row half">
+            <label for="blogImage">Featured Image URL:</label>
+            <input type="text" id="blogImage" placeholder="/assets/blog/...">
+          </div>
+          <div class="form-row">
+            <label><input type="checkbox" id="blogFeatured"> Featured</label>
+            <label style="margin-left:15px;"><input type="checkbox" id="blogDraft"> Draft</label>
+          </div>
+
+          <h4 style="border-bottom:1px solid #eee; padding-bottom:5px; margin-top:20px;">SEO Advanced</h4>
+          <div class="form-row"><input type="text" id="blogImageAlt" placeholder="Image Alt Text"></div>
+          <div class="form-row"><input type="text" id="blogKeywords" placeholder="Keywords (comma sep)"></div>
+          <div class="form-row half">
+            <select id="blogSchema">
+              <option value="Article">Article Schema</option>
+              <option value="BlogPosting">BlogPosting</option>
+            </select>
+          </div>
+          <div class="form-row half">
+            <select id="blogOg">
+              <option value="article">OG: Article</option>
+              <option value="website">OG: Website</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- 🔗 HUB FIELDS -->
+        <div id="hubFields" class="form-section">
+          <div class="form-row">
+            <label for="hubTitle">Hub Title:</label>
+            <input type="text" id="hubTitle" oninput="updateSlug('hub')">
+            <div class="slug-preview" id="hubSlugPreview"></div>
+          </div>
+          <div class="form-row">
+            <label for="hubDesc">Description:</label>
+            <textarea id="hubDesc" rows="3"></textarea>
+          </div>
+          <div class="form-row">
+            <label for="hubCollection">Hub Collection Strategy:</label>
+            <select id="hubCollection">
+              <option value="tiktok">TikTok (tiktok)</option>
+              <option value="instagram">Instagram (instagram)</option>
+              <option value="youtube">YouTube (youtube)</option>
+              <option value="ai">AI Tools (ai)</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <label for="hubPermalink">Permalink:</label>
+            <input type="text" id="hubPermalink" placeholder="/hubs/my-topic/">
+          </div>
+        </div>
+
+        <!-- 👥 AUTHOR FIELDS -->
+        <div id="authorFields" class="form-section">
+          <div class="form-row half">
+            <label for="authorName">Full Name:</label>
+            <input type="text" id="authorName" oninput="updateSlug('author')">
+            <div class="slug-preview" id="authorSlugPreview"></div>
+          </div>
+          <div class="form-row half">
+            <label for="authorRole">Role:</label>
+            <input type="text" id="authorRole">
+          </div>
+          <div class="form-row">
+            <label for="authorBio">Bio:</label>
+            <textarea id="authorBio" rows="3"></textarea>
+          </div>
+          <div class="form-row">
+            <label for="authorAvatar">Avatar URL:</label>
+            <input type="text" id="authorAvatar" placeholder="/assets/authors/name.png">
+          </div>
+          <div class="form-row">
+            <label>Social Media Links:</label>
+            <input type="url" id="authorTwitter" placeholder="Twitter URL" style="margin-bottom:5px;">
+            <input type="url" id="authorInsta" placeholder="Instagram URL" style="margin-bottom:5px;">
+            <input type="url" id="authorTiktok" placeholder="TikTok URL">
+          </div>
+          <div class="form-row">
+            <label for="authorExpertise">Expertise (One per line):</label>
+            <textarea id="authorExpertise" rows="4"></textarea>
+          </div>
+        </div>
+
+        <!-- 🔔 NOTIFICATION FIELDS -->
+        <div id="notificationFields" class="form-section">
+          <div class="form-row">
+            <label for="notifTitle">Title:</label>
+            <input type="text" id="notifTitle" oninput="updateSlug('notification')">
+            <div class="slug-preview" id="notificationSlugPreview"></div>
+          </div>
+          <div class="form-row">
+            <label for="notifDate">Date:</label>
+            <input type="date" id="notifDate">
+          </div>
+          <div class="form-row">
+            <label for="notifLink">Link (Optional):</label>
+            <input type="url" id="notifLink">
+          </div>
+          <div class="form-row">
+            <label for="notifTags">Tags:</label>
+            <input type="text" id="notifTags" value="notification" placeholder="notification, alert">
+          </div>
+        </div>
+
+        <!-- 📄 PAGE FIELDS -->
+        <div id="pageFields" class="form-section">
+          <div class="form-row">
+            <label for="pageTitle">Page Title:</label>
+            <input type="text" id="pageTitle" oninput="updateSlug('page')">
+            <div class="slug-preview" id="pageSlugPreview"></div>
+          </div>
+          <div class="form-row">
+            <label for="pageLayout">Layout:</label>
+            <input type="text" id="pageLayout" value="page.njk">
+          </div>
+          <div class="form-row">
+            <label for="pagePermalink">Permalink:</label>
+            <input type="text" id="pagePermalink" placeholder="/my-page/">
+          </div>
+        </div>
+
+        <!-- 🖼️ MEDIA FIELDS -->
+        <div id="mediaFields" class="form-section">
+          <div class="form-row">
+            <label>Select File to Upload:</label>
+            <div style="border: 2px dashed #ccc; padding: 40px; text-align:center; border-radius:8px; cursor:pointer;"
+              onclick="alert('Drag & drop simulated - In production, this would connect to a file upload service')">
+              <p>📂 Drag and drop files here or click to browse</p>
+              <small>(Static Demo - No backend upload service)</small>
+            </div>
+          </div>
+        </div>
+
+        <!-- COMMON CONTENT TEXTAREA (Shared by Blog, Hub, Page, Notif) -->
+        <div class="form-row" id="commonContentRow">
+          <label for="mainContent">Body Content (Markdown):</label>
+          <textarea id="mainContent"></textarea>
+        </div>
+
+        <div class="form-row">
+          <button type="submit" class="btn primary" id="saveBtn">Save Changes</button>
+          <button type="button" class="btn info" onclick="generateFrontmatterProto()">Copy Code Only</button>
+          <button type="button" class="btn" onclick="closeModal()">Cancel</button>
+        </div>
+      </form>
+    </div>
   </div>
+
+  <script>
+    let currentSection = 'overview';
+    let contentData = {};
+    let simpleMDE = null;
+
+    // Initialize SimpleMDE when modal opens
+    function initializeEditor() {
+      if (!simpleMDE) {
+        simpleMDE = new SimpleMDE({
+          element: document.getElementById("mainContent"),
+          spellChecker: false,
+          placeholder: "Write your content here using Markdown...",
+          status: ["lines", "words", "cursor"],
+          toolbar: ["bold", "italic", "heading", "|", "quote", "unordered-list", "ordered-list", "|", "link", "image", "|", "preview", "side-by-side", "fullscreen", "|", "guide"],
+          forceSync: true, // Force sync with textarea
+          autoDownloadFontAwesome: false
+        });
+      }
+    }
+
+    // Auto-slug generation
+    function updateSlug(type) {
+      let title = '';
+      let previewId = '';
+
+      if (type === 'blog') {
+        title = document.getElementById('blogTitle').value;
+        previewId = 'blogSlugPreview';
+      } else if (type === 'hub') {
+        title = document.getElementById('hubTitle').value;
+        previewId = 'hubSlugPreview';
+      } else if (type === 'author') {
+        title = document.getElementById('authorName').value;
+        previewId = 'authorSlugPreview';
+      } else if (type === 'notification') {
+        title = document.getElementById('notifTitle').value;
+        previewId = 'notificationSlugPreview';
+      } else if (type === 'page') {
+        title = document.getElementById('pageTitle').value;
+        previewId = 'pageSlugPreview';
+      }
+
+      const slug = title.toLowerCase()
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/^-+|-+$/g, '');
+
+      const previewEl = document.getElementById(previewId);
+      if (previewEl) {
+        previewEl.textContent = slug ? `Slug: ${slug}` : '';
+      }
+    }
+
+    function showSection(name) {
+      document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
+      document.querySelectorAll('.cms-nav-item').forEach(i => i.classList.remove('active'));
+      document.getElementById(name).classList.add('active');
+      event.target.classList.add('active');
+      currentSection = name;
+
+      // Load section data if not already loaded
+      if (name === 'blog' && !contentData.blogLoaded) loadBlogPosts();
+      if (name === 'hubs' && !contentData.hubsLoaded) loadHubContent();
+      if (name === 'authors' && !contentData.authorsLoaded) loadAuthors();
+      if (name === 'notifications' && !contentData.notificationsLoaded) loadNotifications();
+      if (name === 'pages' && !contentData.pagesLoaded) loadPages();
+      if (name === 'media' && !contentData.mediaLoaded) loadMedia();
+    }
+
+    function refreshSection(sec) {
+      if (sec === 'blog') { contentData.blogLoaded = false; loadBlogPosts(); }
+      if (sec === 'hubs') { contentData.hubsLoaded = false; loadHubContent(); }
+      if (sec === 'authors') { contentData.authorsLoaded = false; loadAuthors(); }
+      if (sec === 'notifications') { contentData.notificationsLoaded = false; loadNotifications(); }
+      if (sec === 'pages') { contentData.pagesLoaded = false; loadPages(); }
+      if (sec === 'media') { contentData.mediaLoaded = false; loadMedia(); }
+    }
+
+    async function loadContentData() {
+      try {
+        console.log('Fetching from /api/posts.json...');
+        const res = await fetch('/api/posts.json');
+        console.log('Response status:', res.status);
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const rawText = await res.text();
+        console.log('Raw response:', rawText.substring(0, 500) + '...');
+        const data = JSON.parse(rawText);
+        console.log('Successfully parsed data:', Object.keys(data));
+        if (data.blog && data.blog.length > 0) {
+          console.log('First blog post keys:', Object.keys(data.blog[0]));
+          console.log('First blog post title:', data.blog[0].title);
+          console.log('First blog post body length:', data.blog[0].body?.length || 'No body', 'is body undefined:', data.blog[0].body === undefined);
+        }
+        contentData = { ...contentData, ...data };
+
+        // Update dashboard stats
+        if (data.stats) {
+          document.getElementById('statBlogPosts').textContent = data.stats.totalBlogPosts || 0;
+          document.getElementById('statHubs').textContent = data.stats.totalHubs || 0;
+          document.getElementById('statAuthors').textContent = data.stats.totalAuthors || 0;
+          document.getElementById('lastUpdated').textContent = `Last updated: ${data.stats.lastUpdated || 'Unknown'}`;
+        }
+
+        // Update analytics
+        if (data.blog) {
+          const thisMonth = data.blog.filter(p => {
+            const postDate = new Date(p.date);
+            const now = new Date();
+            return postDate.getMonth() === now.getMonth() && postDate.getFullYear() === now.getFullYear();
+          });
+          document.getElementById('analyticsPostCount').textContent = thisMonth.length;
+        }
+
+        // Populate author dropdown
+        if (data.authors && data.authors.length > 0) {
+          const authorSelect = document.getElementById('blogAuthor');
+          authorSelect.innerHTML = '<option value="EvolvedLotus Team">EvolvedLotus Team</option>';
+          data.authors.forEach(author => {
+            const option = document.createElement('option');
+            option.value = author.name;
+            option.textContent = author.name;
+            authorSelect.appendChild(option);
+          });
+        }
+
+        return data;
+      } catch (e) {
+        console.error('Error loading content data:', e);
+        document.getElementById('lastUpdated').textContent = 'Error loading data';
+        return null;
+      }
+    }
+
+    // Loaders with error handling
+    function loadBlogPosts() {
+      const listEl = document.getElementById('blogList');
+      try {
+        const posts = contentData.blog || [];
+        contentData.blogLoaded = true;
+
+        if (posts.length === 0) {
+          listEl.innerHTML = '<p>No posts found. Click "+ New Blog Post" to create your first post!</p>';
+          return;
+        }
+
+        listEl.innerHTML = posts.map(p => `
+          <div class="content-item">
+            <h4>${p.title || 'Untitled'} ${p.featured ? '<span class="badge blog">FEATURED</span>' : ''}</h4>
+            <div class="content-meta">Published: ${p.date || 'No date'} | ${p.author || 'Unknown author'}</div>
+            ${p.category ? `<div class="content-meta">Category: ${p.category}</div>` : ''}
+            <div class="content-actions">
+              <button class="btn info" onclick="editContent('blog','${p.id}')">Edit</button>
+              <button class="btn success" onclick="viewContent('${p.url}')">View</button>
+              <button class="btn danger" onclick="deleteContent('blog','${p.id}','${(p.title || 'Untitled').replace(/'/g, "\\'")}')">Delete</button>
+            </div>
+          </div>`).join('');
+      } catch (e) {
+        console.error('Error loading blog posts:', e);
+        listEl.innerHTML = '<div class="error-message">Error loading blog posts. Please refresh the page.</div>';
+      }
+    }
+
+    function loadHubContent() {
+      const listEl = document.getElementById('hubsList');
+      try {
+        const hubs = contentData.hubs || [];
+        contentData.hubsLoaded = true;
+
+        if (hubs.length === 0) {
+          listEl.innerHTML = '<p>No content hubs found. Click "+ New Hub Content" to create your first hub!</p>';
+          return;
+        }
+
+        listEl.innerHTML = hubs.map(h => `
+          <div class="content-item">
+            <h4>${h.title || 'Untitled Hub'}</h4>
+            <div class="content-meta">Platform: ${h.platform || 'Not specified'}</div>
+            ${h.description ? `<div class="content-meta">${h.description}</div>` : ''}
+            <div class="content-actions">
+              <button class="btn info" onclick="editContent('hub','${h.id}')">Edit</button>
+              <button class="btn success" onclick="viewContent('${h.url}')">View</button>
+            </div>
+          </div>`).join('');
+      } catch (e) {
+        console.error('Error loading hubs:', e);
+        listEl.innerHTML = '<div class="error-message">Error loading content hubs. Please refresh the page.</div>';
+      }
+    }
+
+    function loadAuthors() {
+      const listEl = document.getElementById('authorsList');
+      try {
+        const auths = contentData.authors || [];
+        contentData.authorsLoaded = true;
+
+        if (auths.length === 0) {
+          listEl.innerHTML = '<p>No authors found. Click "+ New Author" to create your first author profile!</p>';
+          return;
+        }
+
+        listEl.innerHTML = auths.map(a => `
+          <div class="content-item">
+            <h4>${a.name || 'Unnamed Author'}</h4>
+            <div class="content-meta">${a.role || 'No role specified'}</div>
+            ${a.bio ? `<div class="content-meta">${a.bio.substring(0, 100)}${a.bio.length > 100 ? '...' : ''}</div>` : ''}
+            <div class="content-actions">
+              <button class="btn info" onclick="editContent('author','${a.id}')">Edit</button>
+            </div>
+          </div>`).join('');
+      } catch (e) {
+        console.error('Error loading authors:', e);
+        listEl.innerHTML = '<div class="error-message">Error loading authors. Please refresh the page.</div>';
+      }
+    }
+
+    function loadNotifications() {
+      const listEl = document.getElementById('notificationsList');
+      try {
+        // Check if notifications collection exists
+        const notifs = contentData.notifications || [];
+        contentData.notificationsLoaded = true;
+
+        if (notifs.length === 0) {
+          listEl.innerHTML = '<p>No notifications found. Click "+ New Notification" to create your first notification!</p>';
+          return;
+        }
+
+        listEl.innerHTML = notifs.map(n => `
+          <div class="content-item">
+            <h4>${n.title || 'Untitled Notification'}</h4>
+            <div class="content-meta">Date: ${n.date || 'No date'}</div>
+            <div class="content-actions">
+              <button class="btn info" onclick="editContent('notification','${n.id}')">Edit</button>
+            </div>
+          </div>`).join('');
+      } catch (e) {
+        console.error('Error loading notifications:', e);
+        listEl.innerHTML = '<div class="error-message">Error loading notifications. Please refresh the page.</div>';
+      }
+    }
+
+    function loadPages() {
+      const listEl = document.getElementById('pagesList');
+      try {
+        // Pages are typically static - list common ones
+        const pages = contentData.pages || [];
+        contentData.pagesLoaded = true;
+
+        if (pages.length === 0) {
+          listEl.innerHTML = `
+            <p>Static pages are managed in the <code>src/pages/</code> directory.</p>
+            <p>Common pages: About, Contact, Privacy Policy</p>
+            <p>Click "+ New Page" to create a new static page!</p>
+          `;
+          return;
+        }
+
+        listEl.innerHTML = pages.map(p => `
+          <div class="content-item">
+            <h4>${p.title || 'Untitled Page'}</h4>
+            <div class="content-meta">Layout: ${p.layout || 'page.njk'}</div>
+            <div class="content-actions">
+              <button class="btn info" onclick="editContent('page','${p.id}')">Edit</button>
+              <button class="btn success" onclick="viewContent('${p.url}')">View</button>
+            </div>
+          </div>`).join('');
+      } catch (e) {
+        console.error('Error loading pages:', e);
+        listEl.innerHTML = '<div class="error-message">Error loading pages. Please refresh the page.</div>';
+      }
+    }
+
+    async function loadMedia() {
+      const listEl = document.getElementById('mediaList');
+      try {
+        const r = await fetch('/api/media.json');
+        if (!r.ok) throw new Error(`HTTP ${r.status}`);
+        const d = await r.json();
+        const list = d.media || [];
+        contentData.mediaLoaded = true;
+
+        if (list.length === 0) {
+          listEl.innerHTML = '<p>No media files found. Click "+ Upload Media" to add images and files!</p>';
+          return;
+        }
+
+        listEl.innerHTML = `<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:15px;">
+            ${list.map(f => `<div class="content-item" style="text-align:center;padding:10px;">
+              <img src="${f.path}" style="height:100px;width:100%;object-fit:cover;border-radius:6px;margin-bottom:8px;" alt="${f.name}">
+              <div style="font-size:0.8em;overflow:hidden;text-overflow:ellipsis;margin-bottom:8px;">${f.name}</div>
+              <button class="btn info" style="font-size:0.7em;padding:5px 10px;" onclick="navigator.clipboard.writeText('${f.path}');alert('URL copied to clipboard!')">Copy URL</button>
+            </div>`).join('')}</div>`;
+      } catch (e) {
+        console.error('Error loading media:', e);
+        listEl.innerHTML = '<div class="error-message">Error loading media files. Please refresh the page.</div>';
+      }
+    }
+
+    // CREATE / EDIT
+    function createNewContent(type) {
+      document.getElementById('contentForm').reset();
+      document.getElementById('contentType').value = type;
+      document.getElementById('modalTitle').textContent = 'Create New ' + type.charAt(0).toUpperCase() + type.slice(1);
+
+      // Hide all sections
+      document.querySelectorAll('.form-section').forEach(el => el.classList.remove('active'));
+      document.getElementById('commonContentRow').style.display = (type === 'media') ? 'none' : 'block';
+
+      // Show specific section
+      if (type === 'blog') document.getElementById('blogFields').classList.add('active');
+      if (type === 'hub') document.getElementById('hubFields').classList.add('active');
+      if (type === 'author') document.getElementById('authorFields').classList.add('active');
+      if (type === 'notification') document.getElementById('notificationFields').classList.add('active');
+      if (type === 'page') document.getElementById('pageFields').classList.add('active');
+      if (type === 'media') document.getElementById('mediaFields').classList.add('active');
+
+      document.getElementById('editModal').style.display = 'block';
+
+      // Initialize rich text editor
+      if (type !== 'media') {
+        setTimeout(() => initializeEditor(), 100);
+      }
+
+      // Defaults
+      if (type === 'blog') {
+        const now = new Date();
+        now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+        document.getElementById('blogDate').value = now.toISOString().slice(0, 16);
+      }
+      if (type === 'notification') {
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('notifDate').value = today;
+      }
+    }
+
+    function editContent(type, id) {
+      createNewContent(type);
+      document.getElementById('modalTitle').textContent = 'Edit ' + type.charAt(0).toUpperCase() + type.slice(1);
+
+      const item = contentData[type]?.find(i => i.id === id);
+      if (!item) {
+        alert('Content not found');
+        return;
+      }
+
+      if (type === 'blog') {
+        document.getElementById('blogTitle').value = item.title || '';
+        document.getElementById('blogDesc').value = item.description || '';
+        document.getElementById('blogDate').value = item.date + 'T12:00';
+        document.getElementById('blogAuthor').value = item.author || 'EvolvedLotus Team';
+        document.getElementById('blogTags').value = item.tags ? (Array.isArray(item.tags) ? item.tags.join(',') : item.tags) : '';
+        document.getElementById('blogCategory').value = item.category || '';
+        document.getElementById('blogImage').value = item.image || '';
+        document.getElementById('blogImageAlt').value = item.imageAlt || '';
+        document.getElementById('blogKeywords').value = item.keywords || '';
+        document.getElementById('blogSchema').value = item.schema_type || 'Article';
+        document.getElementById('blogOg').value = item.og_type || 'article';
+        document.getElementById('blogFeatured').checked = !!item.featured;
+        document.getElementById('blogDraft').checked = !!item.draft;
+        updateSlug('blog');
+      }
+      if (type === 'hub') {
+        document.getElementById('hubTitle').value = item.title || '';
+        document.getElementById('hubDesc').value = item.description || '';
+        document.getElementById('hubCollection').value = item.platform || '';
+        document.getElementById('hubPermalink').value = item.url || '';
+        updateSlug('hub');
+      }
+      if (type === 'author') {
+        console.log('Loading author data:', item);
+        console.log('Author item keys:', Object.keys(item));
+
+        // Try multiple possible field mappings
+        document.getElementById('authorName').value = item.name || item.title || item.fullName || '';
+        document.getElementById('authorRole').value = item.role || item.position || item.jobTitle || '';
+        document.getElementById('authorBio').value = item.bio || item.description || item.about || '';
+
+        // Avatar - try multiple possible fields
+        document.getElementById('authorAvatar').value = item.avatar || item.avatarUrl || item.photo || item.image || '';
+
+        // Social media - try multiple structures
+        const social = item.social || item.socialMedia || item.links || {};
+        document.getElementById('authorTwitter').value = social.twitter || social.Twitter || '';
+        document.getElementById('authorInsta').value = social.instagram || social.Instagram || '';
+        document.getElementById('authorTiktok').value = social.tiktok || social.TikTok || '';
+
+        // Expertise - try multiple structures
+        if (item.expertise && Array.isArray(item.expertise)) {
+          document.getElementById('authorExpertise').value = item.expertise.join('\n');
+        } else if (item.expertise && typeof item.expertise === 'string') {
+          document.getElementById('authorExpertise').value = item.expertise;
+        } else if (item.skills && Array.isArray(item.skills)) {
+          document.getElementById('authorExpertise').value = item.skills.join('\n');
+        }
+
+        updateSlug('author');
+      }
+
+      // Populate the content/body field for all content types
+      const bodyContent = item.body || '';
+      console.log('Loading body content for edit:', bodyContent ? 'Found ' + bodyContent.length + ' chars' : 'Empty body', 'item.body exists:', !!item.body, 'item.body type:', typeof item.body, 'item keys:', Object.keys(item));
+      if (type !== 'media') {
+        // First, set the textarea content
+        document.getElementById('mainContent').value = bodyContent;
+
+        // Then initialize SimpleMDE and set its value
+        setTimeout(() => {
+          initializeEditor();
+          if (simpleMDE) {
+            simpleMDE.value(bodyContent);
+          }
+        }, 150);
+      }
+    }
+
+    async function saveContent(fm, filename, type) {
+      // Try local development server first (port 3001)
+      try {
+        const response = await fetch('http://localhost:3001/api/save-content', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            filename: filename,
+            content: fm,
+            type: type.charAt(0).toUpperCase() + type.slice(1)
+          })
+        });
+
+        if (response.ok) {
+          const result = await response.json();
+          alert(`✅ Content saved successfully!\n\nFile: src/${filename}.md\n\nChanges will be reflected after rebuild.`);
+          // Reload to refresh the API data
+          setTimeout(() => window.location.reload(), 1000);
+          return true;
+        }
+      } catch (e) {
+        console.warn('Local development server not available, falling back to clipboard');
+      }
+
+      // Production/GitHub workflow - commit to repository (if GitHub token configured)
+      try {
+        const response = await fetch('/.netlify/functions/save-content', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            filename: filename,
+            content: fm,
+            type: type.charAt(0).toUpperCase() + type.slice(1),
+            action: 'commit' // Indicate we want to commit to Git
+          })
+        });
+
+        if (response.ok) {
+          const result = await response.json();
+          alert(`✅ Content committed to repository!\n\nFile: src/${filename}.md\n\nThe site will be rebuilt automatically.`);
+          closeModal();
+          return true;
+        }
+      } catch (e) {
+        console.warn('Git commit failed (might need GitHub token):', e);
+      }
+
+      // Fallback to clipboard copy - always available
+      console.log('Using clipboard fallback');
+      return false;
+    }
+
+    function generateFrontmatter(e) {
+      e.preventDefault();
+      const type = document.getElementById('contentType').value;
+      let fm = '---\n';
+      let filename = 'content';
+
+      if (type === 'blog') {
+        const t = document.getElementById('blogTitle').value;
+        if (!t) {
+          alert('Please enter a post title');
+          return;
+        }
+        fm += `title: "${t.replace(/"/g, '\\"')}"\n`;
+        fm += `description: "${document.getElementById('blogDesc').value.replace(/"/g, '\\"')}"\n`;
+        fm += `date: ${new Date(document.getElementById('blogDate').value).toISOString()}\n`;
+        fm += `author: "${document.getElementById('blogAuthor').value}"\n`;
+        const tags = document.getElementById('blogTags').value;
+        if (tags) { fm += 'tags:\n'; tags.split(',').forEach(t => fm += `  - ${t.trim()}\n`); }
+        const img = document.getElementById('blogImage').value;
+        if (img) fm += `image: ${img}\n`;
+        const cat = document.getElementById('blogCategory').value;
+        if (cat) fm += `category: ${cat}\n`;
+        if (document.getElementById('blogFeatured').checked) fm += `featured: true\n`;
+        if (document.getElementById('blogDraft').checked) fm += `draft: true\n`;
+        const alt = document.getElementById('blogImageAlt').value;
+        if (alt) fm += `imageAlt: "${alt}"\n`;
+        const kw = document.getElementById('blogKeywords').value;
+        if (kw) fm += `keywords: "${kw}"\n`;
+        fm += `schema_type: ${document.getElementById('blogSchema').value}\n`;
+        fm += `og_type: ${document.getElementById('blogOg').value}\n`;
+        filename = 'blog/' + document.getElementById('blogDate').value.split('T')[0] + '-' + t.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+      }
+      else if (type === 'hub') {
+        const t = document.getElementById('hubTitle').value;
+        if (!t) {
+          alert('Please enter a hub title');
+          return;
+        }
+        fm += `layout: hub.njk\n`;
+        fm += `title: "${t}"\n`;
+        fm += `description: "${document.getElementById('hubDesc').value}"\n`;
+        fm += `hubCollection: ${document.getElementById('hubCollection').value}\n`;
+        fm += `permalink: ${document.getElementById('hubPermalink').value}\n`;
+        filename = 'hubs/' + t.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+      }
+      else if (type === 'author') {
+        const n = document.getElementById('authorName').value;
+        if (!n) {
+          alert('Please enter author name');
+          return;
+        }
+        fm += `name: "${n}"\n`;
+        fm += `slug: ${n.toLowerCase().replace(/ /g, '-')}\n`;
+        fm += `role: "${document.getElementById('authorRole').value}"\n`;
+        fm += `bio: "${document.getElementById('authorBio').value}"\n`;
+        const av = document.getElementById('authorAvatar').value;
+        if (av) fm += `avatar: ${av}\n`;
+        fm += `social:\n`;
+        if (document.getElementById('authorTwitter').value) fm += `  twitter: ${document.getElementById('authorTwitter').value}\n`;
+        if (document.getElementById('authorInsta').value) fm += `  instagram: ${document.getElementById('authorInsta').value}\n`;
+        if (document.getElementById('authorTiktok').value) fm += `  tiktok: ${document.getElementById('authorTiktok').value}\n`;
+        const exp = document.getElementById('authorExpertise').value;
+        if (exp) { fm += `expertise:\n`; exp.split('\n').forEach(x => { if (x.trim()) fm += `  - ${x.trim()}\n`; }); }
+        filename = 'authors/' + n.toLowerCase().replace(/ /g, '-');
+      }
+      else if (type === 'notification') {
+        const t = document.getElementById('notifTitle').value;
+        if (!t) {
+          alert('Please enter notification title');
+          return;
+        }
+        fm += `title: "${t}"\n`;
+        fm += `date: ${document.getElementById('notifDate').value}\n`;
+        if (document.getElementById('notifLink').value) fm += `link: ${document.getElementById('notifLink').value}\n`;
+        fm += `tags:\n  - notification\n`;
+        filename = 'notifications/' + t.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+      }
+      else if (type === 'page') {
+        const t = document.getElementById('pageTitle').value;
+        if (!t) {
+          alert('Please enter page title');
+          return;
+        }
+        fm += `title: "${t}"\n`;
+        fm += `layout: ${document.getElementById('pageLayout').value}\n`;
+        fm += `permalink: ${document.getElementById('pagePermalink').value}\n`;
+        filename = 'pages/' + t.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+      }
+
+      const content = simpleMDE ? simpleMDE.value() : document.getElementById('mainContent').value;
+      fm += '---\n\n' + content;
+
+      // Try to save directly first
+      saveContent(fm, filename, type).then(success => {
+        if (!success) {
+          // Fallback to clipboard
+          navigator.clipboard.writeText(fm).then(() => {
+            alert(`✅ Content copied to clipboard!\n\nCreate file: src/${filename}.md\n\nPaste the content and save the file.`);
+            closeModal();
+          }).catch(err => {
+            alert('Error copying to clipboard. Please copy manually.');
+            console.error(err);
+          });
+        }
+      });
+    }
+
+    // Copy code only functionality
+    function generateFrontmatterProto() {
+      const type = document.getElementById('contentType').value;
+      let fm = '---\n';
+      let filename = 'content';
+
+      if (type === 'blog') {
+        const t = document.getElementById('blogTitle').value;
+        if (!t) {
+          alert('Please enter a post title');
+          return;
+        }
+        fm += `title: "${t.replace(/"/g, '\\"')}"\n`;
+        fm += `description: "${document.getElementById('blogDesc').value.replace(/"/g, '\\"')}"\n`;
+        fm += `date: ${new Date(document.getElementById('blogDate').value).toISOString()}\n`;
+        fm += `author: "${document.getElementById('blogAuthor').value}"\n`;
+        const tags = document.getElementById('blogTags').value;
+        if (tags) { fm += 'tags:\n'; tags.split(',').forEach(t => fm += `  - ${t.trim()}\n`); }
+        const img = document.getElementById('blogImage').value;
+        if (img) fm += `image: ${img}\n`;
+        const cat = document.getElementById('blogCategory').value;
+        if (cat) fm += `category: ${cat}\n`;
+        if (document.getElementById('blogFeatured').checked) fm += `featured: true\n`;
+        if (document.getElementById('blogDraft').checked) fm += `draft: true\n`;
+        const alt = document.getElementById('blogImageAlt').value;
+        if (alt) fm += `imageAlt: "${alt}"\n`;
+        const kw = document.getElementById('blogKeywords').value;
+        if (kw) fm += `keywords: "${kw}"\n`;
+        fm += `schema_type: ${document.getElementById('blogSchema').value}\n`;
+        fm += `og_type: ${document.getElementById('blogOg').value}\n`;
+        filename = 'blog/' + document.getElementById('blogDate').value.split('T')[0] + '-' + t.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+      }
+      // Add other types as needed...
+
+      const content = simpleMDE ? simpleMDE.value() : document.getElementById('mainContent').value;
+      fm += '---\n\n' + content;
+
+      navigator.clipboard.writeText(fm).then(() => {
+        alert(`✅ Frontmatter copied to clipboard!\n\nYou can now manually create the file:\nsrc/${filename}.md`);
+      }).catch(err => {
+        alert('Error copying to clipboard. Please copy manually.');
+        console.error(err);
+      });
+    }
+
+    document.getElementById('contentForm').addEventListener('submit', generateFrontmatter);
+    function viewContent(url) { window.open(url, '_blank'); }
+    function closeModal() {
+      document.getElementById('editModal').style.display = 'none';
+      if (simpleMDE) {
+        simpleMDE.toTextArea();
+        simpleMDE = null;
+      }
+    }
+
+    // Delete content with confirmation
+    function deleteContent(type, id, title) {
+      const confirmMsg = `⚠️ Are you sure you want to delete "${title}"?\n\nThis will require you to manually delete the file:\nsrc/${type}/${id}.md\n\nClick OK to get the file path copied to clipboard.`;
+
+      if (confirm(confirmMsg)) {
+        const filePath = `src/${type}/${id}.md`;
+        navigator.clipboard.writeText(filePath).then(() => {
+          alert(`✅ File path copied to clipboard!\n\n${filePath}\n\nPlease delete this file manually and commit the changes.`);
+        }).catch(err => {
+          alert(`Please manually delete:\n${filePath}`);
+          console.error(err);
+        });
+      }
+    }
+
+    window.onclick = function (e) { if (e.target == document.getElementById('editModal')) closeModal(); }
+
+    // Initialize on load
+    window.onload = async function () {
+      console.log('Loading CMS data...');
+      await loadContentData();
+      loadBlogPosts();
+      loadHubContent();
+      loadAuthors();
+      console.log('CMS initialized successfully');
+    }
+  </script>
 </body>
 
 </html>
