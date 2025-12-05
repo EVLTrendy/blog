@@ -149,11 +149,14 @@ async function scanContentHubs(dir) {
         const slug = file.replace('.md', '');
 
         // Ensure all values are proper strings or null (not undefined)
+        const hubCollectionVal = data.hubCollection;
+        const platformValue = hubCollectionVal !== undefined ? String(hubCollectionVal) : '';
+
         const hubData = {
           id: String(slug || ''),
           title: String(data.title || 'Untitled Hub'),
           description: String(data.description || ''),
-          platform: String(data.hubCollection || ''),
+          platform: platformValue,
           url: String(data.permalink || `/hubs/${slug}/`),
           filename: String(file || '')
         };
