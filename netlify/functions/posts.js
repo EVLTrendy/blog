@@ -97,18 +97,18 @@ async function scanBlogPosts(dir) {
         const slug = file.replace(/^\d{4}-\d{2}-\d{2}-/, '').replace('.md', '');
 
         posts.push({
-          id: slug,
-          title: data.title || 'Untitled',
-          description: data.description || '',
-          date: data.date || '',
-          author: data.author || '',
-          tags: Array.isArray(data.tags) ? data.tags : (data.tags ? [data.tags] : []),
-          category: data.category || '',
-          image: data.image || '',
-          featured: data.featured || false,
-          draft: data.draft || false,
-          url: `/blog/${data.date ? new Date(data.date).toISOString().split('T')[0].replace(/-/g, '/') + '-' + slug : slug}/`,
-          filename: file
+          id: String(slug || ''),
+          title: String(data.title || 'Untitled'),
+          description: String(data.description || ''),
+          date: String(data.date || ''),
+          author: String(data.author || ''),
+          tags: Array.isArray(data.tags) ? data.tags.map(String) : (data.tags ? [String(data.tags)] : []),
+          category: String(data.category || ''),
+          image: String(data.image || ''),
+          featured: Boolean(data.featured),
+          draft: Boolean(data.draft),
+          url: String(`/blog/${data.date ? new Date(data.date).toISOString().split('T')[0].replace(/-/g, '/') + '-' + slug : slug}/`),
+          filename: String(file || '')
         });
       } catch (e) {
         console.warn(`Error parsing blog post ${file}:`, e);
@@ -140,14 +140,20 @@ async function scanContentHubs(dir) {
 
         const slug = file.replace('.md', '');
 
-        hubs.push({
-          id: slug,
-          title: data.title || 'Untitled Hub',
-          description: data.description || '',
-          platform: data.hubCollection || '',
-          url: data.permalink || `/hubs/${slug}/`,
-          filename: file
-        });
+        // Ensure all values are proper strings or null (not undefined)
+        const hubData = {
+          id: String(slug || ''),
+          title: String(data.title || 'Untitled Hub'),
+          description: String(data.description || ''),
+          platform: String(data.hubCollection || ''),
+          url: String(data.permalink || `/hubs/${slug}/`),
+          filename: String(file || '')
+        };
+
+        // Only add hubs with valid data
+        if (hubData.title) {
+          hubs.push(hubData);
+        }
       } catch (e) {
         console.warn(`Error parsing content hub ${file}:`, e);
       }
@@ -177,14 +183,14 @@ async function scanAuthors(dir) {
         const { data } = matter(content);
 
         authors.push({
-          id: data.slug || file.replace('.md', ''),
-          name: data.name || 'Unknown Author',
-          role: data.role || '',
-          bio: data.bio || '',
-          avatar: data.avatar || '',
+          id: String(data.slug || file.replace('.md', '')),
+          name: String(data.name || 'Unknown Author'),
+          role: String(data.role || ''),
+          bio: String(data.bio || ''),
+          avatar: String(data.avatar || ''),
           social: data.social || {},
-          expertise: data.expertise || [],
-          filename: file
+          expertise: Array.isArray(data.expertise) ? data.expertise.map(String) : [],
+          filename: String(file || '')
         });
       } catch (e) {
         console.warn(`Error parsing author ${file}:`, e);
@@ -217,12 +223,12 @@ async function scanNotifications(dir) {
         const slug = file.replace('.md', '');
 
         notifications.push({
-          id: slug,
-          title: data.title || 'Untitled Notification',
-          date: data.date || '',
-          link: data.link || '',
-          tags: data.tags || ['notification'],
-          filename: file
+          id: String(slug || ''),
+          title: String(data.title || 'Untitled Notification'),
+          date: String(data.date || ''),
+          link: String(data.link || ''),
+          tags: Array.isArray(data.tags) ? data.tags.map(String) : (data.tags ? [String(data.tags)] : ['notification']),
+          filename: String(file || '')
         });
       } catch (e) {
         console.warn(`Error parsing notification ${file}:`, e);
@@ -261,12 +267,12 @@ async function scanPages(dir) {
         const slug = file.replace(/\.(njk|md)$/, '');
 
         pages.push({
-          id: slug,
-          title: data.title || slug.charAt(0).toUpperCase() + slug.slice(1),
-          layout: data.layout || 'page.njk',
-          permalink: data.permalink || `/${slug}/`,
-          url: data.permalink || `/${slug}/`,
-          filename: file
+          id: String(slug || ''),
+          title: String(data.title || slug.charAt(0).toUpperCase() + slug.slice(1)),
+          layout: String(data.layout || 'page.njk'),
+          permalink: String(data.permalink || `/${slug}/`),
+          url: String(data.permalink || `/${slug}/`),
+          filename: String(file || '')
         });
       } catch (e) {
         console.warn(`Error parsing page ${file}:`, e);
