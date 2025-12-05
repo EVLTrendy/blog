@@ -1153,15 +1153,18 @@
 
       // Populate the content/body field for all content types
       const bodyContent = item.body || '';
+      console.log('Loading body content for edit:', bodyContent.substring(0, 100) + '...');
       if (type !== 'media') {
+        // First, set the textarea content
+        document.getElementById('mainContent').value = bodyContent;
+
+        // Then initialize SimpleMDE and set its value
         setTimeout(() => {
           initializeEditor();
           if (simpleMDE) {
             simpleMDE.value(bodyContent);
-          } else {
-            document.getElementById('mainContent').value = bodyContent;
           }
-        }, 100);
+        }, 150);
       }
     }
 
