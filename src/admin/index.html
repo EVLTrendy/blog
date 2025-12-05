@@ -1434,6 +1434,7 @@
     function generateFrontmatter(e) {
       e.preventDefault();
       const type = document.getElementById('contentType').value;
+      console.log('generateFrontmatter called, type:', type, 'editingItemId:', editingItemId);
 
       // Media has its own upload button
       if (type === 'media') {
@@ -1495,7 +1496,9 @@
         }
       }
       else if (type === 'author') {
+        console.log('Processing author save...');
         const n = document.getElementById('authorName').value;
+        console.log('Author name:', n);
         if (!n) {
           alert('Please enter author name');
           return;
@@ -1518,6 +1521,7 @@
         } else {
           filename = 'authors/' + n.toLowerCase().replace(/ /g, '-');
         }
+        console.log('Author filename:', filename);
       }
       else if (type === 'notification') {
         const t = document.getElementById('notifTitle').value;
