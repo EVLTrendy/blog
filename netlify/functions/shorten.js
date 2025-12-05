@@ -1,429 +1,312 @@
 const { createClient } = require('@supabase/supabase-js');
 
-// In-memory rate limiting store (for serverless, consider using Supabase or Redis in production)
-const rateLimitStore = new Map();
+// Initialize Supabase client
+// Ensure SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY are set in Netlify Environment Variables
+// SUPABASE_SERVICE_ROLE_KEY should be kept secret and NOT exposed to the client-side.
+const supabase = createClient(
+  process.env.SUPABASE_URL,
+  process.env.SUPABASE_SERVICE_ROLE_KEY
+);
 
-// Rate limiting configuration
-const RATE_LIMIT = {
-  MAX_REQUESTS: 10, // Maximum requests per time window
-  TIME_WINDOW: 60 * 60 * 1000, // 1 hour in milliseconds
-  CLEANUP_INTERVAL: 5 * 60 * 1000 // Clean up old entries every 5 minutes
+// Function to generate a random 8-character ID
+function generateShortId() {
+  const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  let result = '';
+  for (let i = 0; i < 8; i++) {
+    result += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return result;
+}
+
+// Common headers for all responses (especially for POST/OPTIONS, less critical for 301 GET)
+const commonHeaders = {
+  'Access-Control-Allow-Origin': '*', // Adjust if you want to restrict CORS
+  'Access-Control-Allow-Headers': 'Content-Type',
+  'Access-Control-Allow-Methods': 'GET, POST, OPTIONS'
 };
 
-// Clean up old rate limit entries periodically
-setInterval(() => {
-  const now = Date.now();
-  for (const [key, data] of rateLimitStore.entries()) {
-    if (now - data.resetTime > RATE_LIMIT.TIME_WINDOW) {
-      rateLimitStore.delete(key);
-    }
-  }
-}, RATE_LIMIT.CLEANUP_INTERVAL);
-
-// Rate limiting function
-function checkRateLimit(identifier) {
-  const now = Date.now();
-  const record = rateLimitStore.get(identifier);
-
-  if (!record) {
-    rateLimitStore.set(identifier, {
-      count: 1,
-      resetTime: now
-    });
-    return { allowed: true, remaining: RATE_LIMIT.MAX_REQUESTS - 1 };
-  }
-
-  // Reset if time window has passed
-  if (now - record.resetTime > RATE_LIMIT.TIME_WINDOW) {
-    rateLimitStore.set(identifier, {
-      count: 1,
-      resetTime: now
-    });
-    return { allowed: true, remaining: RATE_LIMIT.MAX_REQUESTS - 1 };
-  }
-
-  // Check if limit exceeded
-  if (record.count >= RATE_LIMIT.MAX_REQUESTS) {
-    const resetIn = Math.ceil((RATE_LIMIT.TIME_WINDOW - (now - record.resetTime)) / 1000);
+exports.handler = async (event, context) => {
+  // Handle OPTIONS request (CORS preflight)
+  if (event.httpMethod === 'OPTIONS') {
+    console.log('Received OPTIONS request (CORS preflight)');
     return {
-      allowed: false,
-      remaining: 0,
-      resetIn
+      statusCode: 204, // No Content for successful preflight
+      headers: commonHeaders,
+      body: ''
     };
   }
 
-  // Increment count
-  record.count++;
-  return {
-    allowed: true,
-    remaining: RATE_LIMIT.MAX_REQUESTS - record.count
-  };
-}
-
-// Detect suspicious patterns
-function isSuspiciousRequest(body, headers) {
-  try {
-    const data = JSON.parse(body);
-
-    // Check for very short or suspicious URLs
-    if (data.long_url && data.long_url.length < 10) {
-      return true;
-    }
-
-    // Check for common spam patterns
-    const spamPatterns = [
-      /viagra/i,
-      /casino/i,
-      /lottery/i,
-      /click.*here/i,
-      /free.*money/i
-    ];
-
-    const urlToCheck = data.long_url || '';
-    if (spamPatterns.some(pattern => pattern.test(urlToCheck))) {
-      return true;
-    }
-
-    // Check user agent for bot patterns
-    const userAgent = headers['user-agent'] || '';
-    const botPatterns = /bot|crawler|spider|scraper/i;
-    if (botPatterns.test(userAgent) && !userAgent.includes('Google')) {
-      return true;
-    }
-
-    return false;
-  } catch (e) {
-    return false;
-  }
-}
-
-exports.handler = async (event, context) => {
-  const { httpMethod, path, body, headers } = event;
-
-  // Initialize Supabase
-  const supabase = createClient(
-    process.env.SUPABASE_URL,
-    process.env.SUPABASE_ANON_KEY
-  );
-
-  // Handle POST - Create short URL
-  if (httpMethod === 'POST') {
+  // Handle POST requests (creating new short URLs)
+  if (event.httpMethod === 'POST') {
     try {
-      // Get client IP for rate limiting
-      const clientIP = headers['x-forwarded-for']?.split(',')[0] ||
-        headers['x-real-ip'] ||
-        'unknown';
-
-      // Check rate limit
-      const rateLimitResult = checkRateLimit(clientIP);
-      if (!rateLimitResult.allowed) {
-        return {
-          statusCode: 429,
-          headers: {
-            'Content-Type': 'application/json',
-            'Retry-After': rateLimitResult.resetIn.toString(),
-            'X-RateLimit-Limit': RATE_LIMIT.MAX_REQUESTS.toString(),
-            'X-RateLimit-Remaining': '0',
-            'X-RateLimit-Reset': rateLimitResult.resetIn.toString()
-          },
-          body: JSON.stringify({
-            error: 'Rate limit exceeded',
-            message: `Too many requests. Please try again in ${rateLimitResult.resetIn} seconds.`,
-            retryAfter: rateLimitResult.resetIn
-          })
-        };
-      }
-
-      // Check for suspicious activity
-      if (isSuspiciousRequest(body, headers)) {
-        console.warn('Suspicious request detected from IP:', clientIP);
-        return {
-          statusCode: 403,
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            error: 'Request rejected',
-            message: 'This request has been flagged as suspicious.'
-          })
-        };
-      }
-
-      console.log('Received body:', body);
-      const { long_url, slug, title, description, image } = JSON.parse(body);
-
-      // Validate inputs
-      if (!long_url) {
+      console.log('Received POST request to create short URL');
+      
+      let body;
+      try {
+        body = JSON.parse(event.body);
+      } catch (e) {
+        console.error('Error parsing request body (POST):', e);
         return {
           statusCode: 400,
+          headers: {
+            ...commonHeaders,
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ error: 'Invalid JSON in request body' })
+        };
+      }
+      
+      const { long_url } = body;
+      
+      if (!long_url) {
+        console.warn('Missing long_url parameter in POST request');
+        return {
+          statusCode: 400,
+          headers: {
+            ...commonHeaders,
+            'Content-Type': 'application/json'
+          },
           body: JSON.stringify({ error: 'Missing long_url parameter' })
         };
       }
 
+      console.log(`Attempting to shorten URL: ${long_url}`);
+      
       // Check if URL already exists
-      const { data: existingUrl } = await supabase
+      const { data: existingUrl, error: existingError } = await supabase
         .from('short_urls')
-        .select('*')
+        .select('id')
         .eq('long_url', long_url)
         .single();
-
+      
+      if (existingError && existingError.code !== 'PGRST116') { // PGRST116 is "No rows found"
+        console.error('Supabase error checking existing URL:', existingError);
+        return {
+          statusCode: 500,
+          headers: {
+            ...commonHeaders,
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ error: 'Database error checking existing URL: ' + existingError.message })
+        };
+      }
+      
       if (existingUrl) {
+        console.log(`URL already exists, returning existing ID: ${existingUrl.id}`);
         return {
           statusCode: 200,
           headers: {
-            'Content-Type': 'application/json',
+            ...commonHeaders,
+            'Content-Type': 'application/json'
           },
-          body: JSON.stringify({
+          body: JSON.stringify({ 
             message: 'URL already shortened',
-            shortUrl: `${process.env.URL}/r/${existingUrl.id}`,
             id: existingUrl.id
           })
         };
       }
+      
+      // Generate a unique short ID
+      let shortId = generateShortId();
+      let unique = false;
+      let retries = 0;
+      const MAX_RETRIES = 5; // Prevent infinite loops
+      
+      // Ensure the generated ID is unique (though collisions are rare for 8 chars)
+      while (!unique && retries < MAX_RETRIES) {
+          const { data: existingShort, error: checkError } = await supabase
+              .from('short_urls')
+              .select('id')
+              .eq('id', shortId)
+              .single();
 
-      // Check if slug already exists
-      if (slug) {
-        const { data: existing } = await supabase
-          .from('short_urls')
-          .select('*')
-          .eq('id', slug)
-          .single();
+          if (checkError && checkError.code !== 'PGRST116') {
+              console.error('Error checking short ID uniqueness:', checkError);
+              throw new Error('Failed to check ID uniqueness'); // Throw to outer catch
+          }
 
-        if (existing) {
-          return {
-            statusCode: 409,
-            body: JSON.stringify({ error: 'Slug already exists' })
-          };
-        }
+          if (!existingShort) {
+              unique = true;
+          } else {
+              shortId = generateShortId();
+              retries++;
+              console.log(`Collision detected, retrying with new ID: ${shortId}`);
+          }
       }
 
-      // Generate slug if not provided
-      const finalSlug = slug || generateSlug();
+      if (!unique) {
+          console.error('Failed to generate a unique short ID after multiple retries.');
+          return {
+              statusCode: 500,
+              headers: { ...commonHeaders, 'Content-Type': 'application/json' },
+              body: JSON.stringify({ error: 'Failed to generate a unique short ID.' })
+          };
+      }
 
-      // Insert into Supabase with metadata for link previews
-      const { data, error } = await supabase
+      console.log('Generated unique short ID:', shortId);
+      
+      // Store the URL in Supabase
+      console.log('Inserting new URL into database');
+      const { data: insertData, error: insertError } = await supabase
         .from('short_urls')
         .insert([
-          {
-            id: finalSlug,
+          { 
+            id: shortId, 
             long_url: long_url,
-            title: title || null,
-            description: description || null,
-            image: image || null,
             created_at: new Date().toISOString()
           }
         ])
-        .select()
-        .single();
+        .select() // .select() is good to confirm insertion
+        .single(); // .single() to get the inserted row
 
-      if (error) throw error;
-
+      if (insertError) {
+        console.error('Supabase error inserting URL:', insertError);
+        return {
+          statusCode: 500,
+          headers: {
+            ...commonHeaders,
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ 
+            error: 'Error inserting URL into database: ' + insertError.message,
+            details: insertError
+          })
+        };
+      }
+      
+      console.log('Successfully inserted new short URL:', insertData);
+      
       return {
         statusCode: 200,
         headers: {
-          'Content-Type': 'application/json',
+          ...commonHeaders,
+          'Content-Type': 'application/json'
         },
-        body: JSON.stringify({
-          slug: finalSlug,
-          shortUrl: `${process.env.URL}/r/${finalSlug}`
+        body: JSON.stringify({ 
+          message: 'URL shortened successfully',
+          id: shortId // Return the actual short ID
         })
       };
-
     } catch (error) {
-      console.error('POST error:', error);
+      console.error('Unhandled error in POST handler:', error);
       return {
         statusCode: 500,
-        body: JSON.stringify({ error: error.message })
+        headers: {
+          ...commonHeaders,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ 
+          error: error.message || 'Internal server error during URL shortening',
+          details: error.stack // Include stack for debugging
+        })
       };
     }
   }
 
-  // In the GET handler
+  // Handle GET requests (redirects)
   if (event.httpMethod === 'GET') {
-    const shortId = event.path.split('/').pop();
-    const userAgent = event.headers['user-agent'] || event.headers['User-Agent'] || '';
-
-    // Check if request is from a social media crawler
-    const isCrawler = isSocialMediaCrawler(userAgent);
+    console.log('Received GET request for short URL redirection');
+    
+    // Extract ID from path (e.g., /r/abc123 -> abc123)
+    const matches = event.path.match(/\/r\/([^\/]+)/);
+    let id = null;
+    if (matches && matches[1]) {
+      id = matches[1];
+    }
+    
+    // Optional: If you also support /shorten?id=xyz, uncomment this.
+    // However, for /r/XYZ, the path matching is more direct.
+    // if (event.queryStringParameters && event.queryStringParameters.id) {
+    //   id = event.queryStringParameters.id;
+    // }
+    
+    console.log('Extracted ID for GET request:', id);
+    
+    if (!id) {
+      console.warn('No ID found in GET request path. Returning 404.');
+      return {
+        statusCode: 404, // Use 404 if no ID is provided, not 400.
+        headers: {
+          ...commonHeaders,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ 
+          error: 'Short URL ID not provided in path (e.g., /r/your-id)',
+          path: event.path
+        })
+      };
+    }
 
     try {
-      const { data: urlData, error } = await supabase
+      // Get the URL from Supabase
+      const { data, error } = await supabase
         .from('short_urls')
-        .select('id, long_url, title, description, image')
-        .eq('id', shortId)
+        .select('long_url')
+        .eq('id', id)
         .single();
-
-      if (error || !urlData) {
+      
+      if (error && error.code !== 'PGRST116') { // PGRST116 is "No rows found"
+        console.error(`Supabase error fetching URL for ID '${id}':`, error);
         return {
-          statusCode: 404,
-          body: 'Short URL not found'
-        };
-      }
-
-      const fullUrl = urlData.long_url;
-
-      // If not a crawler, perform 301 redirect
-      if (!isCrawler) {
-        return {
-          statusCode: 301,
+          statusCode: 500,
           headers: {
-            'Location': fullUrl,
-            'Cache-Control': 'public, max-age=86400' // Cache for 24 hours
+            ...commonHeaders,
+            'Content-Type': 'application/json'
           },
-          body: ''
+          body: JSON.stringify({ error: 'Database error fetching URL: ' + error.message })
+        };
+      }
+      
+      if (!data) {
+        console.warn(`Short URL with ID '${id}' not found in database.`);
+        return {
+          statusCode: 404, // Use 404 if ID is not found in database
+          headers: {
+            ...commonHeaders,
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ error: `Short URL '${id}' not found.` })
         };
       }
 
-      // For crawlers, serve HTML with meta tags
-      const ogImagePath = urlData.image
-        ? urlData.image
-        : '/assets/blog/default-og.png';
-
-      // Ensure absolute URL for image
-      const ogImageUrl = ogImagePath.startsWith('http')
-        ? ogImagePath
-        : `https://blog.evolvedlotus.com${ogImagePath}`;
-
-      const safeTitle = (urlData.title || 'EvolvedLotus Blog').replace(/"/g, '"');
-      const safeDescription = (urlData.description || 'Read more on EvolvedLotus Blog').replace(/"/g, '"');
-
-      const html = `<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>${safeTitle}</title>
-  <meta name="description" content="${safeDescription}">
-
-  <!-- Canonical URL to prevent duplicate content issues -->
-  <link rel="canonical" href="${fullUrl}" />
-
-  <!-- Open Graph Meta Tags -->
-  <meta property="og:type" content="article">
-  <meta property="og:url" content="${fullUrl}">
-  <meta property="og:title" content="${safeTitle}">
-  <meta property="og:description" content="${safeDescription}">
-  <meta property="og:image" content="${ogImageUrl}">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="${safeTitle}">
-  <meta property="og:site_name" content="EvolvedLotus Blog">
-
-  <!-- Twitter Card Meta Tags -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="${safeTitle}">
-  <meta name="twitter:description" content="${safeDescription}">
-  <meta name="twitter:image" content="${ogImageUrl}">
-  <meta name="twitter:image:width" content="1200">
-  <meta name="twitter:image:height" content="630">
-  <meta name="twitter:image:alt" content="${safeTitle}">
-
-  <!-- Additional social media platforms -->
-  <meta property="og:image:secure_url" content="${ogImageUrl}">
-
-  <!-- Prevent indexing of short URLs -->
-  <meta name="robots" content="noindex, follow">
-
-  <style>
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      text-align: center;
-      padding: 50px;
-      background: #f5f5f5;
-    }
-    .container {
-      max-width: 600px;
-      margin: 0 auto;
-      background: white;
-      padding: 40px;
-      border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    }
-    h1 { color: #333; margin-bottom: 20px; }
-    p { color: #666; margin-bottom: 30px; }
-    .redirect-notice { font-size: 14px; color: #999; }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <h1>${safeTitle}</h1>
-    <p>${safeDescription}</p>
-    <p class="redirect-notice">If you are not redirected automatically, <a href="${fullUrl}">click here</a>.</p>
-  </div>
-
-  <!-- Fallback redirect for crawlers that don't respect meta tags -->
-  <script>
-    setTimeout(function() {
-      window.location.href = "${fullUrl}";
-    }, 1000);
-  </script>
-</body>
-</html>`;
-
+      console.log(`Found URL for ID '${id}': ${data.long_url}. Redirecting...`);
+      
+      // Perform the server-side 301 redirect
       return {
-        statusCode: 200,
+        statusCode: 301, // Permanent Redirect - Crucial for AdSense & SEO
         headers: {
-          'Content-Type': 'text/html; charset=utf-8',
-          'Cache-Control': 'public, max-age=3600' // Cache for 1 hour
+          // CORS headers are less relevant for a 301 redirect as the browser immediately navigates
+          // but including them doesn't hurt.
+          // ...commonHeaders, // You can remove this for 301 if you prefer
+          'Location': data.long_url, // This header tells the browser where to go
+          'Cache-Control': 'public, max-age=31536000, immutable' // Aggressive caching for permanent redirect
         },
-        body: html
+        body: '' // No body is needed for a 301 redirect
       };
-
     } catch (error) {
-      console.error('Error fetching short URL:', error);
+      console.error('Unhandled error in GET handler (redirect logic):', error);
       return {
         statusCode: 500,
-        body: 'Internal server error'
+        headers: {
+          ...commonHeaders,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ 
+          error: error.message || 'Internal server error during redirection',
+          details: error.stack // Include stack for debugging
+        })
       };
     }
   }
 
+  // Handle any other HTTP methods
+  console.warn(`Received unsupported HTTP method: ${event.httpMethod}`);
   return {
-    statusCode: 405,
-    body: 'Method not allowed'
+    statusCode: 405, // Method Not Allowed
+    headers: {
+      ...commonHeaders,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ error: 'Method not allowed' })
   };
 };
-
-// Helper function to generate random slug
-function generateSlug() {
-  const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-  let slug = '';
-  for (let i = 0; i < 6; i++) {
-    slug += chars.charAt(Math.floor(Math.random() * chars.length));
-  }
-  return slug;
-}
-
-// Helper function to detect social media crawlers
-function isSocialMediaCrawler(userAgent) {
-  const crawlers = [
-    'facebookexternalhit',
-    'Twitterbot',
-    'LinkedInBot',
-    'WhatsApp',
-    'TelegramBot',
-    'Slackbot',
-    'Discordbot',
-    'facebookcatalog',
-    'Facebot',
-    'Instagram',
-    'Pinterest',
-    'redditbot',
-    'Snapchat',
-    'TikTok',
-    'vkShare',
-    'weibo'
-  ];
-
-  const lowerUserAgent = userAgent.toLowerCase();
-  return crawlers.some(crawler => lowerUserAgent.includes(crawler.toLowerCase()));
-}
-
-// Helper function to escape HTML entities
-function escapeHtml(text) {
-  return text
-    .replace(/&/g, '&')
-    .replace(/</g, '<')
-    .replace(/>/g, '>')
-    .replace(/"/g, '"')
-    .replace(/'/g, '&#039;');
-}
