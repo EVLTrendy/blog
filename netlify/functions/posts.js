@@ -130,6 +130,10 @@ async function scanBlogPosts(dir) {
           tags: Array.isArray(data.tags) ? data.tags.map(String) : (data.tags ? [String(data.tags)] : []),
           category: String(data.category || ''),
           image: String(data.image || ''),
+          imageAlt: String(data.imageAlt || ''),
+          keywords: String(data.keywords || ''),
+          schema_type: String(data.schema_type || 'Article'),
+          og_type: String(data.og_type || 'article'),
           featured: Boolean(data.featured),
           draft: Boolean(data.draft),
           body: String(bodyContent || '').trim(), // Include the markdown content
@@ -162,7 +166,8 @@ async function scanContentHubs(dir) {
       try {
         const filePath = path.join(dir, file);
         const content = fs.readFileSync(filePath, 'utf8');
-        const { data } = matter(content);
+        const parsed = matter(content);
+        const { data } = parsed;
 
         const slug = file.replace('.md', '');
 
@@ -170,12 +175,15 @@ async function scanContentHubs(dir) {
         const hubCollectionVal = data.hubCollection;
         const platformValue = hubCollectionVal !== undefined ? String(hubCollectionVal) : '';
 
+        const hubBodyContent = parsed.content;
+
         const hubData = {
           id: String(slug || ''),
           title: String(data.title || 'Untitled Hub'),
           description: String(data.description || ''),
           platform: platformValue,
           url: String(data.permalink || `/hubs/${slug}/`),
+          body: String(hubBodyContent || '').trim(),
           filename: String(file || '')
         };
 
@@ -247,9 +255,12 @@ async function scanNotifications(dir) {
       try {
         const filePath = path.join(dir, file);
         const content = fs.readFileSync(filePath, 'utf8');
-        const { data } = matter(content);
+        const parsed = matter(content);
+        const { data } = parsed;
 
         const slug = file.replace('.md', '');
+
+        const notifBodyContent = parsed.content;
 
         notifications.push({
           id: String(slug || ''),
@@ -257,6 +268,7 @@ async function scanNotifications(dir) {
           date: String(data.date || ''),
           link: String(data.link || ''),
           tags: Array.isArray(data.tags) ? data.tags.map(String) : (data.tags ? [String(data.tags)] : ['notification']),
+          body: String(notifBodyContent || '').trim(),
           filename: String(file || '')
         });
       } catch (e) {
@@ -287,10 +299,13 @@ async function scanPages(dir) {
         const content = fs.readFileSync(filePath, 'utf8');
         let data = {};
 
+        let pageBodyContent = '';
+
         // Try to parse frontmatter if it's markdown
         if (file.endsWith('.md')) {
           const parsed = matter(content);
           data = parsed.data;
+          pageBodyContent = parsed.content;
         }
 
         const slug = file.replace(/\.(njk|md)$/, '');
@@ -301,6 +316,7 @@ async function scanPages(dir) {
           layout: String(data.layout || 'page.njk'),
           permalink: String(data.permalink || `/${slug}/`),
           url: String(data.permalink || `/${slug}/`),
+          body: String(pageBodyContent || '').trim(),
           filename: String(file || '')
         });
       } catch (e) {
