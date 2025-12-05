@@ -12,10 +12,10 @@ exports.handler = async (event, context) => {
 
   try {
     const body = JSON.parse(event.body);
-    const { filename, content, type, action } = body;
+    const { filename, content, type, action, isBase64 } = body;
 
     // For security, only allow file operations in specific directories
-    const allowedDirectories = ['blog/', 'hubs/', 'authors/', 'notifications/', 'pages/'];
+    const allowedDirectories = ['blog/', 'hubs/', 'authors/', 'notifications/', 'pages/', 'assets/'];
 
     let isAllowed = false;
     for (const dir of allowedDirectories) {
@@ -52,7 +52,8 @@ exports.handler = async (event, context) => {
       AWS_LAMBDA: !!process.env.AWS_LAMBDA_FUNCTION_NAME,
       filename,
       type,
-      action
+      action,
+      isBase64
     });
 
     if (isLocal) {
@@ -60,13 +61,16 @@ exports.handler = async (event, context) => {
       if (action === 'delete') {
         return await handleLocalDelete(filename, type);
       }
+      if (action === 'upload-binary') {
+        return await handleLocalBinaryUpload(filename, content, type);
+      }
       return await handleLocalSave(filename, content, type);
     } else {
       // Production - use GitHub API
       if (action === 'delete') {
         return await handleGitHubDelete(filename, type);
       }
-      return await handleGitHubCommit(filename, content, type);
+      return await handleGitHubCommit(filename, content, type, isBase64);
     }
 
   } catch (error) {
@@ -113,6 +117,43 @@ async function handleLocalSave(filename, content, type) {
       statusCode: 500,
       body: JSON.stringify({
         error: 'Failed to save file locally',
+        message: error.message
+      })
+    };
+  }
+}
+
+async function handleLocalBinaryUpload(filename, base64Content, type) {
+  const fs = require('fs').promises;
+  const path = require('path');
+
+  try {
+    const fullPath = path.join(__dirname, '../../src', filename);
+    const dir = path.dirname(fullPath);
+
+    // Ensure directory exists
+    await fs.mkdir(dir, { recursive: true });
+
+    // Decode base64 and write binary file
+    const buffer = Buffer.from(base64Content, 'base64');
+    await fs.writeFile(fullPath, buffer);
+
+    return {
+      statusCode: 200,
+      body: JSON.stringify({
+        success: true,
+        message: `File uploaded locally: src/${filename}`,
+        type,
+        filename,
+        local: true
+      })
+    };
+  } catch (error) {
+    console.error('Error uploading file locally:', error);
+    return {
+      statusCode: 500,
+      body: JSON.stringify({
+        error: 'Failed to upload file locally',
         message: error.message
       })
     };
@@ -224,7 +265,7 @@ async function handleGitHubDelete(filename, type) {
   }
 }
 
-async function handleGitHubCommit(filename, content, type) {
+async function handleGitHubCommit(filename, content, type, isBase64 = false) {
   // GitHub API integration for production
   const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
   const GITHUB_REPO = process.env.GITHUB_REPOSITORY || 'EVLTrendy/blog';
@@ -239,12 +280,16 @@ async function handleGitHubCommit(filename, content, type) {
     };
   }
 
+  // Determine file path - binary files don't get .md extension
+  const isAsset = filename.startsWith('assets/');
+  const filePath = isAsset ? `src/${filename}` : `src/${filename}.md`;
+
   try {
     // Get current file SHA if it exists
     let sha = null;
     try {
       const getResponse = await makeGitHubRequest(
-        `GET /repos/${GITHUB_REPO}/contents/src/${filename}.md?ref=${BRANCH}`,
+        `GET /repos/${GITHUB_REPO}/contents/${filePath}?ref=${BRANCH}`,
         null,
         GITHUB_TOKEN
       );
@@ -257,10 +302,10 @@ async function handleGitHubCommit(filename, content, type) {
       console.log('File does not exist yet, will create new:', filename);
     }
 
-    // Prepare commit
+    // Prepare commit - if isBase64, content is already base64 encoded
     const commitData = {
-      message: `${type}: ${sha ? 'Update' : 'Create'} ${filename}.md`,
-      content: Buffer.from(content).toString('base64'),
+      message: `${type}: ${sha ? 'Update' : 'Create'} ${isAsset ? filename : filename + '.md'}`,
+      content: isBase64 ? content : Buffer.from(content).toString('base64'),
       branch: BRANCH
     };
 
@@ -270,7 +315,7 @@ async function handleGitHubCommit(filename, content, type) {
 
     // Create or update file
     const commitResponse = await makeGitHubRequest(
-      `PUT /repos/${GITHUB_REPO}/contents/src/${filename}.md`,
+      `PUT /repos/${GITHUB_REPO}/contents/${filePath}`,
       commitData,
       GITHUB_TOKEN
     );

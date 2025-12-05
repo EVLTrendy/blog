@@ -760,13 +760,36 @@
         <!-- 🖼️ MEDIA FIELDS -->
         <div id="mediaFields" class="form-section">
           <div class="form-row">
-            <label>Select File to Upload:</label>
-            <div style="border: 2px dashed #ccc; padding: 40px; text-align:center; border-radius:8px; cursor:pointer;"
-              onclick="alert('Drag & drop simulated - In production, this would connect to a file upload service')">
-              <p>📂 Drag and drop files here or click to browse</p>
-              <small>(Static Demo - No backend upload service)</small>
+            <label>Select Image to Upload:</label>
+            <input type="file" id="mediaFileInput" accept="image/*" onchange="handleMediaFileSelect(event)"
+              style="display:none;">
+            <div id="mediaDropZone"
+              style="border: 2px dashed #33bdef; padding: 40px; text-align:center; border-radius:8px; cursor:pointer; background: #f9fbfc; transition: all 0.3s;"
+              onclick="document.getElementById('mediaFileInput').click()"
+              ondragover="event.preventDefault(); this.style.borderColor='#0ea5e9'; this.style.background='#e0f2fe';"
+              ondragleave="this.style.borderColor='#33bdef'; this.style.background='#f9fbfc';"
+              ondrop="event.preventDefault(); this.style.borderColor='#33bdef'; this.style.background='#f9fbfc'; handleMediaFileDrop(event);">
+              <p style="margin:0; font-size:18px;">📂 Drag and drop image here or click to browse</p>
+              <small style="color:#666;">Supports: JPG, PNG, GIF, WebP (Max 5MB)</small>
             </div>
           </div>
+          <div class="form-row" id="mediaPreviewRow" style="display:none;">
+            <label>Preview:</label>
+            <div style="display:flex; gap:20px; align-items:flex-start;">
+              <img id="mediaPreview"
+                style="max-width:200px; max-height:200px; border-radius:8px; border:1px solid #ddd;">
+              <div>
+                <p><strong>File:</strong> <span id="mediaFileName"></span></p>
+                <p><strong>Size:</strong> <span id="mediaFileSize"></span></p>
+                <p><strong>Path:</strong> <code>/assets/images/<span id="mediaFilePath"></span></code></p>
+              </div>
+            </div>
+          </div>
+          <div class="form-row" id="mediaUploadRow" style="display:none;">
+            <button type="button" class="btn primary" onclick="uploadMediaFile()">📤 Upload to Repository</button>
+            <button type="button" class="btn" onclick="clearMediaUpload()">Cancel</button>
+          </div>
+          <div id="mediaUploadStatus" style="display:none; padding: 15px; border-radius: 8px; margin-top: 10px;"></div>
         </div>
 
         <!-- COMMON CONTENT TEXTAREA (Shared by Blog, Hub, Page, Notif) -->
@@ -789,6 +812,121 @@
     let contentData = {};
     let simpleMDE = null;
     let editingItemId = null; // Track the ID of item being edited (null = new content)
+    let selectedMediaFile = null; // Track selected media file for upload
+
+    // Media upload functions
+    function handleMediaFileSelect(e) {
+      const file = e.target.files[0];
+      if (file) processMediaFile(file);
+    }
+
+    function handleMediaFileDrop(e) {
+      const file = e.dataTransfer.files[0];
+      if (file) processMediaFile(file);
+    }
+
+    function processMediaFile(file) {
+      // Validate file type
+      if (!file.type.startsWith('image/')) {
+        alert('❌ Please select an image file (JPG, PNG, GIF, WebP)');
+        return;
+      }
+
+      // Validate file size (5MB max)
+      if (file.size > 5 * 1024 * 1024) {
+        alert('❌ File size must be less than 5MB');
+        return;
+      }
+
+      selectedMediaFile = file;
+
+      // Show preview
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        document.getElementById('mediaPreview').src = e.target.result;
+        document.getElementById('mediaPreviewRow').style.display = 'block';
+        document.getElementById('mediaUploadRow').style.display = 'block';
+      };
+      reader.readAsDataURL(file);
+
+      // Update info
+      const sanitizedName = file.name.toLowerCase().replace(/[^a-z0-9.-]/g, '-');
+      document.getElementById('mediaFileName').textContent = file.name;
+      document.getElementById('mediaFileSize').textContent = formatFileSize(file.size);
+      document.getElementById('mediaFilePath').textContent = sanitizedName;
+    }
+
+    function formatFileSize(bytes) {
+      if (bytes < 1024) return bytes + ' B';
+      if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
+      return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
+    }
+
+    function clearMediaUpload() {
+      selectedMediaFile = null;
+      document.getElementById('mediaFileInput').value = '';
+      document.getElementById('mediaPreviewRow').style.display = 'none';
+      document.getElementById('mediaUploadRow').style.display = 'none';
+      document.getElementById('mediaUploadStatus').style.display = 'none';
+    }
+
+    async function uploadMediaFile() {
+      if (!selectedMediaFile) {
+        alert('No file selected');
+        return;
+      }
+
+      const statusEl = document.getElementById('mediaUploadStatus');
+      statusEl.style.display = 'block';
+      statusEl.style.background = '#e0f2fe';
+      statusEl.innerHTML = '⏳ Uploading image to repository...';
+
+      try {
+        // Convert file to base64
+        const base64Content = await new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onload = () => resolve(reader.result.split(',')[1]); // Remove data URL prefix
+          reader.onerror = reject;
+          reader.readAsDataURL(selectedMediaFile);
+        });
+
+        const sanitizedName = selectedMediaFile.name.toLowerCase().replace(/[^a-z0-9.-]/g, '-');
+        const filePath = `assets/images/${sanitizedName}`;
+
+        // Upload via Netlify function
+        const response = await fetch('/.netlify/functions/save-content', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            filename: filePath,
+            content: base64Content,
+            type: 'Media',
+            action: 'upload-binary',
+            isBase64: true
+          })
+        });
+
+        const result = await response.json();
+
+        if (response.ok && result.success) {
+          statusEl.style.background = '#d1fae5';
+          statusEl.innerHTML = `✅ Image uploaded successfully!<br><br>
+            <strong>Path:</strong> <code>/assets/images/${sanitizedName}</code><br>
+            <button class="btn" onclick="navigator.clipboard.writeText('/assets/images/${sanitizedName}').then(() => alert('Path copied!'))">📋 Copy Path</button>`;
+
+          // Clear the file input
+          document.getElementById('mediaFileInput').value = '';
+          selectedMediaFile = null;
+        } else {
+          throw new Error(result.message || result.error || 'Upload failed');
+        }
+      } catch (error) {
+        console.error('Upload error:', error);
+        statusEl.style.background = '#fee2e2';
+        statusEl.innerHTML = `❌ Upload failed: ${error.message}`;
+      }
+    }
+
 
     // Initialize SimpleMDE when modal opens
     function initializeEditor() {
