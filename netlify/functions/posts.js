@@ -60,10 +60,18 @@ exports.handler = async (event, context) => {
       pages
     };
 
+    // Ensure clean JSON serialization
+    const cleanData = JSON.parse(JSON.stringify(data, (key, value) => {
+      if (value === null || value === undefined) {
+        return '';
+      }
+      return value;
+    }));
+
     return {
       statusCode: 200,
       headers,
-      body: JSON.stringify(data),
+      body: JSON.stringify(cleanData),
     };
 
   } catch (error) {
