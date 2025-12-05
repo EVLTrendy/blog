@@ -1152,12 +1152,32 @@
         updateSlug('hub');
       }
       if (type === 'author') {
-        document.getElementById('authorName').value = item.name || '';
-        document.getElementById('authorRole').value = item.role || '';
-        document.getElementById('authorBio').value = item.bio || '';
+        console.log('Loading author data:', item);
+        console.log('Author item keys:', Object.keys(item));
+
+        // Try multiple possible field mappings
+        document.getElementById('authorName').value = item.name || item.title || item.fullName || '';
+        document.getElementById('authorRole').value = item.role || item.position || item.jobTitle || '';
+        document.getElementById('authorBio').value = item.bio || item.description || item.about || '';
+
+        // Avatar - try multiple possible fields
+        document.getElementById('authorAvatar').value = item.avatar || item.avatarUrl || item.photo || item.image || '';
+
+        // Social media - try multiple structures
+        const social = item.social || item.socialMedia || item.links || {};
+        document.getElementById('authorTwitter').value = social.twitter || social.Twitter || '';
+        document.getElementById('authorInsta').value = social.instagram || social.Instagram || '';
+        document.getElementById('authorTiktok').value = social.tiktok || social.TikTok || '';
+
+        // Expertise - try multiple structures
         if (item.expertise && Array.isArray(item.expertise)) {
           document.getElementById('authorExpertise').value = item.expertise.join('\n');
+        } else if (item.expertise && typeof item.expertise === 'string') {
+          document.getElementById('authorExpertise').value = item.expertise;
+        } else if (item.skills && Array.isArray(item.skills)) {
+          document.getElementById('authorExpertise').value = item.skills.join('\n');
         }
+
         updateSlug('author');
       }
 

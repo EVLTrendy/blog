@@ -27,11 +27,8 @@ jobs:
       - name: Run frontmatter validation
         run: npm run validate
 
-      - name: Build site
-        run: npm run build
-
-      - name: Validate API data
-        run: npm run validate:api
+      - name: Build and validate site
+        run: npm run build:safe
 
       - name: Upload validation report
         if: always()
