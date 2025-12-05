@@ -38,11 +38,15 @@ jobs:
       id: validate
       run: |
         echo "🔍 Running frontmatter validation..."
+        
+        # Run the validator and capture its exit code
+        set +e
         node scripts/frontmatter-validator.js --fix
-
-        # Check if there were CRITICAL errors (not just warnings)
-        # The validator returns 0 for warnings-only, 1 for actual errors
-        if [ $? -eq 1 ]; then
+        VALIDATION_EXIT_CODE=$?
+        set -e
+        
+        # The validator returns 0 for warnings-only or success, 1 for actual errors
+        if [ $VALIDATION_EXIT_CODE -eq 1 ]; then
           echo "❌ Critical errors found that couldn't be auto-fixed"
           echo "validation_failed=true" >> $GITHUB_OUTPUT
         else
@@ -76,18 +80,18 @@ jobs:
           echo "Creating a new commit for auto-fixes in PR"
           git commit -m "🤖 Auto-fix frontmatter issues
 
-          - Fixed YAML date formatting
-          - Ensured proper string quoting
-          - Resolved validation errors
+        - Fixed YAML date formatting
+        - Ensured proper string quoting
+        - Resolved validation errors
 
-          Co-authored-by: ${{ github.event.pull_request.user.login }} <${{ github.event.pull_request.user.login }}@users.noreply.github.com>"
+        Co-authored-by: ${{ github.event.pull_request.user.login }} <${{ github.event.pull_request.user.login }}@users.noreply.github.com>"
         else
           echo "Creating a new commit for auto-fixes on main branch"
           git commit -m "🤖 Auto-fix frontmatter issues
 
-          - Fixed YAML date formatting
-          - Ensured proper string quoting
-          - Resolved validation errors"
+        - Fixed YAML date formatting
+        - Ensured proper string quoting
+        - Resolved validation errors"
         fi
 
         # Push the changes
