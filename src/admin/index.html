@@ -870,6 +870,11 @@
         console.log('Raw response:', rawText.substring(0, 500) + '...');
         const data = JSON.parse(rawText);
         console.log('Successfully parsed data:', Object.keys(data));
+        if (data.blog && data.blog.length > 0) {
+          console.log('First blog post keys:', Object.keys(data.blog[0]));
+          console.log('First blog post title:', data.blog[0].title);
+          console.log('First blog post body length:', data.blog[0].body?.length || 'No body', 'is body undefined:', data.blog[0].body === undefined);
+        }
         contentData = { ...contentData, ...data };
 
         // Update dashboard stats
@@ -1157,7 +1162,7 @@
 
       // Populate the content/body field for all content types
       const bodyContent = item.body || '';
-      console.log('Loading body content for edit:', bodyContent.substring(0, 100) + '...');
+      console.log('Loading body content for edit:', bodyContent ? 'Found ' + bodyContent.length + ' chars' : 'Empty body', 'item.body exists:', !!item.body, 'item.body type:', typeof item.body, 'item keys:', Object.keys(item));
       if (type !== 'media') {
         // First, set the textarea content
         document.getElementById('mainContent').value = bodyContent;
