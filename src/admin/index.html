@@ -597,7 +597,7 @@
         <button onclick="closeModal()"
           style="background:none; border:none; font-size:1.5em; cursor:pointer;">&times;</button>
       </div>
-      <form id="contentForm">
+      <form id="contentForm" novalidate>
         <input type="hidden" id="contentType">
 
         <!-- 📝 BLOG POST FIELDS -->
@@ -613,7 +613,7 @@
           </div>
           <div class="form-row half">
             <label for="blogDate">Publish Date:</label>
-            <input type="datetime-local" id="blogDate" required>
+            <input type="datetime-local" id="blogDate">
           </div>
           <div class="form-row half">
             <label for="blogAuthor">Author:</label>
