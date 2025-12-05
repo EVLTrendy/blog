@@ -36,8 +36,8 @@ exports.handler = async (event, context) => {
 
     // Check if running locally vs production
     const isLocal = process.env.NODE_ENV === 'development' ||
-                   process.env.CONTEXT === 'local' ||
-                   !process.env.NETLIFY;
+      process.env.CONTEXT === 'local' ||
+      !process.env.NETLIFY;
 
     if (isLocal) {
       // Local development - write directly to file system
@@ -180,13 +180,32 @@ async function handleGitHubCommit(filename, content, type) {
 }
 
 async function makeGitHubRequest(endpoint, data, token) {
-  const url = `https://api.github.com${endpoint}`;
+  // Parse endpoint (e.g., "GET /repos/..." or "PUT /repos/...")
+  let method = data ? 'PUT' : 'GET';
+  let path = endpoint;
+
+  // Check if endpoint includes method prefix
+  if (endpoint.startsWith('GET ')) {
+    method = 'GET';
+    path = endpoint.substring(4);
+  } else if (endpoint.startsWith('PUT ')) {
+    method = 'PUT';
+    path = endpoint.substring(4);
+  } else if (endpoint.startsWith('POST ')) {
+    method = 'POST';
+    path = endpoint.substring(5);
+  } else if (endpoint.startsWith('DELETE ')) {
+    method = 'DELETE';
+    path = endpoint.substring(7);
+  }
+
+  console.log(`GitHub API Request: ${method} ${path}`);
 
   return new Promise((resolve, reject) => {
     const options = {
       hostname: 'api.github.com',
-      path: endpoint,
-      method: data ? 'PUT' : 'GET',
+      path: path,
+      method: method,
       headers: {
         'Authorization': `token ${token}`,
         'User-Agent': 'Netlify-CMS-via-Eleventy',
@@ -205,9 +224,11 @@ async function makeGitHubRequest(endpoint, data, token) {
       res.on('end', () => {
         try {
           const response = body ? JSON.parse(body) : {};
+          console.log(`GitHub API Response: ${res.statusCode}`);
           if (res.statusCode >= 200 && res.statusCode < 300) {
             resolve(response);
           } else {
+            console.error(`GitHub API Error: ${res.statusCode} - ${response.message || body}`);
             reject(new Error(`GitHub API error ${res.statusCode}: ${response.message || body}`));
           }
         } catch (e) {
