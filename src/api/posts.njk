@@ -52,7 +52,10 @@ eleventyExcludeFromCollections: true
       "name": {{ author.data.name | dump | safe }},
       "role": {{ author.data.role | dump | safe }},
       "bio": {{ author.data.bio | dump | safe }},
-      "expertise": {{ author.data.expertise | dump | safe }}
+      "avatar": {{ author.data.avatar | dump | safe }},
+      "social": {{ author.data.social | dump | safe }},
+      "expertise": {{ author.data.expertise | dump | safe }},
+      "body": {{ author.templateContent | dump | safe }}
     }{% if not loop.last %},{% endif %}
     {%- endfor -%}
   ],
