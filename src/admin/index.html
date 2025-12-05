@@ -1122,11 +1122,27 @@
       createNewContent(type);
       document.getElementById('modalTitle').textContent = 'Edit ' + type.charAt(0).toUpperCase() + type.slice(1);
 
-      const item = contentData[type]?.find(i => i.id === id);
+      // Map singular type names to plural data keys
+      const typeToDataKey = {
+        'blog': 'blog',
+        'hub': 'hubs',
+        'author': 'authors',
+        'notification': 'notifications',
+        'page': 'pages'
+      };
+      const dataKey = typeToDataKey[type] || type;
+      const dataArray = contentData[dataKey];
+
+      console.log('editContent called with type:', type, 'id:', id);
+      console.log('Data key:', dataKey, 'Array exists:', !!dataArray, 'Array length:', dataArray?.length);
+
+      const item = dataArray?.find(i => i.id === id);
       if (!item) {
+        console.log('Item not found. Available IDs:', dataArray?.map(i => i.id));
         alert('Content not found');
         return;
       }
+      console.log('Found item:', item);
 
       if (type === 'blog') {
         document.getElementById('blogTitle').value = item.title || '';
