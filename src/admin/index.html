@@ -1151,8 +1151,17 @@
         updateSlug('author');
       }
 
-      if (simpleMDE) {
-        simpleMDE.value("# Content\n\nEdit your content here...");
+      // Populate the content/body field for all content types
+      const bodyContent = item.body || '';
+      if (type !== 'media') {
+        setTimeout(() => {
+          initializeEditor();
+          if (simpleMDE) {
+            simpleMDE.value(bodyContent);
+          } else {
+            document.getElementById('mainContent').value = bodyContent;
+          }
+        }, 100);
       }
     }
 

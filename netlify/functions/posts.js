@@ -104,7 +104,7 @@ async function scanBlogPosts(dir) {
       try {
         const filePath = path.join(dir, file);
         const content = fs.readFileSync(filePath, 'utf8');
-        const { data } = matter(content);
+        const { data, content: bodyContent } = matter(content);
 
         // Generate slug from filename (remove date prefix and extension)
         const slug = file.replace(/^\d{4}-\d{2}-\d{2}-/, '').replace('.md', '');
@@ -120,6 +120,7 @@ async function scanBlogPosts(dir) {
           image: String(data.image || ''),
           featured: Boolean(data.featured),
           draft: Boolean(data.draft),
+          body: String(bodyContent || '').trim(), // Include the markdown content
           url: String(`/blog/${data.date ? new Date(data.date).toISOString().split('T')[0].replace(/-/g, '/') + '-' + slug : slug}/`),
           filename: String(file || '')
         });
