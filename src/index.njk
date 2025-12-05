@@ -235,6 +235,10 @@ layout: 'base.njk'
     <div id="trending" class="tab-content" style="display: block;">
       <div class="featured-grid">
         {% set trendingPosts = collections.blog | filterByTag('trending') | reverse | limit(3) %}
+        {% if trendingPosts.length === 0 %}
+          {# Fallback: Show featured posts or most recent #}
+          {% set trendingPosts = collections.blog | filterByFeatured | reverse | limit(3) %}
+        {% endif %}
         {% if trendingPosts.length === 0 %}{% set trendingPosts = collections.blog | reverse | slice(0, 3) %}{% endif %}
         {% for post in trendingPosts %}
           {% include "article-snippet.njk" %}
@@ -242,10 +246,14 @@ layout: 'base.njk'
       </div>
     </div>
 
-    <!-- Tab Content: Popular -->
+    <!-- Tab Content: Most Shared (Social Media focused content) -->
     <div id="popular" class="tab-content" style="display: none;">
       <div class="featured-grid">
         {% set popularPosts = collections.blog | filterByTag('popular') | reverse | limit(3) %}
+        {% if popularPosts.length === 0 %}
+          {# Fallback: Show social media category posts #}
+          {% set popularPosts = collections.blog | filterByCategory('social-media') | reverse | limit(3) %}
+        {% endif %}
         {% if popularPosts.length === 0 %}{% set popularPosts = collections.blog | reverse | slice(3, 6) %}{% endif %}
         {% for post in popularPosts %}
           {% include "article-snippet.njk" %}
@@ -253,9 +261,10 @@ layout: 'base.njk'
       </div>
     </div>
 
-    <!-- Tab Content: New -->
+    <!-- Tab Content: New This Week -->
     <div id="new" class="tab-content" style="display: none;">
       <div class="featured-grid">
+        {# Show the 3 most recent posts #}
         {% set newPosts = collections.blog | reverse | limit(3) %}
         {% for post in newPosts %}
           {% include "article-snippet.njk" %}
@@ -263,10 +272,15 @@ layout: 'base.njk'
       </div>
     </div>
 
-    <!-- Tab Content: Favorites -->
+    <!-- Tab Content: Reader Favorites (High-value content) -->
     <div id="favorites" class="tab-content" style="display: none;">
       <div class="featured-grid">
         {% set favoritePosts = collections.blog | filterByTag('favorite') | reverse | limit(3) %}
+        {% if favoritePosts.length === 0 %}
+          {# Fallback: Show content-creation category or tools posts #}
+          {% set favoritePosts = collections.blog | filterByCategory('content-creation') | reverse | limit(3) %}
+        {% endif %}
+        {% if favoritePosts.length === 0 %}{% set favoritePosts = collections.blog | filterByCategory('tools') | reverse | limit(3) %}{% endif %}
         {% if favoritePosts.length === 0 %}{% set favoritePosts = collections.blog | reverse | slice(6, 9) %}{% endif %}
         {% for post in favoritePosts %}
           {% include "article-snippet.njk" %}

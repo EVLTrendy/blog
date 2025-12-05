@@ -442,6 +442,19 @@ module.exports = function (eleventyConfig) {
         });
     });
 
+    // Add filterByFeatured filter for featured content
+    eleventyConfig.addFilter("filterByFeatured", function (collection) {
+        if (!collection) return [];
+        return collection.filter(item => {
+            // Check for explicit featured boolean
+            if (item.data.featured === true) return true;
+
+            // Check if 'featured' is in tags
+            const tags = item.data.tags || [];
+            return tags.includes('featured');
+        });
+    });
+
     eleventyConfig.addFilter("sortBySeriesOrder", function (collection) {
         if (!collection) return [];
         return collection.sort((a, b) => {
