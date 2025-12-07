@@ -1,130 +1,129 @@
 # AdSense Fixed Sidebar Ads - Implementation Complete
 
-## ✅ Implementation Summary
+## ✅ Summary of Changes
 
-I've successfully implemented fixed/sticky sidebar ads for your blog at `https://blog.evolvedlotus.com/`. Here's what was added:
+### Files Modified:
 
----
-
-## Files Modified
-
-### 1. `src/style.css`
-Added ~100 lines of CSS for the sidebar ad styling:
-
-```css
-/* Key features: */
-- Fixed positioning in left/right margins
-- Only visible on screens >1400px wide
-- Smooth fade-in animation
-- Responsive spacing for different screen sizes
-- Print-safe (hidden when printing)
-- Accessibility support (reduced motion)
-- Easy disable via `.no-sidebar-ads` class
-```
-
-### 2. `src/_includes/base.njk`
-Added sidebar ad HTML elements:
-
-```html
-<!-- Left Sidebar Ad -->
-<aside class="sidebar-ad sidebar-ad--left">
-  <!-- 160x600 AdSense unit -->
-</aside>
-
-<!-- Right Sidebar Ad -->
-<aside class="sidebar-ad sidebar-ad--right">
-  <!-- 160x600 AdSense unit -->
-</aside>
-
-<!-- Smart initialization script -->
-```
+| File | Change |
+|------|--------|
+| `src/_includes/base.njk` | Added sidebar ad elements at top of body, initialization script |
+| `src/style.css` | Added sidebar ad styling with responsive breakpoints |
+| `netlify.toml` | Updated CSP to allow all AdSense-related domains |
 
 ---
 
-## ⚠️ ACTION REQUIRED: Get Your Ad Slot IDs
+## ⚠️ IMPORTANT: You Need Real Ad Slot IDs
 
-The implementation uses placeholder slot IDs. You need to:
+The sidebar ads are using **placeholder slot IDs**. To get real ads to display:
 
-1. **Log into Google AdSense:** https://www.google.com/adsense/
-2. **Create 2 new ad units:**
-   - Type: **Display ads**
-   - Size: **160x600** (Wide Skyscraper)
-   - Name: `Left Sidebar` and `Right Sidebar`
-3. **Copy the slot IDs** from each ad unit
-4. **Replace in `base.njk`:**
-   - Change `LEFT_AD_SLOT_ID` to your actual slot ID
-   - Change `RIGHT_AD_SLOT_ID` to your actual slot ID
+### Step 1: Create Ad Units in AdSense
 
-Example:
+1. Go to **Google AdSense** → https://www.google.com/adsense/
+2. Click **Ads** → **By ad unit** → **Display ads**
+3. Create **TWO** ad units:
+   - **Name:** `Left Sidebar 160x600`
+   - **Size:** Select `160x600 (Wide Skyscraper)`
+   - Repeat for `Right Sidebar 160x600`
+4. **Copy the ad slot IDs** from each unit
+
+### Step 2: Update base.njk
+
+Open `src/_includes/base.njk` and find these lines (around lines 174 and 184):
+
 ```html
-<!-- Before -->
 data-ad-slot="LEFT_AD_SLOT_ID"
+```
 
-<!-- After -->
-data-ad-slot="1234567890"
+```html
+data-ad-slot="RIGHT_AD_SLOT_ID"
+```
+
+Replace with your actual slot IDs:
+
+```html
+data-ad-slot="1234567890"  <!-- Your left sidebar slot ID -->
+```
+
+```html  
+data-ad-slot="0987654321"  <!-- Your right sidebar slot ID -->
 ```
 
 ---
 
-## How It Works
+## How the Ads Work
 
-| Feature | Description |
-|---------|-------------|
-| **Screen Width** | Only appears on screens ≥1400px wide |
-| **Positioning** | Fixed to viewport, centered vertically |
-| **Animation** | Fades in 1 second after page load |
-| **Ad Size** | 160×600 (Wide Skyscraper) |
-| **Publisher ID** | ca-pub-7311583434347173 (your existing ID) |
-| **Location** | Left and right margins of the page |
+| Feature | Value |
+|---------|-------|
+| **Visibility** | Only on screens ≥1400px wide |
+| **Position** | Fixed, centered vertically in left/right margins |
+| **Size** | 160×600 (Wide Skyscraper) |
+| **Load Behavior** | Fade in 1 second after page load |
+| **Publisher ID** | ca-pub-7311583434347173 |
 
----
+### Responsive Spacing
 
-## Responsive Behavior
-
-| Screen Width | Sidebar Ads | Left Position | Right Position |
-|--------------|-------------|---------------|----------------|
-| < 1400px | Hidden | N/A | N/A |
-| 1400-1599px | Visible | 20px from edge | 20px from edge |
-| 1600-1919px | Visible | 40px from edge | 40px from edge |
-| ≥ 1920px | Visible | 60px from edge | 60px from edge |
+| Screen Width | Left Position | Right Position |
+|--------------|---------------|----------------|
+| 1400-1599px | 20px from edge | 20px from edge |
+| 1600-1919px | 40px from edge | 40px from edge |
+| ≥1920px | 60px from edge | 60px from edge |
 
 ---
 
-## Layout Impact
+## What I Fixed
 
-✅ **Zero layout disruption** - Ads are positioned with CSS `position: fixed`, completely outside the document flow
-✅ **No content shift** - Main content remains unchanged
-✅ **No margin/padding changes** - Uses existing blank browser window space
-✅ **Mobile-safe** - Completely hidden on mobile/tablet
+### 1. Content Security Policy (CSP)
+Updated `netlify.toml` to allow:
+- `translate.google.com` and `translate.googleapis.com`
+- `fundingchoicesmessages.google.com`
+- `ep1.adtrafficquality.google` and all `*.adtrafficquality.google`
+- Additional Google ad-related domains
+
+### 2. Ad Placement
+- Moved sidebar ads to the **top of the body** (after skip link, before header)
+- Ads now use `position: fixed` so they're completely **outside the document flow**
+- **No ads will appear under the footer** anymore
+
+### 3. Empty State Handling
+- Removed the "Advertisement" label that was showing
+- Added CSS to hide empty ad containers
+- Ads only become visible when AdSense actually fills them
 
 ---
 
-## Disabling Ads on Specific Pages
+## Disable Ads on Specific Pages
 
-If you want to disable sidebar ads on certain pages (like legal pages), add this class to the `<body>` tag:
+To hide sidebar ads on any page, add this class to the body:
 
 ```html
 <body class="no-sidebar-ads">
 ```
 
-Or in your Nunjucks template frontmatter, you could add a variable and conditionally apply it.
-
----
-
-## Testing
-
-After deploying, test on a wide monitor (>1400px) to see the ads. They will fade in after 1 second on page load.
-
 ---
 
 ## Deploy
 
-Commit these changes and deploy to Netlify:
-
 ```bash
 git add .
-git commit -m "feat: Add fixed sidebar AdSense ads for wide screens"
+git commit -m "feat: Add fixed sidebar AdSense ads with CSP updates"
 git push
 ```
 
-Your Netlify will automatically build and deploy!
+Netlify will auto-deploy. After deployment:
+1. Wait for CSP changes to take effect
+2. Test on a wide screen (≥1400px)
+3. Check browser console for any remaining CSP errors
+
+---
+
+## Troubleshooting
+
+### Ads still not showing?
+1. Make sure you've replaced the placeholder slot IDs with real ones
+2. Clear your browser cache
+3. Wait a few minutes for AdSense to serve ads
+4. Check the browser console for errors
+5. AdSense may take time to approve and serve ads for new placements
+
+### Ads appearing in wrong place?
+The ads should **only** appear on screens 1400px or wider, floating in the left/right margins. If you see them elsewhere, clear the cache and rebuild.

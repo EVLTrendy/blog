@@ -255,7 +255,6 @@ body {
 .siglinks {
   margin-top: 10px;
 }
-}
 
 /* ============================================
    AD CONTAINERS (Hidden on mobile/tablet)
@@ -4525,21 +4524,32 @@ h1 {
 .sidebar-ad__container {
   background: transparent;
   border-radius: 8px;
-  min-height: 600px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
 }
 
-/* Small "Ad" label for transparency */
+/* Hide the container when AdSense hasn't loaded an ad */
+.sidebar-ad__container:empty,
+.sidebar-ad__container .adsbygoogle:empty {
+  display: none;
+}
+
+/* When AdSense fills the slot, it adds content - show it */
+.sidebar-ad__container .adsbygoogle[data-ad-status="filled"] {
+  display: block;
+}
+
+/* Hide unfilled ads (AdSense adds this attribute when no ad available) */
+.sidebar-ad__container .adsbygoogle[data-ad-status="unfilled"] {
+  display: none !important;
+}
+
+/* Small "Ad" label - hidden by default, shown only when ad is visible */
 .sidebar-ad__label {
-  font-size: 10px;
-  color: #999;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  margin-bottom: 8px;
-  text-align: center;
+  display: none;
+  /* Hide the label entirely */
 }
 
 /* Only show sidebar ads on very wide screens (>1400px) */
