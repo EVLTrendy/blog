@@ -4489,3 +4489,111 @@ h1 {
     padding: 0.2rem 0.4rem;
   }
 }
+
+/* ============================================
+   FIXED SIDEBAR ADS (Desktop Wide Screens Only)
+   ============================================
+   These ads appear in the natural blank margins 
+   on screens >1400px where the centered content
+   leaves empty space on the sides.
+   ============================================ */
+
+.sidebar-ad {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 90;
+  width: 160px;
+  display: none;
+  /* Hidden by default */
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.sidebar-ad--visible {
+  opacity: 1;
+}
+
+.sidebar-ad--left {
+  left: 20px;
+}
+
+.sidebar-ad--right {
+  right: 20px;
+}
+
+.sidebar-ad__container {
+  background: transparent;
+  border-radius: 8px;
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+/* Small "Ad" label for transparency */
+.sidebar-ad__label {
+  font-size: 10px;
+  color: #999;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+/* Only show sidebar ads on very wide screens (>1400px) */
+@media (min-width: 1400px) {
+  .sidebar-ad {
+    display: block;
+  }
+}
+
+/* Extra large screens - increase spacing from edge */
+@media (min-width: 1600px) {
+  .sidebar-ad--left {
+    left: 40px;
+  }
+
+  .sidebar-ad--right {
+    right: 40px;
+  }
+}
+
+/* Ultra-wide screens - even more spacing */
+@media (min-width: 1920px) {
+  .sidebar-ad--left {
+    left: 60px;
+  }
+
+  .sidebar-ad--right {
+    right: 60px;
+  }
+}
+
+/* Ensure sidebar ads don't overlap with sticky header */
+.sidebar-ad {
+  max-height: calc(100vh - 160px);
+  overflow: hidden;
+  margin-top: 40px;
+  /* Account for header */
+}
+
+/* Hide sidebar ads when printing */
+@media print {
+  .sidebar-ad {
+    display: none !important;
+  }
+}
+
+/* Accessibility: reduce motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .sidebar-ad {
+    transition: none;
+  }
+}
+
+/* Pages that shouldn't have sidebar ads can add this class to body */
+.no-sidebar-ads .sidebar-ad {
+  display: none !important;
+}
