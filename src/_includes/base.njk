@@ -158,36 +158,6 @@
 </head>
 <body>
     <a href="#main-content" class="skip-link">Skip to content</a>
-    
-    <!-- ============================================
-         FIXED SIDEBAR ADS (Desktop Wide Screens Only)
-         These appear in the natural blank margins on
-         screens >1400px. Hidden on smaller screens.
-         Position: fixed keeps them out of document flow.
-         ============================================ -->
-    
-    <!-- Left Sidebar Ad -->
-    <aside class="sidebar-ad sidebar-ad--left" id="sidebar-ad-left" aria-label="Advertisement">
-      <div class="sidebar-ad__container">
-        <!-- Google AdSense - Left Sidebar 160x600 -->
-        <ins class="adsbygoogle"
-             style="display:inline-block;width:160px;height:600px"
-             data-ad-client="ca-pub-7311583434347173"
-             data-ad-slot="LEFT_AD_SLOT_ID"></ins>
-      </div>
-    </aside>
-
-    <!-- Right Sidebar Ad -->
-    <aside class="sidebar-ad sidebar-ad--right" id="sidebar-ad-right" aria-label="Advertisement">
-      <div class="sidebar-ad__container">
-        <!-- Google AdSense - Right Sidebar 160x600 -->
-        <ins class="adsbygoogle"
-             style="display:inline-block;width:160px;height:600px"
-             data-ad-client="ca-pub-7311583434347173"
-             data-ad-slot="RIGHT_AD_SLOT_ID"></ins>
-      </div>
-    </aside>
-    
     {% include 'header.njk' %}
     <div class="main-container">
         <main class="content-area" id="main-content">
@@ -238,6 +208,34 @@
     <!-- Settings Widget (Dark Mode + Language Switcher) -->
     <!-- Settings Widget moved to Header -->
     {% include "google-translate.njk" %}
+
+    <!-- ============================================
+         FIXED SIDEBAR ADS (Desktop Wide Screens Only)
+         Positioned at end of body but display fixed in viewport.
+         Only visible on screens >1400px wide.
+         ============================================ -->
+    
+    <!-- Left Sidebar Ad -->
+    <aside class="sidebar-ad sidebar-ad--left" id="sidebar-ad-left" aria-label="Advertisement">
+      <div class="sidebar-ad__container">
+        <!-- Google AdSense - Left Sidebar 160x600 -->
+        <ins class="adsbygoogle"
+             style="display:inline-block;width:160px;height:600px"
+             data-ad-client="ca-pub-7311583434347173"
+             data-ad-slot="LEFT_AD_SLOT_ID"></ins>
+      </div>
+    </aside>
+
+    <!-- Right Sidebar Ad -->
+    <aside class="sidebar-ad sidebar-ad--right" id="sidebar-ad-right" aria-label="Advertisement">
+      <div class="sidebar-ad__container">
+        <!-- Google AdSense - Right Sidebar 160x600 -->
+        <ins class="adsbygoogle"
+             style="display:inline-block;width:160px;height:600px"
+             data-ad-client="ca-pub-7311583434347173"
+             data-ad-slot="RIGHT_AD_SLOT_ID"></ins>
+      </div>
+    </aside>
 
     <!-- Initialize Sidebar Ads with Delayed Visibility -->
     <script>
