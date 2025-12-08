@@ -165,6 +165,51 @@
     /* Added top padding for spacing after header */
 }
 
+/* Left Spacer - contains the left sidebar ad on wide screens */
+.article-spacer-left {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+}
+
+/* ========== ARTICLE SIDEBAR ADS ========== */
+/* These ads appear ONLY within the article-body-wrapper */
+/* They use position:sticky to stay visible while scrolling through content */
+/* But they WON'T appear in header or footer areas since they're contained */
+
+.article-sidebar-ad {
+    position: sticky;
+    top: 100px;
+    width: 160px;
+    height: 600px;
+    display: none;
+    /* Hidden by default */
+    align-items: flex-start;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.article-sidebar-ad--left {
+    margin-right: 20px;
+}
+
+.article-sidebar-ad--right {
+    margin-top: 30px;
+    /* Space below TOC */
+}
+
+/* Only show sidebar ads on very wide screens (>1400px) */
+@media (min-width: 1400px) {
+    .article-sidebar-ad {
+        display: flex;
+    }
+}
+
+/* Hide unfilled ads from AdSense */
+.article-sidebar-ad .adsbygoogle[data-ad-status="unfilled"] {
+    display: none !important;
+}
+
 /* Main Article Content Column */
 .article-content-column {
     min-width: 0;
@@ -345,6 +390,12 @@
 
     .article-spacer-left {
         display: none;
+    }
+
+    .article-sidebar-ad,
+    .article-sidebar-ad--left,
+    .article-sidebar-ad--right {
+        display: none !important;
     }
 
     .article-toc-column {

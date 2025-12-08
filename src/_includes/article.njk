@@ -89,11 +89,19 @@ ads: false
     
   </div>
   
-  <!-- 3-Column Layout: Blank | Article Content | TOC -->
+  <!-- 3-Column Layout: Left Ad | Article Content | TOC + Right Ad -->
   <div class="article-body-wrapper">
     
-    <!-- Left Blank Space -->
-    <div class="article-spacer-left"></div>
+    <!-- Left Sidebar Ad (Sticky - only visible while scrolling through article) -->
+    <div class="article-spacer-left">
+      <aside class="article-sidebar-ad article-sidebar-ad--left" aria-label="Advertisement">
+        <!-- Google AdSense - Left Sidebar 160x600 -->
+        <ins class="adsbygoogle"
+             style="display:inline-block;width:160px;height:600px"
+             data-ad-client="ca-pub-7311583434347173"
+             data-ad-slot="LEFT_AD_SLOT_ID"></ins>
+      </aside>
+    </div>
     
     <!-- Main Article Content -->
     <article class="article-content-column">
@@ -113,9 +121,18 @@ ads: false
       
     </article>
     
-    <!-- Right Sidebar: Table of Contents (Sticky) -->
+    <!-- Right Sidebar: Table of Contents (Sticky) + Ad -->
     <aside class="article-toc-column">
       {% include "table-of-contents.njk" %}
+      
+      <!-- Right Sidebar Ad (below TOC, sticky) -->
+      <div class="article-sidebar-ad article-sidebar-ad--right" aria-label="Advertisement">
+        <!-- Google AdSense - Right Sidebar 160x600 -->
+        <ins class="adsbygoogle"
+             style="display:inline-block;width:160px;height:600px"
+             data-ad-client="ca-pub-7311583434347173"
+             data-ad-slot="RIGHT_AD_SLOT_ID"></ins>
+      </div>
     </aside>
     
   </div>
@@ -132,7 +149,35 @@ ads: false
     {% include "comments.njk" %}
   </div>
   
+  
   <script src="/assets/js/bookmarks.js" defer></script>
+  
+  <!-- Initialize Article Sidebar Ads -->
+  <script>
+    // Only initialize ads on wide screens (>1400px)
+    if (window.innerWidth >= 1400) {
+      // Load AdSense script if not already loaded
+      if (!document.querySelector('script[src*="adsbygoogle"]')) {
+        var adScript = document.createElement('script');
+        adScript.async = true;
+        adScript.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7311583434347173';
+        adScript.crossOrigin = 'anonymous';
+        document.head.appendChild(adScript);
+      }
+      
+      // Initialize ads after page load
+      window.addEventListener('load', function() {
+        setTimeout(function() {
+          try {
+            (adsbygoogle = window.adsbygoogle || []).push({});
+            (adsbygoogle = window.adsbygoogle || []).push({});
+          } catch(e) {
+            console.log('AdSense init:', e);
+          }
+        }, 500);
+      });
+    }
+  </script>
 </section>
 
 <div id="toast"></div>
