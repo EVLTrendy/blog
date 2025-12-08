@@ -4495,71 +4495,73 @@ h1 {
    These ads appear in the natural blank margins 
    on screens >1400px where the centered content
    leaves empty space on the sides.
+   IMPORTANT: position:fixed ensures ZERO document flow impact
    ============================================ */
 
+/* Base sidebar ad - ALWAYS hidden and out of flow by default */
 .sidebar-ad {
-  position: fixed;
+  position: fixed !important;
   top: 50%;
   transform: translateY(-50%);
   z-index: 90;
   width: 160px;
-  display: none;
-  /* Hidden by default */
+  height: auto;
+  max-height: 600px;
+  display: none !important;
+  /* Hidden by default on all screens */
+  visibility: hidden;
   opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.sidebar-ad--visible {
-  opacity: 1;
+  pointer-events: none;
+  /* No interaction when hidden */
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  background: transparent !important;
+  box-sizing: border-box;
 }
 
 .sidebar-ad--left {
   left: 20px;
+  right: auto;
 }
 
 .sidebar-ad--right {
   right: 20px;
+  left: auto;
 }
 
 .sidebar-ad__container {
-  background: transparent;
-  border-radius: 8px;
+  width: 160px;
+  height: 600px;
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-direction: column;
+  background: transparent;
+  margin: 0;
+  padding: 0;
 }
 
-/* Hide the container when AdSense hasn't loaded an ad */
-.sidebar-ad__container:empty,
-.sidebar-ad__container .adsbygoogle:empty {
-  display: none;
+/* When visible class is added AND screen is wide enough */
+.sidebar-ad--visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transition: opacity 0.3s ease;
 }
 
-/* When AdSense fills the slot, it adds content - show it */
-.sidebar-ad__container .adsbygoogle[data-ad-status="filled"] {
-  display: block;
-}
-
-/* Hide unfilled ads (AdSense adds this attribute when no ad available) */
-.sidebar-ad__container .adsbygoogle[data-ad-status="unfilled"] {
-  display: none !important;
-}
-
-/* Small "Ad" label - hidden by default, shown only when ad is visible */
-.sidebar-ad__label {
-  display: none;
-  /* Hide the label entirely */
-}
-
-/* Only show sidebar ads on very wide screens (>1400px) */
+/* Only show sidebar ads on VERY wide screens (>1400px) */
 @media (min-width: 1400px) {
   .sidebar-ad {
-    display: block;
+    display: block !important;
+  }
+
+  .sidebar-ad--visible {
+    visibility: visible;
+    opacity: 1;
   }
 }
 
-/* Extra large screens - increase spacing from edge */
+/* Larger screens - more spacing from edge */
 @media (min-width: 1600px) {
   .sidebar-ad--left {
     left: 40px;
@@ -4570,7 +4572,7 @@ h1 {
   }
 }
 
-/* Ultra-wide screens - even more spacing */
+/* Ultra-wide screens */
 @media (min-width: 1920px) {
   .sidebar-ad--left {
     left: 60px;
@@ -4581,29 +4583,39 @@ h1 {
   }
 }
 
-/* Ensure sidebar ads don't overlap with sticky header */
-.sidebar-ad {
-  max-height: calc(100vh - 160px);
-  overflow: hidden;
-  margin-top: 40px;
-  /* Account for header */
+/* Hide unfilled ads from AdSense */
+.sidebar-ad .adsbygoogle[data-ad-status="unfilled"] {
+  display: none !important;
+  visibility: hidden !important;
 }
 
-/* Hide sidebar ads when printing */
+/* ALWAYS hide on small/medium screens */
+@media (max-width: 1399px) {
+
+  .sidebar-ad,
+  .sidebar-ad--left,
+  .sidebar-ad--right {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    width: 0 !important;
+    height: 0 !important;
+    overflow: hidden !important;
+    position: absolute !important;
+    top: -9999px !important;
+    left: -9999px !important;
+  }
+}
+
+/* Hide when printing */
 @media print {
   .sidebar-ad {
     display: none !important;
   }
 }
 
-/* Accessibility: reduce motion preference */
-@media (prefers-reduced-motion: reduce) {
-  .sidebar-ad {
-    transition: none;
-  }
-}
-
-/* Pages that shouldn't have sidebar ads can add this class to body */
+/* Disable class for specific pages */
 .no-sidebar-ads .sidebar-ad {
   display: none !important;
+  visibility: hidden !important;
 }
