@@ -151,8 +151,8 @@
     <link rel="preconnect" href="https://ep2.adtrafficquality.google">
     <link rel="preconnect" href="https://www.googletagmanager.com">
 
-    {% if settings.settings.analytics.googleAnalytics and settings.settings.analytics.googleAnalytics != "GA4_MEASUREMENT_ID" %}
-    {% include "analytics.js" %}
+    {% if settings.analytics.googleAnalytics and settings.analytics.googleAnalytics != "GA4_MEASUREMENT_ID" %}
+    {% include "analytics.njk" %}
     {% endif %}
 
 </head>
