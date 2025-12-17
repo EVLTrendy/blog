@@ -24,22 +24,22 @@
         "description": "Browse our comprehensive library of resources organized by category. Each section is packed with expert insights, step-by-step guides, and proven strategies.",
         "panels": {
             "socialMedia": {
-                "description": "Master the art of social media with proven strategies for growth, engagement, and conversion across all major platforms."
+                "description": "Master platform-specific strategies, algorithm insights, and engagement tactics across TikTok, Instagram, Facebook, LinkedIn, YouTube, Twitter/X, and Twitch. Includes viral content strategies and growth techniques."
             },
             "contentCreation": {
-                "description": "Learn how to create compelling content that resonates with your audience and drives meaningful engagement."
+                "description": "Learn content creation techniques, design tools, batching strategies, photography, video production, and creative workflows. Master the art of creating compelling visual and written content."
             },
             "seo": {
-                "description": "Boost your search rankings and understand your data with expert SEO tactics and analytics insights."
+                "description": "Data-driven content strategies, social media analytics, metrics that matter, and performance optimization techniques to boost your search rankings and understand your audience."
             },
             "strategy": {
-                "description": "Build a winning digital strategy with frameworks, templates, and actionable plans for sustainable growth."
+                "description": "Broader business strategies, monetization approaches, industry insights, creator economy trends, and platform business model changes for sustainable growth."
             },
             "tools": {
-                "description": "Discover the best tools and automation strategies to streamline your workflow and maximize productivity."
+                "description": "Specific tool reviews, automation workflows, and technical solutions for creators. Discover free and paid tools to streamline your content creation and marketing processes."
             },
             "growth": {
-                "description": "Unlock rapid growth with innovative tactics, experiments, and proven growth hacking methodologies."
+                "description": "Growth strategies and tactics for rapid audience building and engagement, including innovative experiments and proven growth hacking methodologies."
             }
         }
     },
