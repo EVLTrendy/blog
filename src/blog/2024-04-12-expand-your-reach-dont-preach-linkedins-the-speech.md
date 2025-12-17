@@ -12,7 +12,7 @@ description: 'That''s a common question, especially given how many other social 
 keywords: 'content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing'
 schema_type: Article
 og_type: article
-category: content-creation
+category: social-media
 featured: true
 ---
 

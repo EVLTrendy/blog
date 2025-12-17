@@ -16,7 +16,7 @@ description: 'Welcome, social media aficionados! In the dynamic landscape of onl
 keywords: 'content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing'
 schema_type: Article
 og_type: article
-category: content-creation
+category: social-media
 featured: true
 ---
 Welcome, social media aficionados! In the dynamic landscape of online platforms, keeping your content strategy on point is the key to success. To make your life easier, we're delving into the realm of free* online scheduling resource tools that can supercharge your social media game. Let's explore the top six contenders!

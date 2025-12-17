@@ -17,7 +17,7 @@ imageAlt: Building Genuine Engagement vs. Vanity Metrics
 keywords: 'content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing'
 schema_type: Article
 og_type: article
-category: content-creation
+category: seo
 featured: true
 ---
 You wake up to find one of your Instagram posts just hit 20,000 likes overnight. But when you check your analytics dashboard, there are no new leads, no spike in web traffic, and no sales. Sound familiar? It is an experience many social media managers and business owners know all too well. Those flashy numbers can feel rewarding, but they rarely tell the full story of your content’s real impact.

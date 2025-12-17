@@ -12,7 +12,7 @@ description: 'Social media platform X shakes up news consumption with Grok AI, o
 keywords: 'content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing'
 schema_type: Article
 og_type: article
-category: content-creation
+category: social-media
 featured: true
 ---
 Social media platform X shakes up news consumption with Grok AI, offering personalized, bite-sized summaries of trending stories.

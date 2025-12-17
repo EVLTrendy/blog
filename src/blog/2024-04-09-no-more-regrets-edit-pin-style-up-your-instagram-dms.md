@@ -13,7 +13,7 @@ description: 'Attention, all Meta users! If, like me, you spend a lot of time ch
 keywords: 'content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing'
 schema_type: Article
 og_type: article
-category: content-creation
+category: social-media
 featured: true
 ---
 Attention, all Meta users! If, like me, you spend a lot of time chatting on the app, you'll be glad to know that Meta added some new enhancements to the DM feature in March. These improvements will significantly improve your messaging experience. 

@@ -12,7 +12,7 @@ description: 'Creativity propels us to push boundaries and imagine new possibili
 keywords: 'content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing'
 schema_type: Article
 og_type: article
-category: content-creation
+category: strategy
 featured: true
 ---
 Creativity propels us to push boundaries and imagine new possibilities, and we're here to celebrate that spirit through the stories of emerging talents. Join us as we explore innovative projects, groundbreaking ideas, and inspiring individuals making their mark on the world.

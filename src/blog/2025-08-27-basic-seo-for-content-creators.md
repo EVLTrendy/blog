@@ -12,7 +12,7 @@ imageAlt: Basic SEO for Content Creators
 keywords: 'content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing'
 schema_type: Article
 og_type: article
-category: content-creation
+category: seo
 featured: true
 ---
 

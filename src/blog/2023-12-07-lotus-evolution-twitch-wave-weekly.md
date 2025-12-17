@@ -12,7 +12,7 @@ description: 'Hey there, Twitch enthusiasts! As you prepare for an incredible we
 keywords: 'content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing'
 schema_type: Article
 og_type: article
-category: content-creation
+category: strategy
 featured: true
 ---
 Hey there, Twitch enthusiasts! As you prepare for an incredible week on Twitch, you'll feel as though you're attending the hottest gaming party in person. Knowing which games will top the charts over the next seven days is like getting a first look at the trendiest playlist, regardless of your level of experience with Twitch. 

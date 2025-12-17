@@ -12,7 +12,7 @@ description: Are you someone who loves to travel but wants to keep your identity
 keywords: 'content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing'
 schema_type: Article
 og_type: article
-category: content-creation
+category: social-media
 featured: true
 ---
 Are you someone who loves to travel but wants to keep your identity a secret? Faceless travel guides might be the solution you're looking for. 

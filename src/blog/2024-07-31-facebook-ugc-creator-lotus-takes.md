@@ -12,7 +12,7 @@ description: 'User-generated content (UGC) refers to any content, such as posts,
 keywords: 'content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing'
 schema_type: Article
 og_type: article
-category: content-creation
+category: social-media
 featured: true
 ---
 User-generated content (UGC) refers to any content, such as posts, images, or videos, that originates from your audience rather than your brand. It's crucial because it helps establish trust and authenticity. When real users share their experiences, it feels more authentic than something created in-house. 

@@ -12,7 +12,7 @@ description: 'Ever wondered how far AI has come? Meta Llama 3, an open-source po
 keywords: 'content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing'
 schema_type: Article
 og_type: article
-category: content-creation
+category: strategy
 featured: true
 ---
 

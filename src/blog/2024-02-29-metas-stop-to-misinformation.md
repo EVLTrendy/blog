@@ -14,7 +14,7 @@ description: 'Misinformation on social media should be avoided, especially when 
 keywords: 'content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing'
 schema_type: Article
 og_type: article
-category: content-creation
+category: social-media
 featured: true
 ---
 Misinformation on social media should be avoided, especially when elections are approaching. You've probably heard of edited videos and bogus news that can deceive people. This issue might worsen during election season, making it more challenging to separate fact from fiction.

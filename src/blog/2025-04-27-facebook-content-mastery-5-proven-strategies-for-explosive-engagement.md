@@ -12,7 +12,7 @@ description: Many Facebook users struggle to generate content that stands out to
 keywords: 'content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing'
 schema_type: Article
 og_type: article
-category: content-creation
+category: social-media
 featured: true
 ---
 Many Facebook users struggle to generate content that stands out to their audience. You're not alone! Facebook users today experience a crowded internet environment wherein they struggle to gain attention and sustain a connection.

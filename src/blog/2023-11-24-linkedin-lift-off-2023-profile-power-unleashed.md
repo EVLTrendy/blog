@@ -12,7 +12,7 @@ description: Your LinkedIn profile serves as a dynamic representation of your pr
 keywords: 'content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing'
 schema_type: Article
 og_type: article
-category: content-creation
+category: social-media
 featured: true
 ---
 Your LinkedIn profile serves as a dynamic representation of your professional identity within the ever-evolving landscape of business networking. In navigating this dynamic digital space, we employ strategic insights gleaned from pivotal articles to assist you in crafting a compelling personal brand. Our goal is to empower you to not only stand out but also make a lasting impression in the influential realm of LinkedIn.

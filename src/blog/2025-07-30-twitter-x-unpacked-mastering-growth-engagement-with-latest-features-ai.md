@@ -12,7 +12,7 @@ imageAlt: 'Master Twitter (X) for real growth! Learn community strategies, AI co
 keywords: 'content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing'
 schema_type: Article
 og_type: article
-category: content-creation
+category: social-media
 featured: true
 ---
 Thinking about how Twitter perceives age or if Twitter DMs are encrypted? The platform (now officially X!) is constantly evolving, from new privacy measures to AI content generation and even Twitter monetization works.

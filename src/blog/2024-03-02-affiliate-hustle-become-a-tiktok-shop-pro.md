@@ -12,7 +12,7 @@ description: 'Ever considered generating some extra money on TikTok? You''re in 
 keywords: 'content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing'
 schema_type: Article
 og_type: article
-category: content-creation
+category: strategy
 featured: true
 ---
 Ever considered generating some extra money on TikTok? You're in luck, because I'm going to reveal a hot new trend: TikTok affiliate marketing, courtesy of TikTok Shop! Imagine having your own virtual store directly on your TikTok profile. It's a game changer, guys. So let's get started and see how you can take advantage of this wonderful opportunity!
