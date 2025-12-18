@@ -21,6 +21,11 @@ fields:
     type: datetime
     label: Publish Date
     required: true
+
+  - key: updated
+    type: datetime
+    label: Last Updated
+    description: "Set this if the post has been significantly updated after publication"
     
   - key: tags
     type: array
@@ -31,14 +36,18 @@ fields:
   - key: image
     type: image
     label: Featured Image
+    required: true
     
   - key: imageAlt
     type: string
     label: Image Alt Text
+    required: true
     
   - key: category
     type: string
     label: Category
+    required: true
+    default: "content-creation"
     
   - key: featured  
     type: boolean
@@ -48,6 +57,16 @@ fields:
   - key: keywords
     type: string
     label: Keywords
+
+  - key: og_type
+    type: string
+    label: Open Graph Type
+    default: "article"
+
+  - key: schema_type
+    type: string
+    label: Schema.org Type
+    default: "Article"
     
   - key: body
     type: markdown

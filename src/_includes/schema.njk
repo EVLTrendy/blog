@@ -3,24 +3,6 @@
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": "Organization",
-      "@id": "{{ metadata.url }}/#organization",
-      "name": "{{ metadata.title }}",
-      "url": "{{ metadata.url }}",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "{{ metadata.url }}/assets/images/logo.png",
-        "width": 512,
-        "height": 512
-      },
-      "sameAs": [
-        "https://twitter.com/{{ metadata.author.twitter }}",
-        "https://www.facebook.com/evolvedlotus",
-        "https://www.instagram.com/evolvedlotus",
-        "https://www.linkedin.com/company/evolvedlotus"
-      ]
-    },
-    {
       "@type": "WebSite",
       "@id": "{{ metadata.url }}/#website",
       "url": "{{ metadata.url }}",
@@ -32,129 +14,88 @@
       "inLanguage": "en-US"
     },
     {
+      "@type": "Organization",
+      "@id": "{{ metadata.url }}/#organization",
+      "name": "EvolvedLotus",
+      "url": "{{ metadata.url }}",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "{{ metadata.url }}/assets/logo-main.png",
+        "width": 512,
+        "height": 512
+      },
+      "sameAs": [
+        "https://twitter.com/evolvedlotus",
+        "https://facebook.com/evolvedlotus"
+      ]
+    },
+    {
       "@type": "BreadcrumbList",
-      "@id": "{{ metadata.url }}{{ page.url }}#breadcrumb",
+      "@id": "{{ metadata.url }}{{ page.url }}/#breadcrumb",
       "itemListElement": [
         {
           "@type": "ListItem",
           "position": 1,
-          "name": "Home",
-          "item": "{{ metadata.url }}"
+          "item": {
+            "@type": "WebPage",
+            "@id": "{{ metadata.url }}/",
+            "url": "{{ metadata.url }}/",
+            "name": "Home"
+          }
         }
-        {% if page.url != '/' %}
-        ,{
+        {% if layout == 'post' or og_type == 'article' %}
+        ,
+        {
           "@type": "ListItem",
           "position": 2,
-          "name": "{{ title or metadata.title }}",
-          "item": "{{ metadata.url }}{{ page.url }}"
+          "item": {
+            "@type": "WebPage",
+            "@id": "{{ metadata.url }}/blog/",
+            "url": "{{ metadata.url }}/blog/",
+            "name": "Blog"
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "item": {
+            "@type": "WebPage",
+            "@id": "{{ metadata.url }}{{ page.url }}",
+            "url": "{{ metadata.url }}{{ page.url }}",
+            "name": "{{ title }}"
+          }
         }
         {% endif %}
       ]
-    },
-    {
-      "@type": "{{ schema_type if schema_type else 'WebPage' }}",
-      "@id": "{{ metadata.url }}{{ page.url }}#webpage",
-      "url": "{{ metadata.url }}{{ page.url }}",
-      "name": "{{ title or metadata.title }}",
-      "isPartOf": {
-        "@id": "{{ metadata.url }}/#website"
-      },
-      "about": {
-        "@id": "{{ metadata.url }}/#organization"
-      },
-      "description": "{{ description or metadata.description }}",
-      "breadcrumb": {
-        "@id": "{{ metadata.url }}{{ page.url }}#breadcrumb"
-      },
-      "inLanguage": "en-US",
-      "potentialAction": [
-        {
-          "@type": "ReadAction",
-          "target": [
-            "{{ metadata.url }}{{ page.url }}"
-          ]
-        }
-      ]
     }
-    {% if layout == 'post.njk' or layout == 'article.njk' or tags and 'post' in tags %}
-    ,{
-      "@type": "BlogPosting",
-      "@id": "{{ metadata.url }}{{ page.url }}#article",
+    {% if layout == 'post' or og_type == 'article' or schema_type == 'Article' %}
+    ,
+    {
+      "@type": "Article",
+      "@id": "{{ metadata.url }}{{ page.url }}/#article",
       "isPartOf": {
-        "@id": "{{ metadata.url }}{{ page.url }}#webpage"
+        "@id": "{{ metadata.url }}{{ page.url }}/#webpage"
       },
       "author": {
         "@type": "Person",
-        "name": "{{ author or metadata.author.name }}",
-        "url": "{{ metadata.url }}/authors/{{ author | slugify }}/"
+        "name": "{{ author if author else metadata.author.name }}"
       },
       "headline": "{{ title }}",
       "datePublished": "{{ date | isoDate }}",
-      "dateModified": "{{ date | isoDate }}",
+      "dateModified": "{{ (lastModified if lastModified else date) | isoDate }}",
       "mainEntityOfPage": {
-        "@id": "{{ metadata.url }}{{ page.url }}#webpage"
+        "@id": "{{ metadata.url }}{{ page.url }}"
       },
       "publisher": {
         "@id": "{{ metadata.url }}/#organization"
       },
       "image": {
         "@type": "ImageObject",
-        "url": "{% if image %}{{ metadata.url }}{{ image }}{% else %}{{ metadata.url }}/assets/blog/default-og-image.jpg{% endif %}"
+        "url": "{{ metadata.url }}{{ ogImagePath if ogImagePath else (metadata.image if metadata.image else '/assets/blog/default-og.png') }}"
       },
-      "articleSection": "{{ tags | join(', ') }}",
+      "description": "{{ description }}",
+      "articleSection": "{{ article_section if article_section else 'Technology' }}",
       "inLanguage": "en-US"
-    }
-    {% endif %}
-    {% if faqs and faqs.length > 0 %}
-    ,{
-      "@type": "FAQPage",
-      "mainEntity": [
-        {% for faq in faqs %}
-        {
-          "@type": "Question",
-          "name": "{{ faq.question }}",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "{{ faq.answer }}"
-          }
-        }{% if not loop.last %},{% endif %}
-        {% endfor %}
-      ]
-    }
-    {% endif %}
-    {% if schemaType == 'HowTo' and howToSteps %}
-    ,{
-      "@type": "HowTo",
-      "name": "{{ title }}",
-      "description": "{{ description }}",
-      "image": "{{ metadata.url }}{{ image }}",
-      "totalTime": "{{ totalTime or 'PT30M' }}",
-      "step": [
-        {% for step in howToSteps %}
-        {
-          "@type": "HowToStep",
-          "position": {{ loop.index }},
-          "name": "{{ step.name }}",
-          "text": "{{ step.text }}"{% if step.image %},
-          "image": "{{ metadata.url }}{{ step.image }}"{% endif %}
-        }{% if not loop.last %},{% endif %}
-        {% endfor %}
-      ]
-    }
-    {% endif %}
-    {% if videoUrl %}
-    ,{
-      "@type": "VideoObject",
-      "name": "{{ title }}",
-      "description": "{{ description }}",
-      "thumbnailUrl": "{{ metadata.url }}{{ videoThumbnail or image }}",
-      "uploadDate": "{{ date | isoDate }}",
-      "duration": "{{ videoDuration or 'PT10M' }}",
-      "contentUrl": "{{ videoUrl }}",
-      "embedUrl": "{{ videoUrl }}",
-      "publisher": {
-        "@id": "{{ metadata.url }}/#organization"
-      }
     }
     {% endif %}
   ]

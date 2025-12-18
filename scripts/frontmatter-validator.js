@@ -26,7 +26,7 @@ class FrontmatterValidator {
       const fileName = path.basename(filePath);
 
       // Required fields validation
-      const requiredFields = ['title', 'description', 'image'];
+      const requiredFields = ['title', 'description', 'image', 'imageAlt', 'category'];
       const missingFields = [];
 
       requiredFields.forEach(field => {
@@ -353,10 +353,40 @@ class FrontmatterValidator {
         needsFix = true;
       }
 
+      // Required fields validation
+      const requiredFields = ['title', 'description', 'image', 'imageAlt', 'category'];
+      const missingFields = [];
+
+      // Fix missing imageAlt
+      if (!frontmatter.imageAlt) {
+        console.log(`  🔧 Fixing ${fileName}: Adding missing imageAlt`);
+        fixedFrontmatter.imageAlt = frontmatter.title || 'Featured image';
+        needsFix = true;
+      }
+
       // Fix missing category
       if (!frontmatter.category) {
         console.log(`  🔧 Fixing ${fileName}: Adding missing category`);
-        fixedFrontmatter.category = 'content-creation';
+        // Try to guess from tags
+        const categoryMap = {
+          'tiktok': 'social-media',
+          'instagram': 'social-media',
+          'ig': 'social-media',
+          'seo': 'seo',
+          'analytics': 'seo',
+          'ai': 'strategy',
+          'tools': 'tools'
+        };
+        let guessedCategory = 'content-creation';
+        if (frontmatter.tags && Array.isArray(frontmatter.tags)) {
+          for (const tag of frontmatter.tags) {
+            if (categoryMap[tag]) {
+              guessedCategory = categoryMap[tag];
+              break;
+            }
+          }
+        }
+        fixedFrontmatter.category = guessedCategory;
         needsFix = true;
       }
 

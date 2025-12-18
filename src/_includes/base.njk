@@ -13,9 +13,10 @@
 
     {# === OPEN GRAPH META TAGS (Facebook, LinkedIn, WhatsApp, etc.) === #}
     {% if image %}
-      {# Extract filename and create OG path #}
-      {% set imageFilename = image | replace('/assets/blog/', '') | replace('\\\\', '/') %}
-      {% set ogImagePath = '/assets/og/' + imageFilename %}
+      {# Extract filename and create OG path with .png extension #}
+      {% set imageFilename = image.split('/') | last %}
+      {% set ogImagePath = '/assets/og/' + imageFilename.replace('.jpg', '.png').replace('.jpeg', '.png').replace('.webp', '.png').replace('.PNG', '.png') %}
+      {% if not ogImagePath.endsWith('.png') %}{% set ogImagePath = ogImagePath + '.png' %}{% endif %}
 
       <meta property="og:image" content="{{ metadata.url }}{{ ogImagePath }}">
       <meta property="og:image:secure_url" content="{{ metadata.url }}{{ ogImagePath }}">
@@ -25,8 +26,10 @@
       <meta property="og:image:type" content="image/png">
     {% elif metadata.image %}
       {# Fallback to site default if post has no image #}
-      {% set defaultFilename = metadata.image | replace('/assets/blog/', '') | replace('\\\\', '/') %}
-      {% set defaultOgPath = '/assets/og/' + defaultFilename %}
+      {% set defaultFilename = metadata.image.split('/') | last %}
+      {% if not defaultFilename or defaultFilename == '' %}{% set defaultFilename = 'default-og.png' %}{% endif %}
+      {% set defaultOgPath = '/assets/og/' + defaultFilename.replace('.jpg', '.png').replace('.jpeg', '.png').replace('.webp', '.png').replace('.PNG', '.png') %}
+      {% if not defaultOgPath.endsWith('.png') %}{% set defaultOgPath = defaultOgPath + '.png' %}{% endif %}
       <meta property="og:image" content="{{ metadata.url }}{{ defaultOgPath }}">
       <meta property="og:image:secure_url" content="{{ metadata.url }}{{ defaultOgPath }}">
       <meta property="og:image:width" content="1200">
@@ -38,12 +41,13 @@
     <meta property="og:title" content="{% if title %}{{ title }}{% else %}{{ metadata.title }}{% endif %}">
     <meta property="og:description" content="{% if description %}{{ description }}{% else %}{{ metadata.description }}{% endif %}">
     <meta property="og:url" content="{{ metadata.url }}{{ page.url }}">
-    <meta property="og:type" content="{% if og_type %}{{ og_type }}{% else %}article{% endif %}">
+    <meta property="og:type" content="{{ og_type if og_type else 'website' }}">
     <meta property="og:site_name" content="{{ metadata.title }}">
 
     {# === TWITTER CARD META TAGS (X/Twitter) - SEPARATE from Open Graph === #}
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@{{ metadata.author.twitter }}">
+    <meta name="twitter:domain" content="blog.evolvedlotus.com">
     {% if author %}<meta name="twitter:creator" content="@{{ author | replace('@', '') }}">{% endif %}
     <meta name="twitter:title" content="{% if title %}{{ title }}{% else %}{{ metadata.title }}{% endif %}">
     <meta name="twitter:description" content="{% if description %}{{ description }}{% else %}{{ metadata.description }}{% endif %}">
@@ -61,13 +65,9 @@
       <meta name="twitter:image:alt" content="{{ metadata.title }}">
     {% endif %}
 
-    <!-- WhatsApp Compliance: Critical meta tags must appear early in <head> -->
-    <!-- REMOVED: Duplicate/conflicting Open Graph and Twitter tags that were causing issues -->
-    <!-- The manual tags above are now the single source of truth for social media meta tags -->
-
-    <!-- Additdional meta tags for better SEO and social sharing -->
-    <meta name="title" content="{{ title }}">
-    <meta name="description" content="{{ description if description else metadata.description }}">
+    <!-- Global SEO Meta Tags -->
+    <meta name="title" content="{{ title or metadata.title }}">
+    <meta name="description" content="{{ description or metadata.description }}">
     <meta name="keywords" content="{{ keywords if keywords else 'content creation, social media, SEO, blogging, digital marketing' }}">
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
     <meta name="author" content="{{ author if author else 'EvolvedLotus' }}">
@@ -78,18 +78,26 @@
     <meta name="distribution" content="global">
     <meta name="google-adsense-account" content="ca-pub-7311583434347173">
 
-    <!-- Article-specific Open Graph enhancements -->
-    {% if date %}
-    <meta property="article:published_time" content="{{ date | isoDate }}">
-    <meta property="article:modified_time" content="{{ date | isoDate }}">
-    {% endif %}
-    {% if author %}
-    <meta property="article:author" content="{{ author }}">
-    {% endif %}
-    {% if tags %}
-    {% for tag in tags %}
-    <meta property="article:tag" content="{{ tag }}">
-    {% endfor %}
+    <!-- Article-specific Meta Tags (only shown when og:type is "article") -->
+    {% if og_type == 'article' %}
+      {% if date %}
+      <meta property="article:published_time" content="{{ date | isoDate }}">
+      <meta property="article:modified_time" content="{{ lastModified | isoDate if lastModified else date | isoDate }}">
+      {% endif %}
+      {% if author %}
+      <meta property="article:author" content="{{ author }}">
+      {% endif %}
+      {% if article_section %}
+      <meta property="article:section" content="{{ article_section }}">
+      {% endif %}
+      <meta property="article:publisher" content="{{ metadata.url }}">
+      {% if tags %}
+        {% for tag in tags %}
+          {% if tag != 'post' and tag != 'featured' %}
+          <meta property="article:tag" content="{{ tag }}">
+          {% endif %}
+        {% endfor %}
+      {% endif %}
     {% endif %}
 
     <!-- Platform-specific enhancements -->
@@ -97,7 +105,8 @@
     <meta property="discord:embed" content="true">
     <meta property="discord:embed:title" content="{{ title or metadata.title }}">
     <meta property="discord:embed:description" content="{{ description or metadata.description }}">
-    <meta property="discord:embed:image" content="{% if image %}{{ metadata.url }}{{ image }}{% else %}{{ metadata.url }}/assets/blog/default-og-image.jpg{% endif %}">
+    {% set socialImagePath = ogImagePath if image else defaultOgPath %}
+    <meta property="discord:embed:image" content="{{ metadata.url }}{{ socialImagePath }}">
     <meta property="discord:embed:url" content="{{ metadata.url }}{{ page.url }}">
     <meta property="discord:embed:color" content="#007bff">
 
@@ -108,13 +117,13 @@
     <!-- Pinterest Specific Tags -->
     <meta name="pinterest-rich-pin" content="true">
 
-    <!-- WhatsApp Specific Tags (duplicates for priority) -->
-    <meta property="whatsapp:image" content="{% if image %}{{ metadata.url }}{{ image }}{% else %}{{ metadata.url }}/assets/blog/default-og-image.jpg{% endif %}">
+    <!-- WhatsApp Specific Tags -->
+    <meta property="whatsapp:image" content="{{ metadata.url }}{{ socialImagePath }}">
     <meta property="whatsapp:title" content="{{ title or metadata.title }}">
     <meta property="whatsapp:description" content="{{ description or metadata.description }}">
 
     <!-- Telegram Specific Tags -->
-    <meta property="telegram:image" content="{% if image %}{{ metadata.url }}{{ image }}{% else %}{{ metadata.url }}/assets/blog/default-og-image.jpg{% endif %}">
+    <meta property="telegram:image" content="{{ metadata.url }}{{ socialImagePath }}">
     <meta property="telegram:title" content="{{ title or metadata.title }}">
     <meta property="telegram:description" content="{{ description or metadata.description }}">
 
@@ -155,6 +164,7 @@
     {% include "analytics.njk" %}
     {% endif %}
 
+    {% include "schema.njk" %}
 </head>
 <body>
     <a href="#main-content" class="skip-link">Skip to content</a>

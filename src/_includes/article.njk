@@ -3,6 +3,11 @@ layout: 'base.njk'
 ads: false
 ---
 
+{% set og_type = 'article' %}
+{% set schema_type = 'Article' %}
+{# Determine article section from category or first tag #}
+{% set article_section = category if category else (tags | first if (tags and tags[0] != 'post') else 'Technology') %}
+
 <section class="articlesection">
   
   <!-- Full-Width Header Section -->
