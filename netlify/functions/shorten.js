@@ -35,24 +35,34 @@ function extractMetadata(html, longUrl) {
   };
 
   try {
-    // Basic regex-based extraction (lightweight for lambda)
+    // Generic regex to capture content attribute of meta tags
+    const getMetaContent = (propName) => {
+      // Matches: <meta [attributes] property/name="propName" [attributes] content="value" [attributes] >
+      // This is a naive regex but better than the previous specific one.
+      // We check for both 'name' and 'property'
+      const regex = new RegExp(`<meta[^>]*?(?:name|property)=["']${propName}["'][^>]*?content=["'](.*?)["']`, 'i');
+      const match = html.match(regex);
+      // Try alternative order: content first (rare but possible)
+      if (!match) {
+        const altRegex = new RegExp(`<meta[^>]*?content=["'](.*?)["'][^>]*?(?:name|property)=["']${propName}["']`, 'i');
+        const altMatch = html.match(altRegex);
+        return altMatch ? altMatch[1] : null;
+      }
+      return match ? match[1] : null;
+    };
+
     const titleMatch = html.match(/<title>(.*?)<\/title>/i);
     if (titleMatch) metadata.title = titleMatch[1];
 
-    const ogTitleMatch = html.match(/<meta property="og:title" content="(.*?)"/i);
-    if (ogTitleMatch) metadata.title = ogTitleMatch[1];
+    // Prioritize OG, then Twitter, then standard Description
+    metadata.title = getMetaContent('og:title') || getMetaContent('twitter:title') || metadata.title;
+    metadata.description = getMetaContent('og:description') || getMetaContent('twitter:description') || getMetaContent('description') || metadata.description;
 
-    const descMatch = html.match(/<meta name="description" content="(.*?)"/i);
-    if (descMatch) metadata.description = descMatch[1];
+    // Image priority
+    metadata.image = getMetaContent('og:image') || getMetaContent('twitter:image') || metadata.image;
 
-    const ogDescMatch = html.match(/<meta property="og:description" content="(.*?)"/i);
-    if (ogDescMatch) metadata.description = ogDescMatch[1];
-
-    const ogImageMatch = html.match(/<meta property="og:image" content="(.*?)"/i);
-    if (ogImageMatch) metadata.image = ogImageMatch[1];
-
-    const authorMatch = html.match(/<meta name="author" content="(.*?)"/i);
-    if (authorMatch) metadata.author = authorMatch[1];
+    // Author
+    metadata.author = getMetaContent('author') || getMetaContent('article:author') || metadata.author;
 
     // Ensure image is absolute
     if (metadata.image && !metadata.image.startsWith('http')) {
@@ -205,7 +215,12 @@ exports.handler = async (event, context) => {
           const response = await fetch(data.long_url);
           const html = await response.text();
           const fetchedMeta = extractMetadata(html, data.long_url);
-          metadata = { ...fetchedMeta, ...metadata }; // Prefer DB data if present
+
+          // Only overwrite if DB value is missing/empty
+          metadata.title = metadata.title || fetchedMeta.title;
+          metadata.description = metadata.description || fetchedMeta.description;
+          metadata.image = metadata.image || fetchedMeta.image;
+          metadata.author = metadata.author || fetchedMeta.author;
 
           // Update DB with fetched metadata for next time
           await supabase.from('short_urls').update({

@@ -11,13 +11,7 @@ ads: false
 {% set canonicalUrl = long_url %}
 
 {# Inherit all metadata from the destination URL for identical link previews #}
-{% set title = title %}
-{% set description = description %}
-{% set image = image %}
-{% set twitter_image = twitter_image %}
-{% set author = author %}
-{% set date = date %}
-{% set tags = tags %}
+{# (Variables are already passed down from the data cascade) #}
 
 {# Ensure proper Open Graph and Twitter Card meta tags for short URLs #}
 {% set og_type = 'article' %}
@@ -28,7 +22,7 @@ ads: false
 
 <div class="preview-container">
   <div class="preview-image">
-    <img src="{{ image | absoluteUrl }}" alt="{{ imageAlt }}" loading="lazy">
+    <img src="{{ image | absoluteUrl(metadata.url) }}" alt="{{ imageAlt }}" loading="lazy">
   </div>
   <div class="preview-content">
     <h1 class="preview-title">{{ title }}</h1>

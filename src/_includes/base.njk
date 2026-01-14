@@ -12,52 +12,46 @@
     <link rel="alternate" hreflang="x-default" href="{{ metadata.url }}{{ page.url | replace('/es/', '/') }}" />
 
     {# === OPEN GRAPH META TAGS (Facebook, LinkedIn, WhatsApp, etc.) === #}
-    {# === OPEN GRAPH META TAGS (Facebook, LinkedIn, WhatsApp, etc.) === #}
     {% if image %}
       {# Use the actual Article Hero Image as requested #}
-      <meta property="og:image" content="{{ metadata.url }}{{ image }}">
-      <meta property="og:image:secure_url" content="{{ metadata.url }}{{ image }}">
-      <meta property="og:image:alt" content="{% if imageAlt %}{{ imageAlt }}{% else %}{{ title }}{% endif %}">
-      
-      {# Optional: You might want to attempt to infer width/height or leave them out if unknown #}
-      {# <meta property="og:image:width" content="1200"> #}
-      {# <meta property="og:image:height" content="630"> #}
+      <meta property="og:image" content="{{ image | absoluteUrl(metadata.url) }}">
+      <meta property="og:image:secure_url" content="{{ image | absoluteUrl(metadata.url) }}">
+      <meta property="og:image:alt" content="{{ imageAlt or title }}">
     {% elif metadata.image %}
       {# Fallback to site default if post has no image #}
-      <meta property="og:image" content="{{ metadata.url }}{{ metadata.image }}">
-      <meta property="og:image:secure_url" content="{{ metadata.url }}{{ metadata.image }}">
+      <meta property="og:image" content="{{ metadata.image | absoluteUrl(metadata.url) }}">
+      <meta property="og:image:secure_url" content="{{ metadata.image | absoluteUrl(metadata.url) }}">
       <meta property="og:image:alt" content="{{ metadata.title }}">
     {% endif %}
 
-    <meta property="og:title" content="{% if title %}{{ title }}{% else %}{{ metadata.title }}{% endif %}">
-    <meta property="og:description" content="{% if description %}{{ description }}{% else %}{{ metadata.description }}{% endif %}">
-    <meta property="og:url" content="{{ metadata.url }}{{ page.url }}">
-    <meta property="og:type" content="{{ og_type if og_type else 'website' }}">
+    <meta property="og:title" content="{{ title or metadata.title }}">
+    <meta property="og:description" content="{{ description or metadata.description }}">
+    <meta property="og:url" content="{{ page.url | absoluteUrl(metadata.url) }}">
+    <meta property="og:type" content="{{ og_type or 'website' }}">
     <meta property="og:site_name" content="{{ metadata.title }}">
 
-    {# === TWITTER CARD META TAGS (X/Twitter) - SEPARATE from Open Graph === #}
+    {# === TWITTER CARD META TAGS (X/Twitter) === #}
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@{{ metadata.author.twitter }}">
     <meta name="twitter:domain" content="blog.evolvedlotus.com">
     {% if author %}<meta name="twitter:creator" content="@{{ author | replace('@', '') }}">{% endif %}
-    <meta name="twitter:title" content="{% if title %}{{ title }}{% else %}{{ metadata.title }}{% endif %}">
-    <meta name="twitter:description" content="{% if description %}{{ description }}{% else %}{{ metadata.description }}{% endif %}">
+    <meta name="twitter:title" content="{{ title or metadata.title }}">
+    <meta name="twitter:description" content="{{ description or metadata.description }}">
 
     {% if image %}
-      {# Use same Hero Image for Twitter #}
-      <meta name="twitter:image" content="{{ metadata.url }}{{ image }}">
-      <meta name="twitter:image:alt" content="{% if imageAlt %}{{ imageAlt }}{% else %}{{ title }}{% endif %}">
+      <meta name="twitter:image" content="{{ image | absoluteUrl(metadata.url) }}">
+      <meta name="twitter:image:alt" content="{{ imageAlt or title }}">
     {% elif metadata.image %}
-      <meta name="twitter:image" content="{{ metadata.url }}{{ metadata.image }}">
+      <meta name="twitter:image" content="{{ metadata.image | absoluteUrl(metadata.url) }}">
       <meta name="twitter:image:alt" content="{{ metadata.title }}">
     {% endif %}
 
     <!-- Global SEO Meta Tags -->
     <meta name="title" content="{{ title or metadata.title }}">
     <meta name="description" content="{{ description or metadata.description }}">
-    <meta name="keywords" content="{{ keywords if keywords else 'content creation, social media, SEO, blogging, digital marketing' }}">
+    <meta name="keywords" content="{{ keywords or 'content creation, social media, SEO, blogging, digital marketing' }}">
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
-    <meta name="author" content="{{ author if author else 'EvolvedLotus' }}">
+    <meta name="author" content="{{ author or 'EvolvedLotus' }}">
     <meta name="publisher" content="EvolvedLotus">
     <meta name="language" content="English">
     <meta name="geo.region" content="US">
