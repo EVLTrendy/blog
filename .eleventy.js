@@ -120,6 +120,8 @@ module.exports = function (eleventyConfig) {
     eleventyConfig.addFilter("absoluteUrl", (url) => {
         const baseUrl = "https://blog.evolvedlotus.com";
         if (!url) return baseUrl;
+        // Fix: If URL is already absolute (starts with http), return it as is
+        if (url.startsWith('http://') || url.startsWith('https://')) return url;
         return `${baseUrl}${url.startsWith('/') ? url : `/${url}`}`;
     });
 

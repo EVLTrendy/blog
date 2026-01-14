@@ -37,18 +37,23 @@ function extractMetadata(html, longUrl) {
   try {
     // Generic regex to capture content attribute of meta tags
     const getMetaContent = (propName) => {
-      // Matches: <meta [attributes] property/name="propName" [attributes] content="value" [attributes] >
-      // This is a naive regex but better than the previous specific one.
-      // We check for both 'name' and 'property'
-      const regex = new RegExp(`<meta[^>]*?(?:name|property)=["']${propName}["'][^>]*?content=["'](.*?)["']`, 'i');
-      const match = html.match(regex);
-      // Try alternative order: content first (rare but possible)
-      if (!match) {
-        const altRegex = new RegExp(`<meta[^>]*?content=["'](.*?)["'][^>]*?(?:name|property)=["']${propName}["']`, 'i');
-        const altMatch = html.match(altRegex);
-        return altMatch ? altMatch[1] : null;
-      }
-      return match ? match[1] : null;
+      // Robust regex that handles:
+      // 1. name vs property
+      // 2. flexible whitespace around = and attributes
+      // 3. both single and double quotes
+      // 4. variable attribute order (content first or property/name first)
+
+      // Case 1: property/name="propName" ... content="value"
+      const regex1 = new RegExp(`(?:name|property)\\s*=\\s*["']${propName}["'][^>]*?content\\s*=\\s*(["'])(.*?)\\1`, 'i');
+      const match1 = html.match(regex1);
+      if (match1) return match1[2];
+
+      // Case 2: content="value" ... property/name="propName"
+      const regex2 = new RegExp(`content\\s*=\\s*(["'])(.*?)\\1[^>]*?(?:name|property)\\s*=\\s*["']${propName}["']`, 'i');
+      const match2 = html.match(regex2);
+      if (match2) return match2[2];
+
+      return null;
     };
 
     const titleMatch = html.match(/<title>(.*?)<\/title>/i);
