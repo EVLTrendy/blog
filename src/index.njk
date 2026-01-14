@@ -55,7 +55,7 @@ image: landingpagelinkpreview.png
           {{ homepage.categories.panels.socialMedia.description }}
         </p>
         <div class="category-posts">
-          {% set socialMediaPosts = collections.blog | filterByCategory('social-media') | reverse | limit(3) %}
+          {% set socialMediaPosts = collections.blog | filterByCategory('social-media') | limit(3) %}
           {% if socialMediaPosts.length > 0 %}
             {% for post in socialMediaPosts %}
             <div class="category-post-item">
@@ -83,7 +83,7 @@ image: landingpagelinkpreview.png
           {{ homepage.categories.panels.contentCreation.description }}
         </p>
         <div class="category-posts">
-          {% set contentPosts = collections.blog | filterByCategory('content-creation') | reverse | limit(3) %}
+          {% set contentPosts = collections.blog | filterByCategory('content-creation') | limit(3) %}
           {% if contentPosts.length > 0 %}
             {% for post in contentPosts %}
             <div class="category-post-item">
@@ -111,7 +111,7 @@ image: landingpagelinkpreview.png
           {{ homepage.categories.panels.seo.description }}
         </p>
         <div class="category-posts">
-          {% set seoPosts = collections.blog | filterByCategory('seo') | reverse | limit(3) %}
+          {% set seoPosts = collections.blog | filterByCategory('seo') | limit(3) %}
           {% if seoPosts.length > 0 %}
             {% for post in seoPosts %}
             <div class="category-post-item">
@@ -139,7 +139,7 @@ image: landingpagelinkpreview.png
           {{ homepage.categories.panels.strategy.description }}
         </p>
         <div class="category-posts">
-          {% set strategyPosts = collections.blog | filterByCategory('strategy') | reverse | limit(3) %}
+          {% set strategyPosts = collections.blog | filterByCategory('strategy') | limit(3) %}
           {% if strategyPosts.length > 0 %}
             {% for post in strategyPosts %}
             <div class="category-post-item">
@@ -167,7 +167,7 @@ image: landingpagelinkpreview.png
           {{ homepage.categories.panels.tools.description }}
         </p>
         <div class="category-posts">
-          {% set toolsPosts = collections.blog | filterByCategory('tools') | reverse | limit(3) %}
+          {% set toolsPosts = collections.blog | filterByCategory('tools') | limit(3) %}
           {% if toolsPosts.length > 0 %}
             {% for post in toolsPosts %}
             <div class="category-post-item">
@@ -195,7 +195,7 @@ image: landingpagelinkpreview.png
           {{ homepage.categories.panels.growth.description }}
         </p>
         <div class="category-posts">
-          {% set growthPosts = collections.blog | filterByCategory('growth') | reverse | limit(3) %}
+          {% set growthPosts = collections.blog | filterByCategory('growth') | limit(3) %}
           {% if growthPosts.length > 0 %}
             {% for post in growthPosts %}
             <div class="category-post-item">
@@ -232,13 +232,13 @@ image: landingpagelinkpreview.png
       <button class="tab-button" onclick="openTab(event, 'favorites')">Reader Favorites</button>
     </div>
     
-    {% set allRecentPosts = collections.blog | reverse %}
+    {% set allRecentPosts = collections.blog %}
 
     <!-- Tab Content: Trending -->
     <div id="trending" class="tab-content" style="display: block;">
       <div class="featured-grid">
         {# Featured posts, fallback to recent posts 4-6 (to keep 'New' distinctive) #}
-        {% set trendingPosts = collections.blog | filterByFeatured | reverse | limit(3) %}
+        {% set trendingPosts = collections.blog | filterByFeatured | limit(3) %}
         {% if trendingPosts.length == 0 %}
            {% set trendingPosts = allRecentPosts | slice(3, 6) %}
         {% endif %}
@@ -253,7 +253,7 @@ image: landingpagelinkpreview.png
     <div id="popular" class="tab-content" style="display: none;">
       <div class="featured-grid">
         {# Popular posts, fallback to recent posts 7-9 #}
-        {% set popularPosts = collections.blog | filterByTag('popular') | reverse | limit(3) %}
+        {% set popularPosts = collections.blog | filterByTag('popular') | limit(3) %}
         {% if popularPosts.length == 0 %}
            {% set popularPosts = allRecentPosts | slice(6, 9) %}
         {% endif %}
@@ -279,7 +279,7 @@ image: landingpagelinkpreview.png
     <div id="favorites" class="tab-content" style="display: none;">
       <div class="featured-grid">
         {# Favorite posts, fallback to recent posts 10-12 #}
-        {% set favoritePosts = collections.blog | filterByTag('favorite') | reverse | limit(3) %}
+        {% set favoritePosts = collections.blog | filterByTag('favorite') | limit(3) %}
         {% if favoritePosts.length == 0 %}
            {% set favoritePosts = allRecentPosts | slice(9, 12) %}
         {% endif %}
@@ -450,7 +450,7 @@ document.addEventListener('DOMContentLoaded', function() {
     </div>
     
     <div class="insights-list">
-      {% set insights = collections.insights | reverse | limit(3) %}
+      {% set insights = collections.insights | limit(3) %}
       {% if insights.length > 0 %}
         {% for insight in insights %}
         <div class="insight-item">
@@ -499,7 +499,7 @@ document.addEventListener('DOMContentLoaded', function() {
     <h2>{{ homepage.quickAccess.title }}</h2>
     <div class="quick-buttons">
       <a href="/blog/" class="quick-button">Browse Categories</a>
-      {% set latestPost = collections.blog | reverse | first %}
+      {% set latestPost = collections.blog | first %}
       <a href="{{ latestPost.url }}" class="quick-button">Read the Latest</a>
       <button onclick="recommendRandom()" class="quick-button">Recommended For You</button>
     </div>
