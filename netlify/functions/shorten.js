@@ -61,6 +61,10 @@ function extractMetadata(html, longUrl) {
     // Image priority
     metadata.image = getMetaContent('og:image') || getMetaContent('twitter:image') || metadata.image;
 
+    // Capture dimensions if available
+    metadata.imageWidth = getMetaContent('og:image:width');
+    metadata.imageHeight = getMetaContent('og:image:height');
+
     // Author
     metadata.author = getMetaContent('author') || getMetaContent('article:author') || metadata.author;
 
@@ -220,13 +224,18 @@ exports.handler = async (event, context) => {
           metadata.title = metadata.title || fetchedMeta.title;
           metadata.description = metadata.description || fetchedMeta.description;
           metadata.image = metadata.image || fetchedMeta.image;
+          metadata.imageWidth = metadata.imageWidth || fetchedMeta.imageWidth;
+          metadata.imageHeight = metadata.imageHeight || fetchedMeta.imageHeight;
           metadata.author = metadata.author || fetchedMeta.author;
 
           // Update DB with fetched metadata for next time
+          // Note: You must add 'image_width' and 'image_height' columns to your Supabase table for this to persist
           await supabase.from('short_urls').update({
             title: metadata.title,
             description: metadata.description,
             image: metadata.image
+            // image_width: metadata.imageWidth,
+            // image_height: metadata.imageHeight
           }).eq('id', id);
         } catch (fetchErr) {
           console.error('Metadata fetch failed:', fetchErr);
@@ -242,13 +251,15 @@ exports.handler = async (event, context) => {
     
     <!-- Meta Tags for Social Media Previews -->
     <!-- Meta Tags for Social Media Previews -->
-    <meta name="description" content="${metadata.description ? metadata.description.substring(0, 200) + (metadata.description.length > 200 ? '...' : '') : ''}">
+    <meta name="description" content="${metadata.description ? metadata.description.substring(0, 160) + (metadata.description.length > 160 ? '...' : '') : ''}">
     
     <!-- Open Graph -->
     <meta property="og:title" content="${metadata.title || ''}">
-    <meta property="og:description" content="${metadata.description ? metadata.description.substring(0, 200) + (metadata.description.length > 200 ? '...' : '') : ''}">
+    <meta property="og:description" content="${metadata.description ? metadata.description.substring(0, 160) + (metadata.description.length > 160 ? '...' : '') : ''}">
     <meta property="og:image" content="${metadata.image || ''}">
     ${metadata.image && metadata.image.startsWith('https') ? `<meta property="og:image:secure_url" content="${metadata.image}">` : ''}
+    ${metadata.imageWidth ? `<meta property="og:image:width" content="${metadata.imageWidth}">` : ''}
+    ${metadata.imageHeight ? `<meta property="og:image:height" content="${metadata.imageHeight}">` : ''}
     <meta property="og:image:alt" content="${metadata.title || ''}">
     <meta property="og:url" content="https://blog.evolvedlotus.com/r/${id}">
     <meta property="og:type" content="article">
@@ -260,7 +271,7 @@ exports.handler = async (event, context) => {
     <meta name="twitter:domain" content="blog.evolvedlotus.com">
     <meta name="twitter:creator" content="@evolvedlotus">
     <meta name="twitter:title" content="${metadata.title || ''}">
-    <meta name="twitter:description" content="${metadata.description ? metadata.description.substring(0, 200) + (metadata.description.length > 200 ? '...' : '') : ''}">
+    <meta name="twitter:description" content="${metadata.description ? metadata.description.substring(0, 160) + (metadata.description.length > 160 ? '...' : '') : ''}">
     <meta name="twitter:image" content="${metadata.image || ''}">
     <meta name="twitter:image:alt" content="${metadata.title || ''}">
 
