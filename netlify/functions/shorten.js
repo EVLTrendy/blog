@@ -241,17 +241,28 @@ exports.handler = async (event, context) => {
     <title>${metadata.title || 'EvolvedLotus Blog'}</title>
     
     <!-- Meta Tags for Social Media Previews -->
+    <!-- Meta Tags for Social Media Previews -->
     <meta name="description" content="${metadata.description ? metadata.description.substring(0, 200) + (metadata.description.length > 200 ? '...' : '') : ''}">
+    
+    <!-- Open Graph -->
     <meta property="og:title" content="${metadata.title || ''}">
     <meta property="og:description" content="${metadata.description ? metadata.description.substring(0, 200) + (metadata.description.length > 200 ? '...' : '') : ''}">
     <meta property="og:image" content="${metadata.image || ''}">
+    ${metadata.image && metadata.image.startsWith('https') ? `<meta property="og:image:secure_url" content="${metadata.image}">` : ''}
+    <meta property="og:image:alt" content="${metadata.title || ''}">
     <meta property="og:url" content="https://blog.evolvedlotus.com/r/${id}">
     <meta property="og:type" content="article">
-    
+    <meta property="og:site_name" content="EvolvedLotus Blog">
+
+    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@evolvedlotus">
+    <meta name="twitter:domain" content="blog.evolvedlotus.com">
+    <meta name="twitter:creator" content="@evolvedlotus">
     <meta name="twitter:title" content="${metadata.title || ''}">
     <meta name="twitter:description" content="${metadata.description ? metadata.description.substring(0, 200) + (metadata.description.length > 200 ? '...' : '') : ''}">
     <meta name="twitter:image" content="${metadata.image || ''}">
+    <meta name="twitter:image:alt" content="${metadata.title || ''}">
 
     <!-- Redirect Logic -->
     <meta http-equiv="refresh" content="0;url=${data.long_url}">
