@@ -637,8 +637,35 @@
             </select>
           </div>
           <div class="form-row half">
-            <label for="blogImage">Featured Image URL:</label>
-            <input type="text" id="blogImage" placeholder="/assets/blog/...">
+            <div class="form-row half">
+              <label>Featured Image:</label>
+              <input type="hidden" id="blogImage">
+
+              <div id="blogImageDropZone"
+                style="border: 2px dashed #e2e8f0; padding: 15px; text-align:center; border-radius:6px; cursor:pointer; background: #f8fafc; transition: all 0.2s;"
+                onclick="document.getElementById('blogImageInput').click()"
+                ondragover="event.preventDefault(); this.style.borderColor='#33bdef'; this.style.background='#e0f2fe';"
+                ondragleave="this.style.borderColor='#e2e8f0'; this.style.background='#f8fafc';"
+                ondrop="event.preventDefault(); this.style.borderColor='#e2e8f0'; this.style.background='#f8fafc'; handleBlogImageDrop(event);">
+                <p style="margin:0; font-size: 0.9em; color:#64748b;">📂 Click to upload</p>
+                <small style="display:block; margin-top:5px; color:#94a3b8; font-size:0.75em;">
+                  Recommendation size is how the REST of the images in the article-hero-image are sized
+                </small>
+              </div>
+              <input type="file" id="blogImageInput" accept="image/*" style="display:none;"
+                onchange="handleBlogImageUpload(event)">
+
+              <div id="blogImagePreview"
+                style="display:none; margin-top:10px; align-items:center; gap:10px; background: white; padding: 5px; border: 1px solid #eee; border-radius: 6px;">
+                <img id="blogImagePreviewImg" src=""
+                  style="width:50px; height:35px; object-fit:cover; border-radius:4px;">
+                <div
+                  style="flex-grow:1; font-size:0.75em; color:#64748b; overflow:hidden; text-overflow:ellipsis; white-space: nowrap; max-width: 150px;"
+                  id="blogImagePathDisplay"></div>
+                <button type="button" class="btn danger" style="padding:2px 6px; font-size:0.7em; margin:0;"
+                  onclick="removeBlogImage()">×</button>
+              </div>
+            </div>
           </div>
           <div class="form-row">
             <label><input type="checkbox" id="blogFeatured"> Featured</label>
@@ -1305,6 +1332,7 @@
         document.getElementById('blogTags').value = item.tags ? (Array.isArray(item.tags) ? item.tags.join(',') : item.tags) : '';
         document.getElementById('blogCategory').value = item.category || '';
         document.getElementById('blogImage').value = item.image || '';
+        updateBlogImagePreview(item.image || '');
         document.getElementById('blogImageAlt').value = item.imageAlt || '';
         document.getElementById('blogKeywords').value = item.keywords || '';
         document.getElementById('blogSchema').value = item.schema_type || 'Article';
@@ -1688,6 +1716,94 @@
       loadHubContent();
       loadAuthors();
       console.log('CMS initialized successfully');
+    }
+
+    // Blog Image Specific Uploaders
+    function handleBlogImageUpload(e) {
+      const file = e.target.files[0];
+      if (file) uploadBlogImage(file);
+    }
+
+    function handleBlogImageDrop(e) {
+      const file = e.dataTransfer.files[0];
+      if (file) uploadBlogImage(file);
+    }
+
+    async function uploadBlogImage(file) {
+      if (!file.type.startsWith('image/')) {
+        alert('❌ Please select an image file');
+        return;
+      }
+
+      // Show loading
+      const dropZone = document.getElementById('blogImageDropZone');
+      const originalHTML = dropZone.innerHTML;
+      dropZone.innerHTML = '<p style="margin:0; color:#33bdef; font-size:0.9em;">⏳ Uploading...</p>';
+      dropZone.style.pointerEvents = 'none';
+
+      try {
+        const base64Content = await new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onload = () => resolve(reader.result.split(',')[1]);
+          reader.onerror = reject;
+          reader.readAsDataURL(file);
+        });
+
+        const sanitizedName = file.name.toLowerCase().replace(/[^a-z0-9.-]/g, '-');
+        // Use assets/blog/ as implied by the original placeholder
+        const filePath = `assets/blog/${sanitizedName}`;
+
+        const response = await fetch('/.netlify/functions/save-content', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            filename: filePath,
+            content: base64Content,
+            type: 'Media',
+            action: 'upload-binary',
+            isBase64: true
+          })
+        });
+
+        const result = await response.json();
+
+        if (response.ok && result.success) {
+          const finalPath = `/${filePath}`;
+          updateBlogImagePreview(finalPath);
+        } else {
+          throw new Error(result.message || 'Upload failed');
+        }
+      } catch (err) {
+        console.error(err);
+        alert('Upload failed: ' + err.message);
+      } finally {
+        dropZone.innerHTML = originalHTML;
+        dropZone.style.pointerEvents = 'auto';
+      }
+    }
+
+    function updateBlogImagePreview(path) {
+      const preview = document.getElementById('blogImagePreview');
+      const dropZone = document.getElementById('blogImageDropZone');
+      const input = document.getElementById('blogImage');
+
+      if (input) input.value = path; // Sync hidden input
+
+      if (path && preview && dropZone) {
+        document.getElementById('blogImagePreviewImg').src = path;
+        document.getElementById('blogImagePathDisplay').textContent = path;
+
+        dropZone.style.display = 'none';
+        preview.style.display = 'flex';
+      } else if (preview && dropZone) {
+        dropZone.style.display = 'block';
+        preview.style.display = 'none';
+      }
+    }
+
+    function removeBlogImage() {
+      updateBlogImagePreview('');
+      document.getElementById('blogImageInput').value = ''; // Reset file input
     }
   </script>
 </body>
