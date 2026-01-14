@@ -9,7 +9,7 @@ tags:
   - youtube
   - featured
   - tiktok
-image: /assets/blog/y2026ttahtgyc.png
+image: /assets/blog/youtube-2026-trends--tips--and-how-to-grow-your-channel.png
 category: social-media
 featured: true
 imageAlt: 'YouTube 2026: Trends, Tips, and How to Grow Your Channel'
