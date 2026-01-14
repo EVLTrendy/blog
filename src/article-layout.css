@@ -157,7 +157,8 @@
 
 .article-body-wrapper {
     display: grid;
-    grid-template-columns: 1fr minmax(0, 800px) 300px;
+    /* Removed TOC column, now centered with flexible sides and wider content max-width */
+    grid-template-columns: 1fr minmax(0, 900px) 1fr;
     gap: 40px;
     max-width: 1400px;
     margin: 0 auto;

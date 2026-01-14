@@ -12,30 +12,21 @@
     <link rel="alternate" hreflang="x-default" href="{{ metadata.url }}{{ page.url | replace('/es/', '/') }}" />
 
     {# === OPEN GRAPH META TAGS (Facebook, LinkedIn, WhatsApp, etc.) === #}
+    {# === OPEN GRAPH META TAGS (Facebook, LinkedIn, WhatsApp, etc.) === #}
     {% if image %}
-      {# Extract filename and create OG path with .png extension #}
-      {% set imageFilename = image.split('/') | last %}
-      {% set ogImagePath = '/assets/og/' + imageFilename.replace('.jpg', '.png').replace('.jpeg', '.png').replace('.webp', '.png').replace('.PNG', '.png') %}
-      {% if not ogImagePath.endsWith('.png') %}{% set ogImagePath = ogImagePath + '.png' %}{% endif %}
-
-      <meta property="og:image" content="{{ metadata.url }}{{ ogImagePath }}">
-      <meta property="og:image:secure_url" content="{{ metadata.url }}{{ ogImagePath }}">
-      <meta property="og:image:width" content="1200">
-      <meta property="og:image:height" content="630">
+      {# Use the actual Article Hero Image as requested #}
+      <meta property="og:image" content="{{ metadata.url }}{{ image }}">
+      <meta property="og:image:secure_url" content="{{ metadata.url }}{{ image }}">
       <meta property="og:image:alt" content="{% if imageAlt %}{{ imageAlt }}{% else %}{{ title }}{% endif %}">
-      <meta property="og:image:type" content="image/png">
+      
+      {# Optional: You might want to attempt to infer width/height or leave them out if unknown #}
+      {# <meta property="og:image:width" content="1200"> #}
+      {# <meta property="og:image:height" content="630"> #}
     {% elif metadata.image %}
       {# Fallback to site default if post has no image #}
-      {% set defaultFilename = metadata.image.split('/') | last %}
-      {% if not defaultFilename or defaultFilename == '' %}{% set defaultFilename = 'default-og.png' %}{% endif %}
-      {% set defaultOgPath = '/assets/og/' + defaultFilename.replace('.jpg', '.png').replace('.jpeg', '.png').replace('.webp', '.png').replace('.PNG', '.png') %}
-      {% if not defaultOgPath.endsWith('.png') %}{% set defaultOgPath = defaultOgPath + '.png' %}{% endif %}
-      <meta property="og:image" content="{{ metadata.url }}{{ defaultOgPath }}">
-      <meta property="og:image:secure_url" content="{{ metadata.url }}{{ defaultOgPath }}">
-      <meta property="og:image:width" content="1200">
-      <meta property="og:image:height" content="630">
+      <meta property="og:image" content="{{ metadata.url }}{{ metadata.image }}">
+      <meta property="og:image:secure_url" content="{{ metadata.url }}{{ metadata.image }}">
       <meta property="og:image:alt" content="{{ metadata.title }}">
-      <meta property="og:image:type" content="image/png">
     {% endif %}
 
     <meta property="og:title" content="{% if title %}{{ title }}{% else %}{{ metadata.title }}{% endif %}">
@@ -53,15 +44,11 @@
     <meta name="twitter:description" content="{% if description %}{{ description }}{% else %}{{ metadata.description }}{% endif %}">
 
     {% if image %}
-      {# Use same OG image path for Twitter #}
-      <meta name="twitter:image" content="{{ metadata.url }}{{ ogImagePath }}">
-      <meta name="twitter:image:width" content="1200">
-      <meta name="twitter:image:height" content="630">
+      {# Use same Hero Image for Twitter #}
+      <meta name="twitter:image" content="{{ metadata.url }}{{ image }}">
       <meta name="twitter:image:alt" content="{% if imageAlt %}{{ imageAlt }}{% else %}{{ title }}{% endif %}">
     {% elif metadata.image %}
-      <meta name="twitter:image" content="{{ metadata.url }}{{ defaultOgPath }}">
-      <meta name="twitter:image:width" content="1200">
-      <meta name="twitter:image:height" content="630">
+      <meta name="twitter:image" content="{{ metadata.url }}{{ metadata.image }}">
       <meta name="twitter:image:alt" content="{{ metadata.title }}">
     {% endif %}
 
@@ -105,7 +92,7 @@
     <meta property="discord:embed" content="true">
     <meta property="discord:embed:title" content="{{ title or metadata.title }}">
     <meta property="discord:embed:description" content="{{ description or metadata.description }}">
-    {% set socialImagePath = ogImagePath if image else defaultOgPath %}
+    {% set socialImagePath = image if image else metadata.image %}
     <meta property="discord:embed:image" content="{{ metadata.url }}{{ socialImagePath }}">
     <meta property="discord:embed:url" content="{{ metadata.url }}{{ page.url }}">
     <meta property="discord:embed:color" content="#007bff">

@@ -1753,17 +1753,35 @@
         // Use assets/blog/ as implied by the original placeholder
         const filePath = `assets/blog/${sanitizedName}`;
 
-        const response = await fetch('/.netlify/functions/save-content', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            filename: filePath,
-            content: base64Content,
-            type: 'Media',
-            action: 'upload-binary',
-            isBase64: true
-          })
-        });
+        // Try local dev server first
+        let response;
+        try {
+          response = await fetch('http://localhost:3001/api/save-content', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              filename: filePath,
+              content: base64Content,
+              type: 'Media',
+              action: 'upload-binary',
+              isBase64: true
+            })
+          });
+          if (!response.ok) throw new Error('Local server failed');
+        } catch (e) {
+          // Fallback to Netlify Function
+          response = await fetch('/.netlify/functions/save-content', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              filename: filePath,
+              content: base64Content,
+              type: 'Media',
+              action: 'upload-binary',
+              isBase64: true
+            })
+          });
+        }
 
         const result = await response.json();
 

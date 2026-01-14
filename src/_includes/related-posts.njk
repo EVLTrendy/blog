@@ -10,24 +10,28 @@
 {% for post in collections.blog %}
   {% if post.url != currentUrl %}
     {% set score = 0 %}
+    {% set tagMatchCount = 0 %}
     
-    {# Same hub: +3 points #}
-    {% if post.data.hub == currentHub %}
-      {% set score = score + 3 %}
-    {% endif %}
-    
-    {# Shared tags: +2 points per tag #}
+    {# Calculate Tag Matches (excluding generic tags) #}
     {% if post.data.tags %}
       {% for tag in post.data.tags %}
-        {% if tag in currentTags %}
-          {% set score = score + 2 %}
+        {% if tag in currentTags and tag != 'post' and tag != 'featured' and tag != 'blog' %}
+          {% set tagMatchCount = tagMatchCount + 1 %}
         {% endif %}
       {% endfor %}
     {% endif %}
+
+    {# STRICT PRIORITY: 3 or more matching tags get massive boost #}
+    {% if tagMatchCount >= 3 %}
+       {% set score = score + 100 + tagMatchCount %}
+    {% elif tagMatchCount > 0 %}
+       {# Fallback: weak matches get low score #}
+       {% set score = score + tagMatchCount %}
+    {% endif %}
     
-    {# Same author: +1 point #}
-    {% if post.data.author == author %}
-      {% set score = score + 1 %}
+    {# Same hub bonus (secondary factor) #}
+    {% if post.data.hub == currentHub %}
+      {% set score = score + 5 %}
     {% endif %}
     
     {# Only include if score > 0 #}
