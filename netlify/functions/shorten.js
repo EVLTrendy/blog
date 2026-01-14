@@ -214,11 +214,17 @@ exports.handler = async (event, context) => {
       };
 
       // If metadata is missing in DB, fetch from target URL
-      if (!metadata.title || !metadata.image) {
+      // ALSO: If image is relative (cached from old bad run), force update it!
+      if (!metadata.title || !metadata.image || (metadata.image && !metadata.image.startsWith('http'))) {
         try {
           const response = await fetch(data.long_url);
           const html = await response.text();
           const fetchedMeta = extractMetadata(html, data.long_url);
+
+          // Force update if image was relative
+          if (metadata.image && !metadata.image.startsWith('http')) {
+            metadata.image = fetchedMeta.image;
+          }
 
           // Only overwrite if DB value is missing/empty
           metadata.title = metadata.title || fetchedMeta.title;
