@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-01-14T21:28:59.230Z",
+  "timestamp": "2026-01-14T21:33:32.205Z",
   "summary": {
     "totalFiles": 85,
     "errors": 0,
@@ -591,7 +591,7 @@
     {
       "file": "2026-01-14-youtube-2026-trends-tips-and-how-to-grow-your-channel.md",
       "type": "image_dimensions_check",
-      "message": "Image at /assets/blog/youtube-2026-trends--tips--and-how-to-grow-your-channel.png: Ensure dimensions are 1200x630px for optimal Twitter Card display",
+      "message": "Image at /assets/blog/y2026ttahtgyc.png: Ensure dimensions are 1200x630px for optimal Twitter Card display",
       "field": "image",
       "suggestion": "Twitter cards work best with 1.91:1 ratio images (1200x630px)"
     },
