@@ -1,9 +1,9 @@
 {
-  "timestamp": "2025-12-05T19:07:54.943Z",
+  "timestamp": "2026-01-14T21:05:02.743Z",
   "summary": {
-    "totalFiles": 84,
+    "totalFiles": 85,
     "errors": 0,
-    "warnings": 84
+    "warnings": 85
   },
   "errors": [],
   "warnings": [
@@ -585,6 +585,13 @@
       "file": "2025-10-22-plan-batch-and-grow-your-social-media.md",
       "type": "image_dimensions_check",
       "message": "Image at /assets/blog/plan-batch-and-grow-your-social-media.png: Ensure dimensions are 1200x630px for optimal Twitter Card display",
+      "field": "image",
+      "suggestion": "Twitter cards work best with 1.91:1 ratio images (1200x630px)"
+    },
+    {
+      "file": "2026-01-14-youtube-2026-trends-tips-and-how-to-grow-your-channel.md",
+      "type": "image_dimensions_check",
+      "message": "Image at /assets/blog/youtube-2026-trends--tips--and-how-to-grow-your-channel.png: Ensure dimensions are 1200x630px for optimal Twitter Card display",
       "field": "image",
       "suggestion": "Twitter cards work best with 1.91:1 ratio images (1200x630px)"
     },
