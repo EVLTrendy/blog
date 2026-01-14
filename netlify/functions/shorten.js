@@ -241,16 +241,16 @@ exports.handler = async (event, context) => {
     <title>${metadata.title || 'EvolvedLotus Blog'}</title>
     
     <!-- Meta Tags for Social Media Previews -->
-    <meta name="description" content="${metadata.description || ''}">
+    <meta name="description" content="${metadata.description ? metadata.description.substring(0, 200) + (metadata.description.length > 200 ? '...' : '') : ''}">
     <meta property="og:title" content="${metadata.title || ''}">
-    <meta property="og:description" content="${metadata.description || ''}">
+    <meta property="og:description" content="${metadata.description ? metadata.description.substring(0, 200) + (metadata.description.length > 200 ? '...' : '') : ''}">
     <meta property="og:image" content="${metadata.image || ''}">
     <meta property="og:url" content="https://blog.evolvedlotus.com/r/${id}">
     <meta property="og:type" content="article">
     
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="${metadata.title || ''}">
-    <meta name="twitter:description" content="${metadata.description || ''}">
+    <meta name="twitter:description" content="${metadata.description ? metadata.description.substring(0, 200) + (metadata.description.length > 200 ? '...' : '') : ''}">
     <meta name="twitter:image" content="${metadata.image || ''}">
 
     <!-- Redirect Logic -->

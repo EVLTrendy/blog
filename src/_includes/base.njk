@@ -25,7 +25,7 @@
     {% endif %}
 
     <meta property="og:title" content="{{ title or metadata.title }}">
-    <meta property="og:description" content="{{ description or metadata.description }}">
+    <meta property="og:description" content="{{ (description or metadata.description) | truncate(200) }}">
     <meta property="og:url" content="{{ page.url | absoluteUrl(metadata.url) }}">
     <meta property="og:type" content="{{ og_type or 'website' }}">
     <meta property="og:site_name" content="{{ metadata.title }}">
@@ -36,7 +36,7 @@
     <meta name="twitter:domain" content="blog.evolvedlotus.com">
     {% if author %}<meta name="twitter:creator" content="@{{ author | replace('@', '') }}">{% endif %}
     <meta name="twitter:title" content="{{ title or metadata.title }}">
-    <meta name="twitter:description" content="{{ description or metadata.description }}">
+    <meta name="twitter:description" content="{{ (description or metadata.description) | truncate(200) }}">
 
     {% if image %}
       <meta name="twitter:image" content="{{ image | absoluteUrl(metadata.url) }}">
