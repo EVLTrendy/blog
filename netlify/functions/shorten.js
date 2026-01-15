@@ -253,6 +253,13 @@ exports.handler = async (event, context) => {
         }
       }
 
+      // FINAL SAFETY NET: Ensure image is absolute before generating HTML
+      // This catches cases where the DB has a relative path and the fetch/update failed or timed out.
+      if (metadata.image && !metadata.image.startsWith('http')) {
+        const siteBase = 'https://blog.evolvedlotus.com';
+        metadata.image = siteBase + (metadata.image.startsWith('/') ? '' : '/') + metadata.image;
+      }
+
       const html = `<!DOCTYPE html>
 <html lang="en">
 <head>
