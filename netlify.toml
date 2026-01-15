@@ -69,7 +69,10 @@
         https://tpc.googlesyndication.com
         https://www.youtube.com
         https://player.vimeo.com
-        https://fundingchoicesmessages.google.com;
+        https://fundingchoicesmessages.google.com
+        https://ep2.adtrafficquality.google
+        https://*.adtrafficquality.google
+        https://*.google.com;
       media-src 'self' https:;
       object-src 'none';
       base-uri 'self';
