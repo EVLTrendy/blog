@@ -16,7 +16,7 @@ ads: false
     <!-- 1. Cover Image - Full Width, Original Aspect Ratio -->
     <div class="article-hero-image">
       {% if image %}
-        <img src="{{ image }}" alt="{{ imageAlt | default(title) }}" fetchpriority="high" decoding="async">
+        <img src="{{ image }}" alt="{{ imageAlt | default(title) }}" decoding="async">
       {% endif %}
     </div>
     
