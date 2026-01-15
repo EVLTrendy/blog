@@ -20,18 +20,7 @@ const matter = require('gray-matter');
 
 module.exports = function (eleventyConfig) {
     // Passthrough copies
-    eleventyConfig.addPassthroughCopy('./src/style.css');
-    eleventyConfig.addPassthroughCopy('./src/print.css');
-    eleventyConfig.addPassthroughCopy('./src/enhancements.css');
-    eleventyConfig.addPassthroughCopy('./src/layout-fixes.css');
-    eleventyConfig.addPassthroughCopy('./src/ux-enhancements.css');
-    eleventyConfig.addPassthroughCopy('./src/conversion-components.css');
-    eleventyConfig.addPassthroughCopy('./src/fonts.css');
-    eleventyConfig.addPassthroughCopy('./src/dark-mode.css');
-    eleventyConfig.addPassthroughCopy('./src/homepage-fixes.css');
-    eleventyConfig.addPassthroughCopy('./src/homepage-carousel.css');
-    eleventyConfig.addPassthroughCopy('./src/article-layout.css');
-    eleventyConfig.addPassthroughCopy('./src/landing-page.css');
+    // CSS files are now in src/assets/css and handled by the assets passthrough copy
     eleventyConfig.addPassthroughCopy('./src/assets');
     eleventyConfig.addPassthroughCopy('./src/admin');
     eleventyConfig.addPassthroughCopy('./src/.well-known');
@@ -542,7 +531,7 @@ module.exports = function (eleventyConfig) {
 
     // Create pages collection
     eleventyConfig.addCollection("pages", function (collectionApi) {
-        return collectionApi.getFilteredByGlob("src/pages/*.md");
+        return collectionApi.getFilteredByGlob(["src/pages/**/*.md", "src/pages/**/*.njk"]);
     });
 
     // Create tools collection

@@ -1,66 +1,63 @@
 ---
-title: Blog - EvolvedLotus Content Creation Guides & Tutorials
-description: Explore our comprehensive collection of content creation guides, social media tutorials, and digital marketing insights. From TikTok tips to SEO strategies, find everything you need to grow your online presence.
-keywords: content creation, social media, digital marketing, blogging, SEO, tutorials, guides, TikTok, Instagram, YouTube
+title: Blog - Guías y Tutoriales de Creación de Contenido de EvolvedLotus
+description: Explora nuestra colección completa de guías de creación de contenido, tutoriales de redes sociales y perspectivas de marketing digital. Desde consejos de TikTok hasta estrategias de SEO, encuentra todo lo que necesitas para hacer crecer tu presencia en línea.
+keywords: creación de contenido, redes sociales, marketing digital, blogs, SEO, tutoriales, guías, TikTok, Instagram, YouTube
 layout: 'base.njk'
+lang: es
+permalink: /es/blog/
 ads: false
-pagination:
-  data: collections.blog
-  size: 9
-  alias: posts
 ---
 
 <div class="search-container">
-  <input type="text" id="searchInput" placeholder="Search blogs..." autocomplete="off">
+  <input type="text" id="searchInput" placeholder="Buscar blogs..." autocomplete="off">
   <div id="autocompleteResults" class="autocomplete-items"></div>
 </div>
 
 <div class="social-grid-container">
   <div class="social-grid">
-    <a href="/x-kick" class="social-icon" aria-label="Access our detailed Kick streaming platform content creation strategies">
+    <a href="/x-kick" class="social-icon" aria-label="Accede a nuestras estrategias detalladas de creación de contenido para la plataforma de streaming Kick">
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"></rect><circle cx="9" cy="12" r="2"></circle><path d="m15 9 3 3-3 3"></path></svg>
       <span>Kick</span>
     </a>
-    <a href="/x-fb" class="social-icon" aria-label="Explore our proven Facebook marketing and engagement optimization techniques">
+    <a href="/x-fb" class="social-icon" aria-label="Explora nuestras técnicas probadas de marketing y compromiso en Facebook">
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h.01"></path><path d="M16 20h.01"></path><path d="M8 4h.01"></path><path d="M8 20h.01"></path><path d="M12 4h.01"></path><path d="M12 20h.01"></path><path d="M20 8h.01"></path><path d="M20 16h.01"></path><path d="M4 8h.01"></path><path d="M4 16h.01"></path></svg>
       <span>Facebook</span>
     </a>
-    <a href="/x-ig" class="social-icon" aria-label="Master Instagram with our comprehensive growth and engagement strategies">
+    <a href="/x-ig" class="social-icon" aria-label="Domina Instagram con nuestras estrategias integrales de crecimiento y compromiso">
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.828 14.828a4 4 0 0 1-5.656 0"></path><path d="M9 9a3 3 0 1 1 6 0c0 .83-.176 1.618-.494 2.33L12 16l-2.506-4.67A4.976 4.976 0 0 1 9 9Z"></path></svg>
       <span>Instagram</span>
     </a>
-    <a href="/x-link" class="social-icon" aria-label="Professional LinkedIn networking and B2B content marketing strategies">
+    <a href="/x-link" class="social-icon" aria-label="Estrategias profesionales de networking y marketing de contenidos B2B en LinkedIn">
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
       <span>LinkedIn</span>
     </a>
-    <a href="/x-tiktok" class="social-icon" aria-label="Advanced TikTok algorithm optimization and viral content strategies">
+    <a href="/x-tiktok" class="social-icon" aria-label="Optimización avanzada del algoritmo de TikTok y estrategias de contenido viral">
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect><line x1="7" y1="2" x2="7" y2="22"></line><line x1="17" y1="2" x2="17" y2="22"></line><line x1="2" y1="12" x2="22" y2="12"></line><line x1="2" y1="7" x2="7" y2="7"></line><line x1="2" y1="17" x2="7" y2="17"></line><line x1="17" y1="17" x2="22" y2="17"></line><line x1="17" y1="7" x2="22" y2="7"></line></svg>
       <span>TikTok</span>
     </a>
-    <a href="/x-twitch" class="social-icon" aria-label="Professional Twitch streaming setup and audience growth techniques">
+    <a href="/x-twitch" class="social-icon" aria-label="Configuración profesional de streaming en Twitch y técnicas de crecimiento de audiencia">
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg>
       <span>Twitch</span>
     </a>
-    <a href="/x-twitter" class="social-icon" aria-label="Master Twitter's algorithm with our advanced engagement strategies">
+    <a href="/x-twitter" class="social-icon" aria-label="Domina el algoritmo de Twitter con nuestras estrategias avanzadas de compromiso">
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
       <span>Twitter</span>
     </a>
-    <a href="/x-yt" class="social-icon" aria-label="YouTube SEO and channel optimization master strategies">
+    <a href="/x-yt" class="social-icon" aria-label="Estrategias maestras de SEO y optimización de canales de YouTube">
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect><polygon points="10 8 16 12 10 16 10 8"></polygon></svg>
       <span>YouTube</span>
     </a>
-    <a href="/x-misc" class="social-icon" aria-label="Additional content marketing tools and miscellaneous strategies">
+    <a href="/x-misc" class="social-icon" aria-label="Herramientas adicionales de marketing de contenidos y estrategias diversas">
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg>
       <span>Misc</span>
     </a>
   </div>
 </div>
 
-<!-- Recent Blog Posts Section -->
 <div class="blog-posts-container">
-  <h2>Recent Blog Posts</h2>
+  <h2>Entradas Recientes del Blog</h2>
   <div class="blog-posts-grid" id="blog-posts-grid">
-    {% for post in posts %}
+    {% for post in collections.blog | reverse | slice(0, 50) %}
     <article class="blog-post-card">
       <div class="post-image">
         {% if post.data.image %}
@@ -73,7 +70,7 @@ pagination:
         <div class="post-meta">
           <time datetime="{{ post.date | isoDate }}">{{ post.date | postDate }}</time>
           {% if post.data.author %}
-          <span class="author">by {{ post.data.author }}</span>
+          <span class="author">por {{ post.data.author }}</span>
           {% endif %}
         </div>
         {% if post.data.tags %}
@@ -92,30 +89,9 @@ pagination:
   
   <!-- Pagination Controls -->
   <div class="pagination-controls">
-    <nav aria-label="Blog pagination">
-      <ul class="pagination-list" style="display: flex; justify-content: center; gap: 10px; list-style: none; padding: 0;">
-        {% if pagination.href.previous %}
-        <li><a href="{{ pagination.href.previous }}" class="pagination-link">Previous</a></li>
-        {% endif %}
-        
-        {% for pageEntry in pagination.pages %}
-        <li>
-          <a href="{{ pagination.hrefs[ loop.index0 ] }}" class="pagination-link {% if page.url == pagination.hrefs[ loop.index0 ] %}active{% endif %}">
-            {{ loop.index }}
-          </a>
-        </li>
-        {% endfor %}
-        
-        {% if pagination.href.next %}
-        <li><a href="{{ pagination.href.next }}" class="pagination-link">Next</a></li>
-        {% endif %}
-      </ul>
-    </nav>
-    <p class="pagination-info">Showing page {{ pagination.pageNumber + 1 }} of {{ pagination.pages.length }}</p>
+    <p class="pagination-info">Mostrando <span id="posts-count">{{ collections.blog | length }}</span> publicaciones</p>
   </div>
 </div>
-
-
 
 <script>
 const searchInput = document.getElementById('searchInput');
@@ -195,7 +171,7 @@ function showAutocomplete(searchTerm) {
     // Group by hub
     const groupedResults = {};
     scoredMatches.slice(0, 10).forEach(({ post }) => {
-      const hub = post.hub || 'Other';
+      const hub = post.hub || 'Otros';
       if (!groupedResults[hub]) {
         groupedResults[hub] = [];
       }
@@ -221,7 +197,7 @@ function showAutocomplete(searchTerm) {
               <h4 class="search-result-title">${post.title}</h4>
               <div class="search-result-meta">
                 <span>📅 ${post.date}</span>
-                ${post.readingTime ? `<span>📖 ${post.readingTime} min read</span>` : ''}
+                ${post.readingTime ? `<span>📖 ${post.readingTime} min lectura</span>` : ''}
               </div>
               <p class="search-result-description">${post.description}</p>
               ${post.tags && post.tags.length > 0 ? `
@@ -244,8 +220,8 @@ function showAutocomplete(searchTerm) {
     autocompleteResults.innerHTML = `
       <div class="search-no-results">
         <div class="search-no-results-icon">🔍</div>
-        <div class="search-no-results-text">No matching posts found</div>
-        <div class="search-no-results-suggestion">Try different keywords or browse by category</div>
+        <div class="search-no-results-text">No se encontraron publicaciones</div>
+        <div class="search-no-results-suggestion">Prueba con otras palabras clave</div>
       </div>
     `;
     autocompleteResults.style.display = 'block';
@@ -264,26 +240,17 @@ document.addEventListener('click', (e) => {
   }
 });
 
-// Show search on focus if there's a value
 searchInput.addEventListener('focus', (e) => {
   if (e.target.value) {
     debouncedShowAutocomplete(e.target.value);
   }
 });
-
-// Check URL params for search query
-const urlParams = new URLSearchParams(window.location.search);
-const searchParam = urlParams.get('search');
-if (searchParam) {
-  searchInput.value = searchParam;
-  // Wait a bit for the page to settle
-  setTimeout(() => {
-    debouncedShowAutocomplete(searchParam);
-  }, 100);
-}
 </script>
 
 <style>
+/* Copy styles from src/blog.njk or assume they are global if in style.css */
+/* Since they were inline in blog.njk, I should copy them or move them to style.css */
+/* For now, I'll assume I should copy them. */
 .search-container {
   position: relative;
   max-width: 600px;
@@ -456,24 +423,114 @@ if (searchParam) {
   }
 }
 
-/* Blog Posts Grid Styles - Moved to layout-fixes.css */
-/* Pagination Controls */
-.pagination-controls {
+/* Blog Posts Grid Styles */
+.blog-posts-container {
+  max-width: 1200px;
+  margin: 3rem auto;
+  padding: 0 1rem;
+}
+
+.blog-posts-container h2 {
   text-align: center;
-  margin-top: 3rem;
-  padding: 1.5rem;
-  border-top: 2px solid #e1e5e9;
-}
-
-.pagination-info {
-  color: #666;
-  font-size: 1rem;
-  margin: 0;
-}
-
-.pagination-info span {
-  font-weight: 600;
   color: #33bdef;
+  margin-bottom: 2rem;
+  font-size: 2.5rem;
+}
+
+.blog-posts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.blog-post-card {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid #e1e5e9;
+}
+
+.blog-post-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.post-image {
+  height: 200px;
+  overflow: hidden;
+}
+
+.post-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.blog-post-card:hover .post-image img {
+  transform: scale(1.05);
+}
+
+.post-content {
+  padding: 1.5rem;
+}
+
+.post-content h3 {
+  margin: 0 0 1rem 0;
+  font-size: 1.25rem;
+  line-height: 1.4;
+}
+
+.post-content h3 a {
+  color: #2c3e50;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.post-content h3 a:hover {
+  color: #33bdef;
+}
+
+.post-description {
+  color: #666;
+  line-height: 1.6;
+  margin: 0 0 1rem 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.post-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+  color: #888;
+}
+
+.post-meta time {
+  font-weight: 500;
+}
+
+.post-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tag {
+  background: #33bdef;
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 500;
 }
 
 /* Responsive adjustments for blog posts */

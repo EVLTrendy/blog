@@ -123,17 +123,17 @@
     <link rel="canonical" href="{{ metadata.url }}{{ page.url }}" />
     <!-- SEO Enhancement: Add canonical tags to prevent duplicate content issues -->
     {% set cssVersion = "v=" + (page.date | date('X') if page.date else "20251203") %}
-    <link rel="stylesheet" href="/dark-mode.css?{{ cssVersion }}">
-    <link rel="stylesheet" href="/style.css?{{ cssVersion }}">
-    <link rel="stylesheet" href="/print.css?{{ cssVersion }}" media="print">
-    <link rel="stylesheet" href="/enhancements.css?{{ cssVersion }}">
-    <link rel="stylesheet" href="/layout-fixes.css?{{ cssVersion }}">
-    <link rel="stylesheet" href="/ux-enhancements.css?{{ cssVersion }}">
-    <link rel="stylesheet" href="/conversion-components.css?{{ cssVersion }}">
-    <link rel="stylesheet" href="/homepage-fixes.css?{{ cssVersion }}">
-    <link rel="stylesheet" href="/homepage-carousel.css?{{ cssVersion }}">
-    <link rel="stylesheet" href="/article-layout.css?{{ cssVersion }}">
-    <link rel="stylesheet" href="/landing-page.css?{{ cssVersion }}">
+    <link rel="stylesheet" href="/assets/css/dark-mode.css?{{ cssVersion }}">
+    <link rel="stylesheet" href="/assets/css/style.css?{{ cssVersion }}">
+    <link rel="stylesheet" href="/assets/css/print.css?{{ cssVersion }}" media="print">
+    <link rel="stylesheet" href="/assets/css/enhancements.css?{{ cssVersion }}">
+    <link rel="stylesheet" href="/assets/css/layout-fixes.css?{{ cssVersion }}">
+    <link rel="stylesheet" href="/assets/css/ux-enhancements.css?{{ cssVersion }}">
+    <link rel="stylesheet" href="/assets/css/conversion-components.css?{{ cssVersion }}">
+    <link rel="stylesheet" href="/assets/css/homepage-fixes.css?{{ cssVersion }}">
+    <link rel="stylesheet" href="/assets/css/homepage-carousel.css?{{ cssVersion }}">
+    <link rel="stylesheet" href="/assets/css/article-layout.css?{{ cssVersion }}">
+    <link rel="stylesheet" href="/assets/css/landing-page.css?{{ cssVersion }}">
 
     {# Added preconnect hints for critical third-party origins #}
     <link rel="preconnect" href="https://pagead2.googlesyndication.com">
