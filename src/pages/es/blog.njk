@@ -4,7 +4,7 @@ description: Explora nuestra colección completa de guías de creación de conte
 keywords: creación de contenido, redes sociales, marketing digital, blogs, SEO, tutoriales, guías, TikTok, Instagram, YouTube
 layout: 'base.njk'
 lang: es
-permalink: /es/blog/
+permalink: "/es/blog/{% if pagination.pageNumber > 0 %}page-{{ pagination.pageNumber + 1 }}/{% endif %}index.html"
 ads: false
 ---
 
