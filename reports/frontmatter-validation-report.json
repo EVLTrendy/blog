@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-01-14T21:33:32.205Z",
+  "timestamp": "2026-01-15T05:18:56.183Z",
   "summary": {
-    "totalFiles": 85,
+    "totalFiles": 84,
     "errors": 0,
-    "warnings": 85
+    "warnings": 84
   },
   "errors": [],
   "warnings": [
@@ -18,13 +18,6 @@
       "file": "2023-11-20-brand-deals-made-easy-with-signaturely.md",
       "type": "image_dimensions_check",
       "message": "Image at /assets/blog/brand-deals-made-easy-with-signaturely-.png: Ensure dimensions are 1200x630px for optimal Twitter Card display",
-      "field": "image",
-      "suggestion": "Twitter cards work best with 1.91:1 ratio images (1200x630px)"
-    },
-    {
-      "file": "2023-11-20-jams-without-jitters-your-copyright-free-soundtrack-guide-.md",
-      "type": "image_dimensions_check",
-      "message": "Image at /assets/blog/jams-without-jitters-your-copyright-free-soundtrack-guide-.png: Ensure dimensions are 1200x630px for optimal Twitter Card display",
       "field": "image",
       "suggestion": "Twitter cards work best with 1.91:1 ratio images (1200x630px)"
     },
@@ -591,7 +584,7 @@
     {
       "file": "2026-01-14-youtube-2026-trends-tips-and-how-to-grow-your-channel.md",
       "type": "image_dimensions_check",
-      "message": "Image at /assets/blog/y2026ttahtgyc.png: Ensure dimensions are 1200x630px for optimal Twitter Card display",
+      "message": "Image at /assets/blog/youtube-2026-trends--tips--and-how-to-grow-your-channel.png: Ensure dimensions are 1200x630px for optimal Twitter Card display",
       "field": "image",
       "suggestion": "Twitter cards work best with 1.91:1 ratio images (1200x630px)"
     },
