@@ -32,7 +32,8 @@
     "strategy:calendar": "node scripts/content-calendar.js",
     "strategy:competitors": "node scripts/competitor-analysis.js",
     "strategy:repurpose": "node scripts/content-repurposing.js",
-    "strategy:all": "npm run strategy:calendar && npm run strategy:competitors && npm run strategy:repurpose"
+    "strategy:all": "npm run strategy:calendar && npm run strategy:competitors && npm run strategy:repurpose",
+    "validate:structure": "node scripts/utils/validate-structure.js"
   },
   "keywords": [],
   "author": "",
