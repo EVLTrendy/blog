@@ -63,7 +63,8 @@ Users of Owned, represented by OWN3D.tv, have expressed their experiences, and t
 
 Want to use OWN3D.tv? Click Here: [OWN3D.tv](https://www.own3d.tv/en/)
 
-[](https://www.own3d.tv/en/)**Price Range: $15 - $59.99**
+[**Price Range: $15 - $59.99**](https://www.own3d.tv/en/)
+
 
 
 

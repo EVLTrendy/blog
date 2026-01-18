@@ -67,7 +67,8 @@ To qualify for KCIP, you must meet these metrics in the last 30 days:
 
 \- Followers: 1500
 
-These metrics could change over time, but they are the current guidelines for streamers. In the future, the application process will be integrated into the Kick Creator Dashboard for real-time performance tracking. Find the whole article at <https://kickcommunity.com/kick-creator-incentive-program/>[](https://kickcommunity.com/kick-creator-incentive-program/)[](https://kickcommunity.com/kick-creator-incentive-program/)
+These metrics could change over time, but they are the current guidelines for streamers. In the future, the application process will be integrated into the Kick Creator Dashboard for real-time performance tracking. Find the whole article at <https://kickcommunity.com/kick-creator-incentive-program/>
+
 
 Also, are you new to streaming? Checkout another EvolvedLotus resource over at [TwitchCraft: Mastering Stream Settings for Seamless Success](https://blog.evolvedlotus.com/blog/2023-12-04-twitchcraft-mastering-stream-settings-for-seamless-success/)
 
