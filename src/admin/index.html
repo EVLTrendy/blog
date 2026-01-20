@@ -464,6 +464,7 @@
     <a href="#" class="cms-nav-item" onclick="showSection('pages'); return false;">📄 Pages</a>
     <a href="#" class="cms-nav-item" onclick="showSection('media'); return false;">🖼️ Media</a>
     <a href="#" class="cms-nav-item" onclick="showSection('analytics'); return false;">📈 Analytics</a>
+    <a href="#" class="cms-nav-item" onclick="showSection('evlapi'); return false;">🌐 EvolvedLotus API</a>
   </nav>
 
   <main class="cms-main">
@@ -585,6 +586,95 @@
           <div class="stat-number">89%</div>
           <div class="stat-label">Search Satisfaction</div>
         </div>
+      </div>
+    </section>
+
+    <!-- 🌐 EVOLVEDLOTUS API SECTION -->
+    <section id="evlapi" class="content-section">
+      <h1>🌐 EvolvedLotus API Management</h1>
+      <p>Manage cross-platform promotional ads, analytics, and content across all EvolvedLotus properties.</p>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-number" id="evlApiAdsCount">0</div>
+          <div class="stat-label">Active Ads</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" id="evlApiImpressions">0</div>
+          <div class="stat-label">Total Impressions</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" id="evlApiClicks">0</div>
+          <div class="stat-label">Total Clicks</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" id="evlApiCTR">0%</div>
+          <div class="stat-label">Click-Through Rate</div>
+        </div>
+      </div>
+
+      <h3>📢 Promotional Ads</h3>
+      <div style="margin: 20px 0;">
+        <button class="btn primary" onclick="openEvlAdModal()">+ Create New Ad</button>
+        <button class="btn" onclick="refreshEvlAds()">🔄 Refresh</button>
+      </div>
+
+      <div id="evlAdsList" class="content-list">
+        <div class="content-item">
+          <h4>📝 YouTube 2026: Trends & Growth Guide</h4>
+          <div class="content-meta">
+            <strong>Type:</strong> Blog Post | <strong>Platform:</strong> All<br>
+            <strong>URL:</strong> <a
+              href="https://blog.evolvedlotus.com/blog/2026-01-14-youtube-2026-trends-tips-and-how-to-grow-your-channel/"
+              target="_blank">View →</a><br>
+            <strong>Stats:</strong> 0 impressions | 0 clicks | 0% CTR
+          </div>
+          <div class="content-actions">
+            <button class="btn" onclick="editEvlAd('blog_yt_2026')">✏️ Edit</button>
+            <button class="btn warning" onclick="toggleEvlAd('blog_yt_2026')">⏸️ Pause</button>
+          </div>
+        </div>
+        <div class="content-item">
+          <h4>🐦 TweetCraft AI - Twitter Reply Generator</h4>
+          <div class="content-meta">
+            <strong>Type:</strong> Tool | <strong>Platform:</strong> All<br>
+            <strong>URL:</strong> <a href="https://tools.evolvedlotus.com/twitterreplybot/" target="_blank">View
+              →</a><br>
+            <strong>Stats:</strong> 0 impressions | 0 clicks | 0% CTR
+          </div>
+          <div class="content-actions">
+            <button class="btn" onclick="editEvlAd('tool_tweetcraft')">✏️ Edit</button>
+            <button class="btn warning" onclick="toggleEvlAd('tool_tweetcraft')">⏸️ Pause</button>
+          </div>
+        </div>
+      </div>
+
+      <h3 style="margin-top: 40px;">🎯 Platform Distribution</h3>
+      <div class="recent-activity">
+        <div class="activity-item">
+          <span class="badge hub">Discord Bot</span>
+          <span>Ad rotation in 10-point claim task • <strong>50%</strong> custom ads</span>
+        </div>
+        <div class="activity-item">
+          <span class="badge blog">Blog</span>
+          <span>Sidebar ad banners • Coming soon</span>
+        </div>
+        <div class="activity-item">
+          <span class="badge author">Twitter Tools</span>
+          <span>In-app promotional banners • Coming soon</span>
+        </div>
+        <div class="activity-item">
+          <span class="badge notification">Main Website</span>
+          <span>Featured content section • Coming soon</span>
+        </div>
+      </div>
+
+      <h3 style="margin-top: 40px;">⚙️ API Configuration</h3>
+      <div class="recent-activity">
+        <p><strong>API Endpoint:</strong> <code>https://api.evolvedlotus.com/v1</code> (Coming Soon)</p>
+        <p><strong>Database:</strong> Railway PostgreSQL (Isolated from Supabase)</p>
+        <p><strong>Current Status:</strong> <span style="color: #48bb78;">●</span> Active - Serving ads to Discord bot
+        </p>
       </div>
     </section>
   </main>
