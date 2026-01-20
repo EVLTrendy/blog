@@ -649,32 +649,28 @@
         </div>
       </div>
 
-      <h3 style="margin-top: 40px;">🎯 Platform Distribution</h3>
+      <h3 style="margin-top: 40px;">🎯 Platform Distribution (Ad Clients)</h3>
       <div class="recent-activity">
-        <div class="activity-item">
-          <span class="badge hub">Discord Bot</span>
-          <span>Ad rotation in 10-point claim task • <strong>50%</strong> custom ads</span>
-        </div>
-        <div class="activity-item">
-          <span class="badge blog">Blog</span>
-          <span>Sidebar ad banners • Coming soon</span>
-        </div>
-        <div class="activity-item">
-          <span class="badge author">Twitter Tools</span>
-          <span>In-app promotional banners • Coming soon</span>
-        </div>
-        <div class="activity-item">
-          <span class="badge notification">Main Website</span>
-          <span>Featured content section • Coming soon</span>
+        <p style="color: #718096; font-size: 0.9em; margin-bottom: 15px;">Manage weights and priorities for platforms
+          using the EVL API.</p>
+        <div id="evlApiClientsList">
+          <div class="loading"><span class="loading-spinner"></span> Loading API clients...</div>
         </div>
       </div>
 
       <h3 style="margin-top: 40px;">⚙️ API Configuration</h3>
       <div class="recent-activity">
-        <p><strong>API Endpoint:</strong> <code>https://api.evolvedlotus.com/v1</code> (Coming Soon)</p>
-        <p><strong>Database:</strong> Railway PostgreSQL (Isolated from Supabase)</p>
-        <p><strong>Current Status:</strong> <span style="color: #48bb78;">●</span> Active - Serving ads to Discord bot
-        </p>
+        <p><strong>API Endpoint:</strong> <code id="evlApiEndpointDisplay">https://api.evolvedlotus.com</code></p>
+        <p><strong>Status:</strong> <span id="evlApiStatus" style="color: #718096;">● Checking...</span></p>
+        <div id="evlApiAuthSection"
+          style="margin-top: 15px; display: none; padding-top: 15px; border-top: 1px solid #eee;">
+          <p style="font-size: 0.9em; color: #f56565;">⚠️ Login required to manage API settings.</p>
+          <button class="btn info"
+            onclick="window.open('https://evl-task-bot-discord-production.up.railway.app', '_blank')">Login to EVL
+            Dashboard</button>
+          <button class="btn success" onclick="refreshEvlApiClients()" style="margin-left: 10px;">Already logged in?
+            Refresh</button>
+        </div>
       </div>
     </section>
   </main>
@@ -1106,6 +1102,7 @@
       if (name === 'notifications' && !contentData.notificationsLoaded) loadNotifications();
       if (name === 'pages' && !contentData.pagesLoaded) loadPages();
       if (name === 'media' && !contentData.mediaLoaded) loadMedia();
+      if (name === 'evlapi') refreshEvlApiClients();
     }
 
     function refreshSection(sec) {
@@ -1912,6 +1909,108 @@
     function removeBlogImage() {
       updateBlogImagePreview('');
       document.getElementById('blogImageInput').value = ''; // Reset file input
+    }
+
+    // ========== EVOLVEDLOTUS API MANAGEMENT ==========
+    const EVL_API_BASE = 'https://evl-task-bot-discord-production.up.railway.app';
+
+    async function evlApiCall(endpoint, options = {}) {
+      const url = `${EVL_API_BASE}${endpoint}`;
+      options.credentials = 'include'; // Essential for session cookies cross-domain
+      options.headers = {
+        ...options.headers,
+        'Content-Type': 'application/json',
+        'X-Requested-With': 'XMLHttpRequest'
+      };
+
+      try {
+        const response = await fetch(url, options);
+        if (response.status === 401 || response.status === 403) {
+          document.getElementById('evlApiAuthSection').style.display = 'block';
+          document.getElementById('evlApiStatus').innerHTML = '● Unauthorized';
+          document.getElementById('evlApiStatus').style.color = '#f56565';
+          return null;
+        }
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        return await response.json();
+      } catch (e) {
+        console.error('EVL API Error:', e);
+        document.getElementById('evlApiStatus').innerHTML = '● Offline';
+        document.getElementById('evlApiStatus').style.color = '#f56565';
+        return null;
+      }
+    }
+
+    async function refreshEvlApiClients() {
+      const listEl = document.getElementById('evlApiClientsList');
+      const statusEl = document.getElementById('evlApiStatus');
+      const authSection = document.getElementById('evlApiAuthSection');
+
+      if (!listEl) return;
+
+      statusEl.innerHTML = '● Connecting...';
+      statusEl.style.color = '#ecc94b';
+      authSection.style.display = 'none';
+
+      const data = await evlApiCall('/api/admin/ad-clients');
+      if (!data || !data.clients) {
+        listEl.innerHTML = '<p class="error">Unable to load API clients. Please ensure you are logged in to the EVL Dashboard.</p>';
+        return;
+      }
+
+      statusEl.innerHTML = '● Connected';
+      statusEl.style.color = '#48bb78';
+
+      let html = '';
+      data.clients.forEach(client => {
+        const lastSeen = client.last_request_at ? new Date(client.last_request_at).toLocaleString() : 'Never';
+        html += `
+          <div class="content-item" style="margin-bottom: 20px; border-left: 4px solid ${client.is_active ? '#48bb78' : '#f56565'};">
+            <div style="display: flex; justify-content: space-between; align-items: start;">
+              <div>
+                <h4>${client.name} (<code>${client.client_id}</code>)</h4>
+                <div class="content-meta">
+                  <strong>Last Activity:</strong> ${lastSeen}<br>
+                  <strong>Current Priority:</strong> ${client.priority} | <strong>Current Weight:</strong> ${client.weight}%
+                </div>
+              </div>
+              <span class="badge ${client.is_active ? 'blog' : 'notification'}">${client.is_active ? 'Active' : 'Inactive'}</span>
+            </div>
+            
+            <div style="margin-top: 15px; display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+              <div>
+                <label style="font-size: 11px; margin-bottom: 4px; display: block;">Priority (Higher = Sooner)</label>
+                <input type="number" id="evl-prio-${client.client_id}" value="${client.priority}" style="padding: 6px; width: 100%;">
+              </div>
+              <div>
+                <label style="font-size: 11px; margin-bottom: 4px; display: block;">Weight (Ad Frequency %)</label>
+                <input type="number" id="evl-weight-${client.client_id}" value="${client.weight}" style="padding: 6px; width: 100%;">
+              </div>
+            </div>
+            <div style="margin-top: 10px; text-align: right;">
+              <button class="btn primary" style="padding: 5px 15px; font-size: 0.85em;" onclick="updateEvlApiClient('${client.client_id}')">Update Distribution</button>
+            </div>
+          </div>
+        `;
+      });
+      listEl.innerHTML = html;
+    }
+
+    async function updateEvlApiClient(clientId) {
+      const priority = parseInt(document.getElementById(`evl-prio-${clientId}`).value);
+      const weight = parseInt(document.getElementById(`evl-weight-${clientId}`).value);
+
+      const result = await evlApiCall(`/api/admin/ad-clients/${clientId}`, {
+        method: 'PUT',
+        body: JSON.stringify({ priority, weight })
+      });
+
+      if (result && result.success) {
+        alert(`✅ Distribution settings for ${clientId} updated!`);
+        refreshEvlApiClients();
+      } else {
+        alert(`❌ Failed to update settings. Please check your connection.`);
+      }
     }
   </script>
 </body>
