@@ -1912,29 +1912,48 @@
     }
 
     // ========== EVOLVEDLOTUS API MANAGEMENT ==========
-    const EVL_API_BASE = 'https://evl-task-bot-discord-production.up.railway.app';
+    let EVL_API_BASE = 'https://api.evolvedlotus.com';
+    const EVL_API_FALLBACK = 'https://evl-task-bot-discord-production.up.railway.app';
 
     async function evlApiCall(endpoint, options = {}) {
-      const url = `${EVL_API_BASE}${endpoint}`;
-      options.credentials = 'include'; // Essential for session cookies cross-domain
+      let url = `${EVL_API_BASE}${endpoint}`;
+      options.credentials = 'include';
       options.headers = {
         ...options.headers,
-        'Content-Type': 'application/json',
-        'X-Requested-With': 'XMLHttpRequest'
+        'Content-Type': 'application/json'
       };
 
       try {
-        const response = await fetch(url, options);
+        let response = await fetch(url, options);
         if (response.status === 401 || response.status === 403) {
           document.getElementById('evlApiAuthSection').style.display = 'block';
-          document.getElementById('evlApiStatus').innerHTML = '● Unauthorized';
+          document.getElementById('evlApiStatus').innerHTML = '● Unauthorized (Login Required)';
           document.getElementById('evlApiStatus').style.color = '#f56565';
           return null;
         }
         if (!response.ok) throw new Error(`HTTP ${response.status}`);
         return await response.json();
       } catch (e) {
-        console.error('EVL API Error:', e);
+        console.warn(`Primary API ${url} failed, trying fallback...`, e);
+
+        try {
+          url = `${EVL_API_FALLBACK}${endpoint}`;
+          const response = await fetch(url, options);
+          if (response.status === 401 || response.status === 403) {
+            document.getElementById('evlApiAuthSection').style.display = 'block';
+            document.getElementById('evlApiStatus').innerHTML = '● Unauthorized';
+            document.getElementById('evlApiStatus').style.color = '#f56565';
+            return null;
+          }
+          if (response.ok) {
+            EVL_API_BASE = EVL_API_FALLBACK;
+            document.getElementById('evlApiEndpointDisplay').textContent = EVL_API_BASE;
+            return await response.json();
+          }
+        } catch (fallbackErr) {
+          console.error('All API endpoints failed:', fallbackErr);
+        }
+
         document.getElementById('evlApiStatus').innerHTML = '● Offline';
         document.getElementById('evlApiStatus').style.color = '#f56565';
         return null;
@@ -1952,9 +1971,23 @@
       statusEl.style.color = '#ecc94b';
       authSection.style.display = 'none';
 
+      // Load Statistics first
+      const stats = await evlApiCall('/api/admin/ad-stats');
+      if (stats) {
+        document.getElementById('evlApiAdsCount').textContent = stats.total_ads || 0;
+        document.getElementById('evlApiImpressions').textContent = stats.total_impressions?.toLocaleString() || 0;
+        document.getElementById('evlApiClicks').textContent = stats.total_clicks?.toLocaleString() || 0;
+        document.getElementById('evlApiCTR').textContent = (stats.ctr || 0) + '%';
+      }
+
+      // Load Clients
       const data = await evlApiCall('/api/admin/ad-clients');
       if (!data || !data.clients) {
-        listEl.innerHTML = '<p class="error">Unable to load API clients. Please ensure you are logged in to the EVL Dashboard.</p>';
+        if (statusEl.innerHTML.includes('Offline')) {
+          listEl.innerHTML = '<p class="error">API Server is unreachable. Check your internet or custom domain settings.</p>';
+        } else {
+          listEl.innerHTML = '<p class="error">Unable to load API clients. Please ensure you are logged in as a Super Admin.</p>';
+        }
         return;
       }
 
