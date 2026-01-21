@@ -600,6 +600,10 @@
           <div class="stat-label">Active Ads</div>
         </div>
         <div class="stat-card">
+          <div class="stat-number" id="evlApiBlogCount">0</div>
+          <div class="stat-label">Blog Posts (Rotating)</div>
+        </div>
+        <div class="stat-card">
           <div class="stat-number" id="evlApiImpressions">0</div>
           <div class="stat-label">Total Impressions</div>
         </div>
@@ -613,7 +617,29 @@
         </div>
       </div>
 
-      <h3>📢 Promotional Ads</h3>
+      <!-- 🔄 ROTATING BLOG ADS -->
+      <h3>🔄 Rotating Blog Ads</h3>
+      <div class="recent-activity">
+        <div
+          style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 20px; border-radius: 10px; margin-bottom: 15px;">
+          <h4 style="margin: 0 0 10px 0; color: white;">✅ Blog Rotation Active</h4>
+          <p style="margin: 0; opacity: 0.9; font-size: 0.9em;">
+            All <strong id="rotatingBlogCountText">0</strong> published blog posts are automatically included in
+            promotional ad rotation.
+            When platforms request ads with <code
+              style="background: rgba(255,255,255,0.2); padding: 2px 6px; border-radius: 4px;">include_blogs=true</code>,
+            there's a <strong>40% chance</strong> to show a randomly selected blog post from your entire catalog.
+          </p>
+        </div>
+        <p style="color: #718096; font-size: 0.85em; margin-top: 10px;">
+          <strong>How it works:</strong> The API fetches all published blog posts from <code>/api/posts.json</code> and
+          caches them for 30 minutes.
+          Each blog post is automatically converted to an ad with smart color coding based on tags (YouTube=red,
+          Instagram=pink, Twitter=blue, etc.).
+        </p>
+      </div>
+
+      <h3 style="margin-top: 40px;">📢 Static Promotional Ads</h3>
       <div style="margin: 20px 0;">
         <button class="btn primary" onclick="openEvlAdModal()">+ Create New Ad</button>
         <button class="btn" onclick="refreshEvlAds()">🔄 Refresh</button>
@@ -660,7 +686,8 @@
 
       <h3 style="margin-top: 40px;">⚙️ API Configuration</h3>
       <div class="recent-activity">
-        <p><strong>API Endpoint:</strong> <code id="evlApiEndpointDisplay">https://api.evolvedlotus.com</code></p>
+        <p><strong>API Endpoint:</strong> <code
+            id="evlApiEndpointDisplay">https://evl-task-bot-discord-production.up.railway.app</code></p>
         <p><strong>Status:</strong> <span id="evlApiStatus" style="color: #718096;">● Checking...</span></p>
         <div id="evlApiAuthSection"
           style="margin-top: 15px; display: none; padding-top: 15px; border-top: 1px solid #eee;">
@@ -1912,7 +1939,8 @@
     }
 
     // ========== EVOLVEDLOTUS API MANAGEMENT ==========
-    let EVL_API_BASE = 'https://api.evolvedlotus.com';
+    // Primary API is hosted on Railway (api.evolvedlotus.com is not configured)
+    let EVL_API_BASE = 'https://evl-task-bot-discord-production.up.railway.app';
     const EVL_API_FALLBACK = 'https://evl-task-bot-discord-production.up.railway.app';
 
     async function evlApiCall(endpoint, options = {}) {
@@ -1979,6 +2007,13 @@
         document.getElementById('evlApiClicks').textContent = stats.total_clicks?.toLocaleString() || 0;
         document.getElementById('evlApiCTR').textContent = (stats.ctr || 0) + '%';
       }
+
+      // Update blog post count from local content data (for rotating blogs feature)
+      const blogCount = contentData.blog?.length || 0;
+      const blogCountEl = document.getElementById('evlApiBlogCount');
+      const rotatingBlogCountEl = document.getElementById('rotatingBlogCountText');
+      if (blogCountEl) blogCountEl.textContent = blogCount;
+      if (rotatingBlogCountEl) rotatingBlogCountEl.textContent = blogCount;
 
       // Load Clients
       const data = await evlApiCall('/api/admin/ad-clients');
