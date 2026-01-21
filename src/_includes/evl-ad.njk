@@ -1,0 +1,62 @@
+<div class="evl-ad-instance" style="display: none; margin-bottom: 25px;">
+    <div class="evl-ad-box" style="border: 1px solid #ddd; border-radius: 12px; overflow: hidden; background: #fff; font-family: 'Inter', sans-serif;">
+        <div class="evl-ad-image-box" style="height: 140px; background-size: cover; background-position: center;"></div>
+        <div style="padding: 15px;">
+            <span style="display: inline-block; padding: 2px 8px; background: #f0f0f0; color: #666; font-size: 10px; border-radius: 10px; text-transform: uppercase; margin-bottom: 10px;">Partner Ad</span>
+            <h4 class="evl-ad-title" style="margin: 0 0 8px 0; font-size: 16px; color: #1a1a1a;"></h4>
+            <p class="evl-ad-desc" style="margin: 0 0 15px 0; font-size: 13px; color: #666; line-height: 1.4;"></p>
+            <a class="evl-ad-cta" href="#" target="_blank" style="display: block; text-align: center; padding: 10px; background: #000; color: #fff; text-decoration: none; border-radius: 6px; font-weight: 600; font-size: 14px;"></a>
+        </div>
+    </div>
+</div>
+
+{# Only load the script once #}
+{% if not evlAdScriptLoaded %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const API_BASE = 'https://cooperative-renewal-production.up.railway.app';
+    const adInstances = document.querySelectorAll('.evl-ad-instance');
+
+    if (adInstances.length > 0) {
+        // Fetch ads for each instance or one ad for all? 
+        // User wants rotation, so let's fetch one per instance for variety.
+        adInstances.forEach(instance => {
+            fetch(`${API_BASE}/api/ad?client_id=blog&include_blogs=true`)
+                .then(res => res.json())
+                .then(ad => {
+                    if (ad && !ad.error) {
+                        const clickUrl = typeof ad.id === 'number' 
+                            ? `${API_BASE}/api/click/${ad.id}` 
+                            : ad.url;
+                            
+                        const imageBox = instance.querySelector('.evl-ad-image-box');
+                        const title = instance.querySelector('.evl-ad-title');
+                        const desc = instance.querySelector('.evl-ad-desc');
+                        const cta = instance.querySelector('.evl-ad-cta');
+
+                        if (ad.image) {
+                            imageBox.style.backgroundImage = `url(${ad.image})`;
+                        } else {
+                            imageBox.style.backgroundColor = ad.color || '#000';
+                            imageBox.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100%;font-size:3em;">✨</div>';
+                        }
+                        
+                        title.textContent = ad.headline || ad.title;
+                        desc.textContent = ad.description;
+                        cta.textContent = ad.cta || 'Learn More';
+                        cta.href = clickUrl;
+                        
+                        if (ad.color) {
+                            cta.style.backgroundColor = ad.color;
+                        }
+                        
+                        instance.style.display = 'block';
+                    }
+                })
+                .catch(err => console.warn('EVL Ad fetch failed:', err));
+        });
+    }
+});
+</script>
+{% set evlAdScriptLoaded = true %}
+{% endif %}

@@ -100,6 +100,9 @@ ads: false
     <!-- Left Sidebar Ad (Sticky - only visible while scrolling through article) -->
     <div class="article-spacer-left">
       <aside class="article-sidebar-ad article-sidebar-ad--left" aria-label="Advertisement">
+        <!-- EvolvedLotus Dynamic Ad -->
+        {% include "evl-ad.njk" %}
+        
         <!-- Google AdSense - Left Sidebar 160x600 -->
         <ins class="adsbygoogle"
              style="display:inline-block;width:160px;height:600px"
@@ -123,6 +126,11 @@ ads: false
       
       <!-- Lead Magnet (if exists) -->
       {% include "lead-magnet.njk" %}
+      
+      <!-- Bottom EvolvedLotus Ad -->
+      <div style="margin-top: 40px;">
+        {% include "evl-ad.njk" %}
+      </div>
       
     </article>
     
