@@ -687,13 +687,13 @@
       <h3 style="margin-top: 40px;">⚙️ API Configuration</h3>
       <div class="recent-activity">
         <p><strong>API Endpoint:</strong> <code
-            id="evlApiEndpointDisplay">https://cooperative-renewal-production.up.railway.app</code></p>
+            id="evlApiEndpointDisplay">https://cooperative-renewal-production-41ce.up.railway.app</code></p>
         <p><strong>Status:</strong> <span id="evlApiStatus" style="color: #718096;">● Checking...</span></p>
         <div id="evlApiAuthSection"
           style="margin-top: 15px; display: none; padding-top: 15px; border-top: 1px solid #eee;">
           <p style="font-size: 0.9em; color: #f56565;">⚠️ Login required to manage API settings.</p>
           <button class="btn info"
-            onclick="window.open('https://cooperative-renewal-production.up.railway.app', '_blank')">Login to EVL
+            onclick="window.open('https://cooperative-renewal-production-41ce.up.railway.app', '_blank')">Login to EVL
             Dashboard</button>
           <button class="btn success" onclick="refreshEvlApiClients()" style="margin-left: 10px;">Already logged in?
             Refresh</button>
@@ -1940,8 +1940,8 @@
 
     // ========== EVOLVEDLOTUS API MANAGEMENT ==========
     // Primary API is hosted on Railway
-    let EVL_API_BASE = 'https://cooperative-renewal-production.up.railway.app';
-    const EVL_API_FALLBACK = 'https://cooperative-renewal-production.up.railway.app';
+    let EVL_API_BASE = 'https://cooperative-renewal-production-41ce.up.railway.app';
+    const EVL_API_FALLBACK = 'https://cooperative-renewal-production-41ce.up.railway.app';
 
     async function evlApiCall(endpoint, options = {}) {
       let url = `${EVL_API_BASE}${endpoint}`;
