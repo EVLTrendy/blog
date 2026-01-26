@@ -1,8 +1,8 @@
 ---
-title: "Instagram Algorithm 2026: 6 Signals to Viral Growth"
-description: "Master Instagram's 4 algorithms in 2026 with our complete guide. Learn the 6 core signals, proven strategies for Feed, Stories, Reels & Explore, Instagram SEO tactics, and sustainable growth strategies to reach thousands of new followers."
-date: 2026-01-26T18:41:00.000Z
-author: "EvolvedLotus Team"
+title: 'Instagram Algorithm 2026: 6 Signals to Viral Growth'
+description: 'Master Instagram''s 4 algorithms in 2026 with our complete guide. Learn the 6 core signals, proven strategies for Feed, Stories, Reels & Explore, Instagram SEO tactics, and sustainable growth strategies to reach thousands of new followers.'
+date: '2026-01-26T18:41:00.000Z'
+author: EvolvedLotus Team
 tags:
   - post
   - featured
@@ -10,8 +10,8 @@ tags:
 image: /assets/blog/instagram-algorithm-2026.png
 category: social-media
 featured: true
-imageAlt: "Instagram Algorithm 2026: 6 Signals to Viral Growth"
-keywords: "Instagram algorithm 2026, how Instagram algorithm works, Instagram growth strategy, Instagram Reels algorithm, Instagram Stories algorithm, Instagram Explore algorithm, Instagram SEO, viral Instagram content, Instagram engagement tactics, grow Instagram followers"
+imageAlt: 'Instagram Algorithm 2026: 6 Signals to Viral Growth'
+keywords: 'Instagram algorithm 2026, how Instagram algorithm works, Instagram growth strategy, Instagram Reels algorithm, Instagram Stories algorithm, Instagram Explore algorithm, Instagram SEO, viral Instagram content, Instagram engagement tactics, grow Instagram followers'
 schema_type: Article
 og_type: article
 ---

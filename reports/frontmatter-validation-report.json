@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-01-15T05:18:56.183Z",
+  "timestamp": "2026-01-26T19:33:15.969Z",
   "summary": {
-    "totalFiles": 84,
+    "totalFiles": 85,
     "errors": 0,
-    "warnings": 84
+    "warnings": 85
   },
   "errors": [],
   "warnings": [
@@ -585,6 +585,13 @@
       "file": "2026-01-14-youtube-2026-trends-tips-and-how-to-grow-your-channel.md",
       "type": "image_dimensions_check",
       "message": "Image at /assets/blog/youtube-2026-trends--tips--and-how-to-grow-your-channel.png: Ensure dimensions are 1200x630px for optimal Twitter Card display",
+      "field": "image",
+      "suggestion": "Twitter cards work best with 1.91:1 ratio images (1200x630px)"
+    },
+    {
+      "file": "2026-01-26-instagram-algorithm-2026-6-signals-to-viral-growth.md",
+      "type": "image_dimensions_check",
+      "message": "Image at /assets/blog/instagram-algorithm-2026.png: Ensure dimensions are 1200x630px for optimal Twitter Card display",
       "field": "image",
       "suggestion": "Twitter cards work best with 1.91:1 ratio images (1200x630px)"
     },
