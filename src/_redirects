@@ -8,6 +8,17 @@
 /favicon.ico    /assets/blog/favicon.ico    200
 /logo.png       /assets/blog/logo.png       200
 
+# Legacy Social Hub Redirects (Fixing broken /x-* links)
+/x-kick       /blog/?search=kick            301
+/x-fb         /blog/?search=facebook        301
+/x-ig         /hubs/instagram-growth/       301
+/x-link       /blog/?search=linkedin        301
+/x-tiktok     /hubs/tiktok-marketing/       301
+/x-twitch     /blog/?search=twitch          301
+/x-twitter    /blog/?search=twitter         301
+/x-yt         /hubs/youtube-strategy/       301
+/x-misc       /blog/                        301
+
 # Primary redirects - ensure no redirect chains
 # Removed blog redirect to prevent redirect chains - internal links should point directly to final destinations
 # /    /index.html    200
