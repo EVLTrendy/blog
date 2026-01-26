@@ -78,7 +78,7 @@ jobs:
         # Check if this is a pull request
         if [ "${{ github.event_name }}" == "pull_request" ]; then
           echo "Creating a new commit for auto-fixes in PR"
-          git commit -m "🤖 Auto-fix frontmatter issues
+          git commit -m "🤖 Auto-fix frontmatter issues [skip ci]
 
         - Fixed YAML date formatting
         - Ensured proper string quoting
@@ -87,7 +87,7 @@ jobs:
         Co-authored-by: ${{ github.event.pull_request.user.login }} <${{ github.event.pull_request.user.login }}@users.noreply.github.com>"
         else
           echo "Creating a new commit for auto-fixes on main branch"
-          git commit -m "🤖 Auto-fix frontmatter issues
+          git commit -m "🤖 Auto-fix frontmatter issues [skip ci]
 
         - Fixed YAML date formatting
         - Ensured proper string quoting
