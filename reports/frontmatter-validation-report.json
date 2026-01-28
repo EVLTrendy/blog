@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-01-26T19:33:15.969Z",
+  "timestamp": "2026-01-28T18:18:05.372Z",
   "summary": {
-    "totalFiles": 85,
+    "totalFiles": 86,
     "errors": 0,
-    "warnings": 85
+    "warnings": 86
   },
   "errors": [],
   "warnings": [
@@ -592,6 +592,13 @@
       "file": "2026-01-26-instagram-algorithm-2026-6-signals-to-viral-growth.md",
       "type": "image_dimensions_check",
       "message": "Image at /assets/blog/instagram-algorithm-2026.png: Ensure dimensions are 1200x630px for optimal Twitter Card display",
+      "field": "image",
+      "suggestion": "Twitter cards work best with 1.91:1 ratio images (1200x630px)"
+    },
+    {
+      "file": "2026-01-28-how-to-win-facebooks-2026-algorithm.md",
+      "type": "image_dimensions_check",
+      "message": "Image at /assets/blog/how-to-win-facebooks-2026-algorithm.png: Ensure dimensions are 1200x630px for optimal Twitter Card display",
       "field": "image",
       "suggestion": "Twitter cards work best with 1.91:1 ratio images (1200x630px)"
     },
