@@ -8,10 +8,10 @@ tags:
   - featured
   - misc
   - tiktok
-  - yt
+  - youtube
   - twitter
-  - ig
-  - link
+  - instagram
+  - linkedin
 image: /assets/blog/using-data-to-optimize-your-posting-schedule.png
 imageAlt: Using Data to Optimize Your Posting Schedule
 keywords: 'content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing'

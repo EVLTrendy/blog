@@ -8,10 +8,10 @@ tags:
   - featured
   - misc
   - tiktok
-  - yt
+  - youtube
   - twitter
-  - ig
-  - link
+  - instagram
+  - linkedin
 image: /assets/blog/open-source-alternatives-to-expensive-creator-tools.png
 imageAlt: Open Source Alternatives to Expensive Creator Tools
 keywords: 'content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing'

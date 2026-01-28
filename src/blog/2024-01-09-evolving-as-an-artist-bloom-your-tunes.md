@@ -12,7 +12,7 @@ description: 'You are probably thinking, ''How can I grow on Twitter as an artis
 keywords: 'content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing'
 schema_type: Article
 og_type: article
-category: content-creation
+category: social-media
 featured: true
 ---
 You are probably thinking, 'How can I grow on Twitter as an artist?' Well, today we will explore some tips and strategies that can help you increase your following and engagement on the platform., let's focus on social media, which has the potential to transform the way we connect and share our art with the world. Specifically, we're going to dive into Twitter - the world of tweets and trends - to uncover its secrets and help you boost your online presence.

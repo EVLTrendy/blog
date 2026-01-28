@@ -6,10 +6,9 @@ author: EvolvedLotus Team
 tags:
   - post
   - featured
-  - popular
   - tiktok
 image: /assets/blog/boost-tiktok-visuals-top-online-resources.png
-category: content-creation
+category: social-media
 featured: true
 imageAlt: 'Boost TikTok Visuals: Top Online Resources'
 keywords: 'content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing'

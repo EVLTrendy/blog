@@ -8,10 +8,10 @@ tags:
   - featured
   - misc
   - tiktok
-  - yt
+  - youtube
   - twitter
-  - ig
-  - link
+  - instagram
+  - linkedin
 image: /assets/blog/color-theory-and-design-principles-for-social-media-.png
 imageAlt: Color Theory and Design Principles for Social Media
 keywords: 'content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing'

@@ -5,7 +5,7 @@ date: '2024-07-23T12:00:00.000Z'
 tags:
   - post
   - featured
-  - yt
+  - youtube
 image: /assets/blog/new-short-way-for-youtube-ads.png
 imageAlt: New Short Way for YouTube Ads
 description: 'YouTube Shorts has recently gained a lot of traction and is now very much in trend for short, catchy videos'

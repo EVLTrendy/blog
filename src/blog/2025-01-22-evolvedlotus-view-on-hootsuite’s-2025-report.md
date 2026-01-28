@@ -12,7 +12,7 @@ description: 'Hootsuite’s 2025 Social Media Trends Report is out, and it’s p
 keywords: 'content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing'
 schema_type: Article
 og_type: article
-category: content-creation
+category: social-media
 featured: true
 ---
 Hootsuite’s 2025 Social Media Trends Report is out, and it’s packed with insights that every social media strategist needs to know. We read Hootsuite’s 2025 Report So You Don’t Have To: Here Are the Key Takeaways.

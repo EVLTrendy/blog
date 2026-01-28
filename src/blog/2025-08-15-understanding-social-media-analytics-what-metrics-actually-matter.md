@@ -8,9 +8,9 @@ tags:
   - featured
   - misc
   - tiktok
-  - yt
+  - youtube
   - twitter
-  - ig
+  - instagram
 image: /assets/blog/understanding-social-media-analytics-what-metrics-actually-matter.png
 imageAlt: 'Understanding Social Media Analytics: What Metrics Actually Matter'
 keywords: 'content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing'

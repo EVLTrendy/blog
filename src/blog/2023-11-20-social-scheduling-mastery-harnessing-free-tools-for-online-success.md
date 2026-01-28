@@ -6,8 +6,8 @@ tags:
   - post
   - featured
   - misc
-  - yt
-  - fb
+  - youtube
+  - facebook
   - tiktok
   - twitter
 image: /assets/blog/scheduled-success-mastering-free-tools-online-.png

@@ -6,9 +6,9 @@ author: EvolvedLotus Team
 tags:
   - post
   - featured
-  - ig
+  - instagram
 image: /assets/blog/instagram-algorithm-2026.png
-category: social-media
+category: growth
 featured: true
 imageAlt: 'Instagram Algorithm 2026: 6 Signals to Viral Growth'
 keywords: 'Instagram algorithm 2026, how Instagram algorithm works, Instagram growth strategy, Instagram Reels algorithm, Instagram Stories algorithm, Instagram Explore algorithm, Instagram SEO, viral Instagram content, Instagram engagement tactics, grow Instagram followers'

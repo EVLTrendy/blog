@@ -6,8 +6,8 @@ tags:
   - post
   - featured
   - misc
-  - fb
-  - ig
+  - facebook
+  - instagram
 image: /assets/blog/meta-s-stop-to-misinformation.png
 imageAlt: Meta's Stop To Misinformation
 description: 'Misinformation on social media should be avoided, especially when elections are approaching'

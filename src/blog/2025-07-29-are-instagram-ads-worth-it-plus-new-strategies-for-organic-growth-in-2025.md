@@ -6,7 +6,7 @@ date: '2025-07-29T12:00:00.000Z'
 tags:
   - post
   - featured
-  - ig
+  - instagram
 image: /assets/blog/come-closerrr.png
 imageAlt: 'Are Instagram Ads Worth It? Plus, New Strategies for Organic Growth in 2025'
 keywords: 'content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing'

@@ -5,7 +5,7 @@ date: '2024-06-18T12:00:00.000Z'
 tags:
   - post
   - featured
-  - link
+  - linkedin
 image: /assets/blog/linkedin-gpt-microsoft-changes-job-searching.png
 imageAlt: 'LinkedIn-GPT: Microsoft Changes Job Searching'
 description: AI's role in modern technological solutions is expanding rapidly

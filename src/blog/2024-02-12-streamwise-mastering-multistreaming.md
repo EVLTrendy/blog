@@ -6,14 +6,14 @@ tags:
   - post
   - featured
   - twitch
-  - tt
+  - tiktok
 image: /assets/blog/streamwise-mastering-multistreaming-1-.png
 imageAlt: 'Streamwise: Mastering Multistreaming'
 description: 'Hey there, fellow streamers! Have you ever wanted to be in two places at once? You kind of can, though, in the world of livestreaming! Now, let''s discus...'
 keywords: 'content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing'
 schema_type: Article
 og_type: article
-category: content-creation
+category: social-media
 featured: true
 ---
 Hey there, fellow streamers! Have you ever wanted to be in two places at once? You kind of can, though, in the world of livestreaming! Now, let's discuss multistreaming. Being able to simultaneously broadcast your stuff to every corner of the internet is like having superpowers.

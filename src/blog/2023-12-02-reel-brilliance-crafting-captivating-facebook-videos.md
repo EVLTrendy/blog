@@ -5,7 +5,7 @@ date: '2023-12-02T12:00:00.000Z'
 tags:
   - post
   - featured
-  - fb
+  - facebook
 image: /assets/blog/reel-brilliance-crafting-captivating-facebook-videos.png
 imageAlt: rbccfvpic
 description: 'As short-form videos continue to dominate the digital landscape, Facebook Reels has emerged as a powerful tool for content creators, marketers, and infl...'

@@ -5,7 +5,7 @@ date: '2025-04-27T12:00:00.000Z'
 tags:
   - post
   - featured
-  - fb
+  - facebook
 image: /assets/blog/facebook-content-mastery-5-proven-strategies-for-explosive-engagement.png
 imageAlt: 'Facebook Content Mastery: 5 Proven Strategies for Explosive Engagement'
 description: Many Facebook users struggle to generate content that stands out to their audience

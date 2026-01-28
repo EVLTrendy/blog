@@ -5,7 +5,7 @@ date: '2024-03-29T16:43:00.000Z'
 tags:
   - post
   - featured
-  - yt
+  - youtube
 image: /assets/blog/youtube-just-gave-creators-a-makeover-it-s-time-to-shine.png
 imageAlt: 'YouTube Just Gave Creators a Makeover: It''s Time to Shine'
 description: 'We spend endless hours on YouTube, watching videos ranging from cat memes to DIY instructional'

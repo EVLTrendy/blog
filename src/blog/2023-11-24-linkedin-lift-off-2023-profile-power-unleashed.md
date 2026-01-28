@@ -5,7 +5,7 @@ date: '2023-11-24T12:00:00.000Z'
 tags:
   - post
   - featured
-  - link
+  - linkedin
 image: /assets/blog/zyro-image.png
 imageAlt: liftofflinkedin
 description: Your LinkedIn profile serves as a dynamic representation of your professional identity within the ever-evolving landscape of business networking

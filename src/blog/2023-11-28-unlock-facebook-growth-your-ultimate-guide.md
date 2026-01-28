@@ -5,8 +5,8 @@ date: '2023-11-28T12:00:00.000Z'
 tags:
   - post
   - featured
-  - trending
-  - fb
+  - growth
+  - facebook
 image: /assets/blog/skjadklame.png
 imageAlt: ufgyug
 description: 'Facebook, an indispensable force in today''s social media landscape, serves as more than just a platform; it''s a crucial tool for community building, con...'

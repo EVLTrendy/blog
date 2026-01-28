@@ -8,10 +8,10 @@ tags:
   - featured
   - misc
   - tiktok
-  - yt
+  - youtube
   - twitter
-  - ig
-  - link
+  - instagram
+  - linkedin
 keywords: 'content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing, mobile photography, content creation tips, social media strategy, digital marketing, visual content, photography tips, social media growth, content strategy, mobile content creation, visual storytelling, social media marketing, digital content, photography techniques, content marketing'
 image: /assets/blog/mobile-photography-techniques-for-better-content.png
 imageAlt: Mobile Photography Techniques for Better Content

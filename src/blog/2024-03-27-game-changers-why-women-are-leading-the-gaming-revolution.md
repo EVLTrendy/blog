@@ -12,7 +12,7 @@ description: Women are leading the gaming revolution with a rise in female gamer
 keywords: 'content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing'
 schema_type: Article
 og_type: article
-category: strategy
+category: social-media
 featured: true
 ---
 Women are leading the gaming revolution with a rise in female gamers changing the way games are designed and marketed.

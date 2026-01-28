@@ -8,10 +8,10 @@ tags:
   - featured
   - misc
   - tiktok
-  - yt
+  - youtube
   - twitter
-  - ig
-  - link
+  - instagram
+  - linkedin
 image: /assets/blog/turning-your-content-into-multiple-revenue-streams.png
 imageAlt: Turning Your Content into Multiple Revenue Streams
 keywords: 'content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing'

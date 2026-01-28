@@ -6,10 +6,9 @@ author: EvolvedLotus Team
 tags:
   - post
   - featured
-  - post
   - misc
 image: /assets/blog/jams-without-jitters-your-copyright-free-soundtrack-guide-.png
-category: content-creation
+category: tools
 featured: true
 imageAlt: 'Jams Without Jitters: Your Copyright-Free Soundtrack Guide!'
 keywords: 'content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing'

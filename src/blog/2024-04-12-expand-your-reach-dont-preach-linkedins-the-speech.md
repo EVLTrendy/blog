@@ -5,7 +5,7 @@ date: '2024-04-12T12:00:00.000Z'
 tags:
   - post
   - featured
-  - link
+  - linkedin
 image: /assets/blog/expand-your-reach-don-t-preach-linkedin-s-the-speech.png
 imageAlt: 'Expand Your Reach, Don''t Preach? LinkedIn''s the Speech'
 description: 'That''s a common question, especially given how many other social media platforms compete for our attention'

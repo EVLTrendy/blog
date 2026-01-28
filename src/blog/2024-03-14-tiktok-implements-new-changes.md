@@ -12,7 +12,7 @@ description: Are you ready to take your TikTok game to the next level? Look no f
 keywords: 'content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing'
 schema_type: Article
 og_type: article
-category: strategy
+category: social-media
 featured: true
 ---
 Are you ready to take your TikTok game to the next level? Look no further than TikTok Photos and Creator Search Insights – the revolutionary new features that are transforming the content creation experience. With TikTok Photos, you can showcase your favorite memories, snaps, and selfies in an entirely new way, while Creator Search Insights provide invaluable data about what users are searching for on the platform. These features are the key to making your content stand out and keeping viewers engaged.

@@ -5,8 +5,8 @@ date: '2024-04-09T12:00:00.000Z'
 tags:
   - post
   - featured
-  - ig
-  - fb
+  - instagram
+  - facebook
 image: /assets/blog/no-more-regrets-edit-pin-style-up-your-instagram-dms-.png
 imageAlt: 'No More Regrets: Edit, Pin & Style Up Your Instagram DMs!'
 description: 'Attention, all Meta users! If, like me, you spend a lot of time chatting on the app, you''ll be glad to know that Meta added some new enhancements to the...'

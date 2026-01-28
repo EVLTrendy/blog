@@ -8,14 +8,14 @@ tags:
   - featured
   - misc
   - tiktok
-  - yt
+  - youtube
   - twitter
-  - ig
-  - link
+  - instagram
+  - linkedin
 image: /assets/blog/plan-batch-and-grow-your-social-media.png
 imageAlt: 'Plan, Batch, and Grow Your Social Media'
 keywords: 'content calendar, social media planning, Notion templates, batch content creation, free content tools, content strategy, social media growth'
-category: content-creation
+category: strategy
 featured: true
 schema_type: Article
 og_type: article

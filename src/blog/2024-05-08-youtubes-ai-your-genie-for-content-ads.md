@@ -5,7 +5,7 @@ date: '2024-05-08T12:00:00.000Z'
 tags:
   - post
   - featured
-  - yt
+  - youtube
 image: /assets/blog/youtube-s-ai-your-genie-for-content-ads-.png
 imageAlt: 'YouTube''s AI: Your Genie for Content & Ads!'
 description: 'Recently, YouTube has been introducing some incredibly handy upgrades, especially in the realm of AI'

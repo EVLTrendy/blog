@@ -5,7 +5,7 @@ date: '2023-12-05T12:00:00.000Z'
 tags:
   - post
   - featured
-  - link
+  - linkedin
 image: /assets/blog/follow-the-lead-linkedin-unleashed-–-your-follower-magnet-.png
 imageAlt: ftlliuyfmpic
 description: LinkedIn becomes more than just a platform; it becomes a beacon of hope for people attempting to negotiate the complex routes that lead to jobs and ente...

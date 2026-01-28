@@ -12,7 +12,7 @@ description: Imagine scrolling through TikTok and coming across a video that cap
 keywords: 'content creation, social media, digital marketing, blogging, SEO, content strategy, social media marketing, online marketing'
 schema_type: Article
 og_type: article
-category: content-creation
+category: social-media
 featured: true
 ---
 Imagine scrolling through TikTok and coming across a video that captivates you with its authenticity. Welcome to TikTok 2024, where genuine connections are more important than ever.
