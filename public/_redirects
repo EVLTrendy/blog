@@ -1,3 +1,9 @@
+# ==============================================================================
+# EvolvedLotus Blog - Netlify Redirects Configuration
+# Last Updated: 2026-02-03
+# Purpose: Fix Google Search Console indexing issues and handle legacy URLs
+# ==============================================================================
+
 # Short URL API endpoint
 /api/shorten    /.netlify/functions/shorten    200!
 
@@ -8,12 +14,65 @@
 /favicon.ico    /assets/blog/favicon.ico    200
 /logo.png       /assets/blog/logo.png       200
 
-# Primary redirects - ensure no redirect chains
-# Removed blog redirect to prevent redirect chains - internal links should point directly to final destinations
-# /    /index.html    200
+# ==============================================================================
+# SPANISH (ES) URL REDIRECTS - Fix 404 errors in Google Search Console
+# These Spanish pages don't exist, redirect to English equivalents
+# ==============================================================================
+/es/saved/    /saved/    301
+/es/saved     /saved/    301
 
-# Handle 404s with a custom error page
+# Specific Spanish blog posts that returned 404 (redirect to English versions or blog listing)
+/es/blog/2024-09-27-evolved-insights-*    /blog/    301
+/es/blog/2023-12-07-lotus-evolution-twitch-wave-weekly/    /blog/    301
+/es/blog/2024-01-24-facebook-ads-with-evolvedlotus/    /blog/    301
+
+# Catch-all for Spanish blog posts - redirect to English blog listing
+/es/blog/*    /blog/    301
+
+# Spanish hub pages - redirect to English equivalents
+/es/hubs/*    /hubs/    301
+
+# Spanish author pages - redirect to English authors
+/es/authors/*    /authors/    301
+
+# Spanish homepage stays as-is (it exists)
+# /es/    /es/index.html    200
+
+# ==============================================================================
+# LEGACY SOCIAL HUB REDIRECTS - Fix broken /x-* links and 5xx errors
+# ==============================================================================
+/x-kick       /blog/?search=kick            301
+/x-fb         /blog/?search=facebook        301
+/x-ig         /hubs/instagram-growth/       301
+/x-link       /blog/?search=linkedin        301
+/x-tiktok     /hubs/tiktok-marketing/       301
+/x-twitch     /blog/?search=twitch          301
+/x-twitter    /blog/?search=twitter         301
+/x-yt         /hubs/youtube-strategy/       301
+/x-misc       /blog/                        301
+/x-youtube    /hubs/youtube-strategy/       301
+/x-instagram  /hubs/instagram-growth/       301
+
+# ==============================================================================
+# MALFORMED URL HANDLING - Prevent 5xx errors from bad crawl requests
+# ==============================================================================
+# URLs with linktr.ee appended (bad internal linking)
+/blog/*/linktr.ee/*    /blog/    301
+/blog/*linktr.ee*      /blog/    301
+
+# ==============================================================================
+# CATEGORY AND SEARCH URL NORMALIZATION
+# ==============================================================================
+/blog/?category=*    /blog/    301!
+/blog?category=*     /blog/    301!
+
+# ==============================================================================
+# TRAILING SLASH NORMALIZATION
+# ==============================================================================
+# Ensure consistent URL structure (Eleventy generates with trailing slashes)
+
+# ==============================================================================
+# 404 HANDLING
+# ==============================================================================
+# Handle 404s with a custom error page (must be last)
 /*    /404.html    404
-
-# SEO-friendly redirects - prevent duplicate content
-# No additional redirects needed as Eleventy handles URL structure
