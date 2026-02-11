@@ -2433,12 +2433,20 @@
       const btn = document.getElementById('btnGenerateSEO');
       const originalText = btn.innerHTML;
 
-      // Get content depending on which editor is active or just check simpleMDE
-      const content = simpleMDE ? simpleMDE.value() : document.getElementById('mainContent').value;
+      // Ensure editor content is synced/retrieved
+      let content = '';
+      if (simpleMDE) {
+        content = simpleMDE.value();
+      } else {
+        content = document.getElementById('mainContent').value;
+      }
+
       const category = document.getElementById('blogCategory').value;
       const currentTitle = document.getElementById('blogTitle').value;
 
-      if (!content || content.length < 100) {
+      console.log('Generating SEO for content length:', content.length);
+
+      if (!content || content.length < 50) {
         alert('⚠️ Please write at least a few sentences of content so the AI can analyze it.');
         return;
       }
@@ -2450,6 +2458,7 @@
 
       try {
         const payload = { content, category, currentTitle };
+        console.log('Sending payload:', { ...payload, content: content.substring(0, 50) + '...' });
         let response;
 
         // Try local helper first (if running locally), then Netlify function
