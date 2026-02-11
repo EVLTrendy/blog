@@ -6,7 +6,7 @@ exports.handler = async (event, context) => {
   }
 
   try {
-    const { content, category, currentTitle } = JSON.parse(event.body);
+    const { content, category, currentTitle, availableCategories } = JSON.parse(event.body);
     const apiKey = process.env.GROQ_API_KEY;
 
     if (!apiKey) {
@@ -24,22 +24,28 @@ exports.handler = async (event, context) => {
     }
 
     // System Prompt implementing the Algorithm Outline
-    const systemPrompt = `You are an expert SEO specialist and content strategist for the 'EvolvedLotus' tech blog.
-Your goal is to analyze the provided blog draft and generate high-impact SEO metadata.
+    const systemPrompt = `You are a world-class SEO Strategist & Viral Content Expert for 'EvolvedLotus'.
+Your goal is to generate **High-Engagement, High-CTR, and SEO-Optimized** metadata for a blog post.
 
-Leverage your internal knowledge of current tech trends, search behavior, and semantic keyword relevance.
-Follow this algorithm mentally to produce the result:
-1.  **Keyword Collection**: Extract keywords from the content. Consider synonyms and related high-volume search terms in the niche.
-2.  **Scoring & Filtering**: Prioritize keywords with high search intent and relevance. Remove generic filler words.
-3.  **Clustering**: Group similar terms and pick the most potent one.
-4.  **Generation**:
-    *   **Title**: Create a compelling, click-worthy title (max 60 chars optimal).
-    *   **Description**: Write a meta description (150-160 chars) that incites clicks (CTR).
-    *   **Keywords**: A comma-separated list of the top 5-8 semantic keywords.
-    *   **Image Alt**: A descriptive, keyword-rich alt text for a featured image.
+**VALID CATEGORIES**: ${availableCategories ? availableCategories.join(', ') : 'Tech, Business, Marketing'}
 
-**Output Format**: Return ONLY valid JSON with this structure:
+### INSTRUCTIONS:
+
+1.  **Analyze Content**: Understand the core value proposition, target audience, and key takeaways.
+2.  **Select Category**: Choose the ONE category from the list above that best fits the content.
+3.  **Generate Metadata**:
+    *   **Title (CRITICAL)**: Must be "Click-Worthy" yet professional. Use **Power Words** (e.g., Ultimate, Essential, Proven, Insane, X Strategies).
+        *   *Format*: "[Number] [Adjective] Ways to [Benefit]" OR "How to [Benefit] ( The [Adjective] Guide )".
+        *   *Goal*: Maximize CTR while keeping keywords near the front. Max 60 chars.
+    *   **Description**: A "Hook" that forces the user to click.
+        *   *Structure*: [Problem/Pain Point] + [Solution/Tease] + [Call to Action].
+        *   *Goal*: High emotional engagement & SEO relevance. 150-160 chars.
+    *   **Keywords**: 5-8 high-volume, low-competition semantic keywords.
+    *   **Image Alt**: specific, descriptive text for the hero image.
+
+**Output Format**: Return ONLY valid JSON:
 {
+  "category": "exact-value-from-list",
   "title": "...",
   "description": "...",
   "keywords": "...",
@@ -47,13 +53,11 @@ Follow this algorithm mentally to produce the result:
 }`;
 
     const userPrompt = `
-**Blog Category**: ${category || 'Tech'}
 **Current Draft Title**: ${currentTitle || 'Untitled'}
 **Draft Content (Excerpt)**:
 ${content.slice(0, 4000)}
 
-Verify the content against the category.
-Generate the SEO metadata now.`;
+Generate the High-Impact SEO metadata now.`;
 
     console.log(`Sending request to Groq. Content length: ${content.length}`);
 

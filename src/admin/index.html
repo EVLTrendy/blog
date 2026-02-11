@@ -2441,8 +2441,13 @@
         content = document.getElementById('mainContent').value;
       }
 
-      const category = document.getElementById('blogCategory').value;
       const currentTitle = document.getElementById('blogTitle').value;
+
+      // Collect available categories
+      const categorySelect = document.getElementById('blogCategory');
+      const availableCategories = Array.from(categorySelect.options)
+        .map(opt => opt.value)
+        .filter(val => val !== ''); // Exclude empty/default option
 
       console.log('Generating SEO for content length:', content.length);
 
@@ -2457,7 +2462,7 @@
       btn.style.cursor = 'wait';
 
       try {
-        const payload = { content, category, currentTitle };
+        const payload = { content, currentTitle, availableCategories };
         console.log('Sending payload:', { ...payload, content: content.substring(0, 50) + '...' });
         let response;
 
@@ -2478,23 +2483,26 @@
         }
 
         if (!response.ok) {
-          const errData = await response.json();
-          throw new Error(errData.error || 'API Request Failed');
+          const errData = await response.text();
+          console.error(`API Error: ${errData}`);
+          throw new Error('API Request Failed: ' + (JSON.parse(errData).error?.message || errData));
         }
 
         const data = await response.json();
+        console.log('Received SEO Data:', data);
 
         // Populate fields with animation effect
         const fields = [
           { id: 'blogTitle', val: data.title },
           { id: 'blogDesc', val: data.description },
           { id: 'blogKeywords', val: data.keywords },
-          { id: 'blogImageAlt', val: data.imageAlt }
+          { id: 'blogImageAlt', val: data.imageAlt },
+          { id: 'blogCategory', val: data.category } // Set category
         ];
 
         fields.forEach(f => {
           const el = document.getElementById(f.id);
-          if (el) {
+          if (el && f.val) {
             el.value = f.val;
             el.style.transition = 'background-color 0.5s';
             el.style.backgroundColor = '#d1fae5'; // highlight green
@@ -2502,10 +2510,10 @@
           }
         });
 
-        // Update slug preview
+        // Update slug preview based on new title
         if (data.title) updateSlug('blog');
 
-        alert('✨ SEO Metadata Generated Successfully!\n\nReview the highlighted fields before saving.');
+        alert('✨ High-Impact SEO Metadata Generated!\n\nReview the highlighted fields.');
 
       } catch (error) {
         console.error('SEO Generation Error:', error);
