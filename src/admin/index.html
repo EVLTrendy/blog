@@ -403,6 +403,122 @@
       border-radius: 6px 6px 0 0;
     }
 
+    /* Blog search/filter/sort toolbar */
+    .blog-toolbar {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+    }
+    .blog-toolbar-row {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .blog-toolbar input[type="text"] {
+      flex: 1;
+      min-width: 200px;
+      padding: 10px 14px;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      font-size: 14px;
+      background: #f8fafc;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .blog-toolbar input[type="text"]:focus {
+      outline: none;
+      border-color: #33bdef;
+      box-shadow: 0 0 0 3px rgba(51,189,239,0.1);
+      background: white;
+    }
+    .blog-toolbar select {
+      padding: 10px 14px;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      font-size: 14px;
+      background: #f8fafc;
+      cursor: pointer;
+      min-width: 150px;
+    }
+    .blog-toolbar .result-count {
+      font-size: 0.85em;
+      color: #718096;
+      margin-top: 10px;
+    }
+
+    /* Media block builder */
+    .media-blocks-container {
+      margin-top: 15px;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 15px;
+      background: #f8fafc;
+    }
+    .media-block-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px;
+      background: white;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      margin-bottom: 10px;
+      transition: box-shadow 0.2s;
+    }
+    .media-block-item:hover {
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+    .media-block-item .block-type-badge {
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 0.75em;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      white-space: nowrap;
+    }
+    .media-block-item .block-type-badge.image {
+      background: #dbeafe;
+      color: #1e40af;
+    }
+    .media-block-item .block-type-badge.video {
+      background: #fce7f3;
+      color: #9d174d;
+    }
+    .media-block-item .block-info {
+      flex: 1;
+      font-size: 0.85em;
+      color: #4a5568;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .media-block-item .block-aspect {
+      font-size: 0.75em;
+      color: #718096;
+      background: #f0f4f8;
+      padding: 3px 8px;
+      border-radius: 4px;
+      white-space: nowrap;
+    }
+    .media-block-add-row {
+      display: grid;
+      grid-template-columns: auto 1fr auto auto;
+      gap: 10px;
+      align-items: end;
+      margin-top: 10px;
+    }
+    .media-block-add-row select,
+    .media-block-add-row input {
+      padding: 8px 12px;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      font-size: 13px;
+    }
+
     @media (max-width: 1024px) {
       .cms-sidebar {
         width: 80px;
@@ -464,7 +580,6 @@
     <a href="#" class="cms-nav-item" onclick="showSection('pages'); return false;">📄 Pages</a>
     <a href="#" class="cms-nav-item" onclick="showSection('media'); return false;">🖼️ Media</a>
     <a href="#" class="cms-nav-item" onclick="showSection('analytics'); return false;">📈 Analytics</a>
-    <a href="#" class="cms-nav-item" onclick="showSection('evlapi'); return false;">🌐 EvolvedLotus API</a>
   </nav>
 
   <main class="cms-main">
@@ -506,6 +621,33 @@
       <div style="margin: 20px 0;">
         <button class="btn primary" onclick="createNewContent('blog')">+ New Blog Post</button>
         <button class="btn" onclick="refreshSection('blog')">🔄 Refresh</button>
+      </div>
+      <div class="blog-toolbar">
+        <div class="blog-toolbar-row">
+          <input type="text" id="blogSearchInput" placeholder="🔍 Search posts by title, author, or tags..." oninput="filterBlogPosts()">
+          <select id="blogFilterCategory" onchange="filterBlogPosts()">
+            <option value="">All Categories</option>
+            <option value="content-creation">Content Creation</option>
+            <option value="social-media">Social Media</option>
+            <option value="seo">SEO</option>
+            <option value="analytics">Analytics</option>
+            <option value="tools">Tools & Resources</option>
+          </select>
+          <select id="blogFilterStatus" onchange="filterBlogPosts()">
+            <option value="">All Status</option>
+            <option value="featured">Featured</option>
+            <option value="draft">Draft</option>
+            <option value="published">Published</option>
+          </select>
+          <select id="blogSortBy" onchange="filterBlogPosts()">
+            <option value="date-desc">Newest First</option>
+            <option value="date-asc">Oldest First</option>
+            <option value="title-asc">Title A → Z</option>
+            <option value="title-desc">Title Z → A</option>
+            <option value="author-asc">Author A → Z</option>
+          </select>
+        </div>
+        <div class="result-count" id="blogResultCount"></div>
       </div>
       <div id="blogList" class="content-list">
         <p><span class="loading-spinner"></span> Loading blog posts...</p>
@@ -589,117 +731,7 @@
       </div>
     </section>
 
-    <!-- 🌐 EVOLVEDLOTUS API SECTION -->
-    <section id="evlapi" class="content-section">
-      <h1>🌐 EvolvedLotus API Management</h1>
-      <p>Manage cross-platform promotional ads, analytics, and content across all EvolvedLotus properties.</p>
 
-      <div class="stats-grid">
-        <div class="stat-card">
-          <div class="stat-number" id="evlApiAdsCount">0</div>
-          <div class="stat-label">Active Ads</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-number" id="evlApiBlogCount">0</div>
-          <div class="stat-label">Blog Posts (Rotating)</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-number" id="evlApiImpressions">0</div>
-          <div class="stat-label">Total Impressions</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-number" id="evlApiClicks">0</div>
-          <div class="stat-label">Total Clicks</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-number" id="evlApiCTR">0%</div>
-          <div class="stat-label">Click-Through Rate</div>
-        </div>
-      </div>
-
-      <!-- 🔄 ROTATING BLOG ADS -->
-      <h3>🔄 Rotating Blog Ads</h3>
-      <div class="recent-activity">
-        <div
-          style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 20px; border-radius: 10px; margin-bottom: 15px;">
-          <h4 style="margin: 0 0 10px 0; color: white;">✅ Blog Rotation Active</h4>
-          <p style="margin: 0; opacity: 0.9; font-size: 0.9em;">
-            All <strong id="rotatingBlogCountText">0</strong> published blog posts are automatically included in
-            promotional ad rotation.
-            When platforms request ads with <code
-              style="background: rgba(255,255,255,0.2); padding: 2px 6px; border-radius: 4px;">include_blogs=true</code>,
-            there's a <strong>40% chance</strong> to show a randomly selected blog post from your entire catalog.
-          </p>
-        </div>
-        <p style="color: #718096; font-size: 0.85em; margin-top: 10px;">
-          <strong>How it works:</strong> The API fetches all published blog posts from <code>/api/posts.json</code> and
-          caches them for 30 minutes.
-          Each blog post is automatically converted to an ad with smart color coding based on tags (YouTube=red,
-          Instagram=pink, Twitter=blue, etc.).
-        </p>
-      </div>
-
-      <h3 style="margin-top: 40px;">📢 Static Promotional Ads</h3>
-      <div style="margin: 20px 0;">
-        <button class="btn primary" onclick="openEvlAdModal()">+ Create New Ad</button>
-        <button class="btn" onclick="refreshEvlAds()">🔄 Refresh</button>
-      </div>
-
-      <div id="evlAdsList" class="content-list">
-        <div class="content-item">
-          <h4>📝 YouTube 2026: Trends & Growth Guide</h4>
-          <div class="content-meta">
-            <strong>Type:</strong> Blog Post | <strong>Platform:</strong> All<br>
-            <strong>URL:</strong> <a
-              href="https://blog.evolvedlotus.com/blog/2026-01-14-youtube-2026-trends-tips-and-how-to-grow-your-channel/"
-              target="_blank">View →</a><br>
-            <strong>Stats:</strong> 0 impressions | 0 clicks | 0% CTR
-          </div>
-          <div class="content-actions">
-            <button class="btn" onclick="editEvlAd('blog_yt_2026')">✏️ Edit</button>
-            <button class="btn warning" onclick="toggleEvlAd('blog_yt_2026')">⏸️ Pause</button>
-          </div>
-        </div>
-        <div class="content-item">
-          <h4>🐦 TweetCraft AI - Twitter Reply Generator</h4>
-          <div class="content-meta">
-            <strong>Type:</strong> Tool | <strong>Platform:</strong> All<br>
-            <strong>URL:</strong> <a href="https://tools.evolvedlotus.com/twitterreplybot/" target="_blank">View
-              →</a><br>
-            <strong>Stats:</strong> 0 impressions | 0 clicks | 0% CTR
-          </div>
-          <div class="content-actions">
-            <button class="btn" onclick="editEvlAd('tool_tweetcraft')">✏️ Edit</button>
-            <button class="btn warning" onclick="toggleEvlAd('tool_tweetcraft')">⏸️ Pause</button>
-          </div>
-        </div>
-      </div>
-
-      <h3 style="margin-top: 40px;">🎯 Platform Distribution (Ad Clients)</h3>
-      <div class="recent-activity">
-        <p style="color: #718096; font-size: 0.9em; margin-bottom: 15px;">Manage weights and priorities for platforms
-          using the EVL API.</p>
-        <div id="evlApiClientsList">
-          <div class="loading"><span class="loading-spinner"></span> Loading API clients...</div>
-        </div>
-      </div>
-
-      <h3 style="margin-top: 40px;">⚙️ API Configuration</h3>
-      <div class="recent-activity">
-        <p><strong>API Endpoint:</strong> <code
-            id="evlApiEndpointDisplay">https://cooperative-renewal-production-41ce.up.railway.app</code></p>
-        <p><strong>Status:</strong> <span id="evlApiStatus" style="color: #718096;">● Checking...</span></p>
-        <div id="evlApiAuthSection"
-          style="margin-top: 15px; display: none; padding-top: 15px; border-top: 1px solid #eee;">
-          <p style="font-size: 0.9em; color: #f56565;">⚠️ Login required to manage API settings.</p>
-          <button class="btn info"
-            onclick="window.open('https://cooperative-renewal-production-41ce.up.railway.app', '_blank')">Login to EVL
-            Dashboard</button>
-          <button class="btn success" onclick="refreshEvlApiClients()" style="margin-left: 10px;">Already logged in?
-            Refresh</button>
-        </div>
-      </div>
-    </section>
   </main>
 
   <!-- Content Editor Modal -->
@@ -783,6 +815,33 @@
           <div class="form-row">
             <label><input type="checkbox" id="blogFeatured"> Featured</label>
             <label style="margin-left:15px;"><input type="checkbox" id="blogDraft"> Draft</label>
+          </div>
+
+          <!-- 🖼️ INLINE MEDIA BLOCKS -->
+          <h4 style="border-bottom:1px solid #eee; padding-bottom:5px; margin-top:20px;">📎 Media Blocks</h4>
+          <p style="font-size:0.85em; color:#718096; margin-bottom:10px;">Add image or video blocks to insert into your blog content. They will be appended at the cursor position in the editor.</p>
+          <div class="media-blocks-container">
+            <div id="mediaBlocksList"></div>
+            <div class="media-block-add-row">
+              <select id="mediaBlockType">
+                <option value="image">🖼️ Image</option>
+                <option value="video">🎬 Video</option>
+              </select>
+              <input type="text" id="mediaBlockUrl" placeholder="URL or path (e.g. /assets/blog/photo.jpg or https://youtube.com/...)">
+              <select id="mediaBlockAspect">
+                <option value="16:9">16:9 (Widescreen)</option>
+                <option value="4:3">4:3 (Standard)</option>
+                <option value="1:1">1:1 (Square)</option>
+                <option value="9:16">9:16 (Portrait / Story)</option>
+                <option value="3:2">3:2 (Classic Photo)</option>
+                <option value="21:9">21:9 (Ultrawide)</option>
+                <option value="auto">Auto (No constraint)</option>
+              </select>
+              <button type="button" class="btn primary" style="white-space:nowrap;" onclick="addMediaBlock()">+ Add Block</button>
+            </div>
+            <div style="margin-top:8px;">
+              <input type="text" id="mediaBlockAlt" placeholder="Alt text / caption (optional)" style="font-size:13px; padding:8px 12px;">
+            </div>
           </div>
 
           <h4 style="border-bottom:1px solid #eee; padding-bottom:5px; margin-top:20px;">SEO Advanced</h4>
@@ -1129,7 +1188,7 @@
       if (name === 'notifications' && !contentData.notificationsLoaded) loadNotifications();
       if (name === 'pages' && !contentData.pagesLoaded) loadPages();
       if (name === 'media' && !contentData.mediaLoaded) loadMedia();
-      if (name === 'evlapi') refreshEvlApiClients();
+
     }
 
     function refreshSection(sec) {
@@ -1198,21 +1257,82 @@
 
     // Loaders with error handling
     function loadBlogPosts() {
+      contentData.blogLoaded = true;
+      filterBlogPosts();
+    }
+
+    function filterBlogPosts() {
       const listEl = document.getElementById('blogList');
+      const countEl = document.getElementById('blogResultCount');
       try {
-        const posts = contentData.blog || [];
-        contentData.blogLoaded = true;
+        let posts = contentData.blog || [];
+        const totalCount = posts.length;
 
         if (posts.length === 0) {
           listEl.innerHTML = '<p>No posts found. Click "+ New Blog Post" to create your first post!</p>';
+          if (countEl) countEl.textContent = '';
+          return;
+        }
+
+        // Search filter
+        const searchVal = (document.getElementById('blogSearchInput')?.value || '').toLowerCase().trim();
+        if (searchVal) {
+          posts = posts.filter(p => {
+            const title = (p.title || '').toLowerCase();
+            const author = (p.author || '').toLowerCase();
+            const tags = (Array.isArray(p.tags) ? p.tags.join(' ') : (p.tags || '')).toLowerCase();
+            const desc = (p.description || '').toLowerCase();
+            return title.includes(searchVal) || author.includes(searchVal) || tags.includes(searchVal) || desc.includes(searchVal);
+          });
+        }
+
+        // Category filter
+        const catVal = document.getElementById('blogFilterCategory')?.value || '';
+        if (catVal) {
+          posts = posts.filter(p => (p.category || '') === catVal);
+        }
+
+        // Status filter
+        const statusVal = document.getElementById('blogFilterStatus')?.value || '';
+        if (statusVal === 'featured') {
+          posts = posts.filter(p => p.featured);
+        } else if (statusVal === 'draft') {
+          posts = posts.filter(p => p.draft);
+        } else if (statusVal === 'published') {
+          posts = posts.filter(p => !p.draft);
+        }
+
+        // Sort
+        const sortVal = document.getElementById('blogSortBy')?.value || 'date-desc';
+        posts.sort((a, b) => {
+          if (sortVal === 'date-desc') return new Date(b.date || 0) - new Date(a.date || 0);
+          if (sortVal === 'date-asc') return new Date(a.date || 0) - new Date(b.date || 0);
+          if (sortVal === 'title-asc') return (a.title || '').localeCompare(b.title || '');
+          if (sortVal === 'title-desc') return (b.title || '').localeCompare(a.title || '');
+          if (sortVal === 'author-asc') return (a.author || '').localeCompare(b.author || '');
+          return 0;
+        });
+
+        // Update result count
+        if (countEl) {
+          if (searchVal || catVal || statusVal) {
+            countEl.textContent = `Showing ${posts.length} of ${totalCount} posts`;
+          } else {
+            countEl.textContent = `${totalCount} total posts`;
+          }
+        }
+
+        if (posts.length === 0) {
+          listEl.innerHTML = '<p style="color:#718096;">No posts match your filters. Try adjusting your search or filters.</p>';
           return;
         }
 
         listEl.innerHTML = posts.map(p => `
           <div class="content-item">
-            <h4>${p.title || 'Untitled'} ${p.featured ? '<span class="badge blog">FEATURED</span>' : ''}</h4>
+            <h4>${p.title || 'Untitled'} ${p.featured ? '<span class="badge blog">FEATURED</span>' : ''} ${p.draft ? '<span class="badge notification">DRAFT</span>' : ''}</h4>
             <div class="content-meta">Published: ${p.date || 'No date'} | ${p.author || 'Unknown author'}</div>
             ${p.category ? `<div class="content-meta">Category: ${p.category}</div>` : ''}
+            ${p.tags && p.tags.length ? `<div class="content-meta" style="margin-top:4px;">${(Array.isArray(p.tags) ? p.tags : [p.tags]).map(t => `<span style="display:inline-block;background:#edf2f7;padding:2px 8px;border-radius:12px;font-size:0.78em;margin:2px 3px 2px 0;">${t}</span>`).join('')}</div>` : ''}
             <div class="content-actions">
               <button class="btn info" onclick="editContent('blog','${p.id}')">Edit</button>
               <button class="btn success" onclick="viewContent('${p.url}')">View</button>
@@ -1938,147 +2058,94 @@
       document.getElementById('blogImageInput').value = ''; // Reset file input
     }
 
-    // ========== EVOLVEDLOTUS API MANAGEMENT ==========
-    // Primary API is hosted on Railway
-    let EVL_API_BASE = 'https://cooperative-renewal-production-41ce.up.railway.app';
-    const EVL_API_FALLBACK = 'https://cooperative-renewal-production-41ce.up.railway.app';
+    // ========== MEDIA BLOCK BUILDER ==========
+    let mediaBlocks = [];
 
-    async function evlApiCall(endpoint, options = {}) {
-      let url = `${EVL_API_BASE}${endpoint}`;
-      options.credentials = 'include';
-      options.headers = {
-        ...options.headers,
-        'Content-Type': 'application/json'
-      };
+    function addMediaBlock() {
+      const type = document.getElementById('mediaBlockType').value;
+      const url = document.getElementById('mediaBlockUrl').value.trim();
+      const aspect = document.getElementById('mediaBlockAspect').value;
+      const alt = document.getElementById('mediaBlockAlt')?.value.trim() || '';
 
-      try {
-        let response = await fetch(url, options);
-        if (response.status === 401 || response.status === 403) {
-          document.getElementById('evlApiAuthSection').style.display = 'block';
-          document.getElementById('evlApiStatus').innerHTML = '● Unauthorized (Login Required)';
-          document.getElementById('evlApiStatus').style.color = '#f56565';
-          return null;
-        }
-        if (!response.ok) throw new Error(`HTTP ${response.status}`);
-        return await response.json();
-      } catch (e) {
-        console.warn(`Primary API ${url} failed, trying fallback...`, e);
-
-        try {
-          url = `${EVL_API_FALLBACK}${endpoint}`;
-          const response = await fetch(url, options);
-          if (response.status === 401 || response.status === 403) {
-            document.getElementById('evlApiAuthSection').style.display = 'block';
-            document.getElementById('evlApiStatus').innerHTML = '● Unauthorized';
-            document.getElementById('evlApiStatus').style.color = '#f56565';
-            return null;
-          }
-          if (response.ok) {
-            EVL_API_BASE = EVL_API_FALLBACK;
-            document.getElementById('evlApiEndpointDisplay').textContent = EVL_API_BASE;
-            return await response.json();
-          }
-        } catch (fallbackErr) {
-          console.error('All API endpoints failed:', fallbackErr);
-        }
-
-        document.getElementById('evlApiStatus').innerHTML = '● Offline';
-        document.getElementById('evlApiStatus').style.color = '#f56565';
-        return null;
-      }
-    }
-
-    async function refreshEvlApiClients() {
-      const listEl = document.getElementById('evlApiClientsList');
-      const statusEl = document.getElementById('evlApiStatus');
-      const authSection = document.getElementById('evlApiAuthSection');
-
-      if (!listEl) return;
-
-      statusEl.innerHTML = '● Connecting...';
-      statusEl.style.color = '#ecc94b';
-      authSection.style.display = 'none';
-
-      // Load Statistics first
-      const stats = await evlApiCall('/api/admin/ad-stats');
-      if (stats) {
-        document.getElementById('evlApiAdsCount').textContent = stats.total_ads || 0;
-        document.getElementById('evlApiImpressions').textContent = stats.total_impressions?.toLocaleString() || 0;
-        document.getElementById('evlApiClicks').textContent = stats.total_clicks?.toLocaleString() || 0;
-        document.getElementById('evlApiCTR').textContent = (stats.ctr || 0) + '%';
-      }
-
-      // Update blog post count from local content data (for rotating blogs feature)
-      const blogCount = contentData.blog?.length || 0;
-      const blogCountEl = document.getElementById('evlApiBlogCount');
-      const rotatingBlogCountEl = document.getElementById('rotatingBlogCountText');
-      if (blogCountEl) blogCountEl.textContent = blogCount;
-      if (rotatingBlogCountEl) rotatingBlogCountEl.textContent = blogCount;
-
-      // Load Clients
-      const data = await evlApiCall('/api/admin/ad-clients');
-      if (!data || !data.clients) {
-        if (statusEl.innerHTML.includes('Offline')) {
-          listEl.innerHTML = '<p class="error">API Server is unreachable. Check your internet or custom domain settings.</p>';
-        } else {
-          listEl.innerHTML = '<p class="error">Unable to load API clients. Please ensure you are logged in as a Super Admin.</p>';
-        }
+      if (!url) {
+        alert('Please enter a URL or path for the media block.');
         return;
       }
 
-      statusEl.innerHTML = '● Connected';
-      statusEl.style.color = '#48bb78';
+      mediaBlocks.push({ type, url, aspect, alt });
+      renderMediaBlocks();
 
-      let html = '';
-      data.clients.forEach(client => {
-        const lastSeen = client.last_request_at ? new Date(client.last_request_at).toLocaleString() : 'Never';
-        html += `
-          <div class="content-item" style="margin-bottom: 20px; border-left: 4px solid ${client.is_active ? '#48bb78' : '#f56565'};">
-            <div style="display: flex; justify-content: space-between; align-items: start;">
-              <div>
-                <h4>${client.name} (<code>${client.client_id}</code>)</h4>
-                <div class="content-meta">
-                  <strong>Last Activity:</strong> ${lastSeen}<br>
-                  <strong>Current Priority:</strong> ${client.priority} | <strong>Current Weight:</strong> ${client.weight}%
-                </div>
-              </div>
-              <span class="badge ${client.is_active ? 'blog' : 'notification'}">${client.is_active ? 'Active' : 'Inactive'}</span>
-            </div>
-            
-            <div style="margin-top: 15px; display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
-              <div>
-                <label style="font-size: 11px; margin-bottom: 4px; display: block;">Priority (Higher = Sooner)</label>
-                <input type="number" id="evl-prio-${client.client_id}" value="${client.priority}" style="padding: 6px; width: 100%;">
-              </div>
-              <div>
-                <label style="font-size: 11px; margin-bottom: 4px; display: block;">Weight (Ad Frequency %)</label>
-                <input type="number" id="evl-weight-${client.client_id}" value="${client.weight}" style="padding: 6px; width: 100%;">
-              </div>
-            </div>
-            <div style="margin-top: 10px; text-align: right;">
-              <button class="btn primary" style="padding: 5px 15px; font-size: 0.85em;" onclick="updateEvlApiClient('${client.client_id}')">Update Distribution</button>
-            </div>
-          </div>
-        `;
-      });
-      listEl.innerHTML = html;
+      // Clear inputs
+      document.getElementById('mediaBlockUrl').value = '';
+      document.getElementById('mediaBlockAlt').value = '';
     }
 
-    async function updateEvlApiClient(clientId) {
-      const priority = parseInt(document.getElementById(`evl-prio-${clientId}`).value);
-      const weight = parseInt(document.getElementById(`evl-weight-${clientId}`).value);
+    function removeMediaBlock(index) {
+      mediaBlocks.splice(index, 1);
+      renderMediaBlocks();
+    }
 
-      const result = await evlApiCall(`/api/admin/ad-clients/${clientId}`, {
-        method: 'PUT',
-        body: JSON.stringify({ priority, weight })
-      });
+    function insertMediaBlock(index) {
+      const block = mediaBlocks[index];
+      let markdown = '';
 
-      if (result && result.success) {
-        alert(`✅ Distribution settings for ${clientId} updated!`);
-        refreshEvlApiClients();
-      } else {
-        alert(`❌ Failed to update settings. Please check your connection.`);
+      const aspectMap = {
+        '16:9': '56.25%',
+        '4:3': '75%',
+        '1:1': '100%',
+        '9:16': '177.78%',
+        '3:2': '66.67%',
+        '21:9': '42.86%',
+        'auto': 'auto'
+      };
+
+      if (block.type === 'image') {
+        if (block.aspect === 'auto') {
+          markdown = `\n![${block.alt || 'image'}](${block.url})\n`;
+        } else {
+          markdown = `\n<div style="position:relative;width:100%;padding-bottom:${aspectMap[block.aspect]};overflow:hidden;border-radius:8px;margin:20px 0;"><img src="${block.url}" alt="${block.alt || 'image'}" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;" /></div>\n`;
+        }
+      } else if (block.type === 'video') {
+        // Detect YouTube
+        const ytMatch = block.url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([a-zA-Z0-9_-]{11})/);
+        if (ytMatch) {
+          markdown = `\n<div style="position:relative;width:100%;padding-bottom:${aspectMap[block.aspect] || '56.25%'};overflow:hidden;border-radius:8px;margin:20px 0;"><iframe src="https://www.youtube.com/embed/${ytMatch[1]}" style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;" allowfullscreen></iframe></div>\n`;
+        } else {
+          markdown = `\n<div style="position:relative;width:100%;padding-bottom:${aspectMap[block.aspect] || '56.25%'};overflow:hidden;border-radius:8px;margin:20px 0;"><video src="${block.url}" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;" controls${block.alt ? ` title="${block.alt}"` : ''}></video></div>\n`;
+        }
       }
+
+      // Insert into SimpleMDE at cursor position
+      if (simpleMDE) {
+        const cm = simpleMDE.codemirror;
+        const cursor = cm.getCursor();
+        cm.replaceRange(markdown, cursor);
+        simpleMDE.codemirror.focus();
+      } else {
+        const ta = document.getElementById('mainContent');
+        const start = ta.selectionStart;
+        ta.value = ta.value.slice(0, start) + markdown + ta.value.slice(start);
+      }
+    }
+
+    function renderMediaBlocks() {
+      const listEl = document.getElementById('mediaBlocksList');
+      if (!listEl) return;
+
+      if (mediaBlocks.length === 0) {
+        listEl.innerHTML = '<p style="font-size:0.85em; color:#a0aec0; text-align:center; padding:10px; margin:0;">No media blocks added yet</p>';
+        return;
+      }
+
+      listEl.innerHTML = mediaBlocks.map((block, i) => `
+        <div class="media-block-item">
+          <span class="block-type-badge ${block.type}">${block.type === 'image' ? '🖼️ IMG' : '🎬 VID'}</span>
+          <div class="block-info" title="${block.url}">${block.url}</div>
+          <span class="block-aspect">${block.aspect}</span>
+          <button type="button" class="btn info" style="padding:4px 10px; font-size:0.78em; margin:0;" onclick="insertMediaBlock(${i})" title="Insert at cursor">📥 Insert</button>
+          <button type="button" class="btn danger" style="padding:4px 8px; font-size:0.78em; margin:0;" onclick="removeMediaBlock(${i})">×</button>
+        </div>
+      `).join('');
     }
   </script>
 </body>
