@@ -410,14 +410,16 @@
       border-radius: 10px;
       margin-bottom: 20px;
       border: 1px solid #e2e8f0;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
     }
+
     .blog-toolbar-row {
       display: flex;
       gap: 12px;
       align-items: center;
       flex-wrap: wrap;
     }
+
     .blog-toolbar input[type="text"] {
       flex: 1;
       min-width: 200px;
@@ -428,12 +430,14 @@
       background: #f8fafc;
       transition: border-color 0.2s, box-shadow 0.2s;
     }
+
     .blog-toolbar input[type="text"]:focus {
       outline: none;
       border-color: #33bdef;
-      box-shadow: 0 0 0 3px rgba(51,189,239,0.1);
+      box-shadow: 0 0 0 3px rgba(51, 189, 239, 0.1);
       background: white;
     }
+
     .blog-toolbar select {
       padding: 10px 14px;
       border: 1px solid #e2e8f0;
@@ -443,80 +447,195 @@
       cursor: pointer;
       min-width: 150px;
     }
+
     .blog-toolbar .result-count {
       font-size: 0.85em;
       color: #718096;
       margin-top: 10px;
     }
 
-    /* Media block builder */
-    .media-blocks-container {
-      margin-top: 15px;
-      border: 1px solid #e2e8f0;
-      border-radius: 8px;
-      padding: 15px;
+    /* Media insert panel (injected below SimpleMDE toolbar) */
+    .media-insert-panel {
       background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-top: none;
+      border-radius: 0 0 8px 8px;
+      padding: 16px;
+      margin-bottom: 8px;
+      animation: mediaPanelSlideDown 0.2s ease-out;
     }
-    .media-block-item {
+
+    @keyframes mediaPanelSlideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-8px);
+        max-height: 0;
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+        max-height: 400px;
+      }
+    }
+
+    .media-insert-panel .mip-header {
       display: flex;
       align-items: center;
-      gap: 10px;
-      padding: 12px;
-      background: white;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+
+    .media-insert-panel .mip-header h4 {
+      margin: 0;
+      font-size: 0.95em;
+      color: #1e293b;
+    }
+
+    .media-insert-panel .mip-close {
+      background: none;
+      border: none;
+      font-size: 18px;
+      cursor: pointer;
+      color: #94a3b8;
+      padding: 2px 6px;
+      border-radius: 4px;
+      transition: background 0.15s;
+    }
+
+    .media-insert-panel .mip-close:hover {
+      background: #e2e8f0;
+      color: #334155;
+    }
+
+    .media-insert-panel .mip-tabs {
+      display: flex;
+      gap: 0;
+      margin-bottom: 14px;
       border: 1px solid #e2e8f0;
       border-radius: 8px;
-      margin-bottom: 10px;
-      transition: box-shadow 0.2s;
-    }
-    .media-block-item:hover {
-      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-    }
-    .media-block-item .block-type-badge {
-      padding: 4px 10px;
-      border-radius: 6px;
-      font-size: 0.75em;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      white-space: nowrap;
-    }
-    .media-block-item .block-type-badge.image {
-      background: #dbeafe;
-      color: #1e40af;
-    }
-    .media-block-item .block-type-badge.video {
-      background: #fce7f3;
-      color: #9d174d;
-    }
-    .media-block-item .block-info {
-      flex: 1;
-      font-size: 0.85em;
-      color: #4a5568;
       overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
     }
-    .media-block-item .block-aspect {
-      font-size: 0.75em;
-      color: #718096;
-      background: #f0f4f8;
-      padding: 3px 8px;
-      border-radius: 4px;
-      white-space: nowrap;
-    }
-    .media-block-add-row {
-      display: grid;
-      grid-template-columns: auto 1fr auto auto;
-      gap: 10px;
-      align-items: end;
-      margin-top: 10px;
-    }
-    .media-block-add-row select,
-    .media-block-add-row input {
+
+    .media-insert-panel .mip-tab {
+      flex: 1;
       padding: 8px 12px;
+      border: none;
+      background: white;
+      cursor: pointer;
+      font-size: 0.85em;
+      font-weight: 600;
+      color: #64748b;
+      transition: all 0.15s;
+      text-align: center;
+    }
+
+    .media-insert-panel .mip-tab:not(:last-child) {
+      border-right: 1px solid #e2e8f0;
+    }
+
+    .media-insert-panel .mip-tab.active {
+      background: #33bdef;
+      color: white;
+    }
+
+    .media-insert-panel .mip-tab:hover:not(.active) {
+      background: #f1f5f9;
+    }
+
+    .media-insert-panel .mip-body {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .media-insert-panel .mip-row {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .media-insert-panel .mip-row.full {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .media-insert-panel input[type="text"],
+    .media-insert-panel select {
+      padding: 9px 12px;
       border: 1px solid #e2e8f0;
       border-radius: 6px;
       font-size: 13px;
+      background: white;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+
+    .media-insert-panel input[type="text"]:focus,
+    .media-insert-panel select:focus {
+      outline: none;
+      border-color: #33bdef;
+      box-shadow: 0 0 0 3px rgba(51, 189, 239, 0.1);
+    }
+
+    .media-insert-panel input[type="text"] {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .media-insert-panel .mip-upload-zone {
+      border: 2px dashed #cbd5e1;
+      border-radius: 8px;
+      padding: 20px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s;
+      background: white;
+    }
+
+    .media-insert-panel .mip-upload-zone:hover {
+      border-color: #33bdef;
+      background: #f0f9ff;
+    }
+
+    .media-insert-panel .mip-upload-zone.dragging {
+      border-color: #33bdef;
+      background: #e0f2fe;
+    }
+
+    .media-insert-panel .mip-upload-zone .upload-icon {
+      font-size: 28px;
+      margin-bottom: 6px;
+    }
+
+    .media-insert-panel .mip-upload-zone .upload-text {
+      font-size: 0.85em;
+      color: #64748b;
+    }
+
+    .media-insert-panel .mip-upload-zone .upload-hint {
+      font-size: 0.75em;
+      color: #94a3b8;
+      margin-top: 4px;
+    }
+
+    .media-insert-panel .mip-upload-progress {
+      margin-top: 8px;
+      padding: 10px 14px;
+      border-radius: 6px;
+      font-size: 0.85em;
+      display: none;
+    }
+
+    .media-insert-panel .mip-actions {
+      display: flex;
+      gap: 8px;
+      justify-content: flex-end;
+      margin-top: 4px;
+    }
+
+    .media-insert-panel .mip-actions .btn {
+      padding: 8px 18px;
+      font-size: 0.85em;
     }
 
     @media (max-width: 1024px) {
@@ -624,7 +743,8 @@
       </div>
       <div class="blog-toolbar">
         <div class="blog-toolbar-row">
-          <input type="text" id="blogSearchInput" placeholder="🔍 Search posts by title, author, or tags..." oninput="filterBlogPosts()">
+          <input type="text" id="blogSearchInput" placeholder="🔍 Search posts by title, author, or tags..."
+            oninput="filterBlogPosts()">
           <select id="blogFilterCategory" onchange="filterBlogPosts()">
             <option value="">All Categories</option>
             <option value="content-creation">Content Creation</option>
@@ -747,6 +867,12 @@
 
         <!-- 📝 BLOG POST FIELDS -->
         <div id="blogFields" class="form-section">
+          <div style="display:flex; justify-content:flex-end; margin-bottom:15px;">
+            <button type="button" class="btn success" id="btnGenerateSEO" onclick="generateSEO()"
+              style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border:none; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+              ✨ Auto-Fill SEO with AI
+            </button>
+          </div>
           <div class="form-row">
             <label for="blogTitle">Post Title:</label>
             <input type="text" id="blogTitle" placeholder="10 Tips for..." oninput="updateSlug('blog')">
@@ -817,32 +943,6 @@
             <label style="margin-left:15px;"><input type="checkbox" id="blogDraft"> Draft</label>
           </div>
 
-          <!-- 🖼️ INLINE MEDIA BLOCKS -->
-          <h4 style="border-bottom:1px solid #eee; padding-bottom:5px; margin-top:20px;">📎 Media Blocks</h4>
-          <p style="font-size:0.85em; color:#718096; margin-bottom:10px;">Add image or video blocks to insert into your blog content. They will be appended at the cursor position in the editor.</p>
-          <div class="media-blocks-container">
-            <div id="mediaBlocksList"></div>
-            <div class="media-block-add-row">
-              <select id="mediaBlockType">
-                <option value="image">🖼️ Image</option>
-                <option value="video">🎬 Video</option>
-              </select>
-              <input type="text" id="mediaBlockUrl" placeholder="URL or path (e.g. /assets/blog/photo.jpg or https://youtube.com/...)">
-              <select id="mediaBlockAspect">
-                <option value="16:9">16:9 (Widescreen)</option>
-                <option value="4:3">4:3 (Standard)</option>
-                <option value="1:1">1:1 (Square)</option>
-                <option value="9:16">9:16 (Portrait / Story)</option>
-                <option value="3:2">3:2 (Classic Photo)</option>
-                <option value="21:9">21:9 (Ultrawide)</option>
-                <option value="auto">Auto (No constraint)</option>
-              </select>
-              <button type="button" class="btn primary" style="white-space:nowrap;" onclick="addMediaBlock()">+ Add Block</button>
-            </div>
-            <div style="margin-top:8px;">
-              <input type="text" id="mediaBlockAlt" placeholder="Alt text / caption (optional)" style="font-size:13px; padding:8px 12px;">
-            </div>
-          </div>
 
           <h4 style="border-bottom:1px solid #eee; padding-bottom:5px; margin-top:20px;">SEO Advanced</h4>
           <div class="form-row"><input type="text" id="blogImageAlt" placeholder="Image Alt Text"></div>
@@ -1135,8 +1235,32 @@
           spellChecker: false,
           placeholder: "Write your content here using Markdown...",
           status: ["lines", "words", "cursor"],
-          toolbar: ["bold", "italic", "heading", "|", "quote", "unordered-list", "ordered-list", "|", "link", "image", "|", "preview", "side-by-side", "fullscreen", "|", "guide"],
-          forceSync: true, // Force sync with textarea
+          toolbar: [
+            "bold", "italic", "heading", "|",
+            "quote", "unordered-list", "ordered-list", "|",
+            "link", "image", "|",
+            {
+              name: "insert-image-block",
+              action: function (editor) { toggleMediaPanel('image'); },
+              className: "fa fa-picture-o",
+              title: "Insert Image Block (with aspect ratio)"
+            },
+            {
+              name: "insert-video-block",
+              action: function (editor) { toggleMediaPanel('video'); },
+              className: "fa fa-video-camera",
+              title: "Insert Video Block (YouTube, file, etc.)"
+            },
+            {
+              name: "upload-file",
+              action: function (editor) { toggleMediaPanel('upload'); },
+              className: "fa fa-upload",
+              title: "Upload file from PC"
+            },
+            "|",
+            "preview", "side-by-side", "fullscreen", "|", "guide"
+          ],
+          forceSync: true,
           autoDownloadFontAwesome: false
         });
       }
@@ -2058,95 +2182,333 @@
       document.getElementById('blogImageInput').value = ''; // Reset file input
     }
 
-    // ========== MEDIA BLOCK BUILDER ==========
-    let mediaBlocks = [];
+    // ========== MEDIA INSERT PANEL (in-editor) ==========
+    const ASPECT_MAP = {
+      '16:9': '56.25%',
+      '4:3': '75%',
+      '1:1': '100%',
+      '9:16': '177.78%',
+      '3:2': '66.67%',
+      '21:9': '42.86%',
+      'auto': 'auto'
+    };
 
-    function addMediaBlock() {
-      const type = document.getElementById('mediaBlockType').value;
-      const url = document.getElementById('mediaBlockUrl').value.trim();
-      const aspect = document.getElementById('mediaBlockAspect').value;
-      const alt = document.getElementById('mediaBlockAlt')?.value.trim() || '';
+    let currentMediaPanelType = null; // 'image', 'video', or 'upload'
 
-      if (!url) {
-        alert('Please enter a URL or path for the media block.');
+    function toggleMediaPanel(type) {
+      const existing = document.getElementById('mediaInsertPanel');
+      // If same type clicked again, close
+      if (existing && currentMediaPanelType === type) {
+        existing.remove();
+        currentMediaPanelType = null;
+        return;
+      }
+      // Remove existing panel if different type
+      if (existing) existing.remove();
+      currentMediaPanelType = type;
+      createMediaPanel(type);
+    }
+
+    function closeMediaPanel() {
+      const panel = document.getElementById('mediaInsertPanel');
+      if (panel) panel.remove();
+      currentMediaPanelType = null;
+    }
+
+    function createMediaPanel(type) {
+      const toolbar = document.querySelector('.editor-toolbar');
+      if (!toolbar) return;
+
+      const panel = document.createElement('div');
+      panel.id = 'mediaInsertPanel';
+      panel.className = 'media-insert-panel';
+
+      const titles = { image: '🖼️ Insert Image', video: '🎬 Insert Video', upload: '📤 Upload from PC' };
+
+      let tabsHTML = '';
+      if (type === 'image' || type === 'video') {
+        tabsHTML = `
+          <div class="mip-tabs">
+            <button type="button" class="mip-tab active" onclick="switchMediaTab(this, 'url')">🔗 Enter URL</button>
+            <button type="button" class="mip-tab" onclick="switchMediaTab(this, 'upload')">📁 Upload File</button>
+          </div>`;
+      }
+
+      const acceptAttr = type === 'video' ? 'video/*' : (type === 'upload' ? 'image/*,video/*' : 'image/*');
+      const typeForUpload = type === 'upload' ? 'auto' : type;
+
+      const aspectOptions = `
+        <option value="16:9">16:9 Widescreen</option>
+        <option value="4:3">4:3 Standard</option>
+        <option value="1:1">1:1 Square</option>
+        <option value="9:16">9:16 Portrait</option>
+        <option value="3:2">3:2 Classic</option>
+        <option value="21:9">21:9 Ultrawide</option>
+        <option value="auto">Auto</option>`;
+
+      panel.innerHTML = `
+        <div class="mip-header">
+          <h4>${titles[type] || titles.image}</h4>
+          <button type="button" class="mip-close" onclick="closeMediaPanel()" title="Close">✕</button>
+        </div>
+        ${tabsHTML}
+        <div class="mip-body">
+          <!-- URL Tab -->
+          <div id="mipUrlTab" style="display:${type === 'upload' ? 'none' : 'flex'}; flex-direction:column; gap:10px;">
+            <div class="mip-row">
+              <input type="text" id="mipUrl" placeholder="${type === 'video' ? 'YouTube URL, video URL, or path...' : 'Image URL or path (e.g. /assets/blog/photo.jpg)'}" style="flex:1;">
+            </div>
+          </div>
+          <!-- Upload Tab -->
+          <div id="mipUploadTab" style="display:${type === 'upload' ? 'block' : 'none'};">
+            <div class="mip-upload-zone" id="mipDropZone"
+              onclick="document.getElementById('mipFileInput').click()"
+              ondragover="event.preventDefault(); this.classList.add('dragging');"
+              ondragleave="this.classList.remove('dragging');"
+              ondrop="event.preventDefault(); this.classList.remove('dragging'); handleMediaPanelDrop(event);">
+              <div class="upload-icon">${type === 'video' ? '🎬' : (type === 'upload' ? '📂' : '🖼️')}</div>
+              <div class="upload-text">Click to browse or drag & drop</div>
+              <div class="upload-hint">${type === 'video' ? 'MP4, WebM, MOV' : (type === 'upload' ? 'Images or videos' : 'PNG, JPG, WebP, GIF, SVG')}</div>
+            </div>
+            <input type="file" id="mipFileInput" accept="${acceptAttr}" style="display:none;" onchange="handleMediaPanelFileSelect(event)">
+            <div class="mip-upload-progress" id="mipUploadProgress"></div>
+          </div>
+          <!-- Common controls -->
+          <div class="mip-row">
+            <select id="mipAspect" style="min-width:140px;">${aspectOptions}</select>
+            <input type="text" id="mipAlt" placeholder="Alt text / caption (optional)" style="flex:1;">
+          </div>
+          <input type="hidden" id="mipType" value="${typeForUpload}">
+        </div>
+        <div class="mip-actions">
+          <button type="button" class="btn" onclick="closeMediaPanel()">Cancel</button>
+          <button type="button" class="btn primary" id="mipInsertBtn" onclick="insertFromMediaPanel()">📥 Insert into Editor</button>
+        </div>`;
+
+      toolbar.after(panel);
+    }
+
+    function switchMediaTab(btn, tab) {
+      // Update tab active state
+      btn.closest('.mip-tabs').querySelectorAll('.mip-tab').forEach(t => t.classList.remove('active'));
+      btn.classList.add('active');
+      // Show/hide
+      document.getElementById('mipUrlTab').style.display = tab === 'url' ? 'flex' : 'none';
+      document.getElementById('mipUploadTab').style.display = tab === 'upload' ? 'block' : 'none';
+    }
+
+    function handleMediaPanelFileSelect(e) {
+      const file = e.target.files[0];
+      if (file) uploadMediaPanelFile(file);
+    }
+
+    function handleMediaPanelDrop(e) {
+      const file = e.dataTransfer.files[0];
+      if (file) uploadMediaPanelFile(file);
+    }
+
+    async function uploadMediaPanelFile(file) {
+      const progressEl = document.getElementById('mipUploadProgress');
+      const insertBtn = document.getElementById('mipInsertBtn');
+      const dropZone = document.getElementById('mipDropZone');
+
+      // Auto-detect type from file
+      const mipTypeEl = document.getElementById('mipType');
+      if (mipTypeEl && mipTypeEl.value === 'auto') {
+        mipTypeEl.value = file.type.startsWith('video/') ? 'video' : 'image';
+      }
+
+      // Validate file type
+      if (!file.type.startsWith('image/') && !file.type.startsWith('video/')) {
+        alert('❌ Please select an image or video file.');
         return;
       }
 
-      mediaBlocks.push({ type, url, aspect, alt });
-      renderMediaBlocks();
+      progressEl.style.display = 'block';
+      progressEl.style.background = '#e0f2fe';
+      progressEl.innerHTML = '⏳ Uploading <strong>' + file.name + '</strong>...';
+      if (dropZone) dropZone.style.pointerEvents = 'none';
+      if (insertBtn) insertBtn.disabled = true;
 
-      // Clear inputs
-      document.getElementById('mediaBlockUrl').value = '';
-      document.getElementById('mediaBlockAlt').value = '';
+      try {
+        const base64Content = await new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onload = () => resolve(reader.result.split(',')[1]);
+          reader.onerror = reject;
+          reader.readAsDataURL(file);
+        });
+
+        const sanitizedName = file.name.toLowerCase().replace(/[^a-z0-9.-]/g, '-');
+        const subDir = file.type.startsWith('video/') ? 'assets/video' : 'assets/blog';
+        const filePath = `${subDir}/${sanitizedName}`;
+
+        let response;
+        try {
+          response = await fetch('http://localhost:3001/api/save-content', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ filename: filePath, content: base64Content, type: 'Media', action: 'upload-binary', isBase64: true })
+          });
+          if (!response.ok) throw new Error('Local server failed');
+        } catch (e) {
+          response = await fetch('/.netlify/functions/save-content', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ filename: filePath, content: base64Content, type: 'Media', action: 'upload-binary', isBase64: true })
+          });
+        }
+
+        const result = await response.json();
+        if (response.ok && result.success) {
+          const finalPath = `/${filePath}`;
+          progressEl.style.background = '#dcfce7';
+          progressEl.innerHTML = `✅ Uploaded: <strong>${finalPath}</strong>`;
+
+          // Fill the URL field with the uploaded path
+          const urlInput = document.getElementById('mipUrl');
+          if (urlInput) urlInput.value = finalPath;
+
+          // Switch to URL tab view so user can see the path
+          const urlTab = document.getElementById('mipUrlTab');
+          if (urlTab) urlTab.style.display = 'flex';
+        } else {
+          throw new Error(result.message || 'Upload failed');
+        }
+      } catch (err) {
+        console.error(err);
+        progressEl.style.background = '#fee2e2';
+        progressEl.innerHTML = '❌ Upload failed: ' + err.message;
+      } finally {
+        if (dropZone) dropZone.style.pointerEvents = 'auto';
+        if (insertBtn) insertBtn.disabled = false;
+      }
     }
 
-    function removeMediaBlock(index) {
-      mediaBlocks.splice(index, 1);
-      renderMediaBlocks();
-    }
+    function insertFromMediaPanel() {
+      const url = document.getElementById('mipUrl')?.value.trim();
+      const aspect = document.getElementById('mipAspect')?.value || 'auto';
+      const alt = document.getElementById('mipAlt')?.value.trim() || '';
+      const type = document.getElementById('mipType')?.value || 'image';
 
-    function insertMediaBlock(index) {
-      const block = mediaBlocks[index];
-      let markdown = '';
-
-      const aspectMap = {
-        '16:9': '56.25%',
-        '4:3': '75%',
-        '1:1': '100%',
-        '9:16': '177.78%',
-        '3:2': '66.67%',
-        '21:9': '42.86%',
-        'auto': 'auto'
-      };
-
-      if (block.type === 'image') {
-        if (block.aspect === 'auto') {
-          markdown = `\n![${block.alt || 'image'}](${block.url})\n`;
-        } else {
-          markdown = `\n<div style="position:relative;width:100%;padding-bottom:${aspectMap[block.aspect]};overflow:hidden;border-radius:8px;margin:20px 0;"><img src="${block.url}" alt="${block.alt || 'image'}" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;" /></div>\n`;
-        }
-      } else if (block.type === 'video') {
-        // Detect YouTube
-        const ytMatch = block.url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([a-zA-Z0-9_-]{11})/);
-        if (ytMatch) {
-          markdown = `\n<div style="position:relative;width:100%;padding-bottom:${aspectMap[block.aspect] || '56.25%'};overflow:hidden;border-radius:8px;margin:20px 0;"><iframe src="https://www.youtube.com/embed/${ytMatch[1]}" style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;" allowfullscreen></iframe></div>\n`;
-        } else {
-          markdown = `\n<div style="position:relative;width:100%;padding-bottom:${aspectMap[block.aspect] || '56.25%'};overflow:hidden;border-radius:8px;margin:20px 0;"><video src="${block.url}" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;" controls${block.alt ? ` title="${block.alt}"` : ''}></video></div>\n`;
-        }
+      if (!url) {
+        alert('Please enter a URL/path or upload a file first.');
+        return;
       }
 
-      // Insert into SimpleMDE at cursor position
+      const markdown = generateMediaMarkdown(type, url, aspect, alt);
+
+      // Insert into SimpleMDE at cursor
       if (simpleMDE) {
         const cm = simpleMDE.codemirror;
         const cursor = cm.getCursor();
         cm.replaceRange(markdown, cursor);
-        simpleMDE.codemirror.focus();
+        cm.focus();
       } else {
         const ta = document.getElementById('mainContent');
         const start = ta.selectionStart;
         ta.value = ta.value.slice(0, start) + markdown + ta.value.slice(start);
       }
+
+      closeMediaPanel();
     }
 
-    function renderMediaBlocks() {
-      const listEl = document.getElementById('mediaBlocksList');
-      if (!listEl) return;
+    function generateMediaMarkdown(type, url, aspect, alt) {
+      if (type === 'image') {
+        if (aspect === 'auto') {
+          return `\n![${alt || 'image'}](${url})\n`;
+        }
+        return `\n<div style="position:relative;width:100%;padding-bottom:${ASPECT_MAP[aspect]};overflow:hidden;border-radius:8px;margin:20px 0;"><img src="${url}" alt="${alt || 'image'}" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;" /></div>\n`;
+      } else if (type === 'video') {
+        const ytMatch = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([a-zA-Z0-9_-]{11})/);
+        if (ytMatch) {
+          return `\n<div style="position:relative;width:100%;padding-bottom:${ASPECT_MAP[aspect] || '56.25%'};overflow:hidden;border-radius:8px;margin:20px 0;"><iframe src="https://www.youtube.com/embed/${ytMatch[1]}" style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;" allowfullscreen></iframe></div>\n`;
+        }
+        return `\n<div style="position:relative;width:100%;padding-bottom:${ASPECT_MAP[aspect] || '56.25%'};overflow:hidden;border-radius:8px;margin:20px 0;"><video src="${url}" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;" controls${alt ? ` title="${alt}"` : ''}></video></div>\n`;
+      }
+      return '';
+    }
 
-      if (mediaBlocks.length === 0) {
-        listEl.innerHTML = '<p style="font-size:0.85em; color:#a0aec0; text-align:center; padding:10px; margin:0;">No media blocks added yet</p>';
+    // ========== AI SEO GENERATION ==========
+    async function generateSEO() {
+      const btn = document.getElementById('btnGenerateSEO');
+      const originalText = btn.innerHTML;
+
+      // Get content depending on which editor is active or just check simpleMDE
+      const content = simpleMDE ? simpleMDE.value() : document.getElementById('mainContent').value;
+      const category = document.getElementById('blogCategory').value;
+      const currentTitle = document.getElementById('blogTitle').value;
+
+      if (!content || content.length < 100) {
+        alert('⚠️ Please write at least a few sentences of content so the AI can analyze it.');
         return;
       }
 
-      listEl.innerHTML = mediaBlocks.map((block, i) => `
-        <div class="media-block-item">
-          <span class="block-type-badge ${block.type}">${block.type === 'image' ? '🖼️ IMG' : '🎬 VID'}</span>
-          <div class="block-info" title="${block.url}">${block.url}</div>
-          <span class="block-aspect">${block.aspect}</span>
-          <button type="button" class="btn info" style="padding:4px 10px; font-size:0.78em; margin:0;" onclick="insertMediaBlock(${i})" title="Insert at cursor">📥 Insert</button>
-          <button type="button" class="btn danger" style="padding:4px 8px; font-size:0.78em; margin:0;" onclick="removeMediaBlock(${i})">×</button>
-        </div>
-      `).join('');
+      btn.disabled = true;
+      btn.innerHTML = '✨ Analyzing & Generating...';
+      btn.style.opacity = '0.8';
+      btn.style.cursor = 'wait';
+
+      try {
+        const payload = { content, category, currentTitle };
+        let response;
+
+        // Try local helper first (if running locally), then Netlify function
+        try {
+          response = await fetch('http://localhost:3001/api/generate-seo', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+          if (!response.ok) throw new Error('Local dev unavailable');
+        } catch (e) {
+          response = await fetch('/.netlify/functions/generate-seo', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+        }
+
+        if (!response.ok) {
+          const errData = await response.json();
+          throw new Error(errData.error || 'API Request Failed');
+        }
+
+        const data = await response.json();
+
+        // Populate fields with animation effect
+        const fields = [
+          { id: 'blogTitle', val: data.title },
+          { id: 'blogDesc', val: data.description },
+          { id: 'blogKeywords', val: data.keywords },
+          { id: 'blogImageAlt', val: data.imageAlt }
+        ];
+
+        fields.forEach(f => {
+          const el = document.getElementById(f.id);
+          if (el) {
+            el.value = f.val;
+            el.style.transition = 'background-color 0.5s';
+            el.style.backgroundColor = '#d1fae5'; // highlight green
+            setTimeout(() => el.style.backgroundColor = '', 1500);
+          }
+        });
+
+        // Update slug preview
+        if (data.title) updateSlug('blog');
+
+        alert('✨ SEO Metadata Generated Successfully!\n\nReview the highlighted fields before saving.');
+
+      } catch (error) {
+        console.error('SEO Generation Error:', error);
+        alert('❌ Failed to generate SEO: ' + error.message);
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = originalText;
+        btn.style.opacity = '1';
+        btn.style.cursor = 'pointer';
+      }
     }
+
   </script>
 </body>
 
