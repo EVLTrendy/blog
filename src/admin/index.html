@@ -13,6 +13,13 @@
   <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
   <!-- Font Awesome for SimpleMDE icons -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css">
+
+  <!-- Blog Styles for Exact Preview -->
+  <link rel="stylesheet" href="/assets/css/fonts.css">
+  <link rel="stylesheet" href="/assets/css/dark-mode.css">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/article-layout.css">
+
   <style>
     /* Reset Sakura constraints for full-width CMS layout */
     body {
@@ -1189,6 +1196,11 @@
           reader.readAsDataURL(selectedMediaFile);
         });
 
+        // Check payload size
+        if (base64Content.length > 5.5 * 1024 * 1024) {
+          throw new Error(`File is too large to upload directly (${(base64Content.length / 1024 / 1024).toFixed(1)}MB encoded). Max allowed is ~5.5MB.`);
+        }
+
         const sanitizedName = selectedMediaFile.name.toLowerCase().replace(/[^a-z0-9.-]/g, '-');
         const filePath = `assets/images/${sanitizedName}`;
 
@@ -1205,7 +1217,15 @@
           })
         });
 
-        const result = await response.json();
+        // Handle response robustly
+        let result;
+        const textToParse = await response.text();
+        try {
+          result = JSON.parse(textToParse);
+        } catch (e) {
+          console.error('Failed to parse server response:', textToParse);
+          throw new Error(`Server returned non-JSON response (Status ${response.status}). Check console for details.`);
+        }
 
         if (response.ok && result.success) {
           statusEl.style.background = '#d1fae5';
@@ -1261,7 +1281,22 @@
             "preview", "side-by-side", "fullscreen", "|", "guide"
           ],
           forceSync: true,
-          autoDownloadFontAwesome: false
+          autoDownloadFontAwesome: false,
+          previewRender: function (plainText) {
+            // Use the SimpleMDE markdown parser
+            var rendered = simpleMDE.markdown(plainText);
+
+            // Wrap in blog layout structure
+            return `
+              <div class="article-body-wrapper" style="padding: 20px; max-width: 900px; margin: 0 auto; background: var(--bg-primary, white);">
+                <div class="article-content-column" style="width: 100%;">
+                  <div class="article-text" style="font-family: 'Inter', sans-serif;">
+                    ${rendered}
+                  </div>
+                </div>
+              </div>
+            `;
+          }
         });
       }
     }
@@ -2093,6 +2128,12 @@
         return;
       }
 
+      // 5MB limit check
+      if (file.size > 5 * 1024 * 1024) {
+        alert('❌ Image file size must be less than 5MB');
+        return;
+      }
+
       // Show loading
       const dropZone = document.getElementById('blogImageDropZone');
       const originalHTML = dropZone.innerHTML;
@@ -2106,6 +2147,11 @@
           reader.onerror = reject;
           reader.readAsDataURL(file);
         });
+
+        // Payload size check
+        if (base64Content.length > 5.5 * 1024 * 1024) {
+          throw new Error(`File is too large to upload directly (${(base64Content.length / 1024 / 1024).toFixed(1)}MB encoded). Max allowed is ~5.5MB.`);
+        }
 
         const sanitizedName = file.name.toLowerCase().replace(/[^a-z0-9.-]/g, '-');
         // Use assets/blog/ as implied by the original placeholder
@@ -2141,7 +2187,15 @@
           });
         }
 
-        const result = await response.json();
+        // Handle response robustly
+        let result;
+        const textToParse = await response.text();
+        try {
+          result = JSON.parse(textToParse);
+        } catch (e) {
+          console.error('Failed to parse server response:', textToParse);
+          throw new Error(`Server returned non-JSON response (Status ${response.status}). Check console for details.`);
+        }
 
         if (response.ok && result.success) {
           const finalPath = `/${filePath}`;
@@ -2324,6 +2378,19 @@
         return;
       }
 
+      let isImage = file.type.startsWith('image/');
+
+      // Initial size check
+      // For videos: strict 5MB limit
+      // For images: allow up to 20MB since we compress them
+      const limit = isImage ? 20 * 1024 * 1024 : 5 * 1024 * 1024;
+      if (file.size > limit) {
+        alert(isImage
+          ? '❌ Image too large (>20MB). Please pick a smaller file.'
+          : '❌ Video too large (>5MB). Please use YouTube for larger videos.');
+        return;
+      }
+
       progressEl.style.display = 'block';
       progressEl.style.background = '#e0f2fe';
       progressEl.innerHTML = '⏳ Processing & Uploading <strong>' + file.name + '</strong>...';
@@ -2332,7 +2399,6 @@
 
       try {
         let fileToUpload = file;
-        let isImage = file.type.startsWith('image/');
 
         // Compress image if it's an image
         if (isImage) {
@@ -2351,6 +2417,12 @@
           reader.onerror = reject;
           reader.readAsDataURL(fileToUpload);
         });
+
+        // Check final payload size (Netlify limit is ~6MB request body)
+        // Base64 length is approx 1.33 * binary size
+        if (base64Content.length > 5.5 * 1024 * 1024) {
+          throw new Error(`File is too large to upload directly (${(base64Content.length / 1024 / 1024).toFixed(1)}MB encoded). Max allowed is ~5.5MB.`);
+        }
 
         // Use .webp extension if compressed, otherwise keep original
         let fileName = file.name;
@@ -2378,7 +2450,16 @@
           });
         }
 
-        const result = await response.json();
+        // Handle response robustly
+        let result;
+        const textToParse = await response.text();
+        try {
+          result = JSON.parse(textToParse);
+        } catch (e) {
+          console.error('Failed to parse server response:', textToParse);
+          throw new Error(`Server returned non-JSON response (Status ${response.status}). Check console for details.`);
+        }
+
         if (response.ok && result.success) {
           const finalPath = `/${filePath}`;
           progressEl.style.background = '#dcfce7';
@@ -2392,7 +2473,7 @@
           const urlTab = document.getElementById('mipUrlTab');
           if (urlTab) urlTab.style.display = 'flex';
         } else {
-          throw new Error(result.message || 'Upload failed');
+          throw new Error(result.message || result.error || 'Upload failed');
         }
       } catch (err) {
         console.error(err);
