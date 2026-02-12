@@ -205,32 +205,41 @@ async function handleGitHubDelete(filename, type) {
   }
 
   try {
+    // Determine file path logic consistent with commit
+    const isAsset = filename.startsWith('assets/');
+    const filePath = isAsset ? `src/${filename}` : `src/${filename}.md`;
+
+    console.log(`Attempting to delete: ${filePath} (type: ${type})`);
+
     // Get current file SHA (required for deletion)
     const getResponse = await makeGitHubRequest(
-      `GET /repos/${GITHUB_REPO}/contents/src/${filename}.md?ref=${BRANCH}`,
+      `GET /repos/${GITHUB_REPO}/contents/${filePath}?ref=${BRANCH}`,
       null,
       GITHUB_TOKEN
     );
 
     if (!getResponse.sha) {
+      console.error('File not found or no SHA returned:', getResponse);
       return {
         statusCode: 404,
         body: JSON.stringify({
           error: 'File not found',
-          message: `src/${filename}.md does not exist`
+          message: `${filePath} does not exist`
         })
       };
     }
 
+    console.log(`Found SHA for ${filePath}: ${getResponse.sha}`);
+
     // Delete the file
     const deleteData = {
-      message: `${type}: Delete ${filename}.md`,
+      message: `${type}: Delete ${isAsset ? filename : filename + '.md'}`,
       sha: getResponse.sha,
       branch: BRANCH
     };
 
     await makeGitHubRequest(
-      `DELETE /repos/${GITHUB_REPO}/contents/src/${filename}.md`,
+      `DELETE /repos/${GITHUB_REPO}/contents/${filePath}`,
       deleteData,
       GITHUB_TOKEN
     );
