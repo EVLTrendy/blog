@@ -403,6 +403,241 @@
       border-radius: 6px 6px 0 0;
     }
 
+    /* Blog search/filter/sort toolbar */
+    .blog-toolbar {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+    }
+
+    .blog-toolbar-row {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .blog-toolbar input[type="text"] {
+      flex: 1;
+      min-width: 200px;
+      padding: 10px 14px;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      font-size: 14px;
+      background: #f8fafc;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .blog-toolbar input[type="text"]:focus {
+      outline: none;
+      border-color: #33bdef;
+      box-shadow: 0 0 0 3px rgba(51, 189, 239, 0.1);
+      background: white;
+    }
+
+    .blog-toolbar select {
+      padding: 10px 14px;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      font-size: 14px;
+      background: #f8fafc;
+      cursor: pointer;
+      min-width: 150px;
+    }
+
+    .blog-toolbar .result-count {
+      font-size: 0.85em;
+      color: #718096;
+      margin-top: 10px;
+    }
+
+    /* Media insert panel (injected below SimpleMDE toolbar) */
+    .media-insert-panel {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-top: none;
+      border-radius: 0 0 8px 8px;
+      padding: 16px;
+      margin-bottom: 8px;
+      animation: mediaPanelSlideDown 0.2s ease-out;
+    }
+
+    @keyframes mediaPanelSlideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-8px);
+        max-height: 0;
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+        max-height: 400px;
+      }
+    }
+
+    .media-insert-panel .mip-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+
+    .media-insert-panel .mip-header h4 {
+      margin: 0;
+      font-size: 0.95em;
+      color: #1e293b;
+    }
+
+    .media-insert-panel .mip-close {
+      background: none;
+      border: none;
+      font-size: 18px;
+      cursor: pointer;
+      color: #94a3b8;
+      padding: 2px 6px;
+      border-radius: 4px;
+      transition: background 0.15s;
+    }
+
+    .media-insert-panel .mip-close:hover {
+      background: #e2e8f0;
+      color: #334155;
+    }
+
+    .media-insert-panel .mip-tabs {
+      display: flex;
+      gap: 0;
+      margin-bottom: 14px;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .media-insert-panel .mip-tab {
+      flex: 1;
+      padding: 8px 12px;
+      border: none;
+      background: white;
+      cursor: pointer;
+      font-size: 0.85em;
+      font-weight: 600;
+      color: #64748b;
+      transition: all 0.15s;
+      text-align: center;
+    }
+
+    .media-insert-panel .mip-tab:not(:last-child) {
+      border-right: 1px solid #e2e8f0;
+    }
+
+    .media-insert-panel .mip-tab.active {
+      background: #33bdef;
+      color: white;
+    }
+
+    .media-insert-panel .mip-tab:hover:not(.active) {
+      background: #f1f5f9;
+    }
+
+    .media-insert-panel .mip-body {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .media-insert-panel .mip-row {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .media-insert-panel .mip-row.full {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .media-insert-panel input[type="text"],
+    .media-insert-panel select {
+      padding: 9px 12px;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      font-size: 13px;
+      background: white;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+
+    .media-insert-panel input[type="text"]:focus,
+    .media-insert-panel select:focus {
+      outline: none;
+      border-color: #33bdef;
+      box-shadow: 0 0 0 3px rgba(51, 189, 239, 0.1);
+    }
+
+    .media-insert-panel input[type="text"] {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .media-insert-panel .mip-upload-zone {
+      border: 2px dashed #cbd5e1;
+      border-radius: 8px;
+      padding: 20px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s;
+      background: white;
+    }
+
+    .media-insert-panel .mip-upload-zone:hover {
+      border-color: #33bdef;
+      background: #f0f9ff;
+    }
+
+    .media-insert-panel .mip-upload-zone.dragging {
+      border-color: #33bdef;
+      background: #e0f2fe;
+    }
+
+    .media-insert-panel .mip-upload-zone .upload-icon {
+      font-size: 28px;
+      margin-bottom: 6px;
+    }
+
+    .media-insert-panel .mip-upload-zone .upload-text {
+      font-size: 0.85em;
+      color: #64748b;
+    }
+
+    .media-insert-panel .mip-upload-zone .upload-hint {
+      font-size: 0.75em;
+      color: #94a3b8;
+      margin-top: 4px;
+    }
+
+    .media-insert-panel .mip-upload-progress {
+      margin-top: 8px;
+      padding: 10px 14px;
+      border-radius: 6px;
+      font-size: 0.85em;
+      display: none;
+    }
+
+    .media-insert-panel .mip-actions {
+      display: flex;
+      gap: 8px;
+      justify-content: flex-end;
+      margin-top: 4px;
+    }
+
+    .media-insert-panel .mip-actions .btn {
+      padding: 8px 18px;
+      font-size: 0.85em;
+    }
+
     @media (max-width: 1024px) {
       .cms-sidebar {
         width: 80px;
@@ -506,6 +741,34 @@
         <button class="btn primary" onclick="createNewContent('blog')">+ New Blog Post</button>
         <button class="btn" onclick="refreshSection('blog')">🔄 Refresh</button>
       </div>
+      <div class="blog-toolbar">
+        <div class="blog-toolbar-row">
+          <input type="text" id="blogSearchInput" placeholder="🔍 Search posts by title, author, or tags..."
+            oninput="filterBlogPosts()">
+          <select id="blogFilterCategory" onchange="filterBlogPosts()">
+            <option value="">All Categories</option>
+            <option value="content-creation">Content Creation</option>
+            <option value="social-media">Social Media</option>
+            <option value="seo">SEO</option>
+            <option value="analytics">Analytics</option>
+            <option value="tools">Tools & Resources</option>
+          </select>
+          <select id="blogFilterStatus" onchange="filterBlogPosts()">
+            <option value="">All Status</option>
+            <option value="featured">Featured</option>
+            <option value="draft">Draft</option>
+            <option value="published">Published</option>
+          </select>
+          <select id="blogSortBy" onchange="filterBlogPosts()">
+            <option value="date-desc">Newest First</option>
+            <option value="date-asc">Oldest First</option>
+            <option value="title-asc">Title A → Z</option>
+            <option value="title-desc">Title Z → A</option>
+            <option value="author-asc">Author A → Z</option>
+          </select>
+        </div>
+        <div class="result-count" id="blogResultCount"></div>
+      </div>
       <div id="blogList" class="content-list">
         <p><span class="loading-spinner"></span> Loading blog posts...</p>
       </div>
@@ -587,6 +850,8 @@
         </div>
       </div>
     </section>
+
+
   </main>
 
   <!-- Content Editor Modal -->
@@ -602,6 +867,12 @@
 
         <!-- 📝 BLOG POST FIELDS -->
         <div id="blogFields" class="form-section">
+          <div style="display:flex; justify-content:flex-end; margin-bottom:15px;">
+            <button type="button" class="btn success" id="btnGenerateSEO" onclick="generateSEO()"
+              style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border:none; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+              ✨ Auto-Fill SEO with AI
+            </button>
+          </div>
           <div class="form-row">
             <label for="blogTitle">Post Title:</label>
             <input type="text" id="blogTitle" placeholder="10 Tips for..." oninput="updateSlug('blog')">
@@ -671,6 +942,7 @@
             <label><input type="checkbox" id="blogFeatured"> Featured</label>
             <label style="margin-left:15px;"><input type="checkbox" id="blogDraft"> Draft</label>
           </div>
+
 
           <h4 style="border-bottom:1px solid #eee; padding-bottom:5px; margin-top:20px;">SEO Advanced</h4>
           <div class="form-row"><input type="text" id="blogImageAlt" placeholder="Image Alt Text"></div>
@@ -963,8 +1235,32 @@
           spellChecker: false,
           placeholder: "Write your content here using Markdown...",
           status: ["lines", "words", "cursor"],
-          toolbar: ["bold", "italic", "heading", "|", "quote", "unordered-list", "ordered-list", "|", "link", "image", "|", "preview", "side-by-side", "fullscreen", "|", "guide"],
-          forceSync: true, // Force sync with textarea
+          toolbar: [
+            "bold", "italic", "heading", "|",
+            "quote", "unordered-list", "ordered-list", "|",
+            "link", "image", "|",
+            {
+              name: "insert-image-block",
+              action: function (editor) { toggleMediaPanel('image'); },
+              className: "fa fa-picture-o",
+              title: "Insert Image Block (with aspect ratio)"
+            },
+            {
+              name: "insert-video-block",
+              action: function (editor) { toggleMediaPanel('video'); },
+              className: "fa fa-video-camera",
+              title: "Insert Video Block (YouTube, file, etc.)"
+            },
+            {
+              name: "upload-file",
+              action: function (editor) { toggleMediaPanel('upload'); },
+              className: "fa fa-upload",
+              title: "Upload file from PC"
+            },
+            "|",
+            "preview", "side-by-side", "fullscreen", "|", "guide"
+          ],
+          forceSync: true,
           autoDownloadFontAwesome: false
         });
       }
@@ -1016,6 +1312,7 @@
       if (name === 'notifications' && !contentData.notificationsLoaded) loadNotifications();
       if (name === 'pages' && !contentData.pagesLoaded) loadPages();
       if (name === 'media' && !contentData.mediaLoaded) loadMedia();
+
     }
 
     function refreshSection(sec) {
@@ -1084,21 +1381,82 @@
 
     // Loaders with error handling
     function loadBlogPosts() {
+      contentData.blogLoaded = true;
+      filterBlogPosts();
+    }
+
+    function filterBlogPosts() {
       const listEl = document.getElementById('blogList');
+      const countEl = document.getElementById('blogResultCount');
       try {
-        const posts = contentData.blog || [];
-        contentData.blogLoaded = true;
+        let posts = contentData.blog || [];
+        const totalCount = posts.length;
 
         if (posts.length === 0) {
           listEl.innerHTML = '<p>No posts found. Click "+ New Blog Post" to create your first post!</p>';
+          if (countEl) countEl.textContent = '';
+          return;
+        }
+
+        // Search filter
+        const searchVal = (document.getElementById('blogSearchInput')?.value || '').toLowerCase().trim();
+        if (searchVal) {
+          posts = posts.filter(p => {
+            const title = (p.title || '').toLowerCase();
+            const author = (p.author || '').toLowerCase();
+            const tags = (Array.isArray(p.tags) ? p.tags.join(' ') : (p.tags || '')).toLowerCase();
+            const desc = (p.description || '').toLowerCase();
+            return title.includes(searchVal) || author.includes(searchVal) || tags.includes(searchVal) || desc.includes(searchVal);
+          });
+        }
+
+        // Category filter
+        const catVal = document.getElementById('blogFilterCategory')?.value || '';
+        if (catVal) {
+          posts = posts.filter(p => (p.category || '') === catVal);
+        }
+
+        // Status filter
+        const statusVal = document.getElementById('blogFilterStatus')?.value || '';
+        if (statusVal === 'featured') {
+          posts = posts.filter(p => p.featured);
+        } else if (statusVal === 'draft') {
+          posts = posts.filter(p => p.draft);
+        } else if (statusVal === 'published') {
+          posts = posts.filter(p => !p.draft);
+        }
+
+        // Sort
+        const sortVal = document.getElementById('blogSortBy')?.value || 'date-desc';
+        posts.sort((a, b) => {
+          if (sortVal === 'date-desc') return new Date(b.date || 0) - new Date(a.date || 0);
+          if (sortVal === 'date-asc') return new Date(a.date || 0) - new Date(b.date || 0);
+          if (sortVal === 'title-asc') return (a.title || '').localeCompare(b.title || '');
+          if (sortVal === 'title-desc') return (b.title || '').localeCompare(a.title || '');
+          if (sortVal === 'author-asc') return (a.author || '').localeCompare(b.author || '');
+          return 0;
+        });
+
+        // Update result count
+        if (countEl) {
+          if (searchVal || catVal || statusVal) {
+            countEl.textContent = `Showing ${posts.length} of ${totalCount} posts`;
+          } else {
+            countEl.textContent = `${totalCount} total posts`;
+          }
+        }
+
+        if (posts.length === 0) {
+          listEl.innerHTML = '<p style="color:#718096;">No posts match your filters. Try adjusting your search or filters.</p>';
           return;
         }
 
         listEl.innerHTML = posts.map(p => `
           <div class="content-item">
-            <h4>${p.title || 'Untitled'} ${p.featured ? '<span class="badge blog">FEATURED</span>' : ''}</h4>
+            <h4>${p.title || 'Untitled'} ${p.featured ? '<span class="badge blog">FEATURED</span>' : ''} ${p.draft ? '<span class="badge notification">DRAFT</span>' : ''}</h4>
             <div class="content-meta">Published: ${p.date || 'No date'} | ${p.author || 'Unknown author'}</div>
             ${p.category ? `<div class="content-meta">Category: ${p.category}</div>` : ''}
+            ${p.tags && p.tags.length ? `<div class="content-meta" style="margin-top:4px;">${(Array.isArray(p.tags) ? p.tags : [p.tags]).map(t => `<span style="display:inline-block;background:#edf2f7;padding:2px 8px;border-radius:12px;font-size:0.78em;margin:2px 3px 2px 0;">${t}</span>`).join('')}</div>` : ''}
             <div class="content-actions">
               <button class="btn info" onclick="editContent('blog','${p.id}')">Edit</button>
               <button class="btn success" onclick="viewContent('${p.url}')">View</button>
@@ -1823,6 +2181,412 @@
       updateBlogImagePreview('');
       document.getElementById('blogImageInput').value = ''; // Reset file input
     }
+
+    // ========== MEDIA INSERT PANEL (in-editor) ==========
+    const ASPECT_MAP = {
+      '16:9': '56.25%',
+      '4:3': '75%',
+      '1:1': '100%',
+      '9:16': '177.78%',
+      '3:2': '66.67%',
+      '21:9': '42.86%',
+      'auto': 'auto'
+    };
+
+    let currentMediaPanelType = null; // 'image', 'video', or 'upload'
+
+    function toggleMediaPanel(type) {
+      const existing = document.getElementById('mediaInsertPanel');
+      // If same type clicked again, close
+      if (existing && currentMediaPanelType === type) {
+        existing.remove();
+        currentMediaPanelType = null;
+        return;
+      }
+      // Remove existing panel if different type
+      if (existing) existing.remove();
+      currentMediaPanelType = type;
+      createMediaPanel(type);
+    }
+
+    function closeMediaPanel() {
+      const panel = document.getElementById('mediaInsertPanel');
+      if (panel) panel.remove();
+      currentMediaPanelType = null;
+    }
+
+    function createMediaPanel(type) {
+      const toolbar = document.querySelector('.editor-toolbar');
+      if (!toolbar) return;
+
+      const panel = document.createElement('div');
+      panel.id = 'mediaInsertPanel';
+      panel.className = 'media-insert-panel';
+
+      const titles = { image: '🖼️ Insert Image', video: '🎬 Insert Video', upload: '📤 Upload from PC' };
+
+      let tabsHTML = '';
+      if (type === 'image' || type === 'video') {
+        tabsHTML = `
+          <div class="mip-tabs">
+            <button type="button" class="mip-tab active" onclick="switchMediaTab(this, 'url')">🔗 Enter URL</button>
+            <button type="button" class="mip-tab" onclick="switchMediaTab(this, 'upload')">📁 Upload File</button>
+          </div>`;
+      }
+
+      const acceptAttr = type === 'video' ? 'video/*' : (type === 'upload' ? 'image/*,video/*' : 'image/*');
+      const typeForUpload = type === 'upload' ? 'auto' : type;
+
+      const aspectOptions = `
+        <option value="16:9">16:9 Widescreen</option>
+        <option value="4:3">4:3 Standard</option>
+        <option value="1:1">1:1 Square</option>
+        <option value="9:16">9:16 Portrait</option>
+        <option value="3:2">3:2 Classic</option>
+        <option value="21:9">21:9 Ultrawide</option>
+        <option value="auto">Auto</option>`;
+
+      panel.innerHTML = `
+        <div class="mip-header">
+          <h4>${titles[type] || titles.image}</h4>
+          <button type="button" class="mip-close" onclick="closeMediaPanel()" title="Close">✕</button>
+        </div>
+        ${tabsHTML}
+        <div class="mip-body">
+          <!-- URL Tab -->
+          <div id="mipUrlTab" style="display:${type === 'upload' ? 'none' : 'flex'}; flex-direction:column; gap:10px;">
+            <div class="mip-row">
+              <input type="text" id="mipUrl" placeholder="${type === 'video' ? 'YouTube URL, video URL, or path...' : 'Image URL or path (e.g. /assets/blog/photo.jpg)'}" style="flex:1;">
+            </div>
+          </div>
+          <!-- Upload Tab -->
+          <div id="mipUploadTab" style="display:${type === 'upload' ? 'block' : 'none'};">
+            <div class="mip-upload-zone" id="mipDropZone"
+              onclick="document.getElementById('mipFileInput').click()"
+              ondragover="event.preventDefault(); this.classList.add('dragging');"
+              ondragleave="this.classList.remove('dragging');"
+              ondrop="event.preventDefault(); this.classList.remove('dragging'); handleMediaPanelDrop(event);">
+              <div class="upload-icon">${type === 'video' ? '🎬' : (type === 'upload' ? '📂' : '🖼️')}</div>
+              <div class="upload-text">Click to browse or drag & drop</div>
+              <div class="upload-hint">${type === 'video' ? 'MP4, WebM, MOV' : (type === 'upload' ? 'Images or videos' : 'PNG, JPG, WebP, GIF, SVG')}</div>
+            </div>
+            <input type="file" id="mipFileInput" accept="${acceptAttr}" style="display:none;" onchange="handleMediaPanelFileSelect(event)">
+            <div class="mip-upload-progress" id="mipUploadProgress"></div>
+          </div>
+          <!-- Common controls -->
+          <div class="mip-row">
+            <select id="mipAspect" style="min-width:140px;">${aspectOptions}</select>
+            <input type="text" id="mipAlt" placeholder="Alt text / caption (optional)" style="flex:1;">
+          </div>
+          <input type="hidden" id="mipType" value="${typeForUpload}">
+        </div>
+        <div class="mip-actions">
+          <button type="button" class="btn" onclick="closeMediaPanel()">Cancel</button>
+          <button type="button" class="btn primary" id="mipInsertBtn" onclick="insertFromMediaPanel()">📥 Insert into Editor</button>
+        </div>`;
+
+      toolbar.after(panel);
+    }
+
+    function switchMediaTab(btn, tab) {
+      // Update tab active state
+      btn.closest('.mip-tabs').querySelectorAll('.mip-tab').forEach(t => t.classList.remove('active'));
+      btn.classList.add('active');
+      // Show/hide
+      document.getElementById('mipUrlTab').style.display = tab === 'url' ? 'flex' : 'none';
+      document.getElementById('mipUploadTab').style.display = tab === 'upload' ? 'block' : 'none';
+    }
+
+    function handleMediaPanelFileSelect(e) {
+      const file = e.target.files[0];
+      if (file) uploadMediaPanelFile(file);
+    }
+
+    function handleMediaPanelDrop(e) {
+      const file = e.dataTransfer.files[0];
+      if (file) uploadMediaPanelFile(file);
+    }
+
+    async function uploadMediaPanelFile(file) {
+      const progressEl = document.getElementById('mipUploadProgress');
+      const insertBtn = document.getElementById('mipInsertBtn');
+      const dropZone = document.getElementById('mipDropZone');
+
+      // Auto-detect type from file
+      const mipTypeEl = document.getElementById('mipType');
+      if (mipTypeEl && mipTypeEl.value === 'auto') {
+        mipTypeEl.value = file.type.startsWith('video/') ? 'video' : 'image';
+      }
+
+      // Validate file type
+      if (!file.type.startsWith('image/') && !file.type.startsWith('video/')) {
+        alert('❌ Please select an image or video file.');
+        return;
+      }
+
+      progressEl.style.display = 'block';
+      progressEl.style.background = '#e0f2fe';
+      progressEl.innerHTML = '⏳ Processing & Uploading <strong>' + file.name + '</strong>...';
+      if (dropZone) dropZone.style.pointerEvents = 'none';
+      if (insertBtn) insertBtn.disabled = true;
+
+      try {
+        let fileToUpload = file;
+        let isImage = file.type.startsWith('image/');
+
+        // Compress image if it's an image
+        if (isImage) {
+          progressEl.innerHTML = '⏳ Optimizing <strong>' + file.name + '</strong>...';
+          try {
+            fileToUpload = await compressImage(file);
+            console.log(`Compressed: ${file.size} -> ${fileToUpload.size} bytes`);
+          } catch (err) {
+            console.warn('Compression failed, using original', err);
+          }
+        }
+
+        const base64Content = await new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onload = () => resolve(reader.result.split(',')[1]);
+          reader.onerror = reject;
+          reader.readAsDataURL(fileToUpload);
+        });
+
+        // Use .webp extension if compressed, otherwise keep original
+        let fileName = file.name;
+        if (isImage && fileToUpload.type === 'image/webp') {
+          fileName = fileName.replace(/\.[^/.]+$/, "") + ".webp";
+        }
+
+        const sanitizedName = fileName.toLowerCase().replace(/[^a-z0-9.-]/g, '-');
+        const subDir = file.type.startsWith('video/') ? 'assets/video' : 'assets/blog';
+        const filePath = `${subDir}/${sanitizedName}`;
+
+        let response;
+        try {
+          response = await fetch('http://localhost:3001/api/save-content', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ filename: filePath, content: base64Content, type: 'Media', action: 'upload-binary', isBase64: true })
+          });
+          if (!response.ok) throw new Error('Local server failed');
+        } catch (e) {
+          response = await fetch('/.netlify/functions/save-content', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ filename: filePath, content: base64Content, type: 'Media', action: 'upload-binary', isBase64: true })
+          });
+        }
+
+        const result = await response.json();
+        if (response.ok && result.success) {
+          const finalPath = `/${filePath}`;
+          progressEl.style.background = '#dcfce7';
+          progressEl.innerHTML = `✅ Uploaded: <strong>${finalPath}</strong>`;
+
+          // Fill the URL field with the uploaded path
+          const urlInput = document.getElementById('mipUrl');
+          if (urlInput) urlInput.value = finalPath;
+
+          // Switch to URL tab view so user can see the path
+          const urlTab = document.getElementById('mipUrlTab');
+          if (urlTab) urlTab.style.display = 'flex';
+        } else {
+          throw new Error(result.message || 'Upload failed');
+        }
+      } catch (err) {
+        console.error(err);
+        progressEl.style.background = '#fee2e2';
+        progressEl.innerHTML = '❌ Upload failed: ' + err.message;
+      } finally {
+        if (dropZone) dropZone.style.pointerEvents = 'auto';
+        if (insertBtn) insertBtn.disabled = false;
+      }
+    }
+
+    // Client-side image compression
+    function compressImage(file) {
+      return new Promise((resolve, reject) => {
+        const maxWidth = 1200;
+        const quality = 0.8;
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = event => {
+          const img = new Image();
+          img.src = event.target.result;
+          img.onload = () => {
+            const canvas = document.createElement('canvas');
+            let width = img.width;
+            let height = img.height;
+
+            if (width > maxWidth) {
+              height = Math.round(height * (maxWidth / width));
+              width = maxWidth;
+            }
+
+            canvas.width = width;
+            canvas.height = height;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(img, 0, 0, width, height);
+
+            canvas.toBlob(blob => {
+              if (blob) {
+                resolve(blob);
+              } else {
+                reject(new Error('Canvas is empty'));
+              }
+            }, 'image/webp', quality);
+          };
+          img.onerror = error => reject(error);
+        };
+        reader.onerror = error => reject(error);
+      });
+    }
+
+    function insertFromMediaPanel() {
+      const url = document.getElementById('mipUrl')?.value.trim();
+      const aspect = document.getElementById('mipAspect')?.value || 'auto';
+      const alt = document.getElementById('mipAlt')?.value.trim() || '';
+      const type = document.getElementById('mipType')?.value || 'image';
+
+      if (!url) {
+        alert('Please enter a URL/path or upload a file first.');
+        return;
+      }
+
+      const markdown = generateMediaMarkdown(type, url, aspect, alt);
+
+      // Insert into SimpleMDE at cursor
+      if (simpleMDE) {
+        const cm = simpleMDE.codemirror;
+        const cursor = cm.getCursor();
+        cm.replaceRange(markdown, cursor);
+        cm.focus();
+      } else {
+        const ta = document.getElementById('mainContent');
+        const start = ta.selectionStart;
+        ta.value = ta.value.slice(0, start) + markdown + ta.value.slice(start);
+      }
+
+      closeMediaPanel();
+    }
+
+    function generateMediaMarkdown(type, url, aspect, alt) {
+      if (type === 'image') {
+        if (aspect === 'auto') {
+          // Optimized standard image with lazy loading
+          return `\n![${alt || 'image'}](${url})\n`;
+        }
+        // Optimized custom aspect ratio container
+        return `\n<div style="position:relative;width:100%;padding-bottom:${ASPECT_MAP[aspect]};overflow:hidden;border-radius:8px;margin:20px 0;"><img src="${url}" alt="${alt || 'image'}" loading="lazy" decoding="async" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;" /></div>\n`;
+      } else if (type === 'video') {
+        const ytMatch = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([a-zA-Z0-9_-]{11})/);
+        if (ytMatch) {
+          return `\n<div style="position:relative;width:100%;padding-bottom:${ASPECT_MAP[aspect] || '56.25%'};overflow:hidden;border-radius:8px;margin:20px 0;"><iframe src="https://www.youtube.com/embed/${ytMatch[1]}" loading="lazy" style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;" allowfullscreen></iframe></div>\n`;
+        }
+        return `\n<div style="position:relative;width:100%;padding-bottom:${ASPECT_MAP[aspect] || '56.25%'};overflow:hidden;border-radius:8px;margin:20px 0;"><video src="${url}" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;" controls${alt ? ` title="${alt}"` : ''} preload="metadata"></video></div>\n`;
+      }
+      return '';
+    }
+
+    // ========== AI SEO GENERATION ==========
+    async function generateSEO() {
+      const btn = document.getElementById('btnGenerateSEO');
+      const originalText = btn.innerHTML;
+
+      // Ensure editor content is synced/retrieved
+      let content = '';
+      if (simpleMDE) {
+        content = simpleMDE.value();
+      } else {
+        content = document.getElementById('mainContent').value;
+      }
+
+      const currentTitle = document.getElementById('blogTitle').value;
+
+      // Collect available categories
+      const categorySelect = document.getElementById('blogCategory');
+      const availableCategories = Array.from(categorySelect.options)
+        .map(opt => opt.value)
+        .filter(val => val !== ''); // Exclude empty/default option
+
+      console.log('Generating SEO for content length:', content.length);
+
+      if (!content || content.length < 50) {
+        alert('⚠️ Please write at least a few sentences of content so the AI can analyze it.');
+        return;
+      }
+
+      btn.disabled = true;
+      btn.innerHTML = '✨ Analyzing & Generating...';
+      btn.style.opacity = '0.8';
+      btn.style.cursor = 'wait';
+
+      try {
+        const payload = { content, currentTitle, availableCategories };
+        console.log('Sending payload:', { ...payload, content: content.substring(0, 50) + '...' });
+        let response;
+
+        // Try local helper first (if running locally), then Netlify function
+        try {
+          response = await fetch('http://localhost:3001/api/generate-seo', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+          if (!response.ok) throw new Error('Local dev unavailable');
+        } catch (e) {
+          response = await fetch('/.netlify/functions/generate-seo', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+        }
+
+        if (!response.ok) {
+          const errData = await response.text();
+          console.error(`API Error: ${errData}`);
+          throw new Error('API Request Failed: ' + (JSON.parse(errData).error?.message || errData));
+        }
+
+        const data = await response.json();
+        console.log('Received SEO Data:', data);
+
+        // Populate fields with animation effect
+        const fields = [
+          { id: 'blogTitle', val: data.title },
+          { id: 'blogDesc', val: data.description },
+          { id: 'blogKeywords', val: data.keywords },
+          { id: 'blogImageAlt', val: data.imageAlt },
+          { id: 'blogCategory', val: data.category } // Set category
+        ];
+
+        fields.forEach(f => {
+          const el = document.getElementById(f.id);
+          if (el && f.val) {
+            el.value = f.val;
+            el.style.transition = 'background-color 0.5s';
+            el.style.backgroundColor = '#d1fae5'; // highlight green
+            setTimeout(() => el.style.backgroundColor = '', 1500);
+          }
+        });
+
+        // Update slug preview based on new title
+        if (data.title) updateSlug('blog');
+
+        alert('✨ High-Impact SEO Metadata Generated!\n\nReview the highlighted fields.');
+
+      } catch (error) {
+        console.error('SEO Generation Error:', error);
+        alert('❌ Failed to generate SEO: ' + error.message);
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = originalText;
+        btn.style.opacity = '1';
+        btn.style.cursor = 'pointer';
+      }
+    }
+
   </script>
 </body>
 

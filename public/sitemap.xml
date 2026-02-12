@@ -840,4 +840,18 @@
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
+    
+    <url>
+        <loc>https://blog.evolvedlotus.com/blog/2026-01-26-instagram-algorithm-2026-6-signals-to-viral-growth/</loc>
+        <lastmod>2026-01-26T13:41:00.000-05:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <url>
+        <loc>https://blog.evolvedlotus.com/blog/2026-01-28-how-to-win-facebooks-2026-algorithm/</loc>
+        <lastmod>2026-01-28T11:18:00.000-05:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
 </urlset>

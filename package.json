@@ -12,7 +12,7 @@
     "start": "eleventy --serve",
     "prebuild": "node scripts/convert-to-webp.js && node scripts/generate-og-images.js",
     "build": "node scripts/frontmatter-validator.js --fix && eleventy",
-    "build:safe": "node scripts/frontmatter-validator.js --fix && eleventy && node scripts/validate-api-data.js",
+    "build:safe": "node scripts/frontmatter-validator.js --fix && npm run convert:webp && npm run optimize:images && eleventy && node scripts/validate-api-data.js",
     "validate:api": "node scripts/validate-api-data.js",
     "build:prod": "npm run prebuild && npm run build && node scripts/verify-meta-tags.js",
     "generate:og": "node scripts/generate-og-images.js",

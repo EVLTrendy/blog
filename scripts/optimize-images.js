@@ -7,7 +7,7 @@ const SIZES = [480, 768, 1200];
 
 async function processImage(filePath) {
     const ext = path.extname(filePath).toLowerCase();
-    if (!['.jpg', '.jpeg', '.png'].includes(ext)) return;
+    if (!['.jpg', '.jpeg', '.png', '.webp'].includes(ext)) return;
 
     // Skip if it's already a resized version
     if (filePath.match(/-\d+w\./)) return;

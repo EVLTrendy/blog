@@ -69,11 +69,7 @@
           
         
           
-          <meta property="article:tag" content="ft">
-          
-        
-          
-          <meta property="article:tag" content="yt">
+          <meta property="article:tag" content="youtube">
           
         
           
@@ -397,8 +393,8 @@
                     </a>
                 </div>
                 <div class="evl-navdivtxt">
-                    <a href="https://whop.com/evolvedlotus">
-                        <span class="evl-navtxt">Shop</span>
+                    <a href="https://tools.evolvedlotus.com/premium">
+                        <span class="evl-navtxt">Premium</span>
                     </a>
                 </div>
                 <div class="evl-navdivtxt">
@@ -497,7 +493,7 @@
                 <a href="https://blog.evolvedlotus.com/about/">About</a>
                 <a href="https://www.evolvedlotus.com/#cusection">Contact Us</a>
                 <a href="https://tools.evolvedlotus.com/">Tools</a>
-                <a href="https://whop.com/evolvedlotus">Shop</a>
+                <a href="https://tools.evolvedlotus.com/premium">Premium</a>
                 <a href="https://blog.evolvedlotus.com">Blog</a>
             </nav>
         </div>
@@ -921,6 +917,20 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Blog Posts Data (Injected from Nunjucks)
     const blogPosts = [
+        
+        {
+            title: "How to Win Facebooks 2026 Algorithm",
+            url: "/blog/2026-01-28-how-to-win-facebooks-2026-algorithm/",
+            description: "Master Facebook&#39;s 2026 algorithm with our complete guide. Learn how to boost organic reach from 2-5%...",
+            date: "Jan 28, 2026"
+        },
+        
+        {
+            title: "Instagram Algorithm 2026: 6 Signals to Viral Growth",
+            url: "/blog/2026-01-26-instagram-algorithm-2026-6-signals-to-viral-growth/",
+            description: "Master Instagram&#39;s 4 algorithms in 2026 with our complete guide. Learn the 6 core signals, proven st...",
+            date: "Jan 26, 2026"
+        },
         
         {
             title: "YouTube 2026: Trends, Tips, and How to Grow Your Channel",
@@ -1592,11 +1602,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
       
         
-          <a href="/blog/?search=ft" class="article-tag">#ft</a>
-        
-      
-        
-          <a href="/blog/?search=yt" class="article-tag">#yt</a>
+          <a href="/blog/?search=youtube" class="article-tag">#youtube</a>
         
       
         
@@ -1650,6 +1656,71 @@ document.addEventListener('DOMContentLoaded', function() {
     <!-- Left Sidebar Ad (Sticky - only visible while scrolling through article) -->
     <div class="article-spacer-left">
       <aside class="article-sidebar-ad article-sidebar-ad--left" aria-label="Advertisement">
+        <!-- EvolvedLotus Dynamic Ad -->
+        <div class="evl-ad-instance" style="display: none; margin-bottom: 25px;">
+    <div class="evl-ad-box" style="border: 1px solid #ddd; border-radius: 12px; overflow: hidden; background: #fff; font-family: 'Inter', sans-serif;">
+        <div class="evl-ad-image-box" style="height: 140px; background-size: cover; background-position: center;"></div>
+        <div style="padding: 15px;">
+            <span style="display: inline-block; padding: 2px 8px; background: #f0f0f0; color: #666; font-size: 10px; border-radius: 10px; text-transform: uppercase; margin-bottom: 10px;">Partner Ad</span>
+            <h4 class="evl-ad-title" style="margin: 0 0 8px 0; font-size: 16px; color: #1a1a1a;"></h4>
+            <p class="evl-ad-desc" style="margin: 0 0 15px 0; font-size: 13px; color: #666; line-height: 1.4;"></p>
+            <a class="evl-ad-cta" href="#" target="_blank" style="display: block; text-align: center; padding: 10px; background: #000; color: #fff; text-decoration: none; border-radius: 6px; font-weight: 600; font-size: 14px;"></a>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const API_BASE = 'https://cooperative-renewal-production-41ce.up.railway.app';
+    const adInstances = document.querySelectorAll('.evl-ad-instance');
+
+    if (adInstances.length > 0) {
+        // Fetch ads for each instance or one ad for all? 
+        // User wants rotation, so let's fetch one per instance for variety.
+        adInstances.forEach(instance => {
+            fetch(`${API_BASE}/api/ad?client_id=blog&include_blogs=true`)
+                .then(res => res.json())
+                .then(ad => {
+                    if (ad && !ad.error) {
+                        const clickUrl = typeof ad.id === 'number' 
+                            ? `${API_BASE}/api/click/${ad.id}` 
+                            : ad.url;
+                            
+                        const imageBox = instance.querySelector('.evl-ad-image-box');
+                        const title = instance.querySelector('.evl-ad-title');
+                        const desc = instance.querySelector('.evl-ad-desc');
+                        const cta = instance.querySelector('.evl-ad-cta');
+
+                        if (ad.image) {
+                            imageBox.style.backgroundImage = `url(${ad.image})`;
+                        } else {
+                            imageBox.style.backgroundColor = ad.color || '#000';
+                            imageBox.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100%;font-size:3em;">✨</div>';
+                        }
+                        
+                        title.textContent = ad.headline || ad.title;
+                        desc.textContent = ad.description;
+                        cta.textContent = ad.cta || 'Learn More';
+                        cta.href = clickUrl;
+                        
+                        if (ad.color) {
+                            cta.style.backgroundColor = ad.color;
+                        }
+                        
+                        instance.style.display = 'block';
+                    }
+                })
+                .catch(err => console.warn('EVL Ad fetch failed:', err));
+        });
+    }
+});
+</script>
+
+
+
+        
         <!-- Google AdSense - Left Sidebar 160x600 -->
         <ins class="adsbygoogle"
              style="display:inline-block;width:160px;height:600px"
@@ -1902,6 +1973,73 @@ If you're looking for simple, hassle-free screen recording for tutorials, free o
 
 
 
+      
+      <!-- Bottom EvolvedLotus Ad -->
+      <div style="margin-top: 40px;">
+        <div class="evl-ad-instance" style="display: none; margin-bottom: 25px;">
+    <div class="evl-ad-box" style="border: 1px solid #ddd; border-radius: 12px; overflow: hidden; background: #fff; font-family: 'Inter', sans-serif;">
+        <div class="evl-ad-image-box" style="height: 140px; background-size: cover; background-position: center;"></div>
+        <div style="padding: 15px;">
+            <span style="display: inline-block; padding: 2px 8px; background: #f0f0f0; color: #666; font-size: 10px; border-radius: 10px; text-transform: uppercase; margin-bottom: 10px;">Partner Ad</span>
+            <h4 class="evl-ad-title" style="margin: 0 0 8px 0; font-size: 16px; color: #1a1a1a;"></h4>
+            <p class="evl-ad-desc" style="margin: 0 0 15px 0; font-size: 13px; color: #666; line-height: 1.4;"></p>
+            <a class="evl-ad-cta" href="#" target="_blank" style="display: block; text-align: center; padding: 10px; background: #000; color: #fff; text-decoration: none; border-radius: 6px; font-weight: 600; font-size: 14px;"></a>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const API_BASE = 'https://cooperative-renewal-production-41ce.up.railway.app';
+    const adInstances = document.querySelectorAll('.evl-ad-instance');
+
+    if (adInstances.length > 0) {
+        // Fetch ads for each instance or one ad for all? 
+        // User wants rotation, so let's fetch one per instance for variety.
+        adInstances.forEach(instance => {
+            fetch(`${API_BASE}/api/ad?client_id=blog&include_blogs=true`)
+                .then(res => res.json())
+                .then(ad => {
+                    if (ad && !ad.error) {
+                        const clickUrl = typeof ad.id === 'number' 
+                            ? `${API_BASE}/api/click/${ad.id}` 
+                            : ad.url;
+                            
+                        const imageBox = instance.querySelector('.evl-ad-image-box');
+                        const title = instance.querySelector('.evl-ad-title');
+                        const desc = instance.querySelector('.evl-ad-desc');
+                        const cta = instance.querySelector('.evl-ad-cta');
+
+                        if (ad.image) {
+                            imageBox.style.backgroundImage = `url(${ad.image})`;
+                        } else {
+                            imageBox.style.backgroundColor = ad.color || '#000';
+                            imageBox.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100%;font-size:3em;">✨</div>';
+                        }
+                        
+                        title.textContent = ad.headline || ad.title;
+                        desc.textContent = ad.description;
+                        cta.textContent = ad.cta || 'Learn More';
+                        cta.href = clickUrl;
+                        
+                        if (ad.color) {
+                            cta.style.backgroundColor = ad.color;
+                        }
+                        
+                        instance.style.display = 'block';
+                    }
+                })
+                .catch(err => console.warn('EVL Ad fetch failed:', err));
+        });
+    }
+});
+</script>
+
+
+
+      </div>
       
     </article>
     
@@ -2168,6 +2306,73 @@ If you're looking for simple, hassle-free screen recording for tutorials, free o
         
       
         
+      
+    
+
+    
+    
+    
+    
+    
+      
+    
+    
+    
+    
+      
+    
+  
+
+  
+    
+    
+    
+    
+    
+      
+        
+      
+        
+      
+        
+          
+        
+      
+        
+      
+    
+
+    
+    
+       
+       
+    
+    
+    
+    
+      
+    
+    
+    
+    
+      
+    
+  
+
+  
+    
+    
+    
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
           
         
       
@@ -4332,321 +4537,6 @@ If you're looking for simple, hassle-free screen recording for tutorials, free o
       
         
       
-    
-
-    
-    
-    
-    
-    
-      
-    
-    
-    
-    
-      
-    
-  
-
-  
-    
-    
-    
-    
-    
-      
-        
-      
-        
-      
-        
-      
-        
-      
-    
-
-    
-    
-    
-    
-    
-      
-    
-    
-    
-    
-      
-    
-  
-
-  
-    
-    
-    
-    
-    
-      
-        
-      
-        
-      
-        
-      
-        
-          
-        
-      
-    
-
-    
-    
-       
-       
-    
-    
-    
-    
-      
-    
-    
-    
-    
-      
-    
-  
-
-  
-    
-    
-    
-    
-    
-      
-        
-      
-        
-      
-        
-      
-        
-      
-    
-
-    
-    
-    
-    
-    
-      
-    
-    
-    
-    
-      
-    
-  
-
-  
-    
-    
-    
-    
-    
-      
-        
-      
-        
-      
-        
-      
-        
-      
-    
-
-    
-    
-    
-    
-    
-      
-    
-    
-    
-    
-      
-    
-  
-
-  
-    
-    
-    
-    
-    
-      
-        
-      
-        
-      
-        
-      
-        
-      
-    
-
-    
-    
-    
-    
-    
-      
-    
-    
-    
-    
-      
-    
-  
-
-  
-    
-    
-    
-    
-    
-      
-        
-      
-        
-      
-        
-      
-        
-      
-    
-
-    
-    
-    
-    
-    
-      
-    
-    
-    
-    
-      
-    
-  
-
-  
-    
-    
-    
-    
-    
-      
-        
-      
-        
-      
-        
-      
-        
-      
-    
-
-    
-    
-    
-    
-    
-      
-    
-    
-    
-    
-      
-    
-  
-
-  
-    
-    
-    
-    
-    
-      
-        
-      
-        
-      
-        
-      
-        
-      
-    
-
-    
-    
-    
-    
-    
-      
-    
-    
-    
-    
-      
-    
-  
-
-  
-    
-    
-    
-    
-    
-      
-        
-      
-        
-      
-        
-      
-        
-      
-    
-
-    
-    
-    
-    
-    
-      
-    
-    
-    
-    
-      
-    
-  
-
-  
-    
-    
-    
-    
-    
-      
-        
-      
-        
-      
-        
-      
-        
-      
         
       
     
@@ -4746,15 +4636,10 @@ If you're looking for simple, hassle-free screen recording for tutorials, free o
         
       
         
-          
-        
       
     
 
     
-    
-       
-       
     
     
     
@@ -4782,25 +4667,10 @@ If you're looking for simple, hassle-free screen recording for tutorials, free o
         
       
         
-          
-        
-      
-        
-          
-        
-      
-        
-      
-        
-      
-        
       
     
 
     
-    
-       
-       
     
     
     
@@ -4822,6 +4692,192 @@ If you're looking for simple, hassle-free screen recording for tutorials, free o
     
       
         
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+    
+    
+    
+    
+      
+    
+    
+    
+    
+      
+    
+  
+
+  
+    
+    
+    
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+    
+    
+    
+    
+      
+    
+    
+    
+    
+      
+    
+  
+
+  
+    
+    
+    
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+    
+    
+    
+    
+      
+    
+    
+    
+    
+      
+    
+  
+
+  
+    
+    
+    
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+    
+    
+    
+    
+      
+    
+    
+    
+    
+      
+    
+  
+
+  
+    
+    
+    
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+    
+    
+    
+    
+      
+    
+    
+    
+    
+      
+    
+  
+
+  
+    
+    
+    
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+    
+    
+    
+    
+      
+    
+    
+    
+    
+      
+    
+  
+
+  
+    
+    
+    
+    
+    
       
         
       
@@ -4936,6 +4992,153 @@ If you're looking for simple, hassle-free screen recording for tutorials, free o
           
         
       
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+    
+       
+       
+    
+    
+    
+    
+      
+    
+    
+    
+    
+      
+    
+  
+
+  
+    
+    
+    
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+    
+    
+    
+    
+      
+    
+    
+    
+    
+      
+    
+  
+
+  
+    
+    
+    
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+          
+        
+      
+    
+
+    
+    
+       
+       
+    
+    
+    
+    
+      
+    
+    
+    
+    
+      
+    
+  
+
+  
+    
+    
+    
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+          
+        
+      
+    
+
+    
+    
+       
+       
+    
+    
+    
+    
+      
+    
+    
+    
+    
+      
+    
+  
+
+  
+    
+    
+    
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+          
         
       
     
@@ -5487,7 +5690,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <div class="evl-footeritem">
                         <a href="https://www.linkedin.com/in/marc-cannon-877717244/" target="_blank" aria-label="Visit Marc Cannon's LinkedIn profile">
                             <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fillRule="evenodd" clipRule="evenodd" strokeLinejoin="round" strokeMiterlimit="2">
-                                <path d="M256 0c141.29 0 256 114.71 256 256 0 141.29-114.71 256-256 256C114.71 512 0 397.29 0 256 0Zm-80.037 399.871V199.95h-66.464v199.921h66.464Zm239.62 0V285.225c0-61.409-32.787-89.976-76.509-89.976-35.255 0-51.047 19.389-59.889 33.007V199.95h-66.447c.881 18.757 0 199.921 0 199.921h66.446v-111.65c0-5.976.43-11.95 2.191-16.221 4.795-11.935 15.737-24.299 34.095-24.299 24.034 0 33.663 18.34 33.663 45.204v106.966h66.45ZM143.18 103.55c-22.74 0-37.597 14.95-37.597 34.545 0 19.182 14.405 34.544 36.717 34.544h.429c23.175 0 37.6-15.362 37.6-34.544-.43-19.595-14.424-34.545-37.149-34.545Z" fill="#000000" class="fill-000000"></path>
+                                <path d="M256 0c141.29 0 256 114.71 256 256 0 141.29-114.71 256-256 256C114.71 512 0 397.29 0 256Zm-80.037 399.871V199.95h-66.464v199.921h66.464Zm239.62 0V285.225c0-61.409-32.787-89.976-76.509-89.976-35.255 0-51.047 19.389-59.889 33.007V199.95h-66.447c.881 18.757 0 199.921 0 199.921h66.446v-111.65c0-5.976.43-11.95 2.191-16.221 4.795-11.935 15.737-24.299 34.095-24.299 24.034 0 33.663 18.34 33.663 45.204v106.966h66.45ZM143.18 103.55c-22.74 0-37.597 14.95-37.597 34.545 0 19.182 14.405 34.544 36.717 34.544h.429c23.175 0 37.6-15.362 37.6-34.544-.43-19.595-14.424-34.545-37.149-34.545Z" fill="#000000" class="fill-000000"></path>
                             </svg>
                         </a>
                     </div>
