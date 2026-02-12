@@ -394,17 +394,23 @@ async function makeGitHubRequest(endpoint, data, token) {
       res.on('data', (chunk) => body += chunk);
 
       res.on('end', () => {
+        let response;
         try {
-          const response = body ? JSON.parse(body) : {};
-          console.log(`GitHub API Response: ${res.statusCode}`);
-          if (res.statusCode >= 200 && res.statusCode < 300) {
-            resolve(response);
-          } else {
-            console.error(`GitHub API Error: ${res.statusCode} - ${response.message || body}`);
-            reject(new Error(`GitHub API error ${res.statusCode}: ${response.message || body}`));
-          }
+          response = body ? JSON.parse(body) : {};
         } catch (e) {
-          reject(e);
+          // If body is not JSON (e.g. 500 HTML page), use it as message
+          console.log('Failed to parse GitHub response as JSON, using raw body:', body.substring(0, 100));
+          response = { message: body || 'Unknown error from GitHub' };
+        }
+
+        console.log(`GitHub API Response: ${res.statusCode}`);
+        if (res.statusCode >= 200 && res.statusCode < 300) {
+          resolve(response);
+        } else {
+          // Ensure we don't reject with an object that can't be stringified
+          const errorMsg = response.message || (typeof response === 'string' ? response : JSON.stringify(response));
+          console.error(`GitHub API Error: ${res.statusCode} - ${errorMsg}`);
+          reject(new Error(`GitHub API error ${res.statusCode}: ${errorMsg}`));
         }
       });
     });

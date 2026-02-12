@@ -2393,13 +2393,13 @@
       let isImage = file.type.startsWith('image/');
 
       // Initial size check
-      // For videos: strict 5MB limit
-      // For images: allow up to 20MB since we compress them
-      const limit = isImage ? 20 * 1024 * 1024 : 5 * 1024 * 1024;
+      // For videos: strict 4MB limit (Netlify payload limit is 6MB, base64 overhead makes 4.5MB the max safe binary size)
+      // For images: allow up to 20MB since we compress them client-side before upload
+      const limit = isImage ? 20 * 1024 * 1024 : 4 * 1024 * 1024;
       if (file.size > limit) {
         alert(isImage
           ? '❌ Image too large (>20MB). Please pick a smaller file.'
-          : '❌ Video too large (>5MB). Please use YouTube for larger videos.');
+          : '❌ Video too large (>4MB). Netlify server limits uploads to ~4.5MB. Auto-optimization is not available for videos. Please use YouTube or compress locally.');
         return;
       }
 
@@ -2430,10 +2430,10 @@
           reader.readAsDataURL(fileToUpload);
         });
 
-        // Check final payload size (Netlify limit is ~6MB request body)
-        // Base64 length is approx 1.33 * binary size
-        if (base64Content.length > 5.5 * 1024 * 1024) {
-          throw new Error(`File is too large to upload directly (${(base64Content.length / 1024 / 1024).toFixed(1)}MB encoded). Max allowed is ~5.5MB.`);
+        // Check final payload size (Netlify limit is ~6MB request body including JSON overhead)
+        // Base64 is ~1.33x binary size. 4.5MB base64 corresponds to ~3.3MB raw file.
+        if (base64Content.length > 4.5 * 1024 * 1024) {
+          throw new Error(`File is too large to upload directly (${(base64Content.length / 1024 / 1024).toFixed(1)}MB encoded). Max allowed is ~4.5MB. Please compress further or host externally.`);
         }
 
         // Use .webp extension if compressed, otherwise keep original
