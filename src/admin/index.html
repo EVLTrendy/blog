@@ -2260,9 +2260,17 @@
     };
 
     let currentMediaPanelType = null; // 'image', 'video', or 'upload'
+    let savedCursor = null; // Track cursor position for insertion
 
     function toggleMediaPanel(type) {
       const existing = document.getElementById('mediaInsertPanel');
+
+      // Save cursor position before doing anything
+      if (simpleMDE && simpleMDE.codemirror) {
+        savedCursor = simpleMDE.codemirror.getCursor();
+        console.log('Cursor saved at:', savedCursor);
+      }
+
       // If same type clicked again, close
       if (existing && currentMediaPanelType === type) {
         existing.remove();
@@ -2558,9 +2566,20 @@
       // Insert into SimpleMDE at cursor
       if (simpleMDE) {
         const cm = simpleMDE.codemirror;
-        const cursor = cm.getCursor();
+        // Use saved cursor if available, otherwise current
+        const cursor = savedCursor || cm.getCursor();
+        console.log('Inserting at:', cursor, savedCursor ? '(saved)' : '(current)');
+
         cm.replaceRange(markdown, cursor);
+
+        // Move cursor to end of inserted block
+        const lines = markdown.split('\n');
+        const endLine = cursor.line + lines.length - 1;
+        const endCh = lines.length === 1 ? cursor.ch + lines[0].length : lines[lines.length - 1].length;
+        cm.setCursor({ line: endLine, ch: endCh });
+
         cm.focus();
+        savedCursor = null; // Clear saved cursor
       } else {
         const ta = document.getElementById('mainContent');
         const start = ta.selectionStart;
