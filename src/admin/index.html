@@ -1220,6 +1220,12 @@
         // Handle response robustly
         let result;
         const textToParse = await response.text();
+
+        if (!textToParse) {
+          console.error('Empty response from server');
+          throw new Error(`Server returned empty response (Status ${response.status}). Check console for details.`);
+        }
+
         try {
           result = JSON.parse(textToParse);
         } catch (e) {
@@ -2190,6 +2196,12 @@
         // Handle response robustly
         let result;
         const textToParse = await response.text();
+
+        if (!textToParse) {
+          console.error('Empty response from server');
+          throw new Error(`Server returned empty response (Status ${response.status}). Check console for details.`);
+        }
+
         try {
           result = JSON.parse(textToParse);
         } catch (e) {
@@ -2453,6 +2465,12 @@
         // Handle response robustly
         let result;
         const textToParse = await response.text();
+
+        if (!textToParse) {
+          console.error('Empty response from server');
+          throw new Error(`Server returned empty response (Status ${response.status}). Check console for details.`);
+        }
+
         try {
           result = JSON.parse(textToParse);
         } catch (e) {
