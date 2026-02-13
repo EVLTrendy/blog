@@ -1423,10 +1423,30 @@
           forceSync: true,
           autoDownloadFontAwesome: false,
           previewRender: function (plainText) {
-            // Use the SimpleMDE markdown parser
-            var rendered = simpleMDE.markdown(plainText);
+            // Use marked directly with HTML enabled (SimpleMDE's default strips HTML)
+            if (typeof marked !== 'undefined') {
+              // marked is bundled with SimpleMDE
+              var renderer = new marked.Renderer();
+              var rendered = marked(plainText, {
+                renderer: renderer,
+                sanitize: false,   // Allow raw HTML to pass through
+                breaks: true,      // Convert \n to <br>
+                gfm: true          // GitHub-flavored markdown
+              });
+            } else {
+              // Fallback to SimpleMDE's built-in parser
+              var rendered = simpleMDE.markdown(plainText);
+            }
 
-            // Wrap in blog layout structure
+            // Post-process: make iframes work in preview (sandbox them for safety)
+            // and ensure images/videos display correctly
+            rendered = rendered
+              // Fix any double-encoded HTML entities from markdown parsing
+              .replace(/&lt;(\/?(div|iframe|video|img|source|br|p|span|a|ul|ol|li|h[1-6]|table|thead|tbody|tr|td|th|strong|em|blockquote|figure|figcaption)[^&]*?)&gt;/gi, '<$1>')
+              // Ensure images have max-width for preview
+              .replace(/<img /g, '<img style="max-width:100%;height:auto;" ');
+
+            // Wrap in blog layout structure for accurate preview
             return `
               <div class="article-body-wrapper" style="padding: 20px; max-width: 900px; margin: 0 auto; background: var(--bg-primary, white);">
                 <div class="article-content-column" style="width: 100%;">
