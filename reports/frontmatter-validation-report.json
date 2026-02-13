@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-02-13T05:30:22.057Z",
+  "timestamp": "2026-02-13T06:04:52.180Z",
   "summary": {
     "totalFiles": 87,
     "errors": 1,
@@ -614,9 +614,8 @@
     {
       "file": "2026-02-13-essential-ai-video-tools-to-10x-your-content.md",
       "type": "missing_recommended_fields",
-      "message": "Missing recommended fields: tags, keywords",
+      "message": "Missing recommended fields: keywords",
       "fields": [
-        "tags",
         "keywords"
       ]
     },
