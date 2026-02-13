@@ -467,12 +467,17 @@
 
     /* Media insert panel (injected below SimpleMDE toolbar) */
     .media-insert-panel {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      z-index: 60;
       background: #f8fafc;
       border: 1px solid #e2e8f0;
       border-top: none;
       border-radius: 0 0 8px 8px;
       padding: 16px;
-      margin-bottom: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
       animation: mediaPanelSlideDown 0.2s ease-out;
     }
 
@@ -2363,7 +2368,7 @@
           <button type="button" class="btn primary" id="mipInsertBtn" onclick="insertFromMediaPanel()">📥 Insert into Editor</button>
         </div>`;
 
-      toolbar.after(panel);
+      toolbar.appendChild(panel);
     }
 
     function switchMediaTab(btn, tab) {
