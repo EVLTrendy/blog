@@ -946,7 +946,16 @@
 
     <section id="analytics" class="content-section">
       <h1>📈 Content Analytics</h1>
-      <p style="color:#718096; margin-bottom:20px;">Data from Google Analytics 4 (Last 30 Days)</p>
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+        <p style="color:#718096; margin:0;">Data from Google Analytics 4</p>
+        <select id="analyticsDateRange" onchange="contentData.analyticsLoaded=false;loadAnalytics(this.value)"
+          style="width:auto; min-width:150px;">
+          <option value="7days">Last 7 Days</option>
+          <option value="30days" selected>Last 30 Days</option>
+          <option value="90days">Last 90 Days</option>
+          <option value="12months">Last 12 Months</option>
+        </select>
+      </div>
 
       <div id="analyticsConfigError" class="error-message" style="display:none; margin-bottom:20px;">
         <strong>Configuration Required:</strong> To see analytics data, you need to configure your environment
@@ -971,7 +980,7 @@
         </div>
         <div class="stat-card">
           <div class="stat-number" id="analyticsPostCount">0</div>
-          <div class="stat-label">Articles Published (This Month)</div>
+          <div class="stat-label">Articles Published (This Period)</div>
         </div>
       </div>
 
@@ -1860,13 +1869,17 @@
       }
     }
 
-    async function loadAnalytics() {
-      if (contentData.analyticsLoaded) return;
+    let currentAnalyticsData = [];
+    let currentAnalyticsSort = { field: 'views', dir: 'desc' };
+
+    async function loadAnalytics(range = '30days') {
+      // Force reload if range changes
 
       const topPostsEl = document.getElementById('analyticsTopPosts');
+      topPostsEl.innerHTML = '<p class="loading-spinner"></p> Loading data...';
 
       try {
-        const response = await fetch('/.netlify/functions/analytics');
+        const response = await fetch(`/.netlify/functions/analytics?range=${range}`);
         const result = await response.json();
 
         contentData.analyticsLoaded = true;
@@ -1881,35 +1894,10 @@
         document.getElementById('gaTotalViews').textContent = result.totals?.views?.toLocaleString() || '0';
         document.getElementById('gaTotalUsers').textContent = result.totals?.users?.toLocaleString() || '0';
 
-        // Render Top Posts
-        if (!result.data || result.data.length === 0) {
-          topPostsEl.innerHTML = '<p>No data available for the last 30 days.</p>';
-          return;
-        }
+        // Store for sorting
+        currentAnalyticsData = result.data || [];
 
-        topPostsEl.innerHTML = `
-          <table style="width:100%; text-align:left; border-collapse:collapse;">
-            <thead>
-              <tr style="border-bottom:2px solid #e2e8f0;">
-                <th style="padding:10px;">Page Path</th>
-                <th style="padding:10px;">Views</th>
-                <th style="padding:10px;">Users</th>
-                <th style="padding:10px;">Avg Time</th>
-              </tr>
-            </thead>
-            <tbody>
-              ${result.data.slice(0, 10).map(row => `
-                <tr style="border-bottom:1px solid #edf2f7;">
-                  <td style="padding:10px;"><a href="${row.path}" target="_blank" style="color:#2d3748; text-decoration:none;">${row.path}</a></td>
-                  <td style="padding:10px; font-weight:bold; color:#33bdef;">${row.views}</td>
-                  <td style="padding:10px;">${row.users}</td>
-                  <td style="padding:10px;">${row.avgDuration}s</td>
-                </tr>
-              `).join('')}
-            </tbody>
-          </table>
-          <p style="margin-top:15px; font-size:0.85em; color:#718096; text-align:right;">Showing top 10 of ${result.data.length} pages</p>
-        `;
+        renderAnalyticsTable();
 
       } catch (e) {
         console.error('Analytics load error:', e);
@@ -1917,11 +1905,88 @@
       }
     }
 
+    function sortAnalytics(field) {
+      if (currentAnalyticsSort.field === field) {
+        currentAnalyticsSort.dir = currentAnalyticsSort.dir === 'desc' ? 'asc' : 'desc';
+      } else {
+        currentAnalyticsSort.field = field;
+        currentAnalyticsSort.dir = 'desc';
+      }
+      renderAnalyticsTable();
+    }
+
+    function renderAnalyticsTable() {
+      const topPostsEl = document.getElementById('analyticsTopPosts');
+      const data = currentAnalyticsData;
+      const { field, dir } = currentAnalyticsSort;
+
+      if (!data || data.length === 0) {
+        topPostsEl.innerHTML = '<p>No data available for this period.</p>';
+        return;
+      }
+
+      // Sort logic
+      data.sort((a, b) => {
+        let valA = a[field];
+        let valB = b[field];
+
+        if (dir === 'asc') return valA > valB ? 1 : -1;
+        return valA < valB ? 1 : -1;
+      });
+
+      const maxViews = Math.max(...data.map(d => d.views));
+
+      topPostsEl.innerHTML = `
+        <table style="width:100%; text-align:left; border-collapse:collapse; table-layout:fixed;">
+          <thead>
+            <tr style="border-bottom:2px solid #e2e8f0; color:#718096; font-size:0.9em;">
+              <th style="padding:12px; width:50%; cursor:pointer;" onclick="sortAnalytics('title')">Page Title ↕</th>
+              <th style="padding:12px; width:15%; cursor:pointer;" onclick="sortAnalytics('views')">Views ↕</th>
+              <th style="padding:12px; width:15%; cursor:pointer;" onclick="sortAnalytics('users')">Users ↕</th>
+              <th style="padding:12px; width:20%; cursor:pointer;" onclick="sortAnalytics('avgDuration')">Avg Time ↕</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${data.slice(0, 20).map(row => {
+        const viewPercent = (row.views / maxViews) * 100;
+        const formattedTime = formatDuration(row.avgDuration);
+        // Clean title: remove " | EvolvedLotus Blog" suffix if present
+        const cleanTitle = (row.title || row.path).replace(' | EvolvedLotus Blog', '');
+
+        return `
+              <tr style="border-bottom:1px solid #edf2f7; transition:background 0.15s;" onmouseover="this.style.background='#f8fafc'" onmouseout="this.style.background='transparent'">
+                <td style="padding:12px; overflow:hidden; white-space:nowrap; text-overflow:ellipsis;">
+                  <a href="${row.path}" target="_blank" style="color:#2d3748; text-decoration:none; font-weight:500; display:block;">${cleanTitle}</a>
+                  <span style="font-size:0.8em; color:#a0aec0;">${row.path}</span>
+                </td>
+                <td style="padding:12px;">
+                  <div style="font-weight:bold; color:#33bdef;">${row.views.toLocaleString()}</div>
+                  <div style="height:4px; background:#e2e8f0; border-radius:2px; width:100%; margin-top:4px;">
+                    <div style="height:100%; background:#33bdef; border-radius:2px; width:${viewPercent}%"></div>
+                  </div>
+                </td>
+                <td style="padding:12px;">${row.users.toLocaleString()}</td>
+                <td style="padding:12px; font-family:monospace; color:#4a5568;">${formattedTime}</td>
+              </tr>
+              `;
+      }).join('')}
+          </tbody>
+        </table>
+        <p style="margin-top:15px; font-size:0.85em; color:#718096; text-align:right;">Showing top 20 pages</p>
+      `;
+    }
+
+    function formatDuration(seconds) {
+      if (!seconds) return '0s';
+      const m = Math.floor(seconds / 60);
+      const s = Math.round(seconds % 60);
+      return `${m}m ${s}s`;
+    }
+
     // CREATE / EDIT
     function createNewContent(type) {
       document.getElementById('contentForm').reset();
       document.getElementById('contentType').value = type;
-      document.getElementById('modalTitle').textContent = 'Create New ' + type.charAt(0).toUpperCase() + type.slice(1);
       editingItemId = null; // Reset - this is a new item
 
       // Hide all sections

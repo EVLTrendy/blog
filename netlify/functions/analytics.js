@@ -72,18 +72,31 @@ exports.handler = async (event, context) => {
             auth: auth
         });
 
+        // Parse date range from query parameters
+        const range = event.queryStringParameters.range || '30days';
+        let startDate = '30daysAgo';
+
+        switch (range) {
+            case '7days': startDate = '7daysAgo'; break;
+            case '30days': startDate = '30daysAgo'; break;
+            case '90days': startDate = '90daysAgo'; break;
+            case '12months': startDate = '365daysAgo'; break;
+            default: startDate = '30daysAgo';
+        }
+
         // Run report on GA4
         const response = await analyticsData.properties.runReport({
             property: `properties/${propertyId}`,
             requestBody: {
                 dateRanges: [
                     {
-                        startDate: '30daysAgo',
+                        startDate: startDate,
                         endDate: 'today',
                     },
                 ],
                 dimensions: [
                     { name: 'pagePath' },
+                    { name: 'pageTitle' } // Fetch title for better display
                 ],
                 metrics: [
                     { name: 'activeUsers' },
@@ -106,12 +119,17 @@ exports.handler = async (event, context) => {
         const rows = response.data.rows || [];
 
         // Sort logic within JS as API sorts can be tricky
-        const formattedData = rows.map(row => ({
-            path: row.dimensionValues[0].value,
-            users: parseInt(row.metricValues[0].value, 10),
-            views: parseInt(row.metricValues[1].value, 10),
-            avgDuration: parseFloat(row.metricValues[2].value).toFixed(1)
-        })).sort((a, b) => b.views - a.views);
+        const formattedData = rows
+            .map(row => ({
+                path: row.dimensionValues[0].value,
+                title: row.dimensionValues[1].value,
+                users: parseInt(row.metricValues[0].value, 10),
+                views: parseInt(row.metricValues[1].value, 10),
+                avgDuration: parseFloat(row.metricValues[2].value)
+            }))
+            // Filter out low-quality traffic (0s duration usually means accidental clicks or bots that GA didn't catch)
+            .filter(row => row.avgDuration > 0.5 || row.views > 5)
+            .sort((a, b) => b.views - a.views);
 
         // Calculate totals for summary cards
         const totalViews = formattedData.reduce((sum, item) => sum + item.views, 0);
@@ -127,7 +145,7 @@ exports.handler = async (event, context) => {
                     views: totalViews,
                     users: totalUsers,
                 },
-                period: 'Last 30 Days'
+                period: range
             })
         };
 
