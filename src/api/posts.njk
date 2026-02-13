@@ -4,7 +4,7 @@ eleventyExcludeFromCollections: true
 ---
 {
   "stats": {
-    "totalBlogPosts": {{ collections.post | length }},
+    "totalBlogPosts": {{ collections.cmsPosts | length }},
     "totalHubs": {{ collections.hubs | length if collections.hubs else 0 }},
     "totalAuthors": {{ collections.authors | length if collections.authors else 0 }},
     "totalNotifications": {{ collections.notifications | length if collections.notifications else 0 }},
@@ -12,7 +12,7 @@ eleventyExcludeFromCollections: true
     "lastUpdated": "{{ "now" | date("yyyy-MM-dd HH:mm:ss") }}"
   },
   "blog": [
-    {%- for post in collections.post | reverse -%}
+    {%- for post in collections.cmsPosts -%}
     {
       "id": "{{ post.url | replace('/blog/', '') | replace('/', '') }}",
       "slug": "{{ post.fileSlug }}",

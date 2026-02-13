@@ -281,6 +281,9 @@ module.exports = function (eleventyConfig) {
     eleventyConfig.addCollection("blog", function (collectionApi) {
         return collectionApi.getFilteredByGlob("src/blog/*.md")
             .filter(post => {
+                // Exclude drafts
+                if (post.data.draft) return false;
+
                 // Only include posts with valid dates
                 const date = post.data.date;
                 if (!date) return false;
@@ -305,12 +308,25 @@ module.exports = function (eleventyConfig) {
             });
     });
 
+    // Collection for CMS (includes drafts and future posts)
+    eleventyConfig.addCollection("cmsPosts", function (collectionApi) {
+        return collectionApi.getFilteredByGlob("src/blog/*.md")
+            .sort((a, b) => {
+                let dateA = a.data.date;
+                let dateB = b.data.date;
+                if (typeof dateA === 'string') dateA = new Date(dateA.replace(/^['"]+|['"]+$/g, ''));
+                if (typeof dateB === 'string') dateB = new Date(dateB.replace(/^['"]+|['"]+$/g, ''));
+                return dateB - dateA;
+            });
+    });
+
     // Override default tag collection for `post` to also exclude future posts and non-content files
     eleventyConfig.addCollection("post", function (collectionApi) {
         const now = new Date();
         return collectionApi
             .getFilteredByTag("post")
             .filter(post => {
+                if (post.data.draft) return false;
                 // Handle both string and Date objects for date comparison
                 const postDate = typeof post.date === 'string' ? new Date(post.date) : post.date;
                 return postDate <= now;
