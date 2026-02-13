@@ -203,15 +203,362 @@
     }
 
     .modal-content {
-      background: white;
-      margin: 3vh auto;
-      padding: 40px;
-      width: 90%;
-      max-width: 1200px;
-      border-radius: 12px;
-      max-height: 94vh;
+      background: #f7fafc;
+      margin: 0 auto;
+      padding: 0;
+      width: 100%;
+      max-width: 1400px;
+      border-radius: 0;
+      height: 100vh;
       overflow-y: auto;
-      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+      box-shadow: none;
+      display: flex;
+      flex-direction: column;
+    }
+
+    @media (min-width: 768px) {
+      .modal-content {
+        margin: 2vh auto;
+        width: 92%;
+        border-radius: 16px;
+        height: auto;
+        max-height: 96vh;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+      }
+    }
+
+    /* Sticky modal header */
+    .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 24px;
+      background: white;
+      border-bottom: 1px solid #e2e8f0;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      border-radius: 16px 16px 0 0;
+    }
+
+    .modal-header-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .modal-header h2 {
+      margin: 0;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #1a202c;
+    }
+
+    .modal-type-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .modal-type-badge.blog {
+      background: #c6f6d5;
+      color: #22543d;
+    }
+
+    .modal-type-badge.hub {
+      background: #feebc8;
+      color: #744210;
+    }
+
+    .modal-type-badge.author {
+      background: #bee3f8;
+      color: #2a4365;
+    }
+
+    .modal-type-badge.notification {
+      background: #fed7d7;
+      color: #742a2a;
+    }
+
+    .modal-type-badge.page {
+      background: #e9d8fd;
+      color: #44337a;
+    }
+
+    .modal-type-badge.media {
+      background: #fefcbf;
+      color: #744210;
+    }
+
+    .modal-close-btn {
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: none;
+      background: #f7fafc;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1.25rem;
+      color: #718096;
+      transition: all 0.15s;
+    }
+
+    .modal-close-btn:hover {
+      background: #fed7d7;
+      color: #e53e3e;
+    }
+
+    /* Modal body - scrollable */
+    .modal-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 24px;
+    }
+
+    /* Section cards */
+    .editor-section {
+      background: white;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 20px;
+    }
+
+    .editor-section-title {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #2d3748;
+      margin: 0 0 16px 0;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #edf2f7;
+    }
+
+    .editor-section-title .section-icon {
+      font-size: 1.1rem;
+    }
+
+    /* Collapsible SEO section */
+    .section-toggle {
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .section-toggle::after {
+      content: '▾';
+      margin-left: auto;
+      font-size: 0.9em;
+      color: #a0aec0;
+      transition: transform 0.2s;
+    }
+
+    .section-toggle.collapsed::after {
+      transform: rotate(-90deg);
+    }
+
+    .section-collapsible {
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+      max-height: 500px;
+    }
+
+    .section-collapsible.collapsed {
+      max-height: 0;
+    }
+
+    /* Two-column grid for form fields */
+    .fields-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .fields-grid .full-width {
+      grid-column: 1 / -1;
+    }
+
+    @media (max-width: 640px) {
+      .fields-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Sticky modal footer */
+    .modal-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 24px;
+      background: white;
+      border-top: 1px solid #e2e8f0;
+      position: sticky;
+      bottom: 0;
+      z-index: 10;
+      border-radius: 0 0 16px 16px;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .modal-footer-left {
+      display: flex;
+      gap: 8px;
+    }
+
+    .modal-footer-right {
+      display: flex;
+      gap: 8px;
+    }
+
+    /* Action buttons with clear visual hierarchy */
+    .btn-publish {
+      background: linear-gradient(135deg, #33bdef 0%, #0ea5e9 100%);
+      color: white;
+      border: none;
+      padding: 10px 24px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-publish:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(51, 189, 239, 0.4);
+    }
+
+    .btn-draft {
+      background: white;
+      color: #2d3748;
+      border: 1px solid #e2e8f0;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-weight: 500;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-draft:hover {
+      background: #f7fafc;
+      border-color: #cbd5e0;
+    }
+
+    .btn-secondary {
+      background: none;
+      color: #718096;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-weight: 500;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .btn-secondary:hover {
+      background: #edf2f7;
+      color: #2d3748;
+    }
+
+    /* Publishing options inline */
+    .publish-options {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .publish-option {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      font-size: 0.95rem;
+    }
+
+    .publish-option input[type='checkbox'] {
+      width: auto;
+      margin: 0;
+      accent-color: #33bdef;
+    }
+
+    /* Tag chips */
+    .tag-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 8px;
+    }
+
+    .tag-chip {
+      display: inline-flex;
+      align-items: center;
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      cursor: pointer;
+      border: 1px solid #e2e8f0;
+      background: #f7fafc;
+      color: #4a5568;
+      transition: all 0.15s;
+      user-select: none;
+    }
+
+    .tag-chip:hover {
+      border-color: #33bdef;
+      background: #e0f7ff;
+    }
+
+    .tag-chip.active {
+      background: #33bdef;
+      color: white;
+      border-color: #33bdef;
+    }
+
+    .tag-chip.active:hover {
+      background: #0ea5e9;
+      border-color: #0ea5e9;
+    }
+
+    /* Featured toggle inline */
+    .featured-toggle {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 0;
+    }
+
+    .featured-toggle input[type='checkbox'] {
+      width: auto;
+      margin: 0;
+      accent-color: #f59e0b;
+      transform: scale(1.2);
+    }
+
+    .featured-toggle label {
+      display: inline;
+      margin: 0;
+      font-weight: 500;
+      color: #4a5568;
+      cursor: pointer;
     }
 
     form {
@@ -874,9 +1221,10 @@
       }
 
       .modal-content {
-        width: 95%;
-        margin: 10px auto;
-        padding: 20px;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        border-radius: 0;
       }
     }
 
@@ -1176,252 +1524,372 @@
   <!-- Content Editor Modal -->
   <div id="editModal" class="modal">
     <div class="modal-content">
-      <div style="display:flex; justify-content:space-between; align-items:center;">
-        <h2 id="modalTitle" style="margin:0;">Content Editor</h2>
-        <button onclick="closeModal()"
-          style="background:none; border:none; font-size:1.5em; cursor:pointer;">&times;</button>
+
+      <!-- STICKY HEADER -->
+      <div class="modal-header">
+        <div class="modal-header-left">
+          <span class="modal-type-badge" id="modalTypeBadge">📝 Blog</span>
+          <h2 id="modalTitle">Content Editor</h2>
+        </div>
+        <button class="modal-close-btn" onclick="closeModal()" title="Close">✕</button>
       </div>
-      <form id="contentForm" novalidate>
-        <input type="hidden" id="contentType">
 
-        <!-- 📝 BLOG POST FIELDS -->
-        <div id="blogFields" class="form-section">
-          <div style="display:flex; justify-content:flex-end; margin-bottom:15px;">
-            <button type="button" class="btn success" id="btnGenerateSEO" onclick="generateSEO()"
-              style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border:none; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-              ✨ Auto-Fill SEO with AI
-            </button>
-          </div>
-          <div class="form-row">
-            <label for="blogTitle">Post Title:</label>
-            <input type="text" id="blogTitle" placeholder="10 Tips for..." oninput="updateSlug('blog')">
-            <div class="slug-preview" id="blogSlugPreview"></div>
-          </div>
-          <div class="form-row">
-            <label for="blogDesc">Description (SEO):</label>
-            <textarea id="blogDesc" rows="2"></textarea>
-          </div>
-          <div class="form-row half">
-            <label for="blogDate">Publish Date:</label>
-            <input type="datetime-local" id="blogDate">
-          </div>
-          <div class="form-row half">
-            <label for="blogAuthor">Author:</label>
-            <select id="blogAuthor">
-              <option value="EvolvedLotus Team">EvolvedLotus Team</option>
-            </select>
-          </div>
-          <div class="form-row">
-            <label for="blogTags">Tags (comma-separated):</label>
-            <input type="text" id="blogTags" placeholder="marketing, guide, 2024">
-          </div>
-          <div class="form-row half">
-            <label for="blogCategory">Category:</label>
-            <select id="blogCategory">
-              <option value="">Select Category</option>
-              <option value="content-creation">Content Creation</option>
-              <option value="social-media">Social Media</option>
-              <option value="seo">SEO</option>
-              <option value="analytics">Analytics</option>
-              <option value="tools">Tools & Resources</option>
-            </select>
-          </div>
-          <div class="form-row half">
-            <div class="form-row half">
-              <label>Featured Image:</label>
+      <!-- SCROLLABLE BODY -->
+      <div class="modal-body">
+        <form id="contentForm" novalidate>
+          <input type="hidden" id="contentType">
+
+          <!-- ═══════════════ 📝 BLOG POST FIELDS ═══════════════ -->
+          <div id="blogFields" class="form-section">
+
+            <!-- Section 1: Essential Info -->
+            <div class="editor-section">
+              <div class="editor-section-title">
+                <span class="section-icon">✏️</span> Essential Info
+              </div>
+              <div class="form-row">
+                <label for="blogTitle">Post Title</label>
+                <input type="text" id="blogTitle" placeholder="e.g. 10 Tips for Growing Your Audience"
+                  oninput="updateSlug('blog')">
+                <div class="slug-preview" id="blogSlugPreview"></div>
+              </div>
+              <div class="form-row">
+                <label for="blogDesc">Description <small style="font-weight:400;color:#a0aec0;">(appears in search
+                    results)</small></label>
+                <textarea id="blogDesc" rows="2" style="min-height:60px;"
+                  placeholder="A compelling summary of your post for SEO..."></textarea>
+              </div>
+              <div class="fields-grid">
+                <div>
+                  <label for="blogDate">Publish Date</label>
+                  <input type="datetime-local" id="blogDate">
+                </div>
+                <div>
+                  <label for="blogAuthor">Author</label>
+                  <select id="blogAuthor">
+                    <option value="EvolvedLotus Team">EvolvedLotus Team</option>
+                  </select>
+                </div>
+                <div>
+                  <label for="blogCategory">Category</label>
+                  <select id="blogCategory">
+                    <option value="">Select Category</option>
+                    <option value="content-creation">Content Creation</option>
+                    <option value="social-media">Social Media</option>
+                    <option value="seo">SEO</option>
+                    <option value="analytics">Analytics</option>
+                    <option value="tools">Tools & Resources</option>
+                    <option value="strategy">Strategy</option>
+                    <option value="growth">Growth</option>
+                  </select>
+                </div>
+                <div>
+                  <div class="featured-toggle">
+                    <input type="checkbox" id="blogFeatured">
+                    <label for="blogFeatured">⭐ Featured Post</label>
+                  </div>
+                </div>
+              </div>
+              <div style="margin-top:12px;">
+                <label for="blogTags">Tags</label>
+                <div class="tag-chips" id="tagChips">
+                  <span class="tag-chip" data-tag="tiktok" onclick="toggleTag(this)">TikTok</span>
+                  <span class="tag-chip" data-tag="youtube" onclick="toggleTag(this)">YouTube</span>
+                  <span class="tag-chip" data-tag="twitter" onclick="toggleTag(this)">Twitter</span>
+                  <span class="tag-chip" data-tag="instagram" onclick="toggleTag(this)">Instagram</span>
+                  <span class="tag-chip" data-tag="facebook" onclick="toggleTag(this)">Facebook</span>
+                  <span class="tag-chip" data-tag="linkedin" onclick="toggleTag(this)">LinkedIn</span>
+                  <span class="tag-chip" data-tag="twitch" onclick="toggleTag(this)">Twitch</span>
+                  <span class="tag-chip" data-tag="kick" onclick="toggleTag(this)">Kick</span>
+                  <span class="tag-chip" data-tag="ai" onclick="toggleTag(this)">AI</span>
+                  <span class="tag-chip" data-tag="growth" onclick="toggleTag(this)">Growth</span>
+                  <span class="tag-chip" data-tag="misc" onclick="toggleTag(this)">Misc</span>
+                </div>
+                <input type="text" id="blogTags" placeholder="Add custom tags (comma-separated)"
+                  style="margin-top:4px;">
+              </div>
+            </div>
+
+            <!-- Section 2: Featured Image -->
+            <div class="editor-section">
+              <div class="editor-section-title">
+                <span class="section-icon">🖼️</span> Featured Image
+              </div>
               <input type="hidden" id="blogImage">
-
               <div id="blogImageDropZone"
-                style="border: 2px dashed #e2e8f0; padding: 15px; text-align:center; border-radius:6px; cursor:pointer; background: #f8fafc; transition: all 0.2s;"
+                style="border: 2px dashed #e2e8f0; padding: 24px; text-align:center; border-radius:8px; cursor:pointer; background: #f8fafc; transition: all 0.2s;"
                 onclick="document.getElementById('blogImageInput').click()"
                 ondragover="event.preventDefault(); this.style.borderColor='#33bdef'; this.style.background='#e0f2fe';"
                 ondragleave="this.style.borderColor='#e2e8f0'; this.style.background='#f8fafc';"
                 ondrop="event.preventDefault(); this.style.borderColor='#e2e8f0'; this.style.background='#f8fafc'; handleBlogImageDrop(event);">
-                <p style="margin:0; font-size: 0.9em; color:#64748b;">📂 Click to upload</p>
-                <small style="display:block; margin-top:5px; color:#94a3b8; font-size:0.75em;">
-                  Recommendation size is how the REST of the images in the article-hero-image are sized
-                </small>
+                <div style="font-size:2em; margin-bottom:8px;">📂</div>
+                <p style="margin:0; font-size: 0.95em; color:#4a5568; font-weight:500;">Click to upload or drag & drop
+                </p>
+                <small style="display:block; margin-top:6px; color:#a0aec0; font-size:0.8em;">PNG, JPG, WebP •
+                  Recommended: 1200×630px</small>
               </div>
               <input type="file" id="blogImageInput" accept="image/*" style="display:none;"
                 onchange="handleBlogImageUpload(event)">
-
               <div id="blogImagePreview"
-                style="display:none; margin-top:10px; align-items:center; gap:10px; background: white; padding: 5px; border: 1px solid #eee; border-radius: 6px;">
+                style="display:none; margin-top:12px; align-items:center; gap:12px; background: white; padding: 8px 12px; border: 1px solid #e2e8f0; border-radius: 8px;">
                 <img id="blogImagePreviewImg" src=""
-                  style="width:50px; height:35px; object-fit:cover; border-radius:4px;">
+                  style="width:60px; height:40px; object-fit:cover; border-radius:6px;">
                 <div
-                  style="flex-grow:1; font-size:0.75em; color:#64748b; overflow:hidden; text-overflow:ellipsis; white-space: nowrap; max-width: 150px;"
+                  style="flex-grow:1; font-size:0.85em; color:#4a5568; overflow:hidden; text-overflow:ellipsis; white-space: nowrap;"
                   id="blogImagePathDisplay"></div>
-                <button type="button" class="btn danger" style="padding:2px 6px; font-size:0.7em; margin:0;"
-                  onclick="removeBlogImage()">×</button>
+                <button type="button"
+                  style="background:#fed7d7; color:#e53e3e; border:none; padding:4px 10px; border-radius:6px; font-size:0.8em; cursor:pointer;"
+                  onclick="removeBlogImage()">Remove</button>
+              </div>
+            </div>
+
+            <!-- Section 3: Body Content -->
+            <div class="editor-section" id="blogContentSection">
+              <div class="editor-section-title">
+                <span class="section-icon">📄</span> Body Content
+              </div>
+              <!-- Content textarea is placed here by JS -->
+            </div>
+
+            <!-- Section 4: SEO & Metadata (Collapsible) -->
+            <div class="editor-section">
+              <div class="editor-section-title section-toggle" onclick="toggleSeoSection(this)">
+                <span class="section-icon">🔍</span> SEO & Metadata
+              </div>
+              <div class="section-collapsible" id="seoCollapsible">
+                <div style="display:flex; justify-content:flex-end; margin-bottom:12px;">
+                  <button type="button" id="btnGenerateSEO" onclick="generateSEO()"
+                    style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color:white; border:none; padding:8px 16px; border-radius:8px; font-size:0.85rem; font-weight:500; cursor:pointer; box-shadow: 0 2px 8px rgba(102,126,234,0.3); transition: all 0.2s;">
+                    ✨ Auto-Fill with AI
+                  </button>
+                </div>
+                <div class="fields-grid">
+                  <div class="full-width">
+                    <label for="blogImageAlt">Image Alt Text</label>
+                    <input type="text" id="blogImageAlt" placeholder="Descriptive alt text for the featured image">
+                  </div>
+                  <div class="full-width">
+                    <label for="blogKeywords">Keywords <small
+                        style="font-weight:400;color:#a0aec0;">(comma-separated)</small></label>
+                    <input type="text" id="blogKeywords" placeholder="social media, marketing tips, growth strategy">
+                  </div>
+                  <div>
+                    <label for="blogSchema">Schema Type</label>
+                    <select id="blogSchema">
+                      <option value="Article">Article</option>
+                      <option value="BlogPosting">BlogPosting</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label for="blogOg">Open Graph Type</label>
+                    <select id="blogOg">
+                      <option value="article">Article</option>
+                      <option value="website">Website</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Hidden draft checkbox (toggled by footer Save as Draft button) -->
+            <input type="checkbox" id="blogDraft" style="display:none;">
+          </div>
+
+          <!-- ═══════════════ 🔗 HUB FIELDS ═══════════════ -->
+          <div id="hubFields" class="form-section">
+            <div class="editor-section">
+              <div class="editor-section-title"><span class="section-icon">🔗</span> Hub Details</div>
+              <div class="form-row">
+                <label for="hubTitle">Hub Title</label>
+                <input type="text" id="hubTitle" oninput="updateSlug('hub')">
+                <div class="slug-preview" id="hubSlugPreview"></div>
+              </div>
+              <div class="form-row">
+                <label for="hubDesc">Description</label>
+                <textarea id="hubDesc" rows="3"></textarea>
+              </div>
+              <div class="fields-grid">
+                <div>
+                  <label for="hubCollection">Collection Strategy</label>
+                  <select id="hubCollection">
+                    <option value="tiktok">TikTok</option>
+                    <option value="instagram">Instagram</option>
+                    <option value="youtube">YouTube</option>
+                    <option value="ai">AI Tools</option>
+                  </select>
+                </div>
+                <div>
+                  <label for="hubPermalink">Permalink</label>
+                  <input type="text" id="hubPermalink" placeholder="/hubs/my-topic/">
+                </div>
               </div>
             </div>
           </div>
-          <div class="form-row">
-            <label><input type="checkbox" id="blogFeatured"> Featured</label>
-            <label style="margin-left:15px;"><input type="checkbox" id="blogDraft"> Draft</label>
-          </div>
 
-
-          <h4 style="border-bottom:1px solid #eee; padding-bottom:5px; margin-top:20px;">SEO Advanced</h4>
-          <div class="form-row"><input type="text" id="blogImageAlt" placeholder="Image Alt Text"></div>
-          <div class="form-row"><input type="text" id="blogKeywords" placeholder="Keywords (comma sep)"></div>
-          <div class="form-row half">
-            <select id="blogSchema">
-              <option value="Article">Article Schema</option>
-              <option value="BlogPosting">BlogPosting</option>
-            </select>
-          </div>
-          <div class="form-row half">
-            <select id="blogOg">
-              <option value="article">OG: Article</option>
-              <option value="website">OG: Website</option>
-            </select>
-          </div>
-        </div>
-
-        <!-- 🔗 HUB FIELDS -->
-        <div id="hubFields" class="form-section">
-          <div class="form-row">
-            <label for="hubTitle">Hub Title:</label>
-            <input type="text" id="hubTitle" oninput="updateSlug('hub')">
-            <div class="slug-preview" id="hubSlugPreview"></div>
-          </div>
-          <div class="form-row">
-            <label for="hubDesc">Description:</label>
-            <textarea id="hubDesc" rows="3"></textarea>
-          </div>
-          <div class="form-row">
-            <label for="hubCollection">Hub Collection Strategy:</label>
-            <select id="hubCollection">
-              <option value="tiktok">TikTok (tiktok)</option>
-              <option value="instagram">Instagram (instagram)</option>
-              <option value="youtube">YouTube (youtube)</option>
-              <option value="ai">AI Tools (ai)</option>
-            </select>
-          </div>
-          <div class="form-row">
-            <label for="hubPermalink">Permalink:</label>
-            <input type="text" id="hubPermalink" placeholder="/hubs/my-topic/">
-          </div>
-        </div>
-
-        <!-- 👥 AUTHOR FIELDS -->
-        <div id="authorFields" class="form-section">
-          <div class="form-row half">
-            <label for="authorName">Full Name:</label>
-            <input type="text" id="authorName" oninput="updateSlug('author')">
-            <div class="slug-preview" id="authorSlugPreview"></div>
-          </div>
-          <div class="form-row half">
-            <label for="authorRole">Role:</label>
-            <input type="text" id="authorRole">
-          </div>
-          <div class="form-row">
-            <label for="authorBio">Bio:</label>
-            <textarea id="authorBio" rows="3"></textarea>
-          </div>
-          <div class="form-row">
-            <label for="authorAvatar">Avatar URL:</label>
-            <input type="text" id="authorAvatar" placeholder="/assets/authors/name.png">
-          </div>
-          <div class="form-row">
-            <label>Social Media Links:</label>
-            <input type="url" id="authorTwitter" placeholder="Twitter URL" style="margin-bottom:5px;">
-            <input type="url" id="authorInsta" placeholder="Instagram URL" style="margin-bottom:5px;">
-            <input type="url" id="authorTiktok" placeholder="TikTok URL">
-          </div>
-          <div class="form-row">
-            <label for="authorExpertise">Expertise (One per line):</label>
-            <textarea id="authorExpertise" rows="4"></textarea>
-          </div>
-        </div>
-
-        <!-- 🔔 NOTIFICATION FIELDS -->
-        <div id="notificationFields" class="form-section">
-          <div class="form-row">
-            <label for="notifTitle">Title:</label>
-            <input type="text" id="notifTitle" oninput="updateSlug('notification')">
-            <div class="slug-preview" id="notificationSlugPreview"></div>
-          </div>
-          <div class="form-row">
-            <label for="notifDate">Date:</label>
-            <input type="date" id="notifDate">
-          </div>
-          <div class="form-row">
-            <label for="notifLink">Link (Optional):</label>
-            <input type="url" id="notifLink">
-          </div>
-          <div class="form-row">
-            <label for="notifTags">Tags:</label>
-            <input type="text" id="notifTags" value="notification" placeholder="notification, alert">
-          </div>
-        </div>
-
-        <!-- 📄 PAGE FIELDS -->
-        <div id="pageFields" class="form-section">
-          <div class="form-row">
-            <label for="pageTitle">Page Title:</label>
-            <input type="text" id="pageTitle" oninput="updateSlug('page')">
-            <div class="slug-preview" id="pageSlugPreview"></div>
-          </div>
-          <div class="form-row">
-            <label for="pageLayout">Layout:</label>
-            <input type="text" id="pageLayout" value="page.njk">
-          </div>
-          <div class="form-row">
-            <label for="pagePermalink">Permalink:</label>
-            <input type="text" id="pagePermalink" placeholder="/my-page/">
-          </div>
-        </div>
-
-        <!-- 🖼️ MEDIA FIELDS -->
-        <div id="mediaFields" class="form-section">
-          <div class="form-row">
-            <label>Select Image to Upload:</label>
-            <input type="file" id="mediaFileInput" accept="image/*" onchange="handleMediaFileSelect(event)"
-              style="display:none;">
-            <div id="mediaDropZone"
-              style="border: 2px dashed #33bdef; padding: 40px; text-align:center; border-radius:8px; cursor:pointer; background: #f9fbfc; transition: all 0.3s;"
-              onclick="document.getElementById('mediaFileInput').click()"
-              ondragover="event.preventDefault(); this.style.borderColor='#0ea5e9'; this.style.background='#e0f2fe';"
-              ondragleave="this.style.borderColor='#33bdef'; this.style.background='#f9fbfc';"
-              ondrop="event.preventDefault(); this.style.borderColor='#33bdef'; this.style.background='#f9fbfc'; handleMediaFileDrop(event);">
-              <p style="margin:0; font-size:18px;">📂 Drag and drop image here or click to browse</p>
-              <small style="color:#666;">Supports: JPG, PNG, GIF, WebP (Max 5MB)</small>
+          <!-- ═══════════════ 👥 AUTHOR FIELDS ═══════════════ -->
+          <div id="authorFields" class="form-section">
+            <div class="editor-section">
+              <div class="editor-section-title"><span class="section-icon">👤</span> Author Profile</div>
+              <div class="fields-grid">
+                <div>
+                  <label for="authorName">Full Name</label>
+                  <input type="text" id="authorName" oninput="updateSlug('author')">
+                  <div class="slug-preview" id="authorSlugPreview"></div>
+                </div>
+                <div>
+                  <label for="authorRole">Role</label>
+                  <input type="text" id="authorRole">
+                </div>
+              </div>
+              <div class="form-row">
+                <label for="authorBio">Bio</label>
+                <textarea id="authorBio" rows="3"></textarea>
+              </div>
+              <div class="form-row">
+                <label for="authorAvatar">Avatar URL</label>
+                <input type="text" id="authorAvatar" placeholder="/assets/authors/name.png">
+              </div>
             </div>
-          </div>
-          <div class="form-row" id="mediaPreviewRow" style="display:none;">
-            <label>Preview:</label>
-            <div style="display:flex; gap:20px; align-items:flex-start;">
-              <img id="mediaPreview"
-                style="max-width:200px; max-height:200px; border-radius:8px; border:1px solid #ddd;">
-              <div>
-                <p><strong>File:</strong> <span id="mediaFileName"></span></p>
-                <p><strong>Size:</strong> <span id="mediaFileSize"></span></p>
-                <p><strong>Path:</strong> <code>/assets/images/<span id="mediaFilePath"></span></code></p>
+            <div class="editor-section">
+              <div class="editor-section-title"><span class="section-icon">🌐</span> Social Links</div>
+              <div class="fields-grid">
+                <div>
+                  <label>Twitter / X</label>
+                  <input type="url" id="authorTwitter" placeholder="https://x.com/...">
+                </div>
+                <div>
+                  <label>Instagram</label>
+                  <input type="url" id="authorInsta" placeholder="https://instagram.com/...">
+                </div>
+                <div class="full-width">
+                  <label>TikTok</label>
+                  <input type="url" id="authorTiktok" placeholder="https://tiktok.com/@...">
+                </div>
+              </div>
+              <div class="form-row">
+                <label for="authorExpertise">Expertise <small style="font-weight:400;color:#a0aec0;">(one per
+                    line)</small></label>
+                <textarea id="authorExpertise" rows="4"></textarea>
               </div>
             </div>
           </div>
-          <div class="form-row" id="mediaUploadRow" style="display:none;">
-            <button type="button" class="btn primary" onclick="uploadMediaFile()">📤 Upload to Repository</button>
-            <button type="button" class="btn" onclick="clearMediaUpload()">Cancel</button>
+
+          <!-- ═══════════════ 🔔 NOTIFICATION FIELDS ═══════════════ -->
+          <div id="notificationFields" class="form-section">
+            <div class="editor-section">
+              <div class="editor-section-title"><span class="section-icon">🔔</span> Notification</div>
+              <div class="form-row">
+                <label for="notifTitle">Title</label>
+                <input type="text" id="notifTitle" oninput="updateSlug('notification')">
+                <div class="slug-preview" id="notificationSlugPreview"></div>
+              </div>
+              <div class="fields-grid">
+                <div>
+                  <label for="notifDate">Date</label>
+                  <input type="date" id="notifDate">
+                </div>
+                <div>
+                  <label for="notifTags">Tags</label>
+                  <input type="text" id="notifTags" value="notification" placeholder="notification, alert">
+                </div>
+                <div class="full-width">
+                  <label for="notifLink">Link <small style="font-weight:400;color:#a0aec0;">(optional)</small></label>
+                  <input type="url" id="notifLink" placeholder="https://...">
+                </div>
+              </div>
+            </div>
           </div>
-          <div id="mediaUploadStatus" style="display:none; padding: 15px; border-radius: 8px; margin-top: 10px;"></div>
-        </div>
 
-        <!-- COMMON CONTENT TEXTAREA (Shared by Blog, Hub, Page, Notif) -->
-        <div class="form-row" id="commonContentRow">
-          <label for="mainContent">Body Content (Markdown):</label>
-          <textarea id="mainContent"></textarea>
-        </div>
+          <!-- ═══════════════ 📄 PAGE FIELDS ═══════════════ -->
+          <div id="pageFields" class="form-section">
+            <div class="editor-section">
+              <div class="editor-section-title"><span class="section-icon">📄</span> Page Details</div>
+              <div class="form-row">
+                <label for="pageTitle">Page Title</label>
+                <input type="text" id="pageTitle" oninput="updateSlug('page')">
+                <div class="slug-preview" id="pageSlugPreview"></div>
+              </div>
+              <div class="fields-grid">
+                <div>
+                  <label for="pageLayout">Layout</label>
+                  <input type="text" id="pageLayout" value="page.njk">
+                </div>
+                <div>
+                  <label for="pagePermalink">Permalink</label>
+                  <input type="text" id="pagePermalink" placeholder="/my-page/">
+                </div>
+              </div>
+            </div>
+          </div>
 
-        <div class="form-row">
-          <button type="submit" class="btn primary" id="saveBtn">Save Changes</button>
-          <button type="button" class="btn info" onclick="generateFrontmatterProto()">Copy Code Only</button>
-          <button type="button" class="btn" onclick="closeModal()">Cancel</button>
+          <!-- ═══════════════ 🖼️ MEDIA FIELDS ═══════════════ -->
+          <div id="mediaFields" class="form-section">
+            <div class="editor-section">
+              <div class="editor-section-title"><span class="section-icon">🖼️</span> Upload Media</div>
+              <div class="form-row">
+                <input type="file" id="mediaFileInput" accept="image/*" onchange="handleMediaFileSelect(event)"
+                  style="display:none;">
+                <div id="mediaDropZone"
+                  style="border: 2px dashed #33bdef; padding: 40px; text-align:center; border-radius:8px; cursor:pointer; background: #f9fbfc; transition: all 0.3s;"
+                  onclick="document.getElementById('mediaFileInput').click()"
+                  ondragover="event.preventDefault(); this.style.borderColor='#0ea5e9'; this.style.background='#e0f2fe';"
+                  ondragleave="this.style.borderColor='#33bdef'; this.style.background='#f9fbfc';"
+                  ondrop="event.preventDefault(); this.style.borderColor='#33bdef'; this.style.background='#f9fbfc'; handleMediaFileDrop(event);">
+                  <div style="font-size:2.5em; margin-bottom:8px;">📂</div>
+                  <p style="margin:0; font-size:1em; font-weight:500; color:#2d3748;">Drag and drop image here or click
+                    to browse</p>
+                  <small style="color:#718096; margin-top:6px; display:block;">JPG, PNG, GIF, WebP • Max 5MB</small>
+                </div>
+              </div>
+              <div class="form-row" id="mediaPreviewRow" style="display:none;">
+                <label>Preview</label>
+                <div style="display:flex; gap:20px; align-items:flex-start;">
+                  <img id="mediaPreview"
+                    style="max-width:200px; max-height:200px; border-radius:8px; border:1px solid #ddd;">
+                  <div>
+                    <p><strong>File:</strong> <span id="mediaFileName"></span></p>
+                    <p><strong>Size:</strong> <span id="mediaFileSize"></span></p>
+                    <p><strong>Path:</strong> <code>/assets/images/<span id="mediaFilePath"></span></code></p>
+                  </div>
+                </div>
+              </div>
+              <div class="form-row" id="mediaUploadRow" style="display:none;">
+                <button type="button" class="btn primary" onclick="uploadMediaFile()">📤 Upload to Repository</button>
+                <button type="button" class="btn" onclick="clearMediaUpload()">Cancel</button>
+              </div>
+              <div id="mediaUploadStatus" style="display:none; padding: 15px; border-radius: 8px; margin-top: 10px;">
+              </div>
+            </div>
+          </div>
+
+          <!-- COMMON CONTENT TEXTAREA (Shared by Blog, Hub, Page, Notif) -->
+          <div class="form-row" id="commonContentRow">
+            <label for="mainContent">Body Content (Markdown):</label>
+            <textarea id="mainContent"></textarea>
+          </div>
+
+        </form>
+      </div>
+
+      <!-- STICKY FOOTER -->
+      <div class="modal-footer" id="modalFooter">
+        <div class="modal-footer-left">
+          <button type="button" class="btn-secondary" onclick="closeModal()">Cancel</button>
+          <button type="button" class="btn-secondary" onclick="generateFrontmatterProto()" id="copyCodeBtn">📋 Copy
+            Code</button>
         </div>
-      </form>
+        <div class="modal-footer-right">
+          <button type="button" class="btn-draft"
+            onclick="document.getElementById('blogDraft').checked=true; document.getElementById('contentForm').dispatchEvent(new Event('submit', {cancelable:true}));"
+            id="saveDraftBtn">
+            📝 Save as Draft
+          </button>
+          <button type="submit" form="contentForm" class="btn-publish" id="saveBtn">
+            🚀 Publish
+          </button>
+        </div>
+      </div>
+
     </div>
   </div>
 
@@ -2170,20 +2638,81 @@
       return `${m}m ${s}s`;
     }
 
+    // Toggle SEO section collapse
+    function toggleSeoSection(el) {
+      el.classList.toggle('collapsed');
+      document.getElementById('seoCollapsible').classList.toggle('collapsed');
+    }
+
+    // Tag chip toggle
+    function toggleTag(chip) {
+      chip.classList.toggle('active');
+      // Build tag list from active chips + any custom text
+      const tagInput = document.getElementById('blogTags');
+      const activeChips = document.querySelectorAll('#tagChips .tag-chip.active');
+      const chipTags = Array.from(activeChips).map(c => c.dataset.tag);
+
+      // Preserve any custom tags the user typed that aren't preset chips
+      const presetTags = Array.from(document.querySelectorAll('#tagChips .tag-chip')).map(c => c.dataset.tag);
+      const currentTags = tagInput.value.split(',').map(t => t.trim()).filter(t => t);
+      const customTags = currentTags.filter(t => !presetTags.includes(t.toLowerCase()));
+
+      // Combine: chip tags + custom tags
+      const allTags = [...chipTags, ...customTags].filter(t => t);
+      tagInput.value = allTags.join(', ');
+    }
+
+    // Sync tag chips to match input value (for loading existing posts)
+    function syncTagChips() {
+      const tagInput = document.getElementById('blogTags');
+      const currentTags = tagInput.value.split(',').map(t => t.trim().toLowerCase()).filter(t => t);
+      document.querySelectorAll('#tagChips .tag-chip').forEach(chip => {
+        if (currentTags.includes(chip.dataset.tag)) {
+          chip.classList.add('active');
+        } else {
+          chip.classList.remove('active');
+        }
+      });
+    }
+
+    // Update modal header badge
+    function updateModalBadge(type) {
+      const badge = document.getElementById('modalTypeBadge');
+      const labels = {
+        blog: '📝 Blog Post',
+        hub: '🔗 Hub',
+        author: '👤 Author',
+        notification: '🔔 Notification',
+        page: '📄 Page',
+        media: '🖼️ Media'
+      };
+      badge.textContent = labels[type] || type;
+      badge.className = 'modal-type-badge ' + type;
+    }
+
     // CREATE / EDIT
     function createNewContent(type) {
       document.getElementById('contentForm').reset();
       document.getElementById('contentType').value = type;
       editingItemId = null; // Reset - this is a new item
 
+      // Reset tag chips
+      document.querySelectorAll('#tagChips .tag-chip').forEach(c => c.classList.remove('active'));
+
+      // Update modal header
+      updateModalBadge(type);
+      document.getElementById('modalTitle').textContent = 'New ' + type.charAt(0).toUpperCase() + type.slice(1);
+
       // Hide all sections
       document.querySelectorAll('.form-section').forEach(el => el.classList.remove('active'));
 
       // Hide content row and action buttons for media (has its own upload button)
       const isMedia = (type === 'media');
+      const isBlog = (type === 'blog');
       document.getElementById('commonContentRow').style.display = isMedia ? 'none' : 'block';
-      document.getElementById('saveBtn').style.display = isMedia ? 'none' : 'inline-block';
-      document.querySelector('button[onclick="generateFrontmatterProto()"]').style.display = isMedia ? 'none' : 'inline-block';
+      document.getElementById('saveBtn').style.display = isMedia ? 'none' : 'inline-flex';
+      document.getElementById('copyCodeBtn').style.display = isMedia ? 'none' : 'inline-block';
+      document.getElementById('saveDraftBtn').style.display = isBlog ? 'inline-flex' : 'none';
 
       // Clear media upload state
       if (isMedia) {
@@ -2262,6 +2791,7 @@
         document.getElementById('blogFeatured').checked = !!item.featured;
         document.getElementById('blogDraft').checked = !!item.draft;
         updateSlug('blog');
+        syncTagChips(); // Highlight preset tag chips that match
       }
       if (type === 'hub') {
         document.getElementById('hubTitle').value = item.title || '';
