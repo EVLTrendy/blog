@@ -394,8 +394,20 @@ async function makeGitHubRequest(endpoint, data, token) {
       }
     };
 
-    if (data) {
+    const postData = data ? JSON.stringify(data) : null;
+
+    if (postData) {
       options.headers['Content-Type'] = 'application/json';
+      options.headers['Content-Length'] = Buffer.byteLength(postData);
+    }
+
+    console.log('Sending GitHub Request with headers:', JSON.stringify({
+      ...options.headers,
+      Authorization: 'REDACTED'
+    }));
+
+    if (postData) {
+      console.log('Sending Body:', postData);
     }
 
     const req = https.request(options, (res) => {
@@ -426,8 +438,8 @@ async function makeGitHubRequest(endpoint, data, token) {
 
     req.on('error', reject);
 
-    if (data) {
-      req.write(JSON.stringify(data));
+    if (postData) {
+      req.write(postData);
     }
     req.end();
   });
