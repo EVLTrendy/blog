@@ -11,9 +11,39 @@ exports.handler = async (event, context) => {
     try {
         const clientEmail = process.env.GOOGLE_CLIENT_EMAIL;
         // Handle newlines in private keys (common issue with env vars)
-        const privateKey = process.env.GOOGLE_PRIVATE_KEY
-            ? process.env.GOOGLE_PRIVATE_KEY.replace(/\\n/g, '\n')
-            : null;
+        let privateKey = process.env.GOOGLE_PRIVATE_KEY;
+        if (!privateKey) {
+            console.warn('GOOGLE_PRIVATE_KEY is missing');
+            return {
+                statusCode: 200,
+                body: JSON.stringify({ configured: false, error: 'Configuration Missing' })
+            };
+        }
+
+        // Fix keys that have been flattened to a single line
+        // 1. Replace literal '\n' characters
+        privateKey = privateKey.replace(/\\n/g, '\n');
+
+        // 2. If it still doesn't look like a PEM key (no newlines) but has spaces, try to fix it
+        if (privateKey.indexOf('\n') === -1 && privateKey.indexOf(' ') > -1) {
+            // This regex reconstructs the header/footer and chunks the body
+            const pemHeader = '-----BEGIN PRIVATE KEY-----';
+            const pemFooter = '-----END PRIVATE KEY-----';
+
+            // Remove header/footer if they exist to get just the body
+            let body = privateKey;
+            if (body.includes(pemHeader)) body = body.replace(pemHeader, '');
+            if (body.includes(pemFooter)) body = body.replace(pemFooter, '');
+
+            // Remove all spaces from the body
+            body = body.replace(/\s/g, '');
+
+            // Chunk the body into 64-char lines (standard PEM format)
+            const chunkedBody = body.match(/.{1,64}/g).join('\n');
+
+            // Reassemble
+            privateKey = `${pemHeader}\n${chunkedBody}\n${pemFooter}`;
+        }
         const propertyId = process.env.GA4_PROPERTY_ID;
 
         if (!clientEmail || !privateKey || !propertyId) {
