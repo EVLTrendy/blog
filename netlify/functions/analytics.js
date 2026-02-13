@@ -10,7 +10,8 @@ exports.handler = async (event, context) => {
 
     try {
         const clientEmail = process.env.GOOGLE_CLIENT_EMAIL;
-        // Handle newlines in private keys (common issue with env vars)
+        console.log(`Debug: Using Client Email: '${clientEmail}'`);
+
         let privateKey = process.env.GOOGLE_PRIVATE_KEY;
         if (!privateKey) {
             console.warn('GOOGLE_PRIVATE_KEY is missing');
