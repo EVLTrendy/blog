@@ -1,11 +1,20 @@
 {
-  "timestamp": "2026-02-12T21:24:23.473Z",
+  "timestamp": "2026-02-13T05:30:22.057Z",
   "summary": {
     "totalFiles": 87,
-    "errors": 0,
+    "errors": 1,
     "warnings": 87
   },
-  "errors": [],
+  "errors": [
+    {
+      "file": "2026-02-13-essential-ai-video-tools-to-10x-your-content.md",
+      "type": "missing_required_fields",
+      "message": "Missing required fields: image",
+      "fields": [
+        "image"
+      ]
+    }
+  ],
   "warnings": [
     {
       "file": "2023-11-20-boost-tiktok-visuals-top-online-resources.md",
@@ -603,11 +612,13 @@
       "suggestion": "Twitter cards work best with 1.91:1 ratio images (1200x630px)"
     },
     {
-      "file": "2026-02-12-essential-ai-video-tools-to-10x-your-content.md",
-      "type": "image_dimensions_check",
-      "message": "Image at /assets/blog/essential-ai-video-tools-to-10x-your-content.png: Ensure dimensions are 1200x630px for optimal Twitter Card display",
-      "field": "image",
-      "suggestion": "Twitter cards work best with 1.91:1 ratio images (1200x630px)"
+      "file": "2026-02-13-essential-ai-video-tools-to-10x-your-content.md",
+      "type": "missing_recommended_fields",
+      "message": "Missing recommended fields: tags, keywords",
+      "fields": [
+        "tags",
+        "keywords"
+      ]
     },
     {
       "file": "jams-without-jitters-your-copyright-free-soundtrack-guide.md",
