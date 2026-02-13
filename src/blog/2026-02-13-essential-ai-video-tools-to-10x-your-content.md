@@ -1,11 +1,14 @@
 ---
-title: "Essential AI Video Tools to 10X Your Content"
-description: "Ditch manual editing and unlock daily posting with AI video tools! Discover the top tools to reduce production time by 90% and costs by $500/video. Get the inside scoop now!"
-date: 2026-02-13T05:08:00.000Z
-author: "EvolvedLotus Team"
+title: Essential AI Video Tools to 10X Your Content
+description: Ditch manual editing and unlock daily posting with AI video tools! Discover the top tools to reduce production time by 90% and costs by $500/video. Get the inside scoop now!
+date: '2026-02-13T05:08:00.000Z'
+author: EvolvedLotus Team
 draft: true
 schema_type: Article
 og_type: article
+imageAlt: Essential AI Video Tools to 10X Your Content
+category: content-creation
+featured: false
 ---
 
 Essential AI Video Tools to 10X Your Content
