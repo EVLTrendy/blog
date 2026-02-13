@@ -24,12 +24,13 @@ eleventyExcludeFromCollections: true
       "tags": {{ post.data.tags | dump | safe }},
       "category": {{ post.data.category | default("") | dump | safe }},
       "featured": {{ post.data.featured | default(false) }},
+      "draft": {{ post.data.draft | default(false) }},
       "image": {{ post.data.image | default("") | dump | safe }},
       "imageAlt": {{ post.data.imageAlt | default("") | dump | safe }},
       "keywords": {{ post.data.keywords | default("") | dump | safe }},
       "schema_type": {{ post.data.schema_type | default("Article") | dump | safe }},
       "og_type": {{ post.data.og_type | default("article") | dump | safe }},
-      "body": {{ post.templateContent | dump | safe }}
+      "body": {{ post.inputPath | rawContent | dump | safe }}
     }{% if not loop.last %},{% endif %}
     {%- endfor -%}
   ],

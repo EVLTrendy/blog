@@ -854,4 +854,11 @@
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
+    
+    <url>
+        <loc>https://blog.evolvedlotus.com/blog/2026-02-13-essential-ai-video-tools-to-10x-your-content/</loc>
+        <lastmod>2026-02-13T12:00:00.000-05:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
 </urlset>

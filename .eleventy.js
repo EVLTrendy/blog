@@ -85,6 +85,19 @@ module.exports = function (eleventyConfig) {
         }
     });
 
+    // Raw content filter - reads the source file and returns markdown body (not rendered HTML)
+    eleventyConfig.addFilter("rawContent", function (inputPath) {
+        try {
+            const filePath = path.resolve(inputPath);
+            const raw = fs.readFileSync(filePath, 'utf-8');
+            const parsed = matter(raw);
+            return parsed.content.trim();
+        } catch (err) {
+            console.warn(`rawContent filter error for ${inputPath}:`, err.message);
+            return '';
+        }
+    });
+
     // Date filter for display formatting
     eleventyConfig.addFilter("postDate", (dateObj) => {
         try {

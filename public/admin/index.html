@@ -13,6 +13,13 @@
   <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
   <!-- Font Awesome for SimpleMDE icons -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css">
+
+  <!-- Blog Styles for Exact Preview -->
+  <link rel="stylesheet" href="/assets/css/fonts.css">
+  <link rel="stylesheet" href="/assets/css/dark-mode.css">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/article-layout.css">
+
   <style>
     /* Reset Sakura constraints for full-width CMS layout */
     body {
@@ -196,15 +203,362 @@
     }
 
     .modal-content {
-      background: white;
-      margin: 3vh auto;
-      padding: 40px;
-      width: 90%;
-      max-width: 1200px;
-      border-radius: 12px;
-      max-height: 94vh;
+      background: #f7fafc;
+      margin: 0 auto;
+      padding: 0;
+      width: 100%;
+      max-width: 1400px;
+      border-radius: 0;
+      height: 100vh;
       overflow-y: auto;
-      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+      box-shadow: none;
+      display: flex;
+      flex-direction: column;
+    }
+
+    @media (min-width: 768px) {
+      .modal-content {
+        margin: 2vh auto;
+        width: 92%;
+        border-radius: 16px;
+        height: auto;
+        max-height: 96vh;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+      }
+    }
+
+    /* Sticky modal header */
+    .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 24px;
+      background: white;
+      border-bottom: 1px solid #e2e8f0;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      border-radius: 16px 16px 0 0;
+    }
+
+    .modal-header-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .modal-header h2 {
+      margin: 0;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #1a202c;
+    }
+
+    .modal-type-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .modal-type-badge.blog {
+      background: #c6f6d5;
+      color: #22543d;
+    }
+
+    .modal-type-badge.hub {
+      background: #feebc8;
+      color: #744210;
+    }
+
+    .modal-type-badge.author {
+      background: #bee3f8;
+      color: #2a4365;
+    }
+
+    .modal-type-badge.notification {
+      background: #fed7d7;
+      color: #742a2a;
+    }
+
+    .modal-type-badge.page {
+      background: #e9d8fd;
+      color: #44337a;
+    }
+
+    .modal-type-badge.media {
+      background: #fefcbf;
+      color: #744210;
+    }
+
+    .modal-close-btn {
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: none;
+      background: #f7fafc;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1.25rem;
+      color: #718096;
+      transition: all 0.15s;
+    }
+
+    .modal-close-btn:hover {
+      background: #fed7d7;
+      color: #e53e3e;
+    }
+
+    /* Modal body - scrollable */
+    .modal-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 24px;
+    }
+
+    /* Section cards */
+    .editor-section {
+      background: white;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 20px;
+    }
+
+    .editor-section-title {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #2d3748;
+      margin: 0 0 16px 0;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #edf2f7;
+    }
+
+    .editor-section-title .section-icon {
+      font-size: 1.1rem;
+    }
+
+    /* Collapsible SEO section */
+    .section-toggle {
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .section-toggle::after {
+      content: '▾';
+      margin-left: auto;
+      font-size: 0.9em;
+      color: #a0aec0;
+      transition: transform 0.2s;
+    }
+
+    .section-toggle.collapsed::after {
+      transform: rotate(-90deg);
+    }
+
+    .section-collapsible {
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+      max-height: 500px;
+    }
+
+    .section-collapsible.collapsed {
+      max-height: 0;
+    }
+
+    /* Two-column grid for form fields */
+    .fields-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .fields-grid .full-width {
+      grid-column: 1 / -1;
+    }
+
+    @media (max-width: 640px) {
+      .fields-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Sticky modal footer */
+    .modal-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 24px;
+      background: white;
+      border-top: 1px solid #e2e8f0;
+      position: sticky;
+      bottom: 0;
+      z-index: 10;
+      border-radius: 0 0 16px 16px;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .modal-footer-left {
+      display: flex;
+      gap: 8px;
+    }
+
+    .modal-footer-right {
+      display: flex;
+      gap: 8px;
+    }
+
+    /* Action buttons with clear visual hierarchy */
+    .btn-publish {
+      background: linear-gradient(135deg, #33bdef 0%, #0ea5e9 100%);
+      color: white;
+      border: none;
+      padding: 10px 24px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-publish:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(51, 189, 239, 0.4);
+    }
+
+    .btn-draft {
+      background: white;
+      color: #2d3748;
+      border: 1px solid #e2e8f0;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-weight: 500;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-draft:hover {
+      background: #f7fafc;
+      border-color: #cbd5e0;
+    }
+
+    .btn-secondary {
+      background: none;
+      color: #718096;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-weight: 500;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .btn-secondary:hover {
+      background: #edf2f7;
+      color: #2d3748;
+    }
+
+    /* Publishing options inline */
+    .publish-options {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .publish-option {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      font-size: 0.95rem;
+    }
+
+    .publish-option input[type='checkbox'] {
+      width: auto;
+      margin: 0;
+      accent-color: #33bdef;
+    }
+
+    /* Tag chips */
+    .tag-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 8px;
+    }
+
+    .tag-chip {
+      display: inline-flex;
+      align-items: center;
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      cursor: pointer;
+      border: 1px solid #e2e8f0;
+      background: #f7fafc;
+      color: #4a5568;
+      transition: all 0.15s;
+      user-select: none;
+    }
+
+    .tag-chip:hover {
+      border-color: #33bdef;
+      background: #e0f7ff;
+    }
+
+    .tag-chip.active {
+      background: #33bdef;
+      color: white;
+      border-color: #33bdef;
+    }
+
+    .tag-chip.active:hover {
+      background: #0ea5e9;
+      border-color: #0ea5e9;
+    }
+
+    /* Featured toggle inline */
+    .featured-toggle {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 0;
+    }
+
+    .featured-toggle input[type='checkbox'] {
+      width: auto;
+      margin: 0;
+      accent-color: #f59e0b;
+      transform: scale(1.2);
+    }
+
+    .featured-toggle label {
+      display: inline;
+      margin: 0;
+      font-weight: 500;
+      color: #4a5568;
+      cursor: pointer;
     }
 
     form {
@@ -347,6 +701,16 @@
       color: #742a2a;
     }
 
+    .badge.draft {
+      background: #fefcbf;
+      color: #975a16;
+    }
+
+    .badge.published {
+      background: #c6f6d5;
+      color: #22543d;
+    }
+
     .loading-spinner {
       display: inline-block;
       width: 20px;
@@ -401,6 +765,188 @@
       border: 1px solid #e2e8f0;
       border-bottom: none;
       border-radius: 6px 6px 0 0;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: white;
+    }
+
+    /* ========== PREVIEW PANE: Match Published Blog Exactly ========== */
+    .editor-preview,
+    .editor-preview-side {
+      /* Reset Sakura/SimpleMDE defaults */
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+      font-size: 1.125rem !important;
+      line-height: 1.8 !important;
+      color: var(--text-primary, #1a202c) !important;
+      background: var(--bg-primary, #fff) !important;
+      padding: 2rem !important;
+    }
+
+    .editor-preview h1,
+    .editor-preview-side h1 {
+      font-size: 2.75rem !important;
+      font-weight: 700 !important;
+      line-height: 1.2 !important;
+      margin: 2.5rem 0 1rem 0 !important;
+      color: var(--text-primary, #1a202c) !important;
+    }
+
+    .editor-preview h2,
+    .editor-preview-side h2 {
+      font-size: 2rem !important;
+      font-weight: 700 !important;
+      margin: 2.5rem 0 1rem 0 !important;
+      color: var(--text-primary, #1a202c) !important;
+    }
+
+    .editor-preview h3,
+    .editor-preview-side h3 {
+      font-size: 1.5rem !important;
+      font-weight: 600 !important;
+      margin: 2rem 0 1rem 0 !important;
+      color: var(--text-primary, #1a202c) !important;
+    }
+
+    .editor-preview h4,
+    .editor-preview-side h4 {
+      font-size: 1.25rem !important;
+      font-weight: 600 !important;
+      margin: 1.5rem 0 0.75rem 0 !important;
+      color: var(--text-primary, #1a202c) !important;
+    }
+
+    .editor-preview p,
+    .editor-preview-side p {
+      margin: 0 0 1.5rem 0 !important;
+      line-height: 1.8 !important;
+    }
+
+    .editor-preview a,
+    .editor-preview-side a {
+      color: var(--accent-color, #33bdef) !important;
+      text-decoration: underline !important;
+    }
+
+    .editor-preview a:hover,
+    .editor-preview-side a:hover {
+      color: var(--accent-hover, #2daadd) !important;
+    }
+
+    .editor-preview ul,
+    .editor-preview ol,
+    .editor-preview-side ul,
+    .editor-preview-side ol {
+      margin: 0 0 1.5rem 0 !important;
+      padding-left: 2rem !important;
+    }
+
+    .editor-preview li,
+    .editor-preview-side li {
+      margin-bottom: 0.5rem !important;
+    }
+
+    .editor-preview blockquote,
+    .editor-preview-side blockquote {
+      border-left: 4px solid var(--accent-color, #33bdef) !important;
+      padding-left: 1.5rem !important;
+      margin: 2rem 0 !important;
+      font-style: italic !important;
+      color: var(--text-secondary, #718096) !important;
+      background: none !important;
+    }
+
+    .editor-preview code,
+    .editor-preview-side code {
+      background: var(--code-bg, #f1f5f9) !important;
+      color: var(--code-text, #e53e3e) !important;
+      padding: 2px 6px !important;
+      border-radius: 4px !important;
+      font-family: 'Courier New', monospace !important;
+      font-size: 0.9em !important;
+    }
+
+    .editor-preview pre,
+    .editor-preview-side pre {
+      background: var(--code-bg, #f1f5f9) !important;
+      border: 1px solid var(--border-color, #e2e8f0) !important;
+      border-radius: 8px !important;
+      padding: 1.5rem !important;
+      overflow-x: auto !important;
+      margin: 2rem 0 !important;
+    }
+
+    .editor-preview pre code,
+    .editor-preview-side pre code {
+      background: none !important;
+      padding: 0 !important;
+    }
+
+    .editor-preview hr,
+    .editor-preview-side hr {
+      border: none !important;
+      border-top: 2px solid var(--border-color, #e2e8f0) !important;
+      margin: 2.5rem 0 !important;
+    }
+
+    .editor-preview img,
+    .editor-preview-side img {
+      max-width: 100% !important;
+      height: auto !important;
+      border-radius: 8px !important;
+      margin: 1rem 0 !important;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+    }
+
+    /* Inline div containers (aspect-ratio media blocks) */
+    .editor-preview div[style],
+    .editor-preview-side div[style] {
+      max-width: 100% !important;
+    }
+
+    .editor-preview iframe,
+    .editor-preview-side iframe {
+      border-radius: 8px;
+    }
+
+    .editor-preview video,
+    .editor-preview-side video {
+      border-radius: 8px;
+    }
+
+    .editor-preview table,
+    .editor-preview-side table {
+      width: 100% !important;
+      border-collapse: collapse !important;
+      margin: 2rem 0 !important;
+      background: var(--card-bg, #fff) !important;
+      border-radius: 8px !important;
+      overflow: hidden !important;
+    }
+
+    .editor-preview th,
+    .editor-preview td,
+    .editor-preview-side th,
+    .editor-preview-side td {
+      padding: 12px 16px !important;
+      text-align: left !important;
+      border-bottom: 1px solid var(--border-color, #e2e8f0) !important;
+    }
+
+    .editor-preview th,
+    .editor-preview-side th {
+      background: var(--bg-secondary, #f7fafc) !important;
+      font-weight: 600 !important;
+    }
+
+    .editor-preview strong,
+    .editor-preview-side strong {
+      font-weight: 700 !important;
+    }
+
+    .editor-preview em,
+    .editor-preview-side em {
+      font-style: italic !important;
     }
 
     /* Blog search/filter/sort toolbar */
@@ -456,12 +1002,17 @@
 
     /* Media insert panel (injected below SimpleMDE toolbar) */
     .media-insert-panel {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      z-index: 60;
       background: #f8fafc;
       border: 1px solid #e2e8f0;
       border-top: none;
       border-radius: 0 0 8px 8px;
       padding: 16px;
-      margin-bottom: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
       animation: mediaPanelSlideDown 0.2s ease-out;
     }
 
@@ -680,10 +1231,96 @@
       }
 
       .modal-content {
-        width: 95%;
-        margin: 10px auto;
-        padding: 20px;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        border-radius: 0;
       }
+    }
+
+    .content-calendar {
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      margin: 30px 0;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+      border: 1px solid #e1e4e8;
+    }
+
+    .calendar-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .calendar-day-header {
+      text-align: center;
+      font-weight: 600;
+      color: #718096;
+      font-size: 0.85em;
+      padding-bottom: 10px;
+    }
+
+    .calendar-day {
+      border: 1px solid #edf2f7;
+      border-radius: 8px;
+      min-height: 100px;
+      padding: 8px;
+      background: #f8fafc;
+      position: relative;
+    }
+
+    .calendar-day.today {
+      background: #ebf8ff;
+      border-color: #bee3f8;
+    }
+
+    .calendar-date-label {
+      font-size: 0.8em;
+      color: #718096;
+      margin-bottom: 5px;
+      display: block;
+      text-align: right;
+    }
+
+    .calendar-post-dot {
+      display: block;
+      padding: 4px 6px;
+      margin-bottom: 4px;
+      background: white;
+      border-left: 3px solid #33bdef;
+      border-radius: 4px;
+      font-size: 0.75em;
+      color: #2d3748;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .calendar-post-dot:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      background: #eff6ff;
+    }
+
+    .calendar-post-dot.draft {
+      border-left-color: #fab1a0;
+      background: #fff5f5;
+    }
+
+    .activity-link {
+      color: inherit;
+      text-decoration: none;
+      display: block;
+      width: 100%;
+    }
+
+    .activity-link:hover {
+      color: #33bdef;
     }
   </style>
 </head>
@@ -727,10 +1364,24 @@
 
       <div class="recent-activity">
         <h3>🕐 Recent Activity</h3>
+        <p style="color:#718096; font-size:0.9em; margin-bottom:15px;" id="lastUpdated">Loading...</p>
         <div id="recentActivityList">
-          <div class="activity-item">
-            <span class="badge blog">Blog</span> <span id="lastUpdated">Loading...</span>
+          <div style="text-align:center; padding:20px; color:#a0aec0;">Loading recent items...</div>
+        </div>
+      </div>
+
+      <div class="content-calendar">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <h3>📅 Content Calendar</h3>
+          <div style="display:flex; gap:10px;">
+            <button class="btn" onclick="changeCalendarMonth(-1)">←</button>
+            <span id="calendarMonthLabel"
+              style="font-weight:600; min-width:140px; text-align:center; padding-top:6px;">...</span>
+            <button class="btn" onclick="changeCalendarMonth(1)">→</button>
           </div>
+        </div>
+        <div class="calendar-grid" id="calendarGrid">
+          <!-- Calendar Generated via JS -->
         </div>
       </div>
     </section>
@@ -831,22 +1482,48 @@
 
     <section id="analytics" class="content-section">
       <h1>📈 Content Analytics</h1>
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+        <p style="color:#718096; margin:0;">Data from Google Analytics 4</p>
+        <select id="analyticsDateRange" onchange="contentData.analyticsLoaded=false;loadAnalytics(this.value)"
+          style="width:auto; min-width:150px;">
+          <option value="7days">Last 7 Days</option>
+          <option value="30days" selected>Last 30 Days</option>
+          <option value="90days">Last 90 Days</option>
+          <option value="12months">Last 12 Months</option>
+        </select>
+      </div>
+
+      <div id="analyticsConfigError" class="error-message" style="display:none; margin-bottom:20px;">
+        <strong>Configuration Required:</strong> To see analytics data, you need to configure your environment
+        variables.
+        <br><br>
+        Please add the following variables in Netlify:
+        <ul>
+          <li><code>GOOGLE_CLIENT_EMAIL</code> (Service Account Email)</li>
+          <li><code>GOOGLE_PRIVATE_KEY</code> (Service Account Private Key)</li>
+          <li><code>GA4_PROPERTY_ID</code> (GA4 Property ID)</li>
+        </ul>
+      </div>
+
       <div class="stats-grid">
         <div class="stat-card">
-          <div class="stat-number">2.4K</div>
-          <div class="stat-label">Page Views (Today)</div>
+          <div class="stat-number" id="gaTotalViews">--</div>
+          <div class="stat-label">Total Blog Views</div>
         </div>
         <div class="stat-card">
-          <div class="stat-number">45</div>
-          <div class="stat-label">Hours Read (Today)</div>
+          <div class="stat-number" id="gaTotalUsers">--</div>
+          <div class="stat-label">Active Users</div>
         </div>
         <div class="stat-card">
           <div class="stat-number" id="analyticsPostCount">0</div>
-          <div class="stat-label">Articles Published (This Month)</div>
+          <div class="stat-label">Articles Published (This Period)</div>
         </div>
-        <div class="stat-card">
-          <div class="stat-number">89%</div>
-          <div class="stat-label">Search Satisfaction</div>
+      </div>
+
+      <div class="recent-activity">
+        <h3>🏆 Top Performing Blog Posts</h3>
+        <div id="analyticsTopPosts">
+          <p class="loading-spinner"></p> Loading data...
         </div>
       </div>
     </section>
@@ -857,252 +1534,373 @@
   <!-- Content Editor Modal -->
   <div id="editModal" class="modal">
     <div class="modal-content">
-      <div style="display:flex; justify-content:space-between; align-items:center;">
-        <h2 id="modalTitle" style="margin:0;">Content Editor</h2>
-        <button onclick="closeModal()"
-          style="background:none; border:none; font-size:1.5em; cursor:pointer;">&times;</button>
+
+      <!-- STICKY HEADER -->
+      <div class="modal-header">
+        <div class="modal-header-left">
+          <span class="modal-type-badge" id="modalTypeBadge">📝 Blog</span>
+          <h2 id="modalTitle">Content Editor</h2>
+        </div>
+        <button class="modal-close-btn" onclick="closeModal()" title="Close">✕</button>
       </div>
-      <form id="contentForm" novalidate>
-        <input type="hidden" id="contentType">
 
-        <!-- 📝 BLOG POST FIELDS -->
-        <div id="blogFields" class="form-section">
-          <div style="display:flex; justify-content:flex-end; margin-bottom:15px;">
-            <button type="button" class="btn success" id="btnGenerateSEO" onclick="generateSEO()"
-              style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border:none; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-              ✨ Auto-Fill SEO with AI
-            </button>
-          </div>
-          <div class="form-row">
-            <label for="blogTitle">Post Title:</label>
-            <input type="text" id="blogTitle" placeholder="10 Tips for..." oninput="updateSlug('blog')">
-            <div class="slug-preview" id="blogSlugPreview"></div>
-          </div>
-          <div class="form-row">
-            <label for="blogDesc">Description (SEO):</label>
-            <textarea id="blogDesc" rows="2"></textarea>
-          </div>
-          <div class="form-row half">
-            <label for="blogDate">Publish Date:</label>
-            <input type="datetime-local" id="blogDate">
-          </div>
-          <div class="form-row half">
-            <label for="blogAuthor">Author:</label>
-            <select id="blogAuthor">
-              <option value="EvolvedLotus Team">EvolvedLotus Team</option>
-            </select>
-          </div>
-          <div class="form-row">
-            <label for="blogTags">Tags (comma-separated):</label>
-            <input type="text" id="blogTags" placeholder="marketing, guide, 2024">
-          </div>
-          <div class="form-row half">
-            <label for="blogCategory">Category:</label>
-            <select id="blogCategory">
-              <option value="">Select Category</option>
-              <option value="content-creation">Content Creation</option>
-              <option value="social-media">Social Media</option>
-              <option value="seo">SEO</option>
-              <option value="analytics">Analytics</option>
-              <option value="tools">Tools & Resources</option>
-            </select>
-          </div>
-          <div class="form-row half">
-            <div class="form-row half">
-              <label>Featured Image:</label>
+      <!-- SCROLLABLE BODY -->
+      <div class="modal-body">
+        <form id="contentForm" novalidate>
+          <input type="hidden" id="contentType">
+
+          <!-- ═══════════════ 📝 BLOG POST FIELDS ═══════════════ -->
+          <div id="blogFields" class="form-section">
+
+            <!-- Section 1: Essential Info -->
+            <div class="editor-section">
+              <div class="editor-section-title">
+                <span class="section-icon">✏️</span> Essential Info
+              </div>
+              <div class="form-row">
+                <label for="blogTitle">Post Title</label>
+                <input type="text" id="blogTitle" placeholder="e.g. 10 Tips for Growing Your Audience"
+                  oninput="updateSlug('blog')">
+                <div class="slug-preview" id="blogSlugPreview"></div>
+              </div>
+              <div class="form-row">
+                <label for="blogDesc">Description <small style="font-weight:400;color:#a0aec0;">(appears in search
+                    results)</small></label>
+                <textarea id="blogDesc" rows="2" style="min-height:60px;"
+                  placeholder="A compelling summary of your post for SEO..."></textarea>
+              </div>
+              <div class="fields-grid">
+                <div>
+                  <label for="blogDate">Publish Date</label>
+                  <input type="datetime-local" id="blogDate">
+                </div>
+                <div>
+                  <label for="blogAuthor">Author</label>
+                  <select id="blogAuthor">
+                    <option value="EvolvedLotus Team">EvolvedLotus Team</option>
+                  </select>
+                </div>
+                <div>
+                  <label for="blogCategory">Category</label>
+                  <select id="blogCategory">
+                    <option value="">Select Category</option>
+                    <option value="content-creation">Content Creation</option>
+                    <option value="social-media">Social Media</option>
+                    <option value="seo">SEO</option>
+                    <option value="analytics">Analytics</option>
+                    <option value="tools">Tools & Resources</option>
+                    <option value="strategy">Strategy</option>
+                    <option value="growth">Growth</option>
+                  </select>
+                </div>
+                <div>
+                  <div class="featured-toggle">
+                    <input type="checkbox" id="blogFeatured">
+                    <label for="blogFeatured">⭐ Featured Post</label>
+                  </div>
+                </div>
+              </div>
+              <div style="margin-top:12px;">
+                <label for="blogTags">Tags</label>
+                <div class="tag-chips" id="tagChips">
+                  <span class="tag-chip" data-tag="tiktok" onclick="toggleTag(this)">TikTok</span>
+                  <span class="tag-chip" data-tag="youtube" onclick="toggleTag(this)">YouTube</span>
+                  <span class="tag-chip" data-tag="twitter" onclick="toggleTag(this)">Twitter</span>
+                  <span class="tag-chip" data-tag="instagram" onclick="toggleTag(this)">Instagram</span>
+                  <span class="tag-chip" data-tag="facebook" onclick="toggleTag(this)">Facebook</span>
+                  <span class="tag-chip" data-tag="linkedin" onclick="toggleTag(this)">LinkedIn</span>
+                  <span class="tag-chip" data-tag="twitch" onclick="toggleTag(this)">Twitch</span>
+                  <span class="tag-chip" data-tag="kick" onclick="toggleTag(this)">Kick</span>
+                  <span class="tag-chip" data-tag="ai" onclick="toggleTag(this)">AI</span>
+                  <span class="tag-chip" data-tag="growth" onclick="toggleTag(this)">Growth</span>
+                  <span class="tag-chip" data-tag="misc" onclick="toggleTag(this)">Misc</span>
+                </div>
+                <input type="text" id="blogTags" placeholder="Add custom tags (comma-separated)"
+                  style="margin-top:4px;">
+              </div>
+            </div>
+
+            <!-- Section 2: Featured Image -->
+            <div class="editor-section">
+              <div class="editor-section-title">
+                <span class="section-icon">🖼️</span> Featured Image
+              </div>
               <input type="hidden" id="blogImage">
-
               <div id="blogImageDropZone"
-                style="border: 2px dashed #e2e8f0; padding: 15px; text-align:center; border-radius:6px; cursor:pointer; background: #f8fafc; transition: all 0.2s;"
+                style="border: 2px dashed #e2e8f0; padding: 24px; text-align:center; border-radius:8px; cursor:pointer; background: #f8fafc; transition: all 0.2s;"
                 onclick="document.getElementById('blogImageInput').click()"
                 ondragover="event.preventDefault(); this.style.borderColor='#33bdef'; this.style.background='#e0f2fe';"
                 ondragleave="this.style.borderColor='#e2e8f0'; this.style.background='#f8fafc';"
                 ondrop="event.preventDefault(); this.style.borderColor='#e2e8f0'; this.style.background='#f8fafc'; handleBlogImageDrop(event);">
-                <p style="margin:0; font-size: 0.9em; color:#64748b;">📂 Click to upload</p>
-                <small style="display:block; margin-top:5px; color:#94a3b8; font-size:0.75em;">
-                  Recommendation size is how the REST of the images in the article-hero-image are sized
-                </small>
+                <div style="font-size:2em; margin-bottom:8px;">📂</div>
+                <p style="margin:0; font-size: 0.95em; color:#4a5568; font-weight:500;">Click to upload or drag & drop
+                </p>
+                <small style="display:block; margin-top:6px; color:#a0aec0; font-size:0.8em;">PNG, JPG, WebP •
+                  Recommended: 1200×630px</small>
               </div>
               <input type="file" id="blogImageInput" accept="image/*" style="display:none;"
                 onchange="handleBlogImageUpload(event)">
-
               <div id="blogImagePreview"
-                style="display:none; margin-top:10px; align-items:center; gap:10px; background: white; padding: 5px; border: 1px solid #eee; border-radius: 6px;">
+                style="display:none; margin-top:12px; align-items:center; gap:12px; background: white; padding: 8px 12px; border: 1px solid #e2e8f0; border-radius: 8px;">
                 <img id="blogImagePreviewImg" src=""
-                  style="width:50px; height:35px; object-fit:cover; border-radius:4px;">
+                  style="width:60px; height:40px; object-fit:cover; border-radius:6px;">
                 <div
-                  style="flex-grow:1; font-size:0.75em; color:#64748b; overflow:hidden; text-overflow:ellipsis; white-space: nowrap; max-width: 150px;"
+                  style="flex-grow:1; font-size:0.85em; color:#4a5568; overflow:hidden; text-overflow:ellipsis; white-space: nowrap;"
                   id="blogImagePathDisplay"></div>
-                <button type="button" class="btn danger" style="padding:2px 6px; font-size:0.7em; margin:0;"
-                  onclick="removeBlogImage()">×</button>
+                <button type="button"
+                  style="background:#fed7d7; color:#e53e3e; border:none; padding:4px 10px; border-radius:6px; font-size:0.8em; cursor:pointer;"
+                  onclick="removeBlogImage()">Remove</button>
+              </div>
+            </div>
+
+            <!-- Section 3: Body Content -->
+            <div class="editor-section" id="blogContentSection">
+              <div class="editor-section-title">
+                <span class="section-icon">📄</span> Body Content
+              </div>
+              <!-- Content textarea is placed here by JS -->
+            </div>
+
+            <!-- Section 4: SEO & Metadata (Collapsible) -->
+            <div class="editor-section">
+              <div class="editor-section-title section-toggle" onclick="toggleSeoSection(this)">
+                <span class="section-icon">🔍</span> SEO & Metadata
+              </div>
+              <div class="section-collapsible" id="seoCollapsible">
+                <div style="display:flex; justify-content:flex-end; margin-bottom:12px;">
+                  <button type="button" id="btnGenerateSEO" onclick="generateSEO()"
+                    style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color:white; border:none; padding:8px 16px; border-radius:8px; font-size:0.85rem; font-weight:500; cursor:pointer; box-shadow: 0 2px 8px rgba(102,126,234,0.3); transition: all 0.2s;">
+                    ✨ Auto-Fill with AI
+                  </button>
+                </div>
+                <div class="fields-grid">
+                  <div class="full-width">
+                    <label for="blogImageAlt">Image Alt Text</label>
+                    <input type="text" id="blogImageAlt" placeholder="Descriptive alt text for the featured image">
+                  </div>
+                  <div class="full-width">
+                    <label for="blogKeywords">Keywords <small
+                        style="font-weight:400;color:#a0aec0;">(comma-separated)</small></label>
+                    <input type="text" id="blogKeywords" placeholder="social media, marketing tips, growth strategy">
+                  </div>
+                  <div>
+                    <label for="blogSchema">Schema Type</label>
+                    <select id="blogSchema">
+                      <option value="Article">Article</option>
+                      <option value="BlogPosting">BlogPosting</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label for="blogOg">Open Graph Type</label>
+                    <select id="blogOg">
+                      <option value="article">Article</option>
+                      <option value="website">Website</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Hidden draft checkbox (toggled by footer Save as Draft button) -->
+            <input type="checkbox" id="blogDraft" style="display:none;">
+          </div>
+
+          <!-- ═══════════════ 🔗 HUB FIELDS ═══════════════ -->
+          <div id="hubFields" class="form-section">
+            <div class="editor-section">
+              <div class="editor-section-title"><span class="section-icon">🔗</span> Hub Details</div>
+              <div class="form-row">
+                <label for="hubTitle">Hub Title</label>
+                <input type="text" id="hubTitle" oninput="updateSlug('hub')">
+                <div class="slug-preview" id="hubSlugPreview"></div>
+              </div>
+              <div class="form-row">
+                <label for="hubDesc">Description</label>
+                <textarea id="hubDesc" rows="3"></textarea>
+              </div>
+              <div class="fields-grid">
+                <div>
+                  <label for="hubCollection">Collection Strategy</label>
+                  <select id="hubCollection">
+                    <option value="tiktok">TikTok</option>
+                    <option value="instagram">Instagram</option>
+                    <option value="youtube">YouTube</option>
+                    <option value="ai">AI Tools</option>
+                  </select>
+                </div>
+                <div>
+                  <label for="hubPermalink">Permalink</label>
+                  <input type="text" id="hubPermalink" placeholder="/hubs/my-topic/">
+                </div>
               </div>
             </div>
           </div>
-          <div class="form-row">
-            <label><input type="checkbox" id="blogFeatured"> Featured</label>
-            <label style="margin-left:15px;"><input type="checkbox" id="blogDraft"> Draft</label>
-          </div>
 
-
-          <h4 style="border-bottom:1px solid #eee; padding-bottom:5px; margin-top:20px;">SEO Advanced</h4>
-          <div class="form-row"><input type="text" id="blogImageAlt" placeholder="Image Alt Text"></div>
-          <div class="form-row"><input type="text" id="blogKeywords" placeholder="Keywords (comma sep)"></div>
-          <div class="form-row half">
-            <select id="blogSchema">
-              <option value="Article">Article Schema</option>
-              <option value="BlogPosting">BlogPosting</option>
-            </select>
-          </div>
-          <div class="form-row half">
-            <select id="blogOg">
-              <option value="article">OG: Article</option>
-              <option value="website">OG: Website</option>
-            </select>
-          </div>
-        </div>
-
-        <!-- 🔗 HUB FIELDS -->
-        <div id="hubFields" class="form-section">
-          <div class="form-row">
-            <label for="hubTitle">Hub Title:</label>
-            <input type="text" id="hubTitle" oninput="updateSlug('hub')">
-            <div class="slug-preview" id="hubSlugPreview"></div>
-          </div>
-          <div class="form-row">
-            <label for="hubDesc">Description:</label>
-            <textarea id="hubDesc" rows="3"></textarea>
-          </div>
-          <div class="form-row">
-            <label for="hubCollection">Hub Collection Strategy:</label>
-            <select id="hubCollection">
-              <option value="tiktok">TikTok (tiktok)</option>
-              <option value="instagram">Instagram (instagram)</option>
-              <option value="youtube">YouTube (youtube)</option>
-              <option value="ai">AI Tools (ai)</option>
-            </select>
-          </div>
-          <div class="form-row">
-            <label for="hubPermalink">Permalink:</label>
-            <input type="text" id="hubPermalink" placeholder="/hubs/my-topic/">
-          </div>
-        </div>
-
-        <!-- 👥 AUTHOR FIELDS -->
-        <div id="authorFields" class="form-section">
-          <div class="form-row half">
-            <label for="authorName">Full Name:</label>
-            <input type="text" id="authorName" oninput="updateSlug('author')">
-            <div class="slug-preview" id="authorSlugPreview"></div>
-          </div>
-          <div class="form-row half">
-            <label for="authorRole">Role:</label>
-            <input type="text" id="authorRole">
-          </div>
-          <div class="form-row">
-            <label for="authorBio">Bio:</label>
-            <textarea id="authorBio" rows="3"></textarea>
-          </div>
-          <div class="form-row">
-            <label for="authorAvatar">Avatar URL:</label>
-            <input type="text" id="authorAvatar" placeholder="/assets/authors/name.png">
-          </div>
-          <div class="form-row">
-            <label>Social Media Links:</label>
-            <input type="url" id="authorTwitter" placeholder="Twitter URL" style="margin-bottom:5px;">
-            <input type="url" id="authorInsta" placeholder="Instagram URL" style="margin-bottom:5px;">
-            <input type="url" id="authorTiktok" placeholder="TikTok URL">
-          </div>
-          <div class="form-row">
-            <label for="authorExpertise">Expertise (One per line):</label>
-            <textarea id="authorExpertise" rows="4"></textarea>
-          </div>
-        </div>
-
-        <!-- 🔔 NOTIFICATION FIELDS -->
-        <div id="notificationFields" class="form-section">
-          <div class="form-row">
-            <label for="notifTitle">Title:</label>
-            <input type="text" id="notifTitle" oninput="updateSlug('notification')">
-            <div class="slug-preview" id="notificationSlugPreview"></div>
-          </div>
-          <div class="form-row">
-            <label for="notifDate">Date:</label>
-            <input type="date" id="notifDate">
-          </div>
-          <div class="form-row">
-            <label for="notifLink">Link (Optional):</label>
-            <input type="url" id="notifLink">
-          </div>
-          <div class="form-row">
-            <label for="notifTags">Tags:</label>
-            <input type="text" id="notifTags" value="notification" placeholder="notification, alert">
-          </div>
-        </div>
-
-        <!-- 📄 PAGE FIELDS -->
-        <div id="pageFields" class="form-section">
-          <div class="form-row">
-            <label for="pageTitle">Page Title:</label>
-            <input type="text" id="pageTitle" oninput="updateSlug('page')">
-            <div class="slug-preview" id="pageSlugPreview"></div>
-          </div>
-          <div class="form-row">
-            <label for="pageLayout">Layout:</label>
-            <input type="text" id="pageLayout" value="page.njk">
-          </div>
-          <div class="form-row">
-            <label for="pagePermalink">Permalink:</label>
-            <input type="text" id="pagePermalink" placeholder="/my-page/">
-          </div>
-        </div>
-
-        <!-- 🖼️ MEDIA FIELDS -->
-        <div id="mediaFields" class="form-section">
-          <div class="form-row">
-            <label>Select Image to Upload:</label>
-            <input type="file" id="mediaFileInput" accept="image/*" onchange="handleMediaFileSelect(event)"
-              style="display:none;">
-            <div id="mediaDropZone"
-              style="border: 2px dashed #33bdef; padding: 40px; text-align:center; border-radius:8px; cursor:pointer; background: #f9fbfc; transition: all 0.3s;"
-              onclick="document.getElementById('mediaFileInput').click()"
-              ondragover="event.preventDefault(); this.style.borderColor='#0ea5e9'; this.style.background='#e0f2fe';"
-              ondragleave="this.style.borderColor='#33bdef'; this.style.background='#f9fbfc';"
-              ondrop="event.preventDefault(); this.style.borderColor='#33bdef'; this.style.background='#f9fbfc'; handleMediaFileDrop(event);">
-              <p style="margin:0; font-size:18px;">📂 Drag and drop image here or click to browse</p>
-              <small style="color:#666;">Supports: JPG, PNG, GIF, WebP (Max 5MB)</small>
+          <!-- ═══════════════ 👥 AUTHOR FIELDS ═══════════════ -->
+          <div id="authorFields" class="form-section">
+            <div class="editor-section">
+              <div class="editor-section-title"><span class="section-icon">👤</span> Author Profile</div>
+              <div class="fields-grid">
+                <div>
+                  <label for="authorName">Full Name</label>
+                  <input type="text" id="authorName" oninput="updateSlug('author')">
+                  <div class="slug-preview" id="authorSlugPreview"></div>
+                </div>
+                <div>
+                  <label for="authorRole">Role</label>
+                  <input type="text" id="authorRole">
+                </div>
+              </div>
+              <div class="form-row">
+                <label for="authorBio">Bio</label>
+                <textarea id="authorBio" rows="3"></textarea>
+              </div>
+              <div class="form-row">
+                <label for="authorAvatar">Avatar URL</label>
+                <input type="text" id="authorAvatar" placeholder="/assets/authors/name.png">
+              </div>
             </div>
-          </div>
-          <div class="form-row" id="mediaPreviewRow" style="display:none;">
-            <label>Preview:</label>
-            <div style="display:flex; gap:20px; align-items:flex-start;">
-              <img id="mediaPreview"
-                style="max-width:200px; max-height:200px; border-radius:8px; border:1px solid #ddd;">
-              <div>
-                <p><strong>File:</strong> <span id="mediaFileName"></span></p>
-                <p><strong>Size:</strong> <span id="mediaFileSize"></span></p>
-                <p><strong>Path:</strong> <code>/assets/images/<span id="mediaFilePath"></span></code></p>
+            <div class="editor-section">
+              <div class="editor-section-title"><span class="section-icon">🌐</span> Social Links</div>
+              <div class="fields-grid">
+                <div>
+                  <label>Twitter / X</label>
+                  <input type="url" id="authorTwitter" placeholder="https://x.com/...">
+                </div>
+                <div>
+                  <label>Instagram</label>
+                  <input type="url" id="authorInsta" placeholder="https://instagram.com/...">
+                </div>
+                <div class="full-width">
+                  <label>TikTok</label>
+                  <input type="url" id="authorTiktok" placeholder="https://tiktok.com/@...">
+                </div>
+              </div>
+              <div class="form-row">
+                <label for="authorExpertise">Expertise <small style="font-weight:400;color:#a0aec0;">(one per
+                    line)</small></label>
+                <textarea id="authorExpertise" rows="4"></textarea>
               </div>
             </div>
           </div>
-          <div class="form-row" id="mediaUploadRow" style="display:none;">
-            <button type="button" class="btn primary" onclick="uploadMediaFile()">📤 Upload to Repository</button>
-            <button type="button" class="btn" onclick="clearMediaUpload()">Cancel</button>
+
+          <!-- ═══════════════ 🔔 NOTIFICATION FIELDS ═══════════════ -->
+          <div id="notificationFields" class="form-section">
+            <div class="editor-section">
+              <div class="editor-section-title"><span class="section-icon">🔔</span> Notification</div>
+              <div class="form-row">
+                <label for="notifTitle">Title</label>
+                <input type="text" id="notifTitle" oninput="updateSlug('notification')">
+                <div class="slug-preview" id="notificationSlugPreview"></div>
+              </div>
+              <div class="fields-grid">
+                <div>
+                  <label for="notifDate">Date</label>
+                  <input type="date" id="notifDate">
+                </div>
+                <div>
+                  <label for="notifTags">Tags</label>
+                  <input type="text" id="notifTags" value="notification" placeholder="notification, alert">
+                </div>
+                <div class="full-width">
+                  <label for="notifLink">Link <small style="font-weight:400;color:#a0aec0;">(optional)</small></label>
+                  <input type="url" id="notifLink" placeholder="https://...">
+                </div>
+              </div>
+            </div>
           </div>
-          <div id="mediaUploadStatus" style="display:none; padding: 15px; border-radius: 8px; margin-top: 10px;"></div>
-        </div>
 
-        <!-- COMMON CONTENT TEXTAREA (Shared by Blog, Hub, Page, Notif) -->
-        <div class="form-row" id="commonContentRow">
-          <label for="mainContent">Body Content (Markdown):</label>
-          <textarea id="mainContent"></textarea>
-        </div>
+          <!-- ═══════════════ 📄 PAGE FIELDS ═══════════════ -->
+          <div id="pageFields" class="form-section">
+            <div class="editor-section">
+              <div class="editor-section-title"><span class="section-icon">📄</span> Page Details</div>
+              <div class="form-row">
+                <label for="pageTitle">Page Title</label>
+                <input type="text" id="pageTitle" oninput="updateSlug('page')">
+                <div class="slug-preview" id="pageSlugPreview"></div>
+              </div>
+              <div class="fields-grid">
+                <div>
+                  <label for="pageLayout">Layout</label>
+                  <input type="text" id="pageLayout" value="page.njk">
+                </div>
+                <div>
+                  <label for="pagePermalink">Permalink</label>
+                  <input type="text" id="pagePermalink" placeholder="/my-page/">
+                </div>
+              </div>
+            </div>
+          </div>
 
-        <div class="form-row">
-          <button type="submit" class="btn primary" id="saveBtn">Save Changes</button>
-          <button type="button" class="btn info" onclick="generateFrontmatterProto()">Copy Code Only</button>
-          <button type="button" class="btn" onclick="closeModal()">Cancel</button>
+          <!-- ═══════════════ 🖼️ MEDIA FIELDS ═══════════════ -->
+          <div id="mediaFields" class="form-section">
+            <div class="editor-section">
+              <div class="editor-section-title"><span class="section-icon">🖼️</span> Upload Media</div>
+              <div class="form-row">
+                <input type="file" id="mediaFileInput" accept="image/*" onchange="handleMediaFileSelect(event)"
+                  style="display:none;">
+                <div id="mediaDropZone"
+                  style="border: 2px dashed #33bdef; padding: 40px; text-align:center; border-radius:8px; cursor:pointer; background: #f9fbfc; transition: all 0.3s;"
+                  onclick="document.getElementById('mediaFileInput').click()"
+                  ondragover="event.preventDefault(); this.style.borderColor='#0ea5e9'; this.style.background='#e0f2fe';"
+                  ondragleave="this.style.borderColor='#33bdef'; this.style.background='#f9fbfc';"
+                  ondrop="event.preventDefault(); this.style.borderColor='#33bdef'; this.style.background='#f9fbfc'; handleMediaFileDrop(event);">
+                  <div style="font-size:2.5em; margin-bottom:8px;">📂</div>
+                  <p style="margin:0; font-size:1em; font-weight:500; color:#2d3748;">Drag and drop image here or click
+                    to browse</p>
+                  <small style="color:#718096; margin-top:6px; display:block;">JPG, PNG, GIF, WebP • Max 5MB</small>
+                </div>
+              </div>
+              <div class="form-row" id="mediaPreviewRow" style="display:none;">
+                <label>Preview</label>
+                <div style="display:flex; gap:20px; align-items:flex-start;">
+                  <img id="mediaPreview"
+                    style="max-width:200px; max-height:200px; border-radius:8px; border:1px solid #ddd;">
+                  <div>
+                    <p><strong>File:</strong> <span id="mediaFileName"></span></p>
+                    <p><strong>Size:</strong> <span id="mediaFileSize"></span></p>
+                    <p><strong>Path:</strong> <code>/assets/images/<span id="mediaFilePath"></span></code></p>
+                  </div>
+                </div>
+              </div>
+              <div class="form-row" id="mediaUploadRow" style="display:none;">
+                <button type="button" class="btn primary" onclick="uploadMediaFile()">📤 Upload to Repository</button>
+                <button type="button" class="btn" onclick="clearMediaUpload()">Cancel</button>
+              </div>
+              <div id="mediaUploadStatus" style="display:none; padding: 15px; border-radius: 8px; margin-top: 10px;">
+              </div>
+            </div>
+          </div>
+
+          <!-- COMMON CONTENT TEXTAREA (Shared by Blog, Hub, Page, Notif) -->
+          <div class="form-row" id="commonContentRow">
+            <label for="mainContent">Body Content (Markdown):</label>
+            <textarea id="mainContent"></textarea>
+          </div>
+
+        </form>
+      </div>
+
+      <!-- STICKY FOOTER -->
+      <div class="modal-footer" id="modalFooter">
+        <div class="modal-footer-left">
+          <button type="button" class="btn-secondary" onclick="closeModal()">Cancel</button>
+          <button type="button" class="btn-secondary" onclick="generateFrontmatterProto()" id="copyCodeBtn">📋 Copy
+            Code</button>
         </div>
-      </form>
+        <div class="modal-footer-right">
+          <button type="button" class="btn-draft"
+            onclick="document.getElementById('blogDraft').checked=true; document.getElementById('contentForm').dispatchEvent(new Event('submit', {cancelable:true}));"
+            id="saveDraftBtn">
+            📝 Save as Draft
+          </button>
+          <button type="button" class="btn-publish" id="saveBtn"
+            onclick="document.getElementById('blogDraft').checked=false; document.getElementById('contentForm').dispatchEvent(new Event('submit', {cancelable:true}));">
+            🚀 Publish
+          </button>
+        </div>
+      </div>
+
     </div>
   </div>
 
@@ -1189,6 +1987,11 @@
           reader.readAsDataURL(selectedMediaFile);
         });
 
+        // Check payload size
+        if (base64Content.length > 5.5 * 1024 * 1024) {
+          throw new Error(`File is too large to upload directly (${(base64Content.length / 1024 / 1024).toFixed(1)}MB encoded). Max allowed is ~5.5MB.`);
+        }
+
         const sanitizedName = selectedMediaFile.name.toLowerCase().replace(/[^a-z0-9.-]/g, '-');
         const filePath = `assets/images/${sanitizedName}`;
 
@@ -1205,7 +2008,21 @@
           })
         });
 
-        const result = await response.json();
+        // Handle response robustly
+        let result;
+        const textToParse = await response.text();
+
+        if (!textToParse) {
+          console.error('Empty response from server');
+          throw new Error(`Server returned empty response (Status ${response.status}). Check console for details.`);
+        }
+
+        try {
+          result = JSON.parse(textToParse);
+        } catch (e) {
+          console.error('Failed to parse server response:', textToParse);
+          throw new Error(`Server returned non-JSON response (Status ${response.status}). Check console for details.`);
+        }
 
         if (response.ok && result.success) {
           statusEl.style.background = '#d1fae5';
@@ -1261,7 +2078,31 @@
             "preview", "side-by-side", "fullscreen", "|", "guide"
           ],
           forceSync: true,
-          autoDownloadFontAwesome: false
+          autoDownloadFontAwesome: false,
+          renderingConfig: {
+            singleLineBreaks: true,
+            codeSyntaxHighlighting: false,
+            markedOptions: {
+              sanitize: false,  // Allow raw HTML (divs, iframes, videos) to render in preview
+              breaks: true,
+              gfm: true
+            }
+          },
+          previewRender: function (plainText) {
+            // Use SimpleMDE's markdown parser (now with sanitize:false via markedOptions)
+            var rendered = simpleMDE.markdown(plainText);
+
+            // Wrap in blog layout structure for accurate preview
+            return `
+              <div class="article-body-wrapper" style="padding: 20px; max-width: 900px; margin: 0 auto; background: var(--bg-primary, white);">
+                <div class="article-content-column" style="width: 100%;">
+                  <div class="article-text" style="font-family: 'Inter', sans-serif;">
+                    ${rendered}
+                  </div>
+                </div>
+              </div>
+            `;
+          }
         });
       }
     }
@@ -1312,6 +2153,7 @@
       if (name === 'notifications' && !contentData.notificationsLoaded) loadNotifications();
       if (name === 'pages' && !contentData.pagesLoaded) loadPages();
       if (name === 'media' && !contentData.mediaLoaded) loadMedia();
+      if (name === 'analytics' && !contentData.analyticsLoaded) loadAnalytics();
 
     }
 
@@ -1346,7 +2188,7 @@
           document.getElementById('statBlogPosts').textContent = data.stats.totalBlogPosts || 0;
           document.getElementById('statHubs').textContent = data.stats.totalHubs || 0;
           document.getElementById('statAuthors').textContent = data.stats.totalAuthors || 0;
-          document.getElementById('lastUpdated').textContent = `Last updated: ${data.stats.lastUpdated || 'Unknown'}`;
+          document.getElementById('lastUpdated').textContent = `System Last Updated: ${data.stats.lastUpdated || 'Unknown'}`;
         }
 
         // Update analytics
@@ -1357,6 +2199,12 @@
             return postDate.getMonth() === now.getMonth() && postDate.getFullYear() === now.getFullYear();
           });
           document.getElementById('analyticsPostCount').textContent = thisMonth.length;
+
+          // Populate Recent Activity
+          populateRecentActivity(data.blog);
+
+          // Populate Calendar
+          renderCalendar(new Date());
         }
 
         // Populate author dropdown
@@ -1376,6 +2224,88 @@
         console.error('Error loading content data:', e);
         document.getElementById('lastUpdated').textContent = 'Error loading data';
         return null;
+      }
+    }
+
+    // Recent Activity Renderer
+    function populateRecentActivity(posts) {
+      if (!posts || posts.length === 0) return;
+
+      // Sort by date descending
+      const sorted = [...posts].sort((a, b) => new Date(b.date) - new Date(a.date)).slice(0, 5);
+
+      const list = document.getElementById('recentActivityList');
+      list.innerHTML = sorted.map(p => `
+        <div class="activity-item">
+          <div style="flex:1;">
+            <div style="display:flex; align-items:center; gap:8px; margin-bottom:4px;">
+              <span class="badge ${p.draft ? 'notification' : 'blog'}">${p.draft ? 'DRAFT' : 'POST'}</span>
+              <span style="font-size:0.85em; color:#718096;">${new Date(p.date).toLocaleDateString()}</span>
+            </div>
+            <a href="${p.url}" target="_blank" class="activity-link"><strong>${p.title}</strong></a>
+            <div style="font-size:0.85em; color:#718096; margin-top:2px;">by ${p.author}</div>
+          </div>
+          <button class="btn info" style="padding:4px 10px; font-size:0.8em;" onclick="editContent('blog','${p.id}')">Edit</button>
+        </div>
+      `).join('');
+    }
+
+    // Calendar Renderer
+    let currentCalendarDate = new Date();
+
+    function changeCalendarMonth(delta) {
+      currentCalendarDate.setMonth(currentCalendarDate.getMonth() + delta);
+      renderCalendar(currentCalendarDate);
+    }
+
+    function renderCalendar(date) {
+      const year = date.getFullYear();
+      const month = date.getMonth();
+
+      document.getElementById('calendarMonthLabel').textContent = date.toLocaleString('default', { month: 'long', year: 'numeric' });
+
+      const grid = document.getElementById('calendarGrid');
+      grid.innerHTML = '';
+
+      // Headers
+      const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+      days.forEach(d => {
+        grid.innerHTML += `<div class="calendar-day-header">${d}</div>`;
+      });
+
+      const firstDay = new Date(year, month, 1).getDay();
+      const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+      // Empty slots before first day
+      for (let i = 0; i < firstDay; i++) {
+        grid.innerHTML += `<div class="calendar-day" style="background:transparent; border:none;"></div>`;
+      }
+
+      // Days
+      const posts = contentData.blog || [];
+      const today = new Date();
+
+      for (let i = 1; i <= daysInMonth; i++) {
+        const dayDate = new Date(year, month, i);
+        const isToday = dayDate.toDateString() === today.toDateString();
+        const dateStr = dayDate.toISOString().split('T')[0];
+
+        // Find posts for this day (local time approx)
+        const dayPosts = posts.filter(p => p.date.startsWith(dateStr));
+
+        let dayHTML = `
+          <div class="calendar-day ${isToday ? 'today' : ''}">
+            <span class="calendar-date-label">${i}</span>
+            <div style="display:flex; flex-direction:column; gap:2px;">
+              ${dayPosts.map(p => `
+                <div class="calendar-post-dot ${p.draft ? 'draft' : ''}" onclick="editContent('blog','${p.id}')" title="${p.title}">
+                  ${p.title}
+                </div>
+              `).join('')}
+            </div>
+          </div>`;
+
+        grid.innerHTML += dayHTML;
       }
     }
 
@@ -1453,8 +2383,8 @@
 
         listEl.innerHTML = posts.map(p => `
           <div class="content-item">
-            <h4>${p.title || 'Untitled'} ${p.featured ? '<span class="badge blog">FEATURED</span>' : ''} ${p.draft ? '<span class="badge notification">DRAFT</span>' : ''}</h4>
-            <div class="content-meta">Published: ${p.date || 'No date'} | ${p.author || 'Unknown author'}</div>
+            <h4>${p.title || 'Untitled'} ${p.draft ? '<span class="badge draft">DRAFT</span>' : '<span class="badge published">PUBLISHED</span>'} ${p.featured ? '<span class="badge blog">⭐ FEATURED</span>' : ''}</h4>
+            <div class="content-meta">${p.date || 'No date'} | ${p.author || 'Unknown author'}</div>
             ${p.category ? `<div class="content-meta">Category: ${p.category}</div>` : ''}
             ${p.tags && p.tags.length ? `<div class="content-meta" style="margin-top:4px;">${(Array.isArray(p.tags) ? p.tags : [p.tags]).map(t => `<span style="display:inline-block;background:#edf2f7;padding:2px 8px;border-radius:12px;font-size:0.78em;margin:2px 3px 2px 0;">${t}</span>`).join('')}</div>` : ''}
             <div class="content-actions">
@@ -1605,21 +2535,195 @@
       }
     }
 
+    let currentAnalyticsData = [];
+    let currentAnalyticsSort = { field: 'views', dir: 'desc' };
+
+    async function loadAnalytics(range = '30days') {
+      // Force reload if range changes
+
+      const topPostsEl = document.getElementById('analyticsTopPosts');
+      topPostsEl.innerHTML = '<p class="loading-spinner"></p> Loading data...';
+
+      try {
+        const response = await fetch(`/.netlify/functions/analytics?range=${range}`);
+        const result = await response.json();
+
+        contentData.analyticsLoaded = true;
+
+        if (!result.configured) {
+          document.getElementById('analyticsConfigError').style.display = 'block';
+          topPostsEl.innerHTML = '<p>Analytics not configured.</p>';
+          return;
+        }
+
+        // Update Stats
+        document.getElementById('gaTotalViews').textContent = result.totals?.views?.toLocaleString() || '0';
+        document.getElementById('gaTotalUsers').textContent = result.totals?.users?.toLocaleString() || '0';
+
+        // Store for sorting
+        currentAnalyticsData = result.data || [];
+
+        renderAnalyticsTable();
+
+      } catch (e) {
+        console.error('Analytics load error:', e);
+        topPostsEl.innerHTML = '<div class="error-message">Failed to load analytics data.</div>';
+      }
+    }
+
+    function sortAnalytics(field) {
+      if (currentAnalyticsSort.field === field) {
+        currentAnalyticsSort.dir = currentAnalyticsSort.dir === 'desc' ? 'asc' : 'desc';
+      } else {
+        currentAnalyticsSort.field = field;
+        currentAnalyticsSort.dir = 'desc';
+      }
+      renderAnalyticsTable();
+    }
+
+    function renderAnalyticsTable() {
+      const topPostsEl = document.getElementById('analyticsTopPosts');
+      const data = currentAnalyticsData;
+      const { field, dir } = currentAnalyticsSort;
+
+      if (!data || data.length === 0) {
+        topPostsEl.innerHTML = '<p>No data available for this period.</p>';
+        return;
+      }
+
+      // Sort logic
+      data.sort((a, b) => {
+        let valA = a[field];
+        let valB = b[field];
+
+        if (dir === 'asc') return valA > valB ? 1 : -1;
+        return valA < valB ? 1 : -1;
+      });
+
+      const maxViews = Math.max(...data.map(d => d.views));
+
+      topPostsEl.innerHTML = `
+        <table style="width:100%; text-align:left; border-collapse:collapse; table-layout:fixed;">
+          <thead>
+            <tr style="border-bottom:2px solid #e2e8f0; color:#718096; font-size:0.9em;">
+              <th style="padding:12px; width:50%; cursor:pointer;" onclick="sortAnalytics('title')">Page Title ↕</th>
+              <th style="padding:12px; width:15%; cursor:pointer;" onclick="sortAnalytics('views')">Views ↕</th>
+              <th style="padding:12px; width:15%; cursor:pointer;" onclick="sortAnalytics('users')">Users ↕</th>
+              <th style="padding:12px; width:20%; cursor:pointer;" onclick="sortAnalytics('avgDuration')">Avg Time ↕</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${data.slice(0, 20).map(row => {
+        const viewPercent = (row.views / maxViews) * 100;
+        const formattedTime = formatDuration(row.avgDuration);
+        // Clean title: remove " | EvolvedLotus Blog" suffix if present
+        const cleanTitle = (row.title || row.path).replace(' | EvolvedLotus Blog', '');
+
+        return `
+              <tr style="border-bottom:1px solid #edf2f7; transition:background 0.15s;" onmouseover="this.style.background='#f8fafc'" onmouseout="this.style.background='transparent'">
+                <td style="padding:12px; overflow:hidden; white-space:nowrap; text-overflow:ellipsis;">
+                  <a href="${row.path}" target="_blank" style="color:#2d3748; text-decoration:none; font-weight:500; display:block;">${cleanTitle}</a>
+                  <span style="font-size:0.8em; color:#a0aec0;">${row.path}</span>
+                </td>
+                <td style="padding:12px;">
+                  <div style="font-weight:bold; color:#33bdef;">${row.views.toLocaleString()}</div>
+                  <div style="height:4px; background:#e2e8f0; border-radius:2px; width:100%; margin-top:4px;">
+                    <div style="height:100%; background:#33bdef; border-radius:2px; width:${viewPercent}%"></div>
+                  </div>
+                </td>
+                <td style="padding:12px;">${row.users.toLocaleString()}</td>
+                <td style="padding:12px; font-family:monospace; color:#4a5568;">${formattedTime}</td>
+              </tr>
+              `;
+      }).join('')}
+          </tbody>
+        </table>
+        <p style="margin-top:15px; font-size:0.85em; color:#718096; text-align:right;">Showing top 20 pages</p>
+      `;
+    }
+
+    function formatDuration(seconds) {
+      if (!seconds) return '0s';
+      const m = Math.floor(seconds / 60);
+      const s = Math.round(seconds % 60);
+      return `${m}m ${s}s`;
+    }
+
+    // Toggle SEO section collapse
+    function toggleSeoSection(el) {
+      el.classList.toggle('collapsed');
+      document.getElementById('seoCollapsible').classList.toggle('collapsed');
+    }
+
+    // Tag chip toggle
+    function toggleTag(chip) {
+      chip.classList.toggle('active');
+      // Build tag list from active chips + any custom text
+      const tagInput = document.getElementById('blogTags');
+      const activeChips = document.querySelectorAll('#tagChips .tag-chip.active');
+      const chipTags = Array.from(activeChips).map(c => c.dataset.tag);
+
+      // Preserve any custom tags the user typed that aren't preset chips
+      const presetTags = Array.from(document.querySelectorAll('#tagChips .tag-chip')).map(c => c.dataset.tag);
+      const currentTags = tagInput.value.split(',').map(t => t.trim()).filter(t => t);
+      const customTags = currentTags.filter(t => !presetTags.includes(t.toLowerCase()));
+
+      // Combine: chip tags + custom tags
+      const allTags = [...chipTags, ...customTags].filter(t => t);
+      tagInput.value = allTags.join(', ');
+    }
+
+    // Sync tag chips to match input value (for loading existing posts)
+    function syncTagChips() {
+      const tagInput = document.getElementById('blogTags');
+      const currentTags = tagInput.value.split(',').map(t => t.trim().toLowerCase()).filter(t => t);
+      document.querySelectorAll('#tagChips .tag-chip').forEach(chip => {
+        if (currentTags.includes(chip.dataset.tag)) {
+          chip.classList.add('active');
+        } else {
+          chip.classList.remove('active');
+        }
+      });
+    }
+
+    // Update modal header badge
+    function updateModalBadge(type) {
+      const badge = document.getElementById('modalTypeBadge');
+      const labels = {
+        blog: '📝 Blog Post',
+        hub: '🔗 Hub',
+        author: '👤 Author',
+        notification: '🔔 Notification',
+        page: '📄 Page',
+        media: '🖼️ Media'
+      };
+      badge.textContent = labels[type] || type;
+      badge.className = 'modal-type-badge ' + type;
+    }
+
     // CREATE / EDIT
     function createNewContent(type) {
       document.getElementById('contentForm').reset();
       document.getElementById('contentType').value = type;
-      document.getElementById('modalTitle').textContent = 'Create New ' + type.charAt(0).toUpperCase() + type.slice(1);
       editingItemId = null; // Reset - this is a new item
+
+      // Reset tag chips
+      document.querySelectorAll('#tagChips .tag-chip').forEach(c => c.classList.remove('active'));
+
+      // Update modal header
+      updateModalBadge(type);
+      document.getElementById('modalTitle').textContent = 'New ' + type.charAt(0).toUpperCase() + type.slice(1);
 
       // Hide all sections
       document.querySelectorAll('.form-section').forEach(el => el.classList.remove('active'));
 
       // Hide content row and action buttons for media (has its own upload button)
       const isMedia = (type === 'media');
+      const isBlog = (type === 'blog');
       document.getElementById('commonContentRow').style.display = isMedia ? 'none' : 'block';
-      document.getElementById('saveBtn').style.display = isMedia ? 'none' : 'inline-block';
-      document.querySelector('button[onclick="generateFrontmatterProto()"]').style.display = isMedia ? 'none' : 'inline-block';
+      document.getElementById('saveBtn').style.display = isMedia ? 'none' : 'inline-flex';
+      document.getElementById('copyCodeBtn').style.display = isMedia ? 'none' : 'inline-block';
+      document.getElementById('saveDraftBtn').style.display = isBlog ? 'inline-flex' : 'none';
 
       // Clear media upload state
       if (isMedia) {
@@ -1698,6 +2802,7 @@
         document.getElementById('blogFeatured').checked = !!item.featured;
         document.getElementById('blogDraft').checked = !!item.draft;
         updateSlug('blog');
+        syncTagChips(); // Highlight preset tag chips that match
       }
       if (type === 'hub') {
         document.getElementById('hubTitle').value = item.title || '';
@@ -2093,6 +3198,12 @@
         return;
       }
 
+      // 5MB limit check
+      if (file.size > 5 * 1024 * 1024) {
+        alert('❌ Image file size must be less than 5MB');
+        return;
+      }
+
       // Show loading
       const dropZone = document.getElementById('blogImageDropZone');
       const originalHTML = dropZone.innerHTML;
@@ -2106,6 +3217,11 @@
           reader.onerror = reject;
           reader.readAsDataURL(file);
         });
+
+        // Payload size check
+        if (base64Content.length > 5.5 * 1024 * 1024) {
+          throw new Error(`File is too large to upload directly (${(base64Content.length / 1024 / 1024).toFixed(1)}MB encoded). Max allowed is ~5.5MB.`);
+        }
 
         const sanitizedName = file.name.toLowerCase().replace(/[^a-z0-9.-]/g, '-');
         // Use assets/blog/ as implied by the original placeholder
@@ -2141,7 +3257,21 @@
           });
         }
 
-        const result = await response.json();
+        // Handle response robustly
+        let result;
+        const textToParse = await response.text();
+
+        if (!textToParse) {
+          console.error('Empty response from server');
+          throw new Error(`Server returned empty response (Status ${response.status}). Check console for details.`);
+        }
+
+        try {
+          result = JSON.parse(textToParse);
+        } catch (e) {
+          console.error('Failed to parse server response:', textToParse);
+          throw new Error(`Server returned non-JSON response (Status ${response.status}). Check console for details.`);
+        }
 
         if (response.ok && result.success) {
           const finalPath = `/${filePath}`;
@@ -2194,9 +3324,17 @@
     };
 
     let currentMediaPanelType = null; // 'image', 'video', or 'upload'
+    let savedCursor = null; // Track cursor position for insertion
 
     function toggleMediaPanel(type) {
       const existing = document.getElementById('mediaInsertPanel');
+
+      // Save cursor position before doing anything
+      if (simpleMDE && simpleMDE.codemirror) {
+        savedCursor = simpleMDE.codemirror.getCursor();
+        console.log('Cursor saved at:', savedCursor);
+      }
+
       // If same type clicked again, close
       if (existing && currentMediaPanelType === type) {
         existing.remove();
@@ -2285,7 +3423,7 @@
           <button type="button" class="btn primary" id="mipInsertBtn" onclick="insertFromMediaPanel()">📥 Insert into Editor</button>
         </div>`;
 
-      toolbar.after(panel);
+      toolbar.appendChild(panel);
     }
 
     function switchMediaTab(btn, tab) {
@@ -2324,6 +3462,19 @@
         return;
       }
 
+      let isImage = file.type.startsWith('image/');
+
+      // Initial size check
+      // For videos: strict 4MB limit (Netlify payload limit is 6MB, base64 overhead makes 4.5MB the max safe binary size)
+      // For images: allow up to 20MB since we compress them client-side before upload
+      const limit = isImage ? 20 * 1024 * 1024 : 4 * 1024 * 1024;
+      if (file.size > limit) {
+        alert(isImage
+          ? '❌ Image too large (>20MB). Please pick a smaller file.'
+          : '❌ Video too large (>4MB). Netlify server limits uploads to ~4.5MB. Auto-optimization is not available for videos. Please use YouTube or compress locally.');
+        return;
+      }
+
       progressEl.style.display = 'block';
       progressEl.style.background = '#e0f2fe';
       progressEl.innerHTML = '⏳ Processing & Uploading <strong>' + file.name + '</strong>...';
@@ -2332,7 +3483,6 @@
 
       try {
         let fileToUpload = file;
-        let isImage = file.type.startsWith('image/');
 
         // Compress image if it's an image
         if (isImage) {
@@ -2351,6 +3501,12 @@
           reader.onerror = reject;
           reader.readAsDataURL(fileToUpload);
         });
+
+        // Check final payload size (Netlify limit is ~6MB request body including JSON overhead)
+        // Base64 is ~1.33x binary size. 4.5MB base64 corresponds to ~3.3MB raw file.
+        if (base64Content.length > 4.5 * 1024 * 1024) {
+          throw new Error(`File is too large to upload directly (${(base64Content.length / 1024 / 1024).toFixed(1)}MB encoded). Max allowed is ~4.5MB. Please compress further or host externally.`);
+        }
 
         // Use .webp extension if compressed, otherwise keep original
         let fileName = file.name;
@@ -2378,7 +3534,22 @@
           });
         }
 
-        const result = await response.json();
+        // Handle response robustly
+        let result;
+        const textToParse = await response.text();
+
+        if (!textToParse) {
+          console.error('Empty response from server');
+          throw new Error(`Server returned empty response (Status ${response.status}). Check console for details.`);
+        }
+
+        try {
+          result = JSON.parse(textToParse);
+        } catch (e) {
+          console.error('Failed to parse server response:', textToParse);
+          throw new Error(`Server returned non-JSON response (Status ${response.status}). Check console for details.`);
+        }
+
         if (response.ok && result.success) {
           const finalPath = `/${filePath}`;
           progressEl.style.background = '#dcfce7';
@@ -2392,7 +3563,7 @@
           const urlTab = document.getElementById('mipUrlTab');
           if (urlTab) urlTab.style.display = 'flex';
         } else {
-          throw new Error(result.message || 'Upload failed');
+          throw new Error(result.message || result.error || 'Upload failed');
         }
       } catch (err) {
         console.error(err);
@@ -2459,9 +3630,20 @@
       // Insert into SimpleMDE at cursor
       if (simpleMDE) {
         const cm = simpleMDE.codemirror;
-        const cursor = cm.getCursor();
+        // Use saved cursor if available, otherwise current
+        const cursor = savedCursor || cm.getCursor();
+        console.log('Inserting at:', cursor, savedCursor ? '(saved)' : '(current)');
+
         cm.replaceRange(markdown, cursor);
+
+        // Move cursor to end of inserted block
+        const lines = markdown.split('\n');
+        const endLine = cursor.line + lines.length - 1;
+        const endCh = lines.length === 1 ? cursor.ch + lines[0].length : lines[lines.length - 1].length;
+        cm.setCursor({ line: endLine, ch: endCh });
+
         cm.focus();
+        savedCursor = null; // Clear saved cursor
       } else {
         const ta = document.getElementById('mainContent');
         const start = ta.selectionStart;

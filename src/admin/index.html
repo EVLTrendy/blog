@@ -701,6 +701,16 @@
       color: #742a2a;
     }
 
+    .badge.draft {
+      background: #fefcbf;
+      color: #975a16;
+    }
+
+    .badge.published {
+      background: #c6f6d5;
+      color: #22543d;
+    }
+
     .loading-spinner {
       display: inline-block;
       width: 20px;
@@ -1884,7 +1894,8 @@
             id="saveDraftBtn">
             📝 Save as Draft
           </button>
-          <button type="submit" form="contentForm" class="btn-publish" id="saveBtn">
+          <button type="button" class="btn-publish" id="saveBtn"
+            onclick="document.getElementById('blogDraft').checked=false; document.getElementById('contentForm').dispatchEvent(new Event('submit', {cancelable:true}));">
             🚀 Publish
           </button>
         </div>
@@ -2372,8 +2383,8 @@
 
         listEl.innerHTML = posts.map(p => `
           <div class="content-item">
-            <h4>${p.title || 'Untitled'} ${p.featured ? '<span class="badge blog">FEATURED</span>' : ''} ${p.draft ? '<span class="badge notification">DRAFT</span>' : ''}</h4>
-            <div class="content-meta">Published: ${p.date || 'No date'} | ${p.author || 'Unknown author'}</div>
+            <h4>${p.title || 'Untitled'} ${p.draft ? '<span class="badge draft">DRAFT</span>' : '<span class="badge published">PUBLISHED</span>'} ${p.featured ? '<span class="badge blog">⭐ FEATURED</span>' : ''}</h4>
+            <div class="content-meta">${p.date || 'No date'} | ${p.author || 'Unknown author'}</div>
             ${p.category ? `<div class="content-meta">Category: ${p.category}</div>` : ''}
             ${p.tags && p.tags.length ? `<div class="content-meta" style="margin-top:4px;">${(Array.isArray(p.tags) ? p.tags : [p.tags]).map(t => `<span style="display:inline-block;background:#edf2f7;padding:2px 8px;border-radius:12px;font-size:0.78em;margin:2px 3px 2px 0;">${t}</span>`).join('')}</div>` : ''}
             <div class="content-actions">
