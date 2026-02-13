@@ -312,8 +312,9 @@ async function handleGitHubCommit(filename, content, type, isBase64 = false) {
     }
 
     // Prepare commit - if isBase64, content is already base64 encoded
+    const skipDeploy = isAsset ? ' [skip ci]' : '';
     const commitData = {
-      message: `${type}: ${sha ? 'Update' : 'Create'} ${isAsset ? filename : filename + '.md'}`,
+      message: `${type}: ${sha ? 'Update' : 'Create'} ${isAsset ? filename : filename + '.md'}${skipDeploy}`,
       content: isBase64 ? content : Buffer.from(content).toString('base64'),
       branch: BRANCH
     };

@@ -414,6 +414,184 @@
       background: white;
     }
 
+    /* ========== PREVIEW PANE: Match Published Blog Exactly ========== */
+    .editor-preview,
+    .editor-preview-side {
+      /* Reset Sakura/SimpleMDE defaults */
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+      font-size: 1.125rem !important;
+      line-height: 1.8 !important;
+      color: var(--text-primary, #1a202c) !important;
+      background: var(--bg-primary, #fff) !important;
+      padding: 2rem !important;
+    }
+
+    .editor-preview h1,
+    .editor-preview-side h1 {
+      font-size: 2.75rem !important;
+      font-weight: 700 !important;
+      line-height: 1.2 !important;
+      margin: 2.5rem 0 1rem 0 !important;
+      color: var(--text-primary, #1a202c) !important;
+    }
+
+    .editor-preview h2,
+    .editor-preview-side h2 {
+      font-size: 2rem !important;
+      font-weight: 700 !important;
+      margin: 2.5rem 0 1rem 0 !important;
+      color: var(--text-primary, #1a202c) !important;
+    }
+
+    .editor-preview h3,
+    .editor-preview-side h3 {
+      font-size: 1.5rem !important;
+      font-weight: 600 !important;
+      margin: 2rem 0 1rem 0 !important;
+      color: var(--text-primary, #1a202c) !important;
+    }
+
+    .editor-preview h4,
+    .editor-preview-side h4 {
+      font-size: 1.25rem !important;
+      font-weight: 600 !important;
+      margin: 1.5rem 0 0.75rem 0 !important;
+      color: var(--text-primary, #1a202c) !important;
+    }
+
+    .editor-preview p,
+    .editor-preview-side p {
+      margin: 0 0 1.5rem 0 !important;
+      line-height: 1.8 !important;
+    }
+
+    .editor-preview a,
+    .editor-preview-side a {
+      color: var(--accent-color, #33bdef) !important;
+      text-decoration: underline !important;
+    }
+
+    .editor-preview a:hover,
+    .editor-preview-side a:hover {
+      color: var(--accent-hover, #2daadd) !important;
+    }
+
+    .editor-preview ul,
+    .editor-preview ol,
+    .editor-preview-side ul,
+    .editor-preview-side ol {
+      margin: 0 0 1.5rem 0 !important;
+      padding-left: 2rem !important;
+    }
+
+    .editor-preview li,
+    .editor-preview-side li {
+      margin-bottom: 0.5rem !important;
+    }
+
+    .editor-preview blockquote,
+    .editor-preview-side blockquote {
+      border-left: 4px solid var(--accent-color, #33bdef) !important;
+      padding-left: 1.5rem !important;
+      margin: 2rem 0 !important;
+      font-style: italic !important;
+      color: var(--text-secondary, #718096) !important;
+      background: none !important;
+    }
+
+    .editor-preview code,
+    .editor-preview-side code {
+      background: var(--code-bg, #f1f5f9) !important;
+      color: var(--code-text, #e53e3e) !important;
+      padding: 2px 6px !important;
+      border-radius: 4px !important;
+      font-family: 'Courier New', monospace !important;
+      font-size: 0.9em !important;
+    }
+
+    .editor-preview pre,
+    .editor-preview-side pre {
+      background: var(--code-bg, #f1f5f9) !important;
+      border: 1px solid var(--border-color, #e2e8f0) !important;
+      border-radius: 8px !important;
+      padding: 1.5rem !important;
+      overflow-x: auto !important;
+      margin: 2rem 0 !important;
+    }
+
+    .editor-preview pre code,
+    .editor-preview-side pre code {
+      background: none !important;
+      padding: 0 !important;
+    }
+
+    .editor-preview hr,
+    .editor-preview-side hr {
+      border: none !important;
+      border-top: 2px solid var(--border-color, #e2e8f0) !important;
+      margin: 2.5rem 0 !important;
+    }
+
+    .editor-preview img,
+    .editor-preview-side img {
+      max-width: 100% !important;
+      height: auto !important;
+      border-radius: 8px !important;
+      margin: 1rem 0 !important;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+    }
+
+    /* Inline div containers (aspect-ratio media blocks) */
+    .editor-preview div[style],
+    .editor-preview-side div[style] {
+      max-width: 100% !important;
+    }
+
+    .editor-preview iframe,
+    .editor-preview-side iframe {
+      border-radius: 8px;
+    }
+
+    .editor-preview video,
+    .editor-preview-side video {
+      border-radius: 8px;
+    }
+
+    .editor-preview table,
+    .editor-preview-side table {
+      width: 100% !important;
+      border-collapse: collapse !important;
+      margin: 2rem 0 !important;
+      background: var(--card-bg, #fff) !important;
+      border-radius: 8px !important;
+      overflow: hidden !important;
+    }
+
+    .editor-preview th,
+    .editor-preview td,
+    .editor-preview-side th,
+    .editor-preview-side td {
+      padding: 12px 16px !important;
+      text-align: left !important;
+      border-bottom: 1px solid var(--border-color, #e2e8f0) !important;
+    }
+
+    .editor-preview th,
+    .editor-preview-side th {
+      background: var(--bg-secondary, #f7fafc) !important;
+      font-weight: 600 !important;
+    }
+
+    .editor-preview strong,
+    .editor-preview-side strong {
+      font-weight: 700 !important;
+    }
+
+    .editor-preview em,
+    .editor-preview-side em {
+      font-style: italic !important;
+    }
+
     /* Blog search/filter/sort toolbar */
     .blog-toolbar {
       background: white;
@@ -1422,29 +1600,18 @@
           ],
           forceSync: true,
           autoDownloadFontAwesome: false,
-          previewRender: function (plainText) {
-            // Use marked directly with HTML enabled (SimpleMDE's default strips HTML)
-            if (typeof marked !== 'undefined') {
-              // marked is bundled with SimpleMDE
-              var renderer = new marked.Renderer();
-              var rendered = marked(plainText, {
-                renderer: renderer,
-                sanitize: false,   // Allow raw HTML to pass through
-                breaks: true,      // Convert \n to <br>
-                gfm: true          // GitHub-flavored markdown
-              });
-            } else {
-              // Fallback to SimpleMDE's built-in parser
-              var rendered = simpleMDE.markdown(plainText);
+          renderingConfig: {
+            singleLineBreaks: true,
+            codeSyntaxHighlighting: false,
+            markedOptions: {
+              sanitize: false,  // Allow raw HTML (divs, iframes, videos) to render in preview
+              breaks: true,
+              gfm: true
             }
-
-            // Post-process: make iframes work in preview (sandbox them for safety)
-            // and ensure images/videos display correctly
-            rendered = rendered
-              // Fix any double-encoded HTML entities from markdown parsing
-              .replace(/&lt;(\/?(div|iframe|video|img|source|br|p|span|a|ul|ol|li|h[1-6]|table|thead|tbody|tr|td|th|strong|em|blockquote|figure|figcaption)[^&]*?)&gt;/gi, '<$1>')
-              // Ensure images have max-width for preview
-              .replace(/<img /g, '<img style="max-width:100%;height:auto;" ');
+          },
+          previewRender: function (plainText) {
+            // Use SimpleMDE's markdown parser (now with sanitize:false via markedOptions)
+            var rendered = simpleMDE.markdown(plainText);
 
             // Wrap in blog layout structure for accurate preview
             return `
