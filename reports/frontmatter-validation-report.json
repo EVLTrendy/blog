@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-02-13T18:42:30.387Z",
+  "timestamp": "2026-04-08T21:05:11.587Z",
   "summary": {
-    "totalFiles": 87,
+    "totalFiles": 88,
     "errors": 0,
-    "warnings": 87
+    "warnings": 88
   },
   "errors": [],
   "warnings": [
@@ -606,6 +606,13 @@
       "file": "2026-02-13-essential-ai-video-tools-to-10x-your-content.md",
       "type": "image_dimensions_check",
       "message": "Image at /assets/blog/essential-ai-video-tools-to-10x-your-content.png: Ensure dimensions are 1200x630px for optimal Twitter Card display",
+      "field": "image",
+      "suggestion": "Twitter cards work best with 1.91:1 ratio images (1200x630px)"
+    },
+    {
+      "file": "2026-04-08-the-exact-system-creators-use-to-go-viral-on-tiktok.md",
+      "type": "image_dimensions_check",
+      "message": "Image at /assets/blog/the-exact-system-creators-use-to-go-viral-on-tiktok.png: Ensure dimensions are 1200x630px for optimal Twitter Card display",
       "field": "image",
       "suggestion": "Twitter cards work best with 1.91:1 ratio images (1200x630px)"
     },
