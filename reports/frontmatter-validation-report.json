@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-04-08T21:06:41.330Z",
+  "timestamp": "2026-04-10T20:30:25.059Z",
   "summary": {
-    "totalFiles": 88,
+    "totalFiles": 89,
     "errors": 0,
-    "warnings": 88
+    "warnings": 89
   },
   "errors": [],
   "warnings": [
@@ -613,6 +613,13 @@
       "file": "2026-04-08-the-exact-system-creators-use-to-go-viral-on-tiktok.md",
       "type": "image_dimensions_check",
       "message": "Image at /assets/blog/the-exact-system-creators-use-to-go-viral-on-tiktok.png: Ensure dimensions are 1200x630px for optimal Twitter Card display",
+      "field": "image",
+      "suggestion": "Twitter cards work best with 1.91:1 ratio images (1200x630px)"
+    },
+    {
+      "file": "2026-04-10-you-are-posting-on-x-wrong-here-is-how-to-fix-it-in-2026-.md",
+      "type": "image_dimensions_check",
+      "message": "Image at /assets/blog/you-are-posting-on-x-wrong.-here-is-how-to-fix-it-in-2026.png: Ensure dimensions are 1200x630px for optimal Twitter Card display",
       "field": "image",
       "suggestion": "Twitter cards work best with 1.91:1 ratio images (1200x630px)"
     },
